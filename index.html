@@ -577,16 +577,42 @@ const VOCAB_FOCUS = {
   '12A': 'informal words and phrases', '12B': 'phrases with get', '12C': 'word building (3): word families'
 };
 
+  
+// ==================== CHUẨN CẤU TRÚC GIÁO TRÌNH & LINK CHUẨN ====================
+// QUY TẮC ĐẶT TÊN FILE THỐNG NHẤT:
+// - Student Book: {Unit}{Letter}.html  (ví dụ: 1A.html, 1B.html, 2C.html)
+// - Workbook: workbook_{Unit}{Letter}.html (ví dụ: workbook_1A.html)
+// ❌ KHÔNG cần sửa index.html khi thêm bài mới nếu đặt tên theo quy tắc này
+
 function getLessonFile(unit, letter, type) {
-  if(type === 'sb') {
-    // Mapping file cụ thể
-    if(unit === 1 && letter === 'A') return '1A_Be_happy.html';
-    if(unit === 1 && letter === 'C') return '1C_Join_the_club.html';
-    return `${unit}${letter}.html`;
+  const unitLetter = `${unit}${letter}`;
+  if (type === 'sb') {
+    // TRƯỜNG HỢP ĐẶC BIỆT (giữ lại để tương thích với file cũ)
+    if (unitLetter === '1A') return '1A_Be_happy.html';
+    if (unitLetter === '1C') return '1C_Join_the_club.html';
+    // QUY TẮC CHUẨN CHO TẤT CẢ BÀI MỚI (1B, 1D, 2A, 2B, 3A,...)
+    return `${unitLetter}.html`;
   } else {
-    return `workbook_${unit}${letter}.html`;
+    // Workbook theo quy tắc chuẩn
+    return `workbook_${unitLetter}.html`;
   }
 }
+
+// Mapping tên bài học theo Student's Book
+const LESSON_TITLES = {
+  '1A': 'Be happy!', '1B': 'Love it or hate it', '1C': 'Join the club!', '1D': 'Nice to meet you',
+  '2A': 'Slow down!', '2B': 'Street food', '2C': 'Sleepless nights', '2D': 'What’s the matter?',
+  '3A': 'The tourist trade', '3B': 'Lonely Planet', '3C': 'Voluntourism', '3D': 'A trip to India',
+  '4A': 'Musical experiences', '4B': 'Modern adventurers', '4C': 'Unusual days out', '4D': 'It’s only a game!',
+  '5A': 'Our new home', '5B': 'A load of old junk', '5C': 'Birthdays', '5D': 'Things I need',
+  '6A': 'Make up your mind', '6B': 'Fear of failure', '6C': 'Touch wood', '6D': 'The village festival',
+  '7A': 'Have a go!', '7B': 'What would you do?', '7C': 'Social networking', '7D': 'Can you tell me ...?',
+  '8A': 'Angry planet', '8B': 'Recycle!', '8C': 'Dangers at sea', '8D': 'A hiking trip',
+  '9A': 'Get healthy!', '9B': 'Good news, bad news', '9C': 'Human behaviour', '9D': 'At the doctor’s',
+  '10A': 'The anniversary', '10B': 'Who’s that?', '10C': 'I do!', '10D': 'Do you mind if I ...?',
+  '11A': 'Any messages?', '11B': 'How did it go?', '11C': 'Undercover', '11D': 'It’s my first day',
+  '12A': 'I wish!', '12B': 'Important moments', '12C': 'Superheroes', '12D': 'End of Course Review'
+};
 
 const UNITS = [];
 for(let u=1; u<=12; u++){
@@ -596,12 +622,8 @@ for(let u=1; u<=12; u++){
   letters.forEach(letter=>{
     const lessonId = `${u}${letter}`;
     const title = LESSON_TITLES[lessonId] || 'Lesson';
-    const vocab = VOCAB_FOCUS[lessonId] || '';
-    const grammar = GRAMMAR_FOCUS[lessonId] || '';
-    const realWorld = REAL_WORLD[lessonId] || '';
     sbLessons.push({ 
       id: lessonId, type:'sb', title: `${lessonId} — ${title}`,
-      vocab, grammar, realWorld,
       file: getLessonFile(u, letter, 'sb') 
     });
     wbLessons.push({ 
