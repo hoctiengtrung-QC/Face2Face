@@ -2,836 +2,1012 @@
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>Face2Face Intermediate — Learning Portal</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>face2face Intermediate — Learning Portal</title>
 <style>
-/* ========== GLOBAL THEME (Sync 100% voi 1A, 1C) ========== */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap');
+:root{
+  --bg:#0D1117;--bg2:#161B22;--bg3:#21262D;--bg4:#2D333B;
+  --border:#30363D;--border2:#3D444D;
+  --text:#E6EDF3;--dim:#8B949E;--muted:#484F58;
+  --blue:#2563EB;--blue-l:rgba(37,99,235,.15);
+  --green:#10B981;--green-l:rgba(16,185,129,.12);
+  --orange:#F59E0B;--orange-l:rgba(245,158,11,.12);
+  --red:#EF4444;--red-l:rgba(239,68,68,.12);
+  --teal:#14B8A6;--purple:#8B5CF6;--purple-l:rgba(139,92,246,.12);
+  --r:10px;--r2:6px;--tr:.18s ease;
+}
+[data-theme=light]{
+  --bg:#F8FAFC;--bg2:#fff;--bg3:#F1F5F9;--bg4:#E2E8F0;
+  --border:#E2E8F0;--border2:#CBD5E1;
+  --text:#0F172A;--dim:#475569;--muted:#94A3B8;
+  --blue:#1D4ED8;--blue-l:rgba(29,78,216,.1);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);font-size:15px;line-height:1.6;min-height:100vh}
+a{color:inherit;text-decoration:none}
+button{cursor:pointer;border:none;background:none;font-family:inherit}
+input,select,textarea{font-family:inherit}
 
-:root {
-  --bg:#0D1117; --bg2:#161B22; --bg3:#21262D; --bg4:#2D333B;
-  --border:#30363D; --border2:#3D444D;
-  --text:#E6EDF3; --dim:#8B949E; --muted:#484F58;
-  --blue:#2563EB; --blue-l:rgba(37,99,235,.15);
-  --green:#10B981; --green-l:rgba(16,185,129,.12);
-  --orange:#F59E0B; --orange-l:rgba(245,158,11,.12);
-  --red:#EF4444; --red-l:rgba(239,68,68,.12);
-  --teal:#14B8A6; --purple:#8B5CF6; --purple-l:rgba(139,92,246,.12);
-  --r:12px; --r2:8px; --tr:.18s ease;
-}
-[data-theme=light] {
-  --bg:#F8FAFC; --bg2:#fff; --bg3:#F1F5F9; --bg4:#E2E8F0;
-  --border:#E2E8F0; --border2:#CBD5E1;
-  --text:#0F172A; --dim:#475569; --muted:#94A3B8;
-  --blue:#1D4ED8; --blue-l:rgba(29,78,216,.08);
-}
+/* ── HEADER ── */
+.header{position:sticky;top:0;z-index:100;background:var(--bg);border-bottom:1px solid var(--border);padding:0 24px;height:56px;display:flex;align-items:center;gap:16px}
+.brand{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;white-space:nowrap}
+.brand b{color:var(--blue)}
+.header-search{flex:1;max-width:400px;position:relative}
+.header-search input{width:100%;height:34px;background:var(--bg3);border:1px solid var(--border);border-radius:20px;padding:0 14px 0 36px;color:var(--text);font-size:.82rem;outline:none;transition:border-color var(--tr)}
+.header-search input:focus{border-color:var(--blue)}
+.header-search input::placeholder{color:var(--muted)}
+.search-ic{position:absolute;left:11px;top:50%;transform:translateY(-50%);color:var(--muted);font-size:.85rem;pointer-events:none}
+.header-actions{margin-left:auto;display:flex;align-items:center;gap:8px}
+.hbtn{width:34px;height:34px;display:flex;align-items:center;justify-content:center;border-radius:var(--r2);background:var(--bg3);border:1px solid var(--border);font-size:.9rem;color:var(--dim);cursor:pointer;transition:all var(--tr)}
+.hbtn:hover{border-color:var(--blue);color:var(--blue)}
+.nav-links{display:flex;gap:4px}
+.nav-link{padding:6px 12px;border-radius:var(--r2);font-size:.82rem;font-weight:500;color:var(--dim);cursor:pointer;transition:all var(--tr)}
+.nav-link:hover,.nav-link.active{background:var(--blue-l);color:var(--blue)}
 
-* { margin:0; padding:0; box-sizing:border-box; }
-body {
-  font-family:'Inter',system-ui,sans-serif;
-  background:var(--bg);
-  color:var(--text);
-  font-size:15px;
-  line-height:1.5;
-  transition:background var(--tr), color var(--tr);
-}
-::-webkit-scrollbar{width:6px;height:6px}
-::-webkit-scrollbar-track{background:var(--bg3);border-radius:4px}
-::-webkit-scrollbar-thumb{background:var(--muted);border-radius:4px}
+/* ── SEARCH OVERLAY ── */
+.search-overlay{display:none;position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.7);align-items:flex-start;justify-content:center;padding-top:80px}
+.search-overlay.show{display:flex}
+.search-modal{background:var(--bg2);border:1px solid var(--border2);border-radius:14px;width:92%;max-width:600px;overflow:hidden}
+.search-modal-header{padding:16px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:12px}
+.search-modal-input{flex:1;height:36px;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);padding:0 14px;color:var(--text);font-size:.9rem;outline:none}
+.search-modal-input:focus{border-color:var(--blue)}
+.search-results{max-height:400px;overflow-y:auto}
+.search-result-item{display:flex;align-items:center;gap:12px;padding:12px 20px;border-bottom:1px solid var(--border);cursor:pointer;transition:background var(--tr)}
+.search-result-item:hover{background:var(--bg3)}
+.sri-icon{width:36px;height:36px;border-radius:var(--r2);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0}
+.sri-info{flex:1}
+.sri-title{font-size:.88rem;font-weight:600}
+.sri-sub{font-size:.76rem;color:var(--dim);margin-top:2px}
+.sri-badge{padding:2px 8px;border-radius:4px;font-size:.7rem;font-weight:700;background:var(--blue-l);color:var(--blue)}
+.search-empty{padding:32px;text-align:center;color:var(--muted);font-size:.88rem}
 
-/* ========== HEADER / TOPBAR ========== */
-.top-bar {
-  background:var(--bg2);
-  border-bottom:1px solid var(--border);
-  padding:12px 28px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  flex-wrap:wrap;
-  gap:12px;
-  position:sticky;
-  top:0;
-  z-index:100;
-}
-.logo-area {
-  display:flex;
-  align-items:center;
-  gap:12px;
-}
-.logo {
-  font-family:'Playfair Display',serif;
-  font-size:1.35rem;
-  font-weight:800;
-  background:linear-gradient(135deg,var(--purple),var(--blue));
-  -webkit-background-clip:text;
-  background-clip:text;
-  color:transparent;
-}
-.badge-pro {
-  background:var(--purple-l);
-  padding:4px 12px;
-  border-radius:30px;
-  font-size:.7rem;
-  font-weight:700;
-  color:var(--purple);
-  border:1px solid rgba(139,92,246,.3);
-}
-.top-actions {
-  display:flex;
-  gap:12px;
-  align-items:center;
-}
-.icon-btn {
-  width:38px;
-  height:38px;
-  border-radius:var(--r2);
-  background:var(--bg3);
-  border:1px solid var(--border);
-  color:var(--dim);
-  font-size:1rem;
-  cursor:pointer;
-  transition:all var(--tr);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-}
-.icon-btn:hover {
-  border-color:var(--purple);
-  color:var(--purple);
-  background:var(--purple-l);
-}
-.progress-header-btn {
-  background:var(--green);
-  color:#fff;
-  padding:6px 16px;
-  border-radius:40px;
-  font-size:.8rem;
-  font-weight:600;
-  border:none;
-  cursor:pointer;
-  transition:all var(--tr);
-}
-.progress-header-btn:hover{background:#059669;transform:translateY(-1px);}
+/* ── PAGE SECTIONS ── */
+.page-section{display:none}
+.page-section.active{display:block}
+.container{max-width:1140px;margin:0 auto;padding:28px 24px 60px}
 
-/* ========== SEARCH BAR ========== */
-.search-section {
-  max-width:760px;
-  margin:24px auto 16px;
-  padding:0 24px;
-}
-.search-wrapper {
-  background:var(--bg2);
-  border:1px solid var(--border);
-  border-radius:60px;
-  display:flex;
-  align-items:center;
-  padding:6px 6px 6px 20px;
-  transition:all var(--tr);
-}
-.search-wrapper:focus-within {
-  border-color:var(--purple);
-  box-shadow:0 0 0 3px var(--purple-l);
-}
-.search-icon {
-  color:var(--dim);
-  font-size:1.1rem;
-  margin-right:8px;
-}
-#global-search {
-  flex:1;
-  background:transparent;
-  border:none;
-  padding:12px 0;
-  font-size:.95rem;
-  color:var(--text);
-  outline:none;
-}
-.search-clear {
-  background:var(--bg3);
-  border:none;
-  border-radius:40px;
-  padding:6px 14px;
-  font-size:.7rem;
-  color:var(--dim);
-  cursor:pointer;
-}
-.search-results-panel {
-  background:var(--bg2);
-  border:1px solid var(--border);
-  border-radius:var(--r);
-  margin-top:12px;
-  padding:12px;
-  display:none;
-  max-height:320px;
-  overflow-y:auto;
-}
-.result-item {
-  padding:10px 14px;
-  border-bottom:1px solid var(--border);
-  cursor:pointer;
-  transition:background var(--tr);
-  border-radius:var(--r2);
-}
-.result-item:hover {background:var(--bg3);}
-.result-unit {font-size:.7rem;color:var(--purple);font-weight:700;}
-.result-title {font-weight:600;font-size:.85rem;}
+/* ── HERO ── */
+.hero{background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:36px 40px;margin-bottom:28px;position:relative;overflow:hidden}
+.hero::after{content:'';position:absolute;top:-80px;right:-80px;width:320px;height:320px;background:radial-gradient(circle,rgba(37,99,235,.1) 0%,transparent 70%);pointer-events:none}
+.hero-badge{display:inline-flex;gap:6px;padding:3px 12px;background:var(--blue-l);border:1px solid rgba(37,99,235,.3);border-radius:20px;font-size:.7rem;font-weight:700;color:var(--blue);letter-spacing:.06em;text-transform:uppercase;margin-bottom:14px}
+.hero-title{font-family:'Playfair Display',serif;font-size:clamp(1.6rem,3.5vw,2.4rem);line-height:1.2;margin-bottom:8px}
+.hero-title em{font-style:italic;color:var(--blue)}
+.hero-sub{font-size:.9rem;color:var(--dim);max-width:560px;margin-bottom:24px}
+.hero-stats{display:flex;gap:28px;flex-wrap:wrap}
+.hstat strong{display:block;font-size:1.5rem;font-weight:700}
+.hstat span{font-size:.72rem;color:var(--muted)}
 
-/* ========== DASHBOARD LAYOUT ========== */
-.container {
-  max-width:1280px;
-  margin:0 auto;
-  padding:0 24px 48px;
-}
-.hero {
-  background:linear-gradient(135deg,rgba(139,92,246,.1),rgba(37,99,235,.05));
-  border-radius:var(--r);
-  padding:32px 28px;
-  margin-bottom:32px;
-  border:1px solid var(--border);
-}
-.hero h1 {
-  font-family:'Playfair Display',serif;
-  font-size:2.2rem;
-  font-weight:800;
-  margin-bottom:8px;
-}
-.hero p {color:var(--dim);margin-bottom:20px;}
-.stats-grid {
-  display:flex;
-  flex-wrap:wrap;
-  gap:24px;
-  justify-content:space-between;
-}
-.stat-card {
-  background:var(--bg2);
-  border-radius:var(--r2);
-  padding:12px 18px;
-  min-width:100px;
-  text-align:center;
-  border:1px solid var(--border);
-}
-.stat-number {font-size:1.8rem;font-weight:800;color:var(--purple);}
-.stat-label {font-size:.75rem;color:var(--dim);text-transform:uppercase;}
+/* ── PROGRESS OVERVIEW ── */
+.progress-overview{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px;margin-bottom:28px}
+.prog-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:18px;transition:all var(--tr)}
+.prog-card:hover{border-color:var(--border2);transform:translateY(-1px)}
+.prog-card-icon{font-size:1.5rem;margin-bottom:10px}
+.prog-card-label{font-size:.78rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;margin-bottom:4px}
+.prog-card-value{font-size:1.6rem;font-weight:700;color:var(--text);margin-bottom:6px}
+.prog-card-bar{height:4px;background:var(--bg3);border-radius:2px;overflow:hidden}
+.prog-card-fill{height:100%;border-radius:2px;transition:width .5s ease}
+.prog-card-sub{font-size:.74rem;color:var(--muted);margin-top:5px}
 
-.progress-global {
-  background:var(--bg2);
-  border-radius:var(--r);
-  padding:22px;
-  margin-bottom:32px;
-  border:1px solid var(--border);
-}
-.progress-header {display:flex;justify-content:space-between;margin-bottom:12px;}
-.progress-bar-bg {
-  background:var(--bg4);
-  height:12px;
-  border-radius:20px;
-  overflow:hidden;
-}
-.progress-fill-global {
-  width:0%;
-  height:100%;
-  background:linear-gradient(90deg,var(--purple),var(--blue));
-  border-radius:20px;
-  transition:width .3s;
-}
-.status-badge {
-  font-size:.7rem;
-  padding:3px 10px;
-  border-radius:40px;
-  font-weight:600;
-}
-.status-done {background:var(--green-l);color:var(--green);}
-.status-progress {background:var(--orange-l);color:var(--orange);}
-.status-pending {background:var(--bg3);color:var(--dim);}
+/* ── SECTION HEADER ── */
+.sec-hdr{font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:16px;display:flex;align-items:center;gap:10px}
+.sec-hdr::after{content:'';flex:1;height:1px;background:var(--border)}
+.sec-hdr-actions{display:flex;gap:8px;margin-left:auto}
 
-/* ========== UNIT CARDS ========== */
-.unit-section {
-  margin-bottom:48px;
-}
-.unit-title {
-  font-family:'Playfair Display',serif;
-  font-size:1.5rem;
-  font-weight:700;
-  margin-bottom:8px;
-  display:flex;
-  align-items:center;
-  gap:10px;
-}
-.unit-badge {
-  background:var(--purple);
-  width:34px;height:34px;
-  border-radius:50%;
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  font-weight:800;
-}
-.unit-grid {
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:20px;
-}
-@media(max-width:780px){.unit-grid{grid-template-columns:1fr;}}
-.unit-card {
-  background:var(--bg2);
-  border:1px solid var(--border);
-  border-radius:var(--r);
-  overflow:hidden;
-  transition:all var(--tr);
-}
-.unit-card:hover {border-color:var(--purple);transform:translateY(-3px);}
-.card-header {
-  padding:16px 20px;
-  background:var(--bg3);
-  border-bottom:1px solid var(--border);
-  font-weight:700;
-  font-size:1rem;
-  display:flex;
-  justify-content:space-between;
-}
-.lesson-group {
-  padding:4px 0;
-}
-.lesson-item {
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:12px 20px;
-  border-bottom:1px solid var(--border);
-  transition:background var(--tr);
-  flex-wrap:wrap;
-  gap:8px;
-}
-.lesson-item:hover {background:var(--bg3);}
-.lesson-info {display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
-.lesson-type {
-  font-size:.65rem;
-  font-weight:800;
-  padding:3px 10px;
-  border-radius:20px;
-  background:var(--bg4);
-  color:var(--dim);
-}
-.lesson-type.sb {background:var(--blue-l);color:var(--blue);}
-.lesson-type.wb {background:var(--green-l);color:var(--green);}
-.lesson-name {font-weight:500;font-size:.88rem;}
-.lesson-stats {display:flex;align-items:center;gap:10px;}
-.continue-btn {
-  background:var(--bg3);
-  border:1px solid var(--border);
-  padding:5px 12px;
-  border-radius:40px;
-  font-size:.7rem;
-  font-weight:600;
-  color:var(--dim);
-  cursor:pointer;
-  transition:all var(--tr);
-}
-.continue-btn:hover {
-  border-color:var(--purple);
-  color:var(--purple);
-  background:var(--purple-l);
-}
+/* ── UNIT CARD ── */
+.units-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px;margin-bottom:32px}
+.unit-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;transition:all var(--tr)}
+.unit-card:hover{border-color:var(--border2);box-shadow:0 4px 20px rgba(0,0,0,.25)}
+.unit-card-header{padding:14px 18px 12px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:12px;cursor:pointer}
+.unit-num-badge{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:.88rem;font-weight:700;color:#fff;flex-shrink:0}
+.unit-card-title{flex:1}
+.unit-card-name{font-size:.95rem;font-weight:700}
+.unit-card-theme{font-size:.76rem;color:var(--dim);margin-top:2px}
+.unit-card-prog{font-size:.76rem;color:var(--muted)}
+.unit-card-arrow{font-size:.7rem;color:var(--muted);transition:transform var(--tr)}
+.unit-card.open .unit-card-arrow{transform:rotate(90deg)}
+.unit-card-body{display:none;padding:14px 18px}
+.unit-card.open .unit-card-body{display:block}
+.lessons-section{margin-bottom:14px}
+.ls-title{font-size:.7rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px}
+.lesson-row{display:flex;align-items:center;gap:10px;padding:8px 10px;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);margin-bottom:6px;cursor:pointer;transition:all var(--tr)}
+.lesson-row:hover{border-color:var(--blue);background:var(--blue-l)}
+.lesson-row.done{border-color:rgba(16,185,129,.3);background:var(--green-l)}
+.lesson-row.inprog{border-color:rgba(245,158,11,.3);background:var(--orange-l)}
+.lr-icon{width:28px;height:28px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:.82rem;flex-shrink:0;font-weight:700}
+.lr-info{flex:1}
+.lr-title{font-size:.84rem;font-weight:600}
+.lr-sub{font-size:.72rem;color:var(--dim);margin-top:1px}
+.lr-status{display:flex;align-items:center;gap:6px}
+.status-dot{width:8px;height:8px;border-radius:50%}
+.dot-done{background:var(--green)}
+.dot-prog{background:var(--orange)}
+.dot-new{background:var(--border2)}
+.lr-pct{font-size:.72rem;color:var(--muted);font-weight:600}
+.lr-btn{padding:4px 10px;border-radius:4px;font-size:.72rem;font-weight:600;background:var(--blue);color:#fff;border:none;cursor:pointer;transition:all var(--tr);white-space:nowrap}
+.lr-btn:hover{background:#1D4ED8}
+.lr-btn.done-btn{background:var(--green-l);color:var(--green);border:1px solid rgba(16,185,129,.3)}
 
-/* ========== CENTERS ========== */
-.tab-centers {
-  display:flex;
-  gap:8px;
-  margin:40px 0 16px;
-  border-bottom:1px solid var(--border);
-  flex-wrap:wrap;
+/* ── STUDY PLAN ── */
+.plan-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;margin-bottom:28px}
+.plan-day{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:16px;transition:all var(--tr)}
+.plan-day:hover{border-color:var(--border2)}
+.plan-day-hdr{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.plan-day-num{width:32px;height:32px;border-radius:8px;background:var(--blue-l);border:1px solid rgba(37,99,235,.3);color:var(--blue);display:flex;align-items:center;justify-content:center;font-size:.78rem;font-weight:700}
+.plan-day-label{font-size:.88rem;font-weight:600}
+.plan-task{display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px dashed var(--border);font-size:.82rem;color:var(--dim)}
+.plan-task:last-child{border-bottom:none}
+.plan-task-ic{font-size:.85rem}
+
+/* ── ANALYTICS ── */
+.analytics-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px;margin-bottom:28px}
+.analytics-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:18px;text-align:center}
+.analytics-num{font-size:2rem;font-weight:700;margin-bottom:4px}
+.analytics-label{font-size:.78rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+
+/* ── VOCAB / GRAMMAR CENTER ── */
+.center-search{display:flex;gap:10px;margin-bottom:18px}
+.center-input{flex:1;height:38px;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);padding:0 14px;color:var(--text);font-size:.85rem;outline:none;transition:border-color var(--tr)}
+.center-input:focus{border-color:var(--blue)}
+.filter-select{height:38px;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);padding:0 12px;color:var(--text);font-size:.82rem;outline:none;cursor:pointer}
+.vocab-table{width:100%;border-collapse:collapse;font-size:.83rem}
+.vocab-table th{background:var(--bg3);padding:9px 14px;text-align:left;font-weight:700;border:1px solid var(--border);color:var(--dim);font-size:.72rem;text-transform:uppercase;letter-spacing:.05em}
+.vocab-table td{padding:9px 14px;border:1px solid var(--border);line-height:1.5}
+.vocab-table tr:hover td{background:rgba(255,255,255,.02)}
+.vocab-word{font-weight:600;color:var(--text)}
+.vocab-ipa{font-family:'Courier New',monospace;font-size:.75rem;color:var(--teal)}
+.vocab-vi{color:var(--orange);font-size:.8rem}
+.vocab-unit{padding:2px 8px;border-radius:4px;font-size:.7rem;font-weight:700;background:var(--blue-l);color:var(--blue)}
+.vocab-fav{cursor:pointer;font-size:.9rem;transition:transform var(--tr)}
+.vocab-fav:hover{transform:scale(1.2)}
+
+.grammar-list{display:flex;flex-direction:column;gap:10px}
+.grammar-item{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:16px;cursor:pointer;transition:all var(--tr)}
+.grammar-item:hover{border-color:var(--blue);transform:translateY(-1px)}
+.gi-header{display:flex;align-items:flex-start;gap:12px;margin-bottom:8px}
+.gi-point{font-size:.92rem;font-weight:700;flex:1}
+.gi-unit{padding:3px 10px;border-radius:4px;font-size:.72rem;font-weight:700;background:var(--blue-l);color:var(--blue)}
+.gi-example{font-family:'Courier New',monospace;font-size:.8rem;color:#7DD3FC;background:var(--bg);padding:7px 12px;border-radius:var(--r2);border:1px solid var(--border)}
+.gi-explain{font-size:.8rem;color:var(--dim);margin-top:6px;line-height:1.6}
+
+/* ── FAVORITES ── */
+.fav-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px}
+.fav-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:16px;display:flex;align-items:center;gap:12px;transition:all var(--tr)}
+.fav-card:hover{border-color:var(--border2)}
+.fav-icon{font-size:1.2rem;flex-shrink:0}
+.fav-info{flex:1}
+.fav-title{font-size:.88rem;font-weight:600}
+.fav-sub{font-size:.75rem;color:var(--dim);margin-top:2px}
+.fav-remove{font-size:.85rem;color:var(--muted);cursor:pointer;transition:color var(--tr)}
+.fav-remove:hover{color:var(--red)}
+
+/* ── BUTTONS ── */
+.btn{display:inline-flex;align-items:center;gap:6px;padding:8px 18px;border-radius:var(--r2);font-size:.83rem;font-weight:500;cursor:pointer;border:none;font-family:inherit;transition:all var(--tr)}
+.btn-primary{background:var(--blue);color:#fff}.btn-primary:hover{background:#1D4ED8;transform:translateY(-1px)}
+.btn-outline{background:var(--bg3);border:1px solid var(--border2);color:var(--dim)}.btn-outline:hover{border-color:var(--blue);color:var(--blue)}
+.btn-green{background:var(--green);color:#fff}.btn-green:hover{background:#059669}
+
+/* ── EMPTY STATE ── */
+.empty-state{text-align:center;padding:48px 24px;color:var(--muted)}
+.empty-state-icon{font-size:2.5rem;margin-bottom:12px}
+.empty-state-title{font-size:.95rem;font-weight:600;color:var(--dim);margin-bottom:6px}
+
+/* ── TOAST ── */
+#toast{position:fixed;bottom:20px;right:20px;z-index:999;background:var(--bg2);border:1px solid var(--border2);padding:10px 18px;border-radius:8px;font-size:.82rem;box-shadow:0 4px 20px rgba(0,0,0,.3);transition:opacity .3s;opacity:0;pointer-events:none}
+#toast.show{opacity:1}
+
+/* ── RESPONSIVE ── */
+@media(max-width:768px){
+  .header{padding:0 14px;gap:10px}
+  .nav-links{display:none}
+  .container{padding:18px 14px 48px}
+  .hero{padding:22px 20px}
+  .units-grid{grid-template-columns:1fr}
+  .progress-overview{grid-template-columns:repeat(2,1fr)}
+  .analytics-grid{grid-template-columns:repeat(2,1fr)}
 }
-.center-tab {
-  padding:10px 20px;
-  background:transparent;
-  border:none;
-  font-weight:600;
-  color:var(--dim);
-  cursor:pointer;
-  border-bottom:2px solid transparent;
-  transition:all var(--tr);
+@media(max-width:480px){
+  .progress-overview,.analytics-grid{grid-template-columns:1fr}
+  .hero-stats{gap:16px}
 }
-.center-tab.active {
-  color:var(--purple);
-  border-bottom-color:var(--purple);
-}
-.center-panel {
-  display:none;
-  background:var(--bg2);
-  border-radius:var(--r);
-  border:1px solid var(--border);
-  padding:20px;
-  margin-bottom:32px;
-}
-.center-panel.active {display:block;}
-.vocab-filter {
-  display:flex;
-  gap:8px;
-  margin-bottom:20px;
-  flex-wrap:wrap;
-}
-.filter-chip {
-  background:var(--bg3);
-  padding:4px 12px;
-  border-radius:40px;
-  font-size:.75rem;
-  cursor:pointer;
-}
-.filter-chip.active-filter {background:var(--purple);color:#fff;}
-.vocab-list {display:flex;flex-direction:column;gap:8px;max-height:380px;overflow-y:auto;}
-.vocab-row {
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:10px 12px;
-  border-bottom:1px solid var(--border);
-  gap:10px;
-  flex-wrap:wrap;
-}
-.vocab-word{font-weight:700;min-width:110px;}
-.vocab-ipa{font-family:monospace;font-size:.75rem;color:var(--teal);}
-.vocab-meaning{color:var(--orange);font-size:.8rem;flex:1;}
-.bookmark-star{cursor:pointer;font-size:1rem;color:var(--muted);}
-.bookmark-star.active-star{color:var(--orange);}
-.grammar-list .grammar-item {
-  padding:14px;
-  border-bottom:1px solid var(--border);
-}
-.grammar-title {
-  font-weight:800;
-  color:var(--purple);
-  margin-bottom:4px;
-}
-.grammar-unit{font-size:.7rem;color:var(--dim);}
-.study-plan-card {
-  background:linear-gradient(135deg,var(--bg3),var(--bg2));
-  border-radius:var(--r);
-  padding:20px;
-  margin-top:20px;
-}
-.fav-grid {
-  display:grid;
-  gap:10px;
-}
-.fav-lesson {
-  background:var(--bg3);
-  border-radius:var(--r2);
-  padding:12px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-}
-@media(max-width:640px){
-  .top-bar{padding:12px 16px;}
-  .container{padding:0 16px 32px;}
-  .hero h1{font-size:1.6rem;}
-}
+*{scrollbar-width:thin;scrollbar-color:var(--border2) transparent}
+*::-webkit-scrollbar{width:5px;height:5px}
+*::-webkit-scrollbar-thumb{background:var(--border2);border-radius:3px}
 </style>
 </head>
 <body>
 
-<div class="top-bar">
-  <div class="logo-area">
-    <div class="logo">face2face</div>
-    <div class="badge-pro">Intermediate · Portal</div>
+<!-- HEADER -->
+<header class="header">
+  <div class="brand">face<b>2</b>face <span style="font-size:.72rem;font-weight:400;color:var(--muted)">Intermediate</span></div>
+  <div class="header-search">
+    <span class="search-ic">🔍</span>
+    <input type="text" id="header-search" placeholder="Tìm bài học, từ vựng, ngữ pháp…" onclick="openSearch()" readonly>
   </div>
-  <div class="top-actions">
-    <button class="icon-btn" id="themeToggle" onclick="toggleTheme()">🌙</button>
-    <button class="icon-btn" id="favoritesNavBtn" onclick="showCenterTab('favorites')">⭐</button>
-    <button class="progress-header-btn" onclick="resetAllProgress()">📊 Reset Progress</button>
+  <nav class="nav-links">
+    <div class="nav-link active" onclick="showPage('dashboard')">📊 Dashboard</div>
+    <div class="nav-link" onclick="showPage('vocab')">📚 Vocabulary</div>
+    <div class="nav-link" onclick="showPage('grammar')">📐 Grammar</div>
+    <div class="nav-link" onclick="showPage('plan')">📅 Study Plan</div>
+    <div class="nav-link" onclick="showPage('favorites')">⭐ Favorites</div>
+  </nav>
+  <div class="header-actions">
+    <button class="hbtn" onclick="showPage('vocab')" title="Vocabulary">📚</button>
+    <button class="hbtn" onclick="showPage('grammar')" title="Grammar">📐</button>
+    <button class="hbtn" onclick="showPage('plan')" title="Study Plan">📅</button>
+    <button class="hbtn" onclick="showPage('favorites')" title="Favorites">⭐</button>
+    <button class="hbtn" id="theme-btn" onclick="toggleTheme()">☀️</button>
+  </div>
+</header>
+
+<!-- SEARCH OVERLAY -->
+<div class="search-overlay" id="search-overlay" onclick="closeSearchIfOutside(event)">
+  <div class="search-modal">
+    <div class="search-modal-header">
+      <span style="font-size:1rem">🔍</span>
+      <input class="search-modal-input" id="search-modal-input" placeholder="Tìm unit, bài học, từ vựng, ngữ pháp…" oninput="doSearch(this.value)" autofocus>
+      <button class="btn btn-outline" style="padding:5px 10px;font-size:.78rem" onclick="closeSearch()">✕ Đóng</button>
+    </div>
+    <div class="search-results" id="search-results">
+      <div class="search-empty">💡 Gõ để tìm kiếm bài học, từ vựng, ngữ pháp…</div>
+    </div>
   </div>
 </div>
 
-<div class="search-section">
-  <div class="search-wrapper">
-    <span class="search-icon">🔍</span>
-    <input type="text" id="global-search" placeholder="Search lessons, grammar, vocabulary ... e.g. 'question forms', 'laughter', 'prepositions'" autocomplete="off">
-    <button class="search-clear" id="clearSearchBtn">✕</button>
-  </div>
-  <div id="searchResultsPanel" class="search-results-panel"></div>
-</div>
-
+<!-- DASHBOARD -->
+<div class="page-section active" id="page-dashboard">
 <div class="container">
+
+  <!-- HERO -->
   <div class="hero">
-    <h1>Face2Face Intermediate</h1>
-    <p>Student's Book & Workbook — Complete learning dashboard</p>
-    <div class="stats-grid">
-      <div class="stat-card"><div class="stat-number" id="totalUnits">12</div><div class="stat-label">Units</div></div>
-      <div class="stat-card"><div class="stat-number" id="totalLessons">96</div><div class="stat-label">Lessons (SB+WB)</div></div>
-      <div class="stat-card"><div class="stat-number" id="completedCount">0</div><div class="stat-label">Completed</div></div>
-      <div class="stat-card"><div class="stat-number" id="progressPercent">0%</div><div class="stat-label">Overall</div></div>
+    <div class="hero-badge">📘 Cambridge University Press · B1/B2</div>
+    <h1 class="hero-title">face<em>2</em>face Intermediate<br>Learning Portal</h1>
+    <p class="hero-sub">Học tiếng Anh theo giáo trình face2face Intermediate (Cambridge). Theo dõi tiến độ, ôn tập từ vựng, ngữ pháp và luyện tập mọi kỹ năng.</p>
+    <div class="hero-stats">
+      <div class="hstat"><strong>12</strong><span>Units</span></div>
+      <div class="hstat"><strong id="stat-lessons">47</strong><span>Lessons</span></div>
+      <div class="hstat"><strong>47</strong><span>Workbook Sets</span></div>
+      <div class="hstat"><strong id="stat-pct">0%</strong><span>Completed</span></div>
     </div>
   </div>
 
-  <div class="progress-global">
-    <div class="progress-header"><span>📈 Learning Progress</span><span id="progressLabel">0%</span></div>
-    <div class="progress-bar-bg"><div class="progress-fill-global" id="globalFillBar"></div></div>
-    <div style="display:flex;justify-content:space-between;margin-top:14px;gap:8px;flex-wrap:wrap;">
-      <span class="status-badge status-done">✅ Completed: <span id="statDone">0</span></span>
-      <span class="status-badge status-progress">⚡ In progress: <span id="statProgress">0</span></span>
-      <span class="status-badge status-pending">📖 Not started: <span id="statPending">0</span></span>
+  <!-- PROGRESS OVERVIEW -->
+  <div class="sec-hdr">Learning Progress</div>
+  <div class="progress-overview">
+    <div class="prog-card">
+      <div class="prog-card-icon">✅</div>
+      <div class="prog-card-label">Completed</div>
+      <div class="prog-card-value" id="pov-done">0</div>
+      <div class="prog-card-bar"><div class="prog-card-fill" id="pov-done-bar" style="width:0%;background:var(--green)"></div></div>
+      <div class="prog-card-sub" id="pov-done-sub">of 47 lessons</div>
+    </div>
+    <div class="prog-card">
+      <div class="prog-card-icon">🔄</div>
+      <div class="prog-card-label">In Progress</div>
+      <div class="prog-card-value" id="pov-prog">0</div>
+      <div class="prog-card-bar"><div class="prog-card-fill" id="pov-prog-bar" style="width:0%;background:var(--orange)"></div></div>
+      <div class="prog-card-sub">lessons started</div>
+    </div>
+    <div class="prog-card">
+      <div class="prog-card-icon">📖</div>
+      <div class="prog-card-label">Not Started</div>
+      <div class="prog-card-value" id="pov-new">47</div>
+      <div class="prog-card-bar"><div class="prog-card-fill" id="pov-new-bar" style="width:100%;background:var(--border2)"></div></div>
+      <div class="prog-card-sub">lessons remaining</div>
+    </div>
+    <div class="prog-card">
+      <div class="prog-card-icon">🔥</div>
+      <div class="prog-card-label">Study Streak</div>
+      <div class="prog-card-value" id="pov-streak">0</div>
+      <div class="prog-card-bar"><div class="prog-card-fill" id="pov-streak-bar" style="width:0%;background:var(--blue)"></div></div>
+      <div class="prog-card-sub">days in a row</div>
     </div>
   </div>
 
-  <div id="unitsContainer"></div>
-
-  <div class="tab-centers">
-    <button class="center-tab active" data-center="vocab">📖 Vocabulary Index</button>
-    <button class="center-tab" data-center="grammar">📐 Grammar Index</button>
-    <button class="center-tab" data-center="favorites">⭐ My Favorites</button>
-    <button class="center-tab" data-center="studyplan">📅 Study Plan</button>
-  </div>
-  <div id="center-vocab" class="center-panel active">
-    <div class="vocab-filter" id="vocabFilterContainer"></div>
-    <div id="vocabListContainer" class="vocab-list"></div>
-  </div>
-  <div id="center-grammar" class="center-panel">
-    <div id="grammarListContainer"></div>
-  </div>
-  <div id="center-favorites" class="center-panel">
-    <div id="favLessonsList"></div>
-    <div id="favVocabList"></div>
-  </div>
-  <div id="center-studyplan" class="center-panel">
-    <div class="study-plan-card">
-      <h3 style="margin-bottom:8px;">🗓️ Personalized Study Plan (30 min/day)</h3>
-      <div id="studyPlanItems"></div>
-      <button class="continue-btn" style="margin-top:16px;" onclick="regenerateStudyPlan()">⟳ Regenerate Plan</button>
+  <!-- UNITS -->
+  <div class="sec-hdr">
+    All Units — Student Book
+    <div class="sec-hdr-actions">
+      <button class="btn btn-outline" style="padding:5px 12px;font-size:.76rem" onclick="expandAll()">Expand All</button>
+      <button class="btn btn-outline" style="padding:5px 12px;font-size:.76rem" onclick="collapseAll()">Collapse All</button>
     </div>
+  </div>
+  <div class="units-grid" id="units-grid"></div>
+
+</div>
+</div>
+
+<!-- VOCABULARY CENTER -->
+<div class="page-section" id="page-vocab">
+<div class="container">
+  <div style="margin-bottom:20px">
+    <h2 style="font-family:'Playfair Display',serif;font-size:1.5rem;margin-bottom:6px">📚 Vocabulary Center</h2>
+    <p style="font-size:.85rem;color:var(--dim)">Tổng hợp từ vựng từ tất cả bài học. Nhấn ⭐ để bookmark.</p>
+  </div>
+  <div class="center-search">
+    <input class="center-input" id="vocab-search" placeholder="🔍 Tìm từ vựng…" oninput="filterVocab()">
+    <select class="filter-select" id="vocab-unit-filter" onchange="filterVocab()">
+      <option value="">All Units</option>
+    </select>
+    <select class="filter-select" id="vocab-type-filter" onchange="filterVocab()">
+      <option value="">All Types</option>
+      <option value="positive">😊 Positive</option>
+      <option value="negative">😟 Negative</option>
+      <option value="collocation">Collocation</option>
+      <option value="adjective">Adjective</option>
+      <option value="phrasal">Phrasal Verb</option>
+    </select>
+  </div>
+  <div style="overflow-x:auto">
+    <table class="vocab-table" id="vocab-table">
+      <thead><tr><th>Word / Phrase</th><th>IPA</th><th>🇻🇳 Nghĩa</th><th>Unit</th><th>Example</th><th>⭐</th></tr></thead>
+      <tbody id="vocab-tbody"></tbody>
+    </table>
   </div>
 </div>
+</div>
+
+<!-- GRAMMAR CENTER -->
+<div class="page-section" id="page-grammar">
+<div class="container">
+  <div style="margin-bottom:20px">
+    <h2 style="font-family:'Playfair Display',serif;font-size:1.5rem;margin-bottom:6px">📐 Grammar Center</h2>
+    <p style="font-size:.85rem;color:var(--dim)">Tổng hợp toàn bộ điểm ngữ pháp từ Units 1–12.</p>
+  </div>
+  <div class="center-search">
+    <input class="center-input" id="grammar-search" placeholder="🔍 Tìm ngữ pháp…" oninput="filterGrammar()">
+    <select class="filter-select" id="grammar-unit-filter" onchange="filterGrammar()">
+      <option value="">All Units</option>
+    </select>
+  </div>
+  <div class="grammar-list" id="grammar-list"></div>
+</div>
+</div>
+
+<!-- STUDY PLAN -->
+<div class="page-section" id="page-plan">
+<div class="container">
+  <div style="margin-bottom:20px">
+    <h2 style="font-family:'Playfair Display',serif;font-size:1.5rem;margin-bottom:6px">📅 Study Plan</h2>
+    <p style="font-size:.85rem;color:var(--dim)">Lịch học được gợi ý tự động theo thời gian bạn có mỗi ngày.</p>
+  </div>
+  <div style="display:flex;gap:12px;align-items:center;margin-bottom:24px;flex-wrap:wrap">
+    <label style="font-size:.85rem;color:var(--dim)">Thời gian học mỗi ngày:</label>
+    <select class="filter-select" id="plan-minutes" onchange="buildPlan()">
+      <option value="15">15 phút/ngày</option>
+      <option value="30" selected>30 phút/ngày</option>
+      <option value="45">45 phút/ngày</option>
+      <option value="60">60 phút/ngày</option>
+    </select>
+    <button class="btn btn-primary" onclick="buildPlan()">🔄 Tạo lịch học</button>
+  </div>
+  <div class="sec-hdr">Lịch học gợi ý</div>
+  <div class="plan-grid" id="plan-grid"></div>
+</div>
+</div>
+
+<!-- FAVORITES -->
+<div class="page-section" id="page-favorites">
+<div class="container">
+  <div style="margin-bottom:20px">
+    <h2 style="font-family:'Playfair Display',serif;font-size:1.5rem;margin-bottom:6px">⭐ Favorites</h2>
+    <p style="font-size:.85rem;color:var(--dim)">Bài học, từ vựng và ngữ pháp bạn đã đánh dấu yêu thích.</p>
+  </div>
+  <div class="sec-hdr">Bài học yêu thích</div>
+  <div class="fav-grid" id="fav-lessons" style="margin-bottom:28px"></div>
+  <div class="sec-hdr">Từ vựng yêu thích</div>
+  <div class="fav-grid" id="fav-vocab" style="margin-bottom:28px"></div>
+  <div class="sec-hdr">Ngữ pháp yêu thích</div>
+  <div class="fav-grid" id="fav-grammar"></div>
+</div>
+</div>
+
+<div id="toast"></div>
 
 <script>
-// ==================== CHUẨN CẤU TRÚC GIÁO TRÌNH & LINK CHUẨN ====================
-// QUY TẮC ĐẶT TÊN FILE THỐNG NHẤT:
-// - Student Book: {Unit}{Letter}.html  (ví dụ: 1A.html, 1B.html, 2C.html)
-// - Workbook: workbook_{Unit}{Letter}.html (ví dụ: workbook_1A.html)
-// ❌ KHÔNG cần sửa index.html khi thêm bài mới nếu đặt tên theo quy tắc này
-
-function getLessonFile(unit, letter, type) {
-  const unitLetter = `${unit}${letter}`;
-  if (type === 'sb') {
-    // TRƯỜNG HỢP ĐẶC BIỆT (giữ lại để tương thích với file cũ 1A, 1C)
-    if (unitLetter === '1A') return '1A_Be_happy.html';
-    if (unitLetter === '1C') return '1C_Join_the_club.html';
-    // QUY TẮC CHUẨN CHO TẤT CẢ BÀI MỚI (1B, 1D, 2A, 2B, 3A,...)
-    return `${unitLetter}.html`;
-  } else {
-    // Workbook theo quy tắc chuẩn
-    return `workbook_${unitLetter}.html`;
-  }
-}
-
-// Mapping tên bài học theo Student's Book
-const LESSON_TITLES = {
-  '1A': 'Be happy!', '1B': 'Love it or hate it', '1C': 'Join the club!', '1D': 'Nice to meet you',
-  '2A': 'Slow down!', '2B': 'Street food', '2C': 'Sleepless nights', '2D': 'What’s the matter?',
-  '3A': 'The tourist trade', '3B': 'Lonely Planet', '3C': 'Voluntourism', '3D': 'A trip to India',
-  '4A': 'Musical experiences', '4B': 'Modern adventurers', '4C': 'Unusual days out', '4D': 'It’s only a game!',
-  '5A': 'Our new home', '5B': 'A load of old junk', '5C': 'Birthdays', '5D': 'Things I need',
-  '6A': 'Make up your mind', '6B': 'Fear of failure', '6C': 'Touch wood', '6D': 'The village festival',
-  '7A': 'Have a go!', '7B': 'What would you do?', '7C': 'Social networking', '7D': 'Can you tell me ...?',
-  '8A': 'Angry planet', '8B': 'Recycle!', '8C': 'Dangers at sea', '8D': 'A hiking trip',
-  '9A': 'Get healthy!', '9B': 'Good news, bad news', '9C': 'Human behaviour', '9D': 'At the doctor’s',
-  '10A': 'The anniversary', '10B': 'Who’s that?', '10C': 'I do!', '10D': 'Do you mind if I ...?',
-  '11A': 'Any messages?', '11B': 'How did it go?', '11C': 'Undercover', '11D': 'It’s my first day',
-  '12A': 'I wish!', '12B': 'Important moments', '12C': 'Superheroes', '12D': 'End of Course Review'
-};
-
-// Real World theo từng bài (trích từ PDF Student's Book)
-const REAL_WORLD = {
-  '1D': 'question tags',
-  '2D': 'showing concern, giving and responding to advice',
-  '3D': 'asking for and making recommendations',
-  '4D': 'softening opinions and making generalisations',
-  '5D': 'explaining what you need',
-  '6D': 'discussion language',
-  '7D': 'indirect and direct questions',
-  '8D': 'warnings and advice',
-  '9D': 'what doctors say; what patients say',
-  '10D': 'asking for, giving and refusing permission',
-  '11D': 'checking information',
-  '12D': 'End of Course Review'
-};
-
-// Grammar Focus theo từng bài (trích từ PDF)
-const GRAMMAR_FOCUS = {
-  '1A': 'question forms',
-  '1B': 'positive and negative verb forms, words and phrases',
-  '1C': 'prepositions with adjectives',
-  '1D': 'question tags',
-  '2A': 'be able to, be supposed to, be allowed to, modal verbs (1)',
-  '2B': 'Present Continuous and Present Simple',
-  '3A': 'Present Perfect Simple: experience, unfinished past and recent events',
-  '3B': 'Present Perfect Continuous and Present Perfect Simple',
-  '4A': 'Past Simple and Past Continuous; used to',
-  '4B': 'Past Perfect',
-  '5A': 'making comparisons: comparatives, superlatives, (not) as … as, etc.',
-  '5B': 'the future: will, be going to, Present Continuous',
-  '6A': 'first conditional and future time clauses',
-  '6B': 'zero conditional; conditionals with imperatives and modal verbs; in case',
-  '7A': 'ability: be able to, manage, be useless at, etc.',
-  '7B': 'second conditional',
-  '8A': 'the passive',
-  '8B': 'quantifiers: a bit of, too much/many, (not) enough, plenty of, etc.',
-  '9A': 'relative clauses with who, that, which, whose, where and when',
-  '9B': 'Present Perfect Simple active and passive for recent events',
-  '10A': 'was/were going to, was/were supposed to',
-  '10B': 'modal verbs (2): making deductions',
-  '11A': 'reported speech: sentences',
-  '11B': 'reported speech: questions, requests and imperatives',
-  '12A': 'wishes',
-  '12B': 'third conditional'
-};
-
-const UNITS = [];
-for(let u=1; u<=12; u++){
-  const sbLessons = [];
-  const wbLessons = [];
-  const letters = ['A','B','C','D'];
-  letters.forEach(letter=>{
-    const lessonId = `${u}${letter}`;
-    const title = LESSON_TITLES[lessonId] || 'Lesson';
-    const grammar = GRAMMAR_FOCUS[lessonId] || '';
-    const realWorld = REAL_WORLD[lessonId] || '';
-    sbLessons.push({ 
-      id: lessonId, type:'sb', title: `${lessonId} — ${title}`,
-      grammar, realWorld,
-      file: getLessonFile(u, letter, 'sb') 
-    });
-    wbLessons.push({ 
-      id: `WB${lessonId}`, type:'wb', title: `Workbook ${lessonId} — ${title}`,
-      file: getLessonFile(u, letter, 'wb') 
-    });
-  });
-  UNITS.push({ unit:u, sb:sbLessons, wb:wbLessons });
-}
-
-// ========== PROGRESS STORAGE ==========
-const STORAGE_KEY = 'f2f_intermediate_progress';
-function loadProgress() {
-  const saved = localStorage.getItem(STORAGE_KEY);
-  if(saved) return JSON.parse(saved);
-  const def = {};
-  UNITS.forEach(u=>{
-    [...u.sb, ...u.wb].forEach(lesson=>{ def[lesson.id] = 'pending'; });
-  });
-  return def;
-}
-let progressMap = loadProgress();
-
-function saveProgress() { localStorage.setItem(STORAGE_KEY, JSON.stringify(progressMap)); }
-function getStats() {
-  let total=0, done=0, progress=0;
-  Object.keys(progressMap).forEach(id=>{
-    total++;
-    if(progressMap[id]==='done') done++;
-    else if(progressMap[id]==='inprogress') progress++;
-  });
-  return {total, done, inprogress:progress, pending: total-done-progress, percent: total?Math.round((done/total)*100):0 };
-}
-
-function renderDashboard() {
-  const container = document.getElementById('unitsContainer');
-  const stats = getStats();
-  document.getElementById('completedCount').innerText = stats.done;
-  document.getElementById('progressPercent').innerText = stats.percent+'%';
-  document.getElementById('progressLabel').innerText = stats.percent+'%';
-  document.getElementById('globalFillBar').style.width = stats.percent+'%';
-  document.getElementById('statDone').innerText = stats.done;
-  document.getElementById('statProgress').innerText = stats.inprogress;
-  document.getElementById('statPending').innerText = stats.pending;
-
-  let html = '';
-  UNITS.forEach(unit=>{
-    const unitLessons = [...unit.sb, ...unit.wb];
-    let unitDone = unitLessons.filter(l=>progressMap[l.id]==='done').length;
-    let unitPercent = Math.round((unitDone/unitLessons.length)*100);
-    html += `<div class="unit-section">
-      <div class="unit-title"><span class="unit-badge">${unit.unit}</span> Unit ${unit.unit} <span style="font-size:.75rem;color:var(--dim);">${unitPercent}% complete</span></div>
-      <div class="unit-grid">
-        <div class="unit-card"><div class="card-header">📘 Student’s Book</div><div class="lesson-group">`;
-    unit.sb.forEach(lesson=>{
-      const status = progressMap[lesson.id] || 'pending';
-      let statusText = status==='done'? '✅ Completed' : (status==='inprogress'? '🔄 In progress' : '📌 Not started');
-      let statusClass = status==='done'? 'status-done' : (status==='inprogress'? 'status-progress' : 'status-pending');
-      let details = [];
-      if(lesson.grammar) details.push(`📐 ${lesson.grammar}`);
-      if(lesson.realWorld) details.push(`💬 ${lesson.realWorld}`);
-      let detailsHtml = details.length ? `<div style="font-size:.7rem;color:var(--dim);margin-top:2px;">${details.join(' · ')}</div>` : '';
-      html += `<div class="lesson-item">
-        <div class="lesson-info"><span class="lesson-type sb">SB</span><div><span class="lesson-name">${lesson.title}</span>${detailsHtml}</div><span class="status-badge ${statusClass}">${statusText}</span></div>
-        <div class="lesson-stats"><button class="continue-btn" data-file="${lesson.file}" data-id="${lesson.id}">📖 Continue</button>
-        <select class="status-select" data-id="${lesson.id}" style="background:var(--bg3);border:1px solid var(--border);border-radius:20px;padding:4px 10px;font-size:.7rem;">
-          <option value="pending" ${status==='pending'?'selected':''}>Not started</option>
-          <option value="inprogress" ${status==='inprogress'?'selected':''}>In progress</option>
-          <option value="done" ${status==='done'?'selected':''}>Completed</option>
-        </select></div>
-      </div>`;
-    });
-    html += `</div></div><div class="unit-card"><div class="card-header">📓 Workbook</div><div class="lesson-group">`;
-    unit.wb.forEach(lesson=>{
-      const status = progressMap[lesson.id] || 'pending';
-      let statusText = status==='done'? '✅ Completed' : (status==='inprogress'? '🔄 In progress' : '📌 Not started');
-      let statusClass = status==='done'? 'status-done' : (status==='inprogress'? 'status-progress' : 'status-pending');
-      html += `<div class="lesson-item">
-        <div class="lesson-info"><span class="lesson-type wb">WB</span><span class="lesson-name">${lesson.title}</span><span class="status-badge ${statusClass}">${statusText}</span></div>
-        <div class="lesson-stats"><button class="continue-btn" data-file="${lesson.file}" data-id="${lesson.id}">📖 Continue</button>
-        <select class="status-select" data-id="${lesson.id}" style="background:var(--bg3);border:1px solid var(--border);border-radius:20px;padding:4px 10px;font-size:.7rem;">
-          <option value="pending" ${status==='pending'?'selected':''}>Not started</option>
-          <option value="inprogress" ${status==='inprogress'?'selected':''}>In progress</option>
-          <option value="done" ${status==='done'?'selected':''}>Completed</option>
-        </select></div>
-      </div>`;
-    });
-    html += `</div></div></div></div>`;
-  });
-  container.innerHTML = html;
-  document.querySelectorAll('.continue-btn').forEach(btn=>{
-    btn.addEventListener('click',(e)=>{
-      const file = btn.dataset.file;
-      if(file) window.location.href = file;
-      else alert(`📘 Bài học đang được phát triển.`);
-    });
-  });
-  document.querySelectorAll('.status-select').forEach(sel=>{
-    sel.addEventListener('change',(e)=>{
-      const lessonId = sel.dataset.id;
-      progressMap[lessonId] = sel.value;
-      saveProgress();
-      renderDashboard();
-      renderAllCenters();
-    });
-  });
-}
-
-// ========== VOCABULARY INDEX ==========
-const MASTER_VOCAB = [
-  { word:'relative', ipa:'/ˈrelətɪv/', meaning:'người thân', unit:'1A', type:'noun', bookmarked:false },
-  { word:'have a lie-in', ipa:'/hæv ə ˈlaɪ ɪn/', meaning:'ngủ nướng', unit:'1A', type:'phrase', bookmarked:false },
-  { word:'gig', ipa:'/ɡɪɡ/', meaning:'buổi biểu diễn nhạc sống', unit:'1A', type:'noun', bookmarked:false },
-  { word:'yoga', ipa:'/ˈjəʊɡə/', meaning:'yoga', unit:'1A', type:'noun', bookmarked:false },
-  { word:'tidy up', ipa:'/ˈtaɪdi ʌp/', meaning:'dọn dẹp', unit:'1A', type:'verb', bookmarked:false },
-  { word:'nervous', ipa:'/ˈnɜːvəs/', meaning:'lo lắng, hồi hộp', unit:'1C', type:'adj', bookmarked:false },
-  { word:'pleased', ipa:'/pliːzd/', meaning:'hài lòng', unit:'1C', type:'adj', bookmarked:false },
-  { word:'fed up', ipa:'/ˌfed ˈʌp/', meaning:'chán ngán', unit:'1C', type:'adj', bookmarked:false },
-  { word:'embarrassed', ipa:'/ɪmˈbærəst/', meaning:'xấu hổ', unit:'1C', type:'adj', bookmarked:false },
-  { word:'stressed', ipa:'/strest/', meaning:'căng thẳng', unit:'1C', type:'adj', bookmarked:false },
-  { word:'keen on', ipa:'/kiːn ɒn/', meaning:'hứng thú với', unit:'1C', type:'prep phrase', bookmarked:false },
-  { word:'worried about', ipa:'/ˈwʌrid əbaʊt/', meaning:'lo lắng về', unit:'1C', type:'phrase', bookmarked:false },
-  { word:'question tags', ipa:'/ˈkwestʃən tæɡz/', meaning:'câu hỏi đuôi', unit:'1D', type:'grammar', bookmarked:false }
+/* ═══════════════════════════════════════
+   DATA
+═══════════════════════════════════════ */
+const UNITS = [
+  {id:1,color:'#2563EB',theme:'Happiness & Feelings',
+   lessons:[
+     {id:'1A',title:'Be happy!',file:'1A_Be_happy.html',vocab:'Weekend activities',grammar:'Question forms'},
+     {id:'1B',title:'Love it or hate it',file:'1B.html',vocab:'Likes and dislikes',grammar:'Positive & negative verb forms'},
+     {id:'1C',title:'Join the club!',file:'1C_Join_the_club.html',vocab:'Adjectives: feelings; Prepositions',grammar:'Sentence stress'},
+     {id:'1D',title:'Nice to meet you',file:'1D.html',vocab:'Social expressions',grammar:'Question tags'},
+   ]},
+  {id:2,color:'#E8760A',theme:'Work & Lifestyle',
+   lessons:[
+     {id:'2A',title:'Slow down!',file:'2A.html',vocab:'Collocations: work',grammar:'be able to, supposed to, allowed to'},
+     {id:'2B',title:'Street food',file:'2B.html',vocab:'Food and cooking',grammar:'Present Continuous vs Simple'},
+     {id:'2C',title:'Sleepless nights',file:'2C.html',vocab:'Sleep; gradable adjectives',grammar:'Adverbs of degree'},
+     {id:'2D',title:'What\'s the matter?',file:'2D.html',vocab:'Advice phrases',grammar:'Showing concern; giving advice'},
+   ]},
+  {id:3,color:'#2E8B57',theme:'Travel & Experiences',
+   lessons:[
+     {id:'3A',title:'The tourist trade',file:'3A.html',vocab:'Phrasal verbs: travel',grammar:'Present Perfect Simple'},
+     {id:'3B',title:'Lonely Planet',file:'3B.html',vocab:'Phrases: travel, get, go on',grammar:'Present Perfect Continuous'},
+     {id:'3C',title:'Voluntourism',file:'3C.html',vocab:'Word building: suffixes',grammar:'Present Perfect Simple vs Continuous'},
+     {id:'3D',title:'A trip to India',file:'3D.html',vocab:'Recommendations',grammar:'Asking for & making recommendations'},
+   ]},
+  {id:4,color:'#9B2D7E',theme:'Music & Adventure',
+   lessons:[
+     {id:'4A',title:'Musical experiences',file:'4A.html',vocab:'Collocations: music',grammar:'Past Simple & Continuous; used to'},
+     {id:'4B',title:'Modern adventurers',file:'4B.html',vocab:'Adjectives: character',grammar:'Past Perfect'},
+     {id:'4C',title:'Unusual days out',file:'4C.html',vocab:'Guessing from context',grammar:'Past narrative tenses'},
+     {id:'4D',title:'It\'s only a game!',file:'4D.html',vocab:'Sports; opinions',grammar:'Softening opinions; generalisations'},
+   ]},
+  {id:5,color:'#C0392B',theme:'Home & Future',
+   lessons:[
+     {id:'5A',title:'Our new home',file:'5A.html',vocab:'Homes',grammar:'Making comparisons'},
+     {id:'5B',title:'A load of old junk',file:'5B.html',vocab:'Phrasal verbs (2)',grammar:'Future: will, going to, Pres. Cont.'},
+     {id:'5C',title:'Birthdays',file:'5C.html',vocab:'Verb patterns (1)',grammar:'Verb patterns: -ing / infinitive'},
+     {id:'5D',title:'Things I need',file:'5D.html',vocab:'Materials',grammar:'Explaining what you need'},
+   ]},
+  {id:6,color:'#1A6B8A',theme:'Decisions & Conditions',
+   lessons:[
+     {id:'6A',title:'Make up your mind',file:'6A.html',vocab:'make and do',grammar:'First conditional; future time clauses'},
+     {id:'6B',title:'Fear of failure',file:'6B.html',vocab:'Reflexive pronouns',grammar:'Zero conditional; in case'},
+     {id:'6C',title:'Touch wood',file:'6C.html',vocab:'Synonyms',grammar:'Conditionals review'},
+     {id:'6D',title:'The village festival',file:'6D.html',vocab:'Discussion language',grammar:'Discussion language'},
+   ]},
+  {id:7,color:'#6B3FA0',theme:'Ability & Technology',
+   lessons:[
+     {id:'7A',title:'Have a go!',file:'7A.html',vocab:'Goals and achievements',grammar:'Ability: be able to, manage to'},
+     {id:'7B',title:'What would you do?',file:'7B.html',vocab:'Computers (1)',grammar:'Second conditional'},
+     {id:'7C',title:'Social networking',file:'7C.html',vocab:'Computers (2)',grammar:'Articles: a, an, the, no article'},
+     {id:'7D',title:'Can you tell me…?',file:'7D.html',vocab:'Indirect questions',grammar:'Indirect and direct questions'},
+   ]},
+  {id:8,color:'#2C7873',theme:'Nature & Environment',
+   lessons:[
+     {id:'8A',title:'Angry planet',file:'8A.html',vocab:'Weather & disasters',grammar:'The passive'},
+     {id:'8B',title:'Recycle!',file:'8B.html',vocab:'Containers',grammar:'Quantifiers'},
+     {id:'8C',title:'Dangers at sea',file:'8C.html',vocab:'Word building: prefixes',grammar:'Passive: review'},
+     {id:'8D',title:'A hiking trip',file:'8D.html',vocab:'Warnings & advice',grammar:'Warnings and advice'},
+   ]},
+  {id:9,color:'#B7410E',theme:'Health & News',
+   lessons:[
+     {id:'9A',title:'Get healthy!',file:'9A.html',vocab:'Health',grammar:'Relative clauses'},
+     {id:'9B',title:'Good news, bad news',file:'9B.html',vocab:'Collocations: the news',grammar:'Present Perfect active & passive'},
+     {id:'9C',title:'Human behaviour',file:'9C.html',vocab:'Body movements',grammar:'Connecting words'},
+     {id:'9D',title:'At the doctor\'s',file:'9D.html',vocab:'Medical language',grammar:'What doctors & patients say'},
+   ]},
+  {id:10,color:'#2F4F7F',theme:'Relationships & Permission',
+   lessons:[
+     {id:'10A',title:'The anniversary',file:'10A.html',vocab:'Contacting people',grammar:'was/were going to; supposed to'},
+     {id:'10B',title:'Who\'s that?',file:'10B.html',vocab:'Describing people',grammar:'Modal verbs: deductions'},
+     {id:'10C',title:'I do!',file:'10C.html',vocab:'Phrasal verbs (3)',grammar:'Phrasal verbs review'},
+     {id:'10D',title:'Do you mind if I…?',file:'10D.html',vocab:'Permission phrases',grammar:'Asking for & refusing permission'},
+   ]},
+  {id:11,color:'#5C7A29',theme:'Work & Reported Speech',
+   lessons:[
+     {id:'11A',title:'Any messages?',file:'11A.html',vocab:'Things people do at work',grammar:'Reported speech: sentences'},
+     {id:'11B',title:'How did it go?',file:'11B.html',vocab:'Adjectives: jobs',grammar:'Reported speech: questions & imperatives'},
+     {id:'11C',title:'Undercover',file:'11C.html',vocab:'Reporting verbs',grammar:'Verb patterns (2)'},
+     {id:'11D',title:'It\'s my first day',file:'11D.html',vocab:'Checking information',grammar:'Checking information'},
+   ]},
+  {id:12,color:'#8B6914',theme:'Wishes & Life Changes',
+   lessons:[
+     {id:'12A',title:'I wish!',file:'12A.html',vocab:'Informal words & phrases',grammar:'Wishes'},
+     {id:'12B',title:'Important moments',file:'12B.html',vocab:'Phrases with get',grammar:'Third conditional'},
+     {id:'12C',title:'Superheroes',file:'12C.html',vocab:'Word building: word families',grammar:'Review: conditionals & wishes'},
+   ]},
 ];
 
-function loadBookmarks() { const b=localStorage.getItem('f2f_vocab_favs'); if(b) JSON.parse(b).forEach(w=>{ let item=MASTER_VOCAB.find(v=>v.word===w); if(item) item.bookmarked=true; }); }
-function saveVocabBookmarks() { localStorage.setItem('f2f_vocab_favs', JSON.stringify(MASTER_VOCAB.filter(v=>v.bookmarked).map(v=>v.word))); }
-function renderVocabIndex(filter='all') {
-  let filtered = MASTER_VOCAB.filter(v=>filter==='all'?true:v.type===filter);
-  const container = document.getElementById('vocabListContainer');
-  container.innerHTML = filtered.map(v=>`
-    <div class="vocab-row">
-      <span class="vocab-word">${v.word}</span>
-      <span class="vocab-ipa">${v.ipa}</span>
-      <span class="vocab-meaning">${v.meaning}</span>
-      <span class="bookmark-star ${v.bookmarked?'active-star':''}" data-word="${v.word}">${v.bookmarked?'★':'☆'}</span>
+const VOCAB_DATA = [
+  // Unit 1A
+  {word:'visit relatives',ipa:'/ˈvɪzɪt ˈrelətɪvz/',vi:'thăm người thân',unit:'1A',type:'collocation',example:'I visit my relatives every Sunday.',fav:false},
+  {word:'have a lie-in',ipa:'/hæv ə ˈlaɪ ɪn/',vi:'nằm ngủ nướng',unit:'1A',type:'collocation',example:'I love having a lie-in on Sundays.',fav:false},
+  {word:'go to concerts/gigs',ipa:'/ɡəʊ tuː ˈkɒnsəts/',vi:'đi xem hòa nhạc',unit:'1A',type:'collocation',example:'We went to an amazing gig last night.',fav:false},
+  {word:'meet up with friends',ipa:'/miːt ʌp wɪð frendz/',vi:'gặp gỡ bạn bè',unit:'1A',type:'collocation',example:'Let\'s meet up with friends this weekend.',fav:false},
+  {word:'tidy up the flat',ipa:'/ˈtaɪdi ʌp ðə flæt/',vi:'dọn dẹp căn hộ',unit:'1A',type:'collocation',example:'I usually tidy up the flat before I go to work.',fav:false},
+  {word:'have people round for dinner',ipa:'/hæv ˈpiːpl raʊnd fə ˈdɪnə/',vi:'mời người đến nhà ăn tối',unit:'1A',type:'collocation',example:'We\'re having Tom\'s parents round for dinner.',fav:false},
+  // Unit 1C
+  {word:'relaxed',ipa:'/rɪˈlækst/',vi:'thoải mái, không lo lắng',unit:'1C',type:'adjective',example:'Adela felt very relaxed after her holiday.',fav:false},
+  {word:'nervous',ipa:'/ˈnɜːvəs/',vi:'lo lắng, hồi hộp',unit:'1C',type:'adjective',example:'I always get nervous before I speak in public.',fav:false},
+  {word:'embarrassed',ipa:'/ɪmˈbærəst/',vi:'xấu hổ, ngượng ngùng',unit:'1C',type:'adjective',example:'I felt so embarrassed when our son said he didn\'t like the food.',fav:false},
+  {word:'disappointed',ipa:'/ˌdɪsəˈpɔɪntɪd/',vi:'thất vọng',unit:'1C',type:'adjective',example:'They were disappointed that only ten people came.',fav:false},
+  {word:'fed up',ipa:'/ˌfed ˈʌp/',vi:'chán ngán, mệt mỏi',unit:'1C',type:'adjective',example:"I'm fed up with working so hard.",fav:false},
+  {word:'stressed',ipa:'/strest/',vi:'căng thẳng',unit:'1C',type:'adjective',example:"He's very stressed about his new job.",fav:false},
+  {word:'satisfied',ipa:'/ˈsætɪsfaɪd/',vi:'hài lòng',unit:'1C',type:'adjective',example:'She was very satisfied with her students\' work.',fav:false},
+  {word:'concerned',ipa:'/kənˈsɜːnd/',vi:'lo lắng (về điều nghiêm trọng)',unit:'1C',type:'adjective',example:"I'm very concerned about the environment.",fav:false},
+  // Unit 2A
+  {word:'work overtime',ipa:'/wɜːk ˈəʊvətaɪm/',vi:'làm thêm giờ',unit:'2A',type:'collocation',example:'I had to work overtime last night.',fav:false},
+  {word:'meet deadlines',ipa:'/miːt ˈdedlaɪnz/',vi:'kịp hạn chót',unit:'2A',type:'collocation',example:'Jessica always meets her deadlines.',fav:false},
+  {word:'be a workaholic',ipa:'/biː ə ˌwɜːkəˈhɒlɪk/',vi:'nghiện công việc',unit:'2A',type:'collocation',example:'Chris is a real workaholic.',fav:false},
+  {word:'under pressure',ipa:'/ˈʌndə ˈpreʃə/',vi:'chịu áp lực',unit:'2A',type:'collocation',example:"I'm under a lot of pressure at work.",fav:false},
+  // Unit 3A
+  {word:'set off',ipa:'/set ɒf/',vi:'khởi hành',unit:'3A',type:'phrasal',example:'They set off at 5 a.m.',fav:false},
+  {word:'get around',ipa:'/ɡet əˈraʊnd/',vi:'đi lại (trong khu vực)',unit:'3A',type:'phrasal',example:"What's the cheapest way to get around?",fav:false},
+  {word:'check in',ipa:'/tʃek ɪn/',vi:'làm thủ tục check-in',unit:'3A',type:'phrasal',example:'Have you checked in yet?',fav:false},
+  {word:'look forward to',ipa:'/lʊk ˈfɔːwəd tuː/',vi:'mong đợi',unit:'3A',type:'phrasal',example:"I'm really looking forward to my holiday.",fav:false},
+];
+
+const GRAMMAR_DATA = [
+  {point:'Question forms',unit:'1A',lesson:'1A',explain:'Auxiliaries (do/does/did/have/has/am/are/is) + subject + verb. Subject questions use no auxiliary.',example:'How often does Fiona teach? / Who visits them?',fav:false},
+  {point:'Positive and negative verb forms',unit:'1B',lesson:'1B',explain:'love↔hate, always↔never, everyone↔no one, all↔none, both↔neither. I don\'t think... (not I think...not)',example:'Neither of them likes driving. / I don\'t think that\'s right.',fav:false},
+  {point:'Adjectives (1): feelings',unit:'1C',lesson:'1C',explain:'-ed adjectives describe how people feel. -ing adjectives describe what causes the feeling.',example:'I was very disappointed. / The results were disappointing.',fav:false},
+  {point:'Prepositions with adjectives',unit:'1C',lesson:'1C',explain:'Many adjectives are followed by a specific preposition: good AT, interested IN, worried ABOUT, scared OF, fed up WITH...',example:'She\'s very good at tennis. / I\'m worried about the exam.',fav:false},
+  {point:'Question tags',unit:'1D',lesson:'1D',explain:'Positive statement → negative tag. Negative statement → positive tag. Use auxiliary from main verb.',example:"You live here, don't you? / She hasn't been, has she?",fav:false},
+  {point:'be able to / be supposed to / be allowed to',unit:'2A',lesson:'2A',explain:'Ability/possibility: can/be able to. Expectation: be supposed to. Permission: be allowed to/can.',example:'We\'re able to work from home. / You\'re supposed to be here at 8.',fav:false},
+  {point:'Present Continuous vs Present Simple',unit:'2B',lesson:'2B',explain:'Pres. Continuous: happening now, temporary, changing. Pres. Simple: habits, facts, state verbs.',example:"I'm blogging from LA right now. / I always try local food.",fav:false},
+  {point:'Present Perfect Simple',unit:'3A',lesson:'3A',explain:'Experience (ever/never), unfinished past (for/since), recent events (just/already/yet)',example:"I've been to 18 countries. / She's just got back.",fav:false},
+  {point:'Present Perfect Continuous',unit:'3B',lesson:'3B',explain:'How long? (duration/process emphasis). PPS: result/number. PPC: activity/duration.',example:"I've been travelling for 3 months. / I've visited 12 countries.",fav:false},
+  {point:'Past Simple & Past Continuous',unit:'4A',lesson:'4A',explain:'Past Continuous for background action interrupted by Past Simple.',example:'I was listening to music when the phone rang.',fav:false},
+  {point:'used to',unit:'4A',lesson:'4A',explain:'Past habits/states no longer true. Negative: didn\'t use to. Question: Did you use to?',example:'I used to play guitar when I was young.',fav:false},
+  {point:'Past Perfect',unit:'4B',lesson:'4B',explain:'Action that happened BEFORE another past action. had + past participle.',example:'When I arrived, the concert had already started.',fav:false},
+  {point:'Making comparisons',unit:'5A',lesson:'5A',explain:'Comparatives (-er/more), superlatives (-est/most), (not) as...as, much/far + comparative.',example:'This flat is much cheaper than the other one.',fav:false},
+  {point:'Future forms',unit:'5B',lesson:'5B',explain:'will: instant decision/prediction. going to: prior plan/evidence. Pres. Cont.: fixed arrangement.',example:"I'll help you. / I'm going to apply for the job. / I'm meeting her at 6.",fav:false},
+  {point:'First conditional',unit:'6A',lesson:'6A',explain:'Real/possible future condition. If + Present Simple, will + infinitive. After when/as soon as → Present Simple.',example:"If it rains, I won't go. / When I get home, I'll call you.",fav:false},
+  {point:'Second conditional',unit:'7B',lesson:'7B',explain:'Hypothetical/unreal present/future. If + Past Simple, would + infinitive. Use were for all persons.',example:"If I were you, I'd see a doctor. / If I had more time, I'd travel.",fav:false},
+  {point:'The passive',unit:'8A',lesson:'8A',explain:'be + past participle. Used when action is more important than agent, or agent is unknown.',example:'This product is made in China. / The building was destroyed by fire.',fav:false},
+  {point:'Relative clauses',unit:'9A',lesson:'9A',explain:'who/that (person), which/that (thing), whose (possession), where (place), when (time). Defining vs non-defining.',example:'The doctor who treated me was very kind.',fav:false},
+  {point:'Modal verbs: deductions',unit:'10B',lesson:'10B',explain:'must (certain positive), can\'t (certain negative), might/could (possible).',example:"She must be tired. / He can't be at home.",fav:false},
+  {point:'Reported speech',unit:'11A',lesson:'11A',explain:'Tense backshift: PS→PP, PrS→PS, will→would, can→could. Pronoun changes.',example:'She said she worked there. / He told me he would call.',fav:false},
+  {point:'Wishes',unit:'12A',lesson:'12A',explain:'wish + Past Simple (present wish). wish + Past Perfect (past regret). wish + would (annoyance).',example:'I wish I spoke better English. / I wish I had studied harder.',fav:false},
+  {point:'Third conditional',unit:'12B',lesson:'12B',explain:'Unreal past condition. If + had + V3, would have + V3.',example:"If I had studied harder, I would have passed the exam.",fav:false},
+];
+
+const SEARCH_INDEX = [
+  ...UNITS.flatMap(u=>u.lessons.map(l=>({type:'lesson',title:`${l.id}: ${l.title}`,sub:`Unit ${u.id} — ${u.theme} · ${l.vocab} · ${l.grammar}`,file:l.file,unit:u.id,color:u.color,id:l.id}))),
+  ...GRAMMAR_DATA.map(g=>({type:'grammar',title:g.point,sub:`Unit ${g.unit} — ${g.explain.substring(0,60)}…`,lesson:g.lesson,unit:g.unit})),
+  ...VOCAB_DATA.map(v=>({type:'vocab',title:v.word,sub:`${v.vi} — Unit ${v.unit} — ${v.example.substring(0,50)}…`,unit:v.unit})),
+];
+
+/* ═══════════════════════════════════════
+   STATE
+═══════════════════════════════════════ */
+let state = {
+  progress:{},  // lessonId -> {pct, done, inprog}
+  favLessons:[],
+  favVocab:[],
+  favGrammar:[],
+  streak:0,
+  lastStudy:'',
+  theme:'dark',
+};
+
+function loadState(){
+  try{
+    const s=localStorage.getItem('f2f_portal');
+    if(s)state=JSON.parse(s);
+  }catch(e){}
+  // Load individual lesson progress from their own keys
+  UNITS.forEach(u=>u.lessons.forEach(l=>{
+    const done=JSON.parse(localStorage.getItem(`f2f_${l.id.toLowerCase()}_done`)||'[]');
+    const tabs=['vocab','grammar','reading','listening','exercises','notes'];
+    const pct=done.length?Math.round((done.filter(t=>tabs.includes(t)).length/tabs.length)*100):0;
+    if(!state.progress[l.id]){
+      state.progress[l.id]={pct,done:pct===100,inprog:pct>0&&pct<100};
+    } else if(pct>state.progress[l.id].pct){
+      state.progress[l.id]={pct,done:pct===100,inprog:pct>0&&pct<100};
+    }
+  }));
+}
+
+function saveState(){
+  try{localStorage.setItem('f2f_portal',JSON.stringify(state));}catch(e){}
+}
+
+/* ═══════════════════════════════════════
+   STATS
+═══════════════════════════════════════ */
+function getStats(){
+  const total=UNITS.reduce((s,u)=>s+u.lessons.length,0);
+  let done=0,inprog=0;
+  UNITS.forEach(u=>u.lessons.forEach(l=>{
+    const p=state.progress[l.id];
+    if(p?.done)done++;
+    else if(p?.inprog)inprog++;
+  }));
+  return{total,done,inprog,notstarted:total-done-inprog,pct:Math.round((done/total)*100)};
+}
+
+function updateStats(){
+  const s=getStats();
+  document.getElementById('stat-pct').textContent=s.pct+'%';
+  document.getElementById('pov-done').textContent=s.done;
+  document.getElementById('pov-prog').textContent=s.inprog;
+  document.getElementById('pov-new').textContent=s.notstarted;
+  document.getElementById('pov-done-bar').style.width=(s.done/s.total*100)+'%';
+  document.getElementById('pov-prog-bar').style.width=(s.inprog/s.total*100)+'%';
+  document.getElementById('pov-new-bar').style.width=(s.notstarted/s.total*100)+'%';
+  document.getElementById('pov-streak').textContent=state.streak||0;
+  document.getElementById('pov-streak-bar').style.width=Math.min((state.streak||0)*10,100)+'%';
+  document.getElementById('pov-done-sub').textContent=`of ${s.total} lessons`;
+}
+
+/* ═══════════════════════════════════════
+   UNITS GRID
+═══════════════════════════════════════ */
+function buildUnitsGrid(){
+  const grid=document.getElementById('units-grid');
+  grid.innerHTML='';
+  UNITS.forEach(u=>{
+    const lessonsDone=u.lessons.filter(l=>state.progress[l.id]?.done).length;
+    const pct=Math.round(lessonsDone/u.lessons.length*100);
+    const card=document.createElement('div');
+    card.className='unit-card';
+    card.id=`unit-card-${u.id}`;
+    card.innerHTML=`
+      <div class="unit-card-header" onclick="toggleUnit(${u.id})">
+        <div class="unit-num-badge" style="background:${u.color}">U${u.id}</div>
+        <div class="unit-card-title">
+          <div class="unit-card-name">Unit ${u.id}: ${u.theme}</div>
+          <div class="unit-card-theme">${u.lessons.length} lessons · ${pct}% complete</div>
+        </div>
+        <div class="unit-card-prog">${lessonsDone}/${u.lessons.length}</div>
+        <div class="unit-card-arrow">▶</div>
+      </div>
+      <div class="unit-card-body">
+        <div class="lessons-section">
+          <div class="ls-title">📖 Student Book</div>
+          ${u.lessons.map(l=>lessonRowHTML(l,u)).join('')}
+        </div>
+        <div class="lessons-section">
+          <div class="ls-title">📓 Workbook</div>
+          ${u.lessons.map(l=>wbRowHTML(l,u)).join('')}
+        </div>
+      </div>`;
+    grid.appendChild(card);
+  });
+}
+
+function lessonRowHTML(l,u){
+  const p=state.progress[l.id]||{pct:0,done:false,inprog:false};
+  const cls=p.done?'done':p.inprog?'inprog':'';
+  const dot=p.done?'dot-done':p.inprog?'dot-prog':'dot-new';
+  const statusTxt=p.done?`✅ ${p.pct}%`:p.inprog?`🔄 ${p.pct}%`:'New';
+  const btnTxt=p.done?'Review':'Start';
+  const btnCls=p.done?'done-btn':'';
+  return `<div class="lesson-row ${cls}" onclick="openLesson('${l.file}','${l.id}')">
+    <div class="lr-icon" style="background:${u.color}22;color:${u.color}">${l.id}</div>
+    <div class="lr-info">
+      <div class="lr-title">${l.title}</div>
+      <div class="lr-sub">${l.vocab}</div>
     </div>
-  `).join('');
-  document.querySelectorAll('.bookmark-star').forEach(star=>{
-    star.addEventListener('click',(e)=>{
-      const word = star.dataset.word;
-      const entry = MASTER_VOCAB.find(w=>w.word===word);
-      if(entry){ entry.bookmarked = !entry.bookmarked; saveVocabBookmarks(); renderVocabIndex(filter); renderFavoritesPanel(); }
-    });
-  });
+    <div class="lr-status">
+      <div class="status-dot ${dot}"></div>
+      <span class="lr-pct">${statusTxt}</span>
+    </div>
+    <button class="lr-btn ${btnCls}" onclick="event.stopPropagation();openLesson('${l.file}','${l.id}')">${btnTxt}</button>
+    <button style="background:none;border:none;cursor:pointer;font-size:.88rem;color:var(--muted);padding:2px 6px" onclick="event.stopPropagation();toggleFavLesson('${l.id}','${l.title}',this)" title="Favorite">${state.favLessons.includes(l.id)?'⭐':'☆'}</button>
+  </div>`;
 }
 
-const GRAMMAR_POINTS = [
-  { point:'Question Forms', unit:'1A', explanation:'Auxiliary inversion + Wh-words + subject questions without do/does', example:'How often does Fiona teach yoga?' },
-  { point:'Present Perfect Simple', unit:'3A', explanation:'Experience, unfinished past and recent events', example:'I\'ve lived in this country for three years.' },
-  { point:'Prepositions with Adjectives', unit:'1C', explanation:'good at, interested in, worried about, fed up with...', example:'I\'m fed up with waiting.' },
-  { point:'Question Tags', unit:'1D', explanation:'Câu hỏi đuôi để kiểm tra thông tin', example:'You live next door to Lisa, don\'t you?' },
-  { point:'Second Conditional', unit:'7B', explanation:'Imaginary situations', example:'If I lost my laptop, I\'d lose my job!' }
-];
+function wbRowHTML(l,u){
+  const wid='WB'+l.id;
+  const p=state.progress[wid]||{pct:0,done:false,inprog:false};
+  const cls=p.done?'done':p.inprog?'inprog':'';
+  const dot=p.done?'dot-done':p.inprog?'dot-prog':'dot-new';
+  return `<div class="lesson-row ${cls}" onclick="openLesson('WB_${l.id}.html','${wid}')">
+    <div class="lr-icon" style="background:rgba(139,92,246,.15);color:#A78BFA">WB</div>
+    <div class="lr-info">
+      <div class="lr-title">Workbook ${l.id}</div>
+      <div class="lr-sub">${l.grammar}</div>
+    </div>
+    <div class="lr-status">
+      <div class="status-dot ${dot}"></div>
+      <span class="lr-pct">${p.done?'✅ Done':p.inprog?`🔄 ${p.pct}%`:'New'}</span>
+    </div>
+    <button class="lr-btn" onclick="event.stopPropagation();openLesson('WB_${l.id}.html','${wid}')">Start</button>
+  </div>`;
+}
 
-function renderGrammarCenter(){
-  const container = document.getElementById('grammarListContainer');
-  container.innerHTML = GRAMMAR_POINTS.map(g=>`
-    <div class="grammar-item"><div class="grammar-title">${g.point}</div><div class="grammar-unit">📌 Unit ${g.unit}</div><div style="font-size:.8rem;color:var(--dim);">${g.explanation}</div><div class="example-box" style="margin-top:6px;">📖 ${g.example}</div></div>
-  `).join('');
+function toggleUnit(id){
+  const card=document.getElementById(`unit-card-${id}`);
+  card.classList.toggle('open');
 }
-function renderFavoritesPanel(){
-  const favLessons = Object.keys(progressMap).filter(id=>progressMap[id]==='done').slice(0,12);
-  const favVocab = MASTER_VOCAB.filter(v=>v.bookmarked);
-  document.getElementById('favLessonsList').innerHTML = `<div class="fav-grid">${favLessons.map(lid=>`<div class="fav-lesson"><span>✅ ${lid}</span><button class="continue-btn" onclick="alert('Go to lesson')">Resume</button></div>`).join('')}</div>`;
-  document.getElementById('favVocabList').innerHTML = `<div class="fav-grid">${favVocab.map(v=>`<div class="fav-lesson"><span><strong>${v.word}</strong> — ${v.meaning}</span></div>`).join('')}</div>`;
+function expandAll(){document.querySelectorAll('.unit-card').forEach(c=>c.classList.add('open'));}
+function collapseAll(){document.querySelectorAll('.unit-card').forEach(c=>c.classList.remove('open'));}
+
+function openLesson(file,id){
+  // Track that user started this lesson
+  if(!state.progress[id]){
+    state.progress[id]={pct:5,done:false,inprog:true};
+    saveState();
+    buildUnitsGrid();
+    updateStats();
+  }
+  // Update streak
+  const today=new Date().toDateString();
+  if(state.lastStudy!==today){
+    state.streak=(state.lastStudy===new Date(Date.now()-86400000).toDateString())?(state.streak||0)+1:1;
+    state.lastStudy=today;
+    saveState();
+  }
+  window.location.href=file;
 }
-function regenerateStudyPlan(){
-  const pending = Object.keys(progressMap).filter(id=>progressMap[id]!=='done');
-  const planHtml = pending.slice(0,7).map((id,idx)=>`<div style="padding:8px;border-bottom:1px solid var(--border);">📘 Day ${idx+1}: <strong>${id}</strong> — Complete vocabulary & grammar exercises</div>`).join('');
-  document.getElementById('studyPlanItems').innerHTML = planHtml || '<p>🎉 All done! Keep reviewing.</p>';
+
+/* ═══════════════════════════════════════
+   VOCABULARY CENTER
+═══════════════════════════════════════ */
+function buildVocabCenter(){
+  // Build unit filter
+  const sel=document.getElementById('vocab-unit-filter');
+  const units=[...new Set(VOCAB_DATA.map(v=>v.unit))].sort();
+  sel.innerHTML='<option value="">All Units</option>'+units.map(u=>`<option value="${u}">Unit ${u}</option>`).join('');
+  renderVocabTable(VOCAB_DATA);
 }
-function buildSearchIndex(){
-  const lessonsIndex = [];
-  UNITS.forEach(u=>{
-    [...u.sb, ...u.wb].forEach(les=>{ lessonsIndex.push({ type:'lesson', title:les.title, id:les.id, unit:u.unit, file:les.file }); });
+
+function renderVocabTable(data){
+  const tbody=document.getElementById('vocab-tbody');
+  if(!data.length){tbody.innerHTML='<tr><td colspan="6" style="text-align:center;padding:32px;color:var(--muted)">No results found</td></tr>';return;}
+  tbody.innerHTML=data.map((v,i)=>`
+    <tr>
+      <td><span class="vocab-word">${v.word}</span></td>
+      <td><span class="vocab-ipa">${v.ipa}</span></td>
+      <td><span class="vocab-vi">${v.vi}</span></td>
+      <td><span class="vocab-unit">${v.unit}</span></td>
+      <td style="font-size:.78rem;color:var(--dim);font-style:italic">${v.example}</td>
+      <td><span class="vocab-fav" onclick="toggleFavVocab(${VOCAB_DATA.indexOf(v)},this)">${v.fav?'⭐':'☆'}</span></td>
+    </tr>`).join('');
+}
+
+function filterVocab(){
+  const q=document.getElementById('vocab-search').value.toLowerCase();
+  const unit=document.getElementById('vocab-unit-filter').value;
+  const type=document.getElementById('vocab-type-filter').value;
+  const filtered=VOCAB_DATA.filter(v=>{
+    const mq=!q||v.word.toLowerCase().includes(q)||v.vi.toLowerCase().includes(q)||v.example.toLowerCase().includes(q);
+    const mu=!unit||v.unit===unit;
+    const mt=!type||v.type===type;
+    return mq&&mu&&mt;
   });
-  const vocabIndex = MASTER_VOCAB.map(v=>({ type:'vocabulary', title:v.word, unit:v.unit, meaning:v.meaning }));
-  const grammarIndex = GRAMMAR_POINTS.map(g=>({ type:'grammar', title:g.point, unit:g.unit, explanation:g.explanation }));
-  return [...lessonsIndex, ...vocabIndex, ...grammarIndex];
+  renderVocabTable(filtered);
 }
-function searchGlobal(query){
-  const q=query.toLowerCase().trim(); if(!q) return [];
-  const idx = buildSearchIndex();
-  return idx.filter(item=>item.title.toLowerCase().includes(q) || (item.meaning && item.meaning.toLowerCase().includes(q)) || (item.explanation && item.explanation.toLowerCase().includes(q)));
+
+function toggleFavVocab(idx,el){
+  VOCAB_DATA[idx].fav=!VOCAB_DATA[idx].fav;
+  el.textContent=VOCAB_DATA[idx].fav?'⭐':'☆';
+  if(VOCAB_DATA[idx].fav&&!state.favVocab.includes(VOCAB_DATA[idx].word))state.favVocab.push(VOCAB_DATA[idx].word);
+  else state.favVocab=state.favVocab.filter(w=>w!==VOCAB_DATA[idx].word);
+  saveState();
+  buildFavorites();
+  showToast(VOCAB_DATA[idx].fav?'⭐ Added to favorites':'Removed from favorites');
 }
-function renderSearchResults(query){
-  const results = searchGlobal(query);
-  const panel = document.getElementById('searchResultsPanel');
-  if(!query || results.length===0){ panel.style.display='none'; return; }
-  panel.style.display='block';
-  panel.innerHTML = results.map(r=>`<div class="result-item" onclick="openSearchResult('${r.type}','${r.title}','${r.file||''}')">
-    <div class="result-unit">Unit ${r.unit || ''} · ${r.type}</div>
-    <div class="result-title">${r.title}</div>
-    <div style="font-size:.75rem;color:var(--dim);">${r.meaning || r.explanation || ''}</div>
-  </div>`).join('');
+
+/* ═══════════════════════════════════════
+   GRAMMAR CENTER
+═══════════════════════════════════════ */
+function buildGrammarCenter(){
+  const sel=document.getElementById('grammar-unit-filter');
+  const units=[...new Set(GRAMMAR_DATA.map(g=>g.unit))].sort();
+  sel.innerHTML='<option value="">All Units</option>'+units.map(u=>`<option value="${u}">Unit ${u}</option>`).join('');
+  renderGrammarList(GRAMMAR_DATA);
 }
-window.openSearchResult = function(type,title,file){
-  if(type==='lesson' && file) window.location.href = file;
-  else alert(`🔍 "${title}" — hãy tìm trong bài học tương ứng.`);
-};
-function showCenterTab(tabId){
-  document.querySelectorAll('.center-panel').forEach(p=>p.classList.remove('active'));
-  document.querySelectorAll('.center-tab').forEach(t=>t.classList.remove('active'));
-  document.getElementById(`center-${tabId}`).classList.add('active');
-  document.querySelector(`.center-tab[data-center="${tabId}"]`).classList.add('active');
-  if(tabId==='vocab') renderVocabIndex('all');
-  if(tabId==='grammar') renderGrammarCenter();
-  if(tabId==='favorites') renderFavoritesPanel();
-  if(tabId==='studyplan') regenerateStudyPlan();
+
+function renderGrammarList(data){
+  const list=document.getElementById('grammar-list');
+  if(!data.length){list.innerHTML='<div class="empty-state"><div class="empty-state-icon">🔍</div><div class="empty-state-title">No results found</div></div>';return;}
+  list.innerHTML=data.map((g,i)=>`
+    <div class="grammar-item">
+      <div class="gi-header">
+        <div style="font-size:.7rem;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.06em">Grammar Point</div>
+      </div>
+      <div class="gi-header">
+        <div class="gi-point">${g.point}</div>
+        <span class="gi-unit">${g.unit}</span>
+        <span style="background:none;border:none;cursor:pointer;font-size:.9rem;margin-left:4px" onclick="toggleFavGrammar(${i},this)">${g.fav?'⭐':'☆'}</span>
+      </div>
+      <div class="gi-example">${g.example}</div>
+      <div class="gi-explain">${g.explain}</div>
+      <div style="margin-top:8px">
+        <button class="btn btn-outline" style="padding:4px 12px;font-size:.76rem" onclick="openLesson('${g.lesson.replace(/([0-9]+)([A-Z])/,'$1_')}_Be_happy.html','${g.lesson}')">📖 Go to ${g.lesson}</button>
+      </div>
+    </div>`).join('');
 }
-function toggleTheme(){const cur=document.documentElement.getAttribute('data-theme');const nv= cur==='light'?'dark':'light'; document.documentElement.setAttribute('data-theme',nv==='light'?'light':''); localStorage.setItem('f2f_theme',nv); document.getElementById('themeToggle').innerText=nv==='light'?'🌙':'☀️';}
-function resetAllProgress(){ if(confirm('Reset all learning progress?')){ progressMap = {}; UNITS.forEach(u=>{[...u.sb,...u.wb].forEach(l=>progressMap[l.id]='pending');}); saveProgress(); renderDashboard(); renderAllCenters();}}
-function renderAllCenters(){ renderVocabIndex('all'); renderGrammarCenter(); renderFavoritesPanel(); regenerateStudyPlan();}
+
+function filterGrammar(){
+  const q=document.getElementById('grammar-search').value.toLowerCase();
+  const unit=document.getElementById('grammar-unit-filter').value;
+  const filtered=GRAMMAR_DATA.filter(g=>{
+    const mq=!q||g.point.toLowerCase().includes(q)||g.explain.toLowerCase().includes(q)||g.example.toLowerCase().includes(q);
+    const mu=!unit||g.unit===unit;
+    return mq&&mu;
+  });
+  renderGrammarList(filtered);
+}
+
+function toggleFavGrammar(idx,el){
+  GRAMMAR_DATA[idx].fav=!GRAMMAR_DATA[idx].fav;
+  el.textContent=GRAMMAR_DATA[idx].fav?'⭐':'☆';
+  if(GRAMMAR_DATA[idx].fav&&!state.favGrammar.includes(GRAMMAR_DATA[idx].point))state.favGrammar.push(GRAMMAR_DATA[idx].point);
+  else state.favGrammar=state.favGrammar.filter(p=>p!==GRAMMAR_DATA[idx].point);
+  saveState();
+  buildFavorites();
+  showToast(GRAMMAR_DATA[idx].fav?'⭐ Added to favorites':'Removed from favorites');
+}
+
+/* ═══════════════════════════════════════
+   STUDY PLAN
+═══════════════════════════════════════ */
+function buildPlan(){
+  const mins=parseInt(document.getElementById('plan-minutes').value)||30;
+  const tasks=['📚 Vocabulary','📐 Grammar','📖 Reading','🎧 Listening','🧩 Exercises'];
+  const taskMins=[8,10,10,8,9];
+  const grid=document.getElementById('plan-grid');
+  grid.innerHTML='';
+  let dayNum=1,allLessons=[];
+  UNITS.forEach(u=>u.lessons.forEach(l=>{
+    if(!state.progress[l.id]?.done)allLessons.push({id:l.id,title:l.title,unit:u.id,file:l.file,color:u.color});
+  }));
+  if(!allLessons.length){grid.innerHTML='<div class="empty-state" style="grid-column:1/-1"><div class="empty-state-icon">🎉</div><div class="empty-state-title">All lessons completed!</div></div>';return;}
+  let taskQueue=[];
+  allLessons.slice(0,10).forEach(l=>{
+    tasks.forEach((t,i)=>taskQueue.push({lesson:l,task:t,mins:taskMins[i]}));
+  });
+  let day={tasks:[],total:0};
+  taskQueue.forEach(item=>{
+    if(day.total+item.mins>mins&&day.tasks.length>0){
+      addDayCard(grid,dayNum,day.tasks);
+      dayNum++;day={tasks:[],total:0};
+    }
+    day.tasks.push(item);day.total+=item.mins;
+    if(dayNum>12)return;
+  });
+  if(day.tasks.length&&dayNum<=12)addDayCard(grid,dayNum,day.tasks);
+}
+
+function addDayCard(grid,num,tasks){
+  const card=document.createElement('div');
+  card.className='plan-day';
+  card.innerHTML=`
+    <div class="plan-day-hdr">
+      <div class="plan-day-num">D${num}</div>
+      <div class="plan-day-label">Day ${num}</div>
+    </div>
+    ${tasks.map(t=>`
+      <div class="plan-task">
+        <span class="plan-task-ic">${t.task.split(' ')[0]}</span>
+        <span><strong>${t.lesson.id}</strong> ${t.task.split(' ').slice(1).join(' ')}</span>
+        <span style="margin-left:auto;font-size:.7rem;color:var(--muted)">${t.mins}m</span>
+      </div>`).join('')}`;
+  grid.appendChild(card);
+}
+
+/* ═══════════════════════════════════════
+   FAVORITES
+═══════════════════════════════════════ */
+function buildFavorites(){
+  // Lessons
+  const favL=document.getElementById('fav-lessons');
+  const favLessons=UNITS.flatMap(u=>u.lessons.filter(l=>state.favLessons.includes(l.id)).map(l=>({...l,color:u.color,unit:u.id})));
+  favL.innerHTML=favLessons.length?favLessons.map(l=>`
+    <div class="fav-card">
+      <div class="fav-icon">📖</div>
+      <div class="fav-info">
+        <div class="fav-title">${l.id}: ${l.title}</div>
+        <div class="fav-sub">Unit ${l.unit}</div>
+      </div>
+      <span class="fav-remove" onclick="toggleFavLesson('${l.id}','${l.title}',null)">✕</span>
+    </div>`).join('')
+    :'<div class="empty-state"><div class="empty-state-icon">⭐</div><div class="empty-state-title">No favorite lessons yet</div></div>';
+  // Vocab
+  const favV=document.getElementById('fav-vocab');
+  const favVocabs=VOCAB_DATA.filter(v=>state.favVocab.includes(v.word));
+  favV.innerHTML=favVocabs.length?favVocabs.map(v=>`
+    <div class="fav-card">
+      <div class="fav-icon">📚</div>
+      <div class="fav-info">
+        <div class="fav-title">${v.word} <span style="font-family:monospace;font-size:.75rem;color:var(--teal)">${v.ipa}</span></div>
+        <div class="fav-sub">${v.vi} — Unit ${v.unit}</div>
+      </div>
+      <span class="fav-remove" onclick="removeFavVocab('${v.word}')">✕</span>
+    </div>`).join('')
+    :'<div class="empty-state"><div class="empty-state-icon">📚</div><div class="empty-state-title">No favorite vocabulary yet</div></div>';
+  // Grammar
+  const favG=document.getElementById('fav-grammar');
+  const favGrammars=GRAMMAR_DATA.filter(g=>state.favGrammar.includes(g.point));
+  favG.innerHTML=favGrammars.length?favGrammars.map(g=>`
+    <div class="fav-card">
+      <div class="fav-icon">📐</div>
+      <div class="fav-info">
+        <div class="fav-title">${g.point}</div>
+        <div class="fav-sub">Unit ${g.unit}</div>
+      </div>
+      <span class="fav-remove" onclick="removeFavGrammar('${g.point}')">✕</span>
+    </div>`).join('')
+    :'<div class="empty-state"><div class="empty-state-icon">📐</div><div class="empty-state-title">No favorite grammar yet</div></div>';
+}
+
+function toggleFavLesson(id,title,btn){
+  if(state.favLessons.includes(id)){state.favLessons=state.favLessons.filter(f=>f!==id);if(btn)btn.textContent='☆';}
+  else{state.favLessons.push(id);if(btn)btn.textContent='⭐';}
+  saveState();buildFavorites();buildUnitsGrid();
+  showToast(state.favLessons.includes(id)?'⭐ Added to favorites':'Removed from favorites');
+}
+function removeFavVocab(word){state.favVocab=state.favVocab.filter(w=>w!==word);VOCAB_DATA.forEach(v=>{if(v.word===word)v.fav=false;});saveState();buildFavorites();}
+function removeFavGrammar(point){state.favGrammar=state.favGrammar.filter(p=>p!==point);GRAMMAR_DATA.forEach(g=>{if(g.point===point)g.fav=false;});saveState();buildFavorites();}
+
+/* ═══════════════════════════════════════
+   SEARCH
+═══════════════════════════════════════ */
+function openSearch(){document.getElementById('search-overlay').classList.add('show');setTimeout(()=>document.getElementById('search-modal-input').focus(),50);}
+function closeSearch(){document.getElementById('search-overlay').classList.remove('show');document.getElementById('search-modal-input').value='';document.getElementById('search-results').innerHTML='<div class="search-empty">💡 Gõ để tìm kiếm…</div>';}
+function closeSearchIfOutside(e){if(e.target===document.getElementById('search-overlay'))closeSearch();}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeSearch();if((e.ctrlKey||e.metaKey)&&e.key==='k'){e.preventDefault();openSearch();}});
+
+function doSearch(q){
+  const res=document.getElementById('search-results');
+  if(!q.trim()){res.innerHTML='<div class="search-empty">💡 Gõ để tìm kiếm…</div>';return;}
+  const lq=q.toLowerCase();
+  const matches=SEARCH_INDEX.filter(item=>{
+    return item.title.toLowerCase().includes(lq)||item.sub.toLowerCase().includes(lq);
+  }).slice(0,12);
+  if(!matches.length){res.innerHTML='<div class="search-empty">Không tìm thấy kết quả. Thử từ khóa khác.</div>';return;}
+  const icons={lesson:'📖',grammar:'📐',vocab:'📚'};
+  const colors={lesson:'var(--blue-l)',grammar:'var(--orange-l)',vocab:'var(--purple-l)'};
+  const textColors={lesson:'var(--blue)',grammar:'var(--orange)',vocab:'var(--purple)'};
+  res.innerHTML=matches.map(m=>`
+    <div class="search-result-item" onclick="handleSearchResult(${JSON.stringify(m).replace(/"/g,'&quot;')})">
+      <div class="sri-icon" style="background:${colors[m.type]};color:${textColors[m.type]}">${icons[m.type]}</div>
+      <div class="sri-info">
+        <div class="sri-title">${highlight(m.title,lq)}</div>
+        <div class="sri-sub">${m.sub.substring(0,80)}</div>
+      </div>
+      <span class="sri-badge">${m.type}</span>
+    </div>`).join('');
+}
+
+function highlight(text,q){return text.replace(new RegExp(`(${q})`,'gi'),'<mark style="background:rgba(37,99,235,.3);color:var(--blue);border-radius:2px;padding:0 2px">$1</mark>');}
+
+function handleSearchResult(m){
+  closeSearch();
+  if(m.type==='lesson'){openLesson(m.file,m.id);}
+  else if(m.type==='grammar'){showPage('grammar');setTimeout(()=>{document.getElementById('grammar-search').value=m.title;filterGrammar();},100);}
+  else if(m.type==='vocab'){showPage('vocab');setTimeout(()=>{document.getElementById('vocab-search').value=m.title;filterVocab();},100);}
+}
+
+/* ═══════════════════════════════════════
+   NAVIGATION
+═══════════════════════════════════════ */
+const PAGE_MAP={dashboard:'page-dashboard',vocab:'page-vocab',grammar:'page-grammar',plan:'page-plan',favorites:'page-favorites'};
+function showPage(id){
+  document.querySelectorAll('.page-section').forEach(p=>p.classList.remove('active'));
+  document.getElementById(PAGE_MAP[id]).classList.add('active');
+  document.querySelectorAll('.nav-link').forEach(l=>l.classList.remove('active'));
+  document.querySelectorAll('.nav-link').forEach(l=>{if(l.textContent.toLowerCase().includes(id.substring(0,4).toLowerCase()))l.classList.add('active');});
+  window.scrollTo(0,0);
+  // lazy build
+  if(id==='vocab')buildVocabCenter();
+  if(id==='grammar')buildGrammarCenter();
+  if(id==='plan')buildPlan();
+  if(id==='favorites')buildFavorites();
+}
+
+/* ═══════════════════════════════════════
+   THEME
+═══════════════════════════════════════ */
+function toggleTheme(){
+  const t=document.documentElement.getAttribute('data-theme')==='light'?'dark':'light';
+  document.documentElement.setAttribute('data-theme',t==='light'?'light':'');
+  document.getElementById('theme-btn').textContent=t==='light'?'🌙':'☀️';
+  state.theme=t;saveState();
+}
+
+/* ═══════════════════════════════════════
+   TOAST
+═══════════════════════════════════════ */
+function showToast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg;t.classList.add('show');
+  clearTimeout(showToast._t);
+  showToast._t=setTimeout(()=>t.classList.remove('show'),2200);
+}
+
+/* ═══════════════════════════════════════
+   INIT
+═══════════════════════════════════════ */
 document.addEventListener('DOMContentLoaded',()=>{
-  const savedTheme = localStorage.getItem('f2f_theme');
-  if(savedTheme==='light'){document.documentElement.setAttribute('data-theme','light');document.getElementById('themeToggle').innerText='🌙';}
-  renderDashboard();
-  loadBookmarks();
-  renderAllCenters();
-  const searchInput = document.getElementById('global-search');
-  searchInput.addEventListener('input',(e)=>renderSearchResults(e.target.value));
-  document.getElementById('clearSearchBtn').addEventListener('click',()=>{ searchInput.value=''; renderSearchResults(''); });
-  const filterDiv = document.getElementById('vocabFilterContainer');
-  filterDiv.innerHTML = `<button class="filter-chip active-filter" data-filter="all">All</button><button class="filter-chip" data-filter="noun">Nouns</button><button class="filter-chip" data-filter="adj">Adjectives</button><button class="filter-chip" data-filter="phrase">Phrases</button>`;
-  filterDiv.querySelectorAll('.filter-chip').forEach(chip=>{
-    chip.addEventListener('click',()=>{
-      filterDiv.querySelectorAll('.filter-chip').forEach(c=>c.classList.remove('active-filter'));
-      chip.classList.add('active-filter');
-      renderVocabIndex(chip.dataset.filter);
-    });
-  });
-  document.querySelectorAll('.center-tab').forEach(tab=>{
-    tab.addEventListener('click',()=>showCenterTab(tab.dataset.center));
-  });
+  loadState();
+  // Apply saved theme
+  if(state.theme==='light'){document.documentElement.setAttribute('data-theme','light');document.getElementById('theme-btn').textContent='🌙';}
+  buildUnitsGrid();
+  updateStats();
+  // Auto-open Unit 1 by default
+  document.getElementById('unit-card-1')?.classList.add('open');
 });
 </script>
 </body>
