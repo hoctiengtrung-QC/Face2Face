@@ -1,432 +1,432 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <title>Face2Face Intermediate — Learning Portal</title>
-  <style>
-    /* ========== GLOBAL THEME (Sync 100% voi 1A, 1C) ========== */
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;1,700&display=swap');
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>Face2Face Intermediate — Learning Portal</title>
+<style>
+/* ========== GLOBAL THEME (Sync 100% voi 1A, 1C) ========== */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;1,700&display=swap');
 
-    :root {
-      --bg:#0D1117; --bg2:#161B22; --bg3:#21262D; --bg4:#2D333B;
-      --border:#30363D; --border2:#3D444D;
-      --text:#E6EDF3; --dim:#8B949E; --muted:#484F58;
-      --blue:#2563EB; --blue-l:rgba(37,99,235,.15);
-      --green:#10B981; --green-l:rgba(16,185,129,.12);
-      --orange:#F59E0B; --orange-l:rgba(245,158,11,.12);
-      --red:#EF4444; --red-l:rgba(239,68,68,.12);
-      --teal:#14B8A6; --purple:#8B5CF6; --purple-l:rgba(139,92,246,.12);
-      --r:12px; --r2:8px; --tr:.18s ease;
-    }
-    [data-theme=light] {
-      --bg:#F8FAFC; --bg2:#fff; --bg3:#F1F5F9; --bg4:#E2E8F0;
-      --border:#E2E8F0; --border2:#CBD5E1;
-      --text:#0F172A; --dim:#475569; --muted:#94A3B8;
-      --blue:#1D4ED8; --blue-l:rgba(29,78,216,.08);
-    }
+:root {
+  --bg:#0D1117; --bg2:#161B22; --bg3:#21262D; --bg4:#2D333B;
+  --border:#30363D; --border2:#3D444D;
+  --text:#E6EDF3; --dim:#8B949E; --muted:#484F58;
+  --blue:#2563EB; --blue-l:rgba(37,99,235,.15);
+  --green:#10B981; --green-l:rgba(16,185,129,.12);
+  --orange:#F59E0B; --orange-l:rgba(245,158,11,.12);
+  --red:#EF4444; --red-l:rgba(239,68,68,.12);
+  --teal:#14B8A6; --purple:#8B5CF6; --purple-l:rgba(139,92,246,.12);
+  --r:12px; --r2:8px; --tr:.18s ease;
+}
+[data-theme=light] {
+  --bg:#F8FAFC; --bg2:#fff; --bg3:#F1F5F9; --bg4:#E2E8F0;
+  --border:#E2E8F0; --border2:#CBD5E1;
+  --text:#0F172A; --dim:#475569; --muted:#94A3B8;
+  --blue:#1D4ED8; --blue-l:rgba(29,78,216,.08);
+}
 
-    * { margin:0; padding:0; box-sizing:border-box; }
-    body {
-      font-family:'Inter',system-ui,sans-serif;
-      background:var(--bg);
-      color:var(--text);
-      font-size:15px;
-      line-height:1.5;
-      transition:background var(--tr), color var(--tr);
-    }
-    ::-webkit-scrollbar{width:6px;height:6px}
-    ::-webkit-scrollbar-track{background:var(--bg3);border-radius:4px}
-    ::-webkit-scrollbar-thumb{background:var(--muted);border-radius:4px}
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  font-family:'Inter',system-ui,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  font-size:15px;
+  line-height:1.5;
+  transition:background var(--tr), color var(--tr);
+}
+::-webkit-scrollbar{width:6px;height:6px}
+::-webkit-scrollbar-track{background:var(--bg3);border-radius:4px}
+::-webkit-scrollbar-thumb{background:var(--muted);border-radius:4px}
 
-    /* ========== HEADER / TOPBAR ========== */
-    .top-bar {
-      background:var(--bg2);
-      border-bottom:1px solid var(--border);
-      padding:12px 28px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      flex-wrap:wrap;
-      gap:12px;
-      position:sticky;
-      top:0;
-      z-index:100;
-    }
-    .logo-area {
-      display:flex;
-      align-items:center;
-      gap:12px;
-    }
-    .logo {
-      font-family:'Playfair Display',serif;
-      font-size:1.35rem;
-      font-weight:800;
-      background:linear-gradient(135deg,var(--purple),var(--blue));
-      -webkit-background-clip:text;
-      background-clip:text;
-      color:transparent;
-    }
-    .badge-pro {
-      background:var(--purple-l);
-      padding:4px 12px;
-      border-radius:30px;
-      font-size:.7rem;
-      font-weight:700;
-      color:var(--purple);
-      border:1px solid rgba(139,92,246,.3);
-    }
-    .top-actions {
-      display:flex;
-      gap:12px;
-      align-items:center;
-    }
-    .icon-btn {
-      width:38px;
-      height:38px;
-      border-radius:var(--r2);
-      background:var(--bg3);
-      border:1px solid var(--border);
-      color:var(--dim);
-      font-size:1rem;
-      cursor:pointer;
-      transition:all var(--tr);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-    }
-    .icon-btn:hover {
-      border-color:var(--purple);
-      color:var(--purple);
-      background:var(--purple-l);
-    }
-    .progress-header-btn {
-      background:var(--green);
-      color:#fff;
-      padding:6px 16px;
-      border-radius:40px;
-      font-size:.8rem;
-      font-weight:600;
-      border:none;
-      cursor:pointer;
-      transition:all var(--tr);
-    }
-    .progress-header-btn:hover{background:#059669;transform:translateY(-1px);}
+/* ========== HEADER / TOPBAR ========== */
+.top-bar {
+  background:var(--bg2);
+  border-bottom:1px solid var(--border);
+  padding:12px 28px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  flex-wrap:wrap;
+  gap:12px;
+  position:sticky;
+  top:0;
+  z-index:100;
+}
+.logo-area {
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+.logo {
+  font-family:'Playfair Display',serif;
+  font-size:1.35rem;
+  font-weight:800;
+  background:linear-gradient(135deg,var(--purple),var(--blue));
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+}
+.badge-pro {
+  background:var(--purple-l);
+  padding:4px 12px;
+  border-radius:30px;
+  font-size:.7rem;
+  font-weight:700;
+  color:var(--purple);
+  border:1px solid rgba(139,92,246,.3);
+}
+.top-actions {
+  display:flex;
+  gap:12px;
+  align-items:center;
+}
+.icon-btn {
+  width:38px;
+  height:38px;
+  border-radius:var(--r2);
+  background:var(--bg3);
+  border:1px solid var(--border);
+  color:var(--dim);
+  font-size:1rem;
+  cursor:pointer;
+  transition:all var(--tr);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.icon-btn:hover {
+  border-color:var(--purple);
+  color:var(--purple);
+  background:var(--purple-l);
+}
+.progress-header-btn {
+  background:var(--green);
+  color:#fff;
+  padding:6px 16px;
+  border-radius:40px;
+  font-size:.8rem;
+  font-weight:600;
+  border:none;
+  cursor:pointer;
+  transition:all var(--tr);
+}
+.progress-header-btn:hover{background:#059669;transform:translateY(-1px);}
 
-    /* ========== SEARCH BAR ========== */
-    .search-section {
-      max-width:760px;
-      margin:24px auto 16px;
-      padding:0 24px;
-    }
-    .search-wrapper {
-      background:var(--bg2);
-      border:1px solid var(--border);
-      border-radius:60px;
-      display:flex;
-      align-items:center;
-      padding:6px 6px 6px 20px;
-      transition:all var(--tr);
-    }
-    .search-wrapper:focus-within {
-      border-color:var(--purple);
-      box-shadow:0 0 0 3px var(--purple-l);
-    }
-    .search-icon {
-      color:var(--dim);
-      font-size:1.1rem;
-      margin-right:8px;
-    }
-    #global-search {
-      flex:1;
-      background:transparent;
-      border:none;
-      padding:12px 0;
-      font-size:.95rem;
-      color:var(--text);
-      outline:none;
-    }
-    .search-clear {
-      background:var(--bg3);
-      border:none;
-      border-radius:40px;
-      padding:6px 14px;
-      font-size:.7rem;
-      color:var(--dim);
-      cursor:pointer;
-    }
-    .search-results-panel {
-      background:var(--bg2);
-      border:1px solid var(--border);
-      border-radius:var(--r);
-      margin-top:12px;
-      padding:12px;
-      display:none;
-      max-height:320px;
-      overflow-y:auto;
-    }
-    .result-item {
-      padding:10px 14px;
-      border-bottom:1px solid var(--border);
-      cursor:pointer;
-      transition:background var(--tr);
-      border-radius:var(--r2);
-    }
-    .result-item:hover {background:var(--bg3);}
-    .result-unit {font-size:.7rem;color:var(--purple);font-weight:700;}
-    .result-title {font-weight:600;font-size:.85rem;}
+/* ========== SEARCH BAR ========== */
+.search-section {
+  max-width:760px;
+  margin:24px auto 16px;
+  padding:0 24px;
+}
+.search-wrapper {
+  background:var(--bg2);
+  border:1px solid var(--border);
+  border-radius:60px;
+  display:flex;
+  align-items:center;
+  padding:6px 6px 6px 20px;
+  transition:all var(--tr);
+}
+.search-wrapper:focus-within {
+  border-color:var(--purple);
+  box-shadow:0 0 0 3px var(--purple-l);
+}
+.search-icon {
+  color:var(--dim);
+  font-size:1.1rem;
+  margin-right:8px;
+}
+#global-search {
+  flex:1;
+  background:transparent;
+  border:none;
+  padding:12px 0;
+  font-size:.95rem;
+  color:var(--text);
+  outline:none;
+}
+.search-clear {
+  background:var(--bg3);
+  border:none;
+  border-radius:40px;
+  padding:6px 14px;
+  font-size:.7rem;
+  color:var(--dim);
+  cursor:pointer;
+}
+.search-results-panel {
+  background:var(--bg2);
+  border:1px solid var(--border);
+  border-radius:var(--r);
+  margin-top:12px;
+  padding:12px;
+  display:none;
+  max-height:320px;
+  overflow-y:auto;
+}
+.result-item {
+  padding:10px 14px;
+  border-bottom:1px solid var(--border);
+  cursor:pointer;
+  transition:background var(--tr);
+  border-radius:var(--r2);
+}
+.result-item:hover {background:var(--bg3);}
+.result-unit {font-size:.7rem;color:var(--purple);font-weight:700;}
+.result-title {font-weight:600;font-size:.85rem;}
 
-    /* ========== DASHBOARD LAYOUT ========== */
-    .container {
-      max-width:1280px;
-      margin:0 auto;
-      padding:0 24px 48px;
-    }
-    .hero {
-      background:linear-gradient(135deg,rgba(139,92,246,.1),rgba(37,99,235,.05));
-      border-radius:var(--r);
-      padding:32px 28px;
-      margin-bottom:32px;
-      border:1px solid var(--border);
-    }
-    .hero h1 {
-      font-family:'Playfair Display',serif;
-      font-size:2.2rem;
-      font-weight:800;
-      margin-bottom:8px;
-    }
-    .hero p {color:var(--dim);margin-bottom:20px;}
-    .stats-grid {
-      display:flex;
-      flex-wrap:wrap;
-      gap:24px;
-      justify-content:space-between;
-    }
-    .stat-card {
-      background:var(--bg2);
-      border-radius:var(--r2);
-      padding:12px 18px;
-      min-width:100px;
-      text-align:center;
-      border:1px solid var(--border);
-    }
-    .stat-number {font-size:1.8rem;font-weight:800;color:var(--purple);}
-    .stat-label {font-size:.75rem;color:var(--dim);text-transform:uppercase;}
+/* ========== DASHBOARD LAYOUT ========== */
+.container {
+  max-width:1280px;
+  margin:0 auto;
+  padding:0 24px 48px;
+}
+.hero {
+  background:linear-gradient(135deg,rgba(139,92,246,.1),rgba(37,99,235,.05));
+  border-radius:var(--r);
+  padding:32px 28px;
+  margin-bottom:32px;
+  border:1px solid var(--border);
+}
+.hero h1 {
+  font-family:'Playfair Display',serif;
+  font-size:2.2rem;
+  font-weight:800;
+  margin-bottom:8px;
+}
+.hero p {color:var(--dim);margin-bottom:20px;}
+.stats-grid {
+  display:flex;
+  flex-wrap:wrap;
+  gap:24px;
+  justify-content:space-between;
+}
+.stat-card {
+  background:var(--bg2);
+  border-radius:var(--r2);
+  padding:12px 18px;
+  min-width:100px;
+  text-align:center;
+  border:1px solid var(--border);
+}
+.stat-number {font-size:1.8rem;font-weight:800;color:var(--purple);}
+.stat-label {font-size:.75rem;color:var(--dim);text-transform:uppercase;}
 
-    .progress-global {
-      background:var(--bg2);
-      border-radius:var(--r);
-      padding:22px;
-      margin-bottom:32px;
-      border:1px solid var(--border);
-    }
-    .progress-header {display:flex;justify-content:space-between;margin-bottom:12px;}
-    .progress-bar-bg {
-      background:var(--bg4);
-      height:12px;
-      border-radius:20px;
-      overflow:hidden;
-    }
-    .progress-fill-global {
-      width:0%;
-      height:100%;
-      background:linear-gradient(90deg,var(--purple),var(--blue));
-      border-radius:20px;
-      transition:width .3s;
-    }
-    .status-badge {
-      font-size:.7rem;
-      padding:3px 10px;
-      border-radius:40px;
-      font-weight:600;
-    }
-    .status-done {background:var(--green-l);color:var(--green);}
-    .status-progress {background:var(--orange-l);color:var(--orange);}
-    .status-pending {background:var(--bg3);color:var(--dim);}
+.progress-global {
+  background:var(--bg2);
+  border-radius:var(--r);
+  padding:22px;
+  margin-bottom:32px;
+  border:1px solid var(--border);
+}
+.progress-header {display:flex;justify-content:space-between;margin-bottom:12px;}
+.progress-bar-bg {
+  background:var(--bg4);
+  height:12px;
+  border-radius:20px;
+  overflow:hidden;
+}
+.progress-fill-global {
+  width:0%;
+  height:100%;
+  background:linear-gradient(90deg,var(--purple),var(--blue));
+  border-radius:20px;
+  transition:width .3s;
+}
+.status-badge {
+  font-size:.7rem;
+  padding:3px 10px;
+  border-radius:40px;
+  font-weight:600;
+}
+.status-done {background:var(--green-l);color:var(--green);}
+.status-progress {background:var(--orange-l);color:var(--orange);}
+.status-pending {background:var(--bg3);color:var(--dim);}
 
-    /* ========== UNIT CARDS ========== */
-    .unit-section {
-      margin-bottom:48px;
-    }
-    .unit-title {
-      font-family:'Playfair Display',serif;
-      font-size:1.5rem;
-      font-weight:700;
-      margin-bottom:8px;
-      display:flex;
-      align-items:center;
-      gap:10px;
-    }
-    .unit-badge {
-      background:var(--purple);
-      width:34px;height:34px;
-      border-radius:50%;
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      font-weight:800;
-    }
-    .unit-grid {
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:20px;
-    }
-    @media(max-width:780px){.unit-grid{grid-template-columns:1fr;}}
-    .unit-card {
-      background:var(--bg2);
-      border:1px solid var(--border);
-      border-radius:var(--r);
-      overflow:hidden;
-      transition:all var(--tr);
-    }
-    .unit-card:hover {border-color:var(--purple);transform:translateY(-3px);}
-    .card-header {
-      padding:16px 20px;
-      background:var(--bg3);
-      border-bottom:1px solid var(--border);
-      font-weight:700;
-      font-size:1rem;
-      display:flex;
-      justify-content:space-between;
-    }
-    .lesson-group {
-      padding:4px 0;
-    }
-    .lesson-item {
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      padding:12px 20px;
-      border-bottom:1px solid var(--border);
-      transition:background var(--tr);
-      flex-wrap:wrap;
-      gap:8px;
-    }
-    .lesson-item:hover {background:var(--bg3);}
-    .lesson-info {display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
-    .lesson-type {
-      font-size:.65rem;
-      font-weight:800;
-      padding:3px 10px;
-      border-radius:20px;
-      background:var(--bg4);
-      color:var(--dim);
-    }
-    .lesson-type.sb {background:var(--blue-l);color:var(--blue);}
-    .lesson-type.wb {background:var(--green-l);color:var(--green);}
-    .lesson-name {font-weight:500;font-size:.88rem;}
-    .lesson-stats {display:flex;align-items:center;gap:10px;}
-    .continue-btn {
-      background:var(--bg3);
-      border:1px solid var(--border);
-      padding:5px 12px;
-      border-radius:40px;
-      font-size:.7rem;
-      font-weight:600;
-      color:var(--dim);
-      cursor:pointer;
-      transition:all var(--tr);
-    }
-    .continue-btn:hover {
-      border-color:var(--purple);
-      color:var(--purple);
-      background:var(--purple-l);
-    }
+/* ========== UNIT CARDS ========== */
+.unit-section {
+  margin-bottom:48px;
+}
+.unit-title {
+  font-family:'Playfair Display',serif;
+  font-size:1.5rem;
+  font-weight:700;
+  margin-bottom:8px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.unit-badge {
+  background:var(--purple);
+  width:34px;height:34px;
+  border-radius:50%;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:800;
+}
+.unit-grid {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:20px;
+}
+@media(max-width:780px){.unit-grid{grid-template-columns:1fr;}}
+.unit-card {
+  background:var(--bg2);
+  border:1px solid var(--border);
+  border-radius:var(--r);
+  overflow:hidden;
+  transition:all var(--tr);
+}
+.unit-card:hover {border-color:var(--purple);transform:translateY(-3px);}
+.card-header {
+  padding:16px 20px;
+  background:var(--bg3);
+  border-bottom:1px solid var(--border);
+  font-weight:700;
+  font-size:1rem;
+  display:flex;
+  justify-content:space-between;
+}
+.lesson-group {
+  padding:4px 0;
+}
+.lesson-item {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:12px 20px;
+  border-bottom:1px solid var(--border);
+  transition:background var(--tr);
+  flex-wrap:wrap;
+  gap:8px;
+}
+.lesson-item:hover {background:var(--bg3);}
+.lesson-info {display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
+.lesson-type {
+  font-size:.65rem;
+  font-weight:800;
+  padding:3px 10px;
+  border-radius:20px;
+  background:var(--bg4);
+  color:var(--dim);
+}
+.lesson-type.sb {background:var(--blue-l);color:var(--blue);}
+.lesson-type.wb {background:var(--green-l);color:var(--green);}
+.lesson-name {font-weight:500;font-size:.88rem;}
+.lesson-stats {display:flex;align-items:center;gap:10px;}
+.continue-btn {
+  background:var(--bg3);
+  border:1px solid var(--border);
+  padding:5px 12px;
+  border-radius:40px;
+  font-size:.7rem;
+  font-weight:600;
+  color:var(--dim);
+  cursor:pointer;
+  transition:all var(--tr);
+}
+.continue-btn:hover {
+  border-color:var(--purple);
+  color:var(--purple);
+  background:var(--purple-l);
+}
 
-    /* ========== CENTERS ========== */
-    .tab-centers {
-      display:flex;
-      gap:8px;
-      margin:40px 0 16px;
-      border-bottom:1px solid var(--border);
-      flex-wrap:wrap;
-    }
-    .center-tab {
-      padding:10px 20px;
-      background:transparent;
-      border:none;
-      font-weight:600;
-      color:var(--dim);
-      cursor:pointer;
-      border-bottom:2px solid transparent;
-      transition:all var(--tr);
-    }
-    .center-tab.active {
-      color:var(--purple);
-      border-bottom-color:var(--purple);
-    }
-    .center-panel {
-      display:none;
-      background:var(--bg2);
-      border-radius:var(--r);
-      border:1px solid var(--border);
-      padding:20px;
-      margin-bottom:32px;
-    }
-    .center-panel.active {display:block;}
-    .vocab-filter {
-      display:flex;
-      gap:8px;
-      margin-bottom:20px;
-      flex-wrap:wrap;
-    }
-    .filter-chip {
-      background:var(--bg3);
-      padding:4px 12px;
-      border-radius:40px;
-      font-size:.75rem;
-      cursor:pointer;
-    }
-    .filter-chip.active-filter {background:var(--purple);color:#fff;}
-    .vocab-list {display:flex;flex-direction:column;gap:8px;max-height:380px;overflow-y:auto;}
-    .vocab-row {
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      padding:10px 12px;
-      border-bottom:1px solid var(--border);
-      gap:10px;
-      flex-wrap:wrap;
-    }
-    .vocab-word{font-weight:700;min-width:110px;}
-    .vocab-ipa{font-family:monospace;font-size:.75rem;color:var(--teal);}
-    .vocab-meaning{color:var(--orange);font-size:.8rem;flex:1;}
-    .bookmark-star{cursor:pointer;font-size:1rem;color:var(--muted);}
-    .bookmark-star.active-star{color:var(--orange);}
-    .grammar-list .grammar-item {
-      padding:14px;
-      border-bottom:1px solid var(--border);
-    }
-    .grammar-title {
-      font-weight:800;
-      color:var(--purple);
-      margin-bottom:4px;
-    }
-    .grammar-unit{font-size:.7rem;color:var(--dim);}
-    .study-plan-card {
-      background:linear-gradient(135deg,var(--bg3),var(--bg2));
-      border-radius:var(--r);
-      padding:20px;
-      margin-top:20px;
-    }
-    .fav-grid {
-      display:grid;
-      gap:10px;
-    }
-    .fav-lesson {
-      background:var(--bg3);
-      border-radius:var(--r2);
-      padding:12px;
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-    }
-    @media(max-width:640px){
-      .top-bar{padding:12px 16px;}
-      .container{padding:0 16px 32px;}
-      .hero h1{font-size:1.6rem;}
-    }
-  </style>
+/* ========== CENTERS ========== */
+.tab-centers {
+  display:flex;
+  gap:8px;
+  margin:40px 0 16px;
+  border-bottom:1px solid var(--border);
+  flex-wrap:wrap;
+}
+.center-tab {
+  padding:10px 20px;
+  background:transparent;
+  border:none;
+  font-weight:600;
+  color:var(--dim);
+  cursor:pointer;
+  border-bottom:2px solid transparent;
+  transition:all var(--tr);
+}
+.center-tab.active {
+  color:var(--purple);
+  border-bottom-color:var(--purple);
+}
+.center-panel {
+  display:none;
+  background:var(--bg2);
+  border-radius:var(--r);
+  border:1px solid var(--border);
+  padding:20px;
+  margin-bottom:32px;
+}
+.center-panel.active {display:block;}
+.vocab-filter {
+  display:flex;
+  gap:8px;
+  margin-bottom:20px;
+  flex-wrap:wrap;
+}
+.filter-chip {
+  background:var(--bg3);
+  padding:4px 12px;
+  border-radius:40px;
+  font-size:.75rem;
+  cursor:pointer;
+}
+.filter-chip.active-filter {background:var(--purple);color:#fff;}
+.vocab-list {display:flex;flex-direction:column;gap:8px;max-height:380px;overflow-y:auto;}
+.vocab-row {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:10px 12px;
+  border-bottom:1px solid var(--border);
+  gap:10px;
+  flex-wrap:wrap;
+}
+.vocab-word{font-weight:700;min-width:110px;}
+.vocab-ipa{font-family:monospace;font-size:.75rem;color:var(--teal);}
+.vocab-meaning{color:var(--orange);font-size:.8rem;flex:1;}
+.bookmark-star{cursor:pointer;font-size:1rem;color:var(--muted);}
+.bookmark-star.active-star{color:var(--orange);}
+.grammar-list .grammar-item {
+  padding:14px;
+  border-bottom:1px solid var(--border);
+}
+.grammar-title {
+  font-weight:800;
+  color:var(--purple);
+  margin-bottom:4px;
+}
+.grammar-unit{font-size:.7rem;color:var(--dim);}
+.study-plan-card {
+  background:linear-gradient(135deg,var(--bg3),var(--bg2));
+  border-radius:var(--r);
+  padding:20px;
+  margin-top:20px;
+}
+.fav-grid {
+  display:grid;
+  gap:10px;
+}
+.fav-lesson {
+  background:var(--bg3);
+  border-radius:var(--r2);
+  padding:12px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+@media(max-width:640px){
+  .top-bar{padding:12px 16px;}
+  .container{padding:0 16px 32px;}
+  .hero h1{font-size:1.6rem;}
+}
+</style>
 </head>
 <body>
 
@@ -502,82 +502,6 @@
 </div>
 
 <script>
-// ==================== CHUẨN CẤU TRÚC GIÁO TRÌNH (DỰA TRÊN PDF) ====================
-// Mapping tên bài học và Real World theo đúng Student's Book
-const LESSON_TITLES = {
-  '1A': 'Be happy!', '1B': 'Love it or hate it', '1C': 'Join the club!', '1D': 'Nice to meet you',
-  '2A': 'Slow down!', '2B': 'Street food', '2C': 'Sleepless nights', '2D': 'What’s the matter?',
-  '3A': 'The tourist trade', '3B': 'Lonely Planet', '3C': 'Voluntourism', '3D': 'A trip to India',
-  '4A': 'Musical experiences', '4B': 'Modern adventurers', '4C': 'Unusual days out', '4D': 'It’s only a game!',
-  '5A': 'Our new home', '5B': 'A load of old junk', '5C': 'Birthdays', '5D': 'Things I need',
-  '6A': 'Make up your mind', '6B': 'Fear of failure', '6C': 'Touch wood', '6D': 'The village festival',
-  '7A': 'Have a go!', '7B': 'What would you do?', '7C': 'Social networking', '7D': 'Can you tell me ...?',
-  '8A': 'Angry planet', '8B': 'Recycle!', '8C': 'Dangers at sea', '8D': 'A hiking trip',
-  '9A': 'Get healthy!', '9B': 'Good news, bad news', '9C': 'Human behaviour', '9D': 'At the doctor’s',
-  '10A': 'The anniversary', '10B': 'Who’s that?', '10C': 'I do!', '10D': 'Do you mind if I ...?',
-  '11A': 'Any messages?', '11B': 'How did it go?', '11C': 'Undercover', '11D': 'It’s my first day',
-  '12A': 'I wish!', '12B': 'Important moments', '12C': 'Superheroes', '12D': 'End of Course Review'
-};
-// Real World theo từng bài (trích từ PDF)
-const REAL_WORLD = {
-  '1D': 'question tags',
-  '2D': 'showing concern, giving and responding to advice',
-  '3D': 'asking for and making recommendations',
-  '4D': 'softening opinions and making generalisations',
-  '5D': 'explaining what you need',
-  '6D': 'discussion language',
-  '7D': 'indirect and direct questions',
-  '8D': 'warnings and advice',
-  '9D': 'what doctors say; what patients say',
-  '10D': 'asking for, giving and refusing permission',
-  '11D': 'checking information',
-  '12D': 'End of Course Review'
-};
-// Grammar Focus theo từng bài
-const GRAMMAR_FOCUS = {
-  '1A': 'question forms',
-  '1B': 'positive and negative verb forms, words and phrases',
-  '1C': 'prepositions with adjectives',
-  '2A': 'be able to, be supposed to, be allowed to, modal verbs (1)',
-  '2B': 'Present Continuous and Present Simple',
-  '3A': 'Present Perfect Simple: experience, unfinished past and recent events',
-  '3B': 'Present Perfect Continuous and Present Perfect Simple',
-  '4A': 'Past Simple and Past Continuous; used to',
-  '4B': 'Past Perfect',
-  '5A': 'making comparisons: comparatives, superlatives, (not) as … as, etc.',
-  '5B': 'the future: will, be going to, Present Continuous',
-  '6A': 'first conditional and future time clauses',
-  '6B': 'zero conditional; conditionals with imperatives and modal verbs; in case',
-  '7A': 'ability: be able to, manage, be useless at, etc.',
-  '7B': 'second conditional',
-  '8A': 'the passive',
-  '8B': 'quantifiers: a bit of, too much/many, (not) enough, plenty of, etc.',
-  '9A': 'relative clauses with who, that, which, whose, where and when',
-  '9B': 'Present Perfect Simple active and passive for recent events',
-  '10A': 'was/were going to, was/were supposed to',
-  '10B': 'modal verbs (2): making deductions',
-  '11A': 'reported speech: sentences',
-  '11B': 'reported speech: questions, requests and imperatives',
-  '12A': 'wishes',
-  '12B': 'third conditional'
-};
-// Vocabulary Focus
-const VOCAB_FOCUS = {
-  '1A': 'weekend activities', '1B': 'likes and dislikes', '1C': 'adjectives (1): feelings',
-  '2A': 'collocations (1): work', '2B': 'food and ways of cooking', '2C': 'sleep; gradable and strong adjectives; adverbs',
-  '3A': 'phrasal verbs (1): travel', '3B': 'phrases with travel, get and go on', '3C': 'word building (1): suffixes for adjectives and nouns',
-  '4A': 'collocations (2): music', '4B': 'adjectives (2): character', '4C': 'guessing meaning from context',
-  '5A': 'homes', '5B': 'phrasal verbs (2)', '5C': 'verb patterns (1)', '5D': 'materials',
-  '6A': 'make and do', '6B': 'reflexive pronouns', '6C': 'synonyms',
-  '7A': 'goals and achievements', '7B': 'computers (1)', '7C': 'computers (2); articles: a, an, the, no article',
-  '8A': 'bad weather and natural disasters', '8B': 'containers', '8C': 'word building (2): prefixes and opposites, other prefixes and suffixes',
-  '9A': 'health', '9B': 'collocations (3): the news', '9C': 'body movements and responses; connecting words',
-  '10A': 'contacting people', '10B': 'describing people', '10C': 'phrasal verbs (3)',
-  '11A': 'things people do at work', '11B': 'adjectives (3): jobs', '11C': 'verb patterns (2): reporting verbs',
-  '12A': 'informal words and phrases', '12B': 'phrases with get', '12C': 'word building (3): word families'
-};
-
-  
 // ==================== CHUẨN CẤU TRÚC GIÁO TRÌNH & LINK CHUẨN ====================
 // QUY TẮC ĐẶT TÊN FILE THỐNG NHẤT:
 // - Student Book: {Unit}{Letter}.html  (ví dụ: 1A.html, 1B.html, 2C.html)
@@ -587,7 +511,7 @@ const VOCAB_FOCUS = {
 function getLessonFile(unit, letter, type) {
   const unitLetter = `${unit}${letter}`;
   if (type === 'sb') {
-    // TRƯỜNG HỢP ĐẶC BIỆT (giữ lại để tương thích với file cũ)
+    // TRƯỜNG HỢP ĐẶC BIỆT (giữ lại để tương thích với file cũ 1A, 1C)
     if (unitLetter === '1A') return '1A_Be_happy.html';
     if (unitLetter === '1C') return '1C_Join_the_club.html';
     // QUY TẮC CHUẨN CHO TẤT CẢ BÀI MỚI (1B, 1D, 2A, 2B, 3A,...)
@@ -614,6 +538,52 @@ const LESSON_TITLES = {
   '12A': 'I wish!', '12B': 'Important moments', '12C': 'Superheroes', '12D': 'End of Course Review'
 };
 
+// Real World theo từng bài (trích từ PDF Student's Book)
+const REAL_WORLD = {
+  '1D': 'question tags',
+  '2D': 'showing concern, giving and responding to advice',
+  '3D': 'asking for and making recommendations',
+  '4D': 'softening opinions and making generalisations',
+  '5D': 'explaining what you need',
+  '6D': 'discussion language',
+  '7D': 'indirect and direct questions',
+  '8D': 'warnings and advice',
+  '9D': 'what doctors say; what patients say',
+  '10D': 'asking for, giving and refusing permission',
+  '11D': 'checking information',
+  '12D': 'End of Course Review'
+};
+
+// Grammar Focus theo từng bài (trích từ PDF)
+const GRAMMAR_FOCUS = {
+  '1A': 'question forms',
+  '1B': 'positive and negative verb forms, words and phrases',
+  '1C': 'prepositions with adjectives',
+  '1D': 'question tags',
+  '2A': 'be able to, be supposed to, be allowed to, modal verbs (1)',
+  '2B': 'Present Continuous and Present Simple',
+  '3A': 'Present Perfect Simple: experience, unfinished past and recent events',
+  '3B': 'Present Perfect Continuous and Present Perfect Simple',
+  '4A': 'Past Simple and Past Continuous; used to',
+  '4B': 'Past Perfect',
+  '5A': 'making comparisons: comparatives, superlatives, (not) as … as, etc.',
+  '5B': 'the future: will, be going to, Present Continuous',
+  '6A': 'first conditional and future time clauses',
+  '6B': 'zero conditional; conditionals with imperatives and modal verbs; in case',
+  '7A': 'ability: be able to, manage, be useless at, etc.',
+  '7B': 'second conditional',
+  '8A': 'the passive',
+  '8B': 'quantifiers: a bit of, too much/many, (not) enough, plenty of, etc.',
+  '9A': 'relative clauses with who, that, which, whose, where and when',
+  '9B': 'Present Perfect Simple active and passive for recent events',
+  '10A': 'was/were going to, was/were supposed to',
+  '10B': 'modal verbs (2): making deductions',
+  '11A': 'reported speech: sentences',
+  '11B': 'reported speech: questions, requests and imperatives',
+  '12A': 'wishes',
+  '12B': 'third conditional'
+};
+
 const UNITS = [];
 for(let u=1; u<=12; u++){
   const sbLessons = [];
@@ -622,8 +592,11 @@ for(let u=1; u<=12; u++){
   letters.forEach(letter=>{
     const lessonId = `${u}${letter}`;
     const title = LESSON_TITLES[lessonId] || 'Lesson';
+    const grammar = GRAMMAR_FOCUS[lessonId] || '';
+    const realWorld = REAL_WORLD[lessonId] || '';
     sbLessons.push({ 
       id: lessonId, type:'sb', title: `${lessonId} — ${title}`,
+      grammar, realWorld,
       file: getLessonFile(u, letter, 'sb') 
     });
     wbLessons.push({ 
@@ -682,9 +655,7 @@ function renderDashboard() {
       const status = progressMap[lesson.id] || 'pending';
       let statusText = status==='done'? '✅ Completed' : (status==='inprogress'? '🔄 In progress' : '📌 Not started');
       let statusClass = status==='done'? 'status-done' : (status==='inprogress'? 'status-progress' : 'status-pending');
-      // Hiển thị thêm vocab, grammar, realworld
       let details = [];
-      if(lesson.vocab) details.push(`📖 ${lesson.vocab}`);
       if(lesson.grammar) details.push(`📐 ${lesson.grammar}`);
       if(lesson.realWorld) details.push(`💬 ${lesson.realWorld}`);
       let detailsHtml = details.length ? `<div style="font-size:.7rem;color:var(--dim);margin-top:2px;">${details.join(' · ')}</div>` : '';
@@ -747,7 +718,8 @@ const MASTER_VOCAB = [
   { word:'embarrassed', ipa:'/ɪmˈbærəst/', meaning:'xấu hổ', unit:'1C', type:'adj', bookmarked:false },
   { word:'stressed', ipa:'/strest/', meaning:'căng thẳng', unit:'1C', type:'adj', bookmarked:false },
   { word:'keen on', ipa:'/kiːn ɒn/', meaning:'hứng thú với', unit:'1C', type:'prep phrase', bookmarked:false },
-  { word:'worried about', ipa:'/ˈwʌrid əbaʊt/', meaning:'lo lắng về', unit:'1C', type:'phrase', bookmarked:false }
+  { word:'worried about', ipa:'/ˈwʌrid əbaʊt/', meaning:'lo lắng về', unit:'1C', type:'phrase', bookmarked:false },
+  { word:'question tags', ipa:'/ˈkwestʃən tæɡz/', meaning:'câu hỏi đuôi', unit:'1D', type:'grammar', bookmarked:false }
 ];
 
 function loadBookmarks() { const b=localStorage.getItem('f2f_vocab_favs'); if(b) JSON.parse(b).forEach(w=>{ let item=MASTER_VOCAB.find(v=>v.word===w); if(item) item.bookmarked=true; }); }
@@ -773,9 +745,10 @@ function renderVocabIndex(filter='all') {
 }
 
 const GRAMMAR_POINTS = [
-  { point:'Question Forms', unit:'1A', explanation:'Auxiliary inversion + Wh-words + subject questions', example:'How often does Fiona teach yoga?' },
+  { point:'Question Forms', unit:'1A', explanation:'Auxiliary inversion + Wh-words + subject questions without do/does', example:'How often does Fiona teach yoga?' },
   { point:'Present Perfect Simple', unit:'3A', explanation:'Experience, unfinished past and recent events', example:'I\'ve lived in this country for three years.' },
-  { point:'Prepositions with Adjectives', unit:'1C', explanation:'good at, interested in, worried about...', example:'I\'m fed up with waiting.' },
+  { point:'Prepositions with Adjectives', unit:'1C', explanation:'good at, interested in, worried about, fed up with...', example:'I\'m fed up with waiting.' },
+  { point:'Question Tags', unit:'1D', explanation:'Câu hỏi đuôi để kiểm tra thông tin', example:'You live next door to Lisa, don\'t you?' },
   { point:'Second Conditional', unit:'7B', explanation:'Imaginary situations', example:'If I lost my laptop, I\'d lose my job!' }
 ];
 
