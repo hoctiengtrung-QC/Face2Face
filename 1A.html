@@ -1,0 +1,2714 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>1A Be happy! — face2face Intermediate</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap');
+
+:root {
+  --bg:#0D1117; --bg2:#161B22; --bg3:#21262D; --bg4:#2D333B;
+  --border:#30363D; --text:#E6EDF3; --dim:#8B949E; --muted:#484F58;
+  --blue:#2563EB; --blue-l:rgba(37,99,235,.15);
+  --green:#10B981; --green-l:rgba(16,185,129,.12);
+  --orange:#F59E0B; --orange-l:rgba(245,158,11,.12);
+  --red:#EF4444; --red-l:rgba(239,68,68,.12);
+  --teal:#14B8A6; --purple:#8B5CF6;
+  --r:10px; --r2:6px; --tr:.18s ease;
+}
+[data-theme=light]{
+  --bg:#F8FAFC; --bg2:#fff; --bg3:#F1F5F9; --bg4:#E2E8F0;
+  --border:#E2E8F0; --text:#0F172A; --dim:#475569; --muted:#94A3B8;
+  --blue:#1D4ED8; --blue-l:rgba(29,78,216,.1);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);font-size:15px;line-height:1.6}
+/* HEADER */
+.top-bar{background:var(--bg2);border-bottom:1px solid var(--border);padding:10px 20px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:50}
+.back-btn{display:flex;align-items:center;gap:6px;padding:6px 14px;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);font-size:.82rem;color:var(--dim);cursor:pointer;transition:all var(--tr)}
+.back-btn:hover{border-color:var(--blue);color:var(--blue)}
+.lesson-badge{padding:4px 12px;background:var(--blue-l);border:1px solid rgba(37,99,235,.3);border-radius:4px;font-size:.75rem;font-weight:700;color:#60A5FA;letter-spacing:.05em}
+.lesson-title-h{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700}
+.theme-btn{margin-left:auto;width:34px;height:34px;display:flex;align-items:center;justify-content:center;border-radius:var(--r2);background:var(--bg3);border:1px solid var(--border);cursor:pointer;font-size:.95rem;color:var(--dim);transition:all var(--tr)}
+.theme-btn:hover{border-color:var(--blue);color:var(--blue)}
+.progress-btn{padding:6px 14px;background:var(--green);border-radius:var(--r2);font-size:.78rem;font-weight:600;color:#fff;cursor:pointer;border:none;transition:all var(--tr)}
+.progress-btn:hover{background:#059669}
+
+/* QUICK REVIEW */
+.quick-review{background:linear-gradient(135deg,#1e3a5f,#1a2f4a);border:1px solid #2d4f7c;border-radius:var(--r);padding:16px 20px;margin:20px 24px;display:flex;gap:12px;align-items:flex-start}
+.qr-badge{background:#F59E0B;color:#000;padding:3px 10px;border-radius:4px;font-size:.72rem;font-weight:700;white-space:nowrap;flex-shrink:0;margin-top:2px}
+.qr-text{font-size:.85rem;line-height:1.6;color:#CBD5E1}
+.qr-text strong{color:#fff}
+
+/* SECTION WRAPPER */
+.page-content{max-width:920px;margin:0 auto;padding:0 24px 48px}
+
+/* TAB NAVIGATION */
+.tab-nav{display:flex;gap:2px;border-bottom:1px solid var(--border);margin-bottom:0;overflow-x:auto;scrollbar-width:none;position:sticky;top:57px;background:var(--bg);z-index:40;padding:0 24px}
+.tab-nav::-webkit-scrollbar{display:none}
+.tnav-btn{display:flex;align-items:center;gap:6px;padding:11px 16px;font-size:.83rem;font-weight:500;color:var(--dim);white-space:nowrap;border-bottom:2px solid transparent;margin-bottom:-1px;cursor:pointer;transition:all var(--tr);background:none;border-top:none;border-left:none;border-right:none;font-family:inherit}
+.tnav-btn:hover{color:var(--text)}
+.tnav-btn.active{color:var(--blue);border-bottom-color:var(--blue)}
+
+/* TAB PANES */
+.tab-pane{display:none;padding-top:28px}
+.tab-pane.active{display:block;animation:fadeUp .22s ease}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
+/* SECTION HEADINGS */
+.sec-heading{font-size:1.05rem;font-weight:700;color:var(--text);margin-bottom:4px;display:flex;align-items:center;gap:8px}
+.sec-sub{font-size:.82rem;color:var(--dim);margin-bottom:16px}
+.exercise-num{width:28px;height:28px;background:var(--blue);color:#fff;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:.78rem;font-weight:700;flex-shrink:0}
+.exercise-label{display:inline-flex;align-items:center;gap:8px;font-size:.9rem;font-weight:600;margin-bottom:12px;color:var(--text)}
+.part-label{display:inline-block;width:22px;height:22px;background:var(--bg4);border-radius:4px;text-align:center;line-height:22px;font-size:.72rem;font-weight:700;color:var(--dim);margin-right:6px}
+.instruction{font-size:.88rem;color:var(--text);line-height:1.65;margin-bottom:14px}
+.instruction em{font-style:italic;color:var(--teal)}
+.instruction strong{color:var(--text)}
+
+/* VOCAB MATCH TABLE */
+.match-container{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:24px}
+.match-col{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:16px}
+.match-col-title{font-size:.72rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px}
+.verb-group{margin-bottom:14px;padding-bottom:14px;border-bottom:1px dashed var(--border)}
+.verb-group:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.verb-chip{display:inline-block;padding:4px 12px;background:var(--blue-l);border:1px solid rgba(37,99,235,.3);border-radius:20px;font-size:.82rem;font-weight:600;color:#60A5FA;margin-right:4px;margin-bottom:4px}
+.phrase-option{display:flex;align-items:center;gap:8px;padding:7px 12px;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);margin-bottom:6px;cursor:pointer;transition:all var(--tr);font-size:.85rem}
+.phrase-option:hover{border-color:var(--blue);background:var(--blue-l)}
+.phrase-option.selected{border-color:var(--green);background:var(--green-l);color:var(--text)}
+.phrase-option.correct{border-color:var(--green);background:var(--green-l)}
+.phrase-option.wrong{border-color:var(--red);background:var(--red-l)}
+.check-icon{font-size:.8rem;margin-left:auto}
+
+/* COLLOCATIONS ANSWER TABLE */
+.collocations-grid{display:grid;gap:8px;margin-bottom:20px}
+.collocation-row{display:grid;grid-template-columns:130px 1fr;gap:12px;align-items:center;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r2);padding:10px 14px;transition:all var(--tr)}
+.collocation-row:hover{border-color:var(--border)}
+.coll-verb{font-weight:600;color:var(--blue);font-size:.88rem}
+.coll-phrase{font-size:.88rem;color:var(--text)}
+.coll-example{font-size:.78rem;color:var(--dim);font-style:italic;grid-column:2;margin-top:2px}
+.tip-box{background:var(--bg3);border-left:3px solid var(--orange);border-radius:0 var(--r2) var(--r2) 0;padding:10px 14px;margin-top:12px;font-size:.82rem;color:var(--dim);line-height:1.6}
+.tip-box strong{color:var(--text)}
+
+/* SPEAKING PRACTICE BOX */
+.speaking-box{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:18px;margin-bottom:20px}
+.speaking-box-title{font-size:.85rem;font-weight:600;margin-bottom:12px;color:var(--text);display:flex;align-items:center;gap:8px}
+.speech-bubble{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);padding:12px 16px;margin-bottom:10px;font-size:.85rem;font-style:italic;color:var(--text);position:relative}
+.speech-bubble::before{content:'💬';margin-right:8px}
+.speech-bubble .answer{color:var(--teal);font-style:normal;font-weight:500}
+.question-starters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+.q-starter{padding:6px 14px;background:var(--blue-l);border:1px solid rgba(37,99,235,.25);border-radius:20px;font-size:.82rem;color:#93C5FD;font-style:italic}
+.activity-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.activity-chip{padding:5px 12px;background:var(--bg3);border:1px solid var(--border);border-radius:6px;font-size:.8rem;color:var(--dim);cursor:pointer;transition:all var(--tr)}
+.activity-chip:hover,.activity-chip.selected{background:var(--blue-l);border-color:rgba(37,99,235,.4);color:#93C5FD}
+
+/* READING ARTICLE */
+.article-intro{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:20px;margin-bottom:16px}
+.article-title{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;margin-bottom:6px;line-height:1.3}
+.article-source{font-size:.75rem;color:var(--muted);margin-bottom:14px;font-style:italic}
+.article-intro-text{font-size:.9rem;line-height:1.75;color:var(--text)}
+.article-intro-text em{font-style:italic;color:var(--teal)}
+
+.ranking-task{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:20px;margin-bottom:16px}
+.ranking-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px}
+.rank-item{display:flex;align-items:center;gap:10px;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);padding:8px 12px;cursor:grab;transition:all var(--tr);user-select:none}
+.rank-item:hover{border-color:var(--blue)}
+.rank-num{width:26px;height:26px;border-radius:50%;background:var(--bg4);border:2px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:700;color:var(--muted);flex-shrink:0}
+.rank-text{font-size:.83rem}
+
+.full-article{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:24px;margin-bottom:16px}
+.article-header{display:flex;align-items:center;gap:10px;margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid var(--border)}
+.article-header-title{font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:700}
+.reason-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.reason-card{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);padding:14px}
+.reason-num{font-size:.72rem;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px}
+.reason-title{font-size:.88rem;font-weight:700;margin-bottom:6px;color:var(--text);text-transform:uppercase;font-size:.8rem;letter-spacing:.04em}
+.reason-text{font-size:.82rem;color:var(--dim);line-height:1.6}
+
+.discussion-box{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);padding:16px;margin-bottom:16px}
+.disc-q{display:flex;gap:10px;padding:8px 0;border-bottom:1px solid var(--border);font-size:.85rem}
+.disc-q:last-child{border-bottom:none}
+.disc-q-num{font-size:.75rem;font-weight:700;color:var(--blue);min-width:20px}
+
+/* LISTENING */
+.audio-player-box{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:20px;margin-bottom:16px}
+.audio-header{display:flex;align-items:center;gap:14px;margin-bottom:16px}
+.cd-badge{padding:4px 12px;background:var(--orange-l);border:1px solid rgba(245,158,11,.3);border-radius:4px;font-size:.75rem;font-weight:700;color:var(--orange)}
+.audio-title{font-size:.9rem;font-weight:600}
+.audio-controls{display:flex;align-items:center;gap:12px;padding:12px 16px;background:var(--bg3);border-radius:var(--r2);margin-bottom:14px}
+.play-btn{width:42px;height:42px;border-radius:50%;background:var(--blue);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;border:none;font-size:1rem;flex-shrink:0;transition:all var(--tr)}
+.play-btn:hover{background:#1D4ED8;transform:scale(1.05)}
+.audio-track-info{flex:1}
+.audio-track-name{font-size:.83rem;font-weight:500;margin-bottom:2px}
+.audio-note{font-size:.75rem;color:var(--muted)}
+.progress-bar{height:4px;background:var(--border);border-radius:2px;overflow:hidden;margin-top:6px}
+.progress-fill{height:100%;width:0%;background:var(--blue);border-radius:2px;transition:width .1s linear}
+
+.persons-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:20px}
+.person-card{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);padding:14px;text-align:center}
+.person-icon{width:52px;height:52px;border-radius:50%;background:var(--bg4);margin:0 auto 8px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;border:2px solid var(--border)}
+.person-name{font-size:.85rem;font-weight:600;margin-bottom:4px}
+.person-job{font-size:.75rem;color:var(--dim);margin-bottom:8px}
+.happiness-input{width:100%;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r2);padding:6px 10px;color:var(--text);font-size:.8rem;outline:none;resize:none;min-height:54px;font-family:inherit;transition:border-color var(--tr)}
+.happiness-input:focus{border-color:var(--blue)}
+
+.q-and-a-list{display:flex;flex-direction:column;gap:10px;margin-bottom:20px}
+.qa-item{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r2);overflow:hidden}
+.qa-question{display:flex;align-items:center;gap:10px;padding:10px 14px;cursor:pointer;transition:background var(--tr)}
+.qa-question:hover{background:var(--bg3)}
+.qa-qnum{width:24px;height:24px;border-radius:50%;background:var(--blue-l);color:var(--blue);display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:700;flex-shrink:0}
+.qa-qtext{font-size:.85rem;flex:1}
+.qa-arrow{font-size:.7rem;color:var(--muted);transition:transform var(--tr);flex-shrink:0}
+.qa-item.open .qa-arrow{transform:rotate(90deg)}
+.qa-answer{display:none;padding:0 14px 12px 48px;font-size:.83rem;color:var(--teal);font-style:italic}
+.qa-item.open .qa-answer{display:block}
+
+/* HELP WITH LISTENING */
+.hwl-box{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);padding:18px;margin-bottom:20px}
+.hwl-title{font-size:.85rem;font-weight:700;color:var(--orange);margin-bottom:4px;text-transform:uppercase;letter-spacing:.06em;font-size:.75rem}
+.hwl-subtitle{font-size:.9rem;font-weight:600;margin-bottom:12px;color:var(--text)}
+.pronunciation-table{display:grid;gap:8px}
+.pron-row{display:grid;grid-template-columns:120px 120px 1fr;gap:12px;align-items:center;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r2);padding:9px 14px}
+.pron-written{font-size:.85rem;font-weight:500}
+.pron-spoken{font-family:'Courier New',monospace;font-size:.82rem;color:var(--teal)}
+.pron-example{font-size:.8rem;color:var(--dim);font-style:italic}
+
+/* GRAMMAR */
+.grammar-intro-box{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:20px;margin-bottom:16px}
+.grammar-tag{display:inline-flex;align-items:center;gap:6px;padding:3px 12px;background:var(--orange-l);border:1px solid rgba(245,158,11,.3);border-radius:4px;font-size:.72rem;font-weight:700;color:var(--orange);text-transform:uppercase;letter-spacing:.06em;margin-bottom:12px}
+.grammar-title{font-size:1rem;font-weight:700;margin-bottom:14px}
+
+.grammar-section{margin-bottom:20px}
+.grammar-section-title{font-size:.8rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid var(--border)}
+.grammar-rule{display:flex;gap:10px;padding:9px 0;border-bottom:1px dashed var(--border);font-size:.85rem;line-height:1.6}
+.grammar-rule:last-child{border-bottom:none}
+.grammar-bullet{color:var(--blue);flex-shrink:0;font-size:.7rem;margin-top:6px}
+
+.grammar-table-wrap{overflow-x:auto;margin-bottom:16px}
+.grammar-table{width:100%;border-collapse:collapse;font-size:.82rem}
+.grammar-table th{background:var(--bg3);padding:8px 12px;text-align:left;font-weight:600;border:1px solid var(--border);color:var(--dim);font-size:.72rem;text-transform:uppercase;letter-spacing:.04em}
+.grammar-table td{padding:9px 12px;border:1px solid var(--border);line-height:1.5}
+.grammar-table td.aux{color:var(--blue);font-weight:600}
+.grammar-table tr:nth-child(even) td{background:rgba(255,255,255,.02)}
+
+.example-box{font-family:'Courier New',monospace;font-size:.83rem;color:#7DD3FC;background:var(--bg);padding:9px 14px;border-radius:var(--r2);margin:8px 0;border:1px solid var(--border);line-height:1.6}
+.wrong-box{background:var(--red-l);border:1px solid rgba(239,68,68,.25);border-radius:var(--r2);padding:8px 12px;font-size:.83rem;margin-bottom:6px}
+.right-box{background:var(--green-l);border:1px solid rgba(16,185,129,.25);border-radius:var(--r2);padding:8px 12px;font-size:.83rem;margin-bottom:6px}
+.note-box{background:var(--orange-l);border:1px solid rgba(245,158,11,.25);border-radius:var(--r2);padding:10px 14px;font-size:.82rem;line-height:1.6;margin-top:10px}
+.note-box strong{color:var(--orange)}
+
+/* GRAMMAR EXERCISE - Fill gaps */
+.fill-exercise{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:20px;margin-bottom:16px}
+.fill-ex-title{font-size:.88rem;font-weight:600;margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid var(--border)}
+.fill-item{display:flex;align-items:flex-start;gap:12px;padding:10px 0;border-bottom:1px dashed var(--border)}
+.fill-item:last-child{border-bottom:none}
+.fill-item-num{width:22px;height:22px;border-radius:50%;background:var(--bg3);display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:700;color:var(--muted);flex-shrink:0;margin-top:2px}
+.fill-item-content{flex:1}
+.fill-sentence{font-size:.88rem;margin-bottom:8px;line-height:1.6}
+.fill-controls{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.fill-input{height:34px;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);padding:0 12px;color:var(--text);font-size:.85rem;outline:none;min-width:80px;max-width:120px;transition:border-color var(--tr)}
+.fill-input:focus{border-color:var(--blue)}
+.fill-input.correct{border-color:var(--green);background:var(--green-l)}
+.fill-input.wrong{border-color:var(--red);background:var(--red-l)}
+.check-btn{padding:6px 14px;background:var(--blue);color:#fff;border:none;border-radius:var(--r2);font-size:.78rem;font-weight:600;cursor:pointer;transition:all var(--tr)}
+.check-btn:hover{background:#1D4ED8}
+.reveal-btn{padding:6px 12px;background:var(--bg3);border:1px solid var(--border);color:var(--dim);border-radius:var(--r2);font-size:.78rem;cursor:pointer;transition:all var(--tr)}
+.reveal-btn:hover{border-color:var(--blue);color:var(--blue)}
+.fill-feedback{margin-top:6px;font-size:.78rem;padding:5px 10px;border-radius:var(--r2);display:none}
+.fill-feedback.show-ok{background:var(--green-l);color:var(--green);display:block}
+.fill-feedback.show-err{background:var(--red-l);color:var(--red);display:block}
+.fill-answer{margin-top:5px;font-size:.8rem;color:var(--teal);display:none;font-style:italic}
+.fill-note{font-size:.75rem;color:var(--muted);font-style:italic}
+
+/* GET READY */
+.get-ready-box{background:linear-gradient(135deg,rgba(37,99,235,.08),rgba(20,184,166,.08));border:1px solid rgba(37,99,235,.2);border-radius:var(--r);padding:24px;margin-bottom:20px}
+.get-ready-title{font-size:1rem;font-weight:700;color:var(--text);margin-bottom:4px}
+.get-ready-num{font-size:1.3rem;font-weight:700;color:var(--blue);margin-right:8px}
+.task-text{font-size:.88rem;color:var(--dim);line-height:1.65;margin-bottom:16px}
+.example-list{list-style:none;display:flex;flex-direction:column;gap:6px;margin-bottom:16px}
+.example-list li{display:flex;align-items:center;gap:8px;font-size:.85rem;font-style:italic;color:var(--teal)}
+.example-list li::before{content:'→';color:var(--blue);font-style:normal}
+
+.convo-demo{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:16px;margin-bottom:14px}
+.convo-title{font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;margin-bottom:12px}
+.bubble-row{display:flex;gap:10px;margin-bottom:10px}
+.bubble-row.right{flex-direction:row-reverse}
+.bubble{background:var(--bg3);border:1px solid var(--border);border-radius:12px;padding:9px 14px;max-width:70%;font-size:.85rem;line-height:1.5}
+.bubble-row:not(.right) .bubble{border-bottom-left-radius:3px;background:var(--bg3)}
+.bubble-row.right .bubble{border-bottom-right-radius:3px;background:var(--blue-l);border-color:rgba(37,99,235,.3)}
+
+.writing-area-box{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:20px}
+.list-input-wrap{display:flex;flex-direction:column;gap:8px}
+.list-input-row{display:flex;align-items:center;gap:10px}
+.list-input-num{width:26px;height:26px;border-radius:50%;background:var(--blue-l);color:var(--blue);display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:700;flex-shrink:0}
+.list-input{flex:1;height:34px;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);padding:0 12px;color:var(--text);font-size:.85rem;outline:none;transition:border-color var(--tr)}
+.list-input:focus{border-color:var(--blue)}
+
+/* LANGUAGE SUMMARY */
+.lang-sum-box{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:20px;margin-bottom:16px}
+.lang-sum-title{font-size:.75rem;font-weight:700;color:var(--purple);text-transform:uppercase;letter-spacing:.07em;margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.vocab-entry{display:flex;gap:10px;padding:8px 0;border-bottom:1px dashed var(--border);font-size:.85rem}
+.vocab-entry:last-child{border-bottom:none}
+.vocab-headword{font-weight:600;min-width:200px;color:var(--text)}
+.vocab-ipa{font-family:'Courier New',monospace;font-size:.78rem;color:var(--teal)}
+.vocab-def{color:var(--dim);font-size:.82rem}
+
+/* BUTTONS */
+.btn{display:inline-flex;align-items:center;gap:7px;padding:8px 18px;border-radius:var(--r2);font-size:.83rem;font-weight:500;cursor:pointer;border:none;font-family:inherit;transition:all var(--tr)}
+.btn-primary{background:var(--blue);color:#fff}.btn-primary:hover{background:#1D4ED8;transform:translateY(-1px)}
+.btn-outline{background:var(--bg3);border:1px solid var(--border);color:var(--dim)}.btn-outline:hover{border-color:var(--blue);color:var(--blue)}
+.btn-green{background:var(--green);color:#fff}.btn-green:hover{background:#059669}
+.score-box{display:none;text-align:center;padding:20px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);margin-top:16px}
+.score-box.show{display:block}
+.score-num{font-size:2.2rem;font-weight:700;color:var(--blue)}
+.score-msg{color:var(--dim);font-size:.85rem;margin-top:4px}
+
+/* DIVIDER */
+.divider{height:1px;background:var(--border);margin:24px 0}
+
+/* ── DRAG-DROP MATCHING ── */
+.verb-draggable {
+  display:flex;align-items:center;gap:10px;
+  padding:9px 14px;
+  background:var(--bg2);border:2px solid rgba(37,99,235,.4);
+  border-radius:var(--r2);cursor:grab;
+  font-size:.88rem;font-weight:600;color:var(--blue);
+  transition:all var(--tr);user-select:none;
+  position:relative;
+}
+.verb-draggable:hover{background:var(--blue-l);transform:translateY(-1px);box-shadow:0 4px 12px rgba(37,99,235,.2)}
+.verb-draggable.dragging{opacity:.4;cursor:grabbing}
+.verb-draggable.matched-done{background:var(--green-l);border-color:var(--green);color:var(--green);cursor:default}
+.verb-draggable .drag-icon{font-size:.75rem;color:var(--muted)}
+.phrase-drop-zone {
+  min-height:42px;
+  padding:8px 12px;
+  background:var(--bg3);border:2px dashed var(--border2);
+  border-radius:var(--r2);font-size:.85rem;color:var(--dim);
+  transition:all var(--tr);position:relative;
+  display:flex;align-items:center;justify-content:space-between;gap:8px;
+}
+.phrase-drop-zone .zone-phrase{flex:1;font-style:italic}
+.phrase-drop-zone .zone-slot{
+  min-width:90px;height:32px;
+  background:var(--bg);border:1px dashed var(--muted);
+  border-radius:4px;display:flex;align-items:center;justify-content:center;
+  font-size:.75rem;color:var(--muted);transition:all var(--tr);
+}
+.phrase-drop-zone.drag-over{background:var(--blue-l);border-color:var(--blue);border-style:solid}
+.phrase-drop-zone.correct-match{background:var(--green-l);border-color:var(--green);border-style:solid}
+.phrase-drop-zone.correct-match .zone-slot{background:var(--green);color:#fff;border:none;font-weight:700}
+.phrase-drop-zone.wrong-match{background:var(--red-l);border-color:var(--red);border-style:solid;animation:shake .4s ease}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.match-feedback-badge{
+  display:inline-flex;align-items:center;gap:4px;
+  padding:2px 8px;border-radius:10px;font-size:.72rem;font-weight:700;
+  position:absolute;right:8px;top:50%;transform:translateY(-50%);
+}
+.badge-correct{background:var(--green);color:#fff}
+.badge-wrong{background:var(--red);color:#fff}
+
+/* ── COLLOCATION TABLE (with IPA) ── */
+.collocations-grid{display:flex;flex-direction:column;gap:8px;margin-bottom:12px}
+.collocation-row{
+  display:grid;grid-template-columns:120px 1fr 36px;
+  align-items:start;gap:10px;
+  background:var(--bg2);border:1px solid var(--border);
+  border-radius:var(--r2);padding:10px 12px;
+  transition:border-color var(--tr);
+}
+.collocation-row:hover{border-color:var(--blue)}
+.coll-verb-block{text-align:center}
+.coll-verb{font-size:.9rem;font-weight:700;color:var(--blue)}
+.coll-ipa{font-family:'Courier New',monospace;font-size:.72rem;color:var(--teal);margin-top:2px}
+.coll-info{}
+.coll-phrase{font-size:.88rem;font-weight:600;color:var(--text);margin-bottom:2px}
+.coll-ipa-inline{font-family:'Courier New',monospace;font-size:.72rem;color:var(--teal);font-weight:400}
+.coll-vi{font-size:.8rem;color:var(--orange);margin-bottom:4px;font-weight:500}
+.coll-example{font-size:.8rem;color:var(--dim);font-style:italic;margin-bottom:2px}
+.coll-example-vi{font-size:.75rem;color:var(--muted)}
+.speak-mini{
+  width:32px;height:32px;flex-shrink:0;
+  background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);
+  cursor:pointer;font-size:.85rem;display:flex;align-items:center;justify-content:center;
+  transition:all var(--tr);align-self:center;
+}
+.speak-mini:hover{background:var(--blue-l);border-color:var(--blue)}
+
+/* ── ACTIVITY DETAIL PANEL ── */
+.activity-detail-panel{
+  background:var(--bg2);border:1px solid var(--blue);
+  border-radius:var(--r);overflow:hidden;
+  animation:fadeUp .2s ease;
+}
+.adp-header{
+  background:linear-gradient(135deg,rgba(37,99,235,.12),rgba(20,184,166,.08));
+  border-bottom:1px solid var(--border);
+  padding:14px 18px;
+  display:flex;align-items:center;gap:12px;flex-wrap:wrap;
+}
+.adp-phrase{font-size:1.1rem;font-weight:700;color:var(--blue)}
+.adp-ipa{font-family:'Courier New',monospace;font-size:.85rem;color:var(--teal)}
+.adp-vi{font-size:.85rem;color:var(--orange);font-weight:500}
+.adp-close{
+  margin-left:auto;width:28px;height:28px;
+  background:var(--bg3);border:1px solid var(--border);border-radius:50%;
+  cursor:pointer;font-size:.85rem;color:var(--dim);
+  display:flex;align-items:center;justify-content:center;
+  transition:all var(--tr);
+}
+.adp-close:hover{background:var(--red-l);border-color:var(--red);color:var(--red)}
+.adp-body{padding:16px 18px;display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.adp-section{margin-bottom:0}
+.adp-section-title{
+  font-size:.72rem;font-weight:700;color:var(--muted);
+  text-transform:uppercase;letter-spacing:.08em;
+  margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid var(--border);
+}
+.adp-q-item{
+  display:flex;align-items:flex-start;gap:8px;
+  padding:7px 10px;background:var(--bg3);border:1px solid var(--border);
+  border-radius:var(--r2);margin-bottom:6px;font-size:.83rem;
+  transition:all var(--tr);cursor:pointer;
+}
+.adp-q-item:hover{border-color:var(--blue);background:var(--blue-l)}
+.adp-q-icon{font-size:.8rem;flex-shrink:0;margin-top:1px}
+.adp-a-item{
+  padding:7px 10px;background:var(--green-l);border:1px solid rgba(16,185,129,.25);
+  border-radius:var(--r2);margin-bottom:6px;font-size:.83rem;font-style:italic;color:var(--dim);
+}
+.adp-vocab-item{
+  display:flex;align-items:center;gap:8px;
+  padding:6px 10px;background:var(--bg3);border:1px solid var(--border);
+  border-radius:var(--r2);margin-bottom:5px;font-size:.82rem;
+}
+.adp-vocab-word{font-weight:600;color:var(--text);min-width:80px}
+.adp-vocab-ipa{font-family:monospace;font-size:.75rem;color:var(--teal)}
+.adp-vocab-vi{font-size:.78rem;color:var(--orange)}
+.adp-dialogue-line{
+  display:flex;gap:8px;padding:6px 0;
+  border-bottom:1px dashed var(--border);font-size:.82rem;
+}
+.adp-dialogue-line:last-child{border-bottom:none}
+.adp-spk-a{font-weight:700;color:var(--blue);min-width:16px}
+.adp-spk-b{font-weight:700;color:var(--teal);min-width:16px}
+@media(max-width:680px){
+  .adp-body{grid-template-columns:1fr}
+  .collocation-row{grid-template-columns:90px 1fr 32px}
+}
+  .match-container{grid-template-columns:1fr}
+  .ranking-grid{grid-template-columns:1fr}
+  .reason-grid{grid-template-columns:1fr}
+  .persons-grid{grid-template-columns:1fr 1fr}
+  .pron-row{grid-template-columns:100px 100px;}.pron-example{display:none}
+  .tab-nav{padding:0 16px}
+  .page-content{padding:0 16px 48px}
+  .quick-review{margin:16px}
+}
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="top-bar">
+  <button class="back-btn" onclick="history.back()">← Trang chủ</button>
+  <div class="lesson-badge">UNIT 1</div>
+  <div class="lesson-title-h">1A — Be happy!</div>
+  <button class="theme-btn" id="theme-btn" onclick="toggleTheme()">☀️</button>
+  <button class="progress-btn" onclick="markDone()">✅ Đánh dấu xong</button>
+</div>
+
+<!-- QUICK REVIEW -->
+<div class="quick-review">
+  <div class="qr-badge">QUICK REVIEW</div>
+  <div class="qr-text"><strong>Meeting new people</strong> — Talk to three other students. Introduce yourself and find out two things about each person. Then tell the class about one person you spoke to.</div>
+</div>
+
+<!-- TAB NAV -->
+<div class="tab-nav">
+  <button class="tnav-btn active" onclick="showTab('vocab')">📚 Vocabulary &amp; Speaking</button>
+  <button class="tnav-btn" onclick="showTab('reading')">📖 Reading &amp; Speaking</button>
+  <button class="tnav-btn" onclick="showTab('listening')">🎧 Listening &amp; Speaking</button>
+  <button class="tnav-btn" onclick="showTab('grammar')">📐 Help with Grammar</button>
+  <button class="tnav-btn" onclick="showTab('getready')">🎯 Get Ready!</button>
+  <button class="tnav-btn" onclick="showTab('langsummary')">📋 Language Summary</button>
+  <button class="tnav-btn" onclick="showTab('workbook')">📓 Workbook</button>
+</div>
+
+<div class="page-content">
+
+<!-- ══════════════════════════════════════
+     TAB 1: VOCABULARY AND SPEAKING
+═══════════════════════════════════════ -->
+<div class="tab-pane active" id="tab-vocab">
+
+  <div class="sec-heading">Vocabulary and Speaking</div>
+  <div class="sec-sub">Weekend activities · VOCABULARY 1.1 → Language Summary p127</div>
+
+  <!-- Exercise 1a — DRAG & DROP MATCHING -->
+  <div class="exercise-label">
+    <div class="exercise-num">1</div>
+    Exercise 1a — Match the verbs in A to the words/phrases in B
+  </div>
+  <p class="instruction">
+    <strong>Kéo</strong> từng ô bên cột <strong style="color:var(--blue)">A (Verbs)</strong> thả vào ô tương ứng bên cột <strong style="color:var(--teal)">B (Words/Phrases)</strong>. Nếu đúng → <span style="color:var(--green)">✅ Correct</span>, sai → <span style="color:var(--red)">❌ Try again</span>.
+    <span style="color:var(--muted);font-size:.8rem;display:block;margin-top:4px">💡 Trên mobile: nhấn chọn ô bên A, rồi nhấn ô bên B để ghép cặp.</span>
+  </p>
+
+  <!-- DRAG DROP GAME -->
+  <div id="match-game">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px" id="match-grid">
+      <!-- COL A: Verb slots (drop targets) -->
+      <div>
+        <div class="match-col-title" style="color:var(--blue)">A — Verbs (kéo từ đây)</div>
+        <div id="verbs-pool" style="display:flex;flex-direction:column;gap:6px"></div>
+      </div>
+      <!-- COL B: Phrase drop zones -->
+      <div>
+        <div class="match-col-title" style="color:var(--teal)">B — Phrases (thả vào đây)</div>
+        <div id="phrases-zones" style="display:flex;flex-direction:column;gap:6px"></div>
+      </div>
+    </div>
+
+    <!-- Score & controls -->
+    <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:16px">
+      <div id="match-score-badge" style="padding:5px 14px;border-radius:20px;background:var(--bg3);border:1px solid var(--border);font-size:.83rem;color:var(--dim)">
+        0 / 12 matched
+      </div>
+      <button class="btn btn-primary" onclick="checkAllMatches()" id="check-all-btn">✅ Kiểm tra tất cả</button>
+      <button class="btn btn-outline" onclick="resetMatchGame()">🔄 Làm lại</button>
+      <button class="btn btn-outline" onclick="revealAllMatches()">👁 Xem đáp án</button>
+    </div>
+    <div id="match-result-msg" style="display:none;padding:12px 16px;border-radius:var(--r2);font-size:.88rem;margin-bottom:14px"></div>
+  </div>
+
+  <button class="btn btn-outline" onclick="toggleCollocations()" id="coll-toggle-btn" style="margin-bottom:16px">📚 Xem bảng từ vựng đầy đủ với phiên âm &amp; nghĩa tiếng Việt ▼</button>
+
+  <!-- Collocations với PHIÊN ÂM + NGHĨA TIẾNG VIỆT -->
+  <div id="collocations-answer" style="display:none">
+    <div class="exercise-label" style="margin-top:4px">📚 Đáp án: Weekend activities — VOCABULARY 1.1 (phiên âm + nghĩa Việt)</div>
+    <div class="collocations-grid">
+
+      <div class="collocation-row">
+        <div class="coll-verb-block">
+          <div class="coll-verb">visit</div>
+          <div class="coll-ipa">/ˈvɪzɪt/</div>
+        </div>
+        <div class="coll-info">
+          <div class="coll-phrase">relatives <span class="coll-ipa-inline">/ˈrelətɪvz/</span></div>
+          <div class="coll-vi">🇻🇳 thăm người thân</div>
+          <div class="coll-example">"I visit my relatives every Sunday."</div>
+          <div class="coll-example-vi">→ Tôi thăm người thân mỗi Chủ nhật.</div>
+        </div>
+        <button class="speak-mini" onclick="spk('visit relatives')">🔊</button>
+      </div>
+
+      <div class="collocation-row">
+        <div class="coll-verb-block">
+          <div class="coll-verb">have</div>
+          <div class="coll-ipa">/hæv/</div>
+        </div>
+        <div class="coll-info">
+          <div class="coll-phrase">a lie-in <span class="coll-ipa-inline">/ə ˈlaɪ ɪn/</span></div>
+          <div class="coll-vi">🇻🇳 nằm ngủ nướng (buổi sáng)</div>
+          <div class="coll-example">"I often have a lie-in on Sundays."</div>
+          <div class="coll-example-vi">→ Tôi thường ngủ nướng vào Chủ nhật.</div>
+        </div>
+        <button class="speak-mini" onclick="spk('have a lie-in')">🔊</button>
+      </div>
+
+      <div class="collocation-row">
+        <div class="coll-verb-block">
+          <div class="coll-verb">go to</div>
+          <div class="coll-ipa">/ɡəʊ tuː/</div>
+        </div>
+        <div class="coll-info">
+          <div class="coll-phrase">concerts / gigs / festivals <span class="coll-ipa-inline">/ˈkɒnsəts/ /ɡɪɡz/ /ˈfestɪvlz/</span></div>
+          <div class="coll-vi">🇻🇳 đi xem hòa nhạc / biểu diễn / lễ hội</div>
+          <div class="coll-example">"We went to an amazing gig last night."</div>
+          <div class="coll-example-vi">→ Chúng tôi đi xem buổi biểu diễn tuyệt vời tối qua.</div>
+        </div>
+        <button class="speak-mini" onclick="spk('go to concerts')">🔊</button>
+      </div>
+
+      <div class="collocation-row">
+        <div class="coll-verb-block">
+          <div class="coll-verb">chat</div>
+          <div class="coll-ipa">/tʃæt/</div>
+        </div>
+        <div class="coll-info">
+          <div class="coll-phrase">to friends online <span class="coll-ipa-inline">/tə frendz ˈɒnlaɪn/</span></div>
+          <div class="coll-vi">🇻🇳 nói chuyện với bạn bè qua mạng</div>
+          <div class="coll-example">"I often chat to friends online in the evenings."</div>
+          <div class="coll-example-vi">→ Tôi thường nói chuyện với bạn bè qua mạng vào buổi tối.</div>
+        </div>
+        <button class="speak-mini" onclick="spk('chat to friends online')">🔊</button>
+      </div>
+
+      <div class="collocation-row">
+        <div class="coll-verb-block">
+          <div class="coll-verb">have</div>
+          <div class="coll-ipa">/hæv/</div>
+        </div>
+        <div class="coll-info">
+          <div class="coll-phrase">a quiet night in <span class="coll-ipa-inline">/ə ˈkwaɪət naɪt ɪn/</span></div>
+          <div class="coll-vi">🇻🇳 một buổi tối yên tĩnh ở nhà</div>
+          <div class="coll-example">"Sometimes I just want a quiet night in."</div>
+          <div class="coll-example-vi">→ Đôi khi tôi chỉ muốn một buổi tối yên tĩnh ở nhà.</div>
+        </div>
+        <button class="speak-mini" onclick="spk('have a quiet night in')">🔊</button>
+      </div>
+
+      <div class="collocation-row">
+        <div class="coll-verb-block">
+          <div class="coll-verb">do</div>
+          <div class="coll-ipa">/duː/</div>
+        </div>
+        <div class="coll-info">
+          <div class="coll-phrase">yoga <span class="coll-ipa-inline">/ˈjəʊɡə/</span></div>
+          <div class="coll-vi">🇻🇳 tập yoga</div>
+          <div class="coll-example">"She does yoga three times a week."</div>
+          <div class="coll-example-vi">→ Cô ấy tập yoga ba lần một tuần.</div>
+        </div>
+        <button class="speak-mini" onclick="spk('do yoga')">🔊</button>
+      </div>
+
+      <div class="collocation-row">
+        <div class="coll-verb-block">
+          <div class="coll-verb">meet up</div>
+          <div class="coll-ipa">/miːt ʌp/</div>
+        </div>
+        <div class="coll-info">
+          <div class="coll-phrase">with friends <span class="coll-ipa-inline">/wɪð frendz/</span></div>
+          <div class="coll-vi">🇻🇳 gặp gỡ bạn bè</div>
+          <div class="coll-example">"Let's meet up with friends this weekend."</div>
+          <div class="coll-example-vi">→ Hãy gặp gỡ bạn bè vào cuối tuần này.</div>
+        </div>
+        <button class="speak-mini" onclick="spk('meet up with friends')">🔊</button>
+      </div>
+
+      <div class="collocation-row">
+        <div class="coll-verb-block">
+          <div class="coll-verb">tidy up</div>
+          <div class="coll-ipa">/ˈtaɪdi ʌp/</div>
+        </div>
+        <div class="coll-info">
+          <div class="coll-phrase">the house/flat <span class="coll-ipa-inline">/ðə haʊs/ /flæt/</span></div>
+          <div class="coll-vi">🇻🇳 dọn dẹp nhà / căn hộ</div>
+          <div class="coll-example">"I usually tidy up the flat before I go to work."</div>
+          <div class="coll-example-vi">→ Tôi thường dọn dẹp căn hộ trước khi đi làm.</div>
+        </div>
+        <button class="speak-mini" onclick="spk('tidy up the flat')">🔊</button>
+      </div>
+
+      <div class="collocation-row">
+        <div class="coll-verb-block">
+          <div class="coll-verb">go to</div>
+          <div class="coll-ipa">/ɡəʊ tuː/</div>
+        </div>
+        <div class="coll-info">
+          <div class="coll-phrase">museums / art galleries <span class="coll-ipa-inline">/mjuːˈziːəmz/ /ɑːt ˈɡæləriz/</span></div>
+          <div class="coll-vi">🇻🇳 đi bảo tàng / phòng tranh</div>
+          <div class="coll-example">"We often go to art galleries on Sundays."</div>
+          <div class="coll-example-vi">→ Chúng tôi thường đi phòng tranh vào Chủ nhật.</div>
+        </div>
+        <button class="speak-mini" onclick="spk('go to art galleries')">🔊</button>
+      </div>
+
+      <div class="collocation-row">
+        <div class="coll-verb-block">
+          <div class="coll-verb">do</div>
+          <div class="coll-ipa">/duː/</div>
+        </div>
+        <div class="coll-info">
+          <div class="coll-phrase">exercise <span class="coll-ipa-inline">/ˈeksəsaɪz/</span></div>
+          <div class="coll-vi">🇻🇳 tập thể dục</div>
+          <div class="coll-example">"It's important to do exercise regularly."</div>
+          <div class="coll-example-vi">→ Tập thể dục thường xuyên rất quan trọng.</div>
+        </div>
+        <button class="speak-mini" onclick="spk('do exercise')">🔊</button>
+      </div>
+
+      <div class="collocation-row">
+        <div class="coll-verb-block">
+          <div class="coll-verb">have</div>
+          <div class="coll-ipa">/hæv/</div>
+        </div>
+        <div class="coll-info">
+          <div class="coll-phrase">people round for dinner <span class="coll-ipa-inline">/ˈpiːpl raʊnd fə ˈdɪnə/</span></div>
+          <div class="coll-vi">🇻🇳 mời người đến nhà ăn tối</div>
+          <div class="coll-example">"We're having Tom's parents round for dinner on Saturday."</div>
+          <div class="coll-example-vi">→ Chúng tôi mời bố mẹ Tom đến ăn tối thứ Bảy.</div>
+        </div>
+        <button class="speak-mini" onclick="spk('have people round for dinner')">🔊</button>
+      </div>
+
+      <div class="collocation-row">
+        <div class="coll-verb-block">
+          <div class="coll-verb">go out</div>
+          <div class="coll-ipa">/ɡəʊ aʊt/</div>
+        </div>
+        <div class="coll-info">
+          <div class="coll-phrase">for a drink/meal <span class="coll-ipa-inline">/fər ə drɪŋk/ /miːl/</span></div>
+          <div class="coll-vi">🇻🇳 đi uống / ăn ngoài</div>
+          <div class="coll-example">"We went out for a meal last night."</div>
+          <div class="coll-example-vi">→ Chúng tôi đi ăn ngoài tối qua.</div>
+        </div>
+        <button class="speak-mini" onclick="spk('go out for a meal')">🔊</button>
+      </div>
+
+    </div><!-- /collocations-grid -->
+
+    <div class="tip-box" style="margin-top:14px">
+      <strong>💡 TIPS từ Language Summary p127:</strong><br>
+      • <strong>relative</strong> /ˈrelətɪv/ = người thân trong gia đình (cô, chú, ông, bà, anh chị em họ…) — <em>parents</em> chỉ bố và mẹ thôi.<br>
+      • <strong>gig</strong> /ɡɪɡ/ = từ informal của "concert" (buổi biểu diễn nhạc sống): <em>I went to an amazing gig last night.</em><br>
+      • <strong>have a chat</strong> = nói chuyện thoải mái, thân thiện: <em>He's chatting with some friends.</em>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- Exercise 1b — Speaking practice với ACTIVITY PANEL -->
+  <div class="exercise-label">
+    <div class="exercise-num">1</div>
+    Exercise 1b — Work in pairs: Ask questions about the activities
+  </div>
+  <p class="instruction">
+    <span class="part-label">b</span>
+    Work in pairs. Ask questions with <em>How often do you … ?</em>, <em>When did you last … ?</em> or <em>Do you ever … ?</em> about the activities in <strong>1a</strong>. Ask follow-up questions if possible.
+  </p>
+
+  <div class="question-starters">
+    <div class="q-starter">How often do you … ?</div>
+    <div class="q-starter">When did you last … ?</div>
+    <div class="q-starter">Do you ever … ?</div>
+  </div>
+
+  <div class="speaking-box">
+    <div class="speaking-box-title">💬 Ví dụ hội thoại (từ sách trang 6)</div>
+    <div class="speech-bubble">How often do you visit relatives? <span class="answer">→ About once a month.</span></div>
+    <div class="speech-bubble">When did you last have a lie-in? <span class="answer">→ Last Sunday.</span></div>
+    <div class="speech-bubble">Do you ever go to gigs? <span class="answer">→ Yes, sometimes.</span></div>
+  </div>
+
+  <p class="instruction" style="margin-bottom:10px"><strong>👆 Nhấn vào một hoạt động để xem mẫu câu, từ vựng và gợi ý luyện nói:</strong></p>
+
+  <!-- Activity chips — clickable to show panel -->
+  <div class="activity-chips" id="activity-chips-wrap">
+    <div class="activity-chip" onclick="showActivityPanel('visit_relatives',this)">visit relatives</div>
+    <div class="activity-chip" onclick="showActivityPanel('have_lie_in',this)">have a lie-in</div>
+    <div class="activity-chip" onclick="showActivityPanel('go_concerts',this)">go to concerts / gigs</div>
+    <div class="activity-chip" onclick="showActivityPanel('chat_online',this)">chat to friends online</div>
+    <div class="activity-chip" onclick="showActivityPanel('quiet_night',this)">have a quiet night in</div>
+    <div class="activity-chip" onclick="showActivityPanel('do_yoga',this)">do yoga</div>
+    <div class="activity-chip" onclick="showActivityPanel('meet_friends',this)">meet up with friends</div>
+    <div class="activity-chip" onclick="showActivityPanel('tidy_up',this)">tidy up the flat</div>
+    <div class="activity-chip" onclick="showActivityPanel('go_museums',this)">go to museums / galleries</div>
+    <div class="activity-chip" onclick="showActivityPanel('do_exercise',this)">do exercise</div>
+    <div class="activity-chip" onclick="showActivityPanel('people_round',this)">have people round for dinner</div>
+    <div class="activity-chip" onclick="showActivityPanel('go_meal',this)">go out for a drink / meal</div>
+  </div>
+
+  <!-- Activity Detail Panel -->
+  <div id="activity-panel" style="display:none;margin-top:16px">
+    <div class="activity-detail-panel">
+      <div class="adp-header">
+        <div class="adp-phrase" id="adp-phrase"></div>
+        <div class="adp-ipa" id="adp-ipa"></div>
+        <div class="adp-vi" id="adp-vi"></div>
+        <button class="speak-mini" id="adp-speak" onclick="spk(document.getElementById('adp-speak').dataset.text)">🔊 Nghe</button>
+        <button class="adp-close" onclick="closeActivityPanel()">✕</button>
+      </div>
+      <div class="adp-body">
+        <!-- Sample questions -->
+        <div class="adp-section">
+          <div class="adp-section-title">💬 Mẫu câu hỏi — Sample questions</div>
+          <div id="adp-questions"></div>
+        </div>
+        <!-- Sample answers -->
+        <div class="adp-section">
+          <div class="adp-section-title">✅ Câu trả lời gợi ý — Sample answers</div>
+          <div id="adp-answers"></div>
+        </div>
+        <!-- Vocabulary -->
+        <div class="adp-section">
+          <div class="adp-section-title">📚 Từ vựng liên quan — Related vocabulary</div>
+          <div id="adp-vocab"></div>
+        </div>
+        <!-- Mini dialogue -->
+        <div class="adp-section">
+          <div class="adp-section-title">🎭 Đoạn hội thoại mẫu — Mini dialogue</div>
+          <div id="adp-dialogue"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ══════════════════════════════════════
+     TAB 2: READING AND SPEAKING
+═══════════════════════════════════════ -->
+<div class="tab-pane" id="tab-reading">
+
+  <div class="sec-heading">Reading and Speaking</div>
+  <div class="sec-sub">The Secret of Happiness — New Scientist magazine</div>
+
+  <!-- Exercise 2a -->
+  <div class="exercise-label">
+    <div class="exercise-num">2</div>
+    Exercise 2a — Read the introduction
+  </div>
+  <p class="instruction">
+    <span class="part-label">a</span>
+    Read the beginning of the article about happiness. How did the scientists make their top ten list?
+  </p>
+
+  <div class="article-intro">
+    <div style="font-size:1.8rem;font-weight:900;font-family:'Playfair Display',serif;color:var(--text);line-height:1.1;margin-bottom:4px">THE SECRET OF</div>
+    <div class="article-title" style="font-size:2rem;color:var(--blue)">Happiness</div>
+    <div class="article-source">Adapted from the <em>Daily Mail</em> / <em>New Scientist</em> magazine</div>
+    <div class="article-intro-text">
+      Many people think that being clever, rich and attractive is the best way to find happiness. But according to a report in <em>New Scientist</em> magazine, these things aren't as important as we think. A group of scientists examined hundreds of research studies from around the world and then made a list of the top ten reasons for happiness — and their list makes very surprising reading.
+    </div>
+  </div>
+
+  <div class="qa-item" id="qa-2a">
+    <div class="qa-question" onclick="toggleQA('qa-2a')">
+      <span class="qa-qnum">?</span>
+      <span class="qa-qtext">How did the scientists make their top ten list?</span>
+      <span class="qa-arrow">▶</span>
+    </div>
+    <div class="qa-answer">They examined hundreds of research studies from around the world.</div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- Exercise 2b -->
+  <div class="exercise-label">
+    <div class="exercise-num">2</div>
+    Exercise 2b — Rank the reasons for happiness
+  </div>
+  <p class="instruction">
+    <span class="part-label">b</span>
+    Look at these reasons for happiness. Put them in order from <strong>1–10</strong> (1 = the most important). Drag to reorder, then compare with the article.
+  </p>
+
+  <div class="ranking-task">
+    <p style="font-size:.8rem;color:var(--muted);margin-bottom:12px">Kéo để sắp xếp theo thứ tự bạn nghĩ (1 = quan trọng nhất):</p>
+    <div class="ranking-grid" id="ranking-list">
+      <div class="rank-item" draggable="true" data-item="friends"><div class="rank-num" id="rn-friends">—</div><div class="rank-text">friends and family</div></div>
+      <div class="rank-item" draggable="true" data-item="money"><div class="rank-num" id="rn-money">—</div><div class="rank-text">money</div></div>
+      <div class="rank-item" draggable="true" data-item="married"><div class="rank-num" id="rn-married">—</div><div class="rank-text">being married</div></div>
+      <div class="rank-item" draggable="true" data-item="helping"><div class="rank-num" id="rn-helping">—</div><div class="rank-text">helping others</div></div>
+      <div class="rank-item" draggable="true" data-item="genes"><div class="rank-num" id="rn-genes">—</div><div class="rank-text">your genes</div></div>
+      <div class="rank-item" draggable="true" data-item="attractive"><div class="rank-num" id="rn-attractive">—</div><div class="rank-text">being attractive</div></div>
+      <div class="rank-item" draggable="true" data-item="growing"><div class="rank-num" id="rn-growing">—</div><div class="rank-text">growing old</div></div>
+      <div class="rank-item" draggable="true" data-item="religion"><div class="rank-num" id="rn-religion">—</div><div class="rank-text">religion</div></div>
+      <div class="rank-item" draggable="true" data-item="intelligence"><div class="rank-num" id="rn-intelligence">—</div><div class="rank-text">intelligence</div></div>
+      <div class="rank-item" draggable="true" data-item="notwanting"><div class="rank-num" id="rn-notwanting">—</div><div class="rank-text">not wanting more than you've got</div></div>
+    </div>
+    <div style="display:flex;gap:10px;margin-top:14px;flex-wrap:wrap">
+      <button class="btn btn-primary" onclick="showArticleRanking()">📖 Xem xếp hạng trong bài báo</button>
+      <button class="btn btn-outline" onclick="resetRanking()">🔄 Làm lại</button>
+    </div>
+  </div>
+
+  <!-- Exercise 2c -->
+  <p class="instruction" style="margin-bottom:6px">
+    <span class="part-label">c</span>
+    Work in pairs. Compare lists. Explain the order you chose.
+  </p>
+  <p class="instruction" style="color:var(--muted)">→ Ví dụ: <em>"I put 'friends and family' first because I think relationships are the most important thing in life."</em></p>
+
+  <div class="divider"></div>
+
+  <!-- Exercise 3 - Full article (p112) -->
+  <div class="exercise-label">
+    <div class="exercise-num">3</div>
+    Exercise 3 — Turn to p112. Read the rest of the article.
+  </div>
+  <p class="instruction">Read the top ten list and answer: How many reasons in the article are in the same place as in your list?</p>
+
+  <div class="full-article" id="full-article" style="display:none">
+    <div class="article-header">
+      <div style="font-size:1.4rem">🏆</div>
+      <div class="article-header-title">The top ten reasons for happiness</div>
+      <div style="font-size:.75rem;color:var(--muted);margin-left:auto;font-style:italic">Adapted from the Daily Mail</div>
+    </div>
+    <div class="reason-grid">
+      <div class="reason-card"><div class="reason-num">Rank 1</div><div class="reason-title">YOUR GENES</div><div class="reason-text">Some people are simply born happier than others. In a study of 4,000 adult twins, differences in their genes were the main reasons for their different levels of happiness.</div></div>
+      <div class="reason-card"><div class="reason-num">Rank 2</div><div class="reason-title">BEING MARRIED</div><div class="reason-text">All studies show that married couples are happier than single people. Just living together without being married doesn't have the same effect.</div></div>
+      <div class="reason-card"><div class="reason-num">Rank 3</div><div class="reason-title">FRIENDS AND FAMILY</div><div class="reason-text">People with large families and lots of close friends are usually happier than people who have a lot of money and live on their own.</div></div>
+      <div class="reason-card"><div class="reason-num">Rank 4</div><div class="reason-title">NOT WANTING MORE THAN YOU'VE GOT</div><div class="reason-text">People who expect to have a successful career, lots of money and the perfect relationship aren't as happy as people who accept what they've got.</div></div>
+      <div class="reason-card"><div class="reason-num">Rank 5</div><div class="reason-title">HELPING OTHERS</div><div class="reason-text">Studies by psychologists in different countries show that when you help other people, it's not only good for them, it also makes you feel happier.</div></div>
+      <div class="reason-card"><div class="reason-num">Rank 6</div><div class="reason-title">RELIGION</div><div class="reason-text">Four out of five studies show a positive link between religion and happiness. Very religious people usually live longer too.</div></div>
+      <div class="reason-card"><div class="reason-num">Rank 7</div><div class="reason-title">BEING ATTRACTIVE</div><div class="reason-text">Attractive people believe they're very happy – maybe because they also have good genes and are therefore healthier. Cosmetic surgery does not have the same effect!</div></div>
+      <div class="reason-card"><div class="reason-num">Rank 8</div><div class="reason-title">GROWING OLD</div><div class="reason-text">Studies show that old people are happy as often as young people and are unhappy less often. This is probably because they spend more time doing the things they enjoy.</div></div>
+      <div class="reason-card"><div class="reason-num">Rank 9</div><div class="reason-title">MONEY</div><div class="reason-text">When you're poor, money can buy you some happiness. However, when people have enough money to live comfortably, more money doesn't make them happier.</div></div>
+      <div class="reason-card"><div class="reason-num">Rank 10</div><div class="reason-title">INTELLIGENCE</div><div class="reason-text">Surprisingly, this has very little effect on happiness. Being able to get on well with people is much more important than how intelligent you are.</div></div>
+    </div>
+  </div>
+
+  <button class="btn btn-outline" onclick="toggleArticle()" id="article-toggle-btn">📖 Hiện bài báo đầy đủ (p112)</button>
+
+  <div class="divider"></div>
+
+  <!-- Discussion questions (p112 Ex b) -->
+  <div class="exercise-label" style="margin-top:16px">
+    <div class="exercise-num">3</div>
+    Discussion questions (from p112)
+  </div>
+  <p class="instruction"><span class="part-label">b</span> Work in groups. Discuss these questions:</p>
+  <div class="discussion-box">
+    <div class="disc-q"><span class="disc-q-num">1</span><span>Are the reasons in the article true for people you know? Give examples if possible.</span></div>
+    <div class="disc-q"><span class="disc-q-num">2</span><span>Do you disagree with anything in the article? If so, why?</span></div>
+    <div class="disc-q"><span class="disc-q-num">3</span><span>Are there any other reasons for happiness that you think should be in the article?</span></div>
+  </div>
+
+</div>
+
+<!-- ══════════════════════════════════════
+     TAB 3: LISTENING AND SPEAKING
+═══════════════════════════════════════ -->
+<div class="tab-pane" id="tab-listening">
+
+  <div class="sec-heading">Listening and Speaking</div>
+  <div class="sec-sub">CD1 Track 1 — What makes Fiona, Maxie and Caroline happy?</div>
+
+  <!-- Exercise 4a -->
+  <div class="exercise-label">
+    <div class="exercise-num">4</div>
+    Exercise 4a — Look at the photos
+  </div>
+  <p class="instruction">
+    <span class="part-label">a</span>
+    Look at the photos of Fiona, Maxie and Caroline. What makes them happy, do you think?
+  </p>
+
+  <div class="persons-grid">
+    <div class="person-card">
+      <div class="person-icon">👩</div>
+      <div class="person-name">Fiona</div>
+      <div class="person-job">Yoga teacher</div>
+      <p style="font-size:.72rem;color:var(--muted);margin-bottom:6px">Viết dự đoán của bạn:</p>
+      <textarea class="happiness-input" placeholder="e.g. Maybe yoga makes her happy…"></textarea>
+    </div>
+    <div class="person-card">
+      <div class="person-icon">👨🎸</div>
+      <div class="person-name">Maxie</div>
+      <div class="person-job">Singer-songwriter</div>
+      <p style="font-size:.72rem;color:var(--muted);margin-bottom:6px">Viết dự đoán của bạn:</p>
+      <textarea class="happiness-input" placeholder="e.g. Maybe music makes him happy…"></textarea>
+    </div>
+    <div class="person-card">
+      <div class="person-icon">👩🌾</div>
+      <div class="person-name">Caroline</div>
+      <div class="person-job">Gardener</div>
+      <p style="font-size:.72rem;color:var(--muted);margin-bottom:6px">Viết dự đoán của bạn:</p>
+      <textarea class="happiness-input" placeholder="e.g. Maybe gardening makes her happy…"></textarea>
+    </div>
+  </div>
+
+  <!-- Exercise 4b -->
+  <div class="exercise-label">
+    <div class="exercise-num">4</div>
+    Exercise 4b — Listen: CD1 Track 1
+  </div>
+  <p class="instruction">
+    <span class="part-label">b</span>
+    <strong>CD1 ▶ 1</strong> Listen and write two things that make each person happy.
+  </p>
+
+  <div class="audio-player-box">
+    <div class="audio-header">
+      <div class="cd-badge">CD1 ▶ Track 1</div>
+      <div>
+        <div class="audio-title">What makes Fiona, Maxie and Caroline happy?</div>
+        <div style="font-size:.75rem;color:var(--muted)">Listening — 1A Be happy!</div>
+      </div>
+    </div>
+    <div class="audio-controls">
+      <button class="play-btn" id="play-btn" onclick="toggleAudio()">▶</button>
+      <div class="audio-track-info">
+        <div class="audio-track-name">CD1 Track 1 — face2face Intermediate</div>
+        <div class="audio-note">⚠️ Cần file audio CD1 từ bộ giáo trình face2face Intermediate. Đặt file <code>cd1_track1.mp3</code> vào thư mục <code>/audio/</code></div>
+        <div class="progress-bar"><div class="progress-fill" id="audio-progress"></div></div>
+      </div>
+    </div>
+    <audio id="audio-player" src="audio/cd1_track1.mp3" onended="audioEnded()" ontimeupdate="updateProgress()"></audio>
+  </div>
+
+  <!-- Answer boxes -->
+  <div class="persons-grid" style="margin-bottom:20px">
+    <div class="person-card">
+      <div class="person-icon">👩</div>
+      <div class="person-name">Fiona</div>
+      <div style="font-size:.72rem;color:var(--muted);margin-bottom:6px">Two things that make her happy:</div>
+      <textarea class="happiness-input" placeholder="1. …&#10;2. …" id="fiona-answer"></textarea>
+    </div>
+    <div class="person-card">
+      <div class="person-icon">👨🎸</div>
+      <div class="person-name">Maxie</div>
+      <div style="font-size:.72rem;color:var(--muted);margin-bottom:6px">Two things that make him happy:</div>
+      <textarea class="happiness-input" placeholder="1. …&#10;2. …" id="maxie-answer"></textarea>
+    </div>
+    <div class="person-card">
+      <div class="person-icon">👩🌾</div>
+      <div class="person-name">Caroline</div>
+      <div style="font-size:.72rem;color:var(--muted);margin-bottom:6px">Two things that make her happy:</div>
+      <textarea class="happiness-input" placeholder="1. …&#10;2. …" id="caroline-answer"></textarea>
+    </div>
+  </div>
+  <button class="btn btn-outline" onclick="showListeningAnswers()">✅ Xem đáp án 4b</button>
+  <div id="listening-answers-4b" style="display:none;margin-top:14px">
+    <div class="right-box" style="margin-bottom:8px"><strong>Fiona:</strong> 1. teaching yoga and seeing students improve &nbsp;|&nbsp; 2. her son — watching him grow up</div>
+    <div class="right-box" style="margin-bottom:8px"><strong>Maxie:</strong> 1. writing songs &nbsp;|&nbsp; 2. travelling and meeting new people</div>
+    <div class="right-box"><strong>Caroline:</strong> 1. working in her garden &nbsp;|&nbsp; 2. spending time with her husband and children</div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- Exercise 4c — Comprehension questions -->
+  <div class="exercise-label">
+    <div class="exercise-num">4</div>
+    Exercise 4c — Listen again. Answer these questions.
+  </div>
+  <p class="instruction"><span class="part-label">c</span> <strong>CD1 ▶ 1</strong> Listen again. Answer these questions.</p>
+
+  <div class="q-and-a-list">
+    <div class="qa-item" id="qa1"><div class="qa-question" onclick="toggleQA('qa1')"><span class="qa-qnum">1</span><span class="qa-qtext">How often does Fiona teach yoga classes?</span><span class="qa-arrow">▶</span></div><div class="qa-answer">Three times a week.</div></div>
+    <div class="qa-item" id="qa2"><div class="qa-question" onclick="toggleQA('qa2')"><span class="qa-qnum">2</span><span class="qa-qtext">What is Fiona's son doing at the moment?</span><span class="qa-arrow">▶</span></div><div class="qa-answer">He's studying medicine at university.</div></div>
+    <div class="qa-item" id="qa3"><div class="qa-question" onclick="toggleQA('qa3')"><span class="qa-qnum">3</span><span class="qa-qtext">What did Fiona do last Sunday?</span><span class="qa-arrow">▶</span></div><div class="qa-answer">She had a lie-in.</div></div>
+    <div class="qa-item" id="qa4"><div class="qa-question" onclick="toggleQA('qa4')"><span class="qa-qnum">4</span><span class="qa-qtext">How many songs has Maxie written?</span><span class="qa-arrow">▶</span></div><div class="qa-answer">About 25 songs.</div></div>
+    <div class="qa-item" id="qa5"><div class="qa-question" onclick="toggleQA('qa5')"><span class="qa-qnum">5</span><span class="qa-qtext">What did he put on YouTube last month?</span><span class="qa-arrow">▶</span></div><div class="qa-answer">One of his songs.</div></div>
+    <div class="qa-item" id="qa6"><div class="qa-question" onclick="toggleQA('qa6')"><span class="qa-qnum">6</span><span class="qa-qtext">How many countries has he been to?</span><span class="qa-arrow">▶</span></div><div class="qa-answer">About 18 countries.</div></div>
+    <div class="qa-item" id="qa7"><div class="qa-question" onclick="toggleQA('qa7')"><span class="qa-qnum">7</span><span class="qa-qtext">Who does Caroline go to art galleries with?</span><span class="qa-arrow">▶</span></div><div class="qa-answer">Her husband.</div></div>
+    <div class="qa-item" id="qa8"><div class="qa-question" onclick="toggleQA('qa8')"><span class="qa-qnum">8</span><span class="qa-qtext">What makes her husband happy?</span><span class="qa-arrow">▶</span></div><div class="qa-answer">Cooking for people.</div></div>
+    <div class="qa-item" id="qa9"><div class="qa-question" onclick="toggleQA('qa9')"><span class="qa-qnum">9</span><span class="qa-qtext">Who visits them most weekends?</span><span class="qa-arrow">▶</span></div><div class="qa-answer">Her children.</div></div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- HELP WITH LISTENING -->
+  <div class="hwl-box">
+    <div class="hwl-title">⬤⬤⬤ HELP WITH LISTENING</div>
+    <div class="hwl-subtitle">Questions with <em>you</em> — CD1 ▶ 2</div>
+    <p class="instruction" style="margin-bottom:14px">
+      <span class="part-label">7</span>
+      <span class="part-label">a</span>
+      Work in pairs. How do we usually say the auxiliaries and <em>you</em> in questions?
+    </p>
+    <p class="instruction" style="margin-bottom:14px">
+      <span class="part-label">7</span>
+      <span class="part-label">b</span>
+      <strong>CD1 ▶ 2</strong> Listen to the questions in exercise 6. Notice how we say <em>do you</em>, <em>have you</em>, <em>are you</em> and <em>did you</em> in natural speech:
+    </p>
+    <div class="pronunciation-table">
+      <div class="pron-row"><div class="pron-written">do you</div><div class="pron-spoken">/dəjə/</div><div class="pron-example">Whereabouts <em>do you</em> /dəjə/ live?</div></div>
+      <div class="pron-row"><div class="pron-written">have you</div><div class="pron-spoken">/həvjə/</div><div class="pron-example">How long <em>have you</em> /həvjə/ lived there?</div></div>
+      <div class="pron-row"><div class="pron-written">are you</div><div class="pron-spoken">/əjə/</div><div class="pron-example">Why <em>are you</em> /əjə/ studying English?</div></div>
+      <div class="pron-row"><div class="pron-written">did you</div><div class="pron-spoken">/dɪdʒə/</div><div class="pron-example">Where <em>did you</em> /dɪdʒə/ go on holiday?</div></div>
+    </div>
+    <div style="margin-top:14px">
+      <p class="instruction" style="margin-bottom:8px">
+        <span class="part-label">8</span>
+        <span class="part-label">a</span>
+        <strong>PRONUNCIATION</strong> — CD1 ▶ 2 Listen again and practise. Copy the weak forms:
+      </p>
+      <div class="example-box">Whereabouts do you /dəjə/ live?</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ══════════════════════════════════════
+     TAB 4: HELP WITH GRAMMAR
+═══════════════════════════════════════ -->
+<div class="tab-pane" id="tab-grammar">
+
+  <div class="grammar-intro-box">
+    <div class="grammar-tag">⬤⬤⬤ HELP WITH GRAMMAR</div>
+    <div class="grammar-title">Question forms — GRAMMAR 1.1 → p128</div>
+    <p style="font-size:.85rem;color:var(--dim);line-height:1.6">Tương ứng với <strong>Exercise 5</strong> trên trang 7 của Student's Book. Nghiên cứu bảng và quy tắc dưới đây, sau đó làm bài tập.</p>
+  </div>
+
+  <!-- Exercise 5a - Match questions to verb forms -->
+  <div class="exercise-label">
+    <div class="exercise-num">5</div>
+    Exercise 5a — Match questions 1–4 in 4c to verb forms
+  </div>
+  <p class="instruction">
+    <span class="part-label">a</span>
+    Match questions 1–4 from exercise 4c to these verb forms:
+  </p>
+
+  <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-bottom:20px">
+    <div style="background:var(--bg2);border:1px solid var(--border);border-radius:var(--r2);padding:12px">
+      <div style="font-size:.78rem;font-weight:700;color:var(--teal);margin-bottom:6px">Present Simple</div>
+      <div style="font-size:.83rem;color:var(--dim)">Q1: <em>How often does Fiona teach yoga classes?</em></div>
+    </div>
+    <div style="background:var(--bg2);border:1px solid var(--border);border-radius:var(--r2);padding:12px">
+      <div style="font-size:.78rem;font-weight:700;color:var(--orange);margin-bottom:6px">Present Continuous</div>
+      <div style="font-size:.83rem;color:var(--dim)">Q2: <em>What is Fiona's son doing at the moment?</em></div>
+    </div>
+    <div style="background:var(--bg2);border:1px solid var(--border);border-radius:var(--r2);padding:12px">
+      <div style="font-size:.78rem;font-weight:700;color:var(--purple);margin-bottom:6px">Past Simple</div>
+      <div style="font-size:.83rem;color:var(--dim)">Q3: <em>What did Fiona do last Sunday?</em></div>
+    </div>
+    <div style="background:var(--bg2);border:1px solid var(--border);border-radius:var(--r2);padding:12px">
+      <div style="font-size:.78rem;font-weight:700;color:var(--green);margin-bottom:6px">Present Perfect Simple</div>
+      <div style="font-size:.83rem;color:var(--dim)">Q4: <em>How many songs has Maxie written?</em></div>
+    </div>
+  </div>
+
+  <!-- Exercise 5b - Table -->
+  <div class="exercise-label">
+    <div class="exercise-num">5</div>
+    Exercise 5b — Write questions 2–4 in the table
+  </div>
+  <p class="instruction"><span class="part-label">b</span> Write questions 2–4 from exercise 4c in the table below (question word / auxiliary / subject / verb):</p>
+
+  <div class="grammar-table-wrap">
+    <table class="grammar-table">
+      <thead>
+        <tr><th>Tense</th><th>Question word</th><th>Auxiliary</th><th>Subject</th><th>Verb</th><th></th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Present Simple</td><td>How often</td><td class="aux">does</td><td>Fiona</td><td class="aux">teach</td><td>yoga classes?</td></tr>
+        <tr><td>Present Continuous</td><td>What</td><td class="aux">is</td><td>Fiona's son</td><td class="aux">doing</td><td>at the moment?</td></tr>
+        <tr><td>Past Simple</td><td>What</td><td class="aux">did</td><td>Fiona</td><td class="aux">do</td><td>last Sunday?</td></tr>
+        <tr><td>Present Perfect Simple</td><td>How many songs</td><td class="aux">has</td><td>Maxie</td><td class="aux">written</td><td>?</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Grammar Rules -->
+  <div class="grammar-intro-box">
+    <div class="grammar-section">
+      <div class="grammar-section-title">AUXILIARIES — Trợ động từ</div>
+      <div class="grammar-rule"><div class="grammar-bullet">•</div><div>Dùng <strong>do / does</strong> cho Present Simple: <em>Who do you work for? What does she do in her free time?</em></div></div>
+      <div class="grammar-rule"><div class="grammar-bullet">•</div><div>Dùng <strong>am, are, is</strong> cho Present Continuous: <em>Where am I going? What are you watching? What's he doing?</em></div></div>
+      <div class="grammar-rule"><div class="grammar-bullet">•</div><div>Dùng <strong>have / has</strong> cho Present Perfect Simple: <em>Where have you been? Has he called yet?</em></div></div>
+    </div>
+
+    <div class="grammar-section">
+      <div class="grammar-section-title">SUBJECT QUESTIONS — Câu hỏi về chủ ngữ</div>
+      <div class="grammar-rule"><div class="grammar-bullet">•</div><div>Hầu hết câu hỏi hỏi về <strong>tân ngữ</strong> (object): <em>A: <strong>How many songs</strong> has Maxie written? B: He's written <strong>about 25 songs</strong>.</em></div></div>
+      <div class="grammar-rule"><div class="grammar-bullet">•</div><div>Subject questions hỏi về <strong>chủ ngữ</strong>: <em>A: <strong>What</strong> makes her husband happy? B: <strong>Cooking</strong> makes him happy.</em></div></div>
+      <div class="grammar-rule"><div class="grammar-bullet">•</div><div>KHÔNG dùng do/does/did trong subject questions của Present/Past Simple:<br>✅ <em>Who <strong>visits</strong> them most weekends?</em><br>❌ <del>Who <strong>does visit</strong> them most weekends?</del></div></div>
+      <div class="grammar-rule"><div class="grammar-bullet">•</div><div>Subject questions có trật tự từ giống câu khẳng định. Có thể dùng: <strong>Who, What, Whose, Which</strong>.</div></div>
+    </div>
+
+    <div class="grammar-section">
+      <div class="grammar-section-title">QUESTIONS WITH PREPOSITIONS — Câu hỏi kết thúc bằng giới từ</div>
+      <div class="grammar-rule"><div class="grammar-bullet">•</div><div>Thường đặt giới từ ở <strong>cuối</strong> câu hỏi:<br>✅ <em>How many countries has he been <strong>to</strong>?</em><br>✅ <em>Who does Caroline go to art galleries <strong>with</strong>?</em></div></div>
+      <div class="note-box"><strong>TIP:</strong> Thường KHÔNG đặt giới từ ở đầu: <em>What are you talking about?</em> (không phải: <del>About what are you talking?</del>)</div>
+    </div>
+  </div>
+
+  <!-- Exercise 5c -->
+  <div class="exercise-label">
+    <div class="exercise-num">5</div>
+    Exercise 5c — Answer these questions about questions 5–9 in ex.6
+  </div>
+  <p class="instruction"><span class="part-label">c</span> Look at questions 5–9 in exercise 6. Answer these questions:</p>
+
+  <div class="q-and-a-list">
+    <div class="qa-item" id="qa5c1"><div class="qa-question" onclick="toggleQA('qa5c1')"><span class="qa-qnum">1</span><span class="qa-qtext">Is the question word the object or the subject in each question (5–9)?</span><span class="qa-arrow">▶</span></div><div class="qa-answer">Q5 "Why": object. Q6 "Where": object. Q7 "How many countries": object. Q8 "Who emails you the most" → "Who" = SUBJECT. Q9 "What did you do" → "What" = object.</div></div>
+    <div class="qa-item" id="qa5c2"><div class="qa-question" onclick="toggleQA('qa5c2')"><span class="qa-qnum">2</span><span class="qa-qtext">Why don't questions 8 and 9 have an auxiliary?</span><span class="qa-arrow">▶</span></div><div class="qa-answer">Because they are subject questions — the question word (Who) is the subject of the sentence. We don't use do/does/did in subject questions.</div></div>
+    <div class="qa-item" id="qa5c3"><div class="qa-question" onclick="toggleQA('qa5c3')"><span class="qa-qnum">d</span><span class="qa-qtext">Find two questions in 4c which have a preposition at the end.</span><span class="qa-arrow">▶</span></div><div class="qa-answer">Q7: "Who does Caroline go to art galleries <strong>with</strong>?" and Q6: "How many countries has he been <strong>to</strong>?"</div></div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- Exercise 6 - Fill in gaps -->
+  <div class="exercise-label">
+    <div class="exercise-num">6</div>
+    Exercise 6 — Fill in the gaps (do, are, have, did or –)
+  </div>
+  <p class="instruction">Fill in the gaps in these questions with <strong>do, are, have, did</strong> or <strong>–</strong> (= no auxiliary). Check in <em>GRAMMAR 1.1 → p128</em>.</p>
+
+  <div class="fill-exercise">
+    <div class="fill-ex-title">Điền trợ động từ thích hợp hoặc – (không có trợ động từ)</div>
+
+    <div id="ex6-items">
+      <div class="fill-item">
+        <div class="fill-item-num">1</div>
+        <div class="fill-item-content">
+          <div class="fill-sentence">Whereabouts <span style="color:var(--blue);font-weight:600">do</span> you live? <span class="fill-note">(✅ Đáp án mẫu)</span></div>
+        </div>
+      </div>
+      <div class="fill-item" id="q6-2">
+        <div class="fill-item-num">2</div>
+        <div class="fill-item-content">
+          <div class="fill-sentence">How long ___ you lived there?</div>
+          <div class="fill-controls">
+            <input class="fill-input" id="fi6-2" placeholder="…" maxlength="10">
+            <button class="check-btn" onclick="checkFill6('fi6-2','have','fb6-2')">Kiểm tra</button>
+            <button class="reveal-btn" onclick="revealFill('fi6-2','have','fb6-2')">Xem đáp án</button>
+          </div>
+          <div class="fill-feedback" id="fb6-2"></div>
+        </div>
+      </div>
+      <div class="fill-item" id="q6-3">
+        <div class="fill-item-num">3</div>
+        <div class="fill-item-content">
+          <div class="fill-sentence">Who ___ lives with you?</div>
+          <div class="fill-controls">
+            <input class="fill-input" id="fi6-3" placeholder="…" maxlength="10">
+            <button class="check-btn" onclick="checkFill6('fi6-3','–','fb6-3')">Kiểm tra</button>
+            <button class="reveal-btn" onclick="revealFill('fi6-3','–','fb6-3')">Xem đáp án</button>
+          </div>
+          <div class="fill-feedback" id="fb6-3"></div>
+          <div style="font-size:.75rem;color:var(--muted);margin-top:4px">💡 Hint: "Who" là subject của câu → subject question</div>
+        </div>
+      </div>
+      <div class="fill-item">
+        <div class="fill-item-num">4</div>
+        <div class="fill-item-content">
+          <div class="fill-sentence">What time ___ you get up on Sundays?</div>
+          <div class="fill-controls">
+            <input class="fill-input" id="fi6-4" placeholder="…" maxlength="10">
+            <button class="check-btn" onclick="checkFill6('fi6-4','do','fb6-4')">Kiểm tra</button>
+            <button class="reveal-btn" onclick="revealFill('fi6-4','do','fb6-4')">Xem đáp án</button>
+          </div>
+          <div class="fill-feedback" id="fb6-4"></div>
+        </div>
+      </div>
+      <div class="fill-item">
+        <div class="fill-item-num">5</div>
+        <div class="fill-item-content">
+          <div class="fill-sentence">Why ___ you studying English?</div>
+          <div class="fill-controls">
+            <input class="fill-input" id="fi6-5" placeholder="…" maxlength="10">
+            <button class="check-btn" onclick="checkFill6('fi6-5','are','fb6-5')">Kiểm tra</button>
+            <button class="reveal-btn" onclick="revealFill('fi6-5','are','fb6-5')">Xem đáp án</button>
+          </div>
+          <div class="fill-feedback" id="fb6-5"></div>
+        </div>
+      </div>
+      <div class="fill-item">
+        <div class="fill-item-num">6</div>
+        <div class="fill-item-content">
+          <div class="fill-sentence">Where ___ you go on holiday last year?</div>
+          <div class="fill-controls">
+            <input class="fill-input" id="fi6-6" placeholder="…" maxlength="10">
+            <button class="check-btn" onclick="checkFill6('fi6-6','did','fb6-6')">Kiểm tra</button>
+            <button class="reveal-btn" onclick="revealFill('fi6-6','did','fb6-6')">Xem đáp án</button>
+          </div>
+          <div class="fill-feedback" id="fb6-6"></div>
+        </div>
+      </div>
+      <div class="fill-item">
+        <div class="fill-item-num">7</div>
+        <div class="fill-item-content">
+          <div class="fill-sentence">How many countries ___ you visited?</div>
+          <div class="fill-controls">
+            <input class="fill-input" id="fi6-7" placeholder="…" maxlength="10">
+            <button class="check-btn" onclick="checkFill6('fi6-7','have','fb6-7')">Kiểm tra</button>
+            <button class="reveal-btn" onclick="revealFill('fi6-7','have','fb6-7')">Xem đáp án</button>
+          </div>
+          <div class="fill-feedback" id="fb6-7"></div>
+        </div>
+      </div>
+      <div class="fill-item">
+        <div class="fill-item-num">8</div>
+        <div class="fill-item-content">
+          <div class="fill-sentence">Who ___ emails you the most?</div>
+          <div class="fill-controls">
+            <input class="fill-input" id="fi6-8" placeholder="…" maxlength="10">
+            <button class="check-btn" onclick="checkFill6('fi6-8','–','fb6-8')">Kiểm tra</button>
+            <button class="reveal-btn" onclick="revealFill('fi6-8','–','fb6-8')">Xem đáp án</button>
+          </div>
+          <div class="fill-feedback" id="fb6-8"></div>
+          <div style="font-size:.75rem;color:var(--muted);margin-top:4px">💡 Hint: "Who" là subject → không cần auxiliary</div>
+        </div>
+      </div>
+      <div class="fill-item">
+        <div class="fill-item-num">9</div>
+        <div class="fill-item-content">
+          <div class="fill-sentence">What ___ you do yesterday evening?</div>
+          <div class="fill-controls">
+            <input class="fill-input" id="fi6-9" placeholder="…" maxlength="10">
+            <button class="check-btn" onclick="checkFill6('fi6-9','did','fb6-9')">Kiểm tra</button>
+            <button class="reveal-btn" onclick="revealFill('fi6-9','did','fb6-9')">Xem đáp án</button>
+          </div>
+          <div class="fill-feedback" id="fb6-9"></div>
+        </div>
+      </div>
+      <div class="fill-item">
+        <div class="fill-item-num">10</div>
+        <div class="fill-item-content">
+          <div class="fill-sentence">What ___ you planning to do next weekend?</div>
+          <div class="fill-controls">
+            <input class="fill-input" id="fi6-10" placeholder="…" maxlength="10">
+            <button class="check-btn" onclick="checkFill6('fi6-10','are','fb6-10')">Kiểm tra</button>
+            <button class="reveal-btn" onclick="revealFill('fi6-10','are','fb6-10')">Xem đáp án</button>
+          </div>
+          <div class="fill-feedback" id="fb6-10"></div>
+        </div>
+      </div>
+    </div>
+
+    <div style="display:flex;gap:10px;margin-top:20px;padding-top:16px;border-top:1px solid var(--border)">
+      <button class="btn btn-primary" onclick="checkAllFill6()">✅ Kiểm tra tất cả</button>
+      <button class="btn btn-outline" onclick="revealAllFill6()">👁 Hiện toàn bộ đáp án</button>
+      <button class="btn btn-outline" onclick="resetFill6()">🔄 Làm lại</button>
+    </div>
+    <div class="score-box" id="score6"></div>
+  </div>
+
+  <!-- HELP WITH LISTENING in grammar context -->
+  <div class="hwl-box">
+    <div class="hwl-title">⬤⬤⬤ HELP WITH LISTENING (Exercise 7–8)</div>
+    <div class="hwl-subtitle">Questions with <em>you</em> — weak forms</div>
+    <p class="instruction" style="margin-bottom:12px">
+      <span class="part-label">7</span>
+      <span class="part-label">a</span>
+      Work in pairs. How do we usually say the auxiliaries and <em>you</em> in questions from exercise 6?
+    </p>
+    <p class="instruction" style="margin-bottom:12px">
+      <span class="part-label">7</span>
+      <span class="part-label">b</span>
+      <strong>CD1 ▶ 2</strong> Listen to questions in exercise 6. Notice the weak forms:
+    </p>
+    <div class="pronunciation-table" style="margin-bottom:16px">
+      <div class="pron-row"><div class="pron-written">do you</div><div class="pron-spoken">/dəjə/</div><div class="pron-example">Whereabouts do you live?</div></div>
+      <div class="pron-row"><div class="pron-written">have you</div><div class="pron-spoken">/həvjə/</div><div class="pron-example">How long have you lived there?</div></div>
+      <div class="pron-row"><div class="pron-written">are you</div><div class="pron-spoken">/əjə/</div><div class="pron-example">Why are you studying English?</div></div>
+      <div class="pron-row"><div class="pron-written">did you</div><div class="pron-spoken">/dɪdʒə/</div><div class="pron-example">Where did you go?</div></div>
+    </div>
+    <p class="instruction"><span class="part-label">8</span><span class="part-label">a</span> <strong>PRONUNCIATION</strong> — Listen again and practise. Copy the weak forms. Then work in pairs: ask and answer the questions in exercise 6 with follow-up questions.</p>
+    <button class="btn btn-outline" onclick="speakSentence('Whereabouts do you live?')">🔊 Nghe: Whereabouts do you /dəjə/ live?</button>
+  </div>
+
+  <!-- Exercise 9 -->
+  <div style="background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:16px;margin-top:16px">
+    <div class="exercise-label"><div class="exercise-num">9</div>Work in new pairs — Speaking practice</div>
+    <p class="instruction">Work in new pairs. Ask and answer the questions in exercise 6. Ask follow-up questions.</p>
+    <div style="background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);padding:12px;font-size:.83rem;color:var(--dim)">
+      📝 <strong>Student A:</strong> Ask the questions from exercise 6. <br>
+      📝 <strong>Student B:</strong> Answer honestly and add extra information.<br>
+      🔄 Then swap roles.
+    </div>
+  </div>
+
+</div>
+
+<!-- ══════════════════════════════════════
+     TAB 5: GET READY … GET IT RIGHT!
+═══════════════════════════════════════ -->
+<div class="tab-pane" id="tab-getready">
+
+  <div class="sec-heading">Get ready … Get it right!</div>
+  <div class="sec-sub">Production activity — using question forms in real conversation</div>
+
+  <!-- Exercise 10 -->
+  <div class="exercise-label">
+    <div class="exercise-num">10</div>
+    Exercise 10 — Write a list of five things
+  </div>
+  <p class="instruction">Write a list of five things you do that make you happy:</p>
+
+  <div class="writing-area-box" style="margin-bottom:20px">
+    <div class="list-input-wrap">
+      <div class="list-input-row"><div class="list-input-num">1</div><input class="list-input" placeholder="e.g. writing my blog" id="happy1"></div>
+      <div class="list-input-row"><div class="list-input-num">2</div><input class="list-input" placeholder="e.g. going for walks in the park" id="happy2"></div>
+      <div class="list-input-row"><div class="list-input-num">3</div><input class="list-input" placeholder="e.g. cooking for friends" id="happy3"></div>
+      <div class="list-input-row"><div class="list-input-num">4</div><input class="list-input" placeholder="e.g. listening to music" id="happy4"></div>
+      <div class="list-input-row"><div class="list-input-num">5</div><input class="list-input" placeholder="e.g. watching films" id="happy5"></div>
+    </div>
+  </div>
+
+  <!-- Exercise 11 -->
+  <div class="exercise-label">
+    <div class="exercise-num">11</div>
+    Exercise 11a — Work in groups of three
+  </div>
+  <p class="instruction">
+    <span class="part-label">a</span>
+    Work in groups of three. Take turns to tell the group about each thing on your list. Ask one or two questions about each thing your partners tell you about.
+  </p>
+
+  <div class="convo-demo">
+    <div class="convo-title">💬 Ví dụ hội thoại (từ sách trang 7)</div>
+    <div class="bubble-row">
+      <div class="bubble">Writing my blog makes me happy.</div>
+    </div>
+    <div class="bubble-row right">
+      <div class="bubble">How often do you write it?</div>
+    </div>
+    <div class="bubble-row">
+      <div class="bubble">About twice a week.</div>
+    </div>
+    <div class="bubble-row right">
+      <div class="bubble">What do you write about?</div>
+    </div>
+    <div class="bubble-row">
+      <div class="bubble">I write about travel and food mainly.</div>
+    </div>
+  </div>
+
+  <div class="get-ready-box">
+    <p style="font-size:.88rem;color:var(--dim);margin-bottom:14px"><strong style="color:var(--text)">Gợi ý các câu follow-up questions:</strong></p>
+    <div style="display:flex;flex-wrap:wrap;gap:8px">
+      <div class="q-starter">How often do you … ?</div>
+      <div class="q-starter">When did you last … ?</div>
+      <div class="q-starter">Who do you … with?</div>
+      <div class="q-starter">Where do you usually … ?</div>
+      <div class="q-starter">How long have you … ?</div>
+      <div class="q-starter">Why do you enjoy … ?</div>
+    </div>
+  </div>
+
+  <!-- Exercise 11b -->
+  <div class="exercise-label" style="margin-top:20px">
+    <div class="exercise-num">11</div>
+    Exercise 11b
+  </div>
+  <p class="instruction"><span class="part-label">b</span> Tell the class about one thing that makes you happy.</p>
+
+  <div class="writing-area-box">
+    <p style="font-size:.82rem;color:var(--dim);margin-bottom:10px">Viết một đoạn ngắn để chia sẻ với cả lớp:</p>
+    <textarea class="happiness-input" id="share-text" placeholder="e.g. One thing that makes me really happy is going hiking in the mountains. I go about once a month, usually at weekends. I started doing it three years ago with my brother. What I love most is the feeling when you reach the top…" style="min-height:100px;width:100%;resize:vertical"></textarea>
+    <div style="display:flex;gap:8px;margin-top:10px">
+      <button class="btn btn-primary" onclick="saveNote()">💾 Lưu</button>
+      <button class="btn btn-outline" onclick="readAloud()">🔊 Đọc to (Text-to-Speech)</button>
+    </div>
+  </div>
+
+</div>
+
+<!-- ══════════════════════════════════════
+     TAB 6: LANGUAGE SUMMARY
+═══════════════════════════════════════ -->
+<div class="tab-pane" id="tab-langsummary">
+
+  <div class="sec-heading">Language Summary 1</div>
+  <div class="sec-sub">VOCABULARY 1.1 — Weekend activities (trang 127)</div>
+
+  <div class="lang-sum-box">
+    <div class="lang-sum-title">📗 VOCABULARY 1.1 — Weekend activities</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:14px">
+      <div style="background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);padding:10px 14px;font-size:.85rem"><span style="color:var(--blue);font-weight:600">visit</span> relatives</div>
+      <div style="background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);padding:10px 14px;font-size:.85rem"><span style="color:var(--blue);font-weight:600">meet up</span> with friends</div>
+      <div style="background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);padding:10px 14px;font-size:.85rem"><span style="color:var(--blue);font-weight:600">have</span> a lie-in</div>
+      <div style="background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);padding:10px 14px;font-size:.85rem"><span style="color:var(--blue);font-weight:600">tidy up</span> the house/flat</div>
+      <div style="background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);padding:10px 14px;font-size:.85rem"><span style="color:var(--blue);font-weight:600">go to</span> concerts/gigs/festivals</div>
+      <div style="background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);padding:10px 14px;font-size:.85rem"><span style="color:var(--blue);font-weight:600">go to</span> museums/art galleries</div>
+      <div style="background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);padding:10px 14px;font-size:.85rem"><span style="color:var(--blue);font-weight:600">chat</span> to friends online</div>
+      <div style="background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);padding:10px 14px;font-size:.85rem"><span style="color:var(--blue);font-weight:600">do</span> exercise</div>
+      <div style="background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);padding:10px 14px;font-size:.85mm"><span style="color:var(--blue);font-weight:600">have</span> a quiet night in</div>
+      <div style="background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);padding:10px 14px;font-size:.85rem"><span style="color:var(--blue);font-weight:600">have</span> people round for dinner</div>
+      <div style="background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);padding:10px 14px;font-size:.85rem"><span style="color:var(--blue);font-weight:600">do</span> yoga</div>
+      <div style="background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);padding:10px 14px;font-size:.85rem"><span style="color:var(--blue);font-weight:600">go out</span> for a drink/meal</div>
+    </div>
+    <div class="tip-box">
+      <strong>TIPS:</strong><br>
+      • <strong>have a lie-in</strong>: when you stay in bed longer than usual in the morning. <em>I often have a lie-in on Sundays.</em><br>
+      • <strong>have people round for dinner</strong>: invite people to your house to have dinner. <em>We're having Tom's parents round for dinner on Saturday.</em><br>
+      • <strong>tidy up the house/flat</strong>: put things back in the places where you usually keep them. <em>I usually tidy up the flat before I go to work.</em><br>
+      • <strong>A relative</strong> is a person in your family (aunt, uncle, grandparent, cousin…). Your <strong>parents</strong> are your mother and father only.<br>
+      • <strong>A gig</strong> is an informal word for a concert. <em>I went to an amazing gig last night.</em><br>
+      • We also use <strong>chat</strong> or <strong>have a chat</strong> to mean 'talk to someone in a friendly and informal way'.
+    </div>
+  </div>
+
+  <div class="lang-sum-box">
+    <div class="lang-sum-title">📗 GRAMMAR 1.1 — Question forms (p128)</div>
+    <div class="grammar-table-wrap">
+      <table class="grammar-table">
+        <thead><tr><th>Tense</th><th>Question word</th><th>Auxiliary</th><th>Subject</th><th>Verb</th><th></th></tr></thead>
+        <tbody>
+          <tr><td>Present Simple</td><td>How often</td><td class="aux">does</td><td>Fiona</td><td class="aux">teach</td><td>yoga classes?</td></tr>
+          <tr><td>Present Continuous</td><td>What</td><td class="aux">is</td><td>Fiona's son</td><td class="aux">doing</td><td>at the moment?</td></tr>
+          <tr><td>Past Simple</td><td>What</td><td class="aux">did</td><td>Fiona</td><td class="aux">do</td><td>last Sunday?</td></tr>
+          <tr><td>Pres. Perfect Simple</td><td>How many songs</td><td class="aux">has</td><td>Maxie</td><td class="aux">written</td><td>?</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="tip-box" style="margin-top:12px">
+      <strong>Key rules:</strong><br>
+      • Do NOT use do/does/did for subject questions: <em>Who visits them?</em> ✅ &nbsp;|&nbsp; <del>Who does visit them?</del> ❌<br>
+      • Prepositions go at the END: <em>Who does she go with?</em> ✅
+    </div>
+  </div>
+
+</div>
+
+<!-- ══════════════════════════════════════
+     TAB 7: WORKBOOK 1A
+═══════════════════════════════════════ -->
+<div class="tab-pane" id="tab-workbook">
+
+  <div class="sec-heading">Workbook 1A — Be happy!</div>
+  <div class="sec-sub">Language Summary 1, Student's Book p127 · Workbook p5</div>
+
+  <!-- ─── WB Exercise 1 ─── -->
+  <div class="lang-sum-box">
+    <div class="lang-sum-title">📓 Weekend activities — VOCABULARY 1.1</div>
+
+    <div class="exercise-label">
+      <div class="exercise-num">1</div>Exercise 1a — Choose the correct words/phrases (two for each verb)
+    </div>
+    <p class="instruction">
+      <span class="part-label">a</span>
+      Choose the correct words/phrases. There are <strong>two</strong> for each verb.
+    </p>
+
+    <div style="display:grid;gap:10px;margin-bottom:20px">
+      <!-- Q1 -->
+      <div class="ex-card" style="padding:16px">
+        <div style="font-size:.85rem;font-weight:600;margin-bottom:10px">1 &nbsp;<em>go out</em> &nbsp; festivals / <u>for a meal</u> / <u>with friends</u></div>
+        <div style="font-size:.78rem;color:var(--muted)">✅ Đáp án: <strong>for a meal</strong> &nbsp;|&nbsp; <strong>with friends</strong> &nbsp; (festivals → go to)</div>
+      </div>
+      <!-- Q2 -->
+      <div class="ex-card" style="padding:16px">
+        <div style="font-size:.85rem;font-weight:600;margin-bottom:10px">2 &nbsp;<em>have</em> &nbsp; a lie-in / people round for dinner / the flat</div>
+        <div class="fill-controls" style="margin-bottom:8px">
+          <span style="font-size:.83rem;color:var(--dim)">Chọn 2 đáp án đúng:</span>
+          <button class="activity-chip" onclick="toggleChipWB(this,'wb1-2a')">a lie-in</button>
+          <button class="activity-chip" onclick="toggleChipWB(this,'wb1-2b')">people round for dinner</button>
+          <button class="activity-chip" onclick="toggleChipWB(this,'wb1-2c')">the flat</button>
+        </div>
+        <button class="reveal-btn" onclick="showWBAns('wb1-2-ans')">Xem đáp án</button>
+        <div id="wb1-2-ans" style="display:none" class="right-box">✅ <strong>a lie-in</strong> &amp; <strong>people round for dinner</strong> &nbsp;(the flat → tidy up the flat)</div>
+      </div>
+      <!-- Q3 -->
+      <div class="ex-card" style="padding:16px">
+        <div style="font-size:.85rem;font-weight:600;margin-bottom:10px">3 &nbsp;<em>do</em> &nbsp; exercise / yoga / relatives</div>
+        <div class="fill-controls" style="margin-bottom:8px">
+          <button class="activity-chip" onclick="toggleChipWB(this,'wb1-3a')">exercise</button>
+          <button class="activity-chip" onclick="toggleChipWB(this,'wb1-3b')">yoga</button>
+          <button class="activity-chip" onclick="toggleChipWB(this,'wb1-3c')">relatives</button>
+        </div>
+        <button class="reveal-btn" onclick="showWBAns('wb1-3-ans')">Xem đáp án</button>
+        <div id="wb1-3-ans" style="display:none" class="right-box">✅ <strong>exercise</strong> &amp; <strong>yoga</strong> &nbsp;(relatives → visit relatives)</div>
+      </div>
+      <!-- Q4 -->
+      <div class="ex-card" style="padding:16px">
+        <div style="font-size:.85rem;font-weight:600;margin-bottom:10px">4 &nbsp;<em>go to</em> &nbsp; concerts / friends online / gigs</div>
+        <div class="fill-controls" style="margin-bottom:8px">
+          <button class="activity-chip" onclick="toggleChipWB(this,'wb1-4a')">concerts</button>
+          <button class="activity-chip" onclick="toggleChipWB(this,'wb1-4b')">friends online</button>
+          <button class="activity-chip" onclick="toggleChipWB(this,'wb1-4c')">gigs</button>
+        </div>
+        <button class="reveal-btn" onclick="showWBAns('wb1-4-ans')">Xem đáp án</button>
+        <div id="wb1-4-ans" style="display:none" class="right-box">✅ <strong>concerts</strong> &amp; <strong>gigs</strong> &nbsp;(friends online → chat to friends online)</div>
+      </div>
+    </div>
+
+    <div class="exercise-label" style="margin-top:16px">
+      <div class="exercise-num">1</div>Exercise 1b — Match the incorrect words to make new activities
+    </div>
+    <p class="instruction">
+      <span class="part-label">b</span>
+      Match the incorrect words/phrases in 1a to these words to make four more weekend activities:
+      <strong>go to &nbsp;·&nbsp; visit &nbsp;·&nbsp; chat to &nbsp;·&nbsp; tidy up</strong>
+    </p>
+    <div style="display:grid;gap:8px;margin-bottom:16px">
+      <div class="collocation-row"><div class="coll-verb">go to</div><div><div class="coll-phrase">festivals</div><div class="coll-example">We go to festivals every summer.</div></div></div>
+      <div class="collocation-row"><div class="coll-verb">visit</div><div><div class="coll-phrase">relatives</div><div class="coll-example">I visit my relatives at weekends.</div></div></div>
+      <div class="collocation-row"><div class="coll-verb">chat to</div><div><div class="coll-phrase">friends online</div><div class="coll-example">I chat to friends online every evening.</div></div></div>
+      <div class="collocation-row"><div class="coll-verb">tidy up</div><div><div class="coll-phrase">the flat</div><div class="coll-example">I tidy up the flat on Saturday mornings.</div></div></div>
+    </div>
+  </div>
+
+  <!-- ─── WB Exercise 2 — Question forms ─── -->
+  <div class="lang-sum-box">
+    <div class="lang-sum-title">📓 Question forms — GRAMMAR 1.1</div>
+
+    <div class="exercise-label">
+      <div class="exercise-num">2</div>Exercise 2 — Make questions with these words
+    </div>
+    <p class="instruction">Make questions with these words. (Ví dụ mẫu đã cho sẵn câu 1)</p>
+
+    <div style="display:grid;gap:14px;margin-bottom:20px">
+      <!-- Q1 sample -->
+      <div class="fill-exercise" style="padding:14px">
+        <div style="font-size:.8rem;color:var(--muted);margin-bottom:6px">1 — Mẫu ✅</div>
+        <div style="font-size:.85rem;margin-bottom:4px;color:var(--dim)">did / When / at home / Friday night / a quiet / last have / you ?</div>
+        <div class="example-box">When did you last have a quiet Friday night at home?</div>
+      </div>
+      <!-- Q2 -->
+      <div class="fill-exercise" style="padding:14px">
+        <div style="font-size:.8rem;color:var(--muted);margin-bottom:6px">2</div>
+        <div style="font-size:.85rem;margin-bottom:8px;color:var(--dim)">chat / you / do / Who / to online ?</div>
+        <input class="fill-input" id="wb2-2" style="width:100%;max-width:440px" placeholder="Write the question…">
+        <div style="display:flex;gap:8px;margin-top:8px">
+          <button class="check-btn" onclick="checkWBQ('wb2-2','Who do you chat to online?','wb2-2-fb')">Kiểm tra</button>
+          <button class="reveal-btn" onclick="revealWBQ('wb2-2','Who do you chat to online?','wb2-2-fb')">Đáp án</button>
+        </div>
+        <div class="fill-feedback" id="wb2-2-fb"></div>
+      </div>
+      <!-- Q3 -->
+      <div class="fill-exercise" style="padding:14px">
+        <div style="font-size:.8rem;color:var(--muted);margin-bottom:6px">3</div>
+        <div style="font-size:.85rem;margin-bottom:8px;color:var(--dim)">do / eat / with / Who / you / out ?</div>
+        <input class="fill-input" id="wb2-3" style="width:100%;max-width:440px" placeholder="Write the question…">
+        <div style="display:flex;gap:8px;margin-top:8px">
+          <button class="check-btn" onclick="checkWBQ('wb2-3','Who do you eat out with?','wb2-3-fb')">Kiểm tra</button>
+          <button class="reveal-btn" onclick="revealWBQ('wb2-3','Who do you eat out with?','wb2-3-fb')">Đáp án</button>
+        </div>
+        <div class="fill-feedback" id="wb2-3-fb"></div>
+      </div>
+      <!-- Q4 -->
+      <div class="fill-exercise" style="padding:14px">
+        <div style="font-size:.8rem;color:var(--muted);margin-bottom:6px">4</div>
+        <div style="font-size:.85rem;margin-bottom:8px;color:var(--dim)">phones / Who / weekends / the most at / you ?</div>
+        <input class="fill-input" id="wb2-4" style="width:100%;max-width:440px" placeholder="Write the question…">
+        <div style="display:flex;gap:8px;margin-top:8px">
+          <button class="check-btn" onclick="checkWBQ('wb2-4','Who phones you the most at weekends?','wb2-4-fb')">Kiểm tra</button>
+          <button class="reveal-btn" onclick="revealWBQ('wb2-4','Who phones you the most at weekends?','wb2-4-fb')">Đáp án</button>
+        </div>
+        <div class="fill-feedback" id="wb2-4-fb"></div>
+        <div style="font-size:.75rem;color:var(--muted);margin-top:4px">💡 Hint: Subject question — no do/does needed</div>
+      </div>
+      <!-- Q5 -->
+      <div class="fill-exercise" style="padding:14px">
+        <div style="font-size:.8rem;color:var(--muted);margin-bottom:6px">5</div>
+        <div style="font-size:.85rem;margin-bottom:8px;color:var(--dim)">mornings / What / do / you / do / on / Sunday ?</div>
+        <input class="fill-input" id="wb2-5" style="width:100%;max-width:440px" placeholder="Write the question…">
+        <div style="display:flex;gap:8px;margin-top:8px">
+          <button class="check-btn" onclick="checkWBQ('wb2-5','What do you do on Sunday mornings?','wb2-5-fb')">Kiểm tra</button>
+          <button class="reveal-btn" onclick="revealWBQ('wb2-5','What do you do on Sunday mornings?','wb2-5-fb')">Đáp án</button>
+        </div>
+        <div class="fill-feedback" id="wb2-5-fb"></div>
+      </div>
+      <!-- Q6 -->
+      <div class="fill-exercise" style="padding:14px">
+        <div style="font-size:.8rem;color:var(--muted);margin-bottom:6px">6</div>
+        <div style="font-size:.85rem;margin-bottom:8px;color:var(--dim)">did / you / How / go / many / to / museums / last year ?</div>
+        <input class="fill-input" id="wb2-6" style="width:100%;max-width:440px" placeholder="Write the question…">
+        <div style="display:flex;gap:8px;margin-top:8px">
+          <button class="check-btn" onclick="checkWBQ('wb2-6','How many museums did you go to last year?','wb2-6-fb')">Kiểm tra</button>
+          <button class="reveal-btn" onclick="revealWBQ('wb2-6','How many museums did you go to last year?','wb2-6-fb')">Đáp án</button>
+        </div>
+        <div class="fill-feedback" id="wb2-6-fb"></div>
+      </div>
+      <!-- Q7 -->
+      <div class="fill-exercise" style="padding:14px">
+        <div style="font-size:.8rem;color:var(--muted);margin-bottom:6px">7</div>
+        <div style="font-size:.85rem;margin-bottom:8px;color:var(--dim)">to / been / you / have / gigs / many / How / month / last / the / in ?</div>
+        <input class="fill-input" id="wb2-7" style="width:100%;max-width:440px" placeholder="Write the question…">
+        <div style="display:flex;gap:8px;margin-top:8px">
+          <button class="check-btn" onclick="checkWBQ('wb2-7','How many gigs have you been to in the last month?','wb2-7-fb')">Kiểm tra</button>
+          <button class="reveal-btn" onclick="revealWBQ('wb2-7','How many gigs have you been to in the last month?','wb2-7-fb')">Đáp án</button>
+        </div>
+        <div class="fill-feedback" id="wb2-7-fb"></div>
+      </div>
+      <!-- Q8 -->
+      <div class="fill-exercise" style="padding:14px">
+        <div style="font-size:.8rem;color:var(--muted);margin-bottom:6px">8</div>
+        <div style="font-size:.85rem;margin-bottom:8px;color:var(--dim)">dinner / often / have / for / How / you / do / people / round ?</div>
+        <input class="fill-input" id="wb2-8" style="width:100%;max-width:440px" placeholder="Write the question…">
+        <div style="display:flex;gap:8px;margin-top:8px">
+          <button class="check-btn" onclick="checkWBQ('wb2-8','How often do you have people round for dinner?','wb2-8-fb')">Kiểm tra</button>
+          <button class="reveal-btn" onclick="revealWBQ('wb2-8','How often do you have people round for dinner?','wb2-8-fb')">Đáp án</button>
+        </div>
+        <div class="fill-feedback" id="wb2-8-fb"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── WB Exercise 3 — Write questions from answers ─── -->
+  <div class="lang-sum-box">
+    <div class="lang-sum-title">📓 Exercise 3 — Write a question for each answer</div>
+    <p class="instruction">Read the answers and write a question from exercise 2 in the correct places 1–5. (Megan và Andy &amp; Karen trả lời)</p>
+
+    <div style="display:grid;gap:14px;margin-bottom:20px">
+      <!-- Context -->
+      <div style="background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);padding:14px;font-size:.82rem;color:var(--dim)">
+        🎭 <strong>Characters:</strong> <strong>Megan</strong> (goes out every night) &amp; <strong>Andy and Karen</strong> (prefer Saturday nights out)
+      </div>
+
+      <!-- Q1 sample -->
+      <div class="fill-exercise" style="padding:14px">
+        <div style="font-size:.78rem;color:var(--blue);font-weight:600;margin-bottom:6px">1 — Mẫu ✅</div>
+        <div class="example-box" style="margin-bottom:8px"><em>When did you last have a quiet Friday night at home?</em></div>
+        <div style="font-size:.85rem;padding:8px 12px;background:var(--bg3);border-radius:var(--r2)">
+          <strong>MEGAN:</strong> I haven't had one since I was a teenager! I'm out every night at the weekend.<br>
+          <strong>ANDY:</strong> A few days ago! We prefer to go out on Saturday nights.
+        </div>
+      </div>
+
+      <!-- Q2 -->
+      <div class="fill-exercise" style="padding:14px">
+        <div style="font-size:.78rem;color:var(--blue);font-weight:600;margin-bottom:6px">2 — Write the question:</div>
+        <input class="fill-input" id="wb3-2" style="width:100%;max-width:500px;margin-bottom:8px" placeholder="Write question 2 here…">
+        <div style="font-size:.85rem;padding:8px 12px;background:var(--bg3);border-radius:var(--r2);margin-bottom:8px">
+          <strong>MEGAN:</strong> Never. But last month I ate out with friends at least five times.<br>
+          <strong>KAREN:</strong> About once a month. My husband always cooks. This weekend we're visiting friends for dinner.
+        </div>
+        <div style="display:flex;gap:8px">
+          <button class="check-btn" onclick="checkWBQ('wb3-2','How often do you have people round for dinner?','wb3-2-fb')">Kiểm tra</button>
+          <button class="reveal-btn" onclick="revealWBQ('wb3-2','How often do you have people round for dinner?','wb3-2-fb')">Đáp án</button>
+        </div>
+        <div class="fill-feedback" id="wb3-2-fb"></div>
+      </div>
+
+      <!-- Q3 -->
+      <div class="fill-exercise" style="padding:14px">
+        <div style="font-size:.78rem;color:var(--blue);font-weight:600;margin-bottom:6px">3 — Write the question:</div>
+        <input class="fill-input" id="wb3-3" style="width:100%;max-width:500px;margin-bottom:8px" placeholder="Write question 3 here…">
+        <div style="font-size:.85rem;padding:8px 12px;background:var(--bg3);border-radius:var(--r2);margin-bottom:8px">
+          <strong>MEGAN:</strong> I've been to several. I'm really looking forward to seeing my best friend's new band on Friday.<br>
+          <strong>ANDY:</strong> None. We all went to a festival in the summer but I hardly ever go to them these days.
+        </div>
+        <div style="display:flex;gap:8px">
+          <button class="check-btn" onclick="checkWBQ('wb3-3','How many gigs have you been to in the last month?','wb3-3-fb')">Kiểm tra</button>
+          <button class="reveal-btn" onclick="revealWBQ('wb3-3','How many gigs have you been to in the last month?','wb3-3-fb')">Đáp án</button>
+        </div>
+        <div class="fill-feedback" id="wb3-3-fb"></div>
+      </div>
+
+      <!-- Q4 -->
+      <div class="fill-exercise" style="padding:14px">
+        <div style="font-size:.78rem;color:var(--blue);font-weight:600;margin-bottom:6px">4 — Write the question:</div>
+        <input class="fill-input" id="wb3-4" style="width:100%;max-width:500px;margin-bottom:8px" placeholder="Write question 4 here…">
+        <div style="font-size:.85rem;padding:8px 12px;background:var(--bg3);border-radius:var(--r2);margin-bottom:8px">
+          <strong>MEGAN:</strong> Sleep! I'm never out of bed before 11.<br>
+          <strong>KAREN:</strong> The children are up by seven every day so we never have lie-ins! We usually go swimming.
+        </div>
+        <div style="display:flex;gap:8px">
+          <button class="check-btn" onclick="checkWBQ('wb3-4','What do you do on Sunday mornings?','wb3-4-fb')">Kiểm tra</button>
+          <button class="reveal-btn" onclick="revealWBQ('wb3-4','What do you do on Sunday mornings?','wb3-4-fb')">Đáp án</button>
+        </div>
+        <div class="fill-feedback" id="wb3-4-fb"></div>
+      </div>
+
+      <!-- Q5 -->
+      <div class="fill-exercise" style="padding:14px">
+        <div style="font-size:.78rem;color:var(--blue);font-weight:600;margin-bottom:6px">5 — Write the question:</div>
+        <input class="fill-input" id="wb3-5" style="width:100%;max-width:500px;margin-bottom:8px" placeholder="Write question 5 here…">
+        <div style="font-size:.85rem;padding:8px 12px;background:var(--bg3);border-radius:var(--r2);margin-bottom:8px">
+          <strong>MEGAN:</strong> My best friend, Jenny. She calls and texts me a lot at the weekends.<br>
+          <strong>KAREN:</strong> Andy's mum. She calls on Saturdays and Sundays to talk to the children. She lives in Brazil so we don't see her very often.
+        </div>
+        <div style="display:flex;gap:8px">
+          <button class="check-btn" onclick="checkWBQ('wb3-5','Who phones you the most at weekends?','wb3-5-fb')">Kiểm tra</button>
+          <button class="reveal-btn" onclick="revealWBQ('wb3-5','Who phones you the most at weekends?','wb3-5-fb')">Đáp án</button>
+        </div>
+        <div class="fill-feedback" id="wb3-5-fb"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── WB Exercise 4 — Complete questions with auxiliary ─── -->
+  <div class="lang-sum-box">
+    <div class="lang-sum-title">📓 Exercise 4 — Complete questions with an auxiliary (if necessary)</div>
+    <p class="instruction"><span class="part-label">a</span> Complete these questions with an auxiliary if necessary. (Based on the Megan/Andy/Karen text)</p>
+
+    <div style="display:grid;gap:10px;margin-bottom:20px">
+      <div class="fill-item">
+        <div class="fill-item-num">1</div>
+        <div class="fill-item-content">
+          <div class="fill-sentence">When ___ Megan last have a quiet Friday night in?</div>
+          <div class="fill-controls">
+            <input class="fill-input" id="wb4-1" placeholder="…" maxlength="8">
+            <button class="check-btn" onclick="checkFill6('wb4-1','did','wb4-1-fb')">Kiểm tra</button>
+            <button class="reveal-btn" onclick="revealFill('wb4-1','did','wb4-1-fb')">Đáp án</button>
+          </div>
+          <div class="fill-feedback" id="wb4-1-fb"></div>
+        </div>
+      </div>
+      <div class="fill-item">
+        <div class="fill-item-num">2</div>
+        <div class="fill-item-content">
+          <div class="fill-sentence">Which night ___ Andy and Karen prefer to go out on?</div>
+          <div class="fill-controls">
+            <input class="fill-input" id="wb4-2" placeholder="…" maxlength="8">
+            <button class="check-btn" onclick="checkFill6('wb4-2','do','wb4-2-fb')">Kiểm tra</button>
+            <button class="reveal-btn" onclick="revealFill('wb4-2','do','wb4-2-fb')">Đáp án</button>
+          </div>
+          <div class="fill-feedback" id="wb4-2-fb"></div>
+        </div>
+      </div>
+      <div class="fill-item">
+        <div class="fill-item-num">3</div>
+        <div class="fill-item-content">
+          <div class="fill-sentence">How many times ___ Megan eat out last month?</div>
+          <div class="fill-controls">
+            <input class="fill-input" id="wb4-3" placeholder="…" maxlength="8">
+            <button class="check-btn" onclick="checkFill6('wb4-3','did','wb4-3-fb')">Kiểm tra</button>
+            <button class="reveal-btn" onclick="revealFill('wb4-3','did','wb4-3-fb')">Đáp án</button>
+          </div>
+          <div class="fill-feedback" id="wb4-3-fb"></div>
+        </div>
+      </div>
+      <div class="fill-item">
+        <div class="fill-item-num">4</div>
+        <div class="fill-item-content">
+          <div class="fill-sentence">Who ___ cooks when Karen and Andy have friends round for dinner?</div>
+          <div class="fill-controls">
+            <input class="fill-input" id="wb4-4" placeholder="…" maxlength="8">
+            <button class="check-btn" onclick="checkFill6('wb4-4','–','wb4-4-fb')">Kiểm tra</button>
+            <button class="reveal-btn" onclick="revealFill('wb4-4','–','wb4-4-fb')">Đáp án</button>
+          </div>
+          <div class="fill-feedback" id="wb4-4-fb"></div>
+          <div style="font-size:.75rem;color:var(--muted);margin-top:4px">💡 Subject question: "Who" = subject</div>
+        </div>
+      </div>
+      <div class="fill-item">
+        <div class="fill-item-num">5</div>
+        <div class="fill-item-content">
+          <div class="fill-sentence">What ___ Megan going to do on Friday?</div>
+          <div class="fill-controls">
+            <input class="fill-input" id="wb4-5" placeholder="…" maxlength="8">
+            <button class="check-btn" onclick="checkFill6('wb4-5','is','wb4-5-fb')">Kiểm tra</button>
+            <button class="reveal-btn" onclick="revealFill('wb4-5','is','wb4-5-fb')">Đáp án</button>
+          </div>
+          <div class="fill-feedback" id="wb4-5-fb"></div>
+        </div>
+      </div>
+      <div class="fill-item">
+        <div class="fill-item-num">6</div>
+        <div class="fill-item-content">
+          <div class="fill-sentence">How often ___ Andy go to gigs?</div>
+          <div class="fill-controls">
+            <input class="fill-input" id="wb4-6" placeholder="…" maxlength="8">
+            <button class="check-btn" onclick="checkFill6('wb4-6','does','wb4-6-fb')">Kiểm tra</button>
+            <button class="reveal-btn" onclick="revealFill('wb4-6','does','wb4-6-fb')">Đáp án</button>
+          </div>
+          <div class="fill-feedback" id="wb4-6-fb"></div>
+        </div>
+      </div>
+      <div class="fill-item">
+        <div class="fill-item-num">7</div>
+        <div class="fill-item-content">
+          <div class="fill-sentence">Why ___ Karen and Andy get up early on Sundays?</div>
+          <div class="fill-controls">
+            <input class="fill-input" id="wb4-7" placeholder="…" maxlength="8">
+            <button class="check-btn" onclick="checkFill6('wb4-7','do','wb4-7-fb')">Kiểm tra</button>
+            <button class="reveal-btn" onclick="revealFill('wb4-7','do','wb4-7-fb')">Đáp án</button>
+          </div>
+          <div class="fill-feedback" id="wb4-7-fb"></div>
+        </div>
+      </div>
+      <div class="fill-item">
+        <div class="fill-item-num">8</div>
+        <div class="fill-item-content">
+          <div class="fill-sentence">Who ___ lives in Brazil?</div>
+          <div class="fill-controls">
+            <input class="fill-input" id="wb4-8" placeholder="…" maxlength="8">
+            <button class="check-btn" onclick="checkFill6('wb4-8','–','wb4-8-fb')">Kiểm tra</button>
+            <button class="reveal-btn" onclick="revealFill('wb4-8','–','wb4-8-fb')">Đáp án</button>
+          </div>
+          <div class="fill-feedback" id="wb4-8-fb"></div>
+          <div style="font-size:.75rem;color:var(--muted);margin-top:4px">💡 Subject question: "Who" = subject</div>
+        </div>
+      </div>
+    </div>
+
+    <p class="instruction" style="margin-top:8px">
+      <span class="part-label">b</span> Answer the questions in 4a about Megan and Andy &amp; Karen.
+    </p>
+    <div style="display:grid;gap:6px;margin-top:10px">
+      <div class="right-box">1. She last had a quiet Friday night in when she was a teenager.</div>
+      <div class="right-box">2. They prefer to go out on Saturday nights.</div>
+      <div class="right-box">3. She ate out (with friends) at least five times last month.</div>
+      <div class="right-box">4. Andy / Her husband always cooks.</div>
+      <div class="right-box">5. She's going to see her best friend's new band.</div>
+      <div class="right-box">6. He hardly ever goes to gigs (these days).</div>
+      <div class="right-box">7. Because the children are up by seven every day.</div>
+      <div class="right-box">8. Andy's mum / Karen's mother-in-law lives in Brazil.</div>
+    </div>
+  </div>
+
+</div>
+<!-- /tab-workbook -->
+
+</div><!-- /page-content -->
+
+<script>
+/* ═══════════════════════════════════════════
+   DRAG & DROP MATCHING — Exercise 1a
+═══════════════════════════════════════════ */
+const MATCH_DATA = [
+  { id:'visit',   verb:'visit',    ipa:'/ˈvɪzɪt/',   phrase:'relatives',                correct:'visit'    },
+  { id:'lie',     verb:'have',     ipa:'/hæv/',       phrase:'a lie-in',                 correct:'have'     },
+  { id:'concert', verb:'go to',    ipa:'/ɡəʊ tuː/',   phrase:'concerts / gigs / festivals', correct:'go to' },
+  { id:'chat',    verb:'chat',     ipa:'/tʃæt/',      phrase:'to friends online',        correct:'chat'     },
+  { id:'quiet',   verb:'have',     ipa:'/hæv/',       phrase:'a quiet night in',         correct:'have'     },
+  { id:'yoga',    verb:'do',       ipa:'/duː/',       phrase:'yoga',                     correct:'do'       },
+  { id:'meet',    verb:'meet up',  ipa:'/miːt ʌp/',   phrase:'with friends',             correct:'meet up'  },
+  { id:'tidy',    verb:'tidy up',  ipa:'/ˈtaɪdi ʌp/', phrase:'the house / the flat',    correct:'tidy up'  },
+  { id:'museum',  verb:'go to',    ipa:'/ɡəʊ tuː/',   phrase:'museums / art galleries',  correct:'go to'    },
+  { id:'ex',      verb:'do',       ipa:'/duː/',       phrase:'exercise',                 correct:'do'       },
+  { id:'dinner',  verb:'have',     ipa:'/hæv/',       phrase:'people round for dinner',  correct:'have'     },
+  { id:'meal',    verb:'go out',   ipa:'/ɡəʊ aʊt/',   phrase:'for a drink / meal',      correct:'go out'   },
+];
+
+let draggedVerb = null;
+let selectedVerb = null; // for mobile tap
+let matchState = {}; // phraseId -> verb placed
+
+function buildMatchGame() {
+  const verbPool = document.getElementById('verbs-pool');
+  const phrasesZones = document.getElementById('phrases-zones');
+  if (!verbPool || !phrasesZones) return;
+
+  verbPool.innerHTML = '';
+  phrasesZones.innerHTML = '';
+  matchState = {};
+
+  // Shuffle verbs for display
+  const shuffledVerbs = [...MATCH_DATA].sort(() => Math.random() - .5);
+  shuffledVerbs.forEach(item => {
+    const chip = document.createElement('div');
+    chip.className = 'verb-draggable';
+    chip.draggable = true;
+    chip.dataset.verb = item.verb;
+    chip.dataset.id = item.id;
+    chip.innerHTML = `<span class="drag-icon">⠿</span><span>${item.verb}</span><span class="coll-ipa" style="font-size:.7rem;margin-left:auto">${item.ipa}</span>`;
+
+    // Desktop drag
+    chip.addEventListener('dragstart', e => {
+      draggedVerb = { verb: item.verb, id: item.id, el: chip };
+      chip.classList.add('dragging');
+      e.dataTransfer.effectAllowed = 'move';
+    });
+    chip.addEventListener('dragend', () => chip.classList.remove('dragging'));
+
+    // Mobile tap
+    chip.addEventListener('click', () => {
+      if (chip.classList.contains('matched-done')) return;
+      document.querySelectorAll('.verb-draggable.selected-tap').forEach(c => c.classList.remove('selected-tap'));
+      if (selectedVerb && selectedVerb.el === chip) {
+        selectedVerb = null; return;
+      }
+      chip.classList.add('selected-tap');
+      selectedVerb = { verb: item.verb, id: item.id, el: chip };
+    });
+
+    verbPool.appendChild(chip);
+  });
+
+  // Shuffle phrases for drop zones
+  const shuffledPhrases = [...MATCH_DATA].sort(() => Math.random() - .5);
+  shuffledPhrases.forEach(item => {
+    const zone = document.createElement('div');
+    zone.className = 'phrase-drop-zone';
+    zone.dataset.phraseId = item.id;
+    zone.dataset.correct = item.correct;
+    zone.innerHTML = `
+      <span class="zone-phrase">${item.phrase}</span>
+      <span class="zone-slot" id="slot-${item.id}">kéo vào đây</span>`;
+
+    // Desktop drop
+    zone.addEventListener('dragover', e => { e.preventDefault(); zone.classList.add('drag-over'); });
+    zone.addEventListener('dragleave', () => zone.classList.remove('drag-over'));
+    zone.addEventListener('drop', e => {
+      e.preventDefault();
+      zone.classList.remove('drag-over');
+      if (!draggedVerb) return;
+      handleMatch(draggedVerb.verb, draggedVerb.id, draggedVerb.el, zone, item);
+      draggedVerb = null;
+    });
+
+    // Mobile tap on zone
+    zone.addEventListener('click', () => {
+      if (!selectedVerb) return;
+      if (zone.classList.contains('correct-match')) return;
+      handleMatch(selectedVerb.verb, selectedVerb.id, selectedVerb.el, zone, item);
+      document.querySelectorAll('.verb-draggable.selected-tap').forEach(c => c.classList.remove('selected-tap'));
+      selectedVerb = null;
+    });
+
+    phrasesZones.appendChild(zone);
+  });
+  updateMatchScore();
+}
+
+function handleMatch(verb, verbId, verbEl, zone, phraseItem) {
+  const correct = phraseItem.correct;
+  const slot = document.getElementById('slot-' + phraseItem.id);
+
+  if (verb === correct) {
+    // Correct!
+    zone.classList.add('correct-match');
+    zone.classList.remove('wrong-match');
+    slot.textContent = verb;
+    slot.style.background = 'var(--green)';
+    slot.style.color = '#fff';
+    slot.style.border = 'none';
+    slot.style.fontWeight = '700';
+    // Add badge
+    const badge = document.createElement('span');
+    badge.className = 'match-feedback-badge badge-correct';
+    badge.textContent = '✓ Correct!';
+    zone.appendChild(badge);
+    setTimeout(() => badge.remove(), 2000);
+    // Mark verb chip as done (allow reuse since have/do/go to appear multiple times)
+    matchState[phraseItem.id] = verb;
+    updateMatchScore();
+  } else {
+    // Wrong!
+    zone.classList.add('wrong-match');
+    const badge = document.createElement('span');
+    badge.className = 'match-feedback-badge badge-wrong';
+    badge.textContent = '✗ Try again!';
+    zone.appendChild(badge);
+    setTimeout(() => {
+      zone.classList.remove('wrong-match');
+      badge.remove();
+    }, 1200);
+  }
+}
+
+function updateMatchScore() {
+  const done = Object.keys(matchState).length;
+  const badge = document.getElementById('match-score-badge');
+  if (badge) {
+    badge.textContent = `${done} / 12 matched`;
+    if (done === 12) {
+      badge.style.background = 'var(--green)';
+      badge.style.color = '#fff';
+      badge.style.borderColor = 'var(--green)';
+      showMatchResult('🎉 Xuất sắc! Bạn đã ghép đúng tất cả 12 cặp!', true);
+    }
+  }
+}
+
+function checkAllMatches() {
+  const zones = document.querySelectorAll('.phrase-drop-zone');
+  let correct = 0;
+  zones.forEach(z => {
+    if (z.classList.contains('correct-match')) correct++;
+  });
+  const remaining = 12 - correct;
+  if (remaining === 0) {
+    showMatchResult('🎉 Perfect! Tất cả đều đúng!', true);
+  } else {
+    showMatchResult(`✅ ${correct}/12 đúng. Còn ${remaining} cặp chưa ghép hoặc chưa đúng.`, false);
+  }
+}
+
+function showMatchResult(msg, success) {
+  const el = document.getElementById('match-result-msg');
+  if (!el) return;
+  el.textContent = msg;
+  el.style.display = 'block';
+  el.style.background = success ? 'var(--green-l)' : 'var(--orange-l)';
+  el.style.border = `1px solid ${success ? 'rgba(16,185,129,.3)' : 'rgba(245,158,11,.3)'}`;
+  el.style.color = success ? 'var(--green)' : 'var(--orange)';
+}
+
+function resetMatchGame() {
+  document.getElementById('match-result-msg').style.display = 'none';
+  buildMatchGame();
+}
+
+function revealAllMatches() {
+  MATCH_DATA.forEach(item => {
+    const zone = document.querySelector(`.phrase-drop-zone[data-phrase-id="${item.id}"]`);
+    const slot = document.getElementById('slot-' + item.id);
+    if (zone && slot && !zone.classList.contains('correct-match')) {
+      zone.classList.add('correct-match');
+      slot.textContent = item.correct;
+      slot.style.background = 'var(--teal)';
+      slot.style.color = '#fff';
+      slot.style.border = 'none';
+      slot.style.fontWeight = '700';
+      matchState[item.id] = item.correct;
+    }
+  });
+  updateMatchScore();
+}
+
+/* ══════════════════════════════════════
+   COLLOCATION TOGGLE
+══════════════════════════════════════ */
+function toggleCollocations() {
+  const el = document.getElementById('collocations-answer');
+  const btn = document.getElementById('coll-toggle-btn');
+  const show = el.style.display === 'none';
+  el.style.display = show ? 'block' : 'none';
+  btn.textContent = show
+    ? '📚 Ẩn bảng từ vựng ▲'
+    : '📚 Xem bảng từ vựng đầy đủ với phiên âm & nghĩa tiếng Việt ▼';
+}
+
+/* ══════════════════════════════════════
+   ACTIVITY PANEL DATA + LOGIC
+══════════════════════════════════════ */
+const ACTIVITY_DATA = {
+  visit_relatives: {
+    phrase: 'visit relatives',
+    ipa: '/ˈvɪzɪt ˈrelətɪvz/',
+    vi: '🇻🇳 thăm người thân',
+    speakText: 'visit relatives',
+    questions: [
+      'How often do you visit relatives?',
+      'When did you last visit your grandparents?',
+      'Do you ever visit relatives at weekends?',
+      'Who do you visit most often?',
+    ],
+    answers: [
+      'About once a month. / Every weekend. / Not very often, actually.',
+      'Last Sunday. / A few weeks ago. / At Chinese New Year.',
+      'Yes, quite often. / No, I usually visit them during holidays.',
+      'My grandparents. / My cousins. / My aunt and uncle.',
+    ],
+    vocab: [
+      { word: 'relative', ipa: '/ˈrelətɪv/', vi: 'người thân trong gia đình' },
+      { word: 'grandparents', ipa: '/ˈɡrændpeərənts/', vi: 'ông bà' },
+      { word: 'aunt / uncle', ipa: '/ɑːnt/ /ˈʌŋkl/', vi: 'dì/cô / chú/bác' },
+      { word: 'cousin', ipa: '/ˈkʌzn/', vi: 'anh chị em họ' },
+      { word: 'once a month', ipa: '/wʌns ə mʌnθ/', vi: 'mỗi tháng một lần' },
+    ],
+    dialogue: [
+      { spk: 'A', line: 'How often do you visit relatives?' },
+      { spk: 'B', line: 'About once a month. My grandparents live quite far away.' },
+      { spk: 'A', line: 'How far? Do you drive or take the train?' },
+      { spk: 'B', line: 'I usually take the train. It takes about two hours.' },
+      { spk: 'A', line: 'That\'s quite a long journey. Do you enjoy it?' },
+      { spk: 'B', line: 'Yes! My grandmother always cooks amazing food.' },
+    ],
+  },
+  have_lie_in: {
+    phrase: 'have a lie-in',
+    ipa: '/hæv ə ˈlaɪ ɪn/',
+    vi: '🇻🇳 nằm ngủ nướng buổi sáng',
+    speakText: 'have a lie-in',
+    questions: [
+      'Do you ever have a lie-in at weekends?',
+      'When did you last have a lie-in?',
+      'How often do you have a lie-in?',
+      'What time do you usually get up on Sundays?',
+    ],
+    answers: [
+      'Yes, I love lie-ins! / Not really — I always wake up early.',
+      'Last Saturday. / I can\'t remember — I\'m always up early!',
+      'Every Sunday if I can. / Hardly ever — I have young children!',
+      'About 9 or 10. / Not until midday sometimes!',
+    ],
+    vocab: [
+      { word: 'lie-in', ipa: '/ˈlaɪ ɪn/', vi: 'nằm ngủ nướng (dậy muộn hơn bình thường)' },
+      { word: 'sleep in', ipa: '/sliːp ɪn/', vi: 'ngủ nướng (Anh-Mỹ)' },
+      { word: 'oversleep', ipa: '/ˌəʊvəˈsliːp/', vi: 'ngủ quá giờ' },
+      { word: 'wake up early/late', ipa: '/weɪk ʌp/', vi: 'thức dậy sớm/muộn' },
+      { word: 'alarm clock', ipa: '/əˈlɑːm klɒk/', vi: 'đồng hồ báo thức' },
+    ],
+    dialogue: [
+      { spk: 'A', line: 'Do you ever have a lie-in at weekends?' },
+      { spk: 'B', line: 'Oh yes! Every Sunday I sleep until about 10.' },
+      { spk: 'A', line: 'Really? That sounds amazing. I can never do that.' },
+      { spk: 'B', line: 'Why not? Don\'t you set an alarm?' },
+      { spk: 'A', line: 'My kids always wake me up at 6, even on Sundays!' },
+      { spk: 'B', line: 'Ha! I remember those days. Enjoy your lie-ins when you can!' },
+    ],
+  },
+  go_concerts: {
+    phrase: 'go to concerts / gigs / festivals',
+    ipa: '/ɡəʊ tuː ˈkɒnsəts/ /ɡɪɡz/ /ˈfestɪvlz/',
+    vi: '🇻🇳 đi xem hòa nhạc / biểu diễn / lễ hội âm nhạc',
+    speakText: 'go to concerts and gigs',
+    questions: [
+      'How often do you go to concerts or gigs?',
+      'When did you last go to a gig or festival?',
+      'Do you prefer small gigs or big concerts?',
+      'What type of music do you like listening to live?',
+    ],
+    answers: [
+      'About twice a year. / Quite often — maybe once a month.',
+      'Last month — I saw an amazing jazz band. / Last summer at a festival.',
+      'I prefer small gigs — more atmosphere! / Big concerts — the energy is incredible.',
+      'Rock / Pop / Jazz / Classical — I love it all live.',
+    ],
+    vocab: [
+      { word: 'gig', ipa: '/ɡɪɡ/', vi: 'buổi biểu diễn nhạc sống (informal = concert)' },
+      { word: 'festival', ipa: '/ˈfestɪvl/', vi: 'lễ hội âm nhạc (VD: Glastonbury)' },
+      { word: 'live music', ipa: '/laɪv ˈmjuːzɪk/', vi: 'nhạc sống' },
+      { word: 'venue', ipa: '/ˈvenjuː/', vi: 'địa điểm biểu diễn' },
+      { word: 'support act', ipa: '/səˈpɔːt ækt/', vi: 'ban nhạc mở màn' },
+    ],
+    dialogue: [
+      { spk: 'A', line: 'How often do you go to gigs?' },
+      { spk: 'B', line: 'Quite often — maybe two or three times a month.' },
+      { spk: 'A', line: 'Wow, that\'s a lot! Do you have a favourite venue?' },
+      { spk: 'B', line: 'Yes, there\'s a small jazz club near my flat. Amazing atmosphere.' },
+      { spk: 'A', line: 'Have you ever been to a big music festival?' },
+      { spk: 'B', line: 'Yes! I went to Glastonbury last year. It was absolutely incredible.' },
+    ],
+  },
+  chat_online: {
+    phrase: 'chat to friends online',
+    ipa: '/tʃæt tuː frendz ˈɒnlaɪn/',
+    vi: '🇻🇳 nói chuyện / nhắn tin với bạn bè qua mạng',
+    speakText: 'chat to friends online',
+    questions: [
+      'How often do you chat to friends online?',
+      'Which apps do you use to chat online?',
+      'Do you prefer chatting online or meeting in person?',
+      'Do you ever video call friends or family abroad?',
+    ],
+    answers: [
+      'Every day — mostly in the evenings. / A few times a week.',
+      'WhatsApp mainly. / I use Zalo and Messenger a lot.',
+      'Meeting in person — it\'s more personal. / Online is more convenient.',
+      'Yes, I call my family in Vietnam every week. / Not very often.',
+    ],
+    vocab: [
+      { word: 'chat', ipa: '/tʃæt/', vi: 'nói chuyện thoải mái / nhắn tin' },
+      { word: 'video call', ipa: '/ˈvɪdiəʊ kɔːl/', vi: 'gọi video' },
+      { word: 'messaging app', ipa: '/ˈmesɪdʒɪŋ æp/', vi: 'ứng dụng nhắn tin' },
+      { word: 'stay in touch', ipa: '/steɪ ɪn tʌtʃ/', vi: 'giữ liên lạc' },
+      { word: 'catch up with', ipa: '/kætʃ ʌp wɪð/', vi: 'hàn huyên, cập nhật tin tức' },
+    ],
+    dialogue: [
+      { spk: 'A', line: 'Do you chat to friends online much?' },
+      { spk: 'B', line: 'All the time! I have a WhatsApp group with my university friends.' },
+      { spk: 'A', line: 'That sounds fun. How many people are in the group?' },
+      { spk: 'B', line: 'About fifteen. We share photos, jokes, that kind of thing.' },
+      { spk: 'A', line: 'Do you ever video call people?' },
+      { spk: 'B', line: 'Yes — my sister lives in Australia so we video call every Sunday.' },
+    ],
+  },
+  quiet_night: {
+    phrase: 'have a quiet night in',
+    ipa: '/hæv ə ˈkwaɪət naɪt ɪn/',
+    vi: '🇻🇳 ở nhà tối yên tĩnh (không ra ngoài)',
+    speakText: 'have a quiet night in',
+    questions: [
+      'How often do you have a quiet night in?',
+      'What do you usually do on a quiet night in?',
+      'Do you prefer a quiet night in or going out?',
+      'When did you last have a really relaxing evening at home?',
+    ],
+    answers: [
+      'A few times a week — I\'m not really a party person.',
+      'I usually watch a series, read, or cook a nice meal.',
+      'It depends! Sometimes I just need to recharge at home.',
+      'Last Friday — I cooked pasta, watched a film, and went to bed early.',
+    ],
+    vocab: [
+      { word: 'night in', ipa: '/naɪt ɪn/', vi: 'buổi tối ở nhà' },
+      { word: 'cosy', ipa: '/ˈkəʊzi/', vi: 'ấm cúng, dễ chịu' },
+      { word: 'recharge', ipa: '/ˌriːˈtʃɑːdʒ/', vi: 'nạp lại năng lượng' },
+      { word: 'unwind', ipa: '/ˌʌnˈwaɪnd/', vi: 'thư giãn, xả stress' },
+      { word: 'binge-watch', ipa: '/ˈbɪndʒ wɒtʃ/', vi: 'xem liên tục nhiều tập phim' },
+    ],
+    dialogue: [
+      { spk: 'A', line: 'Are you going out this weekend?' },
+      { spk: 'B', line: 'No, I think I\'ll just have a quiet night in on Saturday.' },
+      { spk: 'A', line: 'That sounds nice! What will you do?' },
+      { spk: 'B', line: 'Order some food, watch a film, maybe read a bit.' },
+      { spk: 'A', line: 'What are you watching at the moment?' },
+      { spk: 'B', line: 'I\'m binge-watching a Korean drama. It\'s completely addictive!' },
+    ],
+  },
+  do_yoga: {
+    phrase: 'do yoga',
+    ipa: '/duː ˈjəʊɡə/',
+    vi: '🇻🇳 tập yoga',
+    speakText: 'do yoga',
+    questions: [
+      'Do you ever do yoga?',
+      'How often do you do yoga?',
+      'When did you start doing yoga?',
+      'What type of yoga do you do?',
+    ],
+    answers: [
+      'Yes, three times a week. / I\'ve tried it but it\'s not for me.',
+      'Every morning before work. / Just at weekends — I go to a class.',
+      'About two years ago — a friend recommended it.',
+      'Hatha yoga mainly. / Hot yoga — it\'s intense but great!',
+    ],
+    vocab: [
+      { word: 'yoga class', ipa: '/ˈjəʊɡə klɑːs/', vi: 'lớp học yoga' },
+      { word: 'stretch', ipa: '/stretʃ/', vi: 'giãn cơ, kéo căng' },
+      { word: 'meditation', ipa: '/ˌmedɪˈteɪʃn/', vi: 'thiền định' },
+      { word: 'flexible', ipa: '/ˈfleksɪbl/', vi: 'linh hoạt, dẻo dai' },
+      { word: 'mindfulness', ipa: '/ˈmaɪndflnəs/', vi: 'chánh niệm' },
+    ],
+    dialogue: [
+      { spk: 'A', line: 'How often do you do yoga?' },
+      { spk: 'B', line: 'Three times a week — Monday, Wednesday, and Friday mornings.' },
+      { spk: 'A', line: 'In the morning? What time do you get up?' },
+      { spk: 'B', line: 'About 6. It\'s hard at first but I feel amazing afterwards.' },
+      { spk: 'A', line: 'I\'ve always wanted to try yoga. Do you go to a class?' },
+      { spk: 'B', line: 'Yes, there\'s a great studio near the office. You should come!' },
+    ],
+  },
+  meet_friends: {
+    phrase: 'meet up with friends',
+    ipa: '/miːt ʌp wɪð frendz/',
+    vi: '🇻🇳 gặp gỡ bạn bè',
+    speakText: 'meet up with friends',
+    questions: [
+      'How often do you meet up with friends?',
+      'When did you last meet up with your close friends?',
+      'Where do you usually meet up — a café, restaurant, someone\'s house?',
+      'Do you find it difficult to meet up with friends now you\'re older?',
+    ],
+    answers: [
+      'Once or twice a week. / Not as often as I\'d like.',
+      'Last weekend — we went to a new restaurant.',
+      'Usually a café or bar. / We take turns hosting at home.',
+      'Yes, everyone\'s so busy! We have to plan weeks in advance.',
+    ],
+    vocab: [
+      { word: 'meet up', ipa: '/miːt ʌp/', vi: 'gặp gỡ (có kế hoạch)' },
+      { word: 'catch up', ipa: '/kætʃ ʌp/', vi: 'hàn huyên, tâm sự' },
+      { word: 'hang out', ipa: '/hæŋ aʊt/', vi: 'đi chơi cùng nhau (informal)' },
+      { word: 'close friend', ipa: '/kləʊs frend/', vi: 'bạn thân' },
+      { word: 'make plans', ipa: '/meɪk plænz/', vi: 'lên kế hoạch' },
+    ],
+    dialogue: [
+      { spk: 'A', line: 'How often do you meet up with friends?' },
+      { spk: 'B', line: 'About once a week if I can. Usually on Friday evenings.' },
+      { spk: 'A', line: 'That\'s nice. Where do you usually go?' },
+      { spk: 'B', line: 'We have a favourite bar near the station. We\'ve been going there for years.' },
+      { spk: 'A', line: 'The same group of friends?' },
+      { spk: 'B', line: 'Yes — we were all at university together. We\'ve stayed really close.' },
+    ],
+  },
+  tidy_up: {
+    phrase: 'tidy up the flat / house',
+    ipa: '/ˈtaɪdi ʌp ðə flæt/',
+    vi: '🇻🇳 dọn dẹp nhà / căn hộ',
+    speakText: 'tidy up the flat',
+    questions: [
+      'How often do you tidy up your flat or house?',
+      'Do you enjoy tidying up, or do you find it a chore?',
+      'When did you last do a big clean of your home?',
+      'Do you share the tidying up with anyone?',
+    ],
+    answers: [
+      'Every Saturday morning — it\'s a habit now.',
+      'I actually find it quite satisfying! / I hate it — I always put it off.',
+      'Last weekend — I did a proper deep clean.',
+      'Yes, my flatmate and I share the chores. / No, I live alone.',
+    ],
+    vocab: [
+      { word: 'tidy up', ipa: '/ˈtaɪdi ʌp/', vi: 'dọn dẹp, sắp xếp lại' },
+      { word: 'hoover / vacuum', ipa: '/ˈhuːvə/', vi: 'hút bụi' },
+      { word: 'do the washing-up', ipa: '/dʌ ðə ˈwɒʃɪŋ ʌp/', vi: 'rửa bát' },
+      { word: 'chore', ipa: '/tʃɔː/', vi: 'việc nhà nhàm chán' },
+      { word: 'put off', ipa: '/pʊt ɒf/', vi: 'trì hoãn, để sau' },
+    ],
+    dialogue: [
+      { spk: 'A', line: 'How often do you tidy up your flat?' },
+      { spk: 'B', line: 'I try to do it every Saturday morning.' },
+      { spk: 'A', line: 'I find tidying up so boring. Don\'t you?' },
+      { spk: 'B', line: 'Not really! I put on a podcast and it goes quite fast.' },
+      { spk: 'A', line: 'That\'s a good idea. What podcasts do you listen to?' },
+      { spk: 'B', line: 'All sorts — comedy, true crime, language learning...' },
+    ],
+  },
+  go_museums: {
+    phrase: 'go to museums / art galleries',
+    ipa: '/ɡəʊ tuː mjuːˈziːəmz/ /ɑːt ˈɡæləriz/',
+    vi: '🇻🇳 đi thăm bảo tàng / phòng tranh',
+    speakText: 'go to museums and art galleries',
+    questions: [
+      'How often do you go to museums or art galleries?',
+      'When did you last visit a museum?',
+      'Do you prefer museums or art galleries?',
+      'Is there a museum or gallery you\'d really like to visit?',
+    ],
+    answers: [
+      'Once or twice a year. / Quite often — there are so many free ones in London.',
+      'Last month — I went to the National History Museum.',
+      'I prefer art galleries — I find them more peaceful.',
+      'The Louvre in Paris. / The Museum of Modern Art in New York.',
+    ],
+    vocab: [
+      { word: 'exhibition', ipa: '/ˌeksɪˈbɪʃn/', vi: 'triển lãm' },
+      { word: 'permanent collection', ipa: '/ˈpɜːmənənt kəˈlekʃn/', vi: 'bộ sưu tập thường trực' },
+      { word: 'guided tour', ipa: '/ˈɡaɪdɪd tʊə/', vi: 'tham quan có hướng dẫn viên' },
+      { word: 'admission fee', ipa: '/ədˈmɪʃn fiː/', vi: 'phí vào cửa' },
+      { word: 'artwork', ipa: '/ˈɑːtwɜːk/', vi: 'tác phẩm nghệ thuật' },
+    ],
+    dialogue: [
+      { spk: 'A', line: 'Do you ever go to art galleries?' },
+      { spk: 'B', line: 'Yes, I love them! I try to go once a month.' },
+      { spk: 'A', line: 'Really? Are there good galleries near where you live?' },
+      { spk: 'B', line: 'Quite a few, yes. And most of them are free.' },
+      { spk: 'A', line: 'What kind of art do you like?' },
+      { spk: 'B', line: 'Contemporary art mainly. I find traditional painting a bit boring, honestly.' },
+    ],
+  },
+  do_exercise: {
+    phrase: 'do exercise',
+    ipa: '/duː ˈeksəsaɪz/',
+    vi: '🇻🇳 tập thể dục',
+    speakText: 'do exercise',
+    questions: [
+      'How often do you do exercise?',
+      'What kind of exercise do you do?',
+      'When did you last do some exercise?',
+      'Do you exercise alone or with other people?',
+    ],
+    answers: [
+      'Three or four times a week. / Not as often as I should!',
+      'I go running mainly. / I do weights at the gym.',
+      'This morning — I went for a 5km run.',
+      'I prefer exercising alone — I can go at my own pace.',
+    ],
+    vocab: [
+      { word: 'work out', ipa: '/wɜːk aʊt/', vi: 'tập thể dục (tại phòng gym)' },
+      { word: 'go for a run', ipa: '/ɡəʊ fər ə rʌn/', vi: 'đi chạy bộ' },
+      { word: 'gym membership', ipa: '/dʒɪm ˈmembəʃɪp/', vi: 'thẻ thành viên phòng gym' },
+      { word: 'fitness', ipa: '/ˈfɪtnəs/', vi: 'thể lực, sức khỏe thể chất' },
+      { word: 'warm up', ipa: '/wɔːm ʌp/', vi: 'khởi động' },
+    ],
+    dialogue: [
+      { spk: 'A', line: 'How often do you do exercise?' },
+      { spk: 'B', line: 'I try to go to the gym three times a week.' },
+      { spk: 'A', line: 'Impressive! What do you do there?' },
+      { spk: 'B', line: 'I do cardio and some weights. About an hour each time.' },
+      { spk: 'A', line: 'Do you ever exercise outside?' },
+      { spk: 'B', line: 'Yes! I love running in the park on Sunday mornings when it\'s quiet.' },
+    ],
+  },
+  people_round: {
+    phrase: 'have people round for dinner',
+    ipa: '/hæv ˈpiːpl raʊnd fə ˈdɪnə/',
+    vi: '🇻🇳 mời người đến nhà ăn tối',
+    speakText: 'have people round for dinner',
+    questions: [
+      'How often do you have people round for dinner?',
+      'When did you last cook dinner for friends or family?',
+      'Do you enjoy cooking for other people?',
+      'How many people do you usually invite?',
+    ],
+    answers: [
+      'About once a month — I love hosting.',
+      'Last Saturday — I made a Vietnamese feast for six people.',
+      'I love it! It\'s really satisfying when people enjoy your food.',
+      'Usually four to six — any more than that and it gets stressful.',
+    ],
+    vocab: [
+      { word: 'have people round', ipa: '/hæv ˈpiːpl raʊnd/', vi: 'mời người đến nhà' },
+      { word: 'host', ipa: '/həʊst/', vi: 'chủ nhà, người tổ chức' },
+      { word: 'pot luck dinner', ipa: '/pɒt lʌk ˈdɪnə/', vi: 'bữa tối mỗi người mang một món' },
+      { word: 'dinner party', ipa: '/ˈdɪnə pɑːti/', vi: 'bữa tiệc tối trang trọng tại nhà' },
+      { word: 'starter / main / dessert', ipa: '/ˈstɑːtə/ /meɪn/ /dɪˈzɜːt/', vi: 'món khai vị / chính / tráng miệng' },
+    ],
+    dialogue: [
+      { spk: 'A', line: 'Do you ever have people round for dinner?' },
+      { spk: 'B', line: 'Yes, about once a month. I love cooking for friends.' },
+      { spk: 'A', line: 'What do you usually cook?' },
+      { spk: 'B', line: 'It depends on the season. In winter I make stews and soups. In summer, I barbecue.' },
+      { spk: 'A', line: 'Sounds delicious! How many people do you usually invite?' },
+      { spk: 'B', line: 'Six is my limit. More than that and the kitchen becomes a disaster zone!' },
+    ],
+  },
+  go_meal: {
+    phrase: 'go out for a drink / meal',
+    ipa: '/ɡəʊ aʊt fər ə drɪŋk/ /miːl/',
+    vi: '🇻🇳 đi uống / ăn ngoài nhà hàng',
+    speakText: 'go out for a meal',
+    questions: [
+      'How often do you go out for a meal?',
+      'When did you last go out for dinner?',
+      'What type of restaurant do you like going to?',
+      'Do you prefer going out for a meal or cooking at home?',
+    ],
+    answers: [
+      'About once a week — there are so many great restaurants near me.',
+      'Last Friday — we tried a new Vietnamese place.',
+      'Japanese or Italian mainly. / I love trying street food.',
+      'Going out — no washing up! / Cooking at home is healthier and cheaper.',
+    ],
+    vocab: [
+      { word: 'go out for a meal', ipa: '/ɡəʊ aʊt fər ə miːl/', vi: 'đi ăn ngoài' },
+      { word: 'book a table', ipa: '/bʊk ə ˈteɪbl/', vi: 'đặt bàn' },
+      { word: 'takeaway', ipa: '/ˈteɪkəweɪ/', vi: 'đồ ăn mang về' },
+      { word: 'split the bill', ipa: '/splɪt ðə bɪl/', vi: 'chia tiền hóa đơn' },
+      { word: 'cuisine', ipa: '/kwɪˈziːn/', vi: 'ẩm thực (của một nước/vùng)' },
+    ],
+    dialogue: [
+      { spk: 'A', line: 'How often do you go out for a meal?' },
+      { spk: 'B', line: 'Maybe once or twice a week. I live in an area with lots of restaurants.' },
+      { spk: 'A', line: 'What kind of food do you like?' },
+      { spk: 'B', line: 'I love Vietnamese food — I go to a little place round the corner quite often.' },
+      { spk: 'A', line: 'Do you always book a table or just turn up?' },
+      { spk: 'B', line: 'Usually book — it gets very busy at weekends.' },
+    ],
+  },
+};
+
+function showActivityPanel(key, chipEl) {
+  const data = ACTIVITY_DATA[key];
+  if (!data) return;
+
+  // Toggle: if same chip clicked again, close
+  if (chipEl.classList.contains('active-chip')) {
+    closeActivityPanel();
+    return;
+  }
+
+  // Deselect all chips
+  document.querySelectorAll('.activity-chip').forEach(c => c.classList.remove('active-chip'));
+  chipEl.classList.add('active-chip');
+
+  // Fill header
+  document.getElementById('adp-phrase').textContent = data.phrase;
+  document.getElementById('adp-ipa').textContent = data.ipa;
+  document.getElementById('adp-vi').textContent = data.vi;
+  const spkBtn = document.getElementById('adp-speak');
+  spkBtn.dataset.text = data.speakText;
+
+  // Fill questions
+  const qEl = document.getElementById('adp-questions');
+  qEl.innerHTML = data.questions.map(q =>
+    `<div class="adp-q-item" onclick="spk('${q.replace(/'/g,"\\'")}')">
+       <span class="adp-q-icon">💬</span><span>${q}</span>
+       <span style="margin-left:auto;font-size:.7rem;color:var(--muted)">🔊</span>
+     </div>`
+  ).join('');
+
+  // Fill answers
+  const aEl = document.getElementById('adp-answers');
+  aEl.innerHTML = data.answers.map(a =>
+    `<div class="adp-a-item">✅ ${a}</div>`
+  ).join('');
+
+  // Fill vocab
+  const vEl = document.getElementById('adp-vocab');
+  vEl.innerHTML = data.vocab.map(v =>
+    `<div class="adp-vocab-item">
+       <span class="adp-vocab-word">${v.word}</span>
+       <span class="adp-vocab-ipa">${v.ipa}</span>
+       <span class="adp-vocab-vi">${v.vi}</span>
+       <button class="speak-mini" onclick="spk('${v.word}')" style="margin-left:auto;width:26px;height:26px;font-size:.75rem">🔊</button>
+     </div>`
+  ).join('');
+
+  // Fill dialogue
+  const dEl = document.getElementById('adp-dialogue');
+  dEl.innerHTML = data.dialogue.map(line =>
+    `<div class="adp-dialogue-line">
+       <span class="${line.spk==='A'?'adp-spk-a':'adp-spk-b'}">${line.spk}</span>
+       <span>${line.line}</span>
+       <button class="speak-mini" onclick="spk('${line.line.replace(/'/g,"\\'")}')">🔊</button>
+     </div>`
+  ).join('');
+
+  // Show panel
+  const panel = document.getElementById('activity-panel');
+  panel.style.display = 'block';
+  panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+function closeActivityPanel() {
+  document.getElementById('activity-panel').style.display = 'none';
+  document.querySelectorAll('.activity-chip').forEach(c => c.classList.remove('active-chip'));
+}
+
+/* ── CSS for active chip ── */
+const style = document.createElement('style');
+style.textContent = `
+  .activity-chip.active-chip {
+    background:var(--blue-l);border-color:rgba(37,99,235,.5);
+    color:#93C5FD;font-weight:600;
+  }
+  .verb-draggable.selected-tap {
+    background:var(--orange-l);border-color:var(--orange);color:var(--orange);
+    box-shadow:0 0 0 2px rgba(245,158,11,.3);
+  }
+`;
+document.head.appendChild(style);
+
+// ── Theme ──
+function toggleTheme(){
+  const t=document.documentElement.getAttribute('data-theme')==='light'?'dark':'light';
+  document.documentElement.setAttribute('data-theme',t==='light'?'light':'');
+  document.getElementById('theme-btn').textContent=t==='light'?'🌙':'☀️';
+  localStorage.setItem('f2f_theme',t);
+}
+(function(){const t=localStorage.getItem('f2f_theme')||'dark';if(t==='light'){document.documentElement.setAttribute('data-theme','light');document.getElementById('theme-btn').textContent='🌙';}})();
+
+// ── Tabs ──
+function showTab(id){
+  document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tnav-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+  const tabs=['vocab','reading','listening','grammar','getready','langsummary','workbook'];
+  const idx=tabs.indexOf(id);
+  document.querySelectorAll('.tnav-btn')[idx]?.classList.add('active');
+  saveProgress(id);
+}
+
+// ── Progress ──
+function saveProgress(tab){
+  const done=JSON.parse(localStorage.getItem('f2f_1a_done')||'[]');
+  if(!done.includes(tab))done.push(tab);
+  localStorage.setItem('f2f_1a_done',JSON.stringify(done));
+}
+function markDone(){
+  ['vocab','reading','listening','grammar','getready','langsummary','workbook'].forEach(t=>saveProgress(t));
+  alert('✅ 1A Be happy! đã đánh dấu hoàn thành!');
+}
+
+// ── Init ──
+document.addEventListener('DOMContentLoaded', () => {
+  buildMatchGame();
+});
+
+// ── QA Toggle ──
+function toggleQA(id){
+  const el=document.getElementById(id);
+  el.classList.toggle('open');
+}
+
+// ── Vocab collocations ──
+function showCollocations(){
+  const el=document.getElementById('collocations-answer');
+  el.style.display=el.style.display==='none'?'block':'none';
+}
+function selectPhrase(el,id){el.classList.toggle('selected');}
+function toggleChip(el){el.classList.toggle('selected');}
+
+// ── Reading ──
+const articleRank={genes:1,married:2,friends:3,notwanting:4,helping:5,religion:6,attractive:7,growing:8,money:9,intelligence:10};
+function showArticleRanking(){
+  Object.entries(articleRank).forEach(([k,v])=>{
+    const el=document.getElementById('rn-'+k);
+    if(el){el.textContent=v;el.style.background='var(--blue)';el.style.color='#fff';}
+  });
+}
+function resetRanking(){
+  Object.keys(articleRank).forEach(k=>{
+    const el=document.getElementById('rn-'+k);
+    if(el){el.textContent='—';el.style.background='';el.style.color='';}
+  });
+}
+let articleShown=false;
+function toggleArticle(){
+  articleShown=!articleShown;
+  document.getElementById('full-article').style.display=articleShown?'block':'none';
+  document.getElementById('article-toggle-btn').textContent=articleShown?'🔼 Ẩn bài báo':'📖 Hiện bài báo đầy đủ (p112)';
+}
+
+// ── Listening ──
+let audioPlaying=false;
+function toggleAudio(){
+  const audio=document.getElementById('audio-player');
+  const btn=document.getElementById('play-btn');
+  if(audioPlaying){audio.pause();btn.textContent='▶';audioPlaying=false;}
+  else{
+    audio.play().catch(()=>{
+      alert('⚠️ Không tìm thấy file audio. Vui lòng thêm file "cd1_track1.mp3" vào thư mục "/audio/"');
+    });
+    btn.textContent='⏸';audioPlaying=true;
+  }
+}
+function audioEnded(){document.getElementById('play-btn').textContent='▶';audioPlaying=false;}
+function updateProgress(){
+  const audio=document.getElementById('audio-player');
+  const fill=document.getElementById('audio-progress');
+  if(audio.duration){fill.style.width=(audio.currentTime/audio.duration*100)+'%';}
+}
+function showListeningAnswers(){
+  const el=document.getElementById('listening-answers-4b');
+  el.style.display=el.style.display==='none'?'block':'none';
+}
+
+// ── Grammar fill ──
+const answers6={'fi6-2':'have','fi6-3':'–','fi6-4':'do','fi6-5':'are','fi6-6':'did','fi6-7':'have','fi6-8':'–','fi6-9':'did','fi6-10':'are'};
+const explanations6={
+  'fi6-2':'Present Perfect → have (How long have you lived...)',
+  'fi6-3':'Subject question: "Who" = subject → no auxiliary needed',
+  'fi6-4':'Present Simple → do (What time do you get up...)',
+  'fi6-5':'Present Continuous → are (Why are you studying...)',
+  'fi6-6':'Past Simple → did (Where did you go...)',
+  'fi6-7':'Present Perfect → have (How many countries have you visited...)',
+  'fi6-8':'Subject question: "Who" = subject → no auxiliary needed',
+  'fi6-9':'Past Simple → did (What did you do...)',
+  'fi6-10':'Present Continuous → are (What are you planning...)'
+};
+function checkFill6(inputId,ans,fbId){
+  const inp=document.getElementById(inputId);
+  const fb=document.getElementById(fbId);
+  if(!inp||!fb)return;
+  const val=inp.value.trim().toLowerCase();
+  const correct=ans.toLowerCase();
+  const ok=val===correct||(correct==='–'&&(val==='-'||val===''||val==='x'||val==='nothing'));
+  inp.className='fill-input '+(ok?'correct':'wrong');
+  fb.textContent=ok?`✅ Correct! "${ans}" — ${explanations6[inputId]||''}`:`❌ Wrong. Answer: "${ans}" — ${explanations6[inputId]||''}`;
+  fb.className='fill-feedback '+(ok?'show-ok':'show-err');
+}
+function revealFill(inputId,ans,fbId){
+  const inp=document.getElementById(inputId);
+  const fb=document.getElementById(fbId);
+  if(!inp||!fb)return;
+  inp.value=ans;inp.className='fill-input correct';
+  fb.textContent=`👁 Answer: "${ans}" — ${explanations6[inputId]||''}`;
+  fb.className='fill-feedback show-ok';
+}
+function checkAllFill6(){
+  let correct=0,total=0;
+  Object.entries(answers6).forEach(([inputId,ans])=>{
+    total++;
+    const inp=document.getElementById(inputId);
+    if(!inp)return;
+    const val=inp.value.trim().toLowerCase();
+    const ok=val===ans.toLowerCase()||(ans==='–'&&(val==='-'||val===''||val==='x'));
+    inp.className='fill-input '+(ok?'correct':'wrong');
+    if(ok)correct++;
+    const fbId='fb'+inputId.slice(2);
+    const fb=document.getElementById(fbId);
+    if(fb){fb.textContent=ok?`✅ "${ans}"`:`❌ Correct: "${ans}"`;fb.className='fill-feedback '+(ok?'show-ok':'show-err');}
+  });
+  const score=document.getElementById('score6');
+  score.innerHTML=`<div class="score-num">${correct}/${total}</div><div class="score-msg">${correct===total?'🎉 Perfect! Well done!':correct>=total*.6?'👍 Good effort! Review the wrong ones.':'📚 Keep studying! Check GRAMMAR 1.1 p128.'}</div>`;
+  score.className='score-box show';
+}
+function revealAllFill6(){Object.entries(answers6).forEach(([id,ans])=>revealFill(id,ans,'fb'+id.slice(2)));}
+function resetFill6(){
+  Object.keys(answers6).forEach(id=>{
+    const inp=document.getElementById(id);if(inp){inp.value='';inp.className='fill-input';}
+    const fb=document.getElementById('fb'+id.slice(2));if(fb){fb.className='fill-feedback';fb.textContent='';}
+  });
+  const score=document.getElementById('score6');if(score)score.className='score-box';
+}
+
+// ── Workbook helpers ──
+function toggleChipWB(el){el.classList.toggle('selected');}
+function showWBAns(id){const e=document.getElementById(id);if(e)e.style.display=e.style.display==='none'?'block':'none';}
+function checkWBQ(inputId, correct, fbId){
+  const inp=document.getElementById(inputId);
+  const fb=document.getElementById(fbId);
+  if(!inp||!fb)return;
+  const val=inp.value.trim().toLowerCase().replace(/[?!.]+$/,'').replace(/\s+/g,' ');
+  const ans=correct.toLowerCase().replace(/[?!.]+$/,'').replace(/\s+/g,' ');
+  // flexible check — allow word-order variations
+  const words=ans.split(' ');
+  const matchCount=words.filter(w=>val.includes(w)).length;
+  const ok=val===ans||matchCount>=words.length-1;
+  inp.style.borderColor=ok?'var(--green)':'var(--red)';
+  fb.textContent=ok?`✅ Correct: "${correct}"`:`❌ Check your answer. Suggested: "${correct}"`;
+  fb.className='fill-feedback '+(ok?'show-ok':'show-err');
+}
+function revealWBQ(inputId, correct, fbId){
+  const inp=document.getElementById(inputId);
+  const fb=document.getElementById(fbId);
+  if(!inp||!fb)return;
+  inp.value=correct;inp.style.borderColor='var(--green)';
+  fb.textContent=`👁 Answer: "${correct}"`;
+  fb.className='fill-feedback show-ok';
+}
+
+function speakSentence(text){
+  if('speechSynthesis' in window){
+    const u=new SpeechSynthesisUtterance(text);u.lang='en-GB';u.rate=0.8;speechSynthesis.speak(u);
+  }
+}
+function readAloud(){
+  const text=document.getElementById('share-text')?.value;
+  if(text)speakSentence(text);
+}
+function saveNote(){
+  const text=document.getElementById('share-text')?.value;
+  if(text){localStorage.setItem('f2f_1a_note',text);alert('💾 Saved!');}
+}
+(function(){const n=localStorage.getItem('f2f_1a_note');if(n&&document.getElementById('share-text'))document.getElementById('share-text').value=n;})();
+</script>
+</body>
+</html>
