@@ -35,7 +35,6 @@
       line-height:1.5;
       transition:background var(--tr), color var(--tr);
     }
-    /* scrollbar */
     ::-webkit-scrollbar{width:6px;height:6px}
     ::-webkit-scrollbar-track{background:var(--bg3);border-radius:4px}
     ::-webkit-scrollbar-thumb{background:var(--muted);border-radius:4px}
@@ -183,7 +182,6 @@
       margin:0 auto;
       padding:0 24px 48px;
     }
-    /* hero */
     .hero {
       background:linear-gradient(135deg,rgba(139,92,246,.1),rgba(37,99,235,.05));
       border-radius:var(--r);
@@ -215,7 +213,6 @@
     .stat-number {font-size:1.8rem;font-weight:800;color:var(--purple);}
     .stat-label {font-size:.75rem;color:var(--dim);text-transform:uppercase;}
 
-    /* progress overall */
     .progress-global {
       background:var(--bg2);
       border-radius:var(--r);
@@ -237,7 +234,6 @@
       border-radius:20px;
       transition:width .3s;
     }
-    /* status chips */
     .status-badge {
       font-size:.7rem;
       padding:3px 10px;
@@ -248,7 +244,7 @@
     .status-progress {background:var(--orange-l);color:var(--orange);}
     .status-pending {background:var(--bg3);color:var(--dim);}
 
-    /* ========== UNIT CARDS (Sync style 1A) ========== */
+    /* ========== UNIT CARDS ========== */
     .unit-section {
       margin-bottom:48px;
     }
@@ -337,7 +333,7 @@
       background:var(--purple-l);
     }
 
-    /* ========== CENTERS (VOCAB/GRAMMAR/FAV) ========== */
+    /* ========== CENTERS ========== */
     .tab-centers {
       display:flex;
       gap:8px;
@@ -397,7 +393,6 @@
     .vocab-meaning{color:var(--orange);font-size:.8rem;flex:1;}
     .bookmark-star{cursor:pointer;font-size:1rem;color:var(--muted);}
     .bookmark-star.active-star{color:var(--orange);}
-
     .grammar-list .grammar-item {
       padding:14px;
       border-bottom:1px solid var(--border);
@@ -457,7 +452,6 @@
 </div>
 
 <div class="container">
-  <!-- Hero + Stats -->
   <div class="hero">
     <h1>Face2Face Intermediate</h1>
     <p>Student's Book & Workbook — Complete learning dashboard</p>
@@ -469,7 +463,6 @@
     </div>
   </div>
 
-  <!-- Progress Global Bar -->
   <div class="progress-global">
     <div class="progress-header"><span>📈 Learning Progress</span><span id="progressLabel">0%</span></div>
     <div class="progress-bar-bg"><div class="progress-fill-global" id="globalFillBar"></div></div>
@@ -480,10 +473,8 @@
     </div>
   </div>
 
-  <!-- UNIT CARDS (dynamic) -->
   <div id="unitsContainer"></div>
 
-  <!-- CENTERS TABS (Vocab, Grammar, Favorites, Study Plan) -->
   <div class="tab-centers">
     <button class="center-tab active" data-center="vocab">📖 Vocabulary Index</button>
     <button class="center-tab" data-center="grammar">📐 Grammar Index</button>
@@ -511,35 +502,117 @@
 </div>
 
 <script>
-// ==================== DATA MODEL (Full Units 1-12, each with SB + WB) ====================
-const UNITS = [];
-// Mapping ten file thuc te dua tren ten file mau (1A_Be_happy.html, 1C_Join_the_club.html)
+// ==================== CHUẨN CẤU TRÚC GIÁO TRÌNH (DỰA TRÊN PDF) ====================
+// Mapping tên bài học và Real World theo đúng Student's Book
+const LESSON_TITLES = {
+  '1A': 'Be happy!', '1B': 'Love it or hate it', '1C': 'Join the club!', '1D': 'Nice to meet you',
+  '2A': 'Slow down!', '2B': 'Street food', '2C': 'Sleepless nights', '2D': 'What’s the matter?',
+  '3A': 'The tourist trade', '3B': 'Lonely Planet', '3C': 'Voluntourism', '3D': 'A trip to India',
+  '4A': 'Musical experiences', '4B': 'Modern adventurers', '4C': 'Unusual days out', '4D': 'It’s only a game!',
+  '5A': 'Our new home', '5B': 'A load of old junk', '5C': 'Birthdays', '5D': 'Things I need',
+  '6A': 'Make up your mind', '6B': 'Fear of failure', '6C': 'Touch wood', '6D': 'The village festival',
+  '7A': 'Have a go!', '7B': 'What would you do?', '7C': 'Social networking', '7D': 'Can you tell me ...?',
+  '8A': 'Angry planet', '8B': 'Recycle!', '8C': 'Dangers at sea', '8D': 'A hiking trip',
+  '9A': 'Get healthy!', '9B': 'Good news, bad news', '9C': 'Human behaviour', '9D': 'At the doctor’s',
+  '10A': 'The anniversary', '10B': 'Who’s that?', '10C': 'I do!', '10D': 'Do you mind if I ...?',
+  '11A': 'Any messages?', '11B': 'How did it go?', '11C': 'Undercover', '11D': 'It’s my first day',
+  '12A': 'I wish!', '12B': 'Important moments', '12C': 'Superheroes', '12D': 'End of Course Review'
+};
+// Real World theo từng bài (trích từ PDF)
+const REAL_WORLD = {
+  '1D': 'question tags',
+  '2D': 'showing concern, giving and responding to advice',
+  '3D': 'asking for and making recommendations',
+  '4D': 'softening opinions and making generalisations',
+  '5D': 'explaining what you need',
+  '6D': 'discussion language',
+  '7D': 'indirect and direct questions',
+  '8D': 'warnings and advice',
+  '9D': 'what doctors say; what patients say',
+  '10D': 'asking for, giving and refusing permission',
+  '11D': 'checking information',
+  '12D': 'End of Course Review'
+};
+// Grammar Focus theo từng bài
+const GRAMMAR_FOCUS = {
+  '1A': 'question forms',
+  '1B': 'positive and negative verb forms, words and phrases',
+  '1C': 'prepositions with adjectives',
+  '2A': 'be able to, be supposed to, be allowed to, modal verbs (1)',
+  '2B': 'Present Continuous and Present Simple',
+  '3A': 'Present Perfect Simple: experience, unfinished past and recent events',
+  '3B': 'Present Perfect Continuous and Present Perfect Simple',
+  '4A': 'Past Simple and Past Continuous; used to',
+  '4B': 'Past Perfect',
+  '5A': 'making comparisons: comparatives, superlatives, (not) as … as, etc.',
+  '5B': 'the future: will, be going to, Present Continuous',
+  '6A': 'first conditional and future time clauses',
+  '6B': 'zero conditional; conditionals with imperatives and modal verbs; in case',
+  '7A': 'ability: be able to, manage, be useless at, etc.',
+  '7B': 'second conditional',
+  '8A': 'the passive',
+  '8B': 'quantifiers: a bit of, too much/many, (not) enough, plenty of, etc.',
+  '9A': 'relative clauses with who, that, which, whose, where and when',
+  '9B': 'Present Perfect Simple active and passive for recent events',
+  '10A': 'was/were going to, was/were supposed to',
+  '10B': 'modal verbs (2): making deductions',
+  '11A': 'reported speech: sentences',
+  '11B': 'reported speech: questions, requests and imperatives',
+  '12A': 'wishes',
+  '12B': 'third conditional'
+};
+// Vocabulary Focus
+const VOCAB_FOCUS = {
+  '1A': 'weekend activities', '1B': 'likes and dislikes', '1C': 'adjectives (1): feelings',
+  '2A': 'collocations (1): work', '2B': 'food and ways of cooking', '2C': 'sleep; gradable and strong adjectives; adverbs',
+  '3A': 'phrasal verbs (1): travel', '3B': 'phrases with travel, get and go on', '3C': 'word building (1): suffixes for adjectives and nouns',
+  '4A': 'collocations (2): music', '4B': 'adjectives (2): character', '4C': 'guessing meaning from context',
+  '5A': 'homes', '5B': 'phrasal verbs (2)', '5C': 'verb patterns (1)', '5D': 'materials',
+  '6A': 'make and do', '6B': 'reflexive pronouns', '6C': 'synonyms',
+  '7A': 'goals and achievements', '7B': 'computers (1)', '7C': 'computers (2); articles: a, an, the, no article',
+  '8A': 'bad weather and natural disasters', '8B': 'containers', '8C': 'word building (2): prefixes and opposites, other prefixes and suffixes',
+  '9A': 'health', '9B': 'collocations (3): the news', '9C': 'body movements and responses; connecting words',
+  '10A': 'contacting people', '10B': 'describing people', '10C': 'phrasal verbs (3)',
+  '11A': 'things people do at work', '11B': 'adjectives (3): jobs', '11C': 'verb patterns (2): reporting verbs',
+  '12A': 'informal words and phrases', '12B': 'phrases with get', '12C': 'word building (3): word families'
+};
+
 function getLessonFile(unit, letter, type) {
   if(type === 'sb') {
+    // Mapping file cụ thể
     if(unit === 1 && letter === 'A') return '1A_Be_happy.html';
     if(unit === 1 && letter === 'C') return '1C_Join_the_club.html';
-    // Các lesson khác có thể đặt theo quy tắc: 1B.html, 1D.html, 2A.html ...
     return `${unit}${letter}.html`;
   } else {
     return `workbook_${unit}${letter}.html`;
   }
 }
 
+const UNITS = [];
 for(let u=1; u<=12; u++){
   const sbLessons = [];
   const wbLessons = [];
   const letters = ['A','B','C','D'];
-  const titles = {
-    'A':'Be happy!','B':'Love It or Hate It','C':'Join the club!','D':'Nice to Meet You'
-  };
   letters.forEach(letter=>{
-    sbLessons.push({ id:`${u}${letter}`, type:'sb', title:`${u}${letter} — ${titles[letter]}`, file:getLessonFile(u,letter,'sb') });
-    wbLessons.push({ id:`WB${u}${letter}`, type:'wb', title:`Workbook ${u}${letter}`, file:getLessonFile(u,letter,'wb') });
+    const lessonId = `${u}${letter}`;
+    const title = LESSON_TITLES[lessonId] || 'Lesson';
+    const vocab = VOCAB_FOCUS[lessonId] || '';
+    const grammar = GRAMMAR_FOCUS[lessonId] || '';
+    const realWorld = REAL_WORLD[lessonId] || '';
+    sbLessons.push({ 
+      id: lessonId, type:'sb', title: `${lessonId} — ${title}`,
+      vocab, grammar, realWorld,
+      file: getLessonFile(u, letter, 'sb') 
+    });
+    wbLessons.push({ 
+      id: `WB${lessonId}`, type:'wb', title: `Workbook ${lessonId} — ${title}`,
+      file: getLessonFile(u, letter, 'wb') 
+    });
   });
   UNITS.push({ unit:u, sb:sbLessons, wb:wbLessons });
 }
 
-// ========== PROGRESS STORAGE (localStorage) ==========
+// ========== PROGRESS STORAGE ==========
 const STORAGE_KEY = 'f2f_intermediate_progress';
 function loadProgress() {
   const saved = localStorage.getItem(STORAGE_KEY);
@@ -553,9 +626,6 @@ function loadProgress() {
 let progressMap = loadProgress();
 
 function saveProgress() { localStorage.setItem(STORAGE_KEY, JSON.stringify(progressMap)); }
-function updateLessonStatus(lessonId, status) { progressMap[lessonId]=status; saveProgress(); renderDashboard(); }
-
-// helper: get stats
 function getStats() {
   let total=0, done=0, progress=0;
   Object.keys(progressMap).forEach(id=>{
@@ -566,7 +636,6 @@ function getStats() {
   return {total, done, inprogress:progress, pending: total-done-progress, percent: total?Math.round((done/total)*100):0 };
 }
 
-// render units, cards, progress
 function renderDashboard() {
   const container = document.getElementById('unitsContainer');
   const stats = getStats();
@@ -591,9 +660,15 @@ function renderDashboard() {
       const status = progressMap[lesson.id] || 'pending';
       let statusText = status==='done'? '✅ Completed' : (status==='inprogress'? '🔄 In progress' : '📌 Not started');
       let statusClass = status==='done'? 'status-done' : (status==='inprogress'? 'status-progress' : 'status-pending');
+      // Hiển thị thêm vocab, grammar, realworld
+      let details = [];
+      if(lesson.vocab) details.push(`📖 ${lesson.vocab}`);
+      if(lesson.grammar) details.push(`📐 ${lesson.grammar}`);
+      if(lesson.realWorld) details.push(`💬 ${lesson.realWorld}`);
+      let detailsHtml = details.length ? `<div style="font-size:.7rem;color:var(--dim);margin-top:2px;">${details.join(' · ')}</div>` : '';
       html += `<div class="lesson-item">
-        <div class="lesson-info"><span class="lesson-type sb">SB</span><span class="lesson-name">${lesson.title}</span><span class="status-badge ${statusClass}">${statusText}</span></div>
-        <div class="lesson-stats"><button class="continue-btn" data-id="${lesson.id}" data-file="${lesson.file}" data-type="sb">📖 Continue</button>
+        <div class="lesson-info"><span class="lesson-type sb">SB</span><div><span class="lesson-name">${lesson.title}</span>${detailsHtml}</div><span class="status-badge ${statusClass}">${statusText}</span></div>
+        <div class="lesson-stats"><button class="continue-btn" data-file="${lesson.file}" data-id="${lesson.id}">📖 Continue</button>
         <select class="status-select" data-id="${lesson.id}" style="background:var(--bg3);border:1px solid var(--border);border-radius:20px;padding:4px 10px;font-size:.7rem;">
           <option value="pending" ${status==='pending'?'selected':''}>Not started</option>
           <option value="inprogress" ${status==='inprogress'?'selected':''}>In progress</option>
@@ -608,7 +683,7 @@ function renderDashboard() {
       let statusClass = status==='done'? 'status-done' : (status==='inprogress'? 'status-progress' : 'status-pending');
       html += `<div class="lesson-item">
         <div class="lesson-info"><span class="lesson-type wb">WB</span><span class="lesson-name">${lesson.title}</span><span class="status-badge ${statusClass}">${statusText}</span></div>
-        <div class="lesson-stats"><button class="continue-btn" data-id="${lesson.id}" data-file="${lesson.file}" data-type="wb">📖 Continue</button>
+        <div class="lesson-stats"><button class="continue-btn" data-file="${lesson.file}" data-id="${lesson.id}">📖 Continue</button>
         <select class="status-select" data-id="${lesson.id}" style="background:var(--bg3);border:1px solid var(--border);border-radius:20px;padding:4px 10px;font-size:.7rem;">
           <option value="pending" ${status==='pending'?'selected':''}>Not started</option>
           <option value="inprogress" ${status==='inprogress'?'selected':''}>In progress</option>
@@ -619,27 +694,25 @@ function renderDashboard() {
     html += `</div></div></div></div>`;
   });
   container.innerHTML = html;
-  // attach events
   document.querySelectorAll('.continue-btn').forEach(btn=>{
     btn.addEventListener('click',(e)=>{
       const file = btn.dataset.file;
       if(file) window.location.href = file;
-      else alert(`📘 Bài học "${btn.dataset.id}" đang được phát triển.`);
+      else alert(`📘 Bài học đang được phát triển.`);
     });
   });
   document.querySelectorAll('.status-select').forEach(sel=>{
     sel.addEventListener('change',(e)=>{
       const lessonId = sel.dataset.id;
-      const newStatus = sel.value;
-      progressMap[lessonId] = newStatus;
+      progressMap[lessonId] = sel.value;
       saveProgress();
       renderDashboard();
-      renderAllCenters(); // refresh vocab/grammar progress
+      renderAllCenters();
     });
   });
 }
 
-// ========== VOCABULARY INDEX (simulated from 1A + 1C) ==========
+// ========== VOCABULARY INDEX ==========
 const MASTER_VOCAB = [
   { word:'relative', ipa:'/ˈrelətɪv/', meaning:'người thân', unit:'1A', type:'noun', bookmarked:false },
   { word:'have a lie-in', ipa:'/hæv ə ˈlaɪ ɪn/', meaning:'ngủ nướng', unit:'1A', type:'phrase', bookmarked:false },
@@ -652,16 +725,13 @@ const MASTER_VOCAB = [
   { word:'embarrassed', ipa:'/ɪmˈbærəst/', meaning:'xấu hổ', unit:'1C', type:'adj', bookmarked:false },
   { word:'stressed', ipa:'/strest/', meaning:'căng thẳng', unit:'1C', type:'adj', bookmarked:false },
   { word:'keen on', ipa:'/kiːn ɒn/', meaning:'hứng thú với', unit:'1C', type:'prep phrase', bookmarked:false },
-  { word:'worried about', ipa:'/ˈwʌrid əbaʊt/', meaning:'lo lắng về', unit:'1C', type:'phrase', bookmarked:false },
-  { word:'question forms', ipa:'/ˈkwestʃən fɔːmz/', meaning:'dạng câu hỏi', unit:'1A', type:'grammar', bookmarked:false },
-  { word:'present perfect', ipa:'/ˈpreznt pəˈfekt/', meaning:'thì hiện tại hoàn thành', unit:'1A', type:'grammar', bookmarked:false }
+  { word:'worried about', ipa:'/ˈwʌrid əbaʊt/', meaning:'lo lắng về', unit:'1C', type:'phrase', bookmarked:false }
 ];
 
 function loadBookmarks() { const b=localStorage.getItem('f2f_vocab_favs'); if(b) JSON.parse(b).forEach(w=>{ let item=MASTER_VOCAB.find(v=>v.word===w); if(item) item.bookmarked=true; }); }
 function saveVocabBookmarks() { localStorage.setItem('f2f_vocab_favs', JSON.stringify(MASTER_VOCAB.filter(v=>v.bookmarked).map(v=>v.word))); }
-
 function renderVocabIndex(filter='all') {
-  let filtered = MASTER_VOCAB.filter(v=>filter==='all'?true:v.type===filter || (filter==='adj' && v.type==='adj')|| (filter==='noun'&&v.type==='noun')|| (filter==='phrase'&&v.type.includes('phrase')));
+  let filtered = MASTER_VOCAB.filter(v=>filter==='all'?true:v.type===filter);
   const container = document.getElementById('vocabListContainer');
   container.innerHTML = filtered.map(v=>`
     <div class="vocab-row">
@@ -681,11 +751,10 @@ function renderVocabIndex(filter='all') {
 }
 
 const GRAMMAR_POINTS = [
-  { point:'Question Forms (Present Simple, Continuous, Past, Perfect)', unit:'1A', explanation:'Auxiliary inversion + Wh-words + subject questions without do/does', example:'How often does Fiona teach yoga?' },
-  { point:'Subject vs Object Questions', unit:'1A', explanation:'When who/what is subject, no auxiliary', example:'Who visits them?' },
-  { point:'Prepositions with Adjectives', unit:'1C', explanation:'good at, interested in, worried about, fed up with...', example:'I\'m fed up with waiting.' },
-  { point:'Sentence Stress', unit:'1C', explanation:'Content words stressed (nouns, main verbs, adjectives); structure words weak', example:'She was ANgry about the DEcision.' },
-  { point:'-ed adjectives syllables', unit:'1C', explanation:'excited (3), stressed (1), annoyed (2)', example:'excited /ɪkˈsaɪtɪd/' }
+  { point:'Question Forms', unit:'1A', explanation:'Auxiliary inversion + Wh-words + subject questions', example:'How often does Fiona teach yoga?' },
+  { point:'Present Perfect Simple', unit:'3A', explanation:'Experience, unfinished past and recent events', example:'I\'ve lived in this country for three years.' },
+  { point:'Prepositions with Adjectives', unit:'1C', explanation:'good at, interested in, worried about...', example:'I\'m fed up with waiting.' },
+  { point:'Second Conditional', unit:'7B', explanation:'Imaginary situations', example:'If I lost my laptop, I\'d lose my job!' }
 ];
 
 function renderGrammarCenter(){
@@ -694,28 +763,23 @@ function renderGrammarCenter(){
     <div class="grammar-item"><div class="grammar-title">${g.point}</div><div class="grammar-unit">📌 Unit ${g.unit}</div><div style="font-size:.8rem;color:var(--dim);">${g.explanation}</div><div class="example-box" style="margin-top:6px;">📖 ${g.example}</div></div>
   `).join('');
 }
-// favorites
 function renderFavoritesPanel(){
   const favLessons = Object.keys(progressMap).filter(id=>progressMap[id]==='done').slice(0,12);
   const favVocab = MASTER_VOCAB.filter(v=>v.bookmarked);
-  const ldiv = document.getElementById('favLessonsList');
-  const vdiv = document.getElementById('favVocabList');
-  ldiv.innerHTML = `<div class="fav-grid">${favLessons.map(lid=>`<div class="fav-lesson"><span>✅ ${lid}</span><button class="continue-btn" onclick="alert('Go to lesson')">Resume</button></div>`).join('')}</div>`;
-  vdiv.innerHTML = `<div class="fav-grid">${favVocab.map(v=>`<div class="fav-lesson"><span><strong>${v.word}</strong> — ${v.meaning}</span></div>`).join('')}</div>`;
+  document.getElementById('favLessonsList').innerHTML = `<div class="fav-grid">${favLessons.map(lid=>`<div class="fav-lesson"><span>✅ ${lid}</span><button class="continue-btn" onclick="alert('Go to lesson')">Resume</button></div>`).join('')}</div>`;
+  document.getElementById('favVocabList').innerHTML = `<div class="fav-grid">${favVocab.map(v=>`<div class="fav-lesson"><span><strong>${v.word}</strong> — ${v.meaning}</span></div>`).join('')}</div>`;
 }
-// study plan
 function regenerateStudyPlan(){
   const pending = Object.keys(progressMap).filter(id=>progressMap[id]!=='done');
   const planHtml = pending.slice(0,7).map((id,idx)=>`<div style="padding:8px;border-bottom:1px solid var(--border);">📘 Day ${idx+1}: <strong>${id}</strong> — Complete vocabulary & grammar exercises</div>`).join('');
   document.getElementById('studyPlanItems').innerHTML = planHtml || '<p>🎉 All done! Keep reviewing.</p>';
 }
-// search engine
 function buildSearchIndex(){
   const lessonsIndex = [];
   UNITS.forEach(u=>{
     [...u.sb, ...u.wb].forEach(les=>{ lessonsIndex.push({ type:'lesson', title:les.title, id:les.id, unit:u.unit, file:les.file }); });
   });
-  const vocabIndex = MASTER_VOCAB.map(v=>({ type:'vocabulary', title:v.word, unit:v.unit, meaning:v.meaning, ipa:v.ipa }));
+  const vocabIndex = MASTER_VOCAB.map(v=>({ type:'vocabulary', title:v.word, unit:v.unit, meaning:v.meaning }));
   const grammarIndex = GRAMMAR_POINTS.map(g=>({ type:'grammar', title:g.point, unit:g.unit, explanation:g.explanation }));
   return [...lessonsIndex, ...vocabIndex, ...grammarIndex];
 }
@@ -739,7 +803,6 @@ window.openSearchResult = function(type,title,file){
   if(type==='lesson' && file) window.location.href = file;
   else alert(`🔍 "${title}" — hãy tìm trong bài học tương ứng.`);
 };
-// centers tabs
 function showCenterTab(tabId){
   document.querySelectorAll('.center-panel').forEach(p=>p.classList.remove('active'));
   document.querySelectorAll('.center-tab').forEach(t=>t.classList.remove('active'));
@@ -753,18 +816,15 @@ function showCenterTab(tabId){
 function toggleTheme(){const cur=document.documentElement.getAttribute('data-theme');const nv= cur==='light'?'dark':'light'; document.documentElement.setAttribute('data-theme',nv==='light'?'light':''); localStorage.setItem('f2f_theme',nv); document.getElementById('themeToggle').innerText=nv==='light'?'🌙':'☀️';}
 function resetAllProgress(){ if(confirm('Reset all learning progress?')){ progressMap = {}; UNITS.forEach(u=>{[...u.sb,...u.wb].forEach(l=>progressMap[l.id]='pending');}); saveProgress(); renderDashboard(); renderAllCenters();}}
 function renderAllCenters(){ renderVocabIndex('all'); renderGrammarCenter(); renderFavoritesPanel(); regenerateStudyPlan();}
-// init
 document.addEventListener('DOMContentLoaded',()=>{
   const savedTheme = localStorage.getItem('f2f_theme');
   if(savedTheme==='light'){document.documentElement.setAttribute('data-theme','light');document.getElementById('themeToggle').innerText='🌙';}
   renderDashboard();
   loadBookmarks();
   renderAllCenters();
-  // search
   const searchInput = document.getElementById('global-search');
   searchInput.addEventListener('input',(e)=>renderSearchResults(e.target.value));
   document.getElementById('clearSearchBtn').addEventListener('click',()=>{ searchInput.value=''; renderSearchResults(''); });
-  // vocab filter
   const filterDiv = document.getElementById('vocabFilterContainer');
   filterDiv.innerHTML = `<button class="filter-chip active-filter" data-filter="all">All</button><button class="filter-chip" data-filter="noun">Nouns</button><button class="filter-chip" data-filter="adj">Adjectives</button><button class="filter-chip" data-filter="phrase">Phrases</button>`;
   filterDiv.querySelectorAll('.filter-chip').forEach(chip=>{
