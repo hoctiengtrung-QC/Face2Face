@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>Face2Face Intermediate — Learning Portal</title>
+  <style>
+    /* ========== GLOBAL THEME (Sync 100% voi 1A, 1C) ========== */
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;1,700&display=swap');
+
+    :root {
+      --bg:#0D1117; --bg2:#161B22; --bg3:#21262D; --bg4:#2D333B;
+      --border:#30363D; --border2:#3D444D;
+      --text:#E6EDF3; --dim:#8B949E; --muted:#484F58;
+      --blue:#2563EB; --blue-l:rgba(37,99,235,.15);
+      --green:#10B981; --green-l:rgba(16,185,129,.12);
+      --orange:#F59E0B; --orange-l:rgba(245,158,11,.12);
+      --red:#EF4444; --red-l:rgba(239,68,68,.12);
+      --teal:#14B8A6; --purple:#8B5CF6; --purple-l:rgba(139,92,246,.12);
+      --r:12px; --r2:8px; --tr:.18s ease;
+    }
+    [data-theme=light] {
+      --bg:#F8FAFC; --bg2:#fff; --bg3:#F1F5F9; --bg4:#E2E8F0;
+      --border:#E2E8F0; --border2:#CBD5E1;
+      --text:#0F172A; --dim:#475569; --muted:#94A3B8;
+      --blue:#1D4ED8; --blue-l:rgba(29,78,216,.08);
+    }
+
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      font-family:'Inter',system-ui,sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      font-size:15px;
+      line-height:1.5;
+      transition:background var(--tr), color var(--tr);
+    }
+    /* scrollbar */
+    ::-webkit-scrollbar{width:6px;height:6px}
+    ::-webkit-scrollbar-track{background:var(--bg3);border-radius:4px}
+    ::-webkit-scrollbar-thumb{background:var(--muted);border-radius:4px}
+
+    /* ========== HEADER / TOPBAR ========== */
+    .top-bar {
+      background:var(--bg2);
+      border-bottom:1px solid var(--border);
+      padding:12px 28px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      flex-wrap:wrap;
+      gap:12px;
+      position:sticky;
+      top:0;
+      z-index:100;
+    }
+    .logo-area {
+      display:flex;
+      align-items:center;
+      gap:12px;
+    }
+    .logo {
+      font-family:'Playfair Display',serif;
+      font-size:1.35rem;
+      font-weight:800;
+      background:linear-gradient(135deg,var(--purple),var(--blue));
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+    }
+    .badge-pro {
+      background:var(--purple-l);
+      padding:4px 12px;
+      border-radius:30px;
+      font-size:.7rem;
+      font-weight:700;
+      color:var(--purple);
+      border:1px solid rgba(139,92,246,.3);
+    }
+    .top-actions {
+      display:flex;
+      gap:12px;
+      align-items:center;
+    }
+    .icon-btn {
+      width:38px;
+      height:38px;
+      border-radius:var(--r2);
+      background:var(--bg3);
+      border:1px solid var(--border);
+      color:var(--dim);
+      font-size:1rem;
+      cursor:pointer;
+      transition:all var(--tr);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+    .icon-btn:hover {
+      border-color:var(--purple);
+      color:var(--purple);
+      background:var(--purple-l);
+    }
+    .progress-header-btn {
+      background:var(--green);
+      color:#fff;
+      padding:6px 16px;
+      border-radius:40px;
+      font-size:.8rem;
+      font-weight:600;
+      border:none;
+      cursor:pointer;
+      transition:all var(--tr);
+    }
+    .progress-header-btn:hover{background:#059669;transform:translateY(-1px);}
+
+    /* ========== SEARCH BAR ========== */
+    .search-section {
+      max-width:760px;
+      margin:24px auto 16px;
+      padding:0 24px;
+    }
+    .search-wrapper {
+      background:var(--bg2);
+      border:1px solid var(--border);
+      border-radius:60px;
+      display:flex;
+      align-items:center;
+      padding:6px 6px 6px 20px;
+      transition:all var(--tr);
+    }
+    .search-wrapper:focus-within {
+      border-color:var(--purple);
+      box-shadow:0 0 0 3px var(--purple-l);
+    }
+    .search-icon {
+      color:var(--dim);
+      font-size:1.1rem;
+      margin-right:8px;
+    }
+    #global-search {
+      flex:1;
+      background:transparent;
+      border:none;
+      padding:12px 0;
+      font-size:.95rem;
+      color:var(--text);
+      outline:none;
+    }
+    .search-clear {
+      background:var(--bg3);
+      border:none;
+      border-radius:40px;
+      padding:6px 14px;
+      font-size:.7rem;
+      color:var(--dim);
+      cursor:pointer;
+    }
+    .search-results-panel {
+      background:var(--bg2);
+      border:1px solid var(--border);
+      border-radius:var(--r);
+      margin-top:12px;
+      padding:12px;
+      display:none;
+      max-height:320px;
+      overflow-y:auto;
+    }
+    .result-item {
+      padding:10px 14px;
+      border-bottom:1px solid var(--border);
+      cursor:pointer;
+      transition:background var(--tr);
+      border-radius:var(--r2);
+    }
+    .result-item:hover {background:var(--bg3);}
+    .result-unit {font-size:.7rem;color:var(--purple);font-weight:700;}
+    .result-title {font-weight:600;font-size:.85rem;}
+
+    /* ========== DASHBOARD LAYOUT ========== */
+    .container {
+      max-width:1280px;
+      margin:0 auto;
+      padding:0 24px 48px;
+    }
+    /* hero */
+    .hero {
+      background:linear-gradient(135deg,rgba(139,92,246,.1),rgba(37,99,235,.05));
+      border-radius:var(--r);
+      padding:32px 28px;
+      margin-bottom:32px;
+      border:1px solid var(--border);
+    }
+    .hero h1 {
+      font-family:'Playfair Display',serif;
+      font-size:2.2rem;
+      font-weight:800;
+      margin-bottom:8px;
+    }
+    .hero p {color:var(--dim);margin-bottom:20px;}
+    .stats-grid {
+      display:flex;
+      flex-wrap:wrap;
+      gap:24px;
+      justify-content:space-between;
+    }
+    .stat-card {
+      background:var(--bg2);
+      border-radius:var(--r2);
+      padding:12px 18px;
+      min-width:100px;
+      text-align:center;
+      border:1px solid var(--border);
+    }
+    .stat-number {font-size:1.8rem;font-weight:800;color:var(--purple);}
+    .stat-label {font-size:.75rem;color:var(--dim);text-transform:uppercase;}
+
+    /* progress overall */
+    .progress-global {
+      background:var(--bg2);
+      border-radius:var(--r);
+      padding:22px;
+      margin-bottom:32px;
+      border:1px solid var(--border);
+    }
+    .progress-header {display:flex;justify-content:space-between;margin-bottom:12px;}
+    .progress-bar-bg {
+      background:var(--bg4);
+      height:12px;
+      border-radius:20px;
+      overflow:hidden;
+    }
+    .progress-fill-global {
+      width:0%;
+      height:100%;
+      background:linear-gradient(90deg,var(--purple),var(--blue));
+      border-radius:20px;
+      transition:width .3s;
+    }
+    /* status chips */
+    .status-badge {
+      font-size:.7rem;
+      padding:3px 10px;
+      border-radius:40px;
+      font-weight:600;
+    }
+    .status-done {background:var(--green-l);color:var(--green);}
+    .status-progress {background:var(--orange-l);color:var(--orange);}
+    .status-pending {background:var(--bg3);color:var(--dim);}
+
+    /* ========== UNIT CARDS (Sync style 1A) ========== */
+    .unit-section {
+      margin-bottom:48px;
+    }
+    .unit-title {
+      font-family:'Playfair Display',serif;
+      font-size:1.5rem;
+      font-weight:700;
+      margin-bottom:8px;
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+    .unit-badge {
+      background:var(--purple);
+      width:34px;height:34px;
+      border-radius:50%;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      font-weight:800;
+    }
+    .unit-grid {
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:20px;
+    }
+    @media(max-width:780px){.unit-grid{grid-template-columns:1fr;}}
+    .unit-card {
+      background:var(--bg2);
+      border:1px solid var(--border);
+      border-radius:var(--r);
+      overflow:hidden;
+      transition:all var(--tr);
+    }
+    .unit-card:hover {border-color:var(--purple);transform:translateY(-3px);}
+    .card-header {
+      padding:16px 20px;
+      background:var(--bg3);
+      border-bottom:1px solid var(--border);
+      font-weight:700;
+      font-size:1rem;
+      display:flex;
+      justify-content:space-between;
+    }
+    .lesson-group {
+      padding:4px 0;
+    }
+    .lesson-item {
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:12px 20px;
+      border-bottom:1px solid var(--border);
+      transition:background var(--tr);
+      flex-wrap:wrap;
+      gap:8px;
+    }
+    .lesson-item:hover {background:var(--bg3);}
+    .lesson-info {display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
+    .lesson-type {
+      font-size:.65rem;
+      font-weight:800;
+      padding:3px 10px;
+      border-radius:20px;
+      background:var(--bg4);
+      color:var(--dim);
+    }
+    .lesson-type.sb {background:var(--blue-l);color:var(--blue);}
+    .lesson-type.wb {background:var(--green-l);color:var(--green);}
+    .lesson-name {font-weight:500;font-size:.88rem;}
+    .lesson-stats {display:flex;align-items:center;gap:10px;}
+    .continue-btn {
+      background:var(--bg3);
+      border:1px solid var(--border);
+      padding:5px 12px;
+      border-radius:40px;
+      font-size:.7rem;
+      font-weight:600;
+      color:var(--dim);
+      cursor:pointer;
+      transition:all var(--tr);
+    }
+    .continue-btn:hover {
+      border-color:var(--purple);
+      color:var(--purple);
+      background:var(--purple-l);
+    }
+
+    /* ========== CENTERS (VOCAB/GRAMMAR/FAV) ========== */
+    .tab-centers {
+      display:flex;
+      gap:8px;
+      margin:40px 0 16px;
+      border-bottom:1px solid var(--border);
+      flex-wrap:wrap;
+    }
+    .center-tab {
+      padding:10px 20px;
+      background:transparent;
+      border:none;
+      font-weight:600;
+      color:var(--dim);
+      cursor:pointer;
+      border-bottom:2px solid transparent;
+      transition:all var(--tr);
+    }
+    .center-tab.active {
+      color:var(--purple);
+      border-bottom-color:var(--purple);
+    }
+    .center-panel {
+      display:none;
+      background:var(--bg2);
+      border-radius:var(--r);
+      border:1px solid var(--border);
+      padding:20px;
+      margin-bottom:32px;
+    }
+    .center-panel.active {display:block;}
+    .vocab-filter {
+      display:flex;
+      gap:8px;
+      margin-bottom:20px;
+      flex-wrap:wrap;
+    }
+    .filter-chip {
+      background:var(--bg3);
+      padding:4px 12px;
+      border-radius:40px;
+      font-size:.75rem;
+      cursor:pointer;
+    }
+    .filter-chip.active-filter {background:var(--purple);color:#fff;}
+    .vocab-list {display:flex;flex-direction:column;gap:8px;max-height:380px;overflow-y:auto;}
+    .vocab-row {
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:10px 12px;
+      border-bottom:1px solid var(--border);
+      gap:10px;
+      flex-wrap:wrap;
+    }
+    .vocab-word{font-weight:700;min-width:110px;}
+    .vocab-ipa{font-family:monospace;font-size:.75rem;color:var(--teal);}
+    .vocab-meaning{color:var(--orange);font-size:.8rem;flex:1;}
+    .bookmark-star{cursor:pointer;font-size:1rem;color:var(--muted);}
+    .bookmark-star.active-star{color:var(--orange);}
+
+    .grammar-list .grammar-item {
+      padding:14px;
+      border-bottom:1px solid var(--border);
+    }
+    .grammar-title {
+      font-weight:800;
+      color:var(--purple);
+      margin-bottom:4px;
+    }
+    .grammar-unit{font-size:.7rem;color:var(--dim);}
+    .study-plan-card {
+      background:linear-gradient(135deg,var(--bg3),var(--bg2));
+      border-radius:var(--r);
+      padding:20px;
+      margin-top:20px;
+    }
+    .fav-grid {
+      display:grid;
+      gap:10px;
+    }
+    .fav-lesson {
+      background:var(--bg3);
+      border-radius:var(--r2);
+      padding:12px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+    }
+    @media(max-width:640px){
+      .top-bar{padding:12px 16px;}
+      .container{padding:0 16px 32px;}
+      .hero h1{font-size:1.6rem;}
+    }
+  </style>
+</head>
+<body>
+
+<div class="top-bar">
+  <div class="logo-area">
+    <div class="logo">face2face</div>
+    <div class="badge-pro">Intermediate · Portal</div>
+  </div>
+  <div class="top-actions">
+    <button class="icon-btn" id="themeToggle" onclick="toggleTheme()">🌙</button>
+    <button class="icon-btn" id="favoritesNavBtn" onclick="showCenterTab('favorites')">⭐</button>
+    <button class="progress-header-btn" onclick="resetAllProgress()">📊 Reset Progress</button>
+  </div>
+</div>
+
+<div class="search-section">
+  <div class="search-wrapper">
+    <span class="search-icon">🔍</span>
+    <input type="text" id="global-search" placeholder="Search lessons, grammar, vocabulary ... e.g. 'question forms', 'laughter', 'prepositions'" autocomplete="off">
+    <button class="search-clear" id="clearSearchBtn">✕</button>
+  </div>
+  <div id="searchResultsPanel" class="search-results-panel"></div>
+</div>
+
+<div class="container">
+  <!-- Hero + Stats -->
+  <div class="hero">
+    <h1>Face2Face Intermediate</h1>
+    <p>Student's Book & Workbook — Complete learning dashboard</p>
+    <div class="stats-grid">
+      <div class="stat-card"><div class="stat-number" id="totalUnits">12</div><div class="stat-label">Units</div></div>
+      <div class="stat-card"><div class="stat-number" id="totalLessons">96</div><div class="stat-label">Lessons (SB+WB)</div></div>
+      <div class="stat-card"><div class="stat-number" id="completedCount">0</div><div class="stat-label">Completed</div></div>
+      <div class="stat-card"><div class="stat-number" id="progressPercent">0%</div><div class="stat-label">Overall</div></div>
+    </div>
+  </div>
+
+  <!-- Progress Global Bar -->
+  <div class="progress-global">
+    <div class="progress-header"><span>📈 Learning Progress</span><span id="progressLabel">0%</span></div>
+    <div class="progress-bar-bg"><div class="progress-fill-global" id="globalFillBar"></div></div>
+    <div style="display:flex;justify-content:space-between;margin-top:14px;gap:8px;flex-wrap:wrap;">
+      <span class="status-badge status-done">✅ Completed: <span id="statDone">0</span></span>
+      <span class="status-badge status-progress">⚡ In progress: <span id="statProgress">0</span></span>
+      <span class="status-badge status-pending">📖 Not started: <span id="statPending">0</span></span>
+    </div>
+  </div>
+
+  <!-- UNIT CARDS (dynamic) -->
+  <div id="unitsContainer"></div>
+
+  <!-- CENTERS TABS (Vocab, Grammar, Favorites, Study Plan) -->
+  <div class="tab-centers">
+    <button class="center-tab active" data-center="vocab">📖 Vocabulary Index</button>
+    <button class="center-tab" data-center="grammar">📐 Grammar Index</button>
+    <button class="center-tab" data-center="favorites">⭐ My Favorites</button>
+    <button class="center-tab" data-center="studyplan">📅 Study Plan</button>
+  </div>
+  <div id="center-vocab" class="center-panel active">
+    <div class="vocab-filter" id="vocabFilterContainer"></div>
+    <div id="vocabListContainer" class="vocab-list"></div>
+  </div>
+  <div id="center-grammar" class="center-panel">
+    <div id="grammarListContainer"></div>
+  </div>
+  <div id="center-favorites" class="center-panel">
+    <div id="favLessonsList"></div>
+    <div id="favVocabList"></div>
+  </div>
+  <div id="center-studyplan" class="center-panel">
+    <div class="study-plan-card">
+      <h3 style="margin-bottom:8px;">🗓️ Personalized Study Plan (30 min/day)</h3>
+      <div id="studyPlanItems"></div>
+      <button class="continue-btn" style="margin-top:16px;" onclick="regenerateStudyPlan()">⟳ Regenerate Plan</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ==================== DATA MODEL (Full Units 1-12, each with SB + WB) ====================
+const UNITS = [];
+// Mapping ten file thuc te dua tren ten file mau (1A_Be_happy.html, 1C_Join_the_club.html)
+function getLessonFile(unit, letter, type) {
+  if(type === 'sb') {
+    if(unit === 1 && letter === 'A') return '1A_Be_happy.html';
+    if(unit === 1 && letter === 'C') return '1C_Join_the_club.html';
+    // Các lesson khác có thể đặt theo quy tắc: 1B.html, 1D.html, 2A.html ...
+    return `${unit}${letter}.html`;
+  } else {
+    return `workbook_${unit}${letter}.html`;
+  }
+}
+
+for(let u=1; u<=12; u++){
+  const sbLessons = [];
+  const wbLessons = [];
+  const letters = ['A','B','C','D'];
+  const titles = {
+    'A':'Be happy!','B':'Love It or Hate It','C':'Join the club!','D':'Nice to Meet You'
+  };
+  letters.forEach(letter=>{
+    sbLessons.push({ id:`${u}${letter}`, type:'sb', title:`${u}${letter} — ${titles[letter]}`, file:getLessonFile(u,letter,'sb') });
+    wbLessons.push({ id:`WB${u}${letter}`, type:'wb', title:`Workbook ${u}${letter}`, file:getLessonFile(u,letter,'wb') });
+  });
+  UNITS.push({ unit:u, sb:sbLessons, wb:wbLessons });
+}
+
+// ========== PROGRESS STORAGE (localStorage) ==========
+const STORAGE_KEY = 'f2f_intermediate_progress';
+function loadProgress() {
+  const saved = localStorage.getItem(STORAGE_KEY);
+  if(saved) return JSON.parse(saved);
+  const def = {};
+  UNITS.forEach(u=>{
+    [...u.sb, ...u.wb].forEach(lesson=>{ def[lesson.id] = 'pending'; });
+  });
+  return def;
+}
+let progressMap = loadProgress();
+
+function saveProgress() { localStorage.setItem(STORAGE_KEY, JSON.stringify(progressMap)); }
+function updateLessonStatus(lessonId, status) { progressMap[lessonId]=status; saveProgress(); renderDashboard(); }
+
+// helper: get stats
+function getStats() {
+  let total=0, done=0, progress=0;
+  Object.keys(progressMap).forEach(id=>{
+    total++;
+    if(progressMap[id]==='done') done++;
+    else if(progressMap[id]==='inprogress') progress++;
+  });
+  return {total, done, inprogress:progress, pending: total-done-progress, percent: total?Math.round((done/total)*100):0 };
+}
+
+// render units, cards, progress
+function renderDashboard() {
+  const container = document.getElementById('unitsContainer');
+  const stats = getStats();
+  document.getElementById('completedCount').innerText = stats.done;
+  document.getElementById('progressPercent').innerText = stats.percent+'%';
+  document.getElementById('progressLabel').innerText = stats.percent+'%';
+  document.getElementById('globalFillBar').style.width = stats.percent+'%';
+  document.getElementById('statDone').innerText = stats.done;
+  document.getElementById('statProgress').innerText = stats.inprogress;
+  document.getElementById('statPending').innerText = stats.pending;
+
+  let html = '';
+  UNITS.forEach(unit=>{
+    const unitLessons = [...unit.sb, ...unit.wb];
+    let unitDone = unitLessons.filter(l=>progressMap[l.id]==='done').length;
+    let unitPercent = Math.round((unitDone/unitLessons.length)*100);
+    html += `<div class="unit-section">
+      <div class="unit-title"><span class="unit-badge">${unit.unit}</span> Unit ${unit.unit} <span style="font-size:.75rem;color:var(--dim);">${unitPercent}% complete</span></div>
+      <div class="unit-grid">
+        <div class="unit-card"><div class="card-header">📘 Student’s Book</div><div class="lesson-group">`;
+    unit.sb.forEach(lesson=>{
+      const status = progressMap[lesson.id] || 'pending';
+      let statusText = status==='done'? '✅ Completed' : (status==='inprogress'? '🔄 In progress' : '📌 Not started');
+      let statusClass = status==='done'? 'status-done' : (status==='inprogress'? 'status-progress' : 'status-pending');
+      html += `<div class="lesson-item">
+        <div class="lesson-info"><span class="lesson-type sb">SB</span><span class="lesson-name">${lesson.title}</span><span class="status-badge ${statusClass}">${statusText}</span></div>
+        <div class="lesson-stats"><button class="continue-btn" data-id="${lesson.id}" data-file="${lesson.file}" data-type="sb">📖 Continue</button>
+        <select class="status-select" data-id="${lesson.id}" style="background:var(--bg3);border:1px solid var(--border);border-radius:20px;padding:4px 10px;font-size:.7rem;">
+          <option value="pending" ${status==='pending'?'selected':''}>Not started</option>
+          <option value="inprogress" ${status==='inprogress'?'selected':''}>In progress</option>
+          <option value="done" ${status==='done'?'selected':''}>Completed</option>
+        </select></div>
+      </div>`;
+    });
+    html += `</div></div><div class="unit-card"><div class="card-header">📓 Workbook</div><div class="lesson-group">`;
+    unit.wb.forEach(lesson=>{
+      const status = progressMap[lesson.id] || 'pending';
+      let statusText = status==='done'? '✅ Completed' : (status==='inprogress'? '🔄 In progress' : '📌 Not started');
+      let statusClass = status==='done'? 'status-done' : (status==='inprogress'? 'status-progress' : 'status-pending');
+      html += `<div class="lesson-item">
+        <div class="lesson-info"><span class="lesson-type wb">WB</span><span class="lesson-name">${lesson.title}</span><span class="status-badge ${statusClass}">${statusText}</span></div>
+        <div class="lesson-stats"><button class="continue-btn" data-id="${lesson.id}" data-file="${lesson.file}" data-type="wb">📖 Continue</button>
+        <select class="status-select" data-id="${lesson.id}" style="background:var(--bg3);border:1px solid var(--border);border-radius:20px;padding:4px 10px;font-size:.7rem;">
+          <option value="pending" ${status==='pending'?'selected':''}>Not started</option>
+          <option value="inprogress" ${status==='inprogress'?'selected':''}>In progress</option>
+          <option value="done" ${status==='done'?'selected':''}>Completed</option>
+        </select></div>
+      </div>`;
+    });
+    html += `</div></div></div></div>`;
+  });
+  container.innerHTML = html;
+  // attach events
+  document.querySelectorAll('.continue-btn').forEach(btn=>{
+    btn.addEventListener('click',(e)=>{
+      const file = btn.dataset.file;
+      if(file) window.location.href = file;
+      else alert(`📘 Bài học "${btn.dataset.id}" đang được phát triển.`);
+    });
+  });
+  document.querySelectorAll('.status-select').forEach(sel=>{
+    sel.addEventListener('change',(e)=>{
+      const lessonId = sel.dataset.id;
+      const newStatus = sel.value;
+      progressMap[lessonId] = newStatus;
+      saveProgress();
+      renderDashboard();
+      renderAllCenters(); // refresh vocab/grammar progress
+    });
+  });
+}
+
+// ========== VOCABULARY INDEX (simulated from 1A + 1C) ==========
+const MASTER_VOCAB = [
+  { word:'relative', ipa:'/ˈrelətɪv/', meaning:'người thân', unit:'1A', type:'noun', bookmarked:false },
+  { word:'have a lie-in', ipa:'/hæv ə ˈlaɪ ɪn/', meaning:'ngủ nướng', unit:'1A', type:'phrase', bookmarked:false },
+  { word:'gig', ipa:'/ɡɪɡ/', meaning:'buổi biểu diễn nhạc sống', unit:'1A', type:'noun', bookmarked:false },
+  { word:'yoga', ipa:'/ˈjəʊɡə/', meaning:'yoga', unit:'1A', type:'noun', bookmarked:false },
+  { word:'tidy up', ipa:'/ˈtaɪdi ʌp/', meaning:'dọn dẹp', unit:'1A', type:'verb', bookmarked:false },
+  { word:'nervous', ipa:'/ˈnɜːvəs/', meaning:'lo lắng, hồi hộp', unit:'1C', type:'adj', bookmarked:false },
+  { word:'pleased', ipa:'/pliːzd/', meaning:'hài lòng', unit:'1C', type:'adj', bookmarked:false },
+  { word:'fed up', ipa:'/ˌfed ˈʌp/', meaning:'chán ngán', unit:'1C', type:'adj', bookmarked:false },
+  { word:'embarrassed', ipa:'/ɪmˈbærəst/', meaning:'xấu hổ', unit:'1C', type:'adj', bookmarked:false },
+  { word:'stressed', ipa:'/strest/', meaning:'căng thẳng', unit:'1C', type:'adj', bookmarked:false },
+  { word:'keen on', ipa:'/kiːn ɒn/', meaning:'hứng thú với', unit:'1C', type:'prep phrase', bookmarked:false },
+  { word:'worried about', ipa:'/ˈwʌrid əbaʊt/', meaning:'lo lắng về', unit:'1C', type:'phrase', bookmarked:false },
+  { word:'question forms', ipa:'/ˈkwestʃən fɔːmz/', meaning:'dạng câu hỏi', unit:'1A', type:'grammar', bookmarked:false },
+  { word:'present perfect', ipa:'/ˈpreznt pəˈfekt/', meaning:'thì hiện tại hoàn thành', unit:'1A', type:'grammar', bookmarked:false }
+];
+
+function loadBookmarks() { const b=localStorage.getItem('f2f_vocab_favs'); if(b) JSON.parse(b).forEach(w=>{ let item=MASTER_VOCAB.find(v=>v.word===w); if(item) item.bookmarked=true; }); }
+function saveVocabBookmarks() { localStorage.setItem('f2f_vocab_favs', JSON.stringify(MASTER_VOCAB.filter(v=>v.bookmarked).map(v=>v.word))); }
+
+function renderVocabIndex(filter='all') {
+  let filtered = MASTER_VOCAB.filter(v=>filter==='all'?true:v.type===filter || (filter==='adj' && v.type==='adj')|| (filter==='noun'&&v.type==='noun')|| (filter==='phrase'&&v.type.includes('phrase')));
+  const container = document.getElementById('vocabListContainer');
+  container.innerHTML = filtered.map(v=>`
+    <div class="vocab-row">
+      <span class="vocab-word">${v.word}</span>
+      <span class="vocab-ipa">${v.ipa}</span>
+      <span class="vocab-meaning">${v.meaning}</span>
+      <span class="bookmark-star ${v.bookmarked?'active-star':''}" data-word="${v.word}">${v.bookmarked?'★':'☆'}</span>
+    </div>
+  `).join('');
+  document.querySelectorAll('.bookmark-star').forEach(star=>{
+    star.addEventListener('click',(e)=>{
+      const word = star.dataset.word;
+      const entry = MASTER_VOCAB.find(w=>w.word===word);
+      if(entry){ entry.bookmarked = !entry.bookmarked; saveVocabBookmarks(); renderVocabIndex(filter); renderFavoritesPanel(); }
+    });
+  });
+}
+
+const GRAMMAR_POINTS = [
+  { point:'Question Forms (Present Simple, Continuous, Past, Perfect)', unit:'1A', explanation:'Auxiliary inversion + Wh-words + subject questions without do/does', example:'How often does Fiona teach yoga?' },
+  { point:'Subject vs Object Questions', unit:'1A', explanation:'When who/what is subject, no auxiliary', example:'Who visits them?' },
+  { point:'Prepositions with Adjectives', unit:'1C', explanation:'good at, interested in, worried about, fed up with...', example:'I\'m fed up with waiting.' },
+  { point:'Sentence Stress', unit:'1C', explanation:'Content words stressed (nouns, main verbs, adjectives); structure words weak', example:'She was ANgry about the DEcision.' },
+  { point:'-ed adjectives syllables', unit:'1C', explanation:'excited (3), stressed (1), annoyed (2)', example:'excited /ɪkˈsaɪtɪd/' }
+];
+
+function renderGrammarCenter(){
+  const container = document.getElementById('grammarListContainer');
+  container.innerHTML = GRAMMAR_POINTS.map(g=>`
+    <div class="grammar-item"><div class="grammar-title">${g.point}</div><div class="grammar-unit">📌 Unit ${g.unit}</div><div style="font-size:.8rem;color:var(--dim);">${g.explanation}</div><div class="example-box" style="margin-top:6px;">📖 ${g.example}</div></div>
+  `).join('');
+}
+// favorites
+function renderFavoritesPanel(){
+  const favLessons = Object.keys(progressMap).filter(id=>progressMap[id]==='done').slice(0,12);
+  const favVocab = MASTER_VOCAB.filter(v=>v.bookmarked);
+  const ldiv = document.getElementById('favLessonsList');
+  const vdiv = document.getElementById('favVocabList');
+  ldiv.innerHTML = `<div class="fav-grid">${favLessons.map(lid=>`<div class="fav-lesson"><span>✅ ${lid}</span><button class="continue-btn" onclick="alert('Go to lesson')">Resume</button></div>`).join('')}</div>`;
+  vdiv.innerHTML = `<div class="fav-grid">${favVocab.map(v=>`<div class="fav-lesson"><span><strong>${v.word}</strong> — ${v.meaning}</span></div>`).join('')}</div>`;
+}
+// study plan
+function regenerateStudyPlan(){
+  const pending = Object.keys(progressMap).filter(id=>progressMap[id]!=='done');
+  const planHtml = pending.slice(0,7).map((id,idx)=>`<div style="padding:8px;border-bottom:1px solid var(--border);">📘 Day ${idx+1}: <strong>${id}</strong> — Complete vocabulary & grammar exercises</div>`).join('');
+  document.getElementById('studyPlanItems').innerHTML = planHtml || '<p>🎉 All done! Keep reviewing.</p>';
+}
+// search engine
+function buildSearchIndex(){
+  const lessonsIndex = [];
+  UNITS.forEach(u=>{
+    [...u.sb, ...u.wb].forEach(les=>{ lessonsIndex.push({ type:'lesson', title:les.title, id:les.id, unit:u.unit, file:les.file }); });
+  });
+  const vocabIndex = MASTER_VOCAB.map(v=>({ type:'vocabulary', title:v.word, unit:v.unit, meaning:v.meaning, ipa:v.ipa }));
+  const grammarIndex = GRAMMAR_POINTS.map(g=>({ type:'grammar', title:g.point, unit:g.unit, explanation:g.explanation }));
+  return [...lessonsIndex, ...vocabIndex, ...grammarIndex];
+}
+function searchGlobal(query){
+  const q=query.toLowerCase().trim(); if(!q) return [];
+  const idx = buildSearchIndex();
+  return idx.filter(item=>item.title.toLowerCase().includes(q) || (item.meaning && item.meaning.toLowerCase().includes(q)) || (item.explanation && item.explanation.toLowerCase().includes(q)));
+}
+function renderSearchResults(query){
+  const results = searchGlobal(query);
+  const panel = document.getElementById('searchResultsPanel');
+  if(!query || results.length===0){ panel.style.display='none'; return; }
+  panel.style.display='block';
+  panel.innerHTML = results.map(r=>`<div class="result-item" onclick="openSearchResult('${r.type}','${r.title}','${r.file||''}')">
+    <div class="result-unit">Unit ${r.unit || ''} · ${r.type}</div>
+    <div class="result-title">${r.title}</div>
+    <div style="font-size:.75rem;color:var(--dim);">${r.meaning || r.explanation || ''}</div>
+  </div>`).join('');
+}
+window.openSearchResult = function(type,title,file){
+  if(type==='lesson' && file) window.location.href = file;
+  else alert(`🔍 "${title}" — hãy tìm trong bài học tương ứng.`);
+};
+// centers tabs
+function showCenterTab(tabId){
+  document.querySelectorAll('.center-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.center-tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById(`center-${tabId}`).classList.add('active');
+  document.querySelector(`.center-tab[data-center="${tabId}"]`).classList.add('active');
+  if(tabId==='vocab') renderVocabIndex('all');
+  if(tabId==='grammar') renderGrammarCenter();
+  if(tabId==='favorites') renderFavoritesPanel();
+  if(tabId==='studyplan') regenerateStudyPlan();
+}
+function toggleTheme(){const cur=document.documentElement.getAttribute('data-theme');const nv= cur==='light'?'dark':'light'; document.documentElement.setAttribute('data-theme',nv==='light'?'light':''); localStorage.setItem('f2f_theme',nv); document.getElementById('themeToggle').innerText=nv==='light'?'🌙':'☀️';}
+function resetAllProgress(){ if(confirm('Reset all learning progress?')){ progressMap = {}; UNITS.forEach(u=>{[...u.sb,...u.wb].forEach(l=>progressMap[l.id]='pending');}); saveProgress(); renderDashboard(); renderAllCenters();}}
+function renderAllCenters(){ renderVocabIndex('all'); renderGrammarCenter(); renderFavoritesPanel(); regenerateStudyPlan();}
+// init
+document.addEventListener('DOMContentLoaded',()=>{
+  const savedTheme = localStorage.getItem('f2f_theme');
+  if(savedTheme==='light'){document.documentElement.setAttribute('data-theme','light');document.getElementById('themeToggle').innerText='🌙';}
+  renderDashboard();
+  loadBookmarks();
+  renderAllCenters();
+  // search
+  const searchInput = document.getElementById('global-search');
+  searchInput.addEventListener('input',(e)=>renderSearchResults(e.target.value));
+  document.getElementById('clearSearchBtn').addEventListener('click',()=>{ searchInput.value=''; renderSearchResults(''); });
+  // vocab filter
+  const filterDiv = document.getElementById('vocabFilterContainer');
+  filterDiv.innerHTML = `<button class="filter-chip active-filter" data-filter="all">All</button><button class="filter-chip" data-filter="noun">Nouns</button><button class="filter-chip" data-filter="adj">Adjectives</button><button class="filter-chip" data-filter="phrase">Phrases</button>`;
+  filterDiv.querySelectorAll('.filter-chip').forEach(chip=>{
+    chip.addEventListener('click',()=>{
+      filterDiv.querySelectorAll('.filter-chip').forEach(c=>c.classList.remove('active-filter'));
+      chip.classList.add('active-filter');
+      renderVocabIndex(chip.dataset.filter);
+    });
+  });
+  document.querySelectorAll('.center-tab').forEach(tab=>{
+    tab.addEventListener('click',()=>showCenterTab(tab.dataset.center));
+  });
+});
+</script>
+</body>
+</html>
