@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>1D Nice to meet you — face2face Intermediate</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap');
+
+:root {
+  --bg:#0D1117; --bg2:#161B22; --bg3:#21262D; --bg4:#2D333B;
+  --border:#30363D; --text:#E6EDF3; --dim:#8B949E; --muted:#484F58;
+  --blue:#2563EB; --blue-l:rgba(37,99,235,.15);
+  --green:#10B981; --green-l:rgba(16,185,129,.12);
+  --orange:#F59E0B; --orange-l:rgba(245,158,11,.12);
+  --red:#EF4444; --red-l:rgba(239,68,68,.12);
+  --teal:#14B8A6; --purple:#8B5CF6;
+  --r:10px; --r2:6px; --tr:.18s ease;
+}
+[data-theme=light]{
+  --bg:#F8FAFC; --bg2:#fff; --bg3:#F1F5F9; --bg4:#E2E8F0;
+  --border:#E2E8F0; --text:#0F172A; --dim:#475569; --muted:#94A3B8;
+  --blue:#1D4ED8; --blue-l:rgba(29,78,216,.1);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);font-size:15px;line-height:1.6}
+
+.top-bar{background:var(--bg2);border-bottom:1px solid var(--border);padding:10px 20px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:50}
+.back-btn{display:flex;align-items:center;gap:6px;padding:6px 14px;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);font-size:.82rem;color:var(--dim);cursor:pointer;transition:all var(--tr)}
+.back-btn:hover{border-color:var(--blue);color:var(--blue)}
+.lesson-badge{padding:4px 12px;background:var(--purple-l);border:1px solid rgba(139,92,246,.3);border-radius:4px;font-size:.75rem;font-weight:700;color:#A78BFA;letter-spacing:.05em}
+.lesson-title-h{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700}
+.theme-btn{margin-left:auto;width:34px;height:34px;display:flex;align-items:center;justify-content:center;border-radius:var(--r2);background:var(--bg3);border:1px solid var(--border);cursor:pointer;font-size:.95rem;color:var(--dim);transition:all var(--tr)}
+.theme-btn:hover{border-color:var(--blue);color:var(--blue)}
+.progress-btn{padding:6px 14px;background:var(--green);border-radius:var(--r2);font-size:.78rem;font-weight:600;color:#fff;cursor:pointer;border:none;transition:all var(--tr)}
+.progress-btn:hover{background:#059669}
+
+.quick-review{background:linear-gradient(135deg,#1e3a5f,#1a2f4a);border:1px solid #2d4f7c;border-radius:var(--r);padding:16px 20px;margin:20px 24px;display:flex;gap:12px;align-items:flex-start}
+.qr-badge{background:#F59E0B;color:#000;padding:3px 10px;border-radius:4px;font-size:.72rem;font-weight:700;white-space:nowrap;flex-shrink:0;margin-top:2px}
+.qr-text{font-size:.85rem;line-height:1.6;color:#CBD5E1}
+.qr-text strong{color:#fff}
+
+.page-content{max-width:920px;margin:0 auto;padding:0 24px 48px}
+
+.tab-nav{display:flex;gap:2px;border-bottom:1px solid var(--border);margin-bottom:0;overflow-x:auto;scrollbar-width:none;position:sticky;top:57px;background:var(--bg);z-index:40;padding:0 24px}
+.tab-nav::-webkit-scrollbar{display:none}
+.tnav-btn{display:flex;align-items:center;gap:6px;padding:11px 16px;font-size:.83rem;font-weight:500;color:var(--dim);white-space:nowrap;border-bottom:2px solid transparent;margin-bottom:-1px;cursor:pointer;transition:all var(--tr);background:none;border-top:none;border-left:none;border-right:none;font-family:inherit}
+.tnav-btn:hover{color:var(--text)}
+.tnav-btn.active{color:var(--purple);border-bottom-color:var(--purple)}
+
+.tab-pane{display:none;padding-top:28px}
+.tab-pane.active{display:block;animation:fadeUp .22s ease}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
+.sec-heading{font-size:1.05rem;font-weight:700;color:var(--text);margin-bottom:4px;display:flex;align-items:center;gap:8px}
+.sec-sub{font-size:.82rem;color:var(--dim);margin-bottom:16px}
+.exercise-num{width:28px;height:28px;background:var(--purple);color:#fff;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:.78rem;font-weight:700;flex-shrink:0}
+.exercise-label{display:inline-flex;align-items:center;gap:8px;font-size:.9rem;font-weight:600;margin-bottom:12px;color:var(--text)}
+.part-label{display:inline-block;width:22px;height:22px;background:var(--bg4);border-radius:4px;text-align:center;line-height:22px;font-size:.72rem;font-weight:700;color:var(--dim);margin-right:6px}
+.instruction{font-size:.88rem;color:var(--text);line-height:1.65;margin-bottom:14px}
+.instruction em{font-style:italic;color:var(--teal)}
+.instruction strong{color:var(--text)}
+
+.feeling-card{background:var(--bg2);border:2px solid var(--border);border-radius:var(--r2);padding:12px 14px;cursor:pointer;transition:all var(--tr);text-align:center;position:relative}
+.feeling-card:hover{border-color:var(--purple);transform:translateY(-1px)}
+.feeling-word{font-size:.92rem;font-weight:600;margin-bottom:3px}
+.feeling-ipa{font-family:'Courier New',monospace;font-size:.72rem;color:var(--teal)}
+.feeling-vi{font-size:.75rem;color:var(--orange);margin-top:2px}
+
+.grammar-intro-box{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:20px;margin-bottom:16px}
+.grammar-tag{display:inline-flex;align-items:center;gap:6px;padding:3px 12px;background:var(--orange-l);border:1px solid rgba(245,158,11,.3);border-radius:4px;font-size:.72rem;font-weight:700;color:var(--orange);text-transform:uppercase;letter-spacing:.06em;margin-bottom:12px}
+.grammar-title{font-size:1rem;font-weight:700;margin-bottom:14px}
+.grammar-section{margin-bottom:20px}
+.grammar-section-title{font-size:.8rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid var(--border)}
+.grammar-rule{display:flex;gap:10px;padding:9px 0;border-bottom:1px dashed var(--border);font-size:.85rem;line-height:1.6}
+.grammar-bullet{color:var(--purple);flex-shrink:0;font-size:.7rem;margin-top:6px}
+.grammar-table-wrap{overflow-x:auto;margin-bottom:16px}
+.grammar-table{width:100%;border-collapse:collapse;font-size:.82rem}
+.grammar-table th{background:var(--bg3);padding:8px 12px;text-align:left;font-weight:600;border:1px solid var(--border);color:var(--dim);font-size:.72rem;text-transform:uppercase;letter-spacing:.04em}
+.grammar-table td{padding:9px 12px;border:1px solid var(--border);line-height:1.5}
+.grammar-table td.aux{color:var(--purple);font-weight:600}
+.example-box{font-family:'Courier New',monospace;font-size:.83rem;color:#7DD3FC;background:var(--bg);padding:9px 14px;border-radius:var(--r2);margin:8px 0;border:1px solid var(--border);line-height:1.6}
+.wrong-box{background:var(--red-l);border:1px solid rgba(239,68,68,.25);border-radius:var(--r2);padding:8px 12px;font-size:.83rem;margin-bottom:6px}
+.right-box{background:var(--green-l);border:1px solid rgba(16,185,129,.25);border-radius:var(--r2);padding:8px 12px;font-size:.83rem;margin-bottom:6px}
+.note-box{background:var(--orange-l);border:1px solid rgba(245,158,11,.25);border-radius:var(--r2);padding:10px 14px;font-size:.82rem;line-height:1.6;margin-top:10px}
+.note-box strong{color:var(--orange)}
+.tip-box{background:var(--bg3);border-left:3px solid var(--orange);border-radius:0 var(--r2) var(--r2) 0;padding:10px 14px;margin-top:12px;font-size:.82rem;color:var(--dim);line-height:1.6}
+.tip-box strong{color:var(--text)}
+
+.audio-player-box{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:20px;margin-bottom:16px}
+.audio-header{display:flex;align-items:center;gap:14px;margin-bottom:16px}
+.cd-badge{padding:4px 12px;background:var(--orange-l);border:1px solid rgba(245,158,11,.3);border-radius:4px;font-size:.75rem;font-weight:700;color:var(--orange)}
+.audio-title{font-size:.9rem;font-weight:600}
+.audio-controls{display:flex;align-items:center;gap:12px;padding:12px 16px;background:var(--bg3);border-radius:var(--r2);margin-bottom:14px}
+.play-btn{width:42px;height:42px;border-radius:50%;background:var(--purple);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;border:none;font-size:1rem;flex-shrink:0;transition:all var(--tr)}
+.play-btn:hover{background:#7C3AED;transform:scale(1.05)}
+.audio-track-info{flex:1}
+.audio-track-name{font-size:.83rem;font-weight:500;margin-bottom:2px}
+.audio-note{font-size:.75rem;color:var(--muted)}
+.progress-bar{height:4px;background:var(--border);border-radius:2px;overflow:hidden;margin-top:6px}
+.progress-fill{height:100%;width:0%;background:var(--purple);border-radius:2px;transition:width .1s linear}
+
+.q-and-a-list{display:flex;flex-direction:column;gap:10px;margin-bottom:20px}
+.qa-item{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r2);overflow:hidden}
+.qa-question{display:flex;align-items:center;gap:10px;padding:10px 14px;cursor:pointer;transition:background var(--tr)}
+.qa-question:hover{background:var(--bg3)}
+.qa-qnum{width:24px;height:24px;border-radius:50%;background:var(--purple-l);color:var(--purple);display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:700;flex-shrink:0}
+.qa-qtext{font-size:.85rem;flex:1}
+.qa-arrow{font-size:.7rem;color:var(--muted);transition:transform var(--tr);flex-shrink:0}
+.qa-item.open .qa-arrow{transform:rotate(90deg)}
+.qa-answer{display:none;padding:0 14px 12px 48px;font-size:.83rem;color:var(--teal);font-style:italic}
+.qa-item.open .qa-answer{display:block}
+
+.speaking-box{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:18px;margin-bottom:20px}
+.speaking-box-title{font-size:.85rem;font-weight:600;margin-bottom:12px;color:var(--text);display:flex;align-items:center;gap:8px}
+.speech-bubble{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);padding:12px 16px;margin-bottom:10px;font-size:.85rem;font-style:italic;color:var(--text);position:relative}
+.speech-bubble::before{content:'💬';margin-right:8px}
+.speech-bubble .answer{color:var(--teal);font-style:normal;font-weight:500}
+
+.fill-exercise{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:20px;margin-bottom:16px}
+.fill-ex-title{font-size:.88rem;font-weight:600;margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid var(--border)}
+.fill-item{display:flex;align-items:flex-start;gap:12px;padding:10px 0;border-bottom:1px dashed var(--border)}
+.fill-item:last-child{border-bottom:none}
+.fill-item-num{width:22px;height:22px;border-radius:50%;background:var(--bg3);display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:700;color:var(--muted);flex-shrink:0;margin-top:2px}
+.fill-item-content{flex:1}
+.fill-sentence{font-size:.88rem;margin-bottom:8px;line-height:1.6}
+.fill-controls{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.fill-input{height:34px;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);padding:0 12px;color:var(--text);font-size:.85rem;outline:none;min-width:80px;transition:border-color var(--tr)}
+.fill-input:focus{border-color:var(--purple)}
+.fill-input.correct{border-color:var(--green);background:var(--green-l)}
+.fill-input.wrong{border-color:var(--red);background:var(--red-l)}
+.check-btn{padding:6px 14px;background:var(--purple);color:#fff;border:none;border-radius:var(--r2);font-size:.78rem;font-weight:600;cursor:pointer;transition:all var(--tr)}
+.check-btn:hover{background:#7C3AED}
+.reveal-btn{padding:6px 12px;background:var(--bg3);border:1px solid var(--border);color:var(--dim);border-radius:var(--r2);font-size:.78rem;cursor:pointer;transition:all var(--tr)}
+.reveal-btn:hover{border-color:var(--purple);color:var(--purple)}
+.fill-feedback{margin-top:6px;font-size:.78rem;padding:5px 10px;border-radius:var(--r2);display:none}
+.fill-feedback.show-ok{background:var(--green-l);color:var(--green);display:block}
+.fill-feedback.show-err{background:var(--red-l);color:var(--red);display:block}
+
+.ed-section{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:18px;margin-bottom:16px}
+.ed-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;margin-bottom:12px}
+.ed-card{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);padding:12px;text-align:center;cursor:pointer;transition:all var(--tr)}
+.ed-card:hover{border-color:var(--purple)}
+.ed-word{font-size:1rem;font-weight:700;margin-bottom:4px}
+.ed-syl{font-size:.75rem;color:var(--orange);margin-bottom:2px}
+.ed-ipa{font-family:'Courier New',monospace;font-size:.75rem;color:var(--teal)}
+
+.lang-sum-box{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:20px;margin-bottom:16px}
+.lang-sum-title{font-size:.75rem;font-weight:700;color:var(--purple);text-transform:uppercase;letter-spacing:.07em;margin-bottom:14px;display:flex;align-items:center;gap:8px}
+
+.btn{display:inline-flex;align-items:center;gap:7px;padding:8px 18px;border-radius:var(--r2);font-size:.83rem;font-weight:500;cursor:pointer;border:none;font-family:inherit;transition:all var(--tr)}
+.btn-primary{background:var(--purple);color:#fff}.btn-primary:hover{background:#7C3AED;transform:translateY(-1px)}
+.btn-outline{background:var(--bg3);border:1px solid var(--border);color:var(--dim)}.btn-outline:hover{border-color:var(--purple);color:var(--purple)}
+.divider{height:1px;background:var(--border);margin:24px 0}
+.score-box{display:none;text-align:center;padding:20px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);margin-top:16px}
+.score-box.show{display:block}
+.score-num{font-size:2.2rem;font-weight:700;color:var(--purple)}
+@media(max-width:680px){
+  .ed-grid{grid-template-columns:repeat(auto-fill,minmax(130px,1fr))}
+  .tab-nav{padding:0 16px}
+  .page-content{padding:0 16px 48px}
+  .quick-review{margin:16px}
+}
+</style>
+</head>
+<body>
+
+<div class="top-bar">
+  <button class="back-btn" onclick="history.back()">← Trang chủ</button>
+  <div class="lesson-badge">UNIT 1</div>
+  <div class="lesson-title-h">1D — Nice to meet you</div>
+  <button class="theme-btn" id="theme-btn" onclick="toggleTheme()">☀️</button>
+  <button class="progress-btn" onclick="markDone()">✅ Đánh dấu xong</button>
+</div>
+
+<div class="quick-review">
+  <div class="qr-badge">QUICK REVIEW</div>
+  <div class="qr-text"><strong>Prepositions with adjectives</strong> — Work in pairs. Find one thing that you're both: scared of, interested in, worried about, good at, fed up with, happy about. <em>A: I'm scared of spiders. B: Me too!</em></div>
+</div>
+
+<div class="tab-nav">
+  <button class="tnav-btn active" onclick="showTab('overview')">📖 Overview</button>
+  <button class="tnav-btn" onclick="showTab('grammar')">📐 Grammar</button>
+  <button class="tnav-btn" onclick="showTab('listening')">🎧 Listening</button>
+  <button class="tnav-btn" onclick="showTab('speaking')">💬 Speaking</button>
+  <button class="tnav-btn" onclick="showTab('pronunciation')">🔊 Pronunciation</button>
+  <button class="tnav-btn" onclick="showTab('realworld')">🌍 Real World</button>
+  <button class="tnav-btn" onclick="showTab('workbook')">📓 Workbook</button>
+  <button class="tnav-btn" onclick="showTab('review')">📋 Review</button>
+</div>
+
+<div class="page-content">
+
+<!-- TAB 1: OVERVIEW -->
+<div class="tab-pane active" id="tab-overview">
+  <div class="sec-heading">Nice to meet you</div>
+  <div class="sec-sub">Unit 1D · Question tags · Học cách kiểm tra thông tin bằng câu hỏi đuôi</div>
+
+  <div class="grammar-intro-box">
+    <div class="grammar-tag">🎯 LEARNING OBJECTIVES</div>
+    <div class="grammar-title">By the end of this unit, you will be able to:</div>
+    <div class="grammar-rule"><div class="grammar-bullet">✓</div><div>Use <strong>question tags</strong> (don't you?, isn't she?, haven't they?, etc.) to check information</div></div>
+    <div class="grammar-rule"><div class="grammar-bullet">✓</div><div>Give <strong>short answers</strong> (Yes, I do. / No, I haven't, actually.)</div></div>
+    <div class="grammar-rule"><div class="grammar-bullet">✓</div><div>Pronounce <strong>-ed adjectives</strong> correctly (stressed, annoyed, excited, embarrassed)</div></div>
+    <div class="grammar-rule"><div class="grammar-bullet">✓</div><div>Have a conversation <strong>meeting new people</strong> at a party or social event</div></div>
+  </div>
+
+  <div class="lang-sum-box">
+    <div class="lang-sum-title">📖 KEY VOCABULARY (from Unit 1C review)</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:8px">
+      <div class="feeling-card" style="padding:10px"><div class="feeling-word">nervous</div><div class="feeling-ipa">/ˈnɜːvəs/</div><div class="feeling-vi">lo lắng, hồi hộp</div></div>
+      <div class="feeling-card" style="padding:10px"><div class="feeling-word">embarrassed</div><div class="feeling-ipa">/ɪmˈbærəst/</div><div class="feeling-vi">xấu hổ, ngượng ngùng</div></div>
+      <div class="feeling-card" style="padding:10px"><div class="feeling-word">pleased</div><div class="feeling-ipa">/pliːzd/</div><div class="feeling-vi">hài lòng, vui vẻ</div></div>
+      <div class="feeling-card" style="padding:10px"><div class="feeling-word">stressed</div><div class="feeling-ipa">/strest/</div><div class="feeling-vi">căng thẳng</div></div>
+    </div>
+    <div class="tip-box" style="margin-top:12px"><strong>💡 Prepositions with adjectives (ôn tập):</strong> scared <strong>of</strong> · interested <strong>in</strong> · worried <strong>about</strong> · good <strong>at</strong> · fed up <strong>with</strong> · happy <strong>about</strong></div>
+  </div>
+</div>
+
+<!-- TAB 2: GRAMMAR -->
+<div class="tab-pane" id="tab-grammar">
+  <div class="grammar-intro-box">
+    <div class="grammar-tag">📐 HELP WITH GRAMMAR</div>
+    <div class="grammar-title">Question tags — Câu hỏi đuôi</div>
+  </div>
+
+  <div class="grammar-section">
+    <div class="grammar-section-title">📌 CẤU TRÚC (Structure)</div>
+    <div class="grammar-rule"><div class="grammar-bullet">•</div><div><strong>Khẳng định + , + trợ động từ phủ định + đại từ?</strong><br><em>You live next door to Lisa, <span class="aux">don't you</span>?</em></div></div>
+    <div class="grammar-rule"><div class="grammar-bullet">•</div><div><strong>Phủ định + , + trợ động từ khẳng định + đại từ?</strong><br><em>You haven't ordered any food yet, <span class="aux">have you</span>?</em></div></div>
+    <div class="grammar-table-wrap">
+      <table class="grammar-table">
+        <thead><tr><th>Main clause</th><th>Question tag</th><th>Example</th></tr></thead>
+        <tbody>
+          <tr><td>You are a student</td><td class="aux">aren't you?</td><td>You're a student, aren't you?</td></tr>
+          <tr><td>She works here</td><td class="aux">doesn't she?</td><td>She works here, doesn't she?</td></tr>
+          <tr><td>They have finished</td><td class="aux">haven't they?</td><td>They've finished, haven't they?</td></tr>
+          <tr><td>It was a good film</td><td class="aux">wasn't it?</td><td>It was a good film, wasn't it?</td></tr>
+          <tr><td>You don't like coffee</td><td class="aux">do you?</td><td>You don't like coffee, do you?</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="grammar-section">
+    <div class="grammar-section-title">⚠️ LƯU Ý CHO NGƯỜI VIỆT (Important notes)</div>
+    <div class="wrong-box">❌ <strong>Sai:</strong> I'm late, <span class="aux">amn't I</span>?</div>
+    <div class="right-box">✅ <strong>Đúng:</strong> I'm late, <span class="aux">aren't I</span>?</div>
+    <div class="grammar-rule"><div class="grammar-bullet">•</div><div>Dùng <strong>đại từ</strong> (he, she, it, they, we, you, I) trong question tag, KHÔNG dùng tên riêng.</div></div>
+    <div class="grammar-rule"><div class="grammar-bullet">•</div><div>Với <strong>Let's</strong> → <em>shall we?</em> · Với <strong>imperative</strong> → <em>will you?</em></div></div>
+    <div class="example-box">📖 Barbara went to Liverpool University, <strong>didn't she?</strong> (KHÔNG: didn't Barbara?)</div>
+  </div>
+
+  <div class="fill-exercise">
+    <div class="fill-ex-title">✏️ Exercise: Complete the question tags</div>
+    <div id="grammar-ex-items">
+      <div class="fill-item"><div class="fill-item-num">1</div><div class="fill-item-content"><div class="fill-sentence">You live next door to Lisa, <span style="color:var(--purple)">________</span> ?</div><div class="fill-controls"><input class="fill-input" id="g1" placeholder="…"><button class="check-btn" onclick="checkG('g1','don\'t you','fb1')">Kiểm tra</button><button class="reveal-btn" onclick="revealG('g1','don\'t you','fb1')">Đáp án</button></div><div class="fill-feedback" id="fb1"></div></div></div>
+      <div class="fill-item"><div class="fill-item-num">2</div><div class="fill-item-content"><div class="fill-sentence">You're from London originally, <span style="color:var(--purple)">________</span> ?</div><div class="fill-controls"><input class="fill-input" id="g2" placeholder="…"><button class="check-btn" onclick="checkG('g2','aren\'t you','fb2')">Kiểm tra</button><button class="reveal-btn" onclick="revealG('g2','aren\'t you','fb2')">Đáp án</button></div><div class="fill-feedback" id="fb2"></div></div></div>
+      <div class="fill-item"><div class="fill-item-num">3</div><div class="fill-item-content"><div class="fill-sentence">You've been diving, <span style="color:var(--purple)">________</span> ?</div><div class="fill-controls"><input class="fill-input" id="g3" placeholder="…"><button class="check-btn" onclick="checkG('g3','haven\'t you','fb3')">Kiểm tra</button><button class="reveal-btn" onclick="revealG('g3','haven\'t you','fb3')">Đáp án</button></div><div class="fill-feedback" id="fb3"></div></div></div>
+      <div class="fill-item"><div class="fill-item-num">4</div><div class="fill-item-content"><div class="fill-sentence">It was a great match yesterday, <span style="color:var(--purple)">________</span> ?</div><div class="fill-controls"><input class="fill-input" id="g4" placeholder="…"><button class="check-btn" onclick="checkG('g4','wasn\'t it','fb4')">Kiểm tra</button><button class="reveal-btn" onclick="revealG('g4','wasn\'t it','fb4')">Đáp án</button></div><div class="fill-feedback" id="fb4"></div></div></div>
+    </div>
+    <div style="margin-top:16px"><button class="btn btn-primary" onclick="checkAllGrammar()">✅ Kiểm tra tất cả</button></div>
+    <div class="score-box" id="grammarScore"></div>
+  </div>
+</div>
+
+<!-- TAB 3: LISTENING -->
+<div class="tab-pane" id="tab-listening">
+  <div class="sec-heading">Listening and Speaking</div>
+  <div class="sec-sub">CD1 Track 5 — Meeting new people at a party</div>
+
+  <div class="audio-player-box">
+    <div class="audio-header"><div class="cd-badge">CD1 ▶ Track 5</div><div><div class="audio-title">Nice to meet you — Conversations at a party</div><div style="font-size:.75rem;color:var(--muted)">Rebecca, Charlie, Lisa and Daniel</div></div></div>
+    <div class="audio-controls"><button class="play-btn" id="play-btn" onclick="toggleAudio()">▶</button><div class="audio-track-info"><div class="audio-track-name">CD1 Track 5 — face2face Intermediate</div><div class="audio-note">⚠️ Cần file audio CD1 từ bộ giáo trình. Đặt file <code>cd1_track5.mp3</code> vào thư mục <code>/audio/</code></div><div class="progress-bar"><div class="progress-fill" id="audio-progress"></div></div></div></div>
+    <audio id="audio-player" src="audio/cd1_track5.mp3" onended="audioEnded()" ontimeupdate="updateProgress()"></audio>
+  </div>
+
+  <div class="instruction"><strong>🎧 Listen and choose the correct names:</strong></div>
+  <div class="fill-exercise" style="background:var(--bg3)">
+    <div class="fill-item"><div class="fill-item-num">1</div><div class="fill-item-content"><div class="fill-sentence"><span style="color:var(--purple)">______</span> is Lisa's new boyfriend.</div><div class="fill-controls"><input class="fill-input" id="l1" placeholder="Daniel / Charlie"><button class="check-btn" onclick="checkListen('l1','Daniel','fbL1')">Kiểm tra</button><button class="reveal-btn" onclick="revealListen('l1','Daniel','fbL1')">Đáp án</button></div><div class="fill-feedback" id="fbL1"></div></div></div>
+    <div class="fill-item"><div class="fill-item-num">2</div><div class="fill-item-content"><div class="fill-sentence"><span style="color:var(--purple)">______</span> teaches people how to sail.</div><div class="fill-controls"><input class="fill-input" id="l2" placeholder="Daniel / Charlie"><button class="check-btn" onclick="checkListen('l2','Daniel','fbL2')">Kiểm tra</button><button class="reveal-btn" onclick="revealListen('l2','Daniel','fbL2')">Đáp án</button></div><div class="fill-feedback" id="fbL2"></div></div></div>
+    <div class="fill-item"><div class="fill-item-num">3</div><div class="fill-item-content"><div class="fill-sentence"><span style="color:var(--purple)">______</span> works for a package tour company.</div><div class="fill-controls"><input class="fill-input" id="l3" placeholder="Charlie / Lisa"><button class="check-btn" onclick="checkListen('l3','Charlie','fbL3')">Kiểm tra</button><button class="reveal-btn" onclick="revealListen('l3','Charlie','fbL3')">Đáp án</button></div><div class="fill-feedback" id="fbL3"></div></div></div>
+  </div>
+
+  <div class="q-and-a-list">
+    <div class="qa-item" id="qa1"><div class="qa-question" onclick="toggleQA('qa1')"><span class="qa-qnum">❓</span><span class="qa-qtext">How long has Charlie lived in the village?</span><span class="qa-arrow">▶</span></div><div class="qa-answer">About three years.</div></div>
+    <div class="qa-item" id="qa2"><div class="qa-question" onclick="toggleQA('qa2')"><span class="qa-qnum">❓</span><span class="qa-qtext">How did Daniel and Lisa meet?</span><span class="qa-arrow">▶</span></div><div class="qa-answer">At Alex's birthday party (Alex is Daniel's brother, Barbara is Lisa's sister).</div></div>
+    <div class="qa-item" id="qa3"><div class="qa-question" onclick="toggleQA('qa3')"><span class="qa-qnum">❓</span><span class="qa-qtext">What do Charlie and Daniel have in common?</span><span class="qa-arrow">▶</span></div><div class="qa-answer">They both support Manchester United.</div></div>
+  </div>
+</div>
+
+<!-- TAB 4: SPEAKING -->
+<div class="tab-pane" id="tab-speaking">
+  <div class="sec-heading">Speaking Practice</div>
+  <div class="sec-sub">Meeting new people · Asking and answering with question tags</div>
+  <div class="speaking-box"><div class="speaking-box-title">💬 Model conversation</div>
+    <div class="speech-bubble">You live next door to Lisa, <strong>don't you?</strong> <span class="answer">→ Yes, I do.</span></div>
+    <div class="speech-bubble">You're from London originally, <strong>aren't you?</strong> <span class="answer">→ Yes, that's right.</span></div>
+    <div class="speech-bubble">You've been diving, <strong>haven't you?</strong> <span class="answer">→ No, I haven't, actually. It sounds a bit too dangerous.</span></div>
+  </div>
+  <div class="tip-box"><strong>💡 TIP:</strong> When the information isn't correct, use <strong>"actually"</strong> to sound more polite: <em>No, I haven't, actually.</em></div>
+  <div class="fill-exercise"><div class="fill-ex-title">🗣️ Work in pairs. Ask and answer:</div>
+    <div class="instruction">Student A: Look at p114. Student B: Look at p115. Use question tags to check information about the people in the photo.</div>
+    <button class="btn btn-outline" onclick="spk('You live next door to Lisa, don\'t you?')">🔊 Listen: You live next door to Lisa, don't you?</button>
+  </div>
+</div>
+
+<!-- TAB 5: PRONUNCIATION -ed adjectives -->
+<div class="tab-pane" id="tab-pronunciation">
+  <div class="sec-heading">Help with Pronunciation</div>
+  <div class="sec-sub">-ed adjectives: số âm tiết và trọng âm</div>
+  <div class="ed-section"><div style="font-size:.82rem;font-weight:700;color:var(--orange);margin-bottom:12px">🔹 1 âm tiết</div>
+    <div class="ed-grid" id="ed-1syl"></div>
+    <div style="font-size:.82rem;font-weight:700;color:var(--orange);margin:14px 0 12px">🔹 2 âm tiết</div>
+    <div class="ed-grid" id="ed-2syl"></div>
+    <div style="font-size:.82rem;font-weight:700;color:var(--orange);margin:14px 0 12px">🔹 3 âm tiết</div>
+    <div class="ed-grid" id="ed-3syl"></div>
+  </div>
+  <div class="note-box"><strong>📌 Mẹo phát âm -ed:</strong> Nếu từ kết thúc bằng /t/ hoặc /d/ → thêm 1 âm tiết (excited /ɪkˈsaɪtɪd/). Nếu không → -ed không thêm âm tiết (stressed /strest/).</div>
+</div>
+
+<!-- TAB 6: REAL WORLD -->
+<div class="tab-pane" id="tab-realworld">
+  <div class="grammar-intro-box"><div class="grammar-tag">🌍 REAL WORLD 1.1</div><div class="grammar-title">Question tags to check information</div></div>
+  <div class="grammar-table-wrap"><table class="grammar-table"><thead><tr><th>Function</th><th>Example</th></tr></thead><tbody>
+    <tr><td>Checking information (positive statement)</td><td>You live next door to Lisa, <strong>don't you?</strong></td></tr>
+    <tr><td>Checking information (negative statement)</td><td>You haven't ordered any food yet, <strong>have you?</strong></td></tr>
+    <tr><td>Short answer (correct)</td><td>Yes, I do. / Yes, she did. / Yes, that's right.</td></tr>
+    <tr><td>Short answer (incorrect, polite)</td><td>No, I haven't, <strong>actually</strong>.</td></tr>
+  </tbody></table></div>
+  <div class="tip-box"><strong>📝 Lưu ý:</strong> Dùng <strong>Yes, that's right</strong> thay cho Yes, I am / Yes, I do khi muốn xác nhận thông tin một cách tự nhiên.</div>
+</div>
+
+<!-- TAB 7: WORKBOOK -->
+<div class="tab-pane" id="tab-workbook">
+  <div class="lang-sum-box"><div class="lang-sum-title">📓 Workbook 1D — Question tags</div>
+    <div class="fill-exercise"><div class="fill-ex-title">✏️ Exercise 1: Fill in the gaps with the correct negative auxiliary</div>
+      <div id="wb1-items"></div>
+      <div style="margin-top:16px"><button class="btn btn-primary" onclick="checkWB1()">✅ Kiểm tra WB 1</button><button class="btn btn-outline" onclick="revealWB1()">👁 Đáp án</button></div>
+      <div class="score-box" id="wb1Score"></div>
+    </div>
+    <div class="fill-exercise"><div class="fill-ex-title">✏️ Exercise 2: Write the correct question tags</div>
+      <div id="wb2-items"></div>
+      <div style="margin-top:16px"><button class="btn btn-primary" onclick="checkWB2()">✅ Kiểm tra WB 2</button><button class="btn btn-outline" onclick="revealWB2()">👁 Đáp án</button></div>
+    </div>
+  </div>
+</div>
+
+<!-- TAB 8: REVIEW -->
+<div class="tab-pane" id="tab-review">
+  <div class="sec-heading">Unit 1D Review</div>
+  <div class="lang-sum-box"><div class="lang-sum-title">📋 Lesson Summary</div>
+    <div class="grammar-rule"><div class="grammar-bullet">✓</div><div><strong>Question tags:</strong> Câu khẳng định + tag phủ định; câu phủ định + tag khẳng định</div></div>
+    <div class="grammar-rule"><div class="grammar-bullet">✓</div><div><strong>Short answers:</strong> Yes, I do. / No, I haven't, actually. / Yes, that's right.</div></div>
+    <div class="grammar-rule"><div class="grammar-bullet">✓</div><div><strong>-ed pronunciation:</strong> stressed (1), annoyed (2), excited (3), embarrassed (3)</div></div>
+  </div>
+  <button class="btn btn-primary" onclick="startSelfCheck()">📝 Mini Test — Self Check</button>
+  <div class="score-box" id="selfCheckScore"></div>
+</div>
+
+</div>
+
+<script>
+const edData = {1:[{word:'stressed',syl:'stressed',ipa:'/strest/',vi:'căng thẳng'},{word:'scared',syl:'scared',ipa:'/skeəd/',vi:'sợ hãi'},{word:'shocked',syl:'shocked',ipa:'/ʃɒkt/',vi:'sốc'},{word:'bored',syl:'bored',ipa:'/bɔːd/',vi:'chán'}],
+2:[{word:'annoyed',syl:'an·noyed',ipa:'/əˈnɔɪd/',vi:'bực bội'},{word:'confused',syl:'con·fused',ipa:'/kənˈfjuːzd/',vi:'bối rối'},{word:'depressed',syl:'de·pressed',ipa:'/dɪˈprest/',vi:'suy sụp'},{word:'worried',syl:'wor·ried',ipa:'/ˈwʌrid/',vi:'lo lắng'}],
+3:[{word:'excited',syl:'ex·ci·ted',ipa:'/ɪkˈsaɪtɪd/',vi:'hứng khởi'},{word:'embarrassed',syl:'em·bar·rassed',ipa:'/ɪmˈbærəst/',vi:'xấu hổ'},{word:'disappointed',syl:'dis·ap·point·ed',ipa:'/ˌdɪsəˈpɔɪntɪd/',vi:'thất vọng'},{word:'interested',syl:'in·ter·est·ed',ipa:'/ˈɪntrəstɪd/',vi:'hứng thú'}]};
+function buildEd(){[1,2,3].forEach(n=>{let g=document.getElementById(`ed-${n}syl`);if(g&&edData[n])g.innerHTML=edData[n].map(w=>`<div class="ed-card" onclick="spk('${w.word}')"><div class="ed-word">${w.word}</div><div class="ed-syl">${w.syl}</div><div class="ed-ipa">${w.ipa}</div><div class="ed-mini-tip" style="font-size:.72rem;color:var(--muted)">🇻🇳 ${w.vi}</div></div>`).join('');});}
+const wb1Data=['aren\'t','isn\'t','doesn\'t','hasn\'t','haven\'t','didn\'t','don\'t','haven\'t'];
+const wb2Ques=['I\'ve met you before, _____?','You\'re vegetarian, _____?','Children love pets, _____?','They came round for dinner once, _____?','He\'s going out with Sally, _____?','The pub is closing soon, _____?','You eat fish, _____?','We\'ve got a barbecue like yours, _____?'];
+const wb2Ans=['haven\'t I','aren\'t you','don\'t they','didn\'t they','isn\'t he','isn\'t it','don\'t you','haven\'t we'];
+function buildWB1(){let h='';wb1Data.forEach((ans,i)=>{h+=`<div class="fill-item"><div class="fill-item-num">${i+1}</div><div class="fill-item-content"><div class="fill-sentence">${i===0?'You _____ coming tomorrow.':i===1?'It _____ going to rain.':i===2?'Clare _____ eat beef.':i===3?'He _____ been here before.':i===4?'They _____ got any children.':i===5?'We _____ see him yesterday.':i===6?'I _____ need to go tomorrow.':i===7?'You _____ told him yet.':''}</div><div class="fill-controls"><input class="fill-input" id="wb1-${i}" placeholder="…"><button class="check-btn" onclick="checkWB1Item(${i},'${ans}')">Kiểm tra</button></div><div class="fill-feedback" id="fbwb1-${i}"></div></div></div>`;});document.getElementById('wb1-items').innerHTML=h;}
+function checkWB1Item(i,ans){let inp=document.getElementById(`wb1-${i}`),fb=document.getElementById(`fbwb1-${i}`);if(!inp)return;let ok=inp.value.trim().toLowerCase()===ans.toLowerCase();inp.className='fill-input '+(ok?'correct':'wrong');fb.textContent=ok?`✅ Correct!`:`❌ Đáp án: "${ans}"`;fb.className='fill-feedback '+(ok?'show-ok':'show-err');}
+function checkWB1(){let c=0;wb1Data.forEach((ans,i)=>{let inp=document.getElementById(`wb1-${i}`);if(inp&&inp.value.trim().toLowerCase()===ans.toLowerCase())c++;});let sc=document.getElementById('wb1Score');sc.innerHTML=`<div class="score-num">${c}/${wb1Data.length}</div>`;sc.className='score-box show';}
+function revealWB1(){wb1Data.forEach((ans,i)=>{let inp=document.getElementById(`wb1-${i}`);if(inp){inp.value=ans;inp.className='fill-input correct';let fb=document.getElementById(`fbwb1-${i}`);if(fb){fb.textContent=`👁 Answer: "${ans}"`;fb.className='fill-feedback show-ok';}}});}
+function buildWB2(){let h='';wb2Ques.forEach((q,i)=>{h+=`<div class="fill-item"><div class="fill-item-num">${i+1}</div><div class="fill-item-content"><div class="fill-sentence">${q}</div><div class="fill-controls"><input class="fill-input" id="wb2-${i}" placeholder="question tag"><button class="check-btn" onclick="checkWB2Item(${i},'${wb2Ans[i]}')">Kiểm tra</button></div><div class="fill-feedback" id="fbwb2-${i}"></div></div></div>`;});document.getElementById('wb2-items').innerHTML=h;}
+function checkWB2Item(i,ans){let inp=document.getElementById(`wb2-${i}`),fb=document.getElementById(`fbwb2-${i}`);if(!inp)return;let ok=inp.value.trim().toLowerCase()===ans.toLowerCase();inp.className='fill-input '+(ok?'correct':'wrong');fb.textContent=ok?`✅ Correct!`:`❌ Đáp án: "${ans}"`;fb.className='fill-feedback '+(ok?'show-ok':'show-err');}
+function checkWB2(){for(let i=0;i<wb2Ans.length;i++)checkWB2Item(i,wb2Ans[i]);}
+function revealWB2(){wb2Ans.forEach((ans,i)=>{let inp=document.getElementById(`wb2-${i}`);if(inp){inp.value=ans;inp.className='fill-input correct';let fb=document.getElementById(`fbwb2-${i}`);if(fb){fb.textContent=`👁 Answer: "${ans}"`;fb.className='fill-feedback show-ok';}}});}
+function checkG(id,ans,fbId){let inp=document.getElementById(id),fb=document.getElementById(fbId);if(!inp)return;let ok=inp.value.trim().toLowerCase()===ans.toLowerCase();inp.className='fill-input '+(ok?'correct':'wrong');fb.textContent=ok?`✅ Correct!`:`❌ Đáp án: "${ans}"`;fb.className='fill-feedback '+(ok?'show-ok':'show-err');}
+function revealG(id,ans,fbId){let inp=document.getElementById(id),fb=document.getElementById(fbId);if(inp){inp.value=ans;inp.className='fill-input correct';fb.textContent=`👁 Answer: "${ans}"`;fb.className='fill-feedback show-ok';}}
+function checkAllGrammar(){let items=['g1','g2','g3','g4'],ans=['don\'t you','aren\'t you','haven\'t you','wasn\'t it'],c=0;items.forEach((id,i)=>{let inp=document.getElementById(id);if(inp&&inp.value.trim().toLowerCase()===ans[i].toLowerCase())c++;});let sc=document.getElementById('grammarScore');sc.innerHTML=`<div class="score-num">${c}/4</div>`;sc.className='score-box show';}
+function checkListen(id,ans,fbId){let inp=document.getElementById(id),fb=document.getElementById(fbId);if(!inp)return;let ok=inp.value.trim().toLowerCase()===ans.toLowerCase();inp.className='fill-input '+(ok?'correct':'wrong');fb.textContent=ok?`✅ Correct!`:`❌ Đáp án: "${ans}"`;fb.className='fill-feedback '+(ok?'show-ok':'show-err');}
+function revealListen(id,ans,fbId){let inp=document.getElementById(id),fb=document.getElementById(fbId);if(inp){inp.value=ans;inp.className='fill-input correct';fb.textContent=`👁 Answer: "${ans}"`;fb.className='fill-feedback show-ok';}}
+function toggleQA(id){document.getElementById(id).classList.toggle('open');}
+function toggleTheme(){let t=document.documentElement.getAttribute('data-theme')==='light'?'dark':'light';document.documentElement.setAttribute('data-theme',t==='light'?'light':'');document.getElementById('theme-btn').textContent=t==='light'?'🌙':'☀️';localStorage.setItem('f2f_theme',t);}
+function showTab(id){document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));document.querySelectorAll('.tnav-btn').forEach(b=>b.classList.remove('active'));document.getElementById('tab-'+id).classList.add('active');let idx={overview:0,grammar:1,listening:2,speaking:3,pronunciation:4,realworld:5,workbook:6,review:7}[id];document.querySelectorAll('.tnav-btn')[idx]?.classList.add('active');}
+function markDone(){alert('✅ Unit 1D đã đánh dấu hoàn thành!');}
+let audioPlaying=false;function toggleAudio(){let a=document.getElementById('audio-player'),btn=document.getElementById('play-btn');if(audioPlaying){a.pause();btn.textContent='▶';audioPlaying=false;}else{a.play().catch(()=>alert('⚠️ Cần file audio cd1_track5.mp3 trong thư mục /audio/'));btn.textContent='⏸';audioPlaying=true;}}
+function audioEnded(){document.getElementById('play-btn').textContent='▶';audioPlaying=false;}
+function updateProgress(){let a=document.getElementById('audio-player'),fill=document.getElementById('audio-progress');if(a.duration)fill.style.width=(a.currentTime/a.duration*100)+'%';}
+function spk(t){if('speechSynthesis'in window){let u=new SpeechSynthesisUtterance(t);u.lang='en-GB';u.rate=0.82;speechSynthesis.speak(u);}}
+function startSelfCheck(){let sc=document.getElementById('selfCheckScore');sc.innerHTML='<div class="score-num">📝 Hãy tự kiểm tra câu hỏi đuôi và phát âm -ed</div><div class="score-msg">✓ Bạn đã hoàn thành Unit 1D!</div>';sc.className='score-box show';}
+document.addEventListener('DOMContentLoaded',()=>{let t=localStorage.getItem('f2f_theme');if(t==='light'){document.documentElement.setAttribute('data-theme','light');document.getElementById('theme-btn').textContent='🌙';}buildEd();buildWB1();buildWB2();});
+</script>
+</body>
+</html>
