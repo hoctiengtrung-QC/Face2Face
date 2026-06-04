@@ -684,6 +684,29 @@ a{color:inherit;text-decoration:none}button{cursor:pointer;border:none;backgroun
   </div>
 
   <!-- Exercise 4c — Match topics to paragraphs -->
+
+  <!-- PHẦN AUDIO MỚI CHO BÀI ĐỌC - CHÈN VÀO ĐÂY -->
+<div class="audio-box" style="margin-bottom: 20px;">
+    <div class="audio-header">
+        <div class="cd-badge">🎧 READING</div>
+        <div>
+            <div class="audio-title">Laughter is the best medicine</div>
+            <div style="font-size:.75rem;color:var(--muted)">Nghe bài đọc và luyện phát âm theo</div>
+        </div>
+    </div>
+    <div class="audio-controls">
+        <!-- Nút play tùy chỉnh -->
+        <button class="play-btn" id="play-btn-reading" onclick="toggleReadingAudio()">▶</button>
+        <div class="audio-info">
+            <div class="audio-track">1C - Laughter is the best medicine</div>
+            <div class="audio-note">🎵 Đang phát: Bài đọc về lợi ích của tiếng cười</div>
+            <div class="prog-bar"><div class="prog-fill" id="prog-reading"></div></div>
+        </div>
+    </div>
+    <!-- Phần tử audio ẩn -->
+    <audio id="audio-reading" src="audio/1C-Laughter is the best medicine.mp3" preload="auto" 
+           ontimeupdate="updateReadingProg()" onended="readingAudioEnd()"></audio>
+</div>
   <div class="ex-label"><div class="ex-num">4</div>Exercise 4c — Match topics to paragraphs 1–5</div>
   <p class="instr"><span class="part">c</span> Read the article. Match topics a–e to paragraphs 1–5.</p>
 
@@ -1799,6 +1822,47 @@ document.addEventListener('DOMContentLoaded',()=>{
   const common=localStorage.getItem('f2f_1c_common');
   if(common){const el=document.getElementById('common-things');if(el)el.value=common;}
 });
+
+  // Hàm điều khiển play/pause cho bài đọc
+let isReadingPlaying = false;
+function toggleReadingAudio() {
+    const audio = document.getElementById('audio-reading');
+    const btn = document.getElementById('play-btn-reading');
+    if (!audio || !btn) return;
+    
+    if (isReadingPlaying) {
+        audio.pause();
+        btn.textContent = '▶';
+        isReadingPlaying = false;
+    } else {
+        audio.play().catch(err => {
+            console.error('Lỗi phát audio:', err);
+            showToast('⚠️ Không tìm thấy file audio. Hãy đảm bảo file "1C-Laughter is the best medicine.mp3" nằm trong thư mục /audio/');
+        });
+        btn.textContent = '⏸';
+        isReadingPlaying = true;
+    }
+}
+
+// Cập nhật thanh tiến trình
+function updateReadingProg() {
+    const audio = document.getElementById('audio-reading');
+    const fill = document.getElementById('prog-reading');
+    if (audio && fill && audio.duration) {
+        const percent = (audio.currentTime / audio.duration) * 100;
+        fill.style.width = percent + '%';
+    }
+}
+
+// Reset nút khi audio kết thúc
+function readingAudioEnd() {
+    const btn = document.getElementById('play-btn-reading');
+    if (btn) {
+        btn.textContent = '▶';
+        isReadingPlaying = false;
+    }
+}
+  
 </script>
 </body>
 </html>
