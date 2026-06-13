@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2B Street food — face2face Intermediate</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap');
+:root{--bg:#0D1117;--bg2:#161B22;--bg3:#21262D;--bg4:#2D333B;--border:#30363D;--border2:#3D444D;--text:#E6EDF3;--dim:#8B949E;--muted:#484F58;--blue:#2563EB;--blue-l:rgba(37,99,235,.15);--green:#10B981;--green-l:rgba(16,185,129,.12);--orange:#F59E0B;--orange-l:rgba(245,158,11,.12);--red:#EF4444;--red-l:rgba(239,68,68,.12);--teal:#14B8A6;--accent:#E8760A;--accent-l:rgba(232,118,10,.12);--r:10px;--r2:6px;--tr:.18s ease}
+[data-theme=light]{--bg:#F8FAFC;--bg2:#fff;--bg3:#F1F5F9;--bg4:#E2E8F0;--border:#E2E8F0;--border2:#CBD5E1;--text:#0F172A;--dim:#475569;--muted:#94A3B8}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);font-size:15px;line-height:1.6}
+button{cursor:pointer;border:none;background:none;font-family:inherit}input,textarea,select{font-family:inherit}
+.top-bar{background:var(--bg2);border-bottom:1px solid var(--border);padding:10px 20px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:50;flex-wrap:wrap}
+.back-btn{display:flex;align-items:center;gap:6px;padding:6px 14px;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);font-size:.82rem;color:var(--dim);cursor:pointer}
+.back-btn:hover{border-color:var(--accent);color:var(--accent)}
+.badge{padding:4px 12px;background:var(--accent-l);border:1px solid rgba(232,118,10,.35);border-radius:4px;font-size:.75rem;font-weight:700;color:var(--accent)}
+.lesson-h{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700}
+.top-actions{margin-left:auto;display:flex;gap:8px}
+.theme-btn{width:34px;height:34px;display:flex;align-items:center;justify-content:center;border-radius:var(--r2);background:var(--bg3);border:1px solid var(--border);cursor:pointer;font-size:.95rem;color:var(--dim)}
+.done-btn{padding:6px 14px;background:var(--green);border-radius:var(--r2);font-size:.78rem;font-weight:600;color:#fff;cursor:pointer}
+.qr{background:linear-gradient(135deg,#1e3015,#1a2f1a);border:1px solid rgba(232,118,10,.3);border-radius:var(--r);padding:14px 20px;margin:16px 20px;display:flex;gap:12px}
+.qr-badge{background:var(--accent);color:#fff;padding:3px 10px;border-radius:4px;font-size:.72rem;font-weight:700;white-space:nowrap;flex-shrink:0;height:fit-content;margin-top:2px}
+.qr-text{font-size:.84rem;line-height:1.65;color:#CBD5E1}.qr-text strong{color:#fff}.qr-text em{font-style:italic;color:#FCD34D}
+.tab-nav{display:flex;gap:2px;border-bottom:1px solid var(--border);overflow-x:auto;scrollbar-width:none;position:sticky;top:57px;background:var(--bg);z-index:40;padding:0 20px}
+.tab-nav::-webkit-scrollbar{display:none}
+.tnav-btn{display:flex;align-items:center;gap:5px;padding:11px 15px;font-size:.82rem;font-weight:500;color:var(--dim);white-space:nowrap;border-bottom:2px solid transparent;margin-bottom:-1px;cursor:pointer;transition:all var(--tr);background:none;border-top:none;border-left:none;border-right:none;font-family:inherit}
+.tnav-btn:hover{color:var(--text)}.tnav-btn.active{color:var(--accent);border-bottom-color:var(--accent)}
+.pc{max-width:920px;margin:0 auto;padding:0 20px 48px}
+.tab-pane{display:none;padding-top:24px}.tab-pane.active{display:block;animation:fu .2s ease}
+@keyframes fu{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.sec-h{font-size:1.05rem;font-weight:700;margin-bottom:4px}.sec-sub{font-size:.82rem;color:var(--dim);margin-bottom:16px}
+.exl{display:inline-flex;align-items:center;gap:8px;font-size:.9rem;font-weight:600;margin-bottom:10px}
+.exn{width:28px;height:28px;background:var(--accent);color:#fff;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:.78rem;font-weight:700;flex-shrink:0}
+.pt{display:inline-block;width:22px;height:22px;background:var(--bg4);border-radius:4px;text-align:center;line-height:22px;font-size:.72rem;font-weight:700;color:var(--dim);margin-right:4px}
+.ins{font-size:.88rem;color:var(--text);line-height:1.65;margin-bottom:14px}
+.ins em{color:var(--teal);font-style:italic}
+/* VOCAB GROUPS */
+.vocab-groups{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px;margin-bottom:16px}
+.vg-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:14px}
+.vg-title{font-size:.72rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px}
+.vg-item{display:flex;align-items:center;gap:6px;padding:5px 0;border-bottom:1px dashed var(--border);font-size:.82rem;cursor:pointer;transition:color var(--tr)}
+.vg-item:last-child{border-bottom:none}
+.vg-item:hover{color:var(--accent)}
+.vg-ipa{font-family:monospace;font-size:.7rem;color:var(--teal)}
+/* BLOG */
+.blog-box{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;margin-bottom:16px}
+.blog-browser{background:var(--bg4);padding:8px 14px;display:flex;align-items:center;gap:8px;font-size:.75rem;color:var(--muted);border-bottom:1px solid var(--border)}
+.blog-url{flex:1;background:var(--bg3);border-radius:4px;padding:3px 10px}
+.blog-entry{border-bottom:1px solid var(--border);padding:16px}
+.blog-entry:last-child{border-bottom:none}
+.blog-date{display:inline-block;background:var(--accent);color:#fff;padding:4px 10px;border-radius:4px;font-size:.75rem;font-weight:700;margin-bottom:10px}
+.blog-text{font-size:.86rem;line-height:1.85;color:var(--text)}
+.blog-text .hl-cont{color:var(--blue);font-weight:600}
+.blog-text .hl-ps{color:var(--teal)}
+/* FILL */
+.fill-ex{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:16px;margin-bottom:14px}
+.fill-ex-title{font-size:.86rem;font-weight:600;padding-bottom:9px;border-bottom:1px solid var(--border);margin-bottom:12px;color:var(--dim)}
+.fill-row{display:flex;align-items:flex-start;gap:9px;padding:8px 0;border-bottom:1px dashed var(--border)}
+.fill-row:last-child{border-bottom:none}
+.fill-n{width:22px;height:22px;border-radius:50%;background:var(--bg3);display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:700;color:var(--muted);flex-shrink:0;margin-top:2px}
+.fill-body{flex:1}
+.fill-s{font-size:.86rem;margin-bottom:6px;line-height:1.6}
+.fill-ctrl{display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+.fi{height:32px;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);padding:0 10px;color:var(--text);font-size:.83rem;outline:none;transition:border-color var(--tr)}
+.fi:focus{border-color:var(--accent)}.fi.ok{border-color:var(--green);background:var(--green-l)}.fi.err{border-color:var(--red);background:var(--red-l)}
+.chk{padding:5px 11px;background:var(--accent);color:#fff;border:none;border-radius:var(--r2);font-size:.75rem;font-weight:700;cursor:pointer}
+.rev{padding:5px 10px;background:var(--bg3);border:1px solid var(--border);color:var(--dim);border-radius:var(--r2);font-size:.75rem;cursor:pointer}
+.rev:hover{border-color:var(--accent);color:var(--accent)}
+.fb{margin-top:5px;font-size:.76rem;padding:4px 9px;border-radius:var(--r2);display:none}
+.fb.ok{background:var(--green-l);color:var(--green);display:block}
+.fb.err{background:var(--red-l);color:var(--red);display:block}
+/* RULE */
+.rule-box{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:16px;margin-bottom:14px}
+.rule-tag{display:inline-flex;align-items:center;gap:6px;padding:3px 12px;background:var(--accent-l);border:1px solid rgba(232,118,10,.35);border-radius:4px;font-size:.72rem;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:.06em;margin-bottom:12px}
+.rule-item{display:flex;gap:8px;padding:6px 0;border-bottom:1px dashed var(--border);font-size:.84rem;line-height:1.6}
+.rule-item:last-child{border-bottom:none}
+.rule-dot{color:var(--accent);flex-shrink:0;font-size:.7rem;margin-top:6px}
+.ex-box{font-family:'Courier New',monospace;font-size:.81rem;color:#7DD3FC;background:var(--bg);padding:7px 12px;border-radius:var(--r2);margin:5px 0;border:1px solid var(--border)}
+.ok-box{background:var(--green-l);border:1px solid rgba(16,185,129,.25);border-radius:var(--r2);padding:6px 11px;font-size:.82rem;margin-bottom:5px}
+.err-box{background:var(--red-l);border:1px solid rgba(239,68,68,.25);border-radius:var(--r2);padding:6px 11px;font-size:.82rem;margin-bottom:5px}
+.tip-box{background:var(--accent-l);border:1px solid rgba(232,118,10,.25);border-radius:var(--r2);padding:10px 14px;font-size:.82rem;line-height:1.6;margin:10px 0}
+.tip-box strong{color:var(--accent)}
+.note-box{background:var(--bg3);border-left:3px solid var(--accent);border-radius:0 var(--r2) var(--r2) 0;padding:10px 14px;margin:10px 0;font-size:.82rem;color:var(--dim);line-height:1.6}
+.note-box strong{color:var(--text)}
+/* MC */
+.mc-opts{display:flex;flex-direction:column;gap:5px;margin-bottom:4px}
+.mc-opt{display:flex;align-items:center;gap:8px;padding:8px 12px;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);font-size:.83rem;cursor:pointer;transition:all var(--tr)}
+.mc-opt:hover:not(:disabled){border-color:var(--accent);background:var(--accent-l)}
+.mc-lbl{width:20px;height:20px;border-radius:50%;background:var(--bg4);display:flex;align-items:center;justify-content:center;font-size:.68rem;font-weight:700;color:var(--muted);flex-shrink:0}
+.mc-opt.ok2{border-color:var(--green);background:var(--green-l)}.mc-opt.ok2 .mc-lbl{background:var(--green);color:#fff}
+.mc-opt.err2{border-color:var(--red);background:var(--red-l)}.mc-opt.err2 .mc-lbl{background:var(--red);color:#fff}
+/* CONVO */
+.convo-box{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:14px;margin-bottom:14px}
+.convo-title{font-size:.76rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;margin-bottom:10px}
+.bubble-row{display:flex;gap:10px;margin-bottom:7px}
+.bubble-row.right{flex-direction:row-reverse}
+.bubble{background:var(--bg3);border:1px solid var(--border);border-radius:12px;padding:8px 13px;max-width:75%;font-size:.83rem;line-height:1.5}
+.bubble-row:not(.right) .bubble{border-bottom-left-radius:3px}
+.bubble-row.right .bubble{border-bottom-right-radius:3px;background:var(--accent-l);border-color:rgba(232,118,10,.3)}
+.tbl{width:100%;border-collapse:collapse;font-size:.82rem;margin:8px 0}
+.tbl th{background:var(--bg3);padding:7px 12px;text-align:left;font-weight:700;border:1px solid var(--border);color:var(--dim);font-size:.72rem;text-transform:uppercase;letter-spacing:.04em}
+.tbl td{padding:7px 12px;border:1px solid var(--border);line-height:1.5}
+.tbl tr:nth-child(even) td{background:rgba(255,255,255,.02)}
+.gr-box{background:linear-gradient(135deg,rgba(232,118,10,.08),rgba(20,184,166,.06));border:1px solid rgba(232,118,10,.2);border-radius:var(--r);padding:18px;margin-bottom:16px}
+.list-input-wrap{display:flex;flex-direction:column;gap:7px}
+.list-row{display:flex;align-items:center;gap:10px}
+.list-num{width:26px;height:26px;border-radius:50%;background:var(--accent-l);color:var(--accent);display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:700;flex-shrink:0}
+.list-inp{flex:1;height:33px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r2);padding:0 12px;color:var(--text);font-size:.83rem;outline:none;transition:border-color var(--tr)}
+.list-inp:focus{border-color:var(--accent)}
+.wb-tag{display:inline-flex;align-items:center;gap:6px;padding:3px 12px;background:var(--accent-l);border:1px solid rgba(232,118,10,.35);border-radius:4px;font-size:.72rem;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:.06em;margin-bottom:14px}
+.score-box{display:none;text-align:center;padding:14px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);margin-top:12px}
+.score-box.show{display:block}
+.score-n{font-size:2rem;font-weight:700;color:var(--accent)}
+.score-msg{color:var(--dim);font-size:.82rem;margin-top:3px}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:7px 15px;border-radius:var(--r2);font-size:.81rem;font-weight:500;cursor:pointer;border:none;font-family:inherit;transition:all var(--tr)}
+.btn-a{background:var(--accent);color:#fff}.btn-a:hover{background:#B45309}
+.btn-o{background:var(--bg3);border:1px solid var(--border2);color:var(--dim)}.btn-o:hover{border-color:var(--accent);color:var(--accent)}
+.spkm{width:28px;height:28px;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);cursor:pointer;font-size:.8rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.spkm:hover{background:var(--accent-l);border-color:var(--accent)}
+.divider{height:1px;background:var(--border);margin:18px 0}
+.audio-box{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:14px;margin-bottom:14px}
+.cd-badge{padding:4px 12px;background:var(--orange-l);border:1px solid rgba(245,158,11,.3);border-radius:4px;font-size:.75rem;font-weight:700;color:var(--orange);display:inline-block;margin-bottom:8px}
+.play-btn{width:38px;height:38px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;border:none;font-size:.9rem;flex-shrink:0;transition:all var(--tr)}
+.play-btn:hover{background:#B45309;transform:scale(1.05)}
+.prog-bar{height:3px;background:var(--border);border-radius:2px;overflow:hidden;margin-top:4px}
+.prog-fill{height:100%;width:0%;background:var(--accent);border-radius:2px;transition:width .1s}
+@media(max-width:640px){.vocab-groups{grid-template-columns:repeat(2,1fr)}.tab-nav{padding:0 12px}.pc{padding:0 14px 48px}}
+</style>
+</head>
+<body>
+<div class="top-bar">
+  <button class="back-btn" onclick="history.back()">← Trang chủ</button>
+  <div class="badge">UNIT 2</div>
+  <div class="lesson-h">2B — Street food</div>
+  <div class="top-actions">
+    <button class="theme-btn" id="theme-btn" onclick="toggleTheme()">☀️</button>
+    <button class="done-btn" onclick="markDone()">✅ Xong</button>
+  </div>
+</div>
+<div class="qr">
+  <div class="qr-badge">QUICK REVIEW</div>
+  <div class="qr-text"><strong>Modal verbs, be supposed to</strong> — Think of one thing you: have to do, ought to do, should do, don't have to do, are supposed to do next week. Work in pairs. Tell your partner about these things. Who is going to have the busiest week?</div>
+</div>
+<div class="tab-nav">
+  <button class="tnav-btn active" onclick="showTab('vocab')">📚 Vocabulary &amp; Speaking</button>
+  <button class="tnav-btn" onclick="showTab('reading')">📖 Reading (Blog)</button>
+  <button class="tnav-btn" onclick="showTab('grammar')">📐 Help with Grammar</button>
+  <button class="tnav-btn" onclick="showTab('getready')">🎯 Get Ready!</button>
+  <button class="tnav-btn" onclick="showTab('workbook')">📓 Workbook</button>
+  <button class="tnav-btn" onclick="showTab('langsummary')">📋 Language Summary</button>
+</div>
+<div class="pc">
+
+<!-- VOCAB -->
+<div class="tab-pane active" id="tab-vocab">
+  <div class="sec-h">Vocabulary and Speaking</div>
+  <div class="sec-sub">Food and ways of cooking · VOCABULARY 2.2 → p129</div>
+
+  <div class="exl"><div class="exn">1</div>Exercise 1a — Put words into groups 1–5</div>
+  <p class="ins"><span class="pt">a</span>Try to put these words into groups 1–5. Some words can go in more than one group. Then check in <em>VOCABULARY 2.2 → p129</em>.</p>
+  <div class="note-box" style="margin-bottom:14px">
+    <strong>Words:</strong> a peach · beans · grill · peanuts · lamb · a chilli · an onion · a coconut · barbecue · flour · a cucumber · a pineapple · beef · boil · herbs · spices · an avocado · fry · a lettuce · sauce · stir fry · a hot dog · cream · a green/red pepper · noodles · bake · a pie
+  </div>
+
+  <div class="vocab-groups" id="vocab-groups-grid"></div>
+
+  <button class="btn btn-a" onclick="toggleVocabAns()">✅ Xem đáp án phân nhóm</button>
+  <div id="vocab-ans" style="display:none;margin-top:12px">
+    <div class="ok-box">
+      <strong>1 Fruit:</strong> a peach, a coconut, a pineapple, an avocado<br>
+      <strong>2 Vegetables:</strong> beans, an onion, a cucumber, a lettuce, a green/red pepper<br>
+      <strong>3 Meat:</strong> lamb, beef, a hot dog (peanuts → other food)<br>
+      <strong>4 Other food words:</strong> peanuts, a chilli, flour, herbs, spices, sauce, cream, a pie, noodles<br>
+      <strong>5 Ways of cooking:</strong> grill, barbecue, boil, fry, stir fry, bake
+    </div>
+  </div>
+
+  <div class="divider"></div>
+  <div class="exl"><div class="exn">1</div>Exercise 1b — Compare groups</div>
+  <p class="ins"><span class="pt">b</span>Work in pairs. Compare your groups 1–5. Then check new words in <em>VOCABULARY 2.2 → p129</em>.</p>
+  <div id="vocab-detail-grid" class="vocab-groups" style="margin-top:12px"></div>
+
+  <div class="divider"></div>
+  <div class="exl"><div class="exn">1</div>Exercise 1c — Discussion</div>
+  <p class="ins"><span class="pt">c</span>Work with your partner. Answer these questions:</p>
+  <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:14px">
+    <div class="rule-box" style="padding:12px">
+      <div style="font-size:.83rem;margin-bottom:4px;font-weight:600">1. Which of the types of food in 1a do you often eat? Which do you never eat?</div>
+      <div class="ins" style="font-size:.8rem;color:var(--muted);margin-bottom:0">Gợi ý: <em>"I often eat noodles and vegetables. I never eat lamb because I don't like the taste."</em></div>
+    </div>
+    <div class="rule-box" style="padding:12px">
+      <div style="font-size:.83rem;margin-bottom:4px;font-weight:600">2. How do people in your country usually cook the meat and vegetables in 1a?</div>
+      <div class="ins" style="font-size:.8rem;color:var(--muted);margin-bottom:0">Gợi ý: <em>"In Vietnam, we usually stir fry vegetables with garlic and fish sauce. We often grill or barbecue meat."</em></div>
+    </div>
+  </div>
+</div>
+
+<!-- READING -->
+<div class="tab-pane" id="tab-reading">
+  <div class="sec-h">Speaking and Reading</div>
+  <div class="sec-sub">Steve's Street Food Blog — www.stevesstreetfoodblog.com</div>
+
+  <div class="exl"><div class="exn">2</div>Exercise 2a — Pre-reading</div>
+  <p class="ins"><span class="pt">a</span>Work in new pairs. Look at photos A–C (pad thai, a burrito, satay). Have you ever tried these types of street food? If so, did you like them? If not, which would you like to try?</p>
+
+  <div class="exl"><div class="exn">2</div>Exercise 2b — Read the blog</div>
+  <p class="ins"><span class="pt">b</span>Read the blog. How do you make the types of food in photos A–C?</p>
+
+  <!-- FULL BLOG TEXT -->
+  <div class="blog-box">
+    <div class="blog-browser">
+      <span>● ● ●</span>
+      <span class="blog-url">🌐 www.stevesstreetfoodblog.com</span>
+    </div>
+    <div style="padding:16px 20px;border-bottom:1px solid var(--border)">
+      <div style="font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;margin-bottom:2px">Steve's <span style="color:var(--accent)">STREET FOOD BLOG</span></div>
+      <div style="font-size:.83rem;line-height:1.75;color:var(--dim)">I <span class="hl-ps">live</span> in London, but I <span class="hl-ps">travel</span> all over the world for my job (I'm a photographer) and I always <span class="hl-ps">try</span> the street food wherever I go. For me there's nothing better than sitting in a square or a park eating cheap, freshly-cooked street food — it's the best way to get to know a country and its people. I started blogging about street food over three years ago and my blog <span class="hl-cont">is becoming</span> more popular every year. Now I<span class="hl-cont">'m writing</span> a book about street food around the world — when I'm not working, blogging or eating, of course!</div>
+    </div>
+
+    <div class="blog-entry">
+      <div class="blog-date">APRIL 27TH</div>
+      <div class="blog-text">More and more people <span class="hl-cont">are visiting</span> Thailand on holiday these days, but most of them don't stay in Bangkok for very long. Big mistake. I <span class="hl-ps">come</span> here every year and I can tell you that the country's capital <span class="hl-ps">has got</span> some fantastic street food — take pad thai, for example. It's very quick to make — stir fry some noodles, then add eggs, fish sauce, chillies, chicken, peanuts, herbs and spices — and it's one of the most incredible dishes you've ever tasted. <button class="spkm" onclick="spk('Pad thai — stir fry noodles, add eggs, fish sauce, chillies, chicken, peanuts, herbs and spices.')">🔊</button></div>
+    </div>
+
+    <div class="blog-entry">
+      <div class="blog-date">MAY 19TH</div>
+      <div class="blog-text">I<span class="hl-cont">'m blogging</span> from a busy food market in the centre of Jakarta. People still <span class="hl-ps">eat</span> a lot of street food in Indonesia, and satay is probably the country's most popular dish. When people make satay, they often grill the lamb or chicken, but it tastes better if it's barbecued over an open fire. Then cover the cooked meat with a spicy peanut sauce and serve with onions, cucumber and rice cakes. Delicious! <button class="spkm" onclick="spk('Satay — grill or barbecue lamb or chicken, then serve with spicy peanut sauce, onions, cucumber and rice cakes.')">🔊</button></div>
+    </div>
+
+    <div class="blog-entry">
+      <div class="blog-date">JUNE 5TH</div>
+      <div class="blog-text">We<span class="hl-cont">'re working</span> in Mexico for a few days and at the moment I<span class="hl-cont">'m sitting</span> in one of Mexico City's busy parks — and I've just eaten one of the best burritos I've had in my life! If you <span class="hl-ps">want</span> to make the perfect burrito, start with a freshly-made flour tortilla — a type of flat bread — then fill it with grilled beef or chicken and serve with beans, rice, sour cream, onions, lettuce and avocado. So why was this one so good? The extra-hot chilli sauce! <button class="spkm" onclick="spk('Burrito — fill a flour tortilla with grilled beef or chicken, beans, rice, sour cream, onions, lettuce and avocado.')">🔊</button></div>
+    </div>
+    <div style="padding:10px 16px;font-size:.74rem;color:var(--muted);font-style:italic">
+      <strong style="color:var(--teal)">Blue text</strong> = Present Continuous (temporary/happening now) &nbsp;·&nbsp; <strong style="color:var(--dim)">Regular text</strong> = Present Simple (habits/permanent)
+    </div>
+  </div>
+
+  <div class="divider"></div>
+  <div class="exl"><div class="exn">3</div>Exercise 3a — Comprehension questions</div>
+  <p class="ins"><span class="pt">a</span>Read the blog again. Answer these questions.</p>
+
+  <div id="comp-list" style="display:flex;flex-direction:column;gap:8px;margin-bottom:16px"></div>
+
+  <div class="divider"></div>
+  <div class="exl"><div class="exn">3</div>Exercise 3b — Discussion</div>
+  <p class="ins"><span class="pt">b</span>Work in pairs. Discuss these questions:</p>
+  <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:14px">
+    <div class="rule-box" style="padding:10px 14px"><div style="font-size:.83rem">1. What kinds of street food can you buy in your country? What are the ingredients? How is it cooked?</div></div>
+    <div class="rule-box" style="padding:10px 14px"><div style="font-size:.83rem">2. Do you ever eat street food? If so, what do you eat?</div></div>
+  </div>
+</div>
+
+<!-- GRAMMAR -->
+<div class="tab-pane" id="tab-grammar">
+  <div class="sec-h">Help with Grammar</div>
+  <div class="sec-sub">Present Continuous and Present Simple · GRAMMAR 2.2 → p131</div>
+
+  <div class="exl"><div class="exn">4</div>Exercise 4a — Match verb forms to meanings</div>
+  <p class="ins"><span class="pt">a</span>Look at the blog again. Match the verb forms in blue to these meanings. There are two verb forms for each meaning.</p>
+
+  <div class="rule-box">
+    <div class="rule-tag">⬤⬤⬤ HELP WITH GRAMMAR — GRAMMAR 2.2</div>
+    <div style="margin-bottom:14px">
+      <div style="font-size:.84rem;font-weight:700;color:var(--blue);margin-bottom:8px">PRESENT CONTINUOUS — dùng cho:</div>
+      <div class="rule-item"><div class="rule-dot">a</div><div>Đang xảy ra tại thời điểm nói/viết:<br><div class="ex-box">I<span style="color:var(--blue)"> 'm blogging</span> from a busy food market. (right now)</div></div></div>
+      <div class="rule-item"><div class="rule-dot">b</div><div>Tạm thời, đang diễn ra gần đây (không nhất thiết ngay lúc này):<br><div class="ex-box">Now I<span style="color:var(--blue)">'m writing</span> a book about street food. (these days)<br>We<span style="color:var(--blue)">'re working</span> in Mexico for a few days.</div></div></div>
+      <div class="rule-item"><div class="rule-dot">c</div><div>Đang thay đổi theo thời gian:<br><div class="ex-box">My blog <span style="color:var(--blue)">is becoming</span> more popular every year.<br>More and more people <span style="color:var(--blue)">are visiting</span> Thailand these days.</div></div></div>
+    </div>
+    <div>
+      <div style="font-size:.84rem;font-weight:700;color:var(--teal);margin-bottom:8px">PRESENT SIMPLE — dùng cho:</div>
+      <div class="rule-item"><div class="rule-dot">a</div><div>Thói quen, lặp đi lặp lại (always, sometimes, never, every day…):<br><div class="ex-box">I <span style="color:var(--teal)">try</span> the street food wherever I go.<br>I <span style="color:var(--teal)">come</span> here every year.</div></div></div>
+      <div class="rule-item"><div class="rule-dot">b</div><div>Sự thật lâu dài, cố định:<br><div class="ex-box">I <span style="color:var(--teal)">live</span> in London. The capital <span style="color:var(--teal)">has got</span> fantastic street food.</div></div></div>
+      <div class="rule-item"><div class="rule-dot">c</div><div>State verbs (verbs mô tả trạng thái — không dùng Continuous):<br><div class="ex-box">If you <span style="color:var(--teal)">want</span> to make the perfect burrito… (NOT: <del>are wanting</del>)</div></div></div>
+    </div>
+  </div>
+
+  <div class="exl"><div class="exn">4</div>Exercise 4b — State or activity verbs?</div>
+  <p class="ins"><span class="pt">b</span>Look at these verbs. Do they usually describe activities (A) or states (S)? Do we usually use state verbs in the Present Continuous?</p>
+
+  <div id="state-verbs-list" style="display:flex;flex-wrap:wrap;gap:7px;margin-bottom:14px"></div>
+  <div class="note-box">
+    <strong>State verbs — KHÔNG dùng Present Continuous:</strong><br>
+    be, have (sở hữu), want, need, know, understand, believe, think (=believe), seem, appear, like, love, hate, prefer, smell, taste, hear, see (=nhìn thấy)
+    <br><br>
+    <strong>Activity verbs — CÓ THỂ dùng Continuous:</strong><br>
+    watch, talk, eat, buy, cook, learn, take, happen, become, visit, work, sit, write, travel
+  </div>
+
+  <div class="divider"></div>
+  <div class="exl"><div class="exn">6</div>Exercise 6 — Fill gaps: Los Angeles blog entry</div>
+  <p class="ins"><span class="pt">a</span>Read Steve's blog entry from Los Angeles. Put the verbs in brackets in the Present Simple or Present Continuous.</p>
+
+  <div class="blog-box" style="margin-bottom:14px">
+    <div class="blog-browser"><span>● ● ●</span><span class="blog-url">🌐 www.stevesstreetfoodblog.com/LAfestival</span></div>
+    <div class="blog-entry">
+      <div class="blog-date">JULY 16TH</div>
+      <div id="la-blog-text" style="font-size:.86rem;line-height:1.85"></div>
+    </div>
+  </div>
+
+  <div class="fill-ex">
+    <div class="fill-ex-title">Điền Present Simple hoặc Present Continuous (verbs từ bài)</div>
+    <div id="la-fill-list"></div>
+    <div style="display:flex;gap:8px;margin-top:12px">
+      <button class="btn btn-a" onclick="checkAllLA()">✅ Kiểm tra</button>
+      <button class="btn btn-o" onclick="revealAllLA()">👁 Đáp án</button>
+      <button class="btn btn-o" onclick="resetAllLA()">🔄 Làm lại</button>
+    </div>
+    <div class="score-box" id="la-score"></div>
+  </div>
+
+  <div class="audio-box">
+    <div class="cd-badge">CD1 ▶ Track 12 — PRONUNCIATION</div>
+    <div style="display:flex;align-items:center;gap:10px">
+      <button class="play-btn" id="play-12" onclick="toggleAudio('12')">▶</button>
+      <div style="flex:1">
+        <div style="font-size:.85rem;font-weight:600">Listen and practise. Copy the stress and contractions.</div>
+        <div style="font-size:.78rem;color:var(--teal);margin-top:4px">I'm <u>blog</u>ging from a <u>bu</u>sy street <u>food</u> <u>mar</u>ket.</div>
+        <div class="prog-bar"><div class="prog-fill" id="prog-12"></div></div>
+      </div>
+    </div>
+    <audio id="audio-12" src="audio/cd1_track12.mp3" ontimeupdate="updateProg('12')" onended="audioEnd('12')"></audio>
+  </div>
+</div>
+
+<!-- GET READY -->
+<div class="tab-pane" id="tab-getready">
+  <div class="sec-h">Get ready … Get it right!</div>
+  <div class="sec-sub">Production — Present Simple &amp; Continuous</div>
+
+  <div class="exl"><div class="exn">7</div>Exercise 7 — Write sentences about changing eating habits</div>
+  <p class="ins">Write four sentences in the Present Continuous about how eating habits in your country are changing. Use these ideas or your own.</p>
+  <div class="note-box" style="margin-bottom:14px">
+    Topics: street food · fast food · organic food · food from other countries · supermarkets · the amount people eat · prices · quality of food<br><br>
+    Example: <em style="color:var(--teal)">People are eating more street food these days.</em>
+  </div>
+  <div class="gr-box">
+    <div class="list-input-wrap" id="change-wrap"></div>
+    <button class="btn btn-o" onclick="saveChange()" style="margin-top:10px">💾 Lưu</button>
+  </div>
+
+  <div class="divider"></div>
+  <div class="exl"><div class="exn">8</div>Exercise 8 — Make questions with Present Simple/Continuous</div>
+  <p class="ins">Make questions with <em>you</em>. Put the verbs in brackets in the Present Simple or Present Continuous.</p>
+
+  <div class="fill-ex">
+    <div class="fill-ex-title">Điền Present Simple hoặc Continuous để thành câu hỏi</div>
+    <div id="q-list"></div>
+    <div style="display:flex;gap:8px;margin-top:12px">
+      <button class="btn btn-a" onclick="checkAllQ()">✅ Kiểm tra</button>
+      <button class="btn btn-o" onclick="revealAllQ()">👁 Đáp án</button>
+      <button class="btn btn-o" onclick="resetQ()">🔄 Làm lại</button>
+    </div>
+    <div class="score-box" id="q-score"></div>
+  </div>
+</div>
+
+<!-- WORKBOOK -->
+<div class="tab-pane" id="tab-workbook">
+  <div class="sec-h">Workbook 2B — Street food</div>
+  <div class="sec-sub">Workbook p12 · Language Summary 2 → p129</div>
+
+  <div class="wb-tag">📓 GRAMMAR 2.2 — Present Continuous and Present Simple</div>
+
+  <div class="exl"><div class="exn">3</div>WB Exercise 3a — Fill gaps with Present Continuous</div>
+  <p class="ins"><span class="pt">a</span>Fill in the gaps with these words/phrases. Use the Present Continuous.</p>
+  <div class="note-box" style="margin-bottom:12px"><strong>Words:</strong> become · make · not eat · heat up · not help · grow · work</div>
+  <div class="fill-ex">
+    <div class="fill-ex-title">Dùng Present Continuous của các động từ cho sẵn</div>
+    <div id="wb3a-list"></div>
+    <div style="display:flex;gap:8px;margin-top:12px">
+      <button class="btn btn-a" onclick="checkAllWB3a()">✅ Kiểm tra</button>
+      <button class="btn btn-o" onclick="revealAllWB3a()">👁 Đáp án</button>
+      <button class="btn btn-o" onclick="resetWB3a()">🔄 Làm lại</button>
+    </div>
+    <div class="score-box" id="wb3a-score"></div>
+  </div>
+
+  <div class="divider"></div>
+  <div class="exl"><div class="exn">3</div>WB Exercise 3b — Write sentences/questions using Present Simple</div>
+  <p class="ins"><span class="pt">b</span>Write sentences or questions. Use the Present Simple.</p>
+  <div class="fill-ex">
+    <div class="fill-ex-title">Viết câu/câu hỏi dùng Present Simple</div>
+    <div id="wb3b-list"></div>
+    <div style="display:flex;gap:8px;margin-top:12px">
+      <button class="btn btn-a" onclick="revealAllWB3b()">👁 Đáp án</button>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+  <div class="exl"><div class="exn">4</div>WB Exercise 4 — Reading: Food — Eating Out</div>
+  <p class="ins"><span class="pt">a</span>Read the first part of the article and choose the correct verb form.</p>
+
+  <div class="blog-box">
+    <div class="blog-browser"><span>● ● ●</span><span class="blog-url">🌐 home &gt; lifestyle &gt; food — FOOD: EATING OUT</span></div>
+    <div style="padding:16px">
+      <div id="eating-out-text" style="font-size:.85rem;line-height:1.9"></div>
+    </div>
+  </div>
+  <button class="btn btn-a" onclick="revealEatingOut()">👁 Đáp án</button>
+  <div id="eating-out-ans" style="display:none;margin-top:10px" class="fb ok"></div>
+
+  <div class="divider"></div>
+  <p class="ins"><span class="pt">b</span>Read the Whitecross Market article. Fill in the gaps with Present Continuous or Present Simple.</p>
+  <div class="fill-ex">
+    <div class="fill-ex-title">Điền Present Continuous hoặc Present Simple — Whitecross Market</div>
+    <div id="wb4b-list"></div>
+    <div style="display:flex;gap:8px;margin-top:12px">
+      <button class="btn btn-a" onclick="checkAllWB4b()">✅ Kiểm tra</button>
+      <button class="btn btn-o" onclick="revealAllWB4b()">👁 Đáp án</button>
+      <button class="btn btn-o" onclick="resetWB4b()">🔄 Làm lại</button>
+    </div>
+    <div class="score-box" id="wb4b-score"></div>
+  </div>
+</div>
+
+<!-- LANGUAGE SUMMARY -->
+<div class="tab-pane" id="tab-langsummary">
+  <div class="sec-h">Language Summary 2B</div>
+  <div class="sec-sub">VOCABULARY 2.2 + GRAMMAR 2.2 · p129–131</div>
+
+  <div class="wb-tag">📗 VOCABULARY 2.2 — Food and ways of cooking (p129)</div>
+  <div id="ls-vocab-grid" class="vocab-groups" style="margin-bottom:20px"></div>
+
+  <div class="wb-tag">📗 GRAMMAR 2.2 — Present Continuous vs Present Simple (p131)</div>
+  <table class="tbl">
+    <thead><tr><th>Tense</th><th>Use</th><th>Signals</th><th>Example</th></tr></thead>
+    <tbody>
+      <tr><td>Present Continuous</td><td>happening now</td><td>now, at the moment, right now</td><td><em>I'm blogging from Jakarta.</em></td></tr>
+      <tr><td>Present Continuous</td><td>temporary (around now)</td><td>these days, this week, currently</td><td><em>I'm writing a book.</em></td></tr>
+      <tr><td>Present Continuous</td><td>changing over time</td><td>becoming, getting, changing</td><td><em>Prices are rising.</em></td></tr>
+      <tr><td>Present Simple</td><td>habits &amp; routines</td><td>always, usually, every day</td><td><em>I try street food wherever I go.</em></td></tr>
+      <tr><td>Present Simple</td><td>permanent facts</td><td>(no time signal)</td><td><em>I live in London.</em></td></tr>
+      <tr><td>Present Simple</td><td>state verbs (no Continuous!)</td><td>want, know, like, have…</td><td><em>I want a burrito.</em></td></tr>
+    </tbody>
+  </table>
+</div>
+
+</div>
+<script>
+/* ═══ DATA ═══ */
+const VOCAB_GROUPS_DATA = [
+  {title:'1 Fruit 🍑',items:[{w:'a peach',ipa:'/piːtʃ/',vi:'quả đào'},{w:'a coconut',ipa:'/ˈkəʊkənʌt/',vi:'quả dừa'},{w:'a pineapple',ipa:'/ˈpaɪnæpl/',vi:'quả dứa'},{w:'an avocado',ipa:'/ˌævəˈkɑːdəʊ/',vi:'quả bơ'}]},
+  {title:'2 Vegetables 🥦',items:[{w:'beans',ipa:'/biːnz/',vi:'đậu'},{w:'an onion',ipa:'/ˈʌnjən/',vi:'củ hành'},{w:'a cucumber',ipa:'/ˈkjuːkʌmbə/',vi:'quả dưa chuột'},{w:'a lettuce',ipa:'/ˈletɪs/',vi:'rau diếp'},{w:'a chilli',ipa:'/ˈtʃɪli/',vi:'ớt'},{w:'a green/red pepper',ipa:'/ˈpepə/',vi:'ớt chuông xanh/đỏ'}]},
+  {title:'3 Meat 🥩',items:[{w:'lamb',ipa:'/læm/',vi:'thịt cừu'},{w:'beef',ipa:'/biːf/',vi:'thịt bò'},{w:'a hot dog',ipa:'/hɒt dɒɡ/',vi:'xúc xích'}]},
+  {title:'4 Other food 🍜',items:[{w:'peanuts',ipa:'/ˈpiːnʌts/',vi:'đậu phộng'},{w:'flour',ipa:'/flaʊə/',vi:'bột mì'},{w:'herbs',ipa:'/hɜːbz/',vi:'thảo mộc rau thơm'},{w:'spices',ipa:'/spaɪsɪz/',vi:'gia vị'},{w:'sauce',ipa:'/sɔːs/',vi:'nước sốt'},{w:'cream',ipa:'/kriːm/',vi:'kem sữa'},{w:'noodles',ipa:'/ˈnuːdlz/',vi:'mì, bún'},{w:'a pie',ipa:'/paɪ/',vi:'bánh pie'}]},
+  {title:'5 Ways of cooking 🔥',items:[{w:'grill',ipa:'/ɡrɪl/',vi:'nướng vỉ'},{w:'barbecue',ipa:'/ˈbɑːbɪkjuː/',vi:'nướng ngoài trời'},{w:'boil',ipa:'/bɔɪl/',vi:'luộc, đun sôi'},{w:'fry',ipa:'/fraɪ/',vi:'chiên, rán'},{w:'stir fry',ipa:'/stɜː fraɪ/',vi:'xào'},{w:'bake',ipa:'/beɪk/',vi:'nướng lò'}]},
+];
+
+const COMP_DATA = [
+  {q:'Why does Steve travel a lot?',a:"He's a photographer and travels all over the world for his job."},
+  {q:'Why does he like eating street food?',a:"He says it's the best way to get to know a country and its people."},
+  {q:'When did he start his blog?',a:'Over three years ago.'},
+  {q:'How often does he visit Bangkok?',a:'Every year.'},
+  {q:'Where was Steve on May 19th?',a:'At a busy food market in the centre of Jakarta, Indonesia.'},
+  {q:'Does he like spicy food?',a:'Yes — he says the extra-hot chilli sauce made the burrito so good!'},
+];
+
+const LA_DATA = [
+  {verb:'stay',ans:"'m staying",tense:'PC',note:'happening now'},
+  {verb:'blog',ans:"'m blogging",tense:'PC',note:'happening now'},
+  {verb:'happen',ans:'happens',tense:'PS',note:'regular event (every summer)'},
+  {verb:'love',ans:'love',tense:'PS',note:'state verb → no Continuous'},
+  {verb:'become',ans:'is becoming',tense:'PC',note:'changing over time'},
+  {verb:'be',ans:'are',tense:'PS',note:'state verb → no Continuous'},
+  {verb:'enjoy',ans:'are enjoying',tense:'PC',note:'happening now at the festival'},
+  {verb:'come',ans:'come',tense:'PS',note:'habit (every year)'},
+  {verb:'not understand',ans:"don't understand",tense:'PS',note:'state verb → no Continuous'},
+  {verb:'not have',ans:"don't have",tense:'PS',note:'state verb → no Continuous'},
+  {verb:'have',ans:"'m having",tense:'PC',note:'eating right now'},
+  {verb:'eat',ans:'is eating',tense:'PC',note:'eating right now'},
+  {verb:'want',ans:'want',tense:'PS',note:'state verb → no Continuous'},
+];
+
+const LA_TEMPLATE = `I <b>[1]</b> (stay) with my cousin in Los Angeles and I <b>[2]</b> (blog) from the L.A. Street Food festival, which <b>[3]</b> (happen) here every summer. A lot of people in Los Angeles really <b>[4]</b> (love) street food and the festival <b>[5]</b> (become) more popular every year. There <b>[6]</b> (be) over 60 stalls at this year's festival and 1,500 people <b>[7]</b> (enjoy) the food, the drinks and the sunshine. I <b>[8]</b> (come) here every year and I <b>[9]</b> (not understand) why more cities <b>[10]</b> (not have) festivals like this one. At the moment I <b>[11]</b> (have) Indian meatballs with fried green peppers in a spicy coconut sauce, and my cousin <b>[12]</b> (eat) the longest hot dog I've ever seen! After this we <b>[13]</b> (want) to try some pineapple and strawberry ice cream!`;
+
+const Q_DATA = [
+  {s:'___ (feel) hungry now?',ans:'Are you feeling',note:'PC — state at this moment'},
+  {s:'___ (usually eat) a lot of street food?',ans:'Do you usually eat',note:'PS — habit'},
+  {s:'___ (cook) for yourself every day?',ans:'Do you cook',note:'PS — habit'},
+  {s:'___ (try) to eat more healthily these days?',ans:'Are you trying',note:'PC — temporary change'},
+  {s:'___ (want) to learn how to cook?',ans:'Do you want',note:'PS — state verb'},
+  {s:'___ (look) for somewhere to live?',ans:'Are you looking',note:'PC — temporary situation'},
+  {s:'___ (often read) blogs?',ans:'Do you often read',note:'PS — habit'},
+  {s:'___ (watch) any good TV series at the moment?',ans:'Are you watching',note:'PC — temporary'},
+];
+
+const WB3A_DATA = [
+  {s:'Good cooks ___ celebrities in the UK.',ans:'are becoming',verb:'become'},
+  {s:'I ___ some soup in the microwave.',ans:"'m heating up",verb:'heat up'},
+  {s:'Ready meals ___ people to eat healthily.',ans:"aren't helping",verb:'not help'},
+  {s:'That smells good. What ___ you ___?',ans:"'re making / making",verb:'make',note:'What are you making?'},
+  {s:'I ___ long hours at the moment so I ___ properly.',ans:"'m working / 'm not eating",verb:'work/not eat'},
+  {s:'The market for quick, healthy meals ___.',ans:"'s growing",verb:'grow'},
+];
+
+const WB3B_DATA = [
+  {s:'/ you often buy ready meals?',ans:'Do you often buy ready meals?'},
+  {s:'/ he know I\'m here?',ans:"Does he know I'm here?"},
+  {s:'The Spanish and Italians / cook / more than the British.',ans:'The Spanish and Italians cook more than the British.'},
+  {s:'Over 60 million people / live / in the UK.',ans:'Over 60 million people live in the UK.'},
+  {s:'He / not / work / on Fridays.',ans:"He doesn't work on Fridays."},
+  {s:'I / not / think so.',ans:"I don't think so."},
+];
+
+const WB4B_DATA = [
+  {verb:'be',ans:'is',note:'Whitecross Market is one of London\'s oldest markets.'},
+  {verb:'sell',ans:'sells',note:'PS — permanent fact'},
+  {verb:'become',ans:"'s becoming",note:'PC — changing over time'},
+  {verb:'have',ans:'have',note:'PS — habit (every day)'},
+  {verb:'cost',ans:'cost',note:'PS — permanent fact'},
+  {verb:'love',ans:'love',note:'PS — state verb'},
+  {verb:'wait',ans:"'s waiting",note:'PC — happening now'},
+  {verb:'hope',ans:'hopes',note:'PS — state verb'},
+];
+
+/* ═══ BUILD ═══ */
+function buildVocabGroupsGrid(){
+  ['vocab-groups-grid','vocab-detail-grid','ls-vocab-grid'].forEach(id=>{
+    const grid=document.getElementById(id);if(!grid)return;
+    grid.innerHTML='';
+    VOCAB_GROUPS_DATA.forEach(group=>{
+      const card=document.createElement('div');card.className='vg-card';
+      card.innerHTML=`<div class="vg-title">${group.title}</div>`+
+        group.items.map(item=>`<div class="vg-item" onclick="spk('${item.w}')">
+          <span>${item.w}</span><span class="vg-ipa">${item.ipa}</span>
+          <span style="font-size:.72rem;color:var(--orange);margin-left:auto">${item.vi}</span>
+        </div>`).join('');
+      grid.appendChild(card);
+    });
+  });
+}
+function toggleVocabAns(){const el=document.getElementById('vocab-ans');if(el)el.style.display=el.style.display==='none'?'block':'none';}
+
+function buildCompList(){
+  const wrap=document.getElementById('comp-list');if(!wrap)return;
+  wrap.innerHTML='';
+  COMP_DATA.forEach((item,i)=>{
+    const d=document.createElement('div');
+    d.className='rule-box';d.style.cssText='padding:10px 14px;cursor:pointer';
+    d.innerHTML=`<div style="display:flex;align-items:center;gap:10px;margin-bottom:0">
+      <span style="width:22px;height:22px;border-radius:50%;background:var(--accent-l);color:var(--accent);display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:700;flex-shrink:0">${i+1}</span>
+      <span style="font-size:.86rem;flex:1">${item.q}</span>
+      <span style="font-size:.7rem;color:var(--muted)">▶</span>
+    </div>
+    <div id="cans-${i}" style="display:none;padding-top:8px;font-size:.83rem;color:var(--teal);font-style:italic;padding-left:32px">✅ ${item.a}</div>`;
+    d.onclick=()=>document.getElementById(`cans-${i}`).style.display=document.getElementById(`cans-${i}`).style.display==='none'?'block':'none';
+    wrap.appendChild(d);
+  });
+}
+
+function buildLABlogText(){
+  const el=document.getElementById('la-blog-text');if(!el)return;
+  let txt=LA_TEMPLATE;
+  LA_DATA.forEach((_,i)=>{
+    txt=txt.replace(`<b>[${i+1}]</b>`,`<input id="la-${i}" class="fi" style="min-width:${i===8||i===9?120:90}px;max-width:140px" placeholder="verb...">`);
+  });
+  el.innerHTML=txt;
+}
+
+function buildLAFillList(){
+  const wrap=document.getElementById('la-fill-list');if(!wrap)return;wrap.innerHTML='';
+  LA_DATA.forEach((item,i)=>{
+    const d=document.createElement('div');d.className='fill-row';
+    d.innerHTML=`<div class="fill-n">${i+1}</div>
+    <div class="fill-body">
+      <div class="fill-s">(${item.verb}) → ${item.tense==='PC'?'Present Continuous':'Present Simple'} — <span style="font-size:.72rem;color:var(--muted)">${item.note}</span></div>
+      <div class="fill-ctrl">
+        <input class="fi" id="laf-${i}" placeholder="verb form…" style="min-width:130px">
+        <button class="chk" onclick="checkLA(${i},'${item.ans.replace(/'/g,"\\'")}')">Check</button>
+        <button class="rev" onclick="revealLA(${i},'${item.ans.replace(/'/g,"\\'")}')">Đáp án</button>
+      </div>
+      <div class="fb" id="lafb-${i}"></div>
+    </div>`;
+    wrap.appendChild(d);
+  });
+}
+function checkLA(i,ans){
+  const inp=document.getElementById(`laf-${i}`);const fb=document.getElementById(`lafb-${i}`);
+  const inp2=document.getElementById(`la-${i}`);
+  if(!inp||!fb)return;
+  const val=inp.value.trim().toLowerCase().replace(/\s+/g,'');
+  const ok=val===ans.toLowerCase().replace(/\s+/g,'');
+  inp.className=`fi ${ok?'ok':'err'}`;
+  if(inp2){inp2.value=ok?ans:inp.value;inp2.style.borderColor=ok?'var(--green)':'var(--red)';}
+  fb.textContent=ok?`✅ "${ans}"`:`❌ Answer: "${ans}"`;fb.className=`fb ${ok?'ok':'err'}`;
+}
+function revealLA(i,ans){const inp=document.getElementById(`laf-${i}`);const fb=document.getElementById(`lafb-${i}`);const inp2=document.getElementById(`la-${i}`);if(inp){inp.value=ans;inp.className='fi ok';}if(inp2){inp2.value=ans;inp2.style.borderColor='var(--green)';}if(fb){fb.textContent=`👁 "${ans}"`;fb.className='fb ok';}}
+function checkAllLA(){let c=0;LA_DATA.forEach((_,i)=>{checkLA(i,LA_DATA[i].ans);if(document.getElementById(`laf-${i}`)?.classList.contains('ok'))c++;});showScore('la-score',c,LA_DATA.length);}
+function revealAllLA(){LA_DATA.forEach((_,i)=>revealLA(i,LA_DATA[i].ans));}
+function resetAllLA(){LA_DATA.forEach((_,i)=>{const inp=document.getElementById(`laf-${i}`);const fb=document.getElementById(`lafb-${i}`);const inp2=document.getElementById(`la-${i}`);if(inp){inp.value='';inp.className='fi';}if(inp2){inp2.value='';inp2.style.borderColor='';}if(fb)fb.className='fb';});document.getElementById('la-score').className='score-box';}
+
+function buildStateVerbsList(){
+  const wrap=document.getElementById('state-verbs-list');if(!wrap)return;
+  const verbs=[{w:'be',t:'S'},{w:'watch',t:'A'},{w:'talk',t:'A'},{w:'seem',t:'S'},{w:'spend',t:'A'},{w:'agree',t:'S'},{w:'eat',t:'A'},{w:'taste',t:'S'},{w:'prefer',t:'S'},{w:'know',t:'S'},{w:'learn',t:'A'},{w:'own',t:'S'},{w:'buy',t:'A'},{w:'understand',t:'S'},{w:'cook',t:'A'},{w:'remember',t:'S'},{w:'believe',t:'S'},{w:'take',t:'A'},{w:'need',t:'S'},{w:'happen',t:'A'},{w:'love',t:'S'}];
+  wrap.innerHTML=verbs.map(v=>`<span style="padding:4px 10px;border-radius:4px;font-size:.82rem;font-weight:500;background:${v.t==='S'?'var(--red-l)':'var(--blue-l)'};color:${v.t==='S'?'var(--red)':'var(--blue)'};border:1px solid ${v.t==='S'?'rgba(239,68,68,.2)':'rgba(37,99,235,.2)'};cursor:pointer" onclick="spk('${v.w}')" title="${v.t==='S'?'State verb — use Present Simple':'Activity verb — can use Continuous'}">${v.w} (${v.t})</span>`).join('');
+}
+
+function buildChangeWrap(){
+  const wrap=document.getElementById('change-wrap');if(!wrap)return;
+  const saved=JSON.parse(localStorage.getItem('f2f_2b_change')||'[]');
+  wrap.innerHTML='';
+  for(let i=0;i<4;i++){
+    const row=document.createElement('div');row.className='list-row';
+    row.innerHTML=`<div class="list-num">${i+1}</div><input class="list-inp" id="ch-${i}" placeholder="People are eating more… / Prices are becoming…" value="${saved[i]||''}">`;
+    wrap.appendChild(row);
+  }
+}
+function saveChange(){const d=[];for(let i=0;i<4;i++)d.push(document.getElementById(`ch-${i}`)?.value||'');localStorage.setItem('f2f_2b_change',JSON.stringify(d));showToast('💾 Đã lưu!');}
+
+function buildQList(){
+  const wrap=document.getElementById('q-list');if(!wrap)return;wrap.innerHTML='';
+  Q_DATA.forEach((item,i)=>{
+    const d=document.createElement('div');d.className='fill-row';
+    d.innerHTML=`<div class="fill-n">${i+1}</div>
+    <div class="fill-body">
+      <div class="fill-s">${item.s}</div>
+      <div class="fill-ctrl">
+        <input class="fi" id="q-${i}" placeholder="verb form…" style="min-width:160px">
+        <button class="chk" onclick="checkQ(${i},'${item.ans.replace(/'/g,"\\'")}')">Check</button>
+        <button class="rev" onclick="revealQ(${i},'${item.ans.replace(/'/g,"\\'")}')">Đáp án</button>
+      </div>
+      <div class="fb" id="qfb-${i}"><span style="font-size:.72rem;color:var(--muted)">${item.note}</span></div>
+    </div>`;
+    wrap.appendChild(d);
+  });
+}
+function checkQ(i,ans){const inp=document.getElementById(`q-${i}`);const fb=document.getElementById(`qfb-${i}`);if(!inp||!fb)return;const val=inp.value.trim().toLowerCase().replace(/\s+/g,' ');const ok=val===ans.toLowerCase();inp.className=`fi ${ok?'ok':'err'}`;fb.textContent=ok?`✅ "${ans}"`:`❌ Answer: "${ans}"`;fb.className=`fb ${ok?'ok':'err'}`;}
+function revealQ(i,ans){const inp=document.getElementById(`q-${i}`);const fb=document.getElementById(`qfb-${i}`);if(inp){inp.value=ans;inp.className='fi ok';}if(fb){fb.textContent=`👁 "${ans}"`;fb.className='fb ok';}}
+function checkAllQ(){let c=0;Q_DATA.forEach((_,i)=>{checkQ(i,Q_DATA[i].ans);if(document.getElementById(`q-${i}`)?.classList.contains('ok'))c++;});showScore('q-score',c,Q_DATA.length);}
+function revealAllQ(){Q_DATA.forEach((_,i)=>revealQ(i,Q_DATA[i].ans));}
+function resetQ(){Q_DATA.forEach((_,i)=>{const inp=document.getElementById(`q-${i}`);const fb=document.getElementById(`qfb-${i}`);if(inp){inp.value='';inp.className='fi';}if(fb){fb.className='fb';fb.innerHTML=`<span style="font-size:.72rem;color:var(--muted)">${Q_DATA[i].note}</span>`;}});document.getElementById('q-score').className='score-box';}
+
+function buildWB3aList(){
+  const wrap=document.getElementById('wb3a-list');if(!wrap)return;wrap.innerHTML='';
+  WB3A_DATA.forEach((item,i)=>{
+    const d=document.createElement('div');d.className='fill-row';
+    d.innerHTML=`<div class="fill-n">${i+1}</div>
+    <div class="fill-body">
+      <div class="fill-s">${item.s}</div>
+      <div class="fill-ctrl">
+        <input class="fi" id="wb3a-${i}" placeholder="be + V-ing…" style="min-width:140px">
+        <button class="chk" onclick="checkGenFill('wb3a-${i}','${item.ans.replace(/'/g,"\\'")}','wb3afb-${i}','')">Check</button>
+        <button class="rev" onclick="revealGenFill('wb3a-${i}','${item.ans.replace(/'/g,"\\'")}','wb3afb-${i}','')">Đáp án</button>
+      </div>
+      <div class="fb" id="wb3afb-${i}"></div>
+    </div>`;
+    wrap.appendChild(d);
+  });
+}
+function checkAllWB3a(){let c=0;WB3A_DATA.forEach((_,i)=>{checkGenFill(`wb3a-${i}`,WB3A_DATA[i].ans,`wb3afb-${i}`,'');if(document.getElementById(`wb3a-${i}`)?.classList.contains('ok'))c++;});showScore('wb3a-score',c,WB3A_DATA.length);}
+function revealAllWB3a(){WB3A_DATA.forEach((_,i)=>revealGenFill(`wb3a-${i}`,WB3A_DATA[i].ans,`wb3afb-${i}`,''));}
+function resetWB3a(){WB3A_DATA.forEach((_,i)=>{const inp=document.getElementById(`wb3a-${i}`);const fb=document.getElementById(`wb3afb-${i}`);if(inp){inp.value='';inp.className='fi';}if(fb)fb.className='fb';});document.getElementById('wb3a-score').className='score-box';}
+
+function buildWB3bList(){
+  const wrap=document.getElementById('wb3b-list');if(!wrap)return;
+  wrap.innerHTML=WB3B_DATA.map((item,i)=>`
+    <div class="fill-row">
+      <div class="fill-n">${i+7}</div>
+      <div class="fill-body">
+        <div class="fill-s" style="color:var(--dim)">${item.s}</div>
+        <button class="rev" onclick="showWB3bAns(${i})">👁 Đáp án</button>
+        <div id="wb3bans-${i}" style="display:none;margin-top:5px" class="fb ok">✅ ${item.ans}</div>
+      </div>
+    </div>`).join('');
+}
+function showWB3bAns(i){const el=document.getElementById(`wb3bans-${i}`);if(el)el.style.display='block';}
+function revealAllWB3b(){WB3B_DATA.forEach((_,i)=>showWB3bAns(i));}
+
+function buildEatingOutText(){
+  const el=document.getElementById('eating-out-text');if(!el)return;
+  el.innerHTML=`Around 2.5 billion people <span style="color:var(--accent);font-weight:600;cursor:pointer" onclick="spk('eat')"><sup>1</sup>eat/are eating</span> street food every day — from hot dogs in New York to spring rolls in Vietnam. And this number <span style="color:var(--accent);font-weight:600;cursor:pointer" onclick="spk('increases')"><sup>2</sup>increases/is increasing</span>. In countries without a tradition of good street food, more and more stalls <span style="color:var(--accent);font-weight:600;cursor:pointer" onclick="spk('appear')"><sup>3</sup>appear/are appearing</span>. There's a good reason for this. You <span style="color:var(--accent);font-weight:600;cursor:pointer" onclick="spk('know')"><sup>4</sup>know/are knowing</span> exactly what you are going to get. You <span style="color:var(--accent);font-weight:600;cursor:pointer" onclick="spk('see')"><sup>5</sup>see/are seeing</span> and you <span style="color:var(--accent);font-weight:600;cursor:pointer" onclick="spk('smell')"><sup>6</sup>smell/are smelling</span> the food before you buy it. It's also fresh — sellers usually <span style="color:var(--accent);font-weight:600;cursor:pointer" onclick="spk('cook')"><sup>7</sup>cook/are cooking</span> it right in front of you. <span style="color:var(--accent);font-weight:600;cursor:pointer" onclick="spk('Do you feel hungry yet?')"><sup>8</sup>Do you feel/Are you feeling</span> hungry yet?`;
+}
+function revealEatingOut(){
+  const ans=document.getElementById('eating-out-ans');if(!ans)return;
+  ans.style.display='block';
+  ans.textContent='✅ Đáp án: 1=eat (PS-habit) | 2=is increasing (PC-changing) | 3=are appearing (PC-changing) | 4=know (PS-state verb) | 5=see (PS-state verb) | 6=smell (PS-state verb) | 7=cook (PS-habit) | 8=Do you feel (PS-state verb)';
+}
+
+function buildWB4bList(){
+  const wrap=document.getElementById('wb4b-list');if(!wrap)return;wrap.innerHTML='';
+  WB4B_DATA.forEach((item,i)=>{
+    const d=document.createElement('div');d.className='fill-row';
+    d.innerHTML=`<div class="fill-n">${i+1}</div>
+    <div class="fill-body">
+      <div class="fill-s">(${item.verb}) — <span style="font-size:.72rem;color:var(--muted)">${item.note}</span></div>
+      <div class="fill-ctrl">
+        <input class="fi" id="wb4b-${i}" placeholder="verb form…" style="min-width:130px">
+        <button class="chk" onclick="checkGenFill('wb4b-${i}','${item.ans.replace(/'/g,"\\'")}','wb4bfb-${i}','')">Check</button>
+        <button class="rev" onclick="revealGenFill('wb4b-${i}','${item.ans.replace(/'/g,"\\'")}','wb4bfb-${i}','')">Đáp án</button>
+      </div>
+      <div class="fb" id="wb4bfb-${i}"></div>
+    </div>`;
+    wrap.appendChild(d);
+  });
+}
+function checkAllWB4b(){let c=0;WB4B_DATA.forEach((_,i)=>{checkGenFill(`wb4b-${i}`,WB4B_DATA[i].ans,`wb4bfb-${i}`,'');if(document.getElementById(`wb4b-${i}`)?.classList.contains('ok'))c++;});showScore('wb4b-score',c,WB4B_DATA.length);}
+function revealAllWB4b(){WB4B_DATA.forEach((_,i)=>revealGenFill(`wb4b-${i}`,WB4B_DATA[i].ans,`wb4bfb-${i}`,''));}
+function resetWB4b(){WB4B_DATA.forEach((_,i)=>{const inp=document.getElementById(`wb4b-${i}`);const fb=document.getElementById(`wb4bfb-${i}`);if(inp){inp.value='';inp.className='fi';}if(fb)fb.className='fb';});document.getElementById('wb4b-score').className='score-box';}
+
+function checkGenFill(inpId,ans,fbId,note){const inp=document.getElementById(inpId);const fb=document.getElementById(fbId);if(!inp||!fb)return;const val=inp.value.trim().toLowerCase().replace(/\s+/g,' ');const ok=val===ans.toLowerCase();inp.className=`fi ${ok?'ok':'err'}`;fb.textContent=ok?`✅ "${ans}"${note?' — '+note:''}`:`❌ Answer: "${ans}"${note?' — '+note:''}`;fb.className=`fb ${ok?'ok':'err'}`;}
+function revealGenFill(inpId,ans,fbId,note){const inp=document.getElementById(inpId);const fb=document.getElementById(fbId);if(inp){inp.value=ans;inp.className='fi ok';}if(fb){fb.textContent=`👁 "${ans}"${note?' — '+note:''}`;fb.className='fb ok';}}
+
+/* ═══ AUDIO ═══ */
+const AS={};
+function toggleAudio(id){const a=document.getElementById(`audio-${id}`);const b=document.getElementById(`play-${id}`);if(!a||!b)return;if(AS[id]){a.pause();b.textContent='▶';AS[id]=false;}else{a.play().catch(()=>showToast('⚠️ Cần file audio'));b.textContent='⏸';AS[id]=true;}}
+function updateProg(id){const a=document.getElementById(`audio-${id}`);const f=document.getElementById(`prog-${id}`);if(a?.duration&&f)f.style.width=(a.currentTime/a.duration*100)+'%';}
+function audioEnd(id){const b=document.getElementById(`play-${id}`);if(b)b.textContent='▶';AS[id]=false;}
+function spk(t){if('speechSynthesis'in window){const u=new SpeechSynthesisUtterance(t);u.lang='en-GB';u.rate=0.82;speechSynthesis.speak(u);}}
+function showScore(id,c,total){const sc=document.getElementById(id);if(!sc)return;sc.innerHTML=`<div class="score-n">${c}/${total}</div><div class="score-msg">${c===total?'🎉 Perfect!':c>=total*.6?'👍 Good!':'📚 Review GRAMMAR 2.2'}</div>`;sc.className='score-box show';}
+function showToast(m){let t=document.getElementById('toast');if(!t){t=document.createElement('div');t.id='toast';t.style.cssText='position:fixed;bottom:20px;right:20px;z-index:999;background:var(--bg2);border:1px solid var(--border2);padding:10px 18px;border-radius:8px;font-size:.82rem;box-shadow:0 4px 20px rgba(0,0,0,.3);transition:opacity .3s;opacity:0';document.body.appendChild(t);}t.textContent=m;t.style.opacity='1';clearTimeout(showToast._t);showToast._t=setTimeout(()=>t.style.opacity='0',2400);}
+function showTab(id){document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));document.querySelectorAll('.tnav-btn').forEach(b=>b.classList.remove('active'));document.getElementById('tab-'+id).classList.add('active');const tabs=['vocab','reading','grammar','getready','workbook','langsummary'];document.querySelectorAll('.tnav-btn')[tabs.indexOf(id)]?.classList.add('active');saveP(id);}
+function toggleTheme(){const t=document.documentElement.getAttribute('data-theme')==='light'?'dark':'light';document.documentElement.setAttribute('data-theme',t==='light'?'light':'');document.getElementById('theme-btn').textContent=t==='light'?'🌙':'☀️';localStorage.setItem('f2f_2b_theme',t);}
+function saveP(t){try{const d=JSON.parse(localStorage.getItem('f2f_2b_done')||'[]');if(!d.includes(t))d.push(t);localStorage.setItem('f2f_2b_done',JSON.stringify(d));}catch(e){}}
+function markDone(){['vocab','reading','grammar','getready','workbook','langsummary'].forEach(t=>saveP(t));showToast('✅ 2B hoàn thành!');}
+document.addEventListener('DOMContentLoaded',()=>{
+  const t=localStorage.getItem('f2f_2b_theme')||'dark';
+  if(t==='light'){document.documentElement.setAttribute('data-theme','light');document.getElementById('theme-btn').textContent='🌙';}
+  buildVocabGroupsGrid();buildCompList();buildLABlogText();buildLAFillList();
+  buildStateVerbsList();buildChangeWrap();buildQList();
+  buildWB3aList();buildWB3bList();buildEatingOutText();buildWB4bList();
+});
+</script>
+</body>
+</html>
