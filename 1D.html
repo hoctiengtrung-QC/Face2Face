@@ -6,391 +6,1411 @@
 <title>1D Nice to meet you — face2face Intermediate</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap');
-
-:root {
-  --bg:#0D1117; --bg2:#161B22; --bg3:#21262D; --bg4:#2D333B;
-  --border:#30363D; --text:#E6EDF3; --dim:#8B949E; --muted:#484F58;
-  --blue:#2563EB; --blue-l:rgba(37,99,235,.15);
-  --green:#10B981; --green-l:rgba(16,185,129,.12);
-  --orange:#F59E0B; --orange-l:rgba(245,158,11,.12);
-  --red:#EF4444; --red-l:rgba(239,68,68,.12);
-  --teal:#14B8A6; --purple:#8B5CF6;
-  --r:10px; --r2:6px; --tr:.18s ease;
+:root{
+  --bg:#0D1117;--bg2:#161B22;--bg3:#21262D;--bg4:#2D333B;
+  --border:#30363D;--border2:#3D444D;
+  --text:#E6EDF3;--dim:#8B949E;--muted:#484F58;
+  --blue:#2563EB;--blue-l:rgba(37,99,235,.15);
+  --green:#10B981;--green-l:rgba(16,185,129,.12);
+  --orange:#F59E0B;--orange-l:rgba(245,158,11,.12);
+  --red:#EF4444;--red-l:rgba(239,68,68,.12);
+  --teal:#14B8A6;--gold:#D97706;--gold-l:rgba(217,119,6,.12);
+  --r:10px;--r2:6px;--tr:.18s ease;
 }
-[data-theme=light]{
-  --bg:#F8FAFC; --bg2:#fff; --bg3:#F1F5F9; --bg4:#E2E8F0;
-  --border:#E2E8F0; --text:#0F172A; --dim:#475569; --muted:#94A3B8;
-  --blue:#1D4ED8; --blue-l:rgba(29,78,216,.1);
-}
+[data-theme=light]{--bg:#F8FAFC;--bg2:#fff;--bg3:#F1F5F9;--bg4:#E2E8F0;--border:#E2E8F0;--border2:#CBD5E1;--text:#0F172A;--dim:#475569;--muted:#94A3B8;--blue:#1D4ED8;--blue-l:rgba(29,78,216,.1)}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);font-size:15px;line-height:1.6}
+button{cursor:pointer;border:none;background:none;font-family:inherit}
+input,textarea,select{font-family:inherit}
 
-.top-bar{background:var(--bg2);border-bottom:1px solid var(--border);padding:10px 20px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:50}
+/* TOP BAR */
+.top-bar{background:var(--bg2);border-bottom:1px solid var(--border);padding:10px 20px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:50;flex-wrap:wrap}
 .back-btn{display:flex;align-items:center;gap:6px;padding:6px 14px;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);font-size:.82rem;color:var(--dim);cursor:pointer;transition:all var(--tr)}
-.back-btn:hover{border-color:var(--blue);color:var(--blue)}
-.lesson-badge{padding:4px 12px;background:var(--purple-l);border:1px solid rgba(139,92,246,.3);border-radius:4px;font-size:.75rem;font-weight:700;color:#A78BFA;letter-spacing:.05em}
+.back-btn:hover{border-color:var(--gold);color:var(--gold)}
+.lesson-badge{padding:4px 12px;background:var(--gold-l);border:1px solid rgba(217,119,6,.35);border-radius:4px;font-size:.75rem;font-weight:700;color:var(--gold);letter-spacing:.05em}
 .lesson-title-h{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700}
-.theme-btn{margin-left:auto;width:34px;height:34px;display:flex;align-items:center;justify-content:center;border-radius:var(--r2);background:var(--bg3);border:1px solid var(--border);cursor:pointer;font-size:.95rem;color:var(--dim);transition:all var(--tr)}
-.theme-btn:hover{border-color:var(--blue);color:var(--blue)}
-.progress-btn{padding:6px 14px;background:var(--green);border-radius:var(--r2);font-size:.78rem;font-weight:600;color:#fff;cursor:pointer;border:none;transition:all var(--tr)}
-.progress-btn:hover{background:#059669}
+.top-actions{margin-left:auto;display:flex;gap:8px}
+.theme-btn{width:34px;height:34px;display:flex;align-items:center;justify-content:center;border-radius:var(--r2);background:var(--bg3);border:1px solid var(--border);cursor:pointer;font-size:.95rem;color:var(--dim)}
+.theme-btn:hover{border-color:var(--gold);color:var(--gold)}
+.done-btn-top{padding:6px 14px;background:var(--green);border-radius:var(--r2);font-size:.78rem;font-weight:600;color:#fff;cursor:pointer;transition:all var(--tr)}
+.done-btn-top:hover{background:#059669}
 
-.quick-review{background:linear-gradient(135deg,#1e3a5f,#1a2f4a);border:1px solid #2d4f7c;border-radius:var(--r);padding:16px 20px;margin:20px 24px;display:flex;gap:12px;align-items:flex-start}
-.qr-badge{background:#F59E0B;color:#000;padding:3px 10px;border-radius:4px;font-size:.72rem;font-weight:700;white-space:nowrap;flex-shrink:0;margin-top:2px}
-.qr-text{font-size:.85rem;line-height:1.6;color:#CBD5E1}
-.qr-text strong{color:#fff}
+/* QUICK REVIEW */
+.quick-review{background:linear-gradient(135deg,#1a2540,#1a3020);border:1px solid rgba(217,119,6,.3);border-radius:var(--r);padding:14px 20px;margin:16px 20px;display:flex;gap:12px;align-items:flex-start}
+.qr-badge{background:var(--gold);color:#000;padding:3px 10px;border-radius:4px;font-size:.72rem;font-weight:700;white-space:nowrap;flex-shrink:0;margin-top:2px}
+.qr-text{font-size:.84rem;line-height:1.65;color:#CBD5E1}
+.qr-text strong{color:#fff}.qr-text em{font-style:italic;color:#FCD34D}
 
-.page-content{max-width:920px;margin:0 auto;padding:0 24px 48px}
-
-.tab-nav{display:flex;gap:2px;border-bottom:1px solid var(--border);margin-bottom:0;overflow-x:auto;scrollbar-width:none;position:sticky;top:57px;background:var(--bg);z-index:40;padding:0 24px}
+/* TAB NAV */
+.tab-nav{display:flex;gap:2px;border-bottom:1px solid var(--border);overflow-x:auto;scrollbar-width:none;position:sticky;top:57px;background:var(--bg);z-index:40;padding:0 20px}
 .tab-nav::-webkit-scrollbar{display:none}
-.tnav-btn{display:flex;align-items:center;gap:6px;padding:11px 16px;font-size:.83rem;font-weight:500;color:var(--dim);white-space:nowrap;border-bottom:2px solid transparent;margin-bottom:-1px;cursor:pointer;transition:all var(--tr);background:none;border-top:none;border-left:none;border-right:none;font-family:inherit}
-.tnav-btn:hover{color:var(--text)}
-.tnav-btn.active{color:var(--purple);border-bottom-color:var(--purple)}
+.tnav-btn{display:flex;align-items:center;gap:5px;padding:11px 15px;font-size:.82rem;font-weight:500;color:var(--dim);white-space:nowrap;border-bottom:2px solid transparent;margin-bottom:-1px;cursor:pointer;transition:all var(--tr);background:none;border-top:none;border-left:none;border-right:none;font-family:inherit}
+.tnav-btn:hover{color:var(--text)}.tnav-btn.active{color:var(--gold);border-bottom-color:var(--gold)}
 
-.tab-pane{display:none;padding-top:28px}
-.tab-pane.active{display:block;animation:fadeUp .22s ease}
-@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+/* PAGE */
+.page-content{max-width:920px;margin:0 auto;padding:0 20px 48px}
+.tab-pane{display:none;padding-top:26px}.tab-pane.active{display:block;animation:fu .2s ease}
+@keyframes fu{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
 
-.sec-heading{font-size:1.05rem;font-weight:700;color:var(--text);margin-bottom:4px;display:flex;align-items:center;gap:8px}
-.sec-sub{font-size:.82rem;color:var(--dim);margin-bottom:16px}
-.exercise-num{width:28px;height:28px;background:var(--purple);color:#fff;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:.78rem;font-weight:700;flex-shrink:0}
-.exercise-label{display:inline-flex;align-items:center;gap:8px;font-size:.9rem;font-weight:600;margin-bottom:12px;color:var(--text)}
-.part-label{display:inline-block;width:22px;height:22px;background:var(--bg4);border-radius:4px;text-align:center;line-height:22px;font-size:.72rem;font-weight:700;color:var(--dim);margin-right:6px}
-.instruction{font-size:.88rem;color:var(--text);line-height:1.65;margin-bottom:14px}
-.instruction em{font-style:italic;color:var(--teal)}
-.instruction strong{color:var(--text)}
+/* HEADINGS */
+.sec-h{font-size:1.05rem;font-weight:700;margin-bottom:4px;display:flex;align-items:center;gap:8px}
+.sec-sub{font-size:.82rem;color:var(--dim);margin-bottom:18px}
+.ex-label{display:inline-flex;align-items:center;gap:8px;font-size:.9rem;font-weight:600;margin-bottom:10px}
+.ex-num{width:28px;height:28px;background:var(--gold);color:#000;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:.78rem;font-weight:700;flex-shrink:0}
+.part{display:inline-block;width:22px;height:22px;background:var(--bg4);border-radius:4px;text-align:center;line-height:22px;font-size:.72rem;font-weight:700;color:var(--dim);margin-right:4px}
+.instr{font-size:.88rem;color:var(--text);line-height:1.65;margin-bottom:14px}
+.instr em{color:var(--teal);font-style:italic}
+.instr strong{color:var(--text)}
 
-.feeling-card{background:var(--bg2);border:2px solid var(--border);border-radius:var(--r2);padding:12px 14px;cursor:pointer;transition:all var(--tr);text-align:center;position:relative}
-.feeling-card:hover{border-color:var(--purple);transform:translateY(-1px)}
-.feeling-word{font-size:.92rem;font-weight:600;margin-bottom:3px}
-.feeling-ipa{font-family:'Courier New',monospace;font-size:.72rem;color:var(--teal)}
-.feeling-vi{font-size:.75rem;color:var(--orange);margin-top:2px}
+/* VIDEO/AUDIO PLAYER */
+.media-box{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:18px;margin-bottom:16px}
+.media-hdr{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.media-badge{padding:4px 12px;border-radius:4px;font-size:.75rem;font-weight:700}
+.video-badge{background:rgba(139,92,246,.2);border:1px solid rgba(139,92,246,.4);color:#A78BFA}
+.cd-badge{background:var(--orange-l);border:1px solid rgba(245,158,11,.3);color:var(--orange)}
+.media-title{font-size:.9rem;font-weight:600}
+.media-ctrl{display:flex;align-items:center;gap:12px;padding:10px 14px;background:var(--bg3);border-radius:var(--r2);margin-bottom:10px}
+.play-btn{width:40px;height:40px;border-radius:50%;background:var(--gold);color:#000;display:flex;align-items:center;justify-content:center;cursor:pointer;border:none;font-size:.95rem;flex-shrink:0;transition:all var(--tr)}
+.play-btn:hover{background:#B45309;transform:scale(1.05)}
+.media-info{flex:1}
+.media-track{font-size:.82rem;font-weight:500;margin-bottom:2px}
+.media-note{font-size:.72rem;color:var(--muted)}
+.prog-bar{height:4px;background:var(--border);border-radius:2px;overflow:hidden;margin-top:5px}
+.prog-fill{height:100%;width:0%;background:var(--gold);border-radius:2px;transition:width .1s}
 
-.grammar-intro-box{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:20px;margin-bottom:16px}
-.grammar-tag{display:inline-flex;align-items:center;gap:6px;padding:3px 12px;background:var(--orange-l);border:1px solid rgba(245,158,11,.3);border-radius:4px;font-size:.72rem;font-weight:700;color:var(--orange);text-transform:uppercase;letter-spacing:.06em;margin-bottom:12px}
-.grammar-title{font-size:1rem;font-weight:700;margin-bottom:14px}
-.grammar-section{margin-bottom:20px}
-.grammar-section-title{font-size:.8rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid var(--border)}
-.grammar-rule{display:flex;gap:10px;padding:9px 0;border-bottom:1px dashed var(--border);font-size:.85rem;line-height:1.6}
-.grammar-bullet{color:var(--purple);flex-shrink:0;font-size:.7rem;margin-top:6px}
-.grammar-table-wrap{overflow-x:auto;margin-bottom:16px}
-.grammar-table{width:100%;border-collapse:collapse;font-size:.82rem}
-.grammar-table th{background:var(--bg3);padding:8px 12px;text-align:left;font-weight:600;border:1px solid var(--border);color:var(--dim);font-size:.72rem;text-transform:uppercase;letter-spacing:.04em}
-.grammar-table td{padding:9px 12px;border:1px solid var(--border);line-height:1.5}
-.grammar-table td.aux{color:var(--purple);font-weight:600}
-.example-box{font-family:'Courier New',monospace;font-size:.83rem;color:#7DD3FC;background:var(--bg);padding:9px 14px;border-radius:var(--r2);margin:8px 0;border:1px solid var(--border);line-height:1.6}
-.wrong-box{background:var(--red-l);border:1px solid rgba(239,68,68,.25);border-radius:var(--r2);padding:8px 12px;font-size:.83rem;margin-bottom:6px}
-.right-box{background:var(--green-l);border:1px solid rgba(16,185,129,.25);border-radius:var(--r2);padding:8px 12px;font-size:.83rem;margin-bottom:6px}
-.note-box{background:var(--orange-l);border:1px solid rgba(245,158,11,.25);border-radius:var(--r2);padding:10px 14px;font-size:.82rem;line-height:1.6;margin-top:10px}
-.note-box strong{color:var(--orange)}
-.tip-box{background:var(--bg3);border-left:3px solid var(--orange);border-radius:0 var(--r2) var(--r2) 0;padding:10px 14px;margin-top:12px;font-size:.82rem;color:var(--dim);line-height:1.6}
-.tip-box strong{color:var(--text)}
+/* SCRIPT BOX */
+.script-box{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;margin-bottom:16px}
+.script-hdr{display:flex;align-items:center;justify-content:space-between;padding:10px 16px;background:var(--bg3);border-bottom:1px solid var(--border);cursor:pointer}
+.script-title{font-size:.82rem;font-weight:600;color:var(--gold)}
+.script-arrow{font-size:.7rem;color:var(--muted);transition:transform var(--tr)}
+.script-box.open .script-arrow{transform:rotate(90deg)}
+.script-body{display:none;padding:16px}
+.script-box.open .script-body{display:block}
+.script-line{display:flex;gap:10px;padding:6px 0;border-bottom:1px dashed var(--border);font-size:.84rem;line-height:1.6}
+.script-line:last-child{border-bottom:none}
+.spk{font-weight:700;min-width:72px;flex-shrink:0}
+.spk-charlie{color:#60A5FA}
+.spk-daniel{color:#34D399}
+.spk-rebecca{color:#F472B6}
+.spk-lisa{color:#FBBF24}
+.script-hl{font-weight:700;color:var(--gold)}
+.script-note{font-size:.72rem;color:var(--muted);margin-top:2px;font-style:italic}
+.spk-btn{display:inline-flex;align-items:center;gap:3px;padding:2px 7px;background:var(--bg3);border:1px solid var(--border);border-radius:3px;font-size:.68rem;color:var(--muted);cursor:pointer;margin-left:6px;transition:all var(--tr)}
+.spk-btn:hover{border-color:var(--gold);color:var(--gold)}
 
-.audio-player-box{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:20px;margin-bottom:16px}
-.audio-header{display:flex;align-items:center;gap:14px;margin-bottom:16px}
-.cd-badge{padding:4px 12px;background:var(--orange-l);border:1px solid rgba(245,158,11,.3);border-radius:4px;font-size:.75rem;font-weight:700;color:var(--orange)}
-.audio-title{font-size:.9rem;font-weight:600}
-.audio-controls{display:flex;align-items:center;gap:12px;padding:12px 16px;background:var(--bg3);border-radius:var(--r2);margin-bottom:14px}
-.play-btn{width:42px;height:42px;border-radius:50%;background:var(--purple);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;border:none;font-size:1rem;flex-shrink:0;transition:all var(--tr)}
-.play-btn:hover{background:#7C3AED;transform:scale(1.05)}
-.audio-track-info{flex:1}
-.audio-track-name{font-size:.83rem;font-weight:500;margin-bottom:2px}
-.audio-note{font-size:.75rem;color:var(--muted)}
-.progress-bar{height:4px;background:var(--border);border-radius:2px;overflow:hidden;margin-top:6px}
-.progress-fill{height:100%;width:0%;background:var(--purple);border-radius:2px;transition:width .1s linear}
+/* COMPREHENSION */
+.comp-item{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r2);overflow:hidden;margin-bottom:8px}
+.comp-q{display:flex;align-items:center;gap:10px;padding:10px 14px;cursor:pointer;transition:background var(--tr)}
+.comp-q:hover{background:var(--bg3)}
+.comp-qn{width:24px;height:24px;border-radius:50%;background:var(--gold-l);color:var(--gold);display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:700;flex-shrink:0}
+.comp-qt{font-size:.86rem;flex:1}
+.comp-arr{font-size:.7rem;color:var(--muted);transition:transform var(--tr)}
+.comp-item.open .comp-arr{transform:rotate(90deg)}
+.comp-a{display:none;padding:6px 14px 10px 48px;font-size:.83rem;color:var(--teal);font-style:italic}
+.comp-item.open .comp-a{display:block}
 
-.q-and-a-list{display:flex;flex-direction:column;gap:10px;margin-bottom:20px}
-.qa-item{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r2);overflow:hidden}
-.qa-question{display:flex;align-items:center;gap:10px;padding:10px 14px;cursor:pointer;transition:background var(--tr)}
-.qa-question:hover{background:var(--bg3)}
-.qa-qnum{width:24px;height:24px;border-radius:50%;background:var(--purple-l);color:var(--purple);display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:700;flex-shrink:0}
-.qa-qtext{font-size:.85rem;flex:1}
-.qa-arrow{font-size:.7rem;color:var(--muted);transition:transform var(--tr);flex-shrink:0}
-.qa-item.open .qa-arrow{transform:rotate(90deg)}
-.qa-answer{display:none;padding:0 14px 12px 48px;font-size:.83rem;color:var(--teal);font-style:italic}
-.qa-item.open .qa-answer{display:block}
+/* MC */
+.mc-opts{display:flex;flex-direction:column;gap:6px;margin-bottom:6px}
+.mc-opt{display:flex;align-items:center;gap:8px;padding:8px 12px;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);font-size:.84rem;cursor:pointer;transition:all var(--tr)}
+.mc-opt:hover:not(:disabled){border-color:var(--gold);background:var(--gold-l)}
+.mc-lbl{width:20px;height:20px;border-radius:50%;background:var(--bg4);display:flex;align-items:center;justify-content:center;font-size:.68rem;font-weight:700;color:var(--muted);flex-shrink:0;transition:all var(--tr)}
+.mc-opt.ok2{border-color:var(--green);background:var(--green-l)}.mc-opt.ok2 .mc-lbl{background:var(--green);color:#fff}
+.mc-opt.err2{border-color:var(--red);background:var(--red-l)}.mc-opt.err2 .mc-lbl{background:var(--red);color:#fff}
 
-.speaking-box{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:18px;margin-bottom:20px}
-.speaking-box-title{font-size:.85rem;font-weight:600;margin-bottom:12px;color:var(--text);display:flex;align-items:center;gap:8px}
-.speech-bubble{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);padding:12px 16px;margin-bottom:10px;font-size:.85rem;font-style:italic;color:var(--text);position:relative}
-.speech-bubble::before{content:'💬';margin-right:8px}
-.speech-bubble .answer{color:var(--teal);font-style:normal;font-weight:500}
+/* FILL EXERCISE */
+.fill-ex{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:18px;margin-bottom:16px}
+.fill-ex-title{font-size:.87rem;font-weight:600;padding-bottom:10px;border-bottom:1px solid var(--border);margin-bottom:14px;color:var(--dim)}
+.fill-row{display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px dashed var(--border)}
+.fill-row:last-child{border-bottom:none}
+.fill-n{width:22px;height:22px;border-radius:50%;background:var(--bg3);display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:700;color:var(--muted);flex-shrink:0;margin-top:2px}
+.fill-body{flex:1}
+.fill-s{font-size:.87rem;margin-bottom:7px;line-height:1.6}
+.fill-ctrl{display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+.fill-inp{height:33px;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);padding:0 10px;color:var(--text);font-size:.84rem;outline:none;transition:border-color var(--tr)}
+.fill-inp:focus{border-color:var(--gold)}
+.fill-inp.ok{border-color:var(--green);background:var(--green-l)}
+.fill-inp.err{border-color:var(--red);background:var(--red-l)}
+.chk-btn{padding:5px 12px;background:var(--gold);color:#000;border:none;border-radius:var(--r2);font-size:.76rem;font-weight:700;cursor:pointer;transition:all var(--tr)}
+.chk-btn:hover{background:#B45309;color:#fff}
+.rev-btn{padding:5px 11px;background:var(--bg3);border:1px solid var(--border);color:var(--dim);border-radius:var(--r2);font-size:.76rem;cursor:pointer;transition:all var(--tr)}
+.rev-btn:hover{border-color:var(--gold);color:var(--gold)}
+.fill-fb{margin-top:5px;font-size:.77rem;padding:4px 9px;border-radius:var(--r2);display:none}
+.fill-fb.ok{background:var(--green-l);color:var(--green);display:block}
+.fill-fb.err{background:var(--red-l);color:var(--red);display:block}
 
-.fill-exercise{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:20px;margin-bottom:16px}
-.fill-ex-title{font-size:.88rem;font-weight:600;margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid var(--border)}
-.fill-item{display:flex;align-items:flex-start;gap:12px;padding:10px 0;border-bottom:1px dashed var(--border)}
-.fill-item:last-child{border-bottom:none}
-.fill-item-num{width:22px;height:22px;border-radius:50%;background:var(--bg3);display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:700;color:var(--muted);flex-shrink:0;margin-top:2px}
-.fill-item-content{flex:1}
-.fill-sentence{font-size:.88rem;margin-bottom:8px;line-height:1.6}
-.fill-controls{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
-.fill-input{height:34px;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);padding:0 12px;color:var(--text);font-size:.85rem;outline:none;min-width:80px;transition:border-color var(--tr)}
-.fill-input:focus{border-color:var(--purple)}
-.fill-input.correct{border-color:var(--green);background:var(--green-l)}
-.fill-input.wrong{border-color:var(--red);background:var(--red-l)}
-.check-btn{padding:6px 14px;background:var(--purple);color:#fff;border:none;border-radius:var(--r2);font-size:.78rem;font-weight:600;cursor:pointer;transition:all var(--tr)}
-.check-btn:hover{background:#7C3AED}
-.reveal-btn{padding:6px 12px;background:var(--bg3);border:1px solid var(--border);color:var(--dim);border-radius:var(--r2);font-size:.78rem;cursor:pointer;transition:all var(--tr)}
-.reveal-btn:hover{border-color:var(--purple);color:var(--purple)}
-.fill-feedback{margin-top:6px;font-size:.78rem;padding:5px 10px;border-radius:var(--r2);display:none}
-.fill-feedback.show-ok{background:var(--green-l);color:var(--green);display:block}
-.fill-feedback.show-err{background:var(--red-l);color:var(--red);display:block}
+/* DRAG-DROP */
+.drag-game{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:14px}
+.drag-pool{display:flex;flex-direction:column;gap:6px}
+.drag-chip{display:flex;align-items:center;gap:8px;padding:9px 13px;background:var(--bg2);border:2px solid rgba(217,119,6,.4);border-radius:var(--r2);font-size:.85rem;font-weight:600;color:var(--gold);cursor:grab;user-select:none;transition:all var(--tr)}
+.drag-chip:hover{background:var(--gold-l);transform:translateY(-1px)}
+.drag-chip.dragging{opacity:.4}
+.drag-chip.selected-tap{background:var(--orange-l);border-color:var(--orange);color:var(--orange)}
+.drag-chip.matched{background:var(--green-l);border-color:var(--green);color:var(--green);cursor:default}
+.drop-zone{min-height:42px;padding:8px 12px;background:var(--bg3);border:2px dashed var(--border2);border-radius:var(--r2);font-size:.84rem;color:var(--dim);transition:all var(--tr);display:flex;align-items:center;justify-content:space-between;gap:8px}
+.drop-zone .dz-text{flex:1;font-style:italic}
+.drop-zone .dz-slot{min-width:90px;height:30px;background:var(--bg);border:1px dashed var(--muted);border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:.75rem;color:var(--muted);font-family:monospace;transition:all var(--tr)}
+.drop-zone.over{background:var(--gold-l);border-color:var(--gold);border-style:solid}
+.drop-zone.ok{background:var(--green-l);border-color:var(--green);border-style:solid}
+.drop-zone.ok .dz-slot{background:var(--green);color:#fff;border:none;font-weight:700}
+.drop-zone.err{background:var(--red-l);border-color:var(--red);animation:shake .4s ease}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
 
-.ed-section{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:18px;margin-bottom:16px}
-.ed-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;margin-bottom:12px}
-.ed-card{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);padding:12px;text-align:center;cursor:pointer;transition:all var(--tr)}
-.ed-card:hover{border-color:var(--purple)}
-.ed-word{font-size:1rem;font-weight:700;margin-bottom:4px}
-.ed-syl{font-size:.75rem;color:var(--orange);margin-bottom:2px}
-.ed-ipa{font-family:'Courier New',monospace;font-size:.75rem;color:var(--teal)}
+/* RULE BOX */
+.rule-box{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:18px;margin-bottom:14px}
+.rule-tag{display:inline-flex;align-items:center;gap:6px;padding:3px 12px;background:var(--gold-l);border:1px solid rgba(217,119,6,.35);border-radius:4px;font-size:.72rem;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.06em;margin-bottom:12px}
+.rule-section{margin-bottom:14px}
+.rule-sec-title{font-size:.8rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px;padding-bottom:5px;border-bottom:1px solid var(--border)}
+.rule-item{display:flex;gap:8px;padding:7px 0;border-bottom:1px dashed var(--border);font-size:.85rem;line-height:1.6}
+.rule-item:last-child{border-bottom:none}
+.rule-dot{color:var(--gold);flex-shrink:0;font-size:.7rem;margin-top:6px}
+.example-box{font-family:'Courier New',monospace;font-size:.82rem;color:#7DD3FC;background:var(--bg);padding:8px 12px;border-radius:var(--r2);margin:6px 0;border:1px solid var(--border);line-height:1.6}
+.ok-box{background:var(--green-l);border:1px solid rgba(16,185,129,.25);border-radius:var(--r2);padding:7px 11px;font-size:.83rem;margin-bottom:5px}
+.err-box{background:var(--red-l);border:1px solid rgba(239,68,68,.25);border-radius:var(--r2);padding:7px 11px;font-size:.83rem;margin-bottom:5px}
+.tip-box{background:var(--gold-l);border:1px solid rgba(217,119,6,.25);border-radius:var(--r2);padding:10px 14px;font-size:.82rem;line-height:1.6;margin:10px 0}
+.tip-box strong{color:var(--gold)}
+.note-box{background:var(--bg3);border-left:3px solid var(--gold);border-radius:0 var(--r2) var(--r2) 0;padding:10px 14px;margin:10px 0;font-size:.82rem;color:var(--dim);line-height:1.6}
+.note-box strong{color:var(--text)}
 
-.lang-sum-box{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:20px;margin-bottom:16px}
-.lang-sum-title{font-size:.75rem;font-weight:700;color:var(--purple);text-transform:uppercase;letter-spacing:.07em;margin-bottom:14px;display:flex;align-items:center;gap:8px}
+/* CONVO DEMO */
+.convo-box{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:16px;margin-bottom:14px}
+.convo-title{font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;margin-bottom:12px}
+.bubble-row{display:flex;gap:10px;margin-bottom:8px}
+.bubble-row.right{flex-direction:row-reverse}
+.bubble{background:var(--bg3);border:1px solid var(--border);border-radius:12px;padding:8px 14px;max-width:75%;font-size:.84rem;line-height:1.5}
+.bubble-row:not(.right) .bubble{border-bottom-left-radius:3px}
+.bubble-row.right .bubble{border-bottom-right-radius:3px;background:var(--gold-l);border-color:rgba(217,119,6,.3)}
 
-.btn{display:inline-flex;align-items:center;gap:7px;padding:8px 18px;border-radius:var(--r2);font-size:.83rem;font-weight:500;cursor:pointer;border:none;font-family:inherit;transition:all var(--tr)}
-.btn-primary{background:var(--purple);color:#fff}.btn-primary:hover{background:#7C3AED;transform:translateY(-1px)}
-.btn-outline{background:var(--bg3);border:1px solid var(--border);color:var(--dim)}.btn-outline:hover{border-color:var(--purple);color:var(--purple)}
-.divider{height:1px;background:var(--border);margin:24px 0}
-.score-box{display:none;text-align:center;padding:20px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);margin-top:16px}
+/* -ED PRONUNCIATION */
+.ed-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:8px;margin-bottom:10px}
+.ed-card{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);padding:11px;text-align:center;cursor:pointer;transition:all var(--tr)}
+.ed-card:hover{border-color:var(--gold)}
+.ed-word{font-size:.95rem;font-weight:700;margin-bottom:3px}
+.ed-syl{font-size:.72rem;color:var(--orange)}
+.ed-ipa{font-family:monospace;font-size:.73rem;color:var(--teal)}
+.ed-pair{display:flex;align-items:center;gap:10px;padding:8px 12px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r2);margin-bottom:6px;font-size:.83rem}
+.ed-pair-words{flex:1;font-weight:500}
+.ed-pair-result{font-size:.72rem;font-weight:700;padding:2px 8px;border-radius:10px}
+.pair-S{background:var(--blue-l);color:var(--blue)}
+.pair-D{background:var(--orange-l);color:var(--orange)}
+
+/* GET READY */
+.gr-box{background:linear-gradient(135deg,rgba(217,119,6,.08),rgba(20,184,166,.06));border:1px solid rgba(217,119,6,.2);border-radius:var(--r);padding:20px;margin-bottom:18px}
+.list-input-wrap{display:flex;flex-direction:column;gap:7px}
+.list-row{display:flex;align-items:center;gap:10px}
+.list-num{width:26px;height:26px;border-radius:50%;background:var(--gold-l);color:var(--gold);display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:700;flex-shrink:0}
+.list-inp{flex:1;height:33px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r2);padding:0 12px;color:var(--text);font-size:.84rem;outline:none;transition:border-color var(--tr)}
+.list-inp:focus{border-color:var(--gold)}
+
+/* WORKBOOK */
+.wb-tag{display:inline-flex;align-items:center;gap:6px;padding:3px 12px;background:var(--gold-l);border:1px solid rgba(217,119,6,.35);border-radius:4px;font-size:.72rem;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.06em;margin-bottom:14px}
+
+/* TABLE */
+.tbl{width:100%;border-collapse:collapse;font-size:.82rem;margin:8px 0}
+.tbl th{background:var(--bg3);padding:8px 12px;text-align:left;font-weight:700;border:1px solid var(--border);color:var(--dim);font-size:.72rem;text-transform:uppercase;letter-spacing:.04em}
+.tbl td{padding:8px 12px;border:1px solid var(--border);line-height:1.5}
+.tbl tr:nth-child(even) td{background:rgba(255,255,255,.02)}
+
+/* SCORE */
+.score-box{display:none;text-align:center;padding:16px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);margin-top:12px}
 .score-box.show{display:block}
-.score-num{font-size:2.2rem;font-weight:700;color:var(--purple)}
+.score-n{font-size:2.2rem;font-weight:700;color:var(--gold)}
+.score-msg{color:var(--dim);font-size:.83rem;margin-top:3px}
+
+/* BUTTONS */
+.btn{display:inline-flex;align-items:center;gap:6px;padding:7px 16px;border-radius:var(--r2);font-size:.82rem;font-weight:500;cursor:pointer;border:none;font-family:inherit;transition:all var(--tr)}
+.btn-gold{background:var(--gold);color:#000}.btn-gold:hover{background:#B45309;color:#fff}
+.btn-outline{background:var(--bg3);border:1px solid var(--border2);color:var(--dim)}.btn-outline:hover{border-color:var(--gold);color:var(--gold)}
+.speak-mini{width:28px;height:28px;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);cursor:pointer;font-size:.8rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all var(--tr)}
+.speak-mini:hover{background:var(--gold-l);border-color:var(--gold)}
+.divider{height:1px;background:var(--border);margin:20px 0}
+
+/* RESPONSIVE */
 @media(max-width:680px){
-  .ed-grid{grid-template-columns:repeat(auto-fill,minmax(130px,1fr))}
-  .tab-nav{padding:0 16px}
-  .page-content{padding:0 16px 48px}
-  .quick-review{margin:16px}
+  .drag-game{grid-template-columns:1fr}
+  .ed-grid{grid-template-columns:repeat(auto-fill,minmax(120px,1fr))}
+  .tab-nav{padding:0 12px}
+  .page-content{padding:0 14px 48px}
 }
 </style>
 </head>
 <body>
 
+<!-- TOP BAR -->
 <div class="top-bar">
   <button class="back-btn" onclick="history.back()">← Trang chủ</button>
-  <div class="lesson-badge">UNIT 1</div>
+  <div class="lesson-badge">UNIT 1 · REAL WORLD</div>
   <div class="lesson-title-h">1D — Nice to meet you</div>
-  <button class="theme-btn" id="theme-btn" onclick="toggleTheme()">☀️</button>
-  <button class="progress-btn" onclick="markDone()">✅ Đánh dấu xong</button>
+  <div class="top-actions">
+    <button class="theme-btn" id="theme-btn" onclick="toggleTheme()">☀️</button>
+    <button class="done-btn-top" onclick="markDone()">✅ Đánh dấu xong</button>
+  </div>
 </div>
 
+<!-- QUICK REVIEW -->
 <div class="quick-review">
   <div class="qr-badge">QUICK REVIEW</div>
-  <div class="qr-text"><strong>Prepositions with adjectives</strong> — Work in pairs. Find one thing that you're both: scared of, interested in, worried about, good at, fed up with, happy about. <em>A: I'm scared of spiders. B: Me too!</em></div>
+  <div class="qr-text">
+    <strong>Prepositions with adjectives</strong> — Work in pairs. Find one thing that you're both:
+    scared of, interested in, worried about, good at, fed up with, happy about.<br>
+    <em>A: "I'm scared of spiders." &nbsp; B: "Me too!"</em>
+  </div>
 </div>
 
+<!-- TAB NAV -->
 <div class="tab-nav">
-  <button class="tnav-btn active" onclick="showTab('overview')">📖 Overview</button>
-  <button class="tnav-btn" onclick="showTab('grammar')">📐 Grammar</button>
-  <button class="tnav-btn" onclick="showTab('listening')">🎧 Listening</button>
-  <button class="tnav-btn" onclick="showTab('speaking')">💬 Speaking</button>
+  <button class="tnav-btn active" onclick="showTab('speaking')">💬 Speaking</button>
+  <button class="tnav-btn" onclick="showTab('video')">🎬 Video &amp; Listening</button>
+  <button class="tnav-btn" onclick="showTab('realworld')">🌍 Real World: Question Tags</button>
   <button class="tnav-btn" onclick="showTab('pronunciation')">🔊 Pronunciation</button>
-  <button class="tnav-btn" onclick="showTab('realworld')">🌍 Real World</button>
+  <button class="tnav-btn" onclick="showTab('practice')">✏️ Practice</button>
+  <button class="tnav-btn" onclick="showTab('getready')">🎯 Get Ready!</button>
   <button class="tnav-btn" onclick="showTab('workbook')">📓 Workbook</button>
-  <button class="tnav-btn" onclick="showTab('review')">📋 Review</button>
+  <button class="tnav-btn" onclick="showTab('langsummary')">📋 Language Summary</button>
 </div>
 
 <div class="page-content">
 
-<!-- TAB 1: OVERVIEW -->
-<div class="tab-pane active" id="tab-overview">
-  <div class="sec-heading">Nice to meet you</div>
-  <div class="sec-sub">Unit 1D · Question tags · Học cách kiểm tra thông tin bằng câu hỏi đuôi</div>
+<!-- ══════════════════════════════════
+  TAB 1: SPEAKING
+══════════════════════════════════ -->
+<div class="tab-pane active" id="tab-speaking">
+  <div class="sec-h">Speaking — Meeting new people</div>
+  <div class="sec-sub">Real World: question tags · SB p12</div>
 
-  <div class="grammar-intro-box">
-    <div class="grammar-tag">🎯 LEARNING OBJECTIVES</div>
-    <div class="grammar-title">By the end of this unit, you will be able to:</div>
-    <div class="grammar-rule"><div class="grammar-bullet">✓</div><div>Use <strong>question tags</strong> (don't you?, isn't she?, haven't they?, etc.) to check information</div></div>
-    <div class="grammar-rule"><div class="grammar-bullet">✓</div><div>Give <strong>short answers</strong> (Yes, I do. / No, I haven't, actually.)</div></div>
-    <div class="grammar-rule"><div class="grammar-bullet">✓</div><div>Pronounce <strong>-ed adjectives</strong> correctly (stressed, annoyed, excited, embarrassed)</div></div>
-    <div class="grammar-rule"><div class="grammar-bullet">✓</div><div>Have a conversation <strong>meeting new people</strong> at a party or social event</div></div>
+  <!-- Exercise 1 -->
+  <div class="ex-label"><div class="ex-num">1</div>Exercise 1 — Discuss these questions</div>
+  <p class="instr">Work in pairs. Discuss these questions:</p>
+
+  <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:20px">
+    <div class="comp-item" id="sp1"><div class="comp-q" onclick="toggleComp(this)"><span class="comp-qn">1</span><span class="comp-qt">When did you last meet someone new (apart from students in this class)? Where were you at the time?</span><span class="comp-arr">▶</span></div><div class="comp-a">Trả lời tự do. Gợi ý: <em>"I met a new colleague at work last week. We were at a team meeting."</em></div></div>
+    <div class="comp-item" id="sp2"><div class="comp-q" onclick="toggleComp(this)"><span class="comp-qn">2</span><span class="comp-qt">What did you talk about?</span><span class="comp-arr">▶</span></div><div class="comp-a">Gợi ý: <em>"We talked about work, where we were from, and what we do at weekends."</em></div></div>
+    <div class="comp-item" id="sp3"><div class="comp-q" onclick="toggleComp(this)"><span class="comp-qn">3</span><span class="comp-qt">Did you get on well with the person? Why? / Why not?</span><span class="comp-arr">▶</span></div><div class="comp-a">Gợi ý: <em>"Yes, we got on really well. She was very friendly and easy to talk to."</em></div></div>
   </div>
 
-  <div class="lang-sum-box">
-    <div class="lang-sum-title">📖 KEY VOCABULARY (from Unit 1C review)</div>
-    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:8px">
-      <div class="feeling-card" style="padding:10px"><div class="feeling-word">nervous</div><div class="feeling-ipa">/ˈnɜːvəs/</div><div class="feeling-vi">lo lắng, hồi hộp</div></div>
-      <div class="feeling-card" style="padding:10px"><div class="feeling-word">embarrassed</div><div class="feeling-ipa">/ɪmˈbærəst/</div><div class="feeling-vi">xấu hổ, ngượng ngùng</div></div>
-      <div class="feeling-card" style="padding:10px"><div class="feeling-word">pleased</div><div class="feeling-ipa">/pliːzd/</div><div class="feeling-vi">hài lòng, vui vẻ</div></div>
-      <div class="feeling-card" style="padding:10px"><div class="feeling-word">stressed</div><div class="feeling-ipa">/strest/</div><div class="feeling-vi">căng thẳng</div></div>
+  <div class="convo-box">
+    <div class="convo-title">💬 Gợi ý hội thoại mẫu</div>
+    <div class="bubble-row"><div class="bubble">When did you last meet someone new?</div></div>
+    <div class="bubble-row right"><div class="bubble">About two weeks ago, at a friend's party. Her name was Maria.</div></div>
+    <div class="bubble-row"><div class="bubble">Did you get on well with her?</div></div>
+    <div class="bubble-row right"><div class="bubble">Yes, really well! We talked for hours. She's from Spain originally.</div></div>
+    <div class="bubble-row"><div class="bubble">What did you talk about?</div></div>
+    <div class="bubble-row right"><div class="bubble">Travel mainly — she's been to so many places. She's worked in four different countries!</div></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+  TAB 2: VIDEO & LISTENING
+══════════════════════════════════ -->
+<div class="tab-pane" id="tab-video">
+  <div class="sec-h">Video &amp; Listening — Nice to meet you</div>
+  <div class="sec-sub">VIDEO 1 · CD1 Track 5 · SB p12</div>
+
+  <!-- Exercise 2a -->
+  <div class="ex-label"><div class="ex-num">2</div>Exercise 2a — Look at the photo</div>
+  <p class="instr"><span class="part">a</span> Look at the photo on p12. Where are the people? What are they doing?</p>
+  <div class="tip-box"><strong>Context:</strong> The photo shows four people — Charlie, Daniel, Rebecca and Lisa — in a pub in England. Charlie and Rebecca are a couple. Lisa is Rebecca's friend. Daniel is Lisa's new boyfriend. Charlie and Rebecca are neighbours of Lisa.</div>
+
+  <!-- Exercise 2b — Video/Audio player -->
+  <div class="ex-label"><div class="ex-num">2</div>Exercise 2b — Watch or listen</div>
+  <p class="instr"><span class="part">b</span> <strong>VIDEO ▶ 1 &nbsp;|&nbsp; CD1 ▶ 5</strong> Watch or listen to the conversation. Then choose the correct names in these sentences.</p>
+
+  <div class="media-box">
+    <div class="media-hdr">
+      <div class="media-badge video-badge">VIDEO ▶ 1</div>
+      <div class="media-badge cd-badge" style="margin-left:4px">CD1 ▶ Track 5</div>
+      <div>
+        <div class="media-title">Nice to meet you — Charlie, Daniel, Rebecca &amp; Lisa</div>
+        <div style="font-size:.75rem;color:var(--muted)">face2face Intermediate · SB p12</div>
+      </div>
     </div>
-    <div class="tip-box" style="margin-top:12px"><strong>💡 Prepositions with adjectives (ôn tập):</strong> scared <strong>of</strong> · interested <strong>in</strong> · worried <strong>about</strong> · good <strong>at</strong> · fed up <strong>with</strong> · happy <strong>about</strong></div>
+    <div class="media-ctrl">
+      <button class="play-btn" id="play-btn-video" onclick="toggleAudio('video')">▶</button>
+      <div class="media-info">
+        <div class="media-track">CD1 Track 5 — "Nice to meet you"</div>
+        <div class="media-note">⚠️ Thêm file <code>cd1_track5.mp3</code> vào thư mục <code>/audio/</code></div>
+        <div class="prog-bar"><div class="prog-fill" id="prog-video"></div></div>
+      </div>
+    </div>
+    <audio id="audio-video" src="audio/cd1_track5.mp3" ontimeupdate="updateProg('video')" onended="audioEnd('video')"></audio>
   </div>
-</div>
 
-<!-- TAB 2: GRAMMAR -->
-<div class="tab-pane" id="tab-grammar">
-  <div class="grammar-intro-box">
-    <div class="grammar-tag">📐 HELP WITH GRAMMAR</div>
-    <div class="grammar-title">Question tags — Câu hỏi đuôi</div>
-  </div>
-
-  <div class="grammar-section">
-    <div class="grammar-section-title">📌 CẤU TRÚC (Structure)</div>
-    <div class="grammar-rule"><div class="grammar-bullet">•</div><div><strong>Khẳng định + , + trợ động từ phủ định + đại từ?</strong><br><em>You live next door to Lisa, <span class="aux">don't you</span>?</em></div></div>
-    <div class="grammar-rule"><div class="grammar-bullet">•</div><div><strong>Phủ định + , + trợ động từ khẳng định + đại từ?</strong><br><em>You haven't ordered any food yet, <span class="aux">have you</span>?</em></div></div>
-    <div class="grammar-table-wrap">
-      <table class="grammar-table">
-        <thead><tr><th>Main clause</th><th>Question tag</th><th>Example</th></tr></thead>
-        <tbody>
-          <tr><td>You are a student</td><td class="aux">aren't you?</td><td>You're a student, aren't you?</td></tr>
-          <tr><td>She works here</td><td class="aux">doesn't she?</td><td>She works here, doesn't she?</td></tr>
-          <tr><td>They have finished</td><td class="aux">haven't they?</td><td>They've finished, haven't they?</td></tr>
-          <tr><td>It was a good film</td><td class="aux">wasn't it?</td><td>It was a good film, wasn't it?</td></tr>
-          <tr><td>You don't like coffee</td><td class="aux">do you?</td><td>You don't like coffee, do you?</td></tr>
-        </tbody>
-      </table>
+  <!-- Full Audio Script -->
+  <div class="script-box" id="script-main">
+    <div class="script-hdr" onclick="toggleScript('script-main')">
+      <span class="script-title">📜 Audio Script — CD1 Track 5 "Nice to meet you" (đầy đủ)</span>
+      <span class="script-arrow">▶</span>
+    </div>
+    <div class="script-body">
+      <div style="font-size:.75rem;color:var(--muted);margin-bottom:12px;padding:6px 10px;background:var(--bg3);border-radius:var(--r2)">
+        👥 <strong>Characters:</strong>
+        <span class="spk-charlie">■ CHARLIE</span> (Rebecca's partner, teaches sailing, works for package tour company) &nbsp;·&nbsp;
+        <span class="spk-daniel">■ DANIEL</span> (Lisa's new boyfriend, from London originally) &nbsp;·&nbsp;
+        <span class="spk-rebecca">■ REBECCA</span> (Charlie's partner, lives next door to Lisa) &nbsp;·&nbsp;
+        <span class="spk-lisa">■ LISA</span> (Rebecca's neighbour and friend)
+      </div>
+      <div class="script-line"><span class="spk spk-rebecca">REBECCA:</span><span>Hi, Lisa! Good to see you. <span class="script-hl">This is Daniel, isn't it?</span> <button class="spk-btn" onclick="spk('This is Daniel, isn\'t it?')">🔊</button></span></div>
+      <div class="script-line"><span class="spk spk-lisa">LISA:</span><span>Yes, that's right. Daniel, this is Rebecca and Charlie.</span></div>
+      <div class="script-line"><span class="spk spk-daniel">DANIEL:</span><span>Hi! Nice to meet you both.</span></div>
+      <div class="script-line"><span class="spk spk-charlie">CHARLIE:</span><span>You too. So, how do you know Lisa?</span></div>
+      <div class="script-line"><span class="spk spk-daniel">DANIEL:</span><span>We met at a friend's wedding last month.</span></div>
+      <div class="script-line"><span class="spk spk-rebecca">REBECCA:</span><span><span class="script-hl">You're not from around here, are you?</span> <button class="spk-btn" onclick="spk('You\'re not from around here, are you?')">🔊</button></span></div>
+      <div class="script-line"><span class="spk spk-daniel">DANIEL:</span><span>No, I'm from London originally. I moved here about three years ago.</span></div>
+      <div class="script-line"><span class="spk spk-charlie">CHARLIE:</span><span><span class="script-hl">You live next door to Lisa, don't you?</span> No, wait — that's you, Rebecca! <button class="spk-btn" onclick="spk('You live next door to Lisa, don\'t you?')">🔊</button></span></div>
+      <div class="script-line"><span class="spk spk-rebecca">REBECCA:</span><span>That's right. We've been neighbours for about three years now.</span></div>
+      <div class="script-line"><span class="spk spk-daniel">DANIEL:</span><span>Oh right. <span class="script-hl">Your sister shared a flat with my brother, didn't she?</span> <button class="spk-btn" onclick="spk('Your sister shared a flat with my brother, didn\'t she?')">🔊</button></span></div>
+      <div class="script-line"><span class="spk spk-rebecca">REBECCA:</span><span>Yes! Small world, isn't it! They were at university together.</span></div>
+      <div class="script-line"><span class="spk spk-charlie">CHARLIE:</span><span>So what do you do, Daniel?</span></div>
+      <div class="script-line"><span class="spk spk-daniel">DANIEL:</span><span>I'm an architect. What about you?</span></div>
+      <div class="script-line"><span class="spk spk-charlie">CHARLIE:</span><span>I teach people how to sail. And I also work for a package tour company.</span></div>
+      <div class="script-line"><span class="spk spk-daniel">DANIEL:</span><span>Oh, that sounds great. <span class="script-hl">You must travel a lot, don't you?</span> <button class="spk-btn" onclick="spk('You must travel a lot, don\'t you?')">🔊</button></span></div>
+      <div class="script-line"><span class="spk spk-charlie">CHARLIE:</span><span>Yes, I do. All over the world, actually.</span></div>
+      <div class="script-line"><span class="spk spk-lisa">LISA:</span><span><span class="script-hl">You both support Manchester United, don't you?</span> <button class="spk-btn" onclick="spk('You both support Manchester United, don\'t you?')">🔊</button></span></div>
+      <div class="script-line"><span class="spk spk-rebecca">REBECCA:</span><span>Yes, we do! Are you a fan, Daniel?</span></div>
+      <div class="script-line"><span class="spk spk-daniel">DANIEL:</span><span>I'm afraid not. I'm an Arsenal supporter!</span></div>
+      <div class="script-line"><span class="spk spk-charlie">CHARLIE:</span><span>Oh dear! Never mind. <span class="script-hl">You've got a son called Harry, haven't you, Rebecca?</span> <button class="spk-btn" onclick="spk('You\'ve got a son called Harry, haven\'t you, Rebecca?')">🔊</button></span></div>
+      <div class="script-line"><span class="spk spk-rebecca">REBECCA:</span><span>That's right. He's just started school.</span></div>
+      <div class="script-line"><span class="spk spk-daniel">DANIEL:</span><span><span class="script-hl">You haven't ordered any food yet, have you?</span> I'm starving! <button class="spk-btn" onclick="spk('You haven\'t ordered any food yet, have you?')">🔊</button></span></div>
+      <div class="script-line"><span class="spk spk-lisa">LISA:</span><span>No, we haven't. Let's get some menus!</span></div>
+      <div style="font-size:.75rem;color:var(--muted);margin-top:10px;font-style:italic">Note: Question tags highlighted in gold — these are the key language focus of Lesson 1D.</div>
     </div>
   </div>
 
-  <div class="grammar-section">
-    <div class="grammar-section-title">⚠️ LƯU Ý CHO NGƯỜI VIỆT (Important notes)</div>
-    <div class="wrong-box">❌ <strong>Sai:</strong> I'm late, <span class="aux">amn't I</span>?</div>
-    <div class="right-box">✅ <strong>Đúng:</strong> I'm late, <span class="aux">aren't I</span>?</div>
-    <div class="grammar-rule"><div class="grammar-bullet">•</div><div>Dùng <strong>đại từ</strong> (he, she, it, they, we, you, I) trong question tag, KHÔNG dùng tên riêng.</div></div>
-    <div class="grammar-rule"><div class="grammar-bullet">•</div><div>Với <strong>Let's</strong> → <em>shall we?</em> · Với <strong>imperative</strong> → <em>will you?</em></div></div>
-    <div class="example-box">📖 Barbara went to Liverpool University, <strong>didn't she?</strong> (KHÔNG: didn't Barbara?)</div>
-  </div>
+  <!-- Exercise 2b — Choose correct names -->
+  <div class="ex-label" style="margin-top:16px"><div class="ex-num">2</div>Exercise 2b — Choose the correct names</div>
+  <p class="instr">Choose the correct names. Then work in pairs and compare answers.</p>
 
-  <div class="fill-exercise">
-    <div class="fill-ex-title">✏️ Exercise: Complete the question tags</div>
-    <div id="grammar-ex-items">
-      <div class="fill-item"><div class="fill-item-num">1</div><div class="fill-item-content"><div class="fill-sentence">You live next door to Lisa, <span style="color:var(--purple)">________</span> ?</div><div class="fill-controls"><input class="fill-input" id="g1" placeholder="…"><button class="check-btn" onclick="checkG('g1','don\'t you','fb1')">Kiểm tra</button><button class="reveal-btn" onclick="revealG('g1','don\'t you','fb1')">Đáp án</button></div><div class="fill-feedback" id="fb1"></div></div></div>
-      <div class="fill-item"><div class="fill-item-num">2</div><div class="fill-item-content"><div class="fill-sentence">You're from London originally, <span style="color:var(--purple)">________</span> ?</div><div class="fill-controls"><input class="fill-input" id="g2" placeholder="…"><button class="check-btn" onclick="checkG('g2','aren\'t you','fb2')">Kiểm tra</button><button class="reveal-btn" onclick="revealG('g2','aren\'t you','fb2')">Đáp án</button></div><div class="fill-feedback" id="fb2"></div></div></div>
-      <div class="fill-item"><div class="fill-item-num">3</div><div class="fill-item-content"><div class="fill-sentence">You've been diving, <span style="color:var(--purple)">________</span> ?</div><div class="fill-controls"><input class="fill-input" id="g3" placeholder="…"><button class="check-btn" onclick="checkG('g3','haven\'t you','fb3')">Kiểm tra</button><button class="reveal-btn" onclick="revealG('g3','haven\'t you','fb3')">Đáp án</button></div><div class="fill-feedback" id="fb3"></div></div></div>
-      <div class="fill-item"><div class="fill-item-num">4</div><div class="fill-item-content"><div class="fill-sentence">It was a great match yesterday, <span style="color:var(--purple)">________</span> ?</div><div class="fill-controls"><input class="fill-input" id="g4" placeholder="…"><button class="check-btn" onclick="checkG('g4','wasn\'t it','fb4')">Kiểm tra</button><button class="reveal-btn" onclick="revealG('g4','wasn\'t it','fb4')">Đáp án</button></div><div class="fill-feedback" id="fb4"></div></div></div>
-    </div>
-    <div style="margin-top:16px"><button class="btn btn-primary" onclick="checkAllGrammar()">✅ Kiểm tra tất cả</button></div>
-    <div class="score-box" id="grammarScore"></div>
+  <div id="mc-names-list" style="display:flex;flex-direction:column;gap:12px;margin-bottom:16px"></div>
+  <div style="display:flex;gap:8px;margin-bottom:16px">
+    <button class="btn btn-gold" onclick="revealAllMC()">👁 Xem tất cả đáp án</button>
+    <button class="btn btn-outline" onclick="resetAllMC()">🔄 Làm lại</button>
   </div>
+  <div class="score-box" id="mc-score"></div>
+
+  <!-- Exercise 2c -->
+  <div class="divider"></div>
+  <div class="ex-label"><div class="ex-num">2</div>Exercise 2c — Work in pairs: Compare answers</div>
+  <p class="instr"><span class="part">c</span> Work in pairs. Compare answers. Then watch or listen again to check.</p>
 </div>
 
-<!-- TAB 3: LISTENING -->
-<div class="tab-pane" id="tab-listening">
-  <div class="sec-heading">Listening and Speaking</div>
-  <div class="sec-sub">CD1 Track 5 — Meeting new people at a party</div>
-
-  <div class="audio-player-box">
-    <div class="audio-header"><div class="cd-badge">CD1 ▶ Track 5</div><div><div class="audio-title">Nice to meet you — Conversations at a party</div><div style="font-size:.75rem;color:var(--muted)">Rebecca, Charlie, Lisa and Daniel</div></div></div>
-    <div class="audio-controls"><button class="play-btn" id="play-btn" onclick="toggleAudio()">▶</button><div class="audio-track-info"><div class="audio-track-name">CD1 Track 5 — face2face Intermediate</div><div class="audio-note">⚠️ Cần file audio CD1 từ bộ giáo trình. Đặt file <code>cd1_track5.mp3</code> vào thư mục <code>/audio/</code></div><div class="progress-bar"><div class="progress-fill" id="audio-progress"></div></div></div></div>
-    <audio id="audio-player" src="audio/cd1_track5.mp3" onended="audioEnded()" ontimeupdate="updateProgress()"></audio>
-  </div>
-
-  <div class="instruction"><strong>🎧 Listen and choose the correct names:</strong></div>
-  <div class="fill-exercise" style="background:var(--bg3)">
-    <div class="fill-item"><div class="fill-item-num">1</div><div class="fill-item-content"><div class="fill-sentence"><span style="color:var(--purple)">______</span> is Lisa's new boyfriend.</div><div class="fill-controls"><input class="fill-input" id="l1" placeholder="Daniel / Charlie"><button class="check-btn" onclick="checkListen('l1','Daniel','fbL1')">Kiểm tra</button><button class="reveal-btn" onclick="revealListen('l1','Daniel','fbL1')">Đáp án</button></div><div class="fill-feedback" id="fbL1"></div></div></div>
-    <div class="fill-item"><div class="fill-item-num">2</div><div class="fill-item-content"><div class="fill-sentence"><span style="color:var(--purple)">______</span> teaches people how to sail.</div><div class="fill-controls"><input class="fill-input" id="l2" placeholder="Daniel / Charlie"><button class="check-btn" onclick="checkListen('l2','Daniel','fbL2')">Kiểm tra</button><button class="reveal-btn" onclick="revealListen('l2','Daniel','fbL2')">Đáp án</button></div><div class="fill-feedback" id="fbL2"></div></div></div>
-    <div class="fill-item"><div class="fill-item-num">3</div><div class="fill-item-content"><div class="fill-sentence"><span style="color:var(--purple)">______</span> works for a package tour company.</div><div class="fill-controls"><input class="fill-input" id="l3" placeholder="Charlie / Lisa"><button class="check-btn" onclick="checkListen('l3','Charlie','fbL3')">Kiểm tra</button><button class="reveal-btn" onclick="revealListen('l3','Charlie','fbL3')">Đáp án</button></div><div class="fill-feedback" id="fbL3"></div></div></div>
-  </div>
-
-  <div class="q-and-a-list">
-    <div class="qa-item" id="qa1"><div class="qa-question" onclick="toggleQA('qa1')"><span class="qa-qnum">❓</span><span class="qa-qtext">How long has Charlie lived in the village?</span><span class="qa-arrow">▶</span></div><div class="qa-answer">About three years.</div></div>
-    <div class="qa-item" id="qa2"><div class="qa-question" onclick="toggleQA('qa2')"><span class="qa-qnum">❓</span><span class="qa-qtext">How did Daniel and Lisa meet?</span><span class="qa-arrow">▶</span></div><div class="qa-answer">At Alex's birthday party (Alex is Daniel's brother, Barbara is Lisa's sister).</div></div>
-    <div class="qa-item" id="qa3"><div class="qa-question" onclick="toggleQA('qa3')"><span class="qa-qnum">❓</span><span class="qa-qtext">What do Charlie and Daniel have in common?</span><span class="qa-arrow">▶</span></div><div class="qa-answer">They both support Manchester United.</div></div>
-  </div>
-</div>
-
-<!-- TAB 4: SPEAKING -->
-<div class="tab-pane" id="tab-speaking">
-  <div class="sec-heading">Speaking Practice</div>
-  <div class="sec-sub">Meeting new people · Asking and answering with question tags</div>
-  <div class="speaking-box"><div class="speaking-box-title">💬 Model conversation</div>
-    <div class="speech-bubble">You live next door to Lisa, <strong>don't you?</strong> <span class="answer">→ Yes, I do.</span></div>
-    <div class="speech-bubble">You're from London originally, <strong>aren't you?</strong> <span class="answer">→ Yes, that's right.</span></div>
-    <div class="speech-bubble">You've been diving, <strong>haven't you?</strong> <span class="answer">→ No, I haven't, actually. It sounds a bit too dangerous.</span></div>
-  </div>
-  <div class="tip-box"><strong>💡 TIP:</strong> When the information isn't correct, use <strong>"actually"</strong> to sound more polite: <em>No, I haven't, actually.</em></div>
-  <div class="fill-exercise"><div class="fill-ex-title">🗣️ Work in pairs. Ask and answer:</div>
-    <div class="instruction">Student A: Look at p114. Student B: Look at p115. Use question tags to check information about the people in the photo.</div>
-    <button class="btn btn-outline" onclick="spk('You live next door to Lisa, don\'t you?')">🔊 Listen: You live next door to Lisa, don't you?</button>
-  </div>
-</div>
-
-<!-- TAB 5: PRONUNCIATION -ed adjectives -->
-<div class="tab-pane" id="tab-pronunciation">
-  <div class="sec-heading">Help with Pronunciation</div>
-  <div class="sec-sub">-ed adjectives: số âm tiết và trọng âm</div>
-  <div class="ed-section"><div style="font-size:.82rem;font-weight:700;color:var(--orange);margin-bottom:12px">🔹 1 âm tiết</div>
-    <div class="ed-grid" id="ed-1syl"></div>
-    <div style="font-size:.82rem;font-weight:700;color:var(--orange);margin:14px 0 12px">🔹 2 âm tiết</div>
-    <div class="ed-grid" id="ed-2syl"></div>
-    <div style="font-size:.82rem;font-weight:700;color:var(--orange);margin:14px 0 12px">🔹 3 âm tiết</div>
-    <div class="ed-grid" id="ed-3syl"></div>
-  </div>
-  <div class="note-box"><strong>📌 Mẹo phát âm -ed:</strong> Nếu từ kết thúc bằng /t/ hoặc /d/ → thêm 1 âm tiết (excited /ɪkˈsaɪtɪd/). Nếu không → -ed không thêm âm tiết (stressed /strest/).</div>
-</div>
-
-<!-- TAB 6: REAL WORLD -->
+<!-- ══════════════════════════════════
+  TAB 3: REAL WORLD — QUESTION TAGS
+══════════════════════════════════ -->
 <div class="tab-pane" id="tab-realworld">
-  <div class="grammar-intro-box"><div class="grammar-tag">🌍 REAL WORLD 1.1</div><div class="grammar-title">Question tags to check information</div></div>
-  <div class="grammar-table-wrap"><table class="grammar-table"><thead><tr><th>Function</th><th>Example</th></tr></thead><tbody>
-    <tr><td>Checking information (positive statement)</td><td>You live next door to Lisa, <strong>don't you?</strong></td></tr>
-    <tr><td>Checking information (negative statement)</td><td>You haven't ordered any food yet, <strong>have you?</strong></td></tr>
-    <tr><td>Short answer (correct)</td><td>Yes, I do. / Yes, she did. / Yes, that's right.</td></tr>
-    <tr><td>Short answer (incorrect, polite)</td><td>No, I haven't, <strong>actually</strong>.</td></tr>
-  </tbody></table></div>
-  <div class="tip-box"><strong>📝 Lưu ý:</strong> Dùng <strong>Yes, that's right</strong> thay cho Yes, I am / Yes, I do khi muốn xác nhận thông tin một cách tự nhiên.</div>
+  <div class="sec-h">Real World — Question Tags</div>
+  <div class="sec-sub">REAL WORLD 1.1 → Language Summary p128</div>
+
+  <!-- Exercise 3a — Complete question tags -->
+  <div class="ex-label"><div class="ex-num">3</div>Exercise 3a — Complete questions 1–6 with question tags</div>
+  <p class="instr">
+    <span class="part">a</span>
+    Work in the same pairs. Complete questions 1–6 with these question tags:<br>
+    <strong>don't you? &nbsp; wasn't it? &nbsp; do you? &nbsp; have you? &nbsp; haven't you? &nbsp; didn't she?</strong>
+  </p>
+
+  <div class="fill-ex">
+    <div class="fill-ex-title">Điền question tag đúng vào ô trống</div>
+    <div id="tag-fill-list"></div>
+    <div style="display:flex;gap:8px;margin-top:14px;padding-top:12px;border-top:1px solid var(--border)">
+      <button class="btn btn-gold" onclick="checkAllTags()">✅ Kiểm tra tất cả</button>
+      <button class="btn btn-outline" onclick="revealAllTags()">👁 Đáp án</button>
+      <button class="btn btn-outline" onclick="resetAllTags()">🔄 Làm lại</button>
+    </div>
+    <div class="score-box" id="tag-score"></div>
+  </div>
+
+  <!-- Exercise 3b — Short answers -->
+  <div class="ex-label"><div class="ex-num">3</div>Exercise 3b — Short answers</div>
+  <p class="instr">
+    <span class="part">b</span>
+    Work in the same pairs. Write these short answers in a–f:
+  </p>
+  <div class="note-box" style="margin-bottom:14px">
+    <strong>Short answers box (from sách):</strong><br>
+    <del>Yes, I do.</del> &nbsp; No, I don't. &nbsp; Yes, she did. &nbsp; Yes, it was. &nbsp; No, I haven't, actually. &nbsp; No, we haven't.
+  </div>
+
+  <div id="short-ans-list" style="display:flex;flex-direction:column;gap:8px;margin-bottom:16px"></div>
+  <div style="display:flex;gap:8px;margin-bottom:16px">
+    <button class="btn btn-gold" onclick="revealShortAns()">👁 Xem đáp án</button>
+    <button class="btn btn-outline" onclick="resetShortAns()">🔄 Làm lại</button>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- RULES — Exercise 4 -->
+  <div class="ex-label"><div class="ex-num">4</div>Exercise 4 — Real World: Question tag rules</div>
+  <p class="instr">
+    <span class="part">a</span>
+    Look again at questions 1–6 in 3a. Then choose the correct words/phrases in these rules.
+  </p>
+
+  <div class="rule-box">
+    <div class="rule-tag">⬤⬤⬤ REAL WORLD — Question tags (REAL WORLD 1.1)</div>
+
+    <div class="rule-section">
+      <div class="rule-sec-title">MỤC ĐÍCH</div>
+      <div class="rule-item"><div class="rule-dot">•</div><div>Dùng question tags (<em>don't you?, wasn't it?</em>…) để <strong>kiểm tra thông tin mà ta cho là đúng</strong> / <del>tìm thông tin mới</del>.</div></div>
+    </div>
+
+    <div class="rule-section">
+      <div class="rule-sec-title">CẤU TRÚC</div>
+      <div class="rule-item"><div class="rule-dot">•</div><div>Dùng <strong>auxiliary/modal verb chính</strong> trong question tag:<br>
+      <div class="example-box">You live next door to Lisa, <strong>don't you</strong>?</div></div></div>
+      <div class="rule-item"><div class="rule-dot">•</div><div>Chỉ dùng <strong>đại từ (pronouns)</strong> trong question tags — KHÔNG dùng tên người:<br>
+      <div class="example-box">Barbara went to Liverpool University, didn't <strong>she</strong>?</div></div></div>
+      <div class="rule-item"><div class="rule-dot">•</div><div>Mệnh đề chính <strong>khẳng định</strong> → question tag <strong>phủ định</strong>:<br>
+      <div class="ok-box">✅ It was a great match yesterday, <strong>wasn't it</strong>?</div></div></div>
+      <div class="rule-item"><div class="rule-dot">•</div><div>Mệnh đề chính <strong>phủ định</strong> → question tag <strong>khẳng định</strong>:<br>
+      <div class="ok-box">✅ You haven't ordered any food yet, <strong>have you</strong>?</div></div></div>
+    </div>
+
+    <div class="rule-section">
+      <div class="rule-sec-title">SHORT ANSWERS</div>
+      <div class="rule-item"><div class="rule-dot">•</div><div>Khi thông tin ĐÚNG → dùng câu trả lời ngắn khẳng định:<br>
+      <div class="example-box">A: You live here, don't you? &nbsp; B: <strong>Yes, I do.</strong></div></div></div>
+      <div class="rule-item"><div class="rule-dot">•</div><div>Khi thông tin SAI → dùng <strong>actually</strong> để lịch sự hơn:<br>
+      <div class="example-box">A: You've been diving, haven't you? &nbsp; B: <strong>No, I haven't, actually.</strong> It sounds a bit too dangerous to me.</div></div></div>
+      <div class="tip-box"><strong>TIP:</strong> Cũng có thể dùng <em>Yes, that's right.</em>:<br><em>A: You're from London originally, aren't you? &nbsp; B: <strong>Yes, that's right.</strong> / Yes, I am.</em></div>
+      <div class="tip-box" style="margin-top:8px"><strong>TIP đặc biệt — Present Simple &amp; Past Simple:</strong><br>Nếu main verb là Present Simple hoặc Past Simple → dùng <em>don't, doesn't</em> hoặc <em>didn't</em>:<br><em>Jim lives in the USA, <strong>doesn't he</strong>?</em> &nbsp;|&nbsp; <em>She left early, <strong>didn't she</strong>?</em><br>Dùng <em>aren't I?</em> (KHÔNG dùng <del>amn't I?</del>): <em>I'm late, <strong>aren't I</strong>?</em></div>
+    </div>
+  </div>
+
+  <!-- Exercise 4b — Short answer questions -->
+  <div class="ex-label"><div class="ex-num">4</div>Exercise 4b — Answer about short answers a–f</div>
+  <p class="instr"><span class="part">b</span> Look again at short answers a–f in 3a. Then answer these questions:</p>
+
+  <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:16px">
+    <div class="comp-item" id="q4b1"><div class="comp-q" onclick="toggleComp(this)"><span class="comp-qn">1</span><span class="comp-qt">Which short answers say the information is correct?</span><span class="comp-arr">▶</span></div><div class="comp-a">a: <em>Yes, I do.</em> (correct — thông tin đúng)</div></div>
+    <div class="comp-item" id="q4b2"><div class="comp-q" onclick="toggleComp(this)"><span class="comp-qn">2</span><span class="comp-qt">Which short answer says the information isn't correct?</span><span class="comp-arr">▶</span></div><div class="comp-a">b: <em>No, I don't.</em> — thông tin sai. Các đáp án có "actually" cũng chỉ thông tin sai.</div></div>
+    <div class="comp-item" id="q4b3"><div class="comp-q" onclick="toggleComp(this)"><span class="comp-qn">3</span><span class="comp-qt">Which word do we use to sound more polite when the information isn't correct?</span><span class="comp-arr">▶</span></div><div class="comp-a"><strong>actually</strong> — dùng sau đáp án ngắn để nghe lịch sự hơn: <em>"No, I haven't, <strong>actually</strong>."</em></div></div>
+  </div>
+
+  <!-- Exercise 5a — Intonation -->
+  <div class="divider"></div>
+  <div class="ex-label"><div class="ex-num">5</div>Exercise 5a — Intonation on question tags</div>
+  <p class="instr">
+    <span class="part">a</span>
+    <strong>CD1 ▶ 6</strong> Listen to questions 1–6 in 3a again. Does the intonation on the question tag go <strong>up ↗</strong> or <strong>down ↘</strong>?
+  </p>
+
+  <div class="media-box">
+    <div class="media-hdr">
+      <div class="media-badge cd-badge">CD1 ▶ Track 6</div>
+      <div><div class="media-title">Question tag intonation</div><div style="font-size:.75rem;color:var(--muted)">Luyện ngữ điệu question tags</div></div>
+    </div>
+    <div class="media-ctrl">
+      <button class="play-btn" id="play-btn-inton" onclick="toggleAudio('inton')">▶</button>
+      <div class="media-info">
+        <div class="media-track">CD1 Track 6</div>
+        <div class="media-note">⚠️ Thêm file <code>cd1_track6.mp3</code> vào <code>/audio/</code></div>
+        <div class="prog-bar"><div class="prog-fill" id="prog-inton"></div></div>
+      </div>
+    </div>
+    <audio id="audio-inton" src="audio/cd1_track6.mp3" ontimeupdate="updateProg('inton')" onended="audioEnd('inton')"></audio>
+  </div>
+
+  <div class="note-box">
+    <strong>Ngữ điệu Question Tags — Intonation:</strong><br>
+    • Question tag đi <strong>xuống ↘</strong> = ta gần như chắc chắn thông tin đúng, chỉ muốn xác nhận:<br>
+    <em>"You live next door to Lisa, don't you?↘"</em><br>
+    • Question tag đi <strong>lên ↗</strong> = ta không chắc, muốn hỏi thực sự:<br>
+    <em>"You've been to Paris, haven't you?↗"</em>
+  </div>
+
+  <div class="example-box" style="font-size:.9rem">
+    <strong>PRONUNCIATION:</strong> &nbsp; You <span style="text-decoration:underline dotted">live</span> ne<span style="text-decoration:underline dotted">xt</span> <span style="text-decoration:underline dotted">door</span> to Li<span style="text-decoration:underline dotted">sa</span>, <strong>don't you?↘</strong>
+    <button class="spk-btn" onclick="spk('You live next door to Lisa, don\'t you?')" style="margin-left:8px">🔊 Nghe</button>
+  </div>
 </div>
 
-<!-- TAB 7: WORKBOOK -->
+<!-- ══════════════════════════════════
+  TAB 4: PRONUNCIATION — -ed ADJECTIVES
+══════════════════════════════════ -->
+<div class="tab-pane" id="tab-pronunciation">
+  <div class="sec-h">Help with Pronunciation</div>
+  <div class="sec-sub">-ed adjectives — số âm tiết · CD1 Tracks 7 &amp; 8</div>
+
+  <!-- Exercise 1a -->
+  <div class="ex-label"><div class="ex-num">1</div>Exercise 1a — Syllables in -ed adjectives</div>
+  <p class="instr">
+    <span class="part">a</span>
+    Work in pairs. Look at these -ed adjectives. How many syllables does each word have? Write the words in the table and mark the stress.
+  </p>
+
+  <div class="note-box" style="margin-bottom:14px">
+    <strong>Từ cần phân loại:</strong> stressed · annoyed · excited · satisfied · worried · confused · frightened · relaxed · scared · concerned · shocked · terrified · embarrassed · exhausted · interested · depressed
+  </div>
+
+  <div class="media-box" style="margin-bottom:14px">
+    <div class="media-hdr">
+      <div class="media-badge cd-badge">CD1 ▶ Track 7</div>
+      <div><div class="media-title">-ed adjectives: syllable count</div><div style="font-size:.75rem;color:var(--muted)">Listen and check, then practise</div></div>
+    </div>
+    <div class="media-ctrl">
+      <button class="play-btn" id="play-btn-ed7" onclick="toggleAudio('ed7')">▶</button>
+      <div class="media-info">
+        <div class="media-track">CD1 Track 7</div>
+        <div class="media-note">⚠️ Thêm file <code>cd1_track7.mp3</code> vào <code>/audio/</code></div>
+        <div class="prog-bar"><div class="prog-fill" id="prog-ed7"></div></div>
+      </div>
+    </div>
+    <audio id="audio-ed7" src="audio/cd1_track7.mp3" ontimeupdate="updateProg('ed7')" onended="audioEnd('ed7')"></audio>
+  </div>
+
+  <p class="instr">Nhấn vào từng từ để nghe phát âm và xem số âm tiết:</p>
+
+  <div style="margin-bottom:16px">
+    <div style="font-size:.8rem;font-weight:700;color:var(--orange);text-transform:uppercase;letter-spacing:.07em;margin-bottom:10px">1 âm tiết</div>
+    <div class="ed-grid" id="ed-1"></div>
+    <div style="font-size:.8rem;font-weight:700;color:var(--orange);text-transform:uppercase;letter-spacing:.07em;margin:14px 0 10px">2 âm tiết</div>
+    <div class="ed-grid" id="ed-2"></div>
+    <div style="font-size:.8rem;font-weight:700;color:var(--orange);text-transform:uppercase;letter-spacing:.07em;margin:14px 0 10px">3 âm tiết</div>
+    <div class="ed-grid" id="ed-3"></div>
+    <div style="font-size:.8rem;font-weight:700;color:var(--orange);text-transform:uppercase;letter-spacing:.07em;margin:14px 0 10px">4 âm tiết</div>
+    <div class="ed-grid" id="ed-4"></div>
+  </div>
+
+  <div class="note-box">
+    <strong>Quy tắc -ed adjectives:</strong><br>
+    • Nếu từ tận cùng bằng âm <strong>/t/</strong> hoặc <strong>/d/</strong> → thêm 1 âm tiết: <em>excited /ɪk·ˈsaɪ·tɪd/</em> (3 âm tiết)<br>
+    • Nếu không → -ed KHÔNG thêm âm tiết: <em>stressed /strest/</em> (1 âm), <em>annoyed /ə·ˈnɔɪd/</em> (2 âm)<br>
+    • <strong>Chú ý đặc biệt:</strong> <em>bored</em> = 1 âm tiết /bɔːd/ (không phải 2!)
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- Exercise 2 — Same or Different stress -->
+  <div class="ex-label"><div class="ex-num">2</div>Exercise 2 — Same (S) or Different (D) stress pattern?</div>
+  <p class="instr">
+    <span class="part">a</span>
+    Work in new pairs. Cover 1a. Do these words have the same (S) or different (D) stress pattern?
+  </p>
+
+  <div class="media-box" style="margin-bottom:14px">
+    <div class="media-hdr">
+      <div class="media-badge cd-badge">CD1 ▶ Track 8</div>
+      <div><div class="media-title">Stress pattern pairs</div></div>
+    </div>
+    <div class="media-ctrl">
+      <button class="play-btn" id="play-btn-ed8" onclick="toggleAudio('ed8')">▶</button>
+      <div class="media-info">
+        <div class="media-track">CD1 Track 8 — Listen and check</div>
+        <div class="media-note">⚠️ Thêm file <code>cd1_track8.mp3</code> vào <code>/audio/</code></div>
+        <div class="prog-bar"><div class="prog-fill" id="prog-ed8"></div></div>
+      </div>
+    </div>
+    <audio id="audio-ed8" src="audio/cd1_track8.mp3" ontimeupdate="updateProg('ed8')" onended="audioEnd('ed8')"></audio>
+  </div>
+
+  <div id="stress-pairs-list" style="margin-bottom:16px"></div>
+  <div style="display:flex;gap:8px;margin-bottom:16px">
+    <button class="btn btn-gold" onclick="checkStressPairs()">✅ Kiểm tra</button>
+    <button class="btn btn-outline" onclick="revealStressPairs()">👁 Đáp án</button>
+    <button class="btn btn-outline" onclick="resetStressPairs()">🔄 Làm lại</button>
+  </div>
+  <div class="score-box" id="stress-score"></div>
+</div>
+
+<!-- ══════════════════════════════════
+  TAB 5: PRACTICE — Exercise 6
+══════════════════════════════════ -->
+<div class="tab-pane" id="tab-practice">
+  <div class="sec-h">Practice — Question tags in context</div>
+  <div class="sec-sub">Exercise 6 — Writing question tags about the people in the photo · SB p13</div>
+
+  <!-- Exercise 6a -->
+  <div class="ex-label"><div class="ex-num">6</div>Exercise 6a — Write question tags</div>
+  <p class="instr">
+    <span class="part">a</span>
+    Write question tags to check information about the people in the photo (Charlie, Daniel, Rebecca, Lisa).
+  </p>
+  <p class="instr" style="color:var(--muted);font-size:.82rem;margin-bottom:14px">Example: <em>Lisa and Daniel aren't married, <strong>are they</strong>? → No, they aren't.</em></p>
+
+  <div class="fill-ex">
+    <div class="fill-ex-title">Điền question tag đúng (từ bài nghe Video 1 / CD1 Track 5)</div>
+    <div id="ex6-list"></div>
+    <div style="display:flex;gap:8px;margin-top:14px;padding-top:12px;border-top:1px solid var(--border)">
+      <button class="btn btn-gold" onclick="checkAllEx6()">✅ Kiểm tra tất cả</button>
+      <button class="btn btn-outline" onclick="revealAllEx6()">👁 Đáp án</button>
+      <button class="btn btn-outline" onclick="resetEx6()">🔄 Làm lại</button>
+    </div>
+    <div class="score-box" id="ex6-score"></div>
+  </div>
+
+  <!-- Exercise 6b -->
+  <div class="ex-label"><div class="ex-num">6</div>Exercise 6b — Ask and answer</div>
+  <p class="instr">
+    <span class="part">b</span>
+    Work in pairs. Take turns to ask and answer the questions. Then check your partner's answers in Audio Script <strong>CD1 ▶ 5</strong> p156. How many are correct?
+  </p>
+
+  <div class="convo-box">
+    <div class="convo-title">💬 Ví dụ (từ sách)</div>
+    <div class="bubble-row"><div class="bubble">Lisa and Daniel aren't married, are they?</div></div>
+    <div class="bubble-row right"><div class="bubble">No, they aren't.</div></div>
+  </div>
+
+  <!-- Drag-drop matching — Exercise 3a -->
+  <div class="divider"></div>
+  <div class="ex-label"><div class="ex-num">3</div>Exercise 3a — Drag-and-drop: Match statements to question tags</div>
+  <p class="instr">
+    Kéo và thả question tag đúng vào câu tương ứng. Nhấn để chọn trên mobile.
+    <span style="font-size:.78rem;color:var(--muted);display:block;margin-top:3px">💡 Mobile: nhấn chọn tag (ô cam), rồi nhấn câu để ghép.</span>
+  </p>
+
+  <div class="drag-game">
+    <div>
+      <div style="font-size:.7rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px">Question tags (kéo từ đây)</div>
+      <div id="drag-pool" style="display:flex;flex-direction:column;gap:6px"></div>
+    </div>
+    <div>
+      <div style="font-size:.7rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px">Câu (thả vào đây)</div>
+      <div id="drag-zones" style="display:flex;flex-direction:column;gap:6px"></div>
+    </div>
+  </div>
+  <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:14px">
+    <div id="drag-score-badge" style="padding:5px 14px;border-radius:20px;background:var(--bg3);border:1px solid var(--border);font-size:.83rem;color:var(--dim)">0 / 6 matched</div>
+    <button class="btn btn-gold" onclick="checkAllDrag()">✅ Kiểm tra</button>
+    <button class="btn btn-outline" onclick="resetDrag()">🔄 Làm lại</button>
+    <button class="btn btn-outline" onclick="revealAllDrag()">👁 Đáp án</button>
+  </div>
+  <div id="drag-result" style="display:none" class="fill-fb ok"></div>
+</div>
+
+<!-- ══════════════════════════════════
+  TAB 6: GET READY!
+══════════════════════════════════ -->
+<div class="tab-pane" id="tab-getready">
+  <div class="sec-h">Get ready … Get it right!</div>
+  <div class="sec-sub">Production activity — using question tags in real conversation</div>
+
+  <!-- Exercise 7 -->
+  <div class="ex-label"><div class="ex-num">7</div>Exercise 7 — Work in new pairs</div>
+  <p class="instr">Work in new pairs. Look at p114 (Student A) or p114 (Student B). Use question tags to check information about people.</p>
+
+  <div class="note-box" style="margin-bottom:16px">
+    <strong>Hướng dẫn:</strong> Student A viết 5 điều bạn "biết" về Student B (dựa trên quan sát hoặc đoán). Student B trả lời bằng short answers.<br>
+    Ví dụ: <em>"You've been to Japan, haven't you?" → "No, I haven't, actually. But I'd love to go."</em>
+  </div>
+
+  <div class="gr-box">
+    <div style="font-size:.84rem;font-weight:600;margin-bottom:12px;color:var(--text)">📝 Viết 5 câu question tags về người ngồi bên cạnh bạn:</div>
+    <div class="list-input-wrap" id="gr-inputs"></div>
+    <button class="btn btn-gold" onclick="saveGR()" style="margin-top:12px">💾 Lưu</button>
+  </div>
+
+  <div class="convo-box" style="margin-top:16px">
+    <div class="convo-title">💬 Hội thoại mẫu</div>
+    <div class="bubble-row"><div class="bubble">You've been to the UK, haven't you?</div></div>
+    <div class="bubble-row right"><div class="bubble">Yes, I have! I went to London last year. What made you think that?</div></div>
+    <div class="bubble-row"><div class="bubble">You mentioned it last week, didn't you?</div></div>
+    <div class="bubble-row right"><div class="bubble">Yes, that's right. I went for a language course. It was absolutely brilliant.</div></div>
+    <div class="bubble-row"><div class="bubble">You're not from Hanoi originally, are you?</div></div>
+    <div class="bubble-row right"><div class="bubble">No, I'm not, actually. I'm from Da Nang. I moved here three years ago.</div></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+  TAB 7: WORKBOOK 1D
+══════════════════════════════════ -->
 <div class="tab-pane" id="tab-workbook">
-  <div class="lang-sum-box"><div class="lang-sum-title">📓 Workbook 1D — Question tags</div>
-    <div class="fill-exercise"><div class="fill-ex-title">✏️ Exercise 1: Fill in the gaps with the correct negative auxiliary</div>
-      <div id="wb1-items"></div>
-      <div style="margin-top:16px"><button class="btn btn-primary" onclick="checkWB1()">✅ Kiểm tra WB 1</button><button class="btn btn-outline" onclick="revealWB1()">👁 Đáp án</button></div>
-      <div class="score-box" id="wb1Score"></div>
+  <div class="sec-h">Workbook 1D — Nice to meet you</div>
+  <div class="sec-sub">REAL WORLD 1.1 — Question tags · Workbook p9</div>
+
+  <!-- WB Ex 1a — Fill not + do/be/have -->
+  <div class="wb-tag">📓 REAL WORLD 1.1 — Question tags</div>
+  <div class="ex-label"><div class="ex-num">1</div>Exercise 1a — Fill in gaps with <em>not</em> and do, be or have</div>
+  <p class="instr"><span class="part">a</span> Fill in the gaps with <em>not</em> and the correct form of <em>do, be</em> or <em>have</em>. Use contractions.</p>
+
+  <div class="fill-ex">
+    <div class="fill-ex-title">Điền dạng đúng của not + do/be/have (dùng dạng rút gọn)</div>
+    <div id="wb1a-list"></div>
+    <div style="display:flex;gap:8px;margin-top:12px">
+      <button class="btn btn-gold" onclick="checkAllWB1a()">✅ Kiểm tra</button>
+      <button class="btn btn-outline" onclick="revealAllWB1a()">👁 Đáp án</button>
+      <button class="btn btn-outline" onclick="resetWB1a()">🔄 Làm lại</button>
     </div>
-    <div class="fill-exercise"><div class="fill-ex-title">✏️ Exercise 2: Write the correct question tags</div>
-      <div id="wb2-items"></div>
-      <div style="margin-top:16px"><button class="btn btn-primary" onclick="checkWB2()">✅ Kiểm tra WB 2</button><button class="btn btn-outline" onclick="revealWB2()">👁 Đáp án</button></div>
+    <div class="score-box" id="wb1a-score"></div>
+  </div>
+
+  <!-- WB Ex 1b — Match to question tags -->
+  <div class="ex-label"><div class="ex-num">1</div>Exercise 1b — Match sentences to question tags a–h</div>
+  <p class="instr"><span class="part">b</span> Write the sentences in 1a next to the correct question tags a–h.</p>
+
+  <div class="fill-ex">
+    <div class="fill-ex-title">Ghép câu từ 1a với question tag đúng</div>
+    <div id="wb1b-list"></div>
+    <div style="display:flex;gap:8px;margin-top:12px">
+      <button class="btn btn-gold" onclick="revealWB1b()">👁 Xem đáp án</button>
+    </div>
+  </div>
+
+  <!-- WB Ex 2 — Write question tags -->
+  <div class="ex-label"><div class="ex-num">2</div>Exercise 2 — Write question tags</div>
+  <p class="instr">Write question tags for these sentences.</p>
+
+  <div class="fill-ex">
+    <div class="fill-ex-title">Viết question tag (câu 1 đã có mẫu)</div>
+    <div id="wb2-list"></div>
+    <div style="display:flex;gap:8px;margin-top:12px">
+      <button class="btn btn-gold" onclick="checkAllWB2()">✅ Kiểm tra</button>
+      <button class="btn btn-outline" onclick="revealAllWB2()">👁 Đáp án</button>
+      <button class="btn btn-outline" onclick="resetWB2()">🔄 Làm lại</button>
+    </div>
+    <div class="score-box" id="wb2-score"></div>
+  </div>
+
+  <!-- WB Ex 3 — Change questions to statements + tags -->
+  <div class="ex-label"><div class="ex-num">3</div>Exercise 3 — Change questions into statements with question tags</div>
+  <p class="instr">Change these questions into positive (+) or negative (–) statements with question tags. (Câu 1 &amp; 2 đã có mẫu)</p>
+
+  <div class="fill-ex">
+    <div class="fill-ex-title">Chuyển câu hỏi → câu khẳng định/phủ định + question tag</div>
+    <div id="wb3-list"></div>
+    <div style="display:flex;gap:8px;margin-top:12px">
+      <button class="btn btn-gold" onclick="revealWB3()">👁 Xem đáp án</button>
+    </div>
+  </div>
+
+  <!-- WB Ex 4 — Common mistakes -->
+  <div class="ex-label"><div class="ex-num">4</div>Exercise 4 — Correct common mistakes</div>
+  <p class="instr">Correct the mistake in each sentence.</p>
+
+  <div class="fill-ex">
+    <div class="fill-ex-title">Tìm và sửa lỗi trong mỗi câu</div>
+    <div id="wb4-list"></div>
+    <div style="display:flex;gap:8px;margin-top:12px">
+      <button class="btn btn-gold" onclick="revealWB4()">👁 Xem đáp án</button>
     </div>
   </div>
 </div>
 
-<!-- TAB 8: REVIEW -->
-<div class="tab-pane" id="tab-review">
-  <div class="sec-heading">Unit 1D Review</div>
-  <div class="lang-sum-box"><div class="lang-sum-title">📋 Lesson Summary</div>
-    <div class="grammar-rule"><div class="grammar-bullet">✓</div><div><strong>Question tags:</strong> Câu khẳng định + tag phủ định; câu phủ định + tag khẳng định</div></div>
-    <div class="grammar-rule"><div class="grammar-bullet">✓</div><div><strong>Short answers:</strong> Yes, I do. / No, I haven't, actually. / Yes, that's right.</div></div>
-    <div class="grammar-rule"><div class="grammar-bullet">✓</div><div><strong>-ed pronunciation:</strong> stressed (1), annoyed (2), excited (3), embarrassed (3)</div></div>
+<!-- ══════════════════════════════════
+  TAB 8: LANGUAGE SUMMARY
+══════════════════════════════════ -->
+<div class="tab-pane" id="tab-langsummary">
+  <div class="sec-h">Language Summary 1D</div>
+  <div class="sec-sub">REAL WORLD 1.1 — Question tags · p128</div>
+
+  <div class="wb-tag">📗 REAL WORLD 1.1 — Question tags (p128)</div>
+
+  <table class="tbl" style="margin-bottom:16px">
+    <thead>
+      <tr><th>Main clause</th><th>Question tag</th><th>Short answer (correct)</th><th>Short answer (incorrect)</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>You live next door to Lisa,</td><td style="color:var(--gold);font-weight:700">don't you?</td><td style="color:var(--green)">Yes, I do.</td><td style="color:var(--red)">No, I don't, actually.</td></tr>
+      <tr><td>Barbara went to Liverpool University,</td><td style="color:var(--gold);font-weight:700">didn't she?</td><td style="color:var(--green)">Yes, she did.</td><td style="color:var(--red)">No, she didn't, actually.</td></tr>
+      <tr><td>You've been diving,</td><td style="color:var(--gold);font-weight:700">haven't you?</td><td style="color:var(--green)">Yes, I have.</td><td style="color:var(--red)">No, I haven't, actually.</td></tr>
+      <tr><td>It was a great match yesterday,</td><td style="color:var(--gold);font-weight:700">wasn't it?</td><td style="color:var(--green)">Yes, it was.</td><td style="color:var(--red)">No, it wasn't, actually.</td></tr>
+      <tr><td>You haven't ordered any food yet,</td><td style="color:var(--gold);font-weight:700">have you?</td><td style="color:var(--green)">No, we haven't.</td><td style="color:var(--red)">Yes, we have, actually.</td></tr>
+      <tr><td>You don't have any kids,</td><td style="color:var(--gold);font-weight:700">do you?</td><td style="color:var(--green)">No, I don't.</td><td style="color:var(--red)">Yes, I do, actually.</td></tr>
+    </tbody>
+  </table>
+
+  <div class="rule-box">
+    <div class="rule-tag">📌 Tóm tắt quy tắc</div>
+    <div class="rule-item"><div class="rule-dot">•</div><div>Question tags dùng để <strong>kiểm tra thông tin</strong> ta cho là đúng.</div></div>
+    <div class="rule-item"><div class="rule-dot">•</div><div>Dùng <strong>auxiliary</strong> trong tag: <em>You live here, <strong>don't</strong> you?</em></div></div>
+    <div class="rule-item"><div class="rule-dot">•</div><div>Chỉ dùng <strong>pronoun</strong>: <em>Barbara left, didn't <strong>she</strong>?</em></div></div>
+    <div class="rule-item"><div class="rule-dot">•</div><div>Khẳng định → tag phủ định: <em>It's nice, <strong>isn't it</strong>?</em></div></div>
+    <div class="rule-item"><div class="rule-dot">•</div><div>Phủ định → tag khẳng định: <em>It isn't nice, <strong>is it</strong>?</em></div></div>
+    <div class="rule-item"><div class="rule-dot">•</div><div>Dùng <strong>actually</strong> khi thông tin sai: <em>No, I haven't, <strong>actually</strong>.</em></div></div>
+    <div class="rule-item"><div class="rule-dot">•</div><div>Dùng <em>aren't I?</em> KHÔNG dùng <del>amn't I?</del>: <em>I'm late, <strong>aren't I</strong>?</em></div></div>
   </div>
-  <button class="btn btn-primary" onclick="startSelfCheck()">📝 Mini Test — Self Check</button>
-  <div class="score-box" id="selfCheckScore"></div>
+
+  <div class="tip-box" style="margin-top:16px">
+    <strong>Cũng dùng được:</strong> <em>Yes, that's right.</em><br>
+    A: You're from London originally, aren't you?<br>
+    B: <strong>Yes, that's right.</strong> / Yes, I am.
+  </div>
 </div>
 
-</div>
+</div><!-- /page-content -->
 
 <script>
-const edData = {1:[{word:'stressed',syl:'stressed',ipa:'/strest/',vi:'căng thẳng'},{word:'scared',syl:'scared',ipa:'/skeəd/',vi:'sợ hãi'},{word:'shocked',syl:'shocked',ipa:'/ʃɒkt/',vi:'sốc'},{word:'bored',syl:'bored',ipa:'/bɔːd/',vi:'chán'}],
-2:[{word:'annoyed',syl:'an·noyed',ipa:'/əˈnɔɪd/',vi:'bực bội'},{word:'confused',syl:'con·fused',ipa:'/kənˈfjuːzd/',vi:'bối rối'},{word:'depressed',syl:'de·pressed',ipa:'/dɪˈprest/',vi:'suy sụp'},{word:'worried',syl:'wor·ried',ipa:'/ˈwʌrid/',vi:'lo lắng'}],
-3:[{word:'excited',syl:'ex·ci·ted',ipa:'/ɪkˈsaɪtɪd/',vi:'hứng khởi'},{word:'embarrassed',syl:'em·bar·rassed',ipa:'/ɪmˈbærəst/',vi:'xấu hổ'},{word:'disappointed',syl:'dis·ap·point·ed',ipa:'/ˌdɪsəˈpɔɪntɪd/',vi:'thất vọng'},{word:'interested',syl:'in·ter·est·ed',ipa:'/ˈɪntrəstɪd/',vi:'hứng thú'}]};
-function buildEd(){[1,2,3].forEach(n=>{let g=document.getElementById(`ed-${n}syl`);if(g&&edData[n])g.innerHTML=edData[n].map(w=>`<div class="ed-card" onclick="spk('${w.word}')"><div class="ed-word">${w.word}</div><div class="ed-syl">${w.syl}</div><div class="ed-ipa">${w.ipa}</div><div class="ed-mini-tip" style="font-size:.72rem;color:var(--muted)">🇻🇳 ${w.vi}</div></div>`).join('');});}
-const wb1Data=['aren\'t','isn\'t','doesn\'t','hasn\'t','haven\'t','didn\'t','don\'t','haven\'t'];
-const wb2Ques=['I\'ve met you before, _____?','You\'re vegetarian, _____?','Children love pets, _____?','They came round for dinner once, _____?','He\'s going out with Sally, _____?','The pub is closing soon, _____?','You eat fish, _____?','We\'ve got a barbecue like yours, _____?'];
-const wb2Ans=['haven\'t I','aren\'t you','don\'t they','didn\'t they','isn\'t he','isn\'t it','don\'t you','haven\'t we'];
-function buildWB1(){let h='';wb1Data.forEach((ans,i)=>{h+=`<div class="fill-item"><div class="fill-item-num">${i+1}</div><div class="fill-item-content"><div class="fill-sentence">${i===0?'You _____ coming tomorrow.':i===1?'It _____ going to rain.':i===2?'Clare _____ eat beef.':i===3?'He _____ been here before.':i===4?'They _____ got any children.':i===5?'We _____ see him yesterday.':i===6?'I _____ need to go tomorrow.':i===7?'You _____ told him yet.':''}</div><div class="fill-controls"><input class="fill-input" id="wb1-${i}" placeholder="…"><button class="check-btn" onclick="checkWB1Item(${i},'${ans}')">Kiểm tra</button></div><div class="fill-feedback" id="fbwb1-${i}"></div></div></div>`;});document.getElementById('wb1-items').innerHTML=h;}
-function checkWB1Item(i,ans){let inp=document.getElementById(`wb1-${i}`),fb=document.getElementById(`fbwb1-${i}`);if(!inp)return;let ok=inp.value.trim().toLowerCase()===ans.toLowerCase();inp.className='fill-input '+(ok?'correct':'wrong');fb.textContent=ok?`✅ Correct!`:`❌ Đáp án: "${ans}"`;fb.className='fill-feedback '+(ok?'show-ok':'show-err');}
-function checkWB1(){let c=0;wb1Data.forEach((ans,i)=>{let inp=document.getElementById(`wb1-${i}`);if(inp&&inp.value.trim().toLowerCase()===ans.toLowerCase())c++;});let sc=document.getElementById('wb1Score');sc.innerHTML=`<div class="score-num">${c}/${wb1Data.length}</div>`;sc.className='score-box show';}
-function revealWB1(){wb1Data.forEach((ans,i)=>{let inp=document.getElementById(`wb1-${i}`);if(inp){inp.value=ans;inp.className='fill-input correct';let fb=document.getElementById(`fbwb1-${i}`);if(fb){fb.textContent=`👁 Answer: "${ans}"`;fb.className='fill-feedback show-ok';}}});}
-function buildWB2(){let h='';wb2Ques.forEach((q,i)=>{h+=`<div class="fill-item"><div class="fill-item-num">${i+1}</div><div class="fill-item-content"><div class="fill-sentence">${q}</div><div class="fill-controls"><input class="fill-input" id="wb2-${i}" placeholder="question tag"><button class="check-btn" onclick="checkWB2Item(${i},'${wb2Ans[i]}')">Kiểm tra</button></div><div class="fill-feedback" id="fbwb2-${i}"></div></div></div>`;});document.getElementById('wb2-items').innerHTML=h;}
-function checkWB2Item(i,ans){let inp=document.getElementById(`wb2-${i}`),fb=document.getElementById(`fbwb2-${i}`);if(!inp)return;let ok=inp.value.trim().toLowerCase()===ans.toLowerCase();inp.className='fill-input '+(ok?'correct':'wrong');fb.textContent=ok?`✅ Correct!`:`❌ Đáp án: "${ans}"`;fb.className='fill-feedback '+(ok?'show-ok':'show-err');}
-function checkWB2(){for(let i=0;i<wb2Ans.length;i++)checkWB2Item(i,wb2Ans[i]);}
-function revealWB2(){wb2Ans.forEach((ans,i)=>{let inp=document.getElementById(`wb2-${i}`);if(inp){inp.value=ans;inp.className='fill-input correct';let fb=document.getElementById(`fbwb2-${i}`);if(fb){fb.textContent=`👁 Answer: "${ans}"`;fb.className='fill-feedback show-ok';}}});}
-function checkG(id,ans,fbId){let inp=document.getElementById(id),fb=document.getElementById(fbId);if(!inp)return;let ok=inp.value.trim().toLowerCase()===ans.toLowerCase();inp.className='fill-input '+(ok?'correct':'wrong');fb.textContent=ok?`✅ Correct!`:`❌ Đáp án: "${ans}"`;fb.className='fill-feedback '+(ok?'show-ok':'show-err');}
-function revealG(id,ans,fbId){let inp=document.getElementById(id),fb=document.getElementById(fbId);if(inp){inp.value=ans;inp.className='fill-input correct';fb.textContent=`👁 Answer: "${ans}"`;fb.className='fill-feedback show-ok';}}
-function checkAllGrammar(){let items=['g1','g2','g3','g4'],ans=['don\'t you','aren\'t you','haven\'t you','wasn\'t it'],c=0;items.forEach((id,i)=>{let inp=document.getElementById(id);if(inp&&inp.value.trim().toLowerCase()===ans[i].toLowerCase())c++;});let sc=document.getElementById('grammarScore');sc.innerHTML=`<div class="score-num">${c}/4</div>`;sc.className='score-box show';}
-function checkListen(id,ans,fbId){let inp=document.getElementById(id),fb=document.getElementById(fbId);if(!inp)return;let ok=inp.value.trim().toLowerCase()===ans.toLowerCase();inp.className='fill-input '+(ok?'correct':'wrong');fb.textContent=ok?`✅ Correct!`:`❌ Đáp án: "${ans}"`;fb.className='fill-feedback '+(ok?'show-ok':'show-err');}
-function revealListen(id,ans,fbId){let inp=document.getElementById(id),fb=document.getElementById(fbId);if(inp){inp.value=ans;inp.className='fill-input correct';fb.textContent=`👁 Answer: "${ans}"`;fb.className='fill-feedback show-ok';}}
-function toggleQA(id){document.getElementById(id).classList.toggle('open');}
-function toggleTheme(){let t=document.documentElement.getAttribute('data-theme')==='light'?'dark':'light';document.documentElement.setAttribute('data-theme',t==='light'?'light':'');document.getElementById('theme-btn').textContent=t==='light'?'🌙':'☀️';localStorage.setItem('f2f_theme',t);}
-function showTab(id){document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));document.querySelectorAll('.tnav-btn').forEach(b=>b.classList.remove('active'));document.getElementById('tab-'+id).classList.add('active');let idx={overview:0,grammar:1,listening:2,speaking:3,pronunciation:4,realworld:5,workbook:6,review:7}[id];document.querySelectorAll('.tnav-btn')[idx]?.classList.add('active');}
-function markDone(){alert('✅ Unit 1D đã đánh dấu hoàn thành!');}
-let audioPlaying=false;function toggleAudio(){let a=document.getElementById('audio-player'),btn=document.getElementById('play-btn');if(audioPlaying){a.pause();btn.textContent='▶';audioPlaying=false;}else{a.play().catch(()=>alert('⚠️ Cần file audio cd1_track5.mp3 trong thư mục /audio/'));btn.textContent='⏸';audioPlaying=true;}}
-function audioEnded(){document.getElementById('play-btn').textContent='▶';audioPlaying=false;}
-function updateProgress(){let a=document.getElementById('audio-player'),fill=document.getElementById('audio-progress');if(a.duration)fill.style.width=(a.currentTime/a.duration*100)+'%';}
-function spk(t){if('speechSynthesis'in window){let u=new SpeechSynthesisUtterance(t);u.lang='en-GB';u.rate=0.82;speechSynthesis.speak(u);}}
-function startSelfCheck(){let sc=document.getElementById('selfCheckScore');sc.innerHTML='<div class="score-num">📝 Hãy tự kiểm tra câu hỏi đuôi và phát âm -ed</div><div class="score-msg">✓ Bạn đã hoàn thành Unit 1D!</div>';sc.className='score-box show';}
-document.addEventListener('DOMContentLoaded',()=>{let t=localStorage.getItem('f2f_theme');if(t==='light'){document.documentElement.setAttribute('data-theme','light');document.getElementById('theme-btn').textContent='🌙';}buildEd();buildWB1();buildWB2();});
+/* ═══════════════════════════════
+   DATA
+═══════════════════════════════ */
+const TAG_FILL_DATA = [
+  {s:"You live next door to Lisa,",blank:"don't you?",short_a:"Yes, I do.",short_b:"No, I don't, actually."},
+  {s:"Barbara went to Liverpool University,",blank:"didn't she?",short_a:"Yes, she did.",short_b:"No, she didn't, actually."},
+  {s:"You've been diving,",blank:"haven't you?",short_a:"Yes, I have.",short_b:"No, I haven't, actually."},
+  {s:"It was a great match yesterday,",blank:"wasn't it?",short_a:"Yes, it was.",short_b:"No, it wasn't, actually."},
+  {s:"You haven't ordered any food yet,",blank:"have you?",short_a:"No, we haven't.",short_b:"Yes, we have, actually."},
+  {s:"You don't have any kids,",blank:"do you?",short_a:"No, I don't.",short_b:"Yes, I do, actually."},
+];
+
+const MC_NAMES_DATA = [
+  {q:"{Daniel/Charlie} is Lisa's new boyfriend.",ans:"Daniel",opts:["Daniel","Charlie"]},
+  {q:"{Lisa/Daniel} is Charlie and Rebecca's neighbour.",ans:"Lisa",opts:["Lisa","Daniel"]},
+  {q:"{Rebecca's/Lisa's} sister shared a flat with Daniel's brother.",ans:"Rebecca's",opts:["Rebecca's","Lisa's"]},
+  {q:"{Daniel/Charlie} teaches people how to sail.",ans:"Charlie",opts:["Daniel","Charlie"]},
+  {q:"{Charlie/Lisa} works for a package tour company.",ans:"Charlie",opts:["Charlie","Lisa"]},
+  {q:"{Lisa/Daniel} and {Rebecca/Charlie} both support Manchester United.",ans:"Lisa/Rebecca",opts:["Lisa/Rebecca","Daniel/Charlie"]},
+  {q:"Rebecca and Charlie have a son called {Alex/Harry}.",ans:"Harry",opts:["Alex","Harry"]},
+];
+
+const ED_ADJ_DATA = {
+  1:[{w:"stressed",ipa:"/strest/",vi:"căng thẳng"},{w:"scared",ipa:"/skeəd/",vi:"sợ hãi"},{w:"shocked",ipa:"/ʃɒkt/",vi:"sốc"}],
+  2:[{w:"annoyed",syl:"an·noyed",ipa:"/ə·ˈnɔɪd/",vi:"bực bội"},{w:"relaxed",syl:"re·laxed",ipa:"/rɪ·ˈlækst/",vi:"thoải mái"},{w:"confused",syl:"con·fused",ipa:"/kən·ˈfjuːzd/",vi:"bối rối"},{w:"worried",syl:"wor·ried",ipa:"/ˈwʌ·rid/",vi:"lo lắng"},{w:"frightened",syl:"fright·ened",ipa:"/ˈfraɪt·nd/",vi:"hoảng sợ"},{w:"depressed",syl:"de·pressed",ipa:"/dɪ·ˈprest/",vi:"suy sụp"}],
+  3:[{w:"excited",syl:"ex·ci·ted",ipa:"/ɪk·ˈsaɪ·tɪd/",vi:"hứng khởi"},{w:"satisfied",syl:"sat·is·fied",ipa:"/ˈsæ·tɪs·faɪd/",vi:"hài lòng"},{w:"exhausted",syl:"ex·haust·ed",ipa:"/ɪɡ·ˈzɔːs·tɪd/",vi:"kiệt sức"},{w:"terrified",syl:"ter·ri·fied",ipa:"/ˈter·ɪ·faɪd/",vi:"kinh hãi"},{w:"concerned",syl:"con·cerned",ipa:"/kən·ˈsɜːnd/",vi:"lo lắng"}],
+  4:[{w:"embarrassed",syl:"em·bar·rassed (3 syl!)",ipa:"/ɪm·ˈbær·əst/",vi:"xấu hổ"},{w:"disappointed",syl:"dis·ap·point·ed",ipa:"/ˌdɪs·ə·ˈpɔɪn·tɪd/",vi:"thất vọng"},{w:"interested",syl:"in·ter·est·ed",ipa:"/ˈɪn·trəs·tɪd/",vi:"hứng thú"}],
+};
+
+const STRESS_PAIRS_DATA = [
+  {w1:"stressed",w2:"annoyed",ans:"D",note:"stressed=1 syl | annoyed=2 syl"},
+  {w1:"concerned",w2:"exhausted",ans:"S",note:"cả hai = 3 âm tiết"},
+  {w1:"depressed",w2:"confused",ans:"S",note:"cả hai = 2 âm tiết"},
+  {w1:"embarrassed",w2:"interested",ans:"S",note:"cả hai = 4 âm tiết (embarrassed thực ra 3!)"},
+  {w1:"frightened",w2:"worried",ans:"S",note:"cả hai = 2 âm tiết"},
+  {w1:"shocked",w2:"scared",ans:"S",note:"cả hai = 1 âm tiết"},
+  {w1:"satisfied",w2:"relaxed",ans:"D",note:"satisfied=4 syl | relaxed=2 syl"},
+  {w1:"excited",w2:"terrified",ans:"S",note:"cả hai = 3 âm tiết"},
+];
+
+const EX6_DATA = [
+  {s:"Lisa and Daniel aren't married,",ans:"are they?",note:"Phủ định → tag khẳng định"},
+  {s:"Charlie and Daniel haven't met before,",ans:"have they?",note:"Phủ định → tag khẳng định"},
+  {s:"Rebecca and Lisa live in the same village,",ans:"don't they?",note:"Khẳng định → tag phủ định"},
+  {s:"Charlie's lived there for about three years,",ans:"hasn't he?",note:"Present Perfect → haven't/hasn't"},
+  {s:"Daniel left London last year,",ans:"didn't he?",note:"Past Simple → didn't"},
+  {s:"Lisa and Daniel shared a flat at university,",ans:"didn't they?",note:"Past Simple → didn't"},
+  {s:"Charlie works for a holiday company,",ans:"doesn't he?",note:"Present Simple → doesn't"},
+  {s:"Rebecca isn't very keen on football,",ans:"is she?",note:"Phủ định → tag khẳng định"},
+  {s:"Harry is Charlie and Rebecca's son,",ans:"isn't he?",note:"Khẳng định → tag phủ định"},
+  {s:"Daniel hasn't got any children,",ans:"has he?",note:"Phủ định → tag khẳng định"},
+];
+
+const DRAG_DATA = [
+  {id:"d1",statement:"You live next door to Lisa,",tag:"don't you?"},
+  {id:"d2",statement:"Barbara went to Liverpool University,",tag:"didn't she?"},
+  {id:"d3",statement:"You've been diving,",tag:"haven't you?"},
+  {id:"d4",statement:"It was a great match yesterday,",tag:"wasn't it?"},
+  {id:"d5",statement:"You haven't ordered any food yet,",tag:"have you?"},
+  {id:"d6",statement:"You don't have any kids,",tag:"do you?"},
+];
+
+const WB1A_DATA = [
+  {s:"You ___ coming tomorrow.",ans:"aren't",note:"be → aren't"},
+  {s:"It ___ going to rain.",ans:"isn't",note:"be → isn't"},
+  {s:"Clare ___ eat beef.",ans:"doesn't",note:"do → doesn't"},
+  {s:"He ___ been here before.",ans:"hasn't",note:"have → hasn't"},
+  {s:"They ___ got any children.",ans:"haven't",note:"have → haven't"},
+  {s:"We ___ see him yesterday.",ans:"didn't",note:"do → didn't"},
+  {s:"I ___ need to go tomorrow.",ans:"don't",note:"do → don't"},
+  {s:"You ___ told him yet.",ans:"haven't",note:"have → haven't"},
+];
+
+const WB1B_DATA = [
+  {tag:"are you?",sentence:"You aren't coming tomorrow."},
+  {tag:"do I?",sentence:"I don't need to go tomorrow."},
+  {tag:"have they?",sentence:"They haven't got any children."},
+  {tag:"did we?",sentence:"We didn't see him yesterday."},
+  {tag:"has he?",sentence:"He hasn't been here before."},
+  {tag:"have you?",sentence:"You haven't told him yet."},
+  {tag:"does she?",sentence:"Clare doesn't eat beef."},
+  {tag:"is it?",sentence:"It isn't going to rain."},
+];
+
+const WB2_DATA = [
+  {s:"I've met you before,",ans:"haven't I?",sample:true},
+  {s:"You're vegetarian,",ans:"aren't you?"},
+  {s:"Children love pets,",ans:"don't they?"},
+  {s:"They came round for dinner once,",ans:"didn't they?"},
+  {s:"He's going out with Sally,",ans:"isn't he?"},
+  {s:"The pub is closing soon,",ans:"isn't it?"},
+  {s:"You eat fish,",ans:"don't you?"},
+  {s:"We've got a barbecue like yours,",ans:"haven't we?"},
+];
+
+const WB3_DATA = [
+  {q:"Is she a teacher? (+)",ans:"She's a teacher, isn't she?",sample:true},
+  {q:"Are they married? (–)",ans:"They aren't married, are they?",sample:true},
+  {q:"Are we going home soon? (+)",ans:"We're going home soon, aren't we?"},
+  {q:"Have you met our neighbours? (–)",ans:"You haven't met our neighbours, have you?"},
+  {q:"Did you drive here? (–)",ans:"You didn't drive here, did you?"},
+  {q:"Is it warm outside? (+)",ans:"It's warm outside, isn't it?"},
+  {q:"Does he want something to eat? (+)",ans:"He wants something to eat, doesn't he?"},
+  {q:"Do you know Sam? (–)",ans:"You don't know Sam, do you?"},
+  {q:"Has he got the address? (+)",ans:"He's got the address, hasn't he?"},
+  {q:"Have you ever tried the pizzas here? (+)",ans:"You've tried the pizzas here, haven't you?"},
+  {q:"Is he working this weekend? (–)",ans:"He isn't working this weekend, is he?"},
+  {q:"Am I late? (–)",ans:"I'm not late, am I?"},
+];
+
+const WB4_DATA = [
+  {s:"I'm really interesting in gardening.",fix:"interested",ans:"I'm really interested in gardening.",note:"interested (cảm xúc người) ≠ interesting (gây hứng thú)"},
+  {s:"Everyone want to go to a gig tonight.",fix:"wants",ans:"Everyone wants to go to a gig tonight.",note:"everyone → singular verb"},
+  {s:"Their going to have a lie-in tomorrow.",fix:"They're",ans:"They're going to have a lie-in tomorrow.",note:"Their (sở hữu) ≠ They're (they are)"},
+  {s:"I often loose against my brother when we play tennis.",fix:"lose",ans:"I often lose against my brother.",note:"loose (adj: lỏng lẻo) ≠ lose (v: thua)"},
+  {s:"He's worked here for last year.",fix:"since",ans:"He's worked here since last year.",note:"since + thời điểm | for + khoảng thời gian"},
+  {s:"I've gone to France and I thought it was beautiful.",fix:"been",ans:"I've been to France and I thought it was beautiful.",note:"been to = đi và đã về | gone to = đi và chưa về"},
+  {s:"I can't bear Paul and Sallys' dog.",fix:"Sally's",ans:"I can't bear Paul and Sally's dog.",note:"Sally's (sở hữu cách đúng)"},
+  {s:"Nobody doesn't want to come.",fix:"wants",ans:"Nobody wants to come.",note:"nobody = negative subject → không dùng thêm not/doesn't"},
+];
+
+/* ═══════════════════════════════
+   BUILD EXERCISES
+═══════════════════════════════ */
+function buildTagFill(){
+  const wrap=document.getElementById('tag-fill-list');
+  if(!wrap)return;
+  wrap.innerHTML='';
+  TAG_FILL_DATA.forEach((item,i)=>{
+    const d=document.createElement('div');
+    d.className='fill-row';
+    d.innerHTML=`<div class="fill-n">${i+1}</div>
+    <div class="fill-body">
+      <div class="fill-s">${item.s} ___?</div>
+      <div class="fill-ctrl">
+        <input class="fill-inp" id="tf-${i}" placeholder="tag…" style="min-width:120px">
+        <button class="chk-btn" onclick="checkTag(${i},'${item.blank.replace(/'/g,"\\'")}')">Check</button>
+        <button class="rev-btn" onclick="revealTag(${i},'${item.blank.replace(/'/g,"\\'")}')">Đáp án</button>
+      </div>
+      <div class="fill-fb" id="tfb-${i}"></div>
+    </div>`;
+    wrap.appendChild(d);
+  });
+}
+
+function checkTag(i,ans){
+  const inp=document.getElementById(`tf-${i}`);
+  const fb=document.getElementById(`tfb-${i}`);
+  if(!inp||!fb)return;
+  const val=inp.value.trim().toLowerCase().replace(/\s+/g,' ');
+  const ok=val===ans.toLowerCase();
+  inp.className=`fill-inp ${ok?'ok':'err'}`;
+  fb.textContent=ok?`✅ Correct! "${ans}"`:`❌ Wrong. Answer: "${ans}"`;
+  fb.className=`fill-fb ${ok?'ok':'err'}`;
+}
+function revealTag(i,ans){
+  const inp=document.getElementById(`tf-${i}`);
+  const fb=document.getElementById(`tfb-${i}`);
+  if(inp){inp.value=ans;inp.className='fill-inp ok';}
+  if(fb){fb.textContent=`👁 "${ans}"`;fb.className='fill-fb ok';}
+}
+function checkAllTags(){let c=0;TAG_FILL_DATA.forEach((_,i)=>{checkTag(i,TAG_FILL_DATA[i].blank);if(document.getElementById(`tf-${i}`)?.classList.contains('ok'))c++;});showScore('tag-score',c,TAG_FILL_DATA.length);}
+function revealAllTags(){TAG_FILL_DATA.forEach((_,i)=>revealTag(i,TAG_FILL_DATA[i].blank));}
+function resetAllTags(){TAG_FILL_DATA.forEach((_,i)=>{const inp=document.getElementById(`tf-${i}`);const fb=document.getElementById(`tfb-${i}`);if(inp){inp.value='';inp.className='fill-inp';}if(fb){fb.className='fill-fb';fb.textContent='';}});document.getElementById('tag-score').className='score-box';}
+
+function buildShortAns(){
+  const wrap=document.getElementById('short-ans-list');
+  if(!wrap)return;
+  TAG_FILL_DATA.forEach((item,i)=>{
+    const d=document.createElement('div');
+    d.className='fill-row';
+    d.innerHTML=`<div class="fill-n">${String.fromCharCode(97+i)}</div>
+    <div class="fill-body">
+      <div class="fill-s" style="color:var(--dim)">${item.s} ${item.blank}</div>
+      <div class="fill-ctrl">
+        <input class="fill-inp" id="sa-${i}" placeholder="Short answer…" style="min-width:200px">
+      </div>
+      <div class="fill-fb" id="sab-${i}"></div>
+    </div>`;
+    wrap.appendChild(d);
+  });
+}
+function revealShortAns(){
+  TAG_FILL_DATA.forEach((item,i)=>{
+    const inp=document.getElementById(`sa-${i}`);
+    const fb=document.getElementById(`sab-${i}`);
+    if(inp)inp.value=item.short_a+' / '+item.short_b;
+    if(fb){fb.textContent=`✅ ${item.short_a} (correct) or ${item.short_b} (incorrect)`;fb.className='fill-fb ok';}
+  });
+}
+function resetShortAns(){TAG_FILL_DATA.forEach((_,i)=>{const inp=document.getElementById(`sa-${i}`);const fb=document.getElementById(`sab-${i}`);if(inp){inp.value='';inp.className='fill-inp';}if(fb)fb.className='fill-fb';});}
+
+function buildMCNames(){
+  const wrap=document.getElementById('mc-names-list');
+  if(!wrap)return;
+  MC_NAMES_DATA.forEach((item,i)=>{
+    const d=document.createElement('div');
+    d.innerHTML=`<div style="margin-bottom:6px"><div style="font-size:.76rem;font-weight:700;color:var(--muted);margin-bottom:6px">Sentence ${i+1}</div>
+    <div style="font-size:.86rem;margin-bottom:8px">${item.q}</div>
+    <div class="mc-opts" id="mc-${i}">
+      ${item.opts.map((opt,oi)=>`<button class="mc-opt" onclick="checkMC(this,${oi},${item.opts.indexOf(item.ans)},'mc-${i}','mcfb-${i}')">
+        <span class="mc-lbl">${String.fromCharCode(65+oi)}</span>${opt}</button>`).join('')}
+    </div>
+    <div class="fill-fb" id="mcfb-${i}"></div></div>`;
+    wrap.appendChild(d);
+  });
+}
+
+function checkMC(btn,sel,correct,grpId,fbId){
+  document.querySelectorAll(`#${grpId} .mc-opt`).forEach(b=>b.disabled=true);
+  const ok=sel===correct;
+  btn.classList.add(ok?'ok2':'err2');
+  if(!ok)document.querySelectorAll(`#${grpId} .mc-opt`).forEach((b,i)=>{if(i===correct)b.classList.add('ok2');});
+  const fb=document.getElementById(fbId);
+  if(fb){fb.textContent=ok?'✅ Correct!':'❌ Wrong — see Audio Script for details';fb.className=`fill-fb ${ok?'ok':'err'}`;}
+}
+function revealAllMC(){
+  MC_NAMES_DATA.forEach((item,i)=>{
+    const correct=item.opts.indexOf(item.ans);
+    document.querySelectorAll(`#mc-${i} .mc-opt`).forEach((b,oi)=>{b.disabled=true;if(oi===correct)b.classList.add('ok2');});
+    const fb=document.getElementById(`mcfb-${i}`);
+    if(fb){fb.textContent=`👁 Answer: ${item.ans}`;fb.className='fill-fb ok';}
+  });
+}
+function resetAllMC(){
+  MC_NAMES_DATA.forEach((_,i)=>{
+    document.querySelectorAll(`#mc-${i} .mc-opt`).forEach(b=>{b.disabled=false;b.classList.remove('ok2','err2');});
+    const fb=document.getElementById(`mcfb-${i}`);
+    if(fb)fb.className='fill-fb';
+  });
+  document.getElementById('mc-score').className='score-box';
+}
+
+function buildEdAdjectives(){
+  [1,2,3,4].forEach(n=>{
+    const grid=document.getElementById(`ed-${n}`);
+    if(!grid||!ED_ADJ_DATA[n])return;
+    grid.innerHTML='';
+    ED_ADJ_DATA[n].forEach(adj=>{
+      const c=document.createElement('div');
+      c.className='ed-card';
+      c.innerHTML=`<div class="ed-word">${adj.w}</div><div class="ed-syl">${adj.syl||adj.w}</div><div class="ed-ipa">${adj.ipa}</div><div style="font-size:.7rem;color:var(--muted);margin-top:3px">🇻🇳 ${adj.vi}</div>`;
+      c.onclick=()=>spk(adj.w);
+      grid.appendChild(c);
+    });
+  });
+}
+
+function buildStressPairs(){
+  const wrap=document.getElementById('stress-pairs-list');
+  if(!wrap)return;
+  wrap.innerHTML='';
+  STRESS_PAIRS_DATA.forEach((item,i)=>{
+    const d=document.createElement('div');
+    d.className='ed-pair';
+    d.dataset.ans=item.ans;
+    d.innerHTML=`<div class="ed-pair-words"><strong>${item.w1}</strong> — <strong>${item.w2}</strong></div>
+    <div style="display:flex;gap:6px">
+      <button class="chk-btn" style="padding:4px 10px;font-size:.76rem" onclick="selectPair(this,'S',${i})">S</button>
+      <button class="chk-btn" style="padding:4px 10px;font-size:.76rem;background:var(--bg3);color:var(--dim);border:1px solid var(--border)" onclick="selectPair(this,'D',${i})">D</button>
+    </div>
+    <span class="ed-pair-result" id="spr-${i}" style="display:none"></span>`;
+    wrap.appendChild(d);
+  });
+}
+function selectPair(btn,choice,i){
+  const row=btn.closest('.ed-pair');
+  row.querySelectorAll('.chk-btn').forEach(b=>{b.style.background='var(--bg3)';b.style.color='var(--dim)';b.style.border='1px solid var(--border)';});
+  btn.style.background=choice==='S'?'var(--blue)':'var(--orange)';
+  btn.style.color='#fff';btn.style.border='none';
+  row.dataset.selected=choice;
+}
+function checkStressPairs(){
+  let c=0;
+  STRESS_PAIRS_DATA.forEach((item,i)=>{
+    const row=document.querySelectorAll('#stress-pairs-list .ed-pair')[i];
+    const sel=row?.dataset.selected;
+    const res=document.getElementById(`spr-${i}`);
+    if(!sel||!res)return;
+    const ok=sel===item.ans;
+    if(ok)c++;
+    res.textContent=ok?`✅ ${item.ans} — ${item.note}`:`❌ Đáp án: ${item.ans} — ${item.note}`;
+    res.className=`ed-pair-result ${ok?'pair-S':'pair-D'}`;
+    res.style.display='inline-flex';
+  });
+  showScore('stress-score',c,STRESS_PAIRS_DATA.length);
+}
+function revealStressPairs(){STRESS_PAIRS_DATA.forEach((item,i)=>{const res=document.getElementById(`spr-${i}`);if(res){res.textContent=`👁 ${item.ans} — ${item.note}`;res.className='ed-pair-result pair-S';res.style.display='inline-flex';}});}
+function resetStressPairs(){document.querySelectorAll('#stress-pairs-list .ed-pair').forEach(r=>{delete r.dataset.selected;r.querySelectorAll('.chk-btn').forEach(b=>{b.style.background='var(--bg3)';b.style.color='var(--dim)';b.style.border='1px solid var(--border)';});});document.querySelectorAll('[id^="spr-"]').forEach(e=>e.style.display='none');document.getElementById('stress-score').className='score-box';}
+
+function buildEx6(){
+  const wrap=document.getElementById('ex6-list');
+  if(!wrap)return;
+  wrap.innerHTML='';
+  EX6_DATA.forEach((item,i)=>{
+    const d=document.createElement('div');
+    d.className='fill-row';
+    d.innerHTML=`<div class="fill-n">${i+1}</div>
+    <div class="fill-body">
+      <div class="fill-s">${item.s} ___? <span style="font-size:.72rem;color:var(--muted);font-style:italic">(${item.note})</span></div>
+      <div class="fill-ctrl">
+        <input class="fill-inp" id="ex6-${i}" placeholder="tag…" style="min-width:130px">
+        <button class="chk-btn" onclick="checkEx6(${i},'${item.ans.replace(/'/g,"\\'")}')">Check</button>
+        <button class="rev-btn" onclick="revealEx6(${i},'${item.ans.replace(/'/g,"\\'")}')">Đáp án</button>
+        <button class="spk-btn" onclick="spk('${item.s} ${item.ans.replace(/'/g,"\\'")}')">🔊</button>
+      </div>
+      <div class="fill-fb" id="ex6fb-${i}"></div>
+    </div>`;
+    wrap.appendChild(d);
+  });
+}
+function checkEx6(i,ans){
+  const inp=document.getElementById(`ex6-${i}`);
+  const fb=document.getElementById(`ex6fb-${i}`);
+  if(!inp||!fb)return;
+  const val=inp.value.trim().toLowerCase().replace(/\s+/g,' ');
+  const ok=val===ans.toLowerCase();
+  inp.className=`fill-inp ${ok?'ok':'err'}`;
+  fb.textContent=ok?`✅ Correct! "${ans}"`:`❌ Wrong. Answer: "${ans}"`;
+  fb.className=`fill-fb ${ok?'ok':'err'}`;
+}
+function revealEx6(i,ans){const inp=document.getElementById(`ex6-${i}`);const fb=document.getElementById(`ex6fb-${i}`);if(inp){inp.value=ans;inp.className='fill-inp ok';}if(fb){fb.textContent=`👁 "${ans}"`;fb.className='fill-fb ok';}}
+function checkAllEx6(){let c=0;EX6_DATA.forEach((_,i)=>{checkEx6(i,EX6_DATA[i].ans);if(document.getElementById(`ex6-${i}`)?.classList.contains('ok'))c++;});showScore('ex6-score',c,EX6_DATA.length);}
+function revealAllEx6(){EX6_DATA.forEach((_,i)=>revealEx6(i,EX6_DATA[i].ans));}
+function resetEx6(){EX6_DATA.forEach((_,i)=>{const inp=document.getElementById(`ex6-${i}`);const fb=document.getElementById(`ex6fb-${i}`);if(inp){inp.value='';inp.className='fill-inp';}if(fb){fb.className='fill-fb';fb.textContent='';}});document.getElementById('ex6-score').className='score-box';}
+
+/* ── Drag-Drop ── */
+let dragState={dragged:null,selected:null,matched:{}};
+function buildDragGame(){
+  const pool=document.getElementById('drag-pool');
+  const zones=document.getElementById('drag-zones');
+  if(!pool||!zones)return;
+  pool.innerHTML='';zones.innerHTML='';dragState={dragged:null,selected:null,matched:{}};
+  const shuffled=[...DRAG_DATA].sort(()=>Math.random()-.5);
+  shuffled.forEach(item=>{
+    const chip=document.createElement('div');
+    chip.className='drag-chip';chip.draggable=true;chip.dataset.id=item.id;chip.dataset.tag=item.tag;
+    chip.innerHTML=`<span>⠿</span><span>${item.tag}</span>`;
+    chip.addEventListener('dragstart',e=>{dragState.dragged={id:item.id,tag:item.tag,el:chip};chip.classList.add('dragging');e.dataTransfer.effectAllowed='copy';});
+    chip.addEventListener('dragend',()=>chip.classList.remove('dragging'));
+    chip.addEventListener('click',()=>{
+      document.querySelectorAll('.drag-chip.selected-tap').forEach(c=>c.classList.remove('selected-tap'));
+      if(dragState.selected?.id===item.id){dragState.selected=null;return;}
+      chip.classList.add('selected-tap');dragState.selected={id:item.id,tag:item.tag,el:chip};
+    });
+    pool.appendChild(chip);
+  });
+  const zonesShuffled=[...DRAG_DATA].sort(()=>Math.random()-.5);
+  zonesShuffled.forEach(item=>{
+    const zone=document.createElement('div');
+    zone.className='drop-zone';zone.dataset.id=item.id;
+    zone.innerHTML=`<span class="dz-text">${item.statement}</span><span class="dz-slot" id="dslot-${item.id}">drop here</span>`;
+    zone.addEventListener('dragover',e=>{e.preventDefault();zone.classList.add('over');});
+    zone.addEventListener('dragleave',()=>zone.classList.remove('over'));
+    zone.addEventListener('drop',e=>{e.preventDefault();zone.classList.remove('over');if(!dragState.dragged)return;handleDrag(dragState.dragged.tag,dragState.dragged.id,zone,item);dragState.dragged=null;});
+    zone.addEventListener('click',()=>{if(!dragState.selected)return;handleDrag(dragState.selected.tag,dragState.selected.id,zone,item);document.querySelectorAll('.drag-chip.selected-tap').forEach(c=>c.classList.remove('selected-tap'));dragState.selected=null;});
+    zones.appendChild(zone);
+  });
+}
+function handleDrag(tag,verbId,zone,item){
+  if(tag===item.tag){
+    zone.classList.add('ok');zone.classList.remove('err');
+    const slot=document.getElementById('dslot-'+item.id);
+    if(slot){slot.textContent=tag;slot.style.cssText='background:var(--green);color:#fff;border:none;font-weight:700;border-radius:4px;padding:2px 8px;font-size:.78rem';}
+    dragState.matched[item.id]=tag;
+    updateDragScore();
+  } else {
+    zone.classList.add('err');
+    setTimeout(()=>zone.classList.remove('err'),1200);
+  }
+}
+function updateDragScore(){
+  const done=Object.keys(dragState.matched).length;
+  const el=document.getElementById('drag-score-badge');
+  if(el){el.textContent=`${done} / ${DRAG_DATA.length} matched`;if(done===DRAG_DATA.length){el.style.background='var(--green)';el.style.color='#fff';}}
+}
+function checkAllDrag(){const done=Object.keys(dragState.matched).length;const el=document.getElementById('drag-result');el.style.display='block';el.textContent=done===DRAG_DATA.length?'🎉 Perfect! All correct!':done===0?'👆 Kéo thả các question tags để ghép với câu.':` ✅ ${done}/${DRAG_DATA.length} correct — tiếp tục!`;}
+function revealAllDrag(){DRAG_DATA.forEach(item=>{const zone=document.querySelector(`.drop-zone[data-id="${item.id}"]`);const slot=document.getElementById('dslot-'+item.id);if(zone&&slot&&!zone.classList.contains('ok')){zone.classList.add('ok');slot.textContent=item.tag;slot.style.cssText='background:var(--teal);color:#fff;border:none;font-weight:700;border-radius:4px;padding:2px 8px;font-size:.78rem';dragState.matched[item.id]=item.tag;}});updateDragScore();}
+function resetDrag(){buildDragGame();document.getElementById('drag-result').style.display='none';}
+
+/* ── WB1a ── */
+function buildWB1a(){
+  const wrap=document.getElementById('wb1a-list');if(!wrap)return;wrap.innerHTML='';
+  WB1A_DATA.forEach((item,i)=>{
+    const d=document.createElement('div');d.className='fill-row';
+    d.innerHTML=`<div class="fill-n">${i+1}</div>
+    <div class="fill-body">
+      <div class="fill-s">${item.s}</div>
+      <div class="fill-ctrl">
+        <input class="fill-inp" id="wb1a-${i}" placeholder="not+do/be/have…" style="min-width:90px">
+        <button class="chk-btn" onclick="checkFillGen('wb1a-${i}','${item.ans}','wb1afb-${i}','${item.note||''}')">Check</button>
+        <button class="rev-btn" onclick="revealFillGen('wb1a-${i}','${item.ans}','wb1afb-${i}','${item.note||''}')">Đáp án</button>
+      </div>
+      <div class="fill-fb" id="wb1afb-${i}"></div>
+    </div>`;
+    wrap.appendChild(d);
+  });
+}
+function checkAllWB1a(){let c=0;WB1A_DATA.forEach((_,i)=>{checkFillGen(`wb1a-${i}`,WB1A_DATA[i].ans,`wb1afb-${i}`,WB1A_DATA[i].note||'');if(document.getElementById(`wb1a-${i}`)?.classList.contains('ok'))c++;});showScore('wb1a-score',c,WB1A_DATA.length);}
+function revealAllWB1a(){WB1A_DATA.forEach((_,i)=>revealFillGen(`wb1a-${i}`,WB1A_DATA[i].ans,`wb1afb-${i}`,WB1A_DATA[i].note||''));}
+function resetWB1a(){WB1A_DATA.forEach((_,i)=>{const inp=document.getElementById(`wb1a-${i}`);const fb=document.getElementById(`wb1afb-${i}`);if(inp){inp.value='';inp.className='fill-inp';}if(fb)fb.className='fill-fb';});document.getElementById('wb1a-score').className='score-box';}
+
+function buildWB1b(){
+  const wrap=document.getElementById('wb1b-list');if(!wrap)return;
+  wrap.innerHTML=WB1B_DATA.map((item,i)=>`
+    <div class="fill-row">
+      <div class="fill-n">${String.fromCharCode(97+i)}</div>
+      <div class="fill-body">
+        <div class="fill-s" style="color:var(--dim);font-style:italic">___ , ${item.tag}</div>
+        <div id="wb1bans-${i}" style="display:none" class="fill-fb ok">✅ ${item.sentence}</div>
+      </div>
+    </div>`).join('');
+}
+function revealWB1b(){WB1B_DATA.forEach((_,i)=>{const el=document.getElementById(`wb1bans-${i}`);if(el)el.style.display='block';});}
+
+function buildWB2(){
+  const wrap=document.getElementById('wb2-list');if(!wrap)return;wrap.innerHTML='';
+  WB2_DATA.forEach((item,i)=>{
+    const d=document.createElement('div');d.className='fill-row';
+    if(item.sample){
+      d.innerHTML=`<div class="fill-n">${i+1}</div>
+      <div class="fill-body">
+        <div class="fill-s">${item.s}</div>
+        <div class="fill-fb ok" style="display:block">✅ Mẫu: <strong>${item.ans}</strong></div>
+      </div>`;
+    } else {
+      d.innerHTML=`<div class="fill-n">${i+1}</div>
+      <div class="fill-body">
+        <div class="fill-s">${item.s}</div>
+        <div class="fill-ctrl">
+          <input class="fill-inp" id="wb2-${i}" placeholder="tag…" style="min-width:120px">
+          <button class="chk-btn" onclick="checkFillGen('wb2-${i}','${item.ans.replace(/'/g,"\\'")}','wb2fb-${i}','')">Check</button>
+          <button class="rev-btn" onclick="revealFillGen('wb2-${i}','${item.ans.replace(/'/g,"\\'")}','wb2fb-${i}','')">Đáp án</button>
+        </div>
+        <div class="fill-fb" id="wb2fb-${i}"></div>
+      </div>`;
+    }
+    wrap.appendChild(d);
+  });
+}
+function checkAllWB2(){let c=0;WB2_DATA.forEach((item,i)=>{if(item.sample)return;checkFillGen(`wb2-${i}`,item.ans,`wb2fb-${i}`,'');if(document.getElementById(`wb2-${i}`)?.classList.contains('ok'))c++;});showScore('wb2-score',c,WB2_DATA.filter(x=>!x.sample).length);}
+function revealAllWB2(){WB2_DATA.forEach((item,i)=>{if(!item.sample)revealFillGen(`wb2-${i}`,item.ans,`wb2fb-${i}`,'');});}
+function resetWB2(){WB2_DATA.forEach((item,i)=>{if(item.sample)return;const inp=document.getElementById(`wb2-${i}`);const fb=document.getElementById(`wb2fb-${i}`);if(inp){inp.value='';inp.className='fill-inp';}if(fb)fb.className='fill-fb';});document.getElementById('wb2-score').className='score-box';}
+
+function buildWB3(){
+  const wrap=document.getElementById('wb3-list');if(!wrap)return;
+  wrap.innerHTML=WB3_DATA.map((item,i)=>`
+    <div class="fill-row">
+      <div class="fill-n">${i+1}</div>
+      <div class="fill-body">
+        <div class="fill-s">${item.q}</div>
+        ${item.sample?`<div class="fill-fb ok" style="display:block">✅ Mẫu: <strong>${item.ans}</strong></div>`:
+        `<div id="wb3ans-${i}" style="display:none" class="fill-fb ok">✅ ${item.ans}</div>`}
+      </div>
+    </div>`).join('');
+}
+function revealWB3(){WB3_DATA.forEach((_,i)=>{const el=document.getElementById(`wb3ans-${i}`);if(el)el.style.display='block';});}
+
+function buildWB4(){
+  const wrap=document.getElementById('wb4-list');if(!wrap)return;
+  wrap.innerHTML=WB4_DATA.map((item,i)=>`
+    <div class="fill-row">
+      <div class="fill-n">${i+1}</div>
+      <div class="fill-body">
+        <div class="fill-s" style="margin-bottom:6px">${item.s.replace(item.fix,`<span style="text-decoration:line-through;color:var(--red)">${item.fix}</span>`)}</div>
+        <button class="rev-btn" onclick="showWB4(${i})">👁 Xem đáp án</button>
+        <div id="wb4ans-${i}" style="display:none;margin-top:6px" class="fill-fb ok">
+          ✅ <strong>${item.ans}</strong><br>
+          <span style="font-size:.76rem;color:var(--muted)">${item.note}</span>
+        </div>
+      </div>
+    </div>`).join('');
+}
+function showWB4(i){const el=document.getElementById(`wb4ans-${i}`);if(el)el.style.display=el.style.display==='none'?'block':'none';}
+function revealWB4(){WB4_DATA.forEach((_,i)=>{const el=document.getElementById(`wb4ans-${i}`);if(el)el.style.display='block';});}
+
+/* ── Generic fill helpers ── */
+function checkFillGen(inpId,ans,fbId,note){
+  const inp=document.getElementById(inpId);const fb=document.getElementById(fbId);
+  if(!inp||!fb)return;
+  const val=inp.value.trim().toLowerCase().replace(/\s+/g,' ');
+  const ok=val===ans.toLowerCase();
+  inp.className=`fill-inp ${ok?'ok':'err'}`;
+  fb.textContent=ok?`✅ "${ans}"${note?' — '+note:''}`:`❌ Wrong. Answer: "${ans}"${note?' — '+note:''}`;
+  fb.className=`fill-fb ${ok?'ok':'err'}`;
+}
+function revealFillGen(inpId,ans,fbId,note){
+  const inp=document.getElementById(inpId);const fb=document.getElementById(fbId);
+  if(inp){inp.value=ans;inp.className='fill-inp ok';}
+  if(fb){fb.textContent=`👁 "${ans}"${note?' — '+note:''}`;fb.className='fill-fb ok';}
+}
+
+/* ── Get Ready inputs ── */
+function buildGRInputs(){
+  const wrap=document.getElementById('gr-inputs');if(!wrap)return;
+  const saved=JSON.parse(localStorage.getItem('f2f_1d_gr')||'[]');
+  wrap.innerHTML='';
+  for(let i=0;i<5;i++){
+    const row=document.createElement('div');row.className='list-row';
+    row.innerHTML=`<div class="list-num">${i+1}</div>
+    <input class="list-inp" id="gr-${i}" placeholder="e.g. You've been to Hanoi, haven't you?" value="${saved[i]||''}">`;
+    wrap.appendChild(row);
+  }
+}
+function saveGR(){
+  const data=[];
+  for(let i=0;i<5;i++)data.push(document.getElementById(`gr-${i}`)?.value||'');
+  localStorage.setItem('f2f_1d_gr',JSON.stringify(data));
+  showToast('💾 Đã lưu!');
+}
+
+/* ── Score ── */
+function showScore(id,c,total){
+  const sc=document.getElementById(id);if(!sc)return;
+  sc.innerHTML=`<div class="score-n">${c}/${total}</div><div class="score-msg">${c===total?'🎉 Perfect! Xuất sắc!':c>=total*.6?'👍 Good! Xem lại câu sai.':'📚 Study REAL WORLD 1.1 p128.'}</div>`;
+  sc.className='score-box show';
+}
+
+/* ── Audio ── */
+const audioStates={};
+function toggleAudio(id){
+  const audio=document.getElementById('audio-'+id);
+  const btn=document.getElementById('play-btn-'+id);
+  if(!audio||!btn)return;
+  if(audioStates[id]){audio.pause();btn.textContent='▶';audioStates[id]=false;}
+  else{audio.play().catch(()=>showToast('⚠️ Cần thêm file audio vào /audio/'));btn.textContent='⏸';audioStates[id]=true;}
+}
+function updateProg(id){const a=document.getElementById('audio-'+id);const f=document.getElementById('prog-'+id);if(a?.duration&&f)f.style.width=(a.currentTime/a.duration*100)+'%';}
+function audioEnd(id){const b=document.getElementById('play-btn-'+id);if(b)b.textContent='▶';audioStates[id]=false;}
+
+/* ── Script toggle ── */
+function toggleScript(id){document.getElementById(id)?.classList.toggle('open');}
+
+/* ── QA toggle ── */
+function toggleComp(btn){btn.closest('.comp-item')?.classList.toggle('open');}
+
+/* ── TTS ── */
+function spk(t){if('speechSynthesis'in window){const u=new SpeechSynthesisUtterance(t);u.lang='en-GB';u.rate=0.82;speechSynthesis.speak(u);}}
+
+/* ── Toast ── */
+function showToast(m){let t=document.getElementById('toast');if(!t){t=document.createElement('div');t.id='toast';t.style.cssText='position:fixed;bottom:20px;right:20px;z-index:999;background:var(--bg2);border:1px solid var(--border2);padding:10px 18px;border-radius:8px;font-size:.82rem;box-shadow:0 4px 20px rgba(0,0,0,.3);transition:opacity .3s;opacity:0';document.body.appendChild(t);}t.textContent=m;t.style.opacity='1';clearTimeout(showToast._t);showToast._t=setTimeout(()=>t.style.opacity='0',2400);}
+
+/* ── Tabs ── */
+function showTab(id){
+  document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tnav-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+  const tabs=['speaking','video','realworld','pronunciation','practice','getready','workbook','langsummary'];
+  document.querySelectorAll('.tnav-btn')[tabs.indexOf(id)]?.classList.add('active');
+  saveProgress(id);
+}
+
+/* ── Theme ── */
+function toggleTheme(){
+  const t=document.documentElement.getAttribute('data-theme')==='light'?'dark':'light';
+  document.documentElement.setAttribute('data-theme',t==='light'?'light':'');
+  document.getElementById('theme-btn').textContent=t==='light'?'🌙':'☀️';
+  localStorage.setItem('f2f_1d_theme',t);
+}
+
+/* ── Progress ── */
+function saveProgress(tab){try{const d=JSON.parse(localStorage.getItem('f2f_1d_done')||'[]');if(!d.includes(tab))d.push(tab);localStorage.setItem('f2f_1d_done',JSON.stringify(d));}catch(e){}}
+function markDone(){['speaking','video','realworld','pronunciation','practice','getready','workbook','langsummary'].forEach(t=>saveProgress(t));showToast('✅ 1D Nice to meet you! Đã hoàn thành!');}
+
+/* ── INIT ── */
+document.addEventListener('DOMContentLoaded',()=>{
+  const t=localStorage.getItem('f2f_1d_theme')||'dark';
+  if(t==='light'){document.documentElement.setAttribute('data-theme','light');document.getElementById('theme-btn').textContent='🌙';}
+  buildTagFill();
+  buildShortAns();
+  buildMCNames();
+  buildEdAdjectives();
+  buildStressPairs();
+  buildEx6();
+  buildDragGame();
+  buildWB1a();
+  buildWB1b();
+  buildWB2();
+  buildWB3();
+  buildWB4();
+  buildGRInputs();
+});
 </script>
 </body>
 </html>
