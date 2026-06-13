@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2A Slow down! — face2face Intermediate</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap');
+:root{--bg:#0D1117;--bg2:#161B22;--bg3:#21262D;--bg4:#2D333B;--border:#30363D;--border2:#3D444D;--text:#E6EDF3;--dim:#8B949E;--muted:#484F58;--blue:#2563EB;--blue-l:rgba(37,99,235,.15);--green:#10B981;--green-l:rgba(16,185,129,.12);--orange:#F59E0B;--orange-l:rgba(245,158,11,.12);--red:#EF4444;--red-l:rgba(239,68,68,.12);--teal:#14B8A6;--accent:#E8760A;--accent-l:rgba(232,118,10,.12);--r:10px;--r2:6px;--tr:.18s ease}
+[data-theme=light]{--bg:#F8FAFC;--bg2:#fff;--bg3:#F1F5F9;--bg4:#E2E8F0;--border:#E2E8F0;--border2:#CBD5E1;--text:#0F172A;--dim:#475569;--muted:#94A3B8}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);font-size:15px;line-height:1.6}
+button{cursor:pointer;border:none;background:none;font-family:inherit}
+input,textarea,select{font-family:inherit}
+.top-bar{background:var(--bg2);border-bottom:1px solid var(--border);padding:10px 20px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:50;flex-wrap:wrap}
+.back-btn{display:flex;align-items:center;gap:6px;padding:6px 14px;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);font-size:.82rem;color:var(--dim);cursor:pointer;transition:all var(--tr)}
+.back-btn:hover{border-color:var(--accent);color:var(--accent)}
+.badge{padding:4px 12px;background:var(--accent-l);border:1px solid rgba(232,118,10,.35);border-radius:4px;font-size:.75rem;font-weight:700;color:var(--accent)}
+.lesson-h{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700}
+.top-actions{margin-left:auto;display:flex;gap:8px}
+.theme-btn{width:34px;height:34px;display:flex;align-items:center;justify-content:center;border-radius:var(--r2);background:var(--bg3);border:1px solid var(--border);cursor:pointer;font-size:.95rem;color:var(--dim)}
+.done-btn{padding:6px 14px;background:var(--green);border-radius:var(--r2);font-size:.78rem;font-weight:600;color:#fff;cursor:pointer}
+.qr{background:linear-gradient(135deg,#1e3015,#1a2f1a);border:1px solid rgba(232,118,10,.3);border-radius:var(--r);padding:14px 20px;margin:16px 20px;display:flex;gap:12px}
+.qr-badge{background:var(--accent);color:#fff;padding:3px 10px;border-radius:4px;font-size:.72rem;font-weight:700;white-space:nowrap;flex-shrink:0;height:fit-content;margin-top:2px}
+.qr-text{font-size:.84rem;line-height:1.65;color:#CBD5E1}
+.qr-text strong{color:#fff}.qr-text em{font-style:italic;color:#FCD34D}
+.tab-nav{display:flex;gap:2px;border-bottom:1px solid var(--border);overflow-x:auto;scrollbar-width:none;position:sticky;top:57px;background:var(--bg);z-index:40;padding:0 20px}
+.tab-nav::-webkit-scrollbar{display:none}
+.tnav-btn{display:flex;align-items:center;gap:5px;padding:11px 15px;font-size:.82rem;font-weight:500;color:var(--dim);white-space:nowrap;border-bottom:2px solid transparent;margin-bottom:-1px;cursor:pointer;transition:all var(--tr);background:none;border-top:none;border-left:none;border-right:none;font-family:inherit}
+.tnav-btn:hover{color:var(--text)}.tnav-btn.active{color:var(--accent);border-bottom-color:var(--accent)}
+.pc{max-width:920px;margin:0 auto;padding:0 20px 48px}
+.tab-pane{display:none;padding-top:24px}.tab-pane.active{display:block;animation:fu .2s ease}
+@keyframes fu{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.sec-h{font-size:1.05rem;font-weight:700;margin-bottom:4px}.sec-sub{font-size:.82rem;color:var(--dim);margin-bottom:16px}
+.exl{display:inline-flex;align-items:center;gap:8px;font-size:.9rem;font-weight:600;margin-bottom:10px}
+.exn{width:28px;height:28px;background:var(--accent);color:#fff;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:.78rem;font-weight:700;flex-shrink:0}
+.pt{display:inline-block;width:22px;height:22px;background:var(--bg4);border-radius:4px;text-align:center;line-height:22px;font-size:.72rem;font-weight:700;color:var(--dim);margin-right:4px}
+.ins{font-size:.88rem;color:var(--text);line-height:1.65;margin-bottom:14px}
+.ins em{color:var(--teal);font-style:italic}
+/* VOCAB MATCH */
+.vocab-match{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
+.vm-col{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:16px}
+.vm-col-title{font-size:.72rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px}
+.vm-item{display:flex;align-items:center;gap:8px;padding:8px 10px;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);margin-bottom:6px;font-size:.84rem;cursor:pointer;transition:all var(--tr)}
+.vm-item:hover{border-color:var(--accent);background:var(--accent-l)}
+.vm-item.selected{border-color:var(--accent);background:var(--accent-l);font-weight:600;color:var(--accent)}
+.vm-item.matched{border-color:var(--green);background:var(--green-l);cursor:default}
+.vm-num{font-size:.7rem;font-weight:700;color:var(--muted);min-width:20px}
+/* COLL TABLE */
+.coll-grid{display:flex;flex-direction:column;gap:7px;margin-bottom:16px}
+.coll-row{display:grid;grid-template-columns:150px 1fr;gap:10px;align-items:start;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r2);padding:10px 14px;transition:border-color var(--tr)}
+.coll-row:hover{border-color:var(--accent)}
+.coll-verb{font-weight:700;color:var(--accent);font-size:.88rem}
+.coll-phrase{font-size:.88rem;font-weight:600}
+.coll-vi{font-size:.78rem;color:var(--orange);margin-top:2px}
+.coll-ex{font-size:.78rem;color:var(--dim);font-style:italic;margin-top:2px}
+/* AUDIO */
+.audio-box{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:16px;margin-bottom:14px}
+.audio-hdr{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.cd-badge{padding:4px 12px;background:var(--orange-l);border:1px solid rgba(245,158,11,.3);border-radius:4px;font-size:.75rem;font-weight:700;color:var(--orange)}
+.play-btn{width:38px;height:38px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;border:none;font-size:.9rem;flex-shrink:0;transition:all var(--tr)}
+.play-btn:hover{background:#B45309;transform:scale(1.05)}
+.prog-bar{height:3px;background:var(--border);border-radius:2px;overflow:hidden;margin-top:4px}
+.prog-fill{height:100%;width:0%;background:var(--accent);border-radius:2px;transition:width .1s}
+/* SCRIPT */
+.script-box{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;margin-bottom:14px}
+.script-hdr{display:flex;align-items:center;justify-content:space-between;padding:10px 16px;background:var(--bg3);border-bottom:1px solid var(--border);cursor:pointer}
+.script-title{font-size:.82rem;font-weight:600;color:var(--accent)}
+.script-arrow{font-size:.7rem;color:var(--muted);transition:transform var(--tr)}
+.script-box.open .script-arrow{transform:rotate(90deg)}
+.script-body{display:none;padding:16px}.script-box.open .script-body{display:block}
+.script-line{display:flex;gap:10px;padding:5px 0;border-bottom:1px dashed var(--border);font-size:.83rem;line-height:1.6}
+.script-line:last-child{border-bottom:none}
+.spk{font-weight:700;min-width:50px;flex-shrink:0;color:var(--accent)}
+.spk-kim{color:#60A5FA}.spk-rob{color:#34D399}
+.hl{font-weight:700;color:var(--teal)}
+.spk-btn{display:inline-flex;align-items:center;gap:3px;padding:2px 7px;background:var(--bg3);border:1px solid var(--border);border-radius:3px;font-size:.68rem;color:var(--muted);cursor:pointer;margin-left:6px;transition:all var(--tr)}
+.spk-btn:hover{border-color:var(--accent);color:var(--accent)}
+/* FILL */
+.fill-ex{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:16px;margin-bottom:14px}
+.fill-ex-title{font-size:.86rem;font-weight:600;padding-bottom:9px;border-bottom:1px solid var(--border);margin-bottom:12px;color:var(--dim)}
+.fill-row{display:flex;align-items:flex-start;gap:9px;padding:8px 0;border-bottom:1px dashed var(--border)}
+.fill-row:last-child{border-bottom:none}
+.fill-n{width:22px;height:22px;border-radius:50%;background:var(--bg3);display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:700;color:var(--muted);flex-shrink:0;margin-top:2px}
+.fill-body{flex:1}
+.fill-s{font-size:.86rem;margin-bottom:6px;line-height:1.6}
+.fill-ctrl{display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+.fi{height:32px;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);padding:0 10px;color:var(--text);font-size:.83rem;outline:none;transition:border-color var(--tr)}
+.fi:focus{border-color:var(--accent)}.fi.ok{border-color:var(--green);background:var(--green-l)}.fi.err{border-color:var(--red);background:var(--red-l)}
+.chk{padding:5px 11px;background:var(--accent);color:#fff;border:none;border-radius:var(--r2);font-size:.75rem;font-weight:700;cursor:pointer;transition:all var(--tr)}
+.chk:hover{background:#B45309}
+.rev{padding:5px 10px;background:var(--bg3);border:1px solid var(--border);color:var(--dim);border-radius:var(--r2);font-size:.75rem;cursor:pointer;transition:all var(--tr)}
+.rev:hover{border-color:var(--accent);color:var(--accent)}
+.fb{margin-top:5px;font-size:.76rem;padding:4px 9px;border-radius:var(--r2);display:none}
+.fb.ok{background:var(--green-l);color:var(--green);display:block}
+.fb.err{background:var(--red-l);color:var(--red);display:block}
+/* MC */
+.mc-opts{display:flex;flex-direction:column;gap:5px;margin-bottom:4px}
+.mc-opt{display:flex;align-items:center;gap:8px;padding:8px 12px;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);font-size:.83rem;cursor:pointer;transition:all var(--tr)}
+.mc-opt:hover:not(:disabled){border-color:var(--accent);background:var(--accent-l)}
+.mc-lbl{width:20px;height:20px;border-radius:50%;background:var(--bg4);display:flex;align-items:center;justify-content:center;font-size:.68rem;font-weight:700;color:var(--muted);flex-shrink:0}
+.mc-opt.ok2{border-color:var(--green);background:var(--green-l)}.mc-opt.ok2 .mc-lbl{background:var(--green);color:#fff}
+.mc-opt.err2{border-color:var(--red);background:var(--red-l)}.mc-opt.err2 .mc-lbl{background:var(--red);color:#fff}
+/* RULE BOX */
+.rule-box{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:16px;margin-bottom:14px}
+.rule-tag{display:inline-flex;align-items:center;gap:6px;padding:3px 12px;background:var(--accent-l);border:1px solid rgba(232,118,10,.35);border-radius:4px;font-size:.72rem;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:.06em;margin-bottom:12px}
+.rule-item{display:flex;gap:8px;padding:6px 0;border-bottom:1px dashed var(--border);font-size:.84rem;line-height:1.6}
+.rule-item:last-child{border-bottom:none}
+.rule-dot{color:var(--accent);flex-shrink:0;font-size:.7rem;margin-top:6px}
+.ex-box{font-family:'Courier New',monospace;font-size:.81rem;color:#7DD3FC;background:var(--bg);padding:7px 12px;border-radius:var(--r2);margin:5px 0;border:1px solid var(--border)}
+.ok-box{background:var(--green-l);border:1px solid rgba(16,185,129,.25);border-radius:var(--r2);padding:6px 11px;font-size:.82rem;margin-bottom:5px}
+.err-box{background:var(--red-l);border:1px solid rgba(239,68,68,.25);border-radius:var(--r2);padding:6px 11px;font-size:.82rem;margin-bottom:5px}
+.tip-box{background:var(--accent-l);border:1px solid rgba(232,118,10,.25);border-radius:var(--r2);padding:10px 14px;font-size:.82rem;line-height:1.6;margin:10px 0}
+.tip-box strong{color:var(--accent)}
+.note-box{background:var(--bg3);border-left:3px solid var(--accent);border-radius:0 var(--r2) var(--r2) 0;padding:10px 14px;margin:10px 0;font-size:.82rem;color:var(--dim);line-height:1.6}
+.note-box strong{color:var(--text)}
+/* GET READY */
+.gr-box{background:linear-gradient(135deg,rgba(232,118,10,.08),rgba(20,184,166,.06));border:1px solid rgba(232,118,10,.2);border-radius:var(--r);padding:18px;margin-bottom:16px}
+.list-input-wrap{display:flex;flex-direction:column;gap:7px}
+.list-row{display:flex;align-items:center;gap:10px}
+.list-num{width:26px;height:26px;border-radius:50%;background:var(--accent-l);color:var(--accent);display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:700;flex-shrink:0}
+.list-inp{flex:1;height:33px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r2);padding:0 12px;color:var(--text);font-size:.83rem;outline:none;transition:border-color var(--tr)}
+.list-inp:focus{border-color:var(--accent)}
+/* WB */
+.wb-tag{display:inline-flex;align-items:center;gap:6px;padding:3px 12px;background:var(--accent-l);border:1px solid rgba(232,118,10,.35);border-radius:4px;font-size:.72rem;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:.06em;margin-bottom:14px}
+.convo-box{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:14px;margin-bottom:14px}
+.convo-title{font-size:.76rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;margin-bottom:10px}
+.bubble-row{display:flex;gap:10px;margin-bottom:7px}
+.bubble-row.right{flex-direction:row-reverse}
+.bubble{background:var(--bg3);border:1px solid var(--border);border-radius:12px;padding:8px 13px;max-width:75%;font-size:.83rem;line-height:1.5}
+.bubble-row:not(.right) .bubble{border-bottom-left-radius:3px}
+.bubble-row.right .bubble{border-bottom-right-radius:3px;background:var(--accent-l);border-color:rgba(232,118,10,.3)}
+.tbl{width:100%;border-collapse:collapse;font-size:.82rem;margin:8px 0}
+.tbl th{background:var(--bg3);padding:7px 12px;text-align:left;font-weight:700;border:1px solid var(--border);color:var(--dim);font-size:.72rem;text-transform:uppercase;letter-spacing:.04em}
+.tbl td{padding:7px 12px;border:1px solid var(--border);line-height:1.5}
+.tbl tr:nth-child(even) td{background:rgba(255,255,255,.02)}
+.score-box{display:none;text-align:center;padding:14px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);margin-top:12px}
+.score-box.show{display:block}
+.score-n{font-size:2rem;font-weight:700;color:var(--accent)}
+.score-msg{color:var(--dim);font-size:.82rem;margin-top:3px}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:7px 15px;border-radius:var(--r2);font-size:.81rem;font-weight:500;cursor:pointer;border:none;font-family:inherit;transition:all var(--tr)}
+.btn-a{background:var(--accent);color:#fff}.btn-a:hover{background:#B45309}
+.btn-o{background:var(--bg3);border:1px solid var(--border2);color:var(--dim)}.btn-o:hover{border-color:var(--accent);color:var(--accent)}
+.spkm{width:28px;height:28px;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);cursor:pointer;font-size:.8rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all var(--tr)}
+.spkm:hover{background:var(--accent-l);border-color:var(--accent)}
+.divider{height:1px;background:var(--border);margin:18px 0}
+@media(max-width:640px){.vocab-match{grid-template-columns:1fr}.tab-nav{padding:0 12px}.pc{padding:0 14px 48px}}
+</style>
+</head>
+<body>
+<div class="top-bar">
+  <button class="back-btn" onclick="history.back()">← Trang chủ</button>
+  <div class="badge">UNIT 2</div>
+  <div class="lesson-h">2A — Slow down!</div>
+  <div class="top-actions">
+    <button class="theme-btn" id="theme-btn" onclick="toggleTheme()">☀️</button>
+    <button class="done-btn" onclick="markDone()">✅ Xong</button>
+  </div>
+</div>
+<div class="qr">
+  <div class="qr-badge">QUICK REVIEW</div>
+  <div class="qr-text"><strong>Question tags</strong> — Choose a partner but don't talk to them yet. Write three things you think you know about your partner. Work in pairs. Ask questions with question tags to check: <em>A: You studied here last year, didn't you? B: Yes, I did.</em> Ask follow-up questions: <em>A: Where did you study before that?</em></div>
+</div>
+<div class="tab-nav">
+  <button class="tnav-btn active" onclick="showTab('vocab')">📚 Vocabulary &amp; Speaking</button>
+  <button class="tnav-btn" onclick="showTab('listening')">🎧 Listening</button>
+  <button class="tnav-btn" onclick="showTab('grammar')">📐 Help with Grammar</button>
+  <button class="tnav-btn" onclick="showTab('getready')">🎯 Get Ready!</button>
+  <button class="tnav-btn" onclick="showTab('workbook')">📓 Workbook</button>
+  <button class="tnav-btn" onclick="showTab('langsummary')">📋 Language Summary</button>
+</div>
+<div class="pc">
+
+<!-- TAB: VOCAB -->
+<div class="tab-pane active" id="tab-vocab">
+  <div class="sec-h">Vocabulary and Speaking</div>
+  <div class="sec-sub">Collocations (1): work · VOCABULARY 2.1 → p129</div>
+
+  <div class="exl"><div class="exn">1</div>Exercise 1a — Choose the correct verbs</div>
+  <p class="ins"><span class="pt">a</span>Choose the correct verbs in these phrases. Then check in <em>VOCABULARY 2.1 → p129</em>.</p>
+
+  <div id="verb-choose-list" style="display:flex;flex-direction:column;gap:8px;margin-bottom:20px"></div>
+  <div style="display:flex;gap:8px;margin-bottom:16px">
+    <button class="btn btn-a" onclick="revealVerbChoose()">👁 Xem đáp án</button>
+    <button class="btn btn-o" onclick="resetVerbChoose()">🔄 Làm lại</button>
+  </div>
+
+  <div class="exl" style="margin-top:4px"><div class="exn">1</div>Bảng collocations đầy đủ (VOCABULARY 2.1)</div>
+  <button class="btn btn-o" style="margin-bottom:12px" onclick="toggleColl()">📋 Hiện/Ẩn bảng từ vựng đầy đủ ▼</button>
+  <div id="coll-table" style="display:none">
+    <div class="coll-grid" id="coll-grid"></div>
+    <div class="note-box"><strong>TIPS từ Language Summary p129:</strong><br>
+    • <strong>overtime</strong> /ˈəʊvətaɪm/ = extra time you work beyond your normal hours<br>
+    • <strong>a workaholic</strong> /ˌwɜːkəˈhɒlɪk/ = someone who works too much and finds it hard to stop<br>
+    • <strong>a deadline</strong> /ˈdedlaɪn/ = the time by which work must be finished<br>
+    • <strong>under pressure</strong> = in a difficult situation that makes you worried<br>
+    • Cũng có thể nói <strong>hit a deadline</strong>: <em>Jessica always hits her deadlines.</em></div>
+  </div>
+
+  <div class="divider"></div>
+  <div class="exl"><div class="exn">1</div>Exercise 1b — Think of three people</div>
+  <p class="ins"><span class="pt">b</span>Think of three people you know who have jobs. Choose two phrases from 1a for each person.</p>
+  <div class="gr-box">
+    <p style="font-size:.83rem;color:var(--dim);margin-bottom:12px">Ghi tên và 2 cụm từ cho mỗi người bạn biết:</p>
+    <div class="list-input-wrap" id="people-wrap"></div>
+    <button class="btn btn-o" style="margin-top:10px" onclick="savePeople()">💾 Lưu</button>
+  </div>
+
+  <div class="divider"></div>
+  <div class="exl"><div class="exn">1</div>Exercise 1c — Speaking</div>
+  <p class="ins"><span class="pt">c</span>Work in pairs. Tell your partner about the people you chose. Which person works the hardest?</p>
+  <div class="convo-box">
+    <div class="convo-title">💬 Ví dụ</div>
+    <div class="bubble-row"><div class="bubble">My friend Mai works really long hours. She's a doctor and she often works overtime at weekends.</div></div>
+    <div class="bubble-row right"><div class="bubble">Does she enjoy it? Does she find it stressful?</div></div>
+    <div class="bubble-row"><div class="bubble">She loves it, but she's always under a lot of pressure. She can't always meet her deadlines either.</div></div>
+  </div>
+</div>
+
+<!-- TAB: LISTENING -->
+<div class="tab-pane" id="tab-listening">
+  <div class="sec-h">Listening and Speaking</div>
+  <div class="sec-sub">CD1 Track 9 — In Praise of SLOW (Carl Honoré)</div>
+
+  <div class="exl"><div class="exn">2</div>Exercise 2 — Pre-listening: Guess the words/numbers</div>
+  <p class="ins"><span class="pt">a</span>Look at the book cover. What is the book about, do you think?</p>
+  <div class="note-box" style="margin-bottom:14px">📖 <strong>In Praise of SLOW</strong> by Carl Honoré — a book about a worldwide movement challenging the culture of speed. The author argues that we all work too hard and should slow down.</div>
+  <p class="ins"><span class="pt">b</span>Work in pairs. Guess the correct words or numbers in these sentences:</p>
+  <div id="guess-list" style="margin-bottom:16px"></div>
+  <div style="display:flex;gap:8px;margin-bottom:16px">
+    <button class="btn btn-a" onclick="revealGuess()">👁 Xem đáp án</button>
+    <button class="btn btn-o" onclick="resetGuess()">🔄 Làm lại</button>
+  </div>
+
+  <div class="divider"></div>
+  <div class="exl"><div class="exn">2</div>Exercise 2c — Listen: CD1 Track 9</div>
+  <p class="ins"><span class="pt">c</span><strong>CD1 ▶ 9</strong> Listen to a radio programme. Two journalists, Kim and Rob, discuss Carl Honoré's book. Check your answers to 2a and 2b.</p>
+
+  <div class="audio-box">
+    <div class="audio-hdr">
+      <div class="cd-badge">CD1 ▶ Track 9</div>
+      <div style="flex:1">
+        <div style="font-size:.88rem;font-weight:600">In Praise of SLOW — Radio programme</div>
+        <div style="font-size:.75rem;color:var(--muted)">Kim and Rob discuss Carl Honoré's book</div>
+      </div>
+      <button class="play-btn" id="play-9" onclick="toggleAudio('9')">▶</button>
+    </div>
+    <div style="font-size:.72rem;color:var(--muted);margin-bottom:8px">⚠️ Thêm file <code>cd1_track9.mp3</code> vào thư mục <code>/audio/</code></div>
+    <div class="prog-bar"><div class="prog-fill" id="prog-9"></div></div>
+    <audio id="audio-9" src="audio/cd1_track9.mp3" ontimeupdate="updateProg('9')" onended="audioEnd('9')"></audio>
+  </div>
+
+  <!-- FULL AUDIO SCRIPT -->
+  <div class="script-box" id="script-9">
+    <div class="script-hdr" onclick="toggleScript('script-9')">
+      <span class="script-title">📜 Audio Script — CD1 Track 9 (đầy đủ)</span>
+      <span class="script-arrow">▶</span>
+    </div>
+    <div class="script-body">
+      <div style="font-size:.75rem;color:var(--muted);margin-bottom:10px;padding:6px;background:var(--bg3);border-radius:var(--r2)">
+        <span class="spk-kim">■ KIM</span> (journalist, presenter) &nbsp;·&nbsp; <span class="spk-rob">■ ROB</span> (journalist, guest)
+      </div>
+      <div class="script-line"><span class="spk spk-kim">KIM:</span><span>So Rob, you've read Carl Honoré's book <em>In Praise of Slow</em>. What's it about?</span></div>
+      <div class="script-line"><span class="spk spk-rob">ROB:</span><span>Well, it's about the <span class="hl">Slow movement</span> — the idea that we all work too hard and should slow down. And he's right. I <span class="hl">must</span> take more time off <strong>work</strong>.</span></div>
+      <div class="script-line"><span class="spk spk-kim">KIM:</span><span>Does he have any statistics about working hours?</span></div>
+      <div class="script-line"><span class="spk spk-rob">ROB:</span><span>Yes. In <strong>Germany</strong>, people now spend 15% less time at work than in 1980. And Honoré says people <span class="hl">should</span> only work <strong>35</strong> hours a week.</span></div>
+      <div class="script-line"><span class="spk spk-kim">KIM:</span><span>35 hours? That's not many.</span></div>
+      <div class="script-line"><span class="spk spk-rob">ROB:</span><span>I know! And he believes we <span class="hl">ought to</span> spend more time with <strong>our families</strong>.</span></div>
+      <div class="script-line"><span class="spk spk-kim">KIM:</span><span>Are there any companies that actually encourage this?</span></div>
+      <div class="script-line"><span class="spk spk-rob">ROB:</span><span>Yes! Some French employees <span class="hl">are allowed to</span> begin their weekend at <strong>3pm</strong> on Thursday.</span></div>
+      <div class="script-line"><span class="spk spk-kim">KIM:</span><span>That sounds wonderful!</span></div>
+      <div class="script-line"><span class="spk spk-rob">ROB:</span><span>And people <span class="hl">can</span> get their best <strong>ideas</strong> when they're doing nothing. In some American companies, employees <span class="hl">can</span> <strong>sleep</strong> whenever they want.</span></div>
+      <div class="script-line"><span class="spk spk-kim">KIM:</span><span>Really? I'd love that!</span></div>
+      <div class="script-line"><span class="spk spk-rob">ROB:</span><span>In the UK, people <span class="hl">are supposed to</span> have a break every <strong>4 hours</strong>. But Kim says that lots of people <span class="hl">have to</span> take <strong>work home</strong>.</span></div>
+      <div class="script-line"><span class="spk spk-kim">KIM:</span><span>That's true. I always end up working in the evenings.</span></div>
+      <div class="script-line"><span class="spk spk-rob">ROB:</span><span>And these days we're <span class="hl">able to</span> continue working when we're <strong>travelling</strong>. Because of smartphones and laptops.</span></div>
+      <div class="script-line"><span class="spk spk-kim">KIM:</span><span>So we never really switch off, do we?</span></div>
+      <div class="script-line"><span class="spk spk-rob">ROB:</span><span>Exactly. That's exactly what Honoré is worried about.</span></div>
+      <div style="font-size:.73rem;color:var(--muted);margin-top:10px;font-style:italic">Modal verbs và phrases được highlight — đây là trọng tâm ngữ pháp của bài 2A.</div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+  <div class="exl"><div class="exn">3</div>Exercise 3a — Fill in the gaps (CD1 Track 9)</div>
+  <p class="ins"><span class="pt">a</span><strong>CD1 ▶ 9</strong> Listen again. Fill in the gaps with one or two words.</p>
+
+  <div class="fill-ex">
+    <div class="fill-ex-title">Điền 1–2 từ vào chỗ trống (từ bài nghe)</div>
+    <div id="gap-fill-list"></div>
+    <div style="display:flex;gap:8px;margin-top:12px">
+      <button class="btn btn-a" onclick="checkAllGap()">✅ Kiểm tra</button>
+      <button class="btn btn-o" onclick="revealAllGap()">👁 Đáp án</button>
+      <button class="btn btn-o" onclick="resetAllGap()">🔄 Làm lại</button>
+    </div>
+    <div class="score-box" id="gap-score"></div>
+  </div>
+
+  <div class="divider"></div>
+  <div class="exl"><div class="exn">3</div>Exercise 3b — Discussion</div>
+  <p class="ins"><span class="pt">b</span>Work in pairs. Do you agree with Carl Honoré that we all work too hard and should slow down? Why/Why not?</p>
+  <div class="convo-box">
+    <div class="convo-title">💬 Gợi ý phản hồi</div>
+    <div class="bubble-row"><div class="bubble">I completely agree. I work really long hours and I'm always exhausted.</div></div>
+    <div class="bubble-row right"><div class="bubble">I'm not sure. I think some people enjoy working hard. It depends on the job.</div></div>
+    <div class="bubble-row"><div class="bubble">That's true. But everyone should be allowed to have a proper break.</div></div>
+  </div>
+</div>
+
+<!-- TAB: GRAMMAR -->
+<div class="tab-pane" id="tab-grammar">
+  <div class="sec-h">Help with Grammar</div>
+  <div class="sec-sub">be able to, be supposed to, be allowed to, modal verbs (1) · GRAMMAR 2.1 → p130</div>
+
+  <div class="exl"><div class="exn">4</div>Exercise 4a — Grammar rules</div>
+  <p class="ins"><span class="pt">a</span>Look at the sentences in 3a. Complete these rules with the verb forms in bold. Use the infinitive form if necessary.</p>
+
+  <div class="rule-box">
+    <div class="rule-tag">⬤⬤⬤ HELP WITH GRAMMAR — GRAMMAR 2.1</div>
+    <div class="rule-item"><div class="rule-dot">•</div><div><strong>can</strong> and <strong>be able to</strong> → nói về khả năng hoặc khả năng xảy ra:<br><div class="ex-box">People can get their best ideas when they're doing nothing.<br>We're able to continue working when we're travelling.</div></div></div>
+    <div class="rule-item"><div class="rule-dot">•</div><div><strong>be supposed to</strong> → nói về điều được kỳ vọng/yêu cầu:<br><div class="ex-box">In the UK people are supposed to have a break every four hours.</div></div></div>
+    <div class="rule-item"><div class="rule-dot">•</div><div><strong>be allowed to</strong> and <strong>can</strong> → nói về quyền làm gì:<br><div class="ex-box">Some French employees are allowed to begin their weekend at 3pm on Thursday.</div></div></div>
+    <div class="rule-item"><div class="rule-dot">•</div><div><strong>must</strong> and <strong>have to</strong> → nói điều gì là cần thiết/bắt buộc:<br><div class="ex-box">Rob says he must take more time off work.<br>Lots of people have to take work home.</div></div></div>
+    <div class="rule-item"><div class="rule-dot">•</div><div><strong>should</strong> and <strong>ought to</strong> → đưa ra lời khuyên:<br><div class="ex-box">Honoré says people should only work 35 hours a week.<br>We ought to spend more time with our families.</div></div></div>
+  </div>
+
+  <div class="exl"><div class="exn">4</div>Exercise 4b — Grammar questions</div>
+  <p class="ins"><span class="pt">b</span>Look again at the verb forms in bold in 3a. Answer these questions:</p>
+  <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:16px">
+    <div class="rule-box" style="padding:12px">
+      <div style="font-size:.83rem;font-weight:600;margin-bottom:8px">1. Do we use the infinitive or verb+ing after these verb forms?</div>
+      <div class="ok-box">✅ We use the <strong>infinitive</strong> (without to after modal verbs: must, should, can; with to after be able to, be supposed to, be allowed to, ought to, have to)</div>
+    </div>
+    <div class="rule-box" style="padding:12px">
+      <div style="font-size:.83rem;font-weight:600;margin-bottom:8px">2. Which verb forms include 'to'?</div>
+      <div class="ok-box">✅ be able <strong>to</strong>, be supposed <strong>to</strong>, be allowed <strong>to</strong>, ought <strong>to</strong>, have <strong>to</strong></div>
+    </div>
+    <div class="rule-box" style="padding:12px">
+      <div style="font-size:.83rem;font-weight:600;margin-bottom:8px">3. How do we make these verb forms negative?</div>
+      <div class="ok-box">✅ can't / isn't/aren't able to / isn't/aren't supposed to / isn't/aren't allowed to / mustn't / don't/doesn't have to / shouldn't / ought not to</div>
+    </div>
+  </div>
+
+  <div class="exl"><div class="exn">4</div>Exercise 4c — mustn't vs don't have to</div>
+  <p class="ins"><span class="pt">c</span>Look at these sentences. Complete the rules with <em>mustn't</em> or <em>don't have to</em>.</p>
+
+  <div class="rule-box">
+    <div style="font-size:.83rem;margin-bottom:10px;color:var(--dim)">From the listening: conversations at the office…</div>
+    <div class="err-box" style="margin-bottom:8px">❌ <em>You mustn't send personal emails from the office. You can only send work emails.</em><br><span style="font-size:.75rem;color:var(--muted)">→ mustn't = NOT allowed (prohibited)</span></div>
+    <div class="ok-box" style="margin-bottom:12px">✅ <em>You don't have to wear a suit to work, but you can if you want to.</em><br><span style="font-size:.75rem;color:var(--muted)">→ don't have to = not necessary (but you can if you want)</span></div>
+    <div class="rule-item"><div class="rule-dot">•</div><div>We use <strong>don't have to</strong> to say something isn't necessary.</div></div>
+    <div class="rule-item"><div class="rule-dot">•</div><div>We use <strong>mustn't</strong> to say something is not allowed.</div></div>
+    <div class="tip-box"><strong>Phân biệt quan trọng:</strong><br>
+    <em>You <strong>mustn't</strong> be late.</em> → BẮT BUỘC phải đúng giờ (vi phạm sẽ bị phạt)<br>
+    <em>You <strong>don't have to</strong> come early.</em> → Đến sớm không cần thiết, nhưng bạn có thể nếu muốn</div>
+  </div>
+
+  <div class="divider"></div>
+  <div class="exl"><div class="exn">5</div>Exercise 5a — Kim and Rob: Choose the correct verb forms</div>
+  <p class="ins"><span class="pt">a</span>Kim (K) and Rob (R) are talking after the radio programme. Read their conversation and choose the correct verb forms. Who has the best working conditions?</p>
+
+  <div id="choose-verb-list" style="margin-bottom:16px"></div>
+  <div style="display:flex;gap:8px;margin-bottom:16px">
+    <button class="btn btn-a" onclick="revealChooseVerb()">👁 Xem đáp án</button>
+    <button class="btn btn-o" onclick="resetChooseVerb()">🔄 Làm lại</button>
+  </div>
+
+  <div class="audio-box">
+    <div class="audio-hdr">
+      <div class="cd-badge">CD1 ▶ Track 10</div>
+      <div style="flex:1"><div style="font-size:.86rem;font-weight:600">CD1 ▶ 10 Listen and check</div></div>
+      <button class="play-btn" id="play-10" onclick="toggleAudio('10')">▶</button>
+    </div>
+    <div style="font-size:.72rem;color:var(--muted)">⚠️ File: <code>cd1_track10.mp3</code></div>
+    <div class="prog-bar"><div class="prog-fill" id="prog-10"></div></div>
+    <audio id="audio-10" src="audio/cd1_track10.mp3" ontimeupdate="updateProg('10')" onended="audioEnd('10')"></audio>
+  </div>
+
+  <div class="audio-box" style="margin-top:10px">
+    <div class="audio-hdr">
+      <div class="cd-badge">CD1 ▶ Track 11</div>
+      <div style="flex:1"><div style="font-size:.86rem;font-weight:600">PRONUNCIATION — CD1 ▶ 11</div><div style="font-size:.75rem;color:var(--muted)">Listen and practise. Copy the stress: <em>Do you think you <u>should</u> re<u>lax</u> <u>more</u>?</em></div></div>
+      <button class="play-btn" id="play-11" onclick="toggleAudio('11')">▶</button>
+    </div>
+    <div class="prog-bar"><div class="prog-fill" id="prog-11"></div></div>
+    <audio id="audio-11" src="audio/cd1_track11.mp3" ontimeupdate="updateProg('11')" onended="audioEnd('11')"></audio>
+  </div>
+</div>
+
+<!-- TAB: GET READY -->
+<div class="tab-pane" id="tab-getready">
+  <div class="sec-h">Get ready … Get it right!</div>
+  <div class="sec-sub">Production — modal verbs in real-life context</div>
+
+  <div class="exl"><div class="exn">7</div>Exercise 7 — Write sentences about rules</div>
+  <p class="ins">Write sentences describing the rules at the place where you work, your school or university. Use language from 4a and these ideas:</p>
+  <div class="note-box" style="margin-bottom:14px">
+    <strong>Topics:</strong> what you can wear · what time you start and finish · using mobiles/internet · food and drink · how to behave · breaks and holidays · getting work done on time · any other ideas<br><br>
+    <em>Examples:</em><br>
+    <em>In my company all the managers have to wear a suit and tie.</em><br>
+    <em>At my school we're allowed to wear what we want.</em>
+  </div>
+
+  <div class="gr-box">
+    <p style="font-size:.83rem;color:var(--dim);margin-bottom:12px">Viết 6 câu về nơi bạn làm việc/học tập:</p>
+    <div class="list-input-wrap" id="rules-wrap"></div>
+    <button class="btn btn-o" onclick="saveRules()" style="margin-top:10px">💾 Lưu</button>
+  </div>
+
+  <div class="divider"></div>
+  <div class="exl"><div class="exn">8</div>Exercise 8a — Compare sentences</div>
+  <p class="ins"><span class="pt">a</span>Work in groups. Compare sentences. Do you agree with your partners' ideas?</p>
+  <div class="convo-box">
+    <div class="convo-title">💬 Ví dụ thảo luận</div>
+    <div class="bubble-row"><div class="bubble">In my office, we're not allowed to use social media during working hours.</div></div>
+    <div class="bubble-row right"><div class="bubble">Really? We can use it at my company, but we're supposed to finish our work first.</div></div>
+    <div class="bubble-row"><div class="bubble">That sounds fair. Do you have to wear formal clothes?</div></div>
+    <div class="bubble-row right"><div class="bubble">No, we don't have to. It's smart casual. Which place has the best rules, do you think?</div></div>
+  </div>
+</div>
+
+<!-- TAB: WORKBOOK -->
+<div class="tab-pane" id="tab-workbook">
+  <div class="sec-h">Workbook 2A — Slow down!</div>
+  <div class="sec-sub">Language Summary 2 → p129 · Workbook p10</div>
+
+  <div class="wb-tag">📓 VOCABULARY 2.1 — Collocations: work</div>
+  <div class="exl"><div class="exn">1</div>WB Exercise 1 — Put sentences a–j in order</div>
+  <p class="ins">Put sentences a–j in order to make the paragraph "Do you live to work … or work to live?"</p>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px" id="order-grid"></div>
+  <button class="btn btn-a" onclick="revealOrder()">👁 Xem đáp án (thứ tự đúng)</button>
+  <div id="order-ans" style="display:none;margin-top:12px" class="fb ok"></div>
+
+  <div class="divider"></div>
+  <div class="wb-tag">📓 GRAMMAR 2.1 — be able to, supposed to, allowed to, modal verbs</div>
+  <div class="exl"><div class="exn">2</div>WB Exercise 2 — Read and choose the correct verb form</div>
+  <p class="ins">Read the conversation and choose the correct verb form.</p>
+  <div id="wb2-list" style="margin-bottom:14px"></div>
+  <div style="display:flex;gap:8px;margin-bottom:14px">
+    <button class="btn btn-a" onclick="revealWB2()">👁 Đáp án</button>
+    <button class="btn btn-o" onclick="resetWB2()">🔄 Làm lại</button>
+  </div>
+
+  <div class="divider"></div>
+  <div class="exl"><div class="exn">3</div>WB Exercise 3 — Rewrite with words in brackets</div>
+  <p class="ins">Rewrite these sentences with the words in brackets.</p>
+  <div class="fill-ex">
+    <div class="fill-ex-title">Viết lại câu dùng cụm từ cho trong ngoặc</div>
+    <div id="wb3-list"></div>
+    <div style="display:flex;gap:8px;margin-top:12px">
+      <button class="btn btn-a" onclick="checkAllWB3()">✅ Kiểm tra</button>
+      <button class="btn btn-o" onclick="revealAllWB3()">👁 Đáp án</button>
+      <button class="btn btn-o" onclick="resetWB3()">🔄 Làm lại</button>
+    </div>
+    <div class="score-box" id="wb3-score"></div>
+  </div>
+</div>
+
+<!-- TAB: LANGUAGE SUMMARY -->
+<div class="tab-pane" id="tab-langsummary">
+  <div class="sec-h">Language Summary 2A</div>
+  <div class="sec-sub">VOCABULARY 2.1 + GRAMMAR 2.1 · p129–130</div>
+
+  <div class="wb-tag">📗 VOCABULARY 2.1 — Collocations (1): work (p129)</div>
+  <div id="ls-coll-grid" class="coll-grid" style="margin-bottom:20px"></div>
+
+  <div class="wb-tag">📗 GRAMMAR 2.1 — Modal verbs (p130)</div>
+  <table class="tbl">
+    <thead><tr><th>Form</th><th>Use</th><th>Example</th><th>Negative</th></tr></thead>
+    <tbody>
+      <tr><td>can / be able to</td><td>khả năng, có thể</td><td><em>We're able to work from home.</em></td><td>can't / isn't able to</td></tr>
+      <tr><td>be supposed to</td><td>được kỳ vọng làm</td><td><em>You're supposed to start at 9.</em></td><td>isn't supposed to</td></tr>
+      <tr><td>be allowed to / can</td><td>được phép làm</td><td><em>We're allowed to take breaks.</em></td><td>isn't allowed to / can't</td></tr>
+      <tr><td>must / have to</td><td>bắt buộc, cần thiết</td><td><em>I have to meet this deadline.</em></td><td>mustn't / don't have to*</td></tr>
+      <tr><td>should / ought to</td><td>lời khuyên</td><td><em>You should work fewer hours.</em></td><td>shouldn't / ought not to</td></tr>
+    </tbody>
+  </table>
+  <div class="tip-box" style="margin-top:10px"><strong>*mustn't ≠ don't have to:</strong><br>
+  <strong>mustn't</strong> = bị cấm, không được phép: <em>You mustn't use your phone in meetings.</em><br>
+  <strong>don't have to</strong> = không cần thiết (nhưng có thể nếu muốn): <em>You don't have to stay late.</em></div>
+</div>
+
+</div>
+
+<script>
+/* ═══ DATA ═══ */
+const COLL_DATA = [
+  {verb:'take',wrong:'be',phrase:'work home',ipa:'/teɪk wɜːk həʊm/',vi:'mang việc về nhà',ex:'I often take work home at the weekends.'},
+  {verb:'have',wrong:'be',phrase:'time to relax',ipa:'/hæv taɪm tə rɪˈlæks/',vi:'có thời gian thư giãn',ex:'I never have time to relax during the week.'},
+  {verb:'work',wrong:'get',phrase:'long hours',ipa:'/wɜːk lɒŋ aʊəz/',vi:'làm việc nhiều giờ',ex:'He works long hours — often 12 hours a day.'},
+  {verb:'work',wrong:'spend',phrase:'overtime',ipa:'/wɜːk ˈəʊvətaɪm/',vi:'làm thêm giờ',ex:'I had to work overtime to finish the project.'},
+  {verb:'be',wrong:'get',phrase:'a workaholic',ipa:'/biː ə ˌwɜːkəˈhɒlɪk/',vi:'là người nghiện công việc',ex:'Chris is a real workaholic — he never stops.'},
+  {verb:'meet',wrong:'take',phrase:'deadlines',ipa:'/miːt ˈdedlaɪnz/',vi:'kịp hạn chót',ex:'Jessica always meets her deadlines.'},
+  {verb:'take',wrong:'be',phrase:'time off work',ipa:'/teɪk taɪm ɒf wɜːk/',vi:'nghỉ làm',ex:'You should take some time off work.'},
+  {verb:'be',wrong:'have',phrase:'under pressure',ipa:'/biː ˌʌndə ˈpreʃə/',vi:'chịu áp lực',ex:"I'm always under a lot of pressure at work."},
+  {verb:'spend',wrong:'leave',phrase:'a lot of time at work',ipa:'/spend ə lɒt əv taɪm ət wɜːk/',vi:'dành nhiều thời gian ở chỗ làm',ex:'She spends a lot of time at work.'},
+  {verb:'have',wrong:'be',phrase:'good working conditions',ipa:'/hæv ɡʊd ˈwɜːkɪŋ kənˈdɪʃənz/',vi:'có điều kiện làm việc tốt',ex:'Working conditions have improved a lot.'},
+];
+
+const GUESS_DATA = [
+  {s:'People in ___/Germany spend 15% less time at work now than in 1980.',ans:'Germany',opts:['China','Germany']},
+  {s:'Some companies in ___/Italy give their employees three-day weekends.',ans:'France',opts:['France','Italy']},
+  {s:'___/Americans work 350 hours a year more than Europeans/Americans.',ans:'Americans',opts:['Europeans','Americans']},
+  {s:'20% of British people work over 50/___ hours a week.',ans:'60',opts:['50','60']},
+  {s:'30/___% of people in the UK said they didn\'t take all their paid holiday.',ans:'60',opts:['30','60']},
+  {s:'In German/Japanese there\'s a word that means "death from working too hard".',ans:'Japanese',opts:['German','Japanese']},
+];
+
+const GAP_DATA = [
+  {s:"Rob says he <strong>must</strong> take more time off ___.",ans:"work"},
+  {s:"Honoré says people <strong>should</strong> only work ___ hours a week.",ans:"35"},
+  {s:"Honoré believes we <strong>ought to</strong> spend more time with ___.",ans:"our families"},
+  {s:"Some French employees <strong>are allowed to</strong> begin their weekend at ___ on Thursday.",ans:"3pm"},
+  {s:"People <strong>can</strong> get their best ___ when they're doing nothing.",ans:"ideas"},
+  {s:"In some American companies, employees <strong>can</strong> ___ whenever they want.",ans:"sleep"},
+  {s:"In the UK people <strong>are supposed to</strong> have a break every ___.",ans:"4 hours"},
+  {s:"Kim says that lots of people <strong>have to</strong> take ___ home.",ans:"work"},
+  {s:"Rob says we're <strong>able to</strong> continue working when we're ___.",ans:"travelling"},
+];
+
+const CHOOSE_VERB_DATA = [
+  {s:'K: So, do you think you',opts:['should','are allowed to'],ans:0,exp:'should = lời khuyên'},
+  {s:'R: Absolutely! I',opts:["'m able to","must"],ans:1,exp:'must = bắt buộc (quyết tâm)'},
+  {s:'K:',opts:['Are you able to','Should you'],ans:0,exp:'able to = có thể (khả năng)'},
+  {s:"R: No, not really. I",opts:["'m supposed to","can"],ans:0,exp:'supposed to = quy định buộc phải'},
+  {s:'K: I',opts:["don't have to","mustn't"],ans:0,exp:"don't have to = không cần thiết"},
+  {s:'K: Are you',opts:['allowed to','supposed to'],ans:0,exp:'allowed to = có phép làm'},
+  {s:'K: Yes, we',opts:['ought to','can'],ans:1,exp:'can = được phép'},
+  {s:'R: Oh, we',opts:['have to','are able to'],ans:0,exp:'have to = bắt buộc'},
+  {s:'K: Perhaps you',opts:['ought to','are supposed to'],ans:0,exp:'ought to = lời khuyên'},
+  {s:"R: Anyway, I",opts:['have to','can'],ans:0,exp:'have to = cần thiết'},
+  {s:"I",opts:["mustn't","don't have to"],ans:0,exp:'mustn\'t = không được phép'},
+];
+
+const ORDER_SENTENCES = [
+  {id:'a',num:1,text:'Think for a minute. Do you spend more than'},
+  {id:'b',num:9,text:'under pressure at work. But working'},
+  {id:'c',num:3,text:'overtime? Of course, everyone has to meet'},
+  {id:'d',num:7,text:'time to relax. Find time to plan a holiday and take'},
+  {id:'e',num:5,text:'very long hours is an early sign you might be'},
+  {id:'f',num:8,text:'work home with you or regularly work'},
+  {id:'g',num:4,text:'some time off work. It\'s good for you!'},
+  {id:'h',num:2,text:'50 hours at work every week? Do you often take'},
+  {id:'i',num:6,text:'a workaholic. Everyone needs to have'},
+  {id:'j',num:10,text:'deadlines and sometimes everyone is'},
+];
+
+const WB2_CONV = [
+  {spk:'KAY',text:'Why? You 1(don\'t have to / mustn\'t) take work home like me.',ans:0,exp:"don't have to = không cần thiết"},
+  {spk:'JAKE',text:'I know, but I 2(\'m able to / have to) work long hours.',ans:1,exp:'have to = bắt buộc'},
+  {spk:'JAKE',text:'And we 3(\'re not allowed / mustn\'t) to be paid overtime.',ans:0,exp:'not allowed to = không được phép'},
+  {spk:'KAY',text:'You 4(ought / \'re supposed) to speak to your boss about that.',ans:1,exp:'supposed to = nên theo quy định'},
+  {spk:'JAKE',text:'I 5(should / can) ask him about a promotion, too.',ans:0,exp:'should = lời khuyên'},
+  {spk:'KAY',text:'6(Are you allowed / Ought you) to work flexible hours?',ans:0,exp:'be allowed to = có phép không?'},
+  {spk:'JAKE',text:'Yes, but we 7(\'re allowed / \'re supposed) to be at work between ten and four.',ans:1,exp:'supposed to = quy định phải ở'},
+  {spk:'KAY',text:'8(Can / Must) you work at home?',ans:0,exp:'can = có thể không? (permission)'},
+  {spk:'JAKE',text:'We 9(\'re allowed to / must) work at home — but we have to ask our manager first.',ans:0,exp:'allowed to = được phép'},
+  {spk:'JAKE',text:'But I won\'t 10(be able to / can) work at home until I get my own flat.',ans:0,exp:'be able to (sau will)'},
+  {spk:'KAY',text:'Well, you 11(must / \'re able to) start saving!',ans:0,exp:'must = lời khuyên mạnh'},
+  {spk:'KAY',text:'Most work isn\'t interesting. You 12(can / ought) to know that by now!',ans:1,exp:'ought to = nên biết rồi'},
+];
+
+const WB3_DATA = [
+  {s:'My advice is to ask for a promotion. (should)',ans:'You should ask for a promotion.',hint:'should + infinitive'},
+  {s:"If I were you, I'd take a week off. (ought)",ans:'You ought to take a week off.',hint:'ought to + infinitive'},
+  {s:"I can't meet you tonight. (able to)",ans:"I'm not able to meet you tonight.",hint:"be able to"},
+  {s:"It's against the rules to work at weekends. (allowed)",ans:"You aren't allowed to work at weekends.",hint:"be allowed to"},
+  {s:"It isn't necessary to wear a tie. (have to)",ans:"You don't have to wear a tie.",hint:"don't have to"},
+  {s:"It's necessary to arrive before 9 a.m. (must)",ans:"You must arrive before 9 a.m.",hint:'must'},
+  {s:"The company should give us holiday pay. (supposed to)",ans:"The company is supposed to give us holiday pay.",hint:'be supposed to'},
+  {s:"You aren't allowed to leave before 4 p.m. (mustn't)",ans:"You mustn't leave before 4 p.m.",hint:'mustn\'t'},
+];
+
+/* ═══ BUILD UI ═══ */
+function buildVerbChooseList(){
+  const wrap=document.getElementById('verb-choose-list');if(!wrap)return;
+  wrap.innerHTML='';
+  COLL_DATA.forEach((item,i)=>{
+    const d=document.createElement('div');
+    d.innerHTML=`<div class="fill-row">
+      <div class="fill-n">${i+1}</div>
+      <div class="fill-body">
+        <div class="fill-s"><em>${item.verb}/${item.wrong}</em> ${item.phrase}</div>
+        <div class="mc-opts" id="vc-${i}">
+          <button class="mc-opt" onclick="checkVC(this,0,${item.verb===COLL_DATA[i].verb?0:1},'vc-${i}','vcfb-${i}','${item.verb}')">
+            <span class="mc-lbl">A</span>${item.verb}</button>
+          <button class="mc-opt" onclick="checkVC(this,1,${item.verb===COLL_DATA[i].verb?0:1},'vc-${i}','vcfb-${i}','${item.verb}')">
+            <span class="mc-lbl">B</span>${item.wrong}</button>
+        </div>
+        <div class="fb" id="vcfb-${i}"></div>
+      </div></div>`;
+    wrap.appendChild(d);
+  });
+}
+
+function checkVC(btn,sel,correct,grpId,fbId,correctVerb){
+  document.querySelectorAll(`#${grpId} .mc-opt`).forEach(b=>b.disabled=true);
+  const ok=sel===correct;
+  btn.classList.add(ok?'ok2':'err2');
+  if(!ok)document.querySelectorAll(`#${grpId} .mc-opt`).forEach((b,i)=>{if(i===correct)b.classList.add('ok2');});
+  const fb=document.getElementById(fbId);
+  if(fb){fb.textContent=ok?`✅ Correct: "${correctVerb}"`:`❌ Wrong. Correct: "${correctVerb}"`;fb.className=`fb ${ok?'ok':'err'}`;}
+}
+function revealVerbChoose(){
+  COLL_DATA.forEach((_,i)=>{
+    const correct=0;
+    document.querySelectorAll(`#vc-${i} .mc-opt`).forEach((b,oi)=>{b.disabled=true;if(oi===correct)b.classList.add('ok2');});
+    const fb=document.getElementById(`vcfb-${i}`);
+    if(fb){fb.textContent=`👁 "${COLL_DATA[i].verb}"`;fb.className='fb ok';}
+  });
+}
+function resetVerbChoose(){
+  COLL_DATA.forEach((_,i)=>{
+    document.querySelectorAll(`#vc-${i} .mc-opt`).forEach(b=>{b.disabled=false;b.classList.remove('ok2','err2');});
+    const fb=document.getElementById(`vcfb-${i}`);if(fb)fb.className='fb';
+  });
+}
+
+function buildCollTable(){
+  ['coll-grid','ls-coll-grid'].forEach(id=>{
+    const grid=document.getElementById(id);if(!grid)return;
+    grid.innerHTML='';
+    COLL_DATA.forEach(item=>{
+      const row=document.createElement('div');row.className='coll-row';
+      row.innerHTML=`<div><div class="coll-verb">${item.verb}</div></div>
+      <div><div class="coll-phrase">${item.phrase} <span style="font-family:monospace;font-size:.72rem;color:var(--teal)">${item.ipa}</span></div>
+      <div class="coll-vi">🇻🇳 ${item.vi}</div>
+      <div class="coll-ex">"${item.ex}"</div></div>`;
+      grid.appendChild(row);
+    });
+  });
+}
+function toggleColl(){const el=document.getElementById('coll-table');if(el)el.style.display=el.style.display==='none'?'block':'none';}
+
+function buildPeopleWrap(){
+  const wrap=document.getElementById('people-wrap');if(!wrap)return;
+  const saved=JSON.parse(localStorage.getItem('f2f_2a_people')||'[]');
+  wrap.innerHTML='';
+  for(let i=0;i<3;i++){
+    const row=document.createElement('div');row.className='list-row';
+    row.innerHTML=`<div class="list-num">${i+1}</div>
+    <input class="list-inp" id="p-${i}" placeholder="Name: e.g. My friend Mai — works long hours, under a lot of pressure" value="${saved[i]||''}">`;
+    wrap.appendChild(row);
+  }
+}
+function savePeople(){
+  const d=[];for(let i=0;i<3;i++)d.push(document.getElementById(`p-${i}`)?.value||'');
+  localStorage.setItem('f2f_2a_people',JSON.stringify(d));showToast('💾 Đã lưu!');}
+
+function buildGuessList(){
+  const wrap=document.getElementById('guess-list');if(!wrap)return;
+  wrap.innerHTML='';
+  GUESS_DATA.forEach((item,i)=>{
+    const d=document.createElement('div');d.className='fill-row';
+    d.innerHTML=`<div class="fill-n">${i+1}</div>
+    <div class="fill-body">
+      <div class="fill-s">${item.s}</div>
+      <div class="mc-opts" id="gmc-${i}">
+        ${item.opts.map((opt,oi)=>`<button class="mc-opt" onclick="checkMCG(this,${oi},'${item.ans}','gmc-${i}','gmcfb-${i}')">
+          <span class="mc-lbl">${String.fromCharCode(65+oi)}</span>${opt}</button>`).join('')}
+      </div>
+      <div class="fb" id="gmcfb-${i}"></div>
+    </div>`;
+    wrap.appendChild(d);
+  });
+}
+function checkMCG(btn,sel,ans,grpId,fbId){
+  document.querySelectorAll(`#${grpId} .mc-opt`).forEach(b=>b.disabled=true);
+  const correct=document.querySelectorAll(`#${grpId} .mc-opt`);
+  const ok=btn.textContent.trim()===ans;
+  btn.classList.add(ok?'ok2':'err2');
+  if(!ok)document.querySelectorAll(`#${grpId} .mc-opt`).forEach(b=>{if(b.textContent.trim()===ans)b.classList.add('ok2');});
+  const fb=document.getElementById(fbId);
+  if(fb){fb.textContent=ok?`✅ Correct: "${ans}"`:`❌ Wrong. Answer: "${ans}"`;fb.className=`fb ${ok?'ok':'err'}`;}
+}
+function revealGuess(){GUESS_DATA.forEach((_,i)=>{document.querySelectorAll(`#gmc-${i} .mc-opt`).forEach(b=>{b.disabled=true;if(b.textContent.trim()===GUESS_DATA[i].ans)b.classList.add('ok2');});const fb=document.getElementById(`gmcfb-${i}`);if(fb){fb.textContent=`👁 "${GUESS_DATA[i].ans}"`;fb.className='fb ok';}});}
+function resetGuess(){GUESS_DATA.forEach((_,i)=>{document.querySelectorAll(`#gmc-${i} .mc-opt`).forEach(b=>{b.disabled=false;b.classList.remove('ok2','err2');});const fb=document.getElementById(`gmcfb-${i}`);if(fb)fb.className='fb';});}
+
+function buildGapFill(){
+  const wrap=document.getElementById('gap-fill-list');if(!wrap)return;wrap.innerHTML='';
+  GAP_DATA.forEach((item,i)=>{
+    const d=document.createElement('div');d.className='fill-row';
+    d.innerHTML=`<div class="fill-n">${i+1}</div>
+    <div class="fill-body">
+      <div class="fill-s">${item.s}</div>
+      <div class="fill-ctrl">
+        <input class="fi" id="gf-${i}" placeholder="1–2 words…" style="min-width:120px">
+        <button class="chk" onclick="checkGap(${i},'${item.ans.replace(/'/g,"\\'")}')">Check</button>
+        <button class="rev" onclick="revealGap(${i},'${item.ans.replace(/'/g,"\\'")}')">Đáp án</button>
+        <button class="spkm" onclick="spk('${item.ans}')">🔊</button>
+      </div>
+      <div class="fb" id="gfb-${i}"></div>
+    </div>`;
+    wrap.appendChild(d);
+  });
+}
+function checkGap(i,ans){
+  const inp=document.getElementById(`gf-${i}`);const fb=document.getElementById(`gfb-${i}`);
+  if(!inp||!fb)return;
+  const val=inp.value.trim().toLowerCase();
+  const ok=val===ans.toLowerCase()||ans.toLowerCase().includes(val)&&val.length>1;
+  inp.className=`fi ${ok?'ok':'err'}`;
+  fb.textContent=ok?`✅ "${ans}"`:`❌ Answer: "${ans}"`;fb.className=`fb ${ok?'ok':'err'}`;
+}
+function revealGap(i,ans){const inp=document.getElementById(`gf-${i}`);const fb=document.getElementById(`gfb-${i}`);if(inp){inp.value=ans;inp.className='fi ok';}if(fb){fb.textContent=`👁 "${ans}"`;fb.className='fb ok';}}
+function checkAllGap(){let c=0;GAP_DATA.forEach((_,i)=>{checkGap(i,GAP_DATA[i].ans);if(document.getElementById(`gf-${i}`)?.classList.contains('ok'))c++;});showScore('gap-score',c,GAP_DATA.length);}
+function revealAllGap(){GAP_DATA.forEach((_,i)=>revealGap(i,GAP_DATA[i].ans));}
+function resetAllGap(){GAP_DATA.forEach((_,i)=>{const inp=document.getElementById(`gf-${i}`);const fb=document.getElementById(`gfb-${i}`);if(inp){inp.value='';inp.className='fi';}if(fb)fb.className='fb';});document.getElementById('gap-score').className='score-box';}
+
+function buildChooseVerbList(){
+  const wrap=document.getElementById('choose-verb-list');if(!wrap)return;
+  const spkColors=['spk-kim','spk-rob','spk-kim','spk-rob','spk-kim','spk-rob','spk-kim','spk-rob','spk-kim','spk-rob','spk-rob'];
+  const speakers=['K','R','K','R','K','R','K','R','K','R','R'];
+  wrap.innerHTML='';
+  CHOOSE_VERB_DATA.forEach((item,i)=>{
+    const d=document.createElement('div');
+    d.innerHTML=`<div class="fill-row">
+      <div class="fill-n" style="background:none;border:none;font-size:.75rem;font-weight:700" class="${spkColors[i]}">${speakers[i]}:</div>
+      <div class="fill-body">
+        <div class="fill-s">${item.s} <em>[choose verb form]</em></div>
+        <div class="mc-opts" id="cv-${i}">
+          ${item.opts.map((opt,oi)=>`<button class="mc-opt" onclick="checkMCG2(this,${oi},${item.ans},'cv-${i}','cvfb-${i}','${item.exp.replace(/'/g,"\\'")}')">
+            <span class="mc-lbl">${String.fromCharCode(65+oi)}</span>${opt}</button>`).join('')}
+        </div>
+        <div class="fb" id="cvfb-${i}"></div>
+      </div></div>`;
+    wrap.appendChild(d);
+  });
+}
+function checkMCG2(btn,sel,ans,grpId,fbId,exp){
+  document.querySelectorAll(`#${grpId} .mc-opt`).forEach(b=>b.disabled=true);
+  const ok=sel===ans;
+  btn.classList.add(ok?'ok2':'err2');
+  if(!ok)document.querySelectorAll(`#${grpId} .mc-opt`).forEach((b,i)=>{if(i===ans)b.classList.add('ok2');});
+  const fb=document.getElementById(fbId);
+  if(fb){fb.textContent=ok?`✅ Correct — ${exp}`:`❌ Wrong. Answer: option ${String.fromCharCode(65+ans)} — ${exp}`;fb.className=`fb ${ok?'ok':'err'}`;}
+}
+function revealChooseVerb(){CHOOSE_VERB_DATA.forEach((_,i)=>{const ans=CHOOSE_VERB_DATA[i].ans;document.querySelectorAll(`#cv-${i} .mc-opt`).forEach((b,oi)=>{b.disabled=true;if(oi===ans)b.classList.add('ok2');});const fb=document.getElementById(`cvfb-${i}`);if(fb){fb.textContent=`👁 ${String.fromCharCode(65+ans)}: ${CHOOSE_VERB_DATA[i].opts[ans]}`;fb.className='fb ok';}});}
+function resetChooseVerb(){CHOOSE_VERB_DATA.forEach((_,i)=>{document.querySelectorAll(`#cv-${i} .mc-opt`).forEach(b=>{b.disabled=false;b.classList.remove('ok2','err2');});const fb=document.getElementById(`cvfb-${i}`);if(fb)fb.className='fb';});}
+
+function buildRulesWrap(){
+  const wrap=document.getElementById('rules-wrap');if(!wrap)return;
+  const saved=JSON.parse(localStorage.getItem('f2f_2a_rules')||'[]');
+  wrap.innerHTML='';
+  for(let i=0;i<6;i++){
+    const row=document.createElement('div');row.className='list-row';
+    row.innerHTML=`<div class="list-num">${i+1}</div>
+    <input class="list-inp" id="r-${i}" placeholder="e.g. At my office, we have to wear formal clothes." value="${saved[i]||''}">`;
+    wrap.appendChild(row);
+  }
+}
+function saveRules(){const d=[];for(let i=0;i<6;i++)d.push(document.getElementById(`r-${i}`)?.value||'');localStorage.setItem('f2f_2a_rules',JSON.stringify(d));showToast('💾 Đã lưu!');}
+
+function buildOrderGrid(){
+  const grid=document.getElementById('order-grid');if(!grid)return;
+  const shuffled=[...ORDER_SENTENCES].sort(()=>Math.random()-.5);
+  grid.innerHTML=shuffled.map(item=>`
+    <div style="background:var(--bg2);border:1px solid var(--border);border-radius:var(--r2);padding:10px 12px;font-size:.82rem">
+      <div style="font-size:.7rem;font-weight:700;color:var(--muted);margin-bottom:4px">Sentence ${item.id}:</div>
+      <div>${item.text}</div>
+      <div style="margin-top:6px;display:flex;align-items:center;gap:6px">
+        <span style="font-size:.76rem;color:var(--dim)">Order:</span>
+        <input class="fi" id="ord-${item.id}" placeholder="#" style="width:50px;min-width:unset">
+      </div>
+    </div>`).join('');
+}
+function revealOrder(){
+  ORDER_SENTENCES.forEach(item=>{const inp=document.getElementById(`ord-${item.id}`);if(inp){inp.value=item.num;inp.className='fi ok';}});
+  const ans=document.getElementById('order-ans');
+  if(ans){ans.style.display='block';ans.textContent='✅ Đáp án: a=1, b=9, c=3, d=7, e=5, f=8, g=4, h=2, i=6, j=10. Đọc đoạn theo thứ tự: a-h-b-c-j-e-i-d-g-f';}
+}
+
+function buildWB2List(){
+  const wrap=document.getElementById('wb2-list');if(!wrap)return;
+  const colors=['spk-kim','spk-rob','spk-rob','spk-kim','spk-rob','spk-kim','spk-rob','spk-kim','spk-rob','spk-rob','spk-kim','spk-kim'];
+  wrap.innerHTML='';
+  WB2_CONV.forEach((item,i)=>{
+    const d=document.createElement('div');d.className='fill-row';
+    d.innerHTML=`<div class="fill-n" style="font-size:.72rem;font-weight:700;${item.spk==='KAY'?'color:#60A5FA':'color:#34D399'}">${item.spk}</div>
+    <div class="fill-body">
+      <div class="fill-s">${item.text}</div>
+      <div class="mc-opts" id="wb2mc-${i}">
+        ${item.opts.map((opt,oi)=>`<button class="mc-opt" onclick="checkMCG2(this,${oi},${item.ans},'wb2mc-${i}','wb2fb-${i}','${item.exp}')">
+          <span class="mc-lbl">${String.fromCharCode(65+oi)}</span>${opt}</button>`).join('')}
+      </div>
+      <div class="fb" id="wb2fb-${i}"></div>
+    </div>`;
+    wrap.appendChild(d);
+  });
+}
+function revealWB2(){WB2_CONV.forEach((_,i)=>{const ans=WB2_CONV[i].ans;document.querySelectorAll(`#wb2mc-${i} .mc-opt`).forEach((b,oi)=>{b.disabled=true;if(oi===ans)b.classList.add('ok2');});const fb=document.getElementById(`wb2fb-${i}`);if(fb){fb.textContent=`👁 ${WB2_CONV[i].opts[ans]} — ${WB2_CONV[i].exp}`;fb.className='fb ok';}});}
+function resetWB2(){WB2_CONV.forEach((_,i)=>{document.querySelectorAll(`#wb2mc-${i} .mc-opt`).forEach(b=>{b.disabled=false;b.classList.remove('ok2','err2');});const fb=document.getElementById(`wb2fb-${i}`);if(fb)fb.className='fb';});}
+
+function buildWB3List(){
+  const wrap=document.getElementById('wb3-list');if(!wrap)return;wrap.innerHTML='';
+  WB3_DATA.forEach((item,i)=>{
+    const d=document.createElement('div');d.className='fill-row';
+    d.innerHTML=`<div class="fill-n">${i+1}</div>
+    <div class="fill-body">
+      <div class="fill-s">${item.s}</div>
+      <div class="fill-ctrl">
+        <input class="fi" id="wb3-${i}" placeholder="Rewrite…" style="min-width:260px;max-width:none;flex:1">
+        <button class="chk" onclick="checkWB3(${i})">Check</button>
+        <button class="rev" onclick="revealWB3item(${i})">Đáp án</button>
+      </div>
+      <div class="fb" id="wb3fb-${i}"><span style="font-size:.72rem;color:var(--muted)">Hint: ${item.hint}</span></div>
+    </div>`;
+    wrap.appendChild(d);
+  });
+}
+function checkWB3(i){
+  const inp=document.getElementById(`wb3-${i}`);const fb=document.getElementById(`wb3fb-${i}`);
+  if(!inp||!fb)return;
+  const val=inp.value.trim().toLowerCase().replace(/[.]/g,'');
+  const ans=WB3_DATA[i].ans.toLowerCase().replace(/[.]/g,'');
+  const words=ans.split(' ');
+  const matchCount=words.filter(w=>val.includes(w)).length;
+  const ok=matchCount>=words.length-1;
+  inp.className=`fi ${ok?'ok':'err'}`;
+  fb.textContent=ok?`✅ Correct: "${WB3_DATA[i].ans}"`:`❌ Expected: "${WB3_DATA[i].ans}"`;fb.className=`fb ${ok?'ok':'err'}`;
+}
+function revealWB3item(i){const inp=document.getElementById(`wb3-${i}`);const fb=document.getElementById(`wb3fb-${i}`);if(inp){inp.value=WB3_DATA[i].ans;inp.className='fi ok';}if(fb){fb.textContent=`👁 "${WB3_DATA[i].ans}"`;fb.className='fb ok';}}
+function checkAllWB3(){let c=0;WB3_DATA.forEach((_,i)=>{checkWB3(i);if(document.getElementById(`wb3-${i}`)?.classList.contains('ok'))c++;});showScore('wb3-score',c,WB3_DATA.length);}
+function revealAllWB3(){WB3_DATA.forEach((_,i)=>revealWB3item(i));}
+function resetWB3(){WB3_DATA.forEach((_,i)=>{const inp=document.getElementById(`wb3-${i}`);const fb=document.getElementById(`wb3fb-${i}`);if(inp){inp.value='';inp.className='fi';}if(fb){fb.className='fb';fb.innerHTML=`<span style="font-size:.72rem;color:var(--muted)">Hint: ${WB3_DATA[i].hint}</span>`;}});document.getElementById('wb3-score').className='score-box';}
+
+/* ═══ AUDIO ═══ */
+const AS={};
+function toggleAudio(id){const a=document.getElementById(`audio-${id}`);const b=document.getElementById(`play-${id}`);if(!a||!b)return;if(AS[id]){a.pause();b.textContent='▶';AS[id]=false;}else{a.play().catch(()=>showToast('⚠️ Cần file audio'));b.textContent='⏸';AS[id]=true;}}
+function updateProg(id){const a=document.getElementById(`audio-${id}`);const f=document.getElementById(`prog-${id}`);if(a?.duration&&f)f.style.width=(a.currentTime/a.duration*100)+'%';}
+function audioEnd(id){const b=document.getElementById(`play-${id}`);if(b)b.textContent='▶';AS[id]=false;}
+function toggleScript(id){document.getElementById(id)?.classList.toggle('open');}
+function spk(t){if('speechSynthesis'in window){const u=new SpeechSynthesisUtterance(t);u.lang='en-GB';u.rate=0.82;speechSynthesis.speak(u);}}
+function showScore(id,c,total){const sc=document.getElementById(id);if(!sc)return;sc.innerHTML=`<div class="score-n">${c}/${total}</div><div class="score-msg">${c===total?'🎉 Perfect!':c>=total*.6?'👍 Good!':'📚 Review GRAMMAR 2.1'}</div>`;sc.className='score-box show';}
+function showToast(m){let t=document.getElementById('toast');if(!t){t=document.createElement('div');t.id='toast';t.style.cssText='position:fixed;bottom:20px;right:20px;z-index:999;background:var(--bg2);border:1px solid var(--border2);padding:10px 18px;border-radius:8px;font-size:.82rem;box-shadow:0 4px 20px rgba(0,0,0,.3);transition:opacity .3s;opacity:0';document.body.appendChild(t);}t.textContent=m;t.style.opacity='1';clearTimeout(showToast._t);showToast._t=setTimeout(()=>t.style.opacity='0',2400);}
+function showTab(id){document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));document.querySelectorAll('.tnav-btn').forEach(b=>b.classList.remove('active'));document.getElementById('tab-'+id).classList.add('active');const tabs=['vocab','listening','grammar','getready','workbook','langsummary'];document.querySelectorAll('.tnav-btn')[tabs.indexOf(id)]?.classList.add('active');saveP(id);}
+function toggleTheme(){const t=document.documentElement.getAttribute('data-theme')==='light'?'dark':'light';document.documentElement.setAttribute('data-theme',t==='light'?'light':'');document.getElementById('theme-btn').textContent=t==='light'?'🌙':'☀️';localStorage.setItem('f2f_2a_theme',t);}
+function saveP(t){try{const d=JSON.parse(localStorage.getItem('f2f_2a_done')||'[]');if(!d.includes(t))d.push(t);localStorage.setItem('f2f_2a_done',JSON.stringify(d));}catch(e){}}
+function markDone(){['vocab','listening','grammar','getready','workbook','langsummary'].forEach(t=>saveP(t));showToast('✅ 2A hoàn thành!');}
+document.addEventListener('DOMContentLoaded',()=>{
+  const t=localStorage.getItem('f2f_2a_theme')||'dark';
+  if(t==='light'){document.documentElement.setAttribute('data-theme','light');document.getElementById('theme-btn').textContent='🌙';}
+  buildVerbChooseList();buildCollTable();buildPeopleWrap();
+  buildGuessList();buildGapFill();buildChooseVerbList();
+  buildRulesWrap();buildOrderGrid();buildWB2List();buildWB3List();
+});
+</script>
+</body>
+</html>
