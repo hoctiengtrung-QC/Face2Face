@@ -214,6 +214,23 @@ input,select,textarea{font-family:inherit}
 *{scrollbar-width:thin;scrollbar-color:var(--border2) transparent}
 *::-webkit-scrollbar{width:5px;height:5px}
 *::-webkit-scrollbar-thumb{background:var(--border2);border-radius:3px}
+
+/* ── FOOTER ── */
+.footer{
+    margin-top:60px;
+    padding:18px 24px;
+    text-align:center;
+    font-size:13px;
+    color:var(--muted);
+    border-top:1px solid var(--border);
+    background:var(--bg2);
+    letter-spacing:.3px;
+}
+.footer strong{
+    color:var(--blue);
+    font-weight:600;
+}
+  
 </style>
 </head>
 <body>
@@ -1010,5 +1027,9 @@ document.addEventListener('DOMContentLoaded',()=>{
   document.getElementById('unit-card-1')?.classList.add('open');
 });
 </script>
+
+  <footer class="footer">
+    © 2026 Vũ Quỳnh Chi Learning Portal. Designed & Developed by Vũ Quỳnh Chi. All Rights Reserved.
+</footer>
 </body>
 </html>
