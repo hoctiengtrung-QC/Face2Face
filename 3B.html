@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>3B Lonely Planet — face2face Intermediate</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap');
+:root{
+  --bg:#0D1117;--bg2:#161B22;--bg3:#21262D;--bg4:#2D333B;
+  --border:#30363D;--border2:#3D444D;
+  --text:#E6EDF3;--dim:#8B949E;--muted:#484F58;
+  --blue:#2563EB;--blue-l:rgba(37,99,235,.15);
+  --green:#10B981;--green-l:rgba(16,185,129,.12);
+  --orange:#F59E0B;--orange-l:rgba(245,158,11,.12);
+  --red:#EF4444;--red-l:rgba(239,68,68,.12);
+  --teal:#14B8A6;--purple:#8B5CF6;--purple-l:rgba(139,92,246,.12);
+  --r:10px;--r2:6px;--tr:.18s ease;
+}
+[data-theme=light]{--bg:#F8FAFC;--bg2:#fff;--bg3:#F1F5F9;--bg4:#E2E8F0;--border:#E2E8F0;--border2:#CBD5E1;--text:#0F172A;--dim:#475569;--muted:#94A3B8;--blue:#1D4ED8;--blue-l:rgba(29,78,216,.1)}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);font-size:15px;line-height:1.6}
+button{cursor:pointer;border:none;background:none;font-family:inherit}input,textarea,select{font-family:inherit}
+
+.top-bar{background:var(--bg2);border-bottom:1px solid var(--border);padding:10px 20px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:50;flex-wrap:wrap}
+.back-btn{display:flex;align-items:center;gap:6px;padding:6px 14px;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);font-size:.82rem;color:var(--dim);cursor:pointer;transition:all var(--tr)}
+.back-btn:hover{border-color:var(--blue);color:var(--blue)}
+.lesson-badge{padding:4px 12px;background:var(--purple-l);border:1px solid rgba(139,92,246,.3);border-radius:4px;font-size:.75rem;font-weight:700;color:#A78BFA;letter-spacing:.05em}
+.lesson-title-h{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700}
+.top-actions{margin-left:auto;display:flex;gap:8px}
+.theme-btn{width:34px;height:34px;display:flex;align-items:center;justify-content:center;border-radius:var(--r2);background:var(--bg3);border:1px solid var(--border);cursor:pointer;font-size:.95rem;color:var(--dim);transition:all var(--tr)}
+.theme-btn:hover{border-color:var(--blue);color:var(--blue)}
+.progress-btn{padding:6px 14px;background:var(--green);border-radius:var(--r2);font-size:.78rem;font-weight:600;color:#fff;cursor:pointer;border:none;transition:all var(--tr)}
+.progress-btn:hover{background:#059669}
+
+.quick-review{background:linear-gradient(135deg,#1e3a5f,#1a2f4a);border:1px solid #2d4f7c;border-radius:var(--r);padding:14px 20px;margin:18px 24px;display:flex;gap:12px;align-items:flex-start}
+.qr-badge{background:#F59E0B;color:#000;padding:3px 10px;border-radius:4px;font-size:.72rem;font-weight:700;white-space:nowrap;flex-shrink:0;margin-top:2px}
+.qr-text{font-size:.84rem;line-height:1.65;color:#CBD5E1}
+.qr-text strong{color:#fff}
+
+.tab-nav{display:flex;gap:2px;border-bottom:1px solid var(--border);overflow-x:auto;scrollbar-width:none;position:sticky;top:57px;background:var(--bg);z-index:40;padding:0 24px}
+.tab-nav::-webkit-scrollbar{display:none}
+.tnav-btn{display:flex;align-items:center;gap:6px;padding:11px 16px;font-size:.82rem;font-weight:500;color:var(--dim);white-space:nowrap;border-bottom:2px solid transparent;margin-bottom:-1px;cursor:pointer;transition:all var(--tr);background:none;border-top:none;border-left:none;border-right:none;font-family:inherit}
+.tnav-btn:hover{color:var(--text)}.tnav-btn.active{color:var(--purple);border-bottom-color:var(--purple)}
+
+.page-content{max-width:920px;margin:0 auto;padding:0 24px 48px}
+.tab-pane{display:none;padding-top:28px}
+.tab-pane.active{display:block;animation:fadeUp .22s ease}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
+.sec-heading{font-size:1.05rem;font-weight:700;color:var(--text);margin-bottom:4px;display:flex;align-items:center;gap:8px}
+.sec-sub{font-size:.82rem;color:var(--dim);margin-bottom:18px}
+.ex-num{width:28px;height:28px;background:var(--purple);color:#fff;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:.78rem;font-weight:700;flex-shrink:0}
+.ex-label{display:inline-flex;align-items:center;gap:8px;font-size:.9rem;font-weight:600;margin-bottom:10px;color:var(--text)}
+.part{display:inline-block;width:22px;height:22px;background:var(--bg4);border-radius:4px;text-align:center;line-height:22px;font-size:.72rem;font-weight:700;color:var(--dim);margin-right:6px}
+.instr{font-size:.88rem;color:var(--text);line-height:1.65;margin-bottom:14px}
+.instr em{font-style:italic;color:var(--teal)}
+
+.fill-ex{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:18px;margin-bottom:16px}
+.fill-ex-title{font-size:.88rem;font-weight:600;padding-bottom:10px;border-bottom:1px solid var(--border);margin-bottom:14px;color:var(--dim)}
+.fill-item{display:flex;align-items:flex-start;gap:10px;padding:9px 0;border-bottom:1px dashed var(--border)}
+.fill-item:last-child{border-bottom:none}
+.fill-item-num{width:22px;height:22px;border-radius:50%;background:var(--bg3);display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:700;color:var(--muted);flex-shrink:0;margin-top:2px}
+.fill-item-body{flex:1}
+.fill-sentence{font-size:.87rem;margin-bottom:7px;line-height:1.6}
+.fill-controls{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.fill-input{height:33px;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);padding:0 11px;color:var(--text);font-size:.84rem;outline:none;min-width:80px;max-width:200px;transition:border-color var(--tr)}
+.fill-input:focus{border-color:var(--purple)}
+.fill-input.correct{border-color:var(--green);background:var(--green-l)}
+.fill-input.wrong{border-color:var(--red);background:var(--red-l)}
+.check-btn{padding:5px 12px;background:var(--purple);color:#fff;border:none;border-radius:var(--r2);font-size:.76rem;font-weight:600;cursor:pointer;transition:all var(--tr)}
+.check-btn:hover{background:#7C3AED}
+.reveal-btn{padding:5px 11px;background:var(--bg3);border:1px solid var(--border);color:var(--dim);border-radius:var(--r2);font-size:.76rem;cursor:pointer;transition:all var(--tr)}
+.reveal-btn:hover{border-color:var(--purple);color:var(--purple)}
+.fill-fb{margin-top:5px;font-size:.77rem;padding:4px 9px;border-radius:var(--r2);display:none}
+.fill-fb.show-ok{background:var(--green-l);color:var(--green);display:block}
+.fill-fb.show-err{background:var(--red-l);color:var(--red);display:block}
+
+.score-box{display:none;text-align:center;padding:18px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);margin-top:14px}
+.score-box.show{display:block}
+.score-n{font-size:2.2rem;font-weight:700;color:var(--purple)}
+.score-msg{color:var(--dim);font-size:.84rem;margin-top:4px}
+
+.btn{display:inline-flex;align-items:center;gap:6px;padding:7px 16px;border-radius:var(--r2);font-size:.82rem;font-weight:500;cursor:pointer;border:none;font-family:inherit;transition:all var(--tr)}
+.btn-primary{background:var(--purple);color:#fff}.btn-primary:hover{background:#7C3AED;transform:translateY(-1px)}
+.btn-outline{background:var(--bg3);border:1px solid var(--border2);color:var(--dim)}.btn-outline:hover{border-color:var(--purple);color:var(--purple)}
+
+.divider{height:1px;background:var(--border);margin:22px 0}
+.note-box{background:var(--orange-l);border:1px solid rgba(245,158,11,.25);border-radius:var(--r2);padding:10px 14px;font-size:.82rem;line-height:1.6;margin:10px 0}
+.note-box strong{color:var(--orange)}
+.tip-box{background:var(--bg3);border-left:3px solid var(--purple);border-radius:0 var(--r2) var(--r2) 0;padding:10px 14px;margin:10px 0;font-size:.82rem;color:var(--dim);line-height:1.6}
+.tip-box strong{color:var(--text)}
+.example-box{font-family:'Courier New',monospace;font-size:.82rem;color:#7DD3FC;background:var(--bg);padding:8px 12px;border-radius:var(--r2);margin:6px 0;border:1px solid var(--border)}
+
+.speaking-box{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:16px;margin-bottom:16px}
+.speaking-title{font-size:.84rem;font-weight:600;margin-bottom:12px;color:var(--text);display:flex;align-items:center;gap:8px}
+.bubble{background:var(--bg3);border:1px solid var(--border);border-radius:12px;padding:8px 14px;max-width:72%;font-size:.84rem;line-height:1.5;margin-bottom:8px}
+.bubble.speaker-a{border-bottom-left-radius:3px}
+.bubble.speaker-b{border-bottom-right-radius:3px;background:var(--purple-l);border-color:rgba(139,92,246,.3);margin-left:auto}
+
+.qa-list{display:flex;flex-direction:column;gap:8px;margin-bottom:16px}
+.qa-item{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r2);overflow:hidden}
+.qa-q{display:flex;align-items:center;gap:10px;padding:10px 14px;cursor:pointer;transition:background var(--tr)}
+.qa-q:hover{background:var(--bg3)}
+.qa-qnum{width:24px;height:24px;border-radius:50%;background:var(--purple-l);color:var(--purple);display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:700;flex-shrink:0}
+.qa-qtext{font-size:.86rem;flex:1}
+.qa-arrow{font-size:.7rem;color:var(--muted);transition:transform var(--tr);flex-shrink:0}
+.qa-item.open .qa-arrow{transform:rotate(90deg)}
+.qa-ans{display:none;padding:0 14px 10px 48px;font-size:.83rem;color:var(--teal);font-style:italic}
+.qa-item.open .qa-ans{display:block}
+
+.grammar-table{width:100%;border-collapse:collapse;font-size:.82rem;margin:12px 0}
+.grammar-table th{background:var(--bg3);padding:8px 12px;text-align:left;font-weight:600;border:1px solid var(--border);color:var(--dim);font-size:.72rem;text-transform:uppercase}
+.grammar-table td{padding:9px 12px;border:1px solid var(--border);line-height:1.5}
+.grammar-table td.aux{color:var(--purple);font-weight:600}
+
+.lang-sum-tag{display:inline-flex;align-items:center;gap:6px;padding:3px 12px;background:var(--purple-l);border:1px solid rgba(139,92,246,.3);border-radius:4px;font-size:.72rem;font-weight:700;color:#A78BFA;text-transform:uppercase;letter-spacing:.06em;margin-bottom:12px}
+
+.coll-grid{display:flex;flex-direction:column;gap:8px;margin:12px 0}
+.coll-row{display:grid;grid-template-columns:100px 1fr;gap:12px;align-items:start;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r2);padding:10px 14px}
+.coll-verb{font-size:.9rem;font-weight:700;color:var(--blue)}
+.coll-ipa{font-size:.72rem;color:var(--teal);font-family:monospace}
+.coll-phrase{font-size:.85rem;font-weight:600}
+.coll-vi{font-size:.8rem;color:var(--orange)}
+.coll-ex{font-size:.78rem;color:var(--dim);font-style:italic}
+
+.article-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:20px;margin-bottom:16px}
+.article-title{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;margin-bottom:4px}
+.article-source{font-size:.75rem;color:var(--muted);font-style:italic;margin-bottom:14px}
+.article-p{font-size:.85rem;line-height:1.8;color:var(--text);margin-bottom:10px}
+.article-p:last-child{margin-bottom:0}
+
+@media(max-width:680px){.tab-nav{padding:0 12px}.page-content{padding:0 14px 48px}.quick-review{margin:12px}}
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="top-bar">
+  <button class="back-btn" onclick="history.back()">← Trang chủ</button>
+  <div class="lesson-badge">UNIT 3</div>
+  <div class="lesson-title-h">3B — Lonely Planet</div>
+  <div class="top-actions">
+    <button class="theme-btn" id="theme-btn" onclick="toggleTheme()">☀️</button>
+    <button class="progress-btn" onclick="markDone()">✅ Đánh dấu xong</button>
+  </div>
+</div>
+
+<!-- QUICK REVIEW -->
+<div class="quick-review">
+  <div class="qr-badge">QUICK REVIEW</div>
+  <div class="qr-text"><strong>Present Perfect Simple</strong> — Work in pairs. Ask questions with <em>Have you ever ... ?</em> to find out five things you've done in your life that your partner hasn't done.</div>
+</div>
+
+<!-- TAB NAV -->
+<div class="tab-nav">
+  <button class="tnav-btn active" onclick="showTab('vocab')">📚 Vocabulary &amp; Speaking</button>
+  <button class="tnav-btn" onclick="showTab('reading')">📖 Reading</button>
+  <button class="tnav-btn" onclick="showTab('grammar')">📐 Help with Grammar</button>
+  <button class="tnav-btn" onclick="showTab('workbook')">📓 Workbook</button>
+  <button class="tnav-btn" onclick="showTab('langsummary')">📋 Language Summary</button>
+</div>
+
+<div class="page-content">
+
+<!-- ══════════════════════════════════════
+     TAB 1: VOCABULARY AND SPEAKING
+══════════════════════════════════════ -->
+<div class="tab-pane active" id="tab-vocab">
+  <div class="sec-heading">Vocabulary and Speaking</div>
+  <div class="sec-sub">Phrases with <em>travel</em>, <em>get</em> and <em>go on</em> · VOCABULARY 3.2 → p132</div>
+
+  <!-- Exercise 1 -->
+  <div class="ex-label"><div class="ex-num">1</div>Phrases with <em>travel</em>, <em>get</em> and <em>go on</em></div>
+  <p class="instr">Do we use these words/phrases with: <strong>1 travel</strong>, <strong>2 get</strong>, or <strong>3 go on</strong>?</p>
+
+  <div class="coll-grid">
+    <div class="coll-row"><div class="coll-verb">travel</div><div><div class="coll-phrase">on your own, independently, light</div><div class="coll-vi">🇻🇳 đi du lịch một mình / độc lập / nhẹ nhàng</div><div class="coll-ex">"I like travelling light."</div></div></div>
+    <div class="coll-row"><div class="coll-verb">travel</div><div><div class="coll-phrase">first/business/economy class</div><div class="coll-vi">🇻🇳 hạng nhất / thương gia / phổ thông</div><div class="coll-ex">"I always travel economy class."</div></div></div>
+    <div class="coll-row"><div class="coll-verb">get</div><div><div class="coll-phrase">back from somewhere</div><div class="coll-vi">🇻🇳 trở về từ đâu đó</div><div class="coll-ex">"When did you get back?"</div></div></div>
+    <div class="coll-row"><div class="coll-verb">get</div><div><div class="coll-phrase">into/out of a car</div><div class="coll-vi">🇻🇳 lên/xuống xe ô tô</div><div class="coll-ex">"She got into the car."</div></div></div>
+    <div class="coll-row"><div class="coll-verb">get</div><div><div class="coll-phrase">a taxi</div><div class="coll-vi">🇻🇳 bắt taxi</div><div class="coll-ex">"Let's get a taxi."</div></div></div>
+    <div class="coll-row"><div class="coll-verb">get</div><div><div class="coll-phrase">here/there, by (10.30)</div><div class="coll-vi">🇻🇳 đến đây/đó, trước 10.30</div><div class="coll-ex">"I'll get there by 10.30."</div></div></div>
+    <div class="coll-row"><div class="coll-verb">get</div><div><div class="coll-phrase">on/off a bus/plane/train</div><div class="coll-vi">🇻🇳 lên/xuống xe buýt/máy bay/tàu</div><div class="coll-ex">"We got on the train."</div></div></div>
+    <div class="coll-row"><div class="coll-verb">go on</div><div><div class="coll-phrase">a trip</div><div class="coll-vi">🇻🇳 đi một chuyến đi</div><div class="coll-ex">"We went on a trip."</div></div></div>
+    <div class="coll-row"><div class="coll-verb">go on</div><div><div class="coll-phrase">a guided tour</div><div class="coll-vi">🇻🇳 tham quan có hướng dẫn</div><div class="coll-ex">"We went on a guided tour."</div></div></div>
+    <div class="coll-row"><div class="coll-verb">go on</div><div><div class="coll-phrase">a cruise</div><div class="coll-vi">🇻🇳 đi du lịch trên tàu biển</div><div class="coll-ex">"We went on a cruise."</div></div></div>
+    <div class="coll-row"><div class="coll-verb">go on</div><div><div class="coll-phrase">a package holiday</div><div class="coll-vi">🇻🇳 kỳ nghỉ trọn gói</div><div class="coll-ex">"We went on a package holiday."</div></div></div>
+  </div>
+
+  <div class="tip-box">
+    <strong>TIP:</strong> <strong>Travel</strong> is usually a verb. When we want to use a noun, we usually use <strong>journey</strong> or <strong>trip</strong>: <em>How was your journey/trip?</em>
+  </div>
+
+  <!-- Exercise 2a -->
+  <div class="ex-label"><div class="ex-num">2</div>Exercise 2a — Fill in the gaps with <em>travel</em>, <em>get</em>, or <em>go on</em></div>
+  <p class="instr"><span class="part">a</span> Complete these sentences with the correct form of <strong>travel</strong>, <strong>get</strong> or <strong>go on</strong>.</p>
+
+  <div class="fill-ex">
+    <div id="travel-gap">
+      <div class="fill-item"><div class="fill-item-num">1</div><div class="fill-item-body"><div class="fill-sentence">I like long car <input class="fill-input" id="tg-1" style="max-width:120px" placeholder="..."> journeys.</div></div></div>
+      <div class="fill-item"><div class="fill-item-num">2</div><div class="fill-item-body"><div class="fill-sentence">I sometimes <input class="fill-input" id="tg-2" style="max-width:120px" placeholder="..."> a taxi home after work.</div></div></div>
+      <div class="fill-item"><div class="fill-item-num">3</div><div class="fill-item-body"><div class="fill-sentence">I <input class="fill-input" id="tg-3" style="max-width:120px" placeholder="..."> a guided tour last year.</div></div></div>
+      <div class="fill-item"><div class="fill-item-num">4</div><div class="fill-item-body"><div class="fill-sentence">I like <input class="fill-input" id="tg-4" style="max-width:120px" placeholder="..."> on my own.</div></div></div>
+      <div class="fill-item"><div class="fill-item-num">5</div><div class="fill-item-body"><div class="fill-sentence">I sometimes <input class="fill-input" id="tg-5" style="max-width:120px" placeholder="..."> taxis when I'm late.</div></div></div>
+      <div class="fill-item"><div class="fill-item-num">6</div><div class="fill-item-body"><div class="fill-sentence">I never <input class="fill-input" id="tg-6" style="max-width:120px" placeholder="..."> a cruise.</div></div></div>
+      <div class="fill-item"><div class="fill-item-num">7</div><div class="fill-item-body"><div class="fill-sentence">When I go away, I usually <input class="fill-input" id="tg-7" style="max-width:120px" placeholder="..."> light.</div></div></div>
+    </div>
+    <div style="display:flex;gap:8px;margin-top:12px">
+      <button class="btn btn-primary" onclick="checkTravelGaps()">✅ Kiểm tra</button>
+      <button class="btn btn-outline" onclick="revealTravelGaps()">👁 Đáp án</button>
+    </div>
+    <div class="score-box" id="travel-score"></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     TAB 2: READING
+══════════════════════════════════════ -->
+<div class="tab-pane" id="tab-reading">
+  <div class="sec-heading">Reading</div>
+  <div class="sec-sub">The world's greatest travellers — Student's Book p24</div>
+
+  <!-- Exercise 3 -->
+  <div class="ex-label"><div class="ex-num">3</div>Reading — Match headings to paragraphs</div>
+  <p class="instr">Read the article and match headings 1–5 to paragraphs A–E.</p>
+
+  <div class="article-card">
+    <div class="article-title">The world's greatest travellers</div>
+    <div class="article-source">Lonely Planet</div>
+    <div class="article-p"><strong>A</strong> — Nobody has changed the way we travel more than Tony and Maureen Wheeler, the founders of Lonely Planet. The company has been publishing guide books for 40 years and it sells over 5 million books a year in English. It also publishes books in seven other languages and the Lonely Planet website is one of the most popular travel sites on the internet.</div>
+    <div class="article-p"><strong>B</strong> — The story began when Tony and Maureen met on a park bench in London in 1971. They got married a year later and for their honeymoon they travelled across Europe and Asia to Australia in an old van. A few months later they arrived in Sydney with only 27 cents in their pockets. Everyone they met asked them about their incredible journey, so they decided to write a book about it.</div>
+    <div class="article-p"><strong>C</strong> — With the money they made from the book, Tony and Maureen spent the next 18 months travelling around southeast Asia. They wrote their second guide book, Southeast Asia on a Shoestring, in a Singapore hotel room. The book has been a best-seller since it was published in 1973 and has sold over a million copies.</div>
+    <div class="article-p"><strong>D</strong> — Lonely Planet has published over 650 books since the company began and it employs around 450 people and over 200 authors. The Lonely Planet website is visited by about 5 million people every month and their internet forum, called The Thorn Tree, is one of the most popular places online for advice on travelling independently. Their television company, Lonely Planet TV, has been making programmes since 2004 and there's also a monthly Lonely Planet magazine and apps for your phone.</div>
+    <div class="article-p"><strong>E</strong> — The company has certainly come a long way since Tony and Maureen's honeymoon adventure. "I think we've done a good thing," says Maureen, "and I still believe that travel is the best way for people to understand the world."</div>
+  </div>
+
+  <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px">
+    <select id="para-match-1" style="background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);padding:6px;color:var(--text);font-size:.82rem"><option value="">Para A →</option><option value="1">1. A romantic adventure</option><option value="2">2. Online, on TV and on your phone</option><option value="3">3. Guide books for the planet</option><option value="4">4. How to understand the world</option><option value="5">5. Their first best-seller</option></select>
+    <select id="para-match-2" style="background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);padding:6px;color:var(--text);font-size:.82rem"><option value="">Para B →</option><option value="1">1. A romantic adventure</option><option value="2">2. Online, on TV and on your phone</option><option value="3">3. Guide books for the planet</option><option value="4">4. How to understand the world</option><option value="5">5. Their first best-seller</option></select>
+    <select id="para-match-3" style="background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);padding:6px;color:var(--text);font-size:.82rem"><option value="">Para C →</option><option value="1">1. A romantic adventure</option><option value="2">2. Online, on TV and on your phone</option><option value="3">3. Guide books for the planet</option><option value="4">4. How to understand the world</option><option value="5">5. Their first best-seller</option></select>
+    <select id="para-match-4" style="background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);padding:6px;color:var(--text);font-size:.82rem"><option value="">Para D →</option><option value="1">1. A romantic adventure</option><option value="2">2. Online, on TV and on your phone</option><option value="3">3. Guide books for the planet</option><option value="4">4. How to understand the world</option><option value="5">5. Their first best-seller</option></select>
+    <select id="para-match-5" style="background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);padding:6px;color:var(--text);font-size:.82rem"><option value="">Para E →</option><option value="1">1. A romantic adventure</option><option value="2">2. Online, on TV and on your phone</option><option value="3">3. Guide books for the planet</option><option value="4">4. How to understand the world</option><option value="5">5. Their first best-seller</option></select>
+  </div>
+  <div style="display:flex;gap:8px;margin-bottom:16px">
+    <button class="btn btn-primary" onclick="checkParaMatch()">✅ Kiểm tra</button>
+    <button class="btn btn-outline" onclick="revealParaMatch()">👁 Đáp án</button>
+  </div>
+  <div class="score-box" id="para-score"></div>
+
+  <!-- Comprehension questions -->
+  <div class="ex-label"><div class="ex-num">4</div>Comprehension questions</div>
+  <p class="instr">Read the article again. Answer these questions.</p>
+
+  <div class="qa-list">
+    <div class="qa-item"><div class="qa-q" onclick="toggleQA(this)"><span class="qa-qnum">1</span><span class="qa-qtext">How long has Lonely Planet been publishing guide books?</span><span class="qa-arrow">▶</span></div><div class="qa-ans">For 40 years (since 1972).</div></div>
+    <div class="qa-item"><div class="qa-q" onclick="toggleQA(this)"><span class="qa-qnum">2</span><span class="qa-qtext">What did Tony and Maureen do on their honeymoon?</span><span class="qa-arrow">▶</span></div><div class="qa-ans">They travelled across Europe and Asia to Australia in an old van.</div></div>
+    <div class="qa-item"><div class="qa-q" onclick="toggleQA(this)"><span class="qa-qnum">3</span><span class="qa-qtext">Where did they write their second guide book?</span><span class="qa-arrow">▶</span></div><div class="qa-ans">In a Singapore hotel room.</div></div>
+    <div class="qa-item"><div class="qa-q" onclick="toggleQA(this)"><span class="qa-qnum">4</span><span class="qa-qtext">How many books has Lonely Planet published?</span><span class="qa-arrow">▶</span></div><div class="qa-ans">Over 650 books.</div></div>
+    <div class="qa-item"><div class="qa-q" onclick="toggleQA(this)"><span class="qa-qnum">5</span><span class="qa-qtext">What is The Thorn Tree?</span><span class="qa-arrow">▶</span></div><div class="qa-ans">Lonely Planet's internet forum for travel advice.</div></div>
+    <div class="qa-item"><div class="qa-q" onclick="toggleQA(this)"><span class="qa-qnum">6</span><span class="qa-qtext">What else does Lonely Planet do?</span><span class="qa-arrow">▶</span></div><div class="qa-ans">It has a TV company, a monthly magazine and apps for phones.</div></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     TAB 3: GRAMMAR
+══════════════════════════════════════ -->
+<div class="tab-pane" id="tab-grammar">
+  <div class="sec-heading">Help with Grammar</div>
+  <div class="sec-sub">Present Perfect Continuous and Present Perfect Simple · GRAMMAR 3.2 → p134</div>
+
+  <div class="grammar-table">
+    <table>
+      <thead><tr><th>Tense</th><th>Use</th><th>Example</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Present Perfect Continuous</strong></td><td>Activity that started in the past and continues in the present</td><td class="aux">The company has been publishing guide books for 40 years.</td></tr>
+        <tr><td><strong>Present Perfect Simple</strong></td><td>State that started in the past and continues in the present</td><td class="aux">The book has been a best-seller since 1973.</td></tr>
+        <tr><td><strong>Present Perfect Simple</strong></td><td>How many things are finished</td><td class="aux">Lonely Planet has published over 650 books.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="note-box">
+    <strong>How long ... ? and How many ... ?</strong><br>
+    • <strong>How long</strong> + Present Perfect Continuous → <em>How long have you been waiting?</em><br>
+    • <strong>How many</strong> + Present Perfect Simple → <em>How many books have you read?</em>
+  </div>
+
+  <!-- Exercise 6a -->
+  <div class="ex-label"><div class="ex-num">6</div>Exercise 6a — Present Perfect Continuous or Present Perfect Simple?</div>
+  <p class="instr">Put the verb in brackets in the <strong>Present Perfect Continuous</strong> or <strong>Present Perfect Simple</strong>. Use PPC where possible.</p>
+
+  <div class="fill-ex">
+    <div id="ppc-ex">
+      <div class="fill-item"><div class="fill-item-num">1</div><div class="fill-item-body"><div class="fill-sentence">I <input class="fill-input" id="ppc-1" style="max-width:140px" placeholder="work"> (work) here <input class="fill-input" id="ppc-1b" style="max-width:80px" placeholder="for/since"> six months.</div></div></div>
+      <div class="fill-item"><div class="fill-item-num">2</div><div class="fill-item-body"><div class="fill-sentence">How long <input class="fill-input" id="ppc-2" style="max-width:140px" placeholder="you travel"> (you / travel)?</div></div></div>
+      <div class="fill-item"><div class="fill-item-num">3</div><div class="fill-item-body"><div class="fill-sentence">Scott <input class="fill-input" id="ppc-3" style="max-width:140px" placeholder="write"> (write books) <input class="fill-input" id="ppc-3b" style="max-width:80px" placeholder="for/since"> 2006.</div></div></div>
+      <div class="fill-item"><div class="fill-item-num">4</div><div class="fill-item-body"><div class="fill-sentence">He <input class="fill-input" id="ppc-4" style="max-width:140px" placeholder="write"> (write) five books so far.</div></div></div>
+      <div class="fill-item"><div class="fill-item-num">5</div><div class="fill-item-body"><div class="fill-sentence">They <input class="fill-input" id="ppc-5" style="max-width:140px" placeholder="not play"> (not play) golf <input class="fill-input" id="ppc-5b" style="max-width:80px" placeholder="for/since"> long.</div></div></div>
+      <div class="fill-item"><div class="fill-item-num">6</div><div class="fill-item-body"><div class="fill-sentence">How long <input class="fill-input" id="ppc-6" style="max-width:140px" placeholder="he have"> (he / have) that car?</div></div></div>
+      <div class="fill-item"><div class="fill-item-num">7</div><div class="fill-item-body"><div class="fill-sentence">I <input class="fill-input" id="ppc-7" style="max-width:140px" placeholder="know"> (know) Zak <input class="fill-input" id="ppc-7b" style="max-width:80px" placeholder="for/since"> we were kids.</div></div></div>
+      <div class="fill-item"><div class="fill-item-num">8</div><div class="fill-item-body"><div class="fill-sentence">We <input class="fill-input" id="ppc-8" style="max-width:140px" placeholder="wait"> (wait) <input class="fill-input" id="ppc-8b" style="max-width:80px" placeholder="for/since"> two hours.</div></div></div>
+    </div>
+    <div style="display:flex;gap:8px;margin-top:12px">
+      <button class="btn btn-primary" onclick="checkPPC()">✅ Kiểm tra</button>
+      <button class="btn btn-outline" onclick="revealPPC()">👁 Đáp án</button>
+    </div>
+    <div class="score-box" id="ppc-score"></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     TAB 4: WORKBOOK
+══════════════════════════════════════ -->
+<div class="tab-pane" id="tab-workbook">
+  <div class="sec-heading">Workbook 3B</div>
+  <div class="sec-sub">Extra practice from Workbook pages 19–20</div>
+
+  <div class="lang-sum-tag">📓 VOCABULARY — Phrases with travel, get and go on</div>
+  <p class="instr">Fill in the gaps with <strong>travel</strong>, <strong>get</strong> or <strong>go on</strong>.</p>
+  <div class="coll-grid">
+    <div class="coll-row"><div class="coll-verb">get</div><div><div class="coll-phrase">back from somewhere</div><div class="coll-vi">🇻🇳 trở về từ đâu đó</div></div></div>
+    <div class="coll-row"><div class="coll-verb">go on</div><div><div class="coll-phrase">a trip</div><div class="coll-vi">🇻🇳 đi một chuyến đi</div></div></div>
+    <div class="coll-row"><div class="coll-verb">get</div><div><div class="coll-phrase">a taxi home</div><div class="coll-vi">🇻🇳 bắt taxi về nhà</div></div></div>
+    <div class="coll-row"><div class="coll-verb">travel</div><div><div class="coll-phrase">independently</div><div class="coll-vi">🇻🇳 đi du lịch độc lập</div></div></div>
+    <div class="coll-row"><div class="coll-verb">get</div><div><div class="coll-phrase">off a bus</div><div class="coll-vi">🇻🇳 xuống xe buýt</div></div></div>
+    <div class="coll-row"><div class="coll-verb">go on</div><div><div class="coll-phrase">a cruise</div><div class="coll-vi">🇻🇳 đi du lịch tàu biển</div></div></div>
+    <div class="coll-row"><div class="coll-verb">travel</div><div><div class="coll-phrase">economy class</div><div class="coll-vi">🇻🇳 đi hạng phổ thông</div></div></div>
+    <div class="coll-row"><div class="coll-verb">go on</div><div><div class="coll-phrase">a guided tour</div><div class="coll-vi">🇻🇳 tham quan có hướng dẫn</div></div></div>
+    <div class="coll-row"><div class="coll-verb">travel</div><div><div class="coll-phrase">light</div><div class="coll-vi">🇻🇳 đi nhẹ nhàng</div></div></div>
+  </div>
+
+  <div class="lang-sum-tag">📓 GRAMMAR — Correct the mistakes</div>
+  <p class="instr">Correct the mistakes in these sentences.</p>
+  <div class="fill-ex">
+    <div class="fill-item"><div class="fill-item-num">1</div><div class="fill-item-body"><div class="fill-sentence">We've been married <input class="fill-input" id="wbcorr-1" style="max-width:100px" placeholder="for/since"> 2003.</div></div></div>
+    <div class="fill-item"><div class="fill-item-num">2</div><div class="fill-item-body"><div class="fill-sentence">Marco and Luis <input class="fill-input" id="wbcorr-2" style="max-width:100px" placeholder="has/have"> been studying English for three years.</div></div></div>
+    <div class="fill-item"><div class="fill-item-num">3</div><div class="fill-item-body"><div class="fill-sentence">My son's been <input class="fill-input" id="wbcorr-3" style="max-width:100px" placeholder="having/had"> this bike for six months.</div></div></div>
+    <div class="fill-item"><div class="fill-item-num">4</div><div class="fill-item-body"><div class="fill-sentence">She's <input class="fill-input" id="wbcorr-4" style="max-width:120px" placeholder="working/been working"> for the company since July.</div></div></div>
+    <div class="fill-item"><div class="fill-item-num">5</div><div class="fill-item-body"><div class="fill-sentence">They've been living in their flat <input class="fill-input" id="wbcorr-5" style="max-width:100px" placeholder="for/since"> ten years.</div></div></div>
+    <div class="fill-item"><div class="fill-item-num">6</div><div class="fill-item-body"><div class="fill-sentence">I've <input class="fill-input" id="wbcorr-6" style="max-width:120px" placeholder="known/been knowing"> this band since I was a child.</div></div></div>
+    <div style="display:flex;gap:8px;margin-top:12px">
+      <button class="btn btn-primary" onclick="checkWBcorr()">✅ Kiểm tra</button>
+      <button class="btn btn-outline" onclick="revealWBcorr()">👁 Đáp án</button>
+    </div>
+    <div class="score-box" id="wbcorr-score"></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     TAB 5: LANGUAGE SUMMARY
+══════════════════════════════════════ -->
+<div class="tab-pane" id="tab-langsummary">
+  <div class="sec-heading">Language Summary 3B</div>
+  <div class="sec-sub">VOCABULARY 3.2 · GRAMMAR 3.2</div>
+
+  <div class="lang-sum-tag">📗 VOCABULARY 3.2 — Phrases with travel, get and go on</div>
+  <div class="tip-box">
+    <strong>travel:</strong> on your own, independently, light, first/business/economy class<br>
+    <strong>get:</strong> back from somewhere, into/out of a car, a taxi, here/there, by (10.30), on/off a bus/plane/train<br>
+    <strong>go on:</strong> a trip, a guided tour, a cruise, a package holiday
+  </div>
+
+  <div class="lang-sum-tag">📗 GRAMMAR 3.2 — Present Perfect Continuous &amp; Present Perfect Simple</div>
+  <div class="grammar-table">
+    <table>
+      <thead><tr><th>Tense</th><th>Use</th><th>Example</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Present Perfect Continuous</strong></td><td>Activity that started in the past and continues in the present</td><td class="aux">The company has been publishing guide books for 40 years.</td></tr>
+        <tr><td><strong>Present Perfect Simple</strong></td><td>State that started in the past and continues in the present</td><td class="aux">The book has been a best-seller since 1973.</td></tr>
+        <tr><td><strong>Present Perfect Simple</strong></td><td>How many things are finished</td><td class="aux">Lonely Planet has published over 650 books.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="tip-box">
+    <strong>TIP:</strong> We use <strong>How long</strong> with Present Perfect Continuous: <em>How long have you been waiting?</em><br>
+    We use <strong>How many</strong> with Present Perfect Simple: <em>How many books have you read?</em>
+  </div>
+</div>
+
+</div><!-- /page-content -->
+
+<script>
+/* ══════════════════════════════════════
+   UTILITIES
+══════════════════════════════════════ */
+function showTab(id){
+  document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tnav-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+  const tabs=['vocab','reading','grammar','workbook','langsummary'];
+  const idx=tabs.indexOf(id);
+  document.querySelectorAll('.tnav-btn')[idx]?.classList.add('active');
+}
+function toggleTheme(){const t=document.documentElement.getAttribute('data-theme')==='light'?'dark':'light';document.documentElement.setAttribute('data-theme',t==='light'?'light':'');document.getElementById('theme-btn').textContent=t==='light'?'🌙':'☀️';localStorage.setItem('f2f_3b_theme',t);}
+function markDone(){showToast('✅ 3B Lonely Planet đã hoàn thành!');}
+function showToast(msg){let t=document.getElementById('toast');if(!t){t=document.createElement('div');t.id='toast';t.style.cssText='position:fixed;bottom:20px;right:20px;z-index:999;background:var(--bg2);border:1px solid var(--border2);padding:10px 18px;border-radius:8px;font-size:.82rem;box-shadow:0 4px 20px rgba(0,0,0,.3);transition:opacity .3s';document.body.appendChild(t);}t.textContent=msg;t.style.opacity='1';clearTimeout(showToast._t);showToast._t=setTimeout(()=>t.style.opacity='0',2400);}
+
+function toggleQA(btn){const item=btn.closest('.qa-item');item.classList.toggle('open');}
+
+/* ── TRAVEL GAPS ── */
+function checkTravelGaps(){
+  const ans={'tg-1':'travel','tg-2':'get','tg-3':'went on','tg-4':'travelling','tg-5':'get','tg-6':'go on','tg-7':'travel'};
+  let c=0,total=7;
+  Object.entries(ans).forEach(([id,val])=>{
+    const inp=document.getElementById(id);
+    if(inp){
+      const ok=inp.value.trim().toLowerCase().replace(/\s+/g,'')===val.toLowerCase().replace(/\s+/g,'');
+      inp.className='fill-input '+(ok?'correct':'wrong');
+      if(ok)c++;
+    }
+  });
+  const sc=document.getElementById('travel-score');
+  sc.innerHTML=`<div class="score-n">${c}/${total}</div><div class="score-msg">${c===total?'🎉 All correct!':'Review VOCABULARY 3.2.'}</div>`;
+  sc.className='score-box show';
+}
+function revealTravelGaps(){
+  const ans={'tg-1':'travel','tg-2':'get','tg-3':'went on','tg-4':'travelling','tg-5':'get','tg-6':'go on','tg-7':'travel'};
+  Object.entries(ans).forEach(([id,val])=>{const inp=document.getElementById(id);if(inp){inp.value=val;inp.className='fill-input correct';}});
+}
+
+/* ── PARA MATCH ── */
+function checkParaMatch(){
+  const ans={'para-match-1':'3','para-match-2':'5','para-match-3':'1','para-match-4':'2','para-match-5':'4'};
+  let c=0,total=5;
+  Object.entries(ans).forEach(([id,val])=>{
+    const sel=document.getElementById(id);
+    if(sel){const ok=sel.value===val;sel.style.borderColor=ok?'var(--green)':'var(--red)';if(ok)c++;}
+  });
+  const sc=document.getElementById('para-score');
+  sc.innerHTML=`<div class="score-n">${c}/${total}</div><div class="score-msg">${c===total?'🎉 All correct!':'Para A=3, B=5, C=1, D=2, E=4'}</div>`;
+  sc.className='score-box show';
+}
+function revealParaMatch(){
+  const ans={'para-match-1':'3','para-match-2':'5','para-match-3':'1','para-match-4':'2','para-match-5':'4'};
+  Object.entries(ans).forEach(([id,val])=>{const sel=document.getElementById(id);if(sel){sel.value=val;sel.style.borderColor='var(--teal)';}});
+}
+
+/* ── PPC ── */
+function checkPPC(){
+  const ans={
+    'ppc-1':'have been working','ppc-1b':'for',
+    'ppc-2':'have you been travelling',
+    'ppc-3':'has been writing','ppc-3b':'since',
+    'ppc-4':'has written',
+    'ppc-5':'haven\'t been playing','ppc-5b':'for',
+    'ppc-6':'has he had',
+    'ppc-7':'have known','ppc-7b':'since',
+    'ppc-8':'have been waiting','ppc-8b':'for'
+  };
+  let c=0,total=12;
+  Object.entries(ans).forEach(([id,val])=>{
+    const inp=document.getElementById(id);
+    if(inp){
+      const ok=inp.value.trim().toLowerCase().replace(/\s+/g,'')===val.toLowerCase().replace(/\s+/g,'');
+      inp.className='fill-input '+(ok?'correct':'wrong');
+      if(ok)c++;
+    }
+  });
+  const sc=document.getElementById('ppc-score');
+  sc.innerHTML=`<div class="score-n">${c}/${total}</div><div class="score-msg">${c===total?'🎉 Perfect!':'Review GRAMMAR 3.2.'}</div>`;
+  sc.className='score-box show';
+}
+function revealPPC(){
+  const ans={
+    'ppc-1':'have been working','ppc-1b':'for',
+    'ppc-2':'have you been travelling',
+    'ppc-3':'has been writing','ppc-3b':'since',
+    'ppc-4':'has written',
+    'ppc-5':'haven\'t been playing','ppc-5b':'for',
+    'ppc-6':'has he had',
+    'ppc-7':'have known','ppc-7b':'since',
+    'ppc-8':'have been waiting','ppc-8b':'for'
+  };
+  Object.entries(ans).forEach(([id,val])=>{const inp=document.getElementById(id);if(inp){inp.value=val;inp.className='fill-input correct';}});
+}
+
+/* ── WB CORRECTIONS ── */
+function checkWBcorr(){
+  const ans={'wbcorr-1':'since','wbcorr-2':'have','wbcorr-3':'had','wbcorr-4':'been working','wbcorr-5':'for','wbcorr-6':'known'};
+  let c=0,total=6;
+  Object.entries(ans).forEach(([id,val])=>{
+    const inp=document.getElementById(id);
+    if(inp){
+      const ok=inp.value.trim().toLowerCase().replace(/\s+/g,'')===val.toLowerCase().replace(/\s+/g,'');
+      inp.className='fill-input '+(ok?'correct':'wrong');
+      if(ok)c++;
+    }
+  });
+  const sc=document.getElementById('wbcorr-score');
+  sc.innerHTML=`<div class="score-n">${c}/${total}</div><div class="score-msg">${c===total?'🎉 All correct!':'Check the workbook answers.'}</div>`;
+  sc.className='score-box show';
+}
+function revealWBcorr(){
+  const ans={'wbcorr-1':'since','wbcorr-2':'have','wbcorr-3':'had','wbcorr-4':'been working','wbcorr-5':'for','wbcorr-6':'known'};
+  Object.entries(ans).forEach(([id,val])=>{const inp=document.getElementById(id);if(inp){inp.value=val;inp.className='fill-input correct';}});
+}
+
+/* ── INIT ── */
+document.addEventListener('DOMContentLoaded',()=>{
+  const t=localStorage.getItem('f2f_3b_theme')||'dark';
+  if(t==='light'){document.documentElement.setAttribute('data-theme','light');document.getElementById('theme-btn').textContent='🌙';}
+});
+</script>
+</body>
+</html>

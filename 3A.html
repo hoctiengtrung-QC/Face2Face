@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>3A The tourist trade — face2face Intermediate</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap');
+:root{
+  --bg:#0D1117;--bg2:#161B22;--bg3:#21262D;--bg4:#2D333B;
+  --border:#30363D;--border2:#3D444D;
+  --text:#E6EDF3;--dim:#8B949E;--muted:#484F58;
+  --blue:#2563EB;--blue-l:rgba(37,99,235,.15);
+  --green:#10B981;--green-l:rgba(16,185,129,.12);
+  --orange:#F59E0B;--orange-l:rgba(245,158,11,.12);
+  --red:#EF4444;--red-l:rgba(239,68,68,.12);
+  --teal:#14B8A6;--purple:#8B5CF6;--purple-l:rgba(139,92,246,.12);
+  --r:10px;--r2:6px;--tr:.18s ease;
+}
+[data-theme=light]{--bg:#F8FAFC;--bg2:#fff;--bg3:#F1F5F9;--bg4:#E2E8F0;--border:#E2E8F0;--border2:#CBD5E1;--text:#0F172A;--dim:#475569;--muted:#94A3B8;--blue:#1D4ED8;--blue-l:rgba(29,78,216,.1)}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);font-size:15px;line-height:1.6}
+button{cursor:pointer;border:none;background:none;font-family:inherit}input,textarea,select{font-family:inherit}
+
+/* TOP BAR */
+.top-bar{background:var(--bg2);border-bottom:1px solid var(--border);padding:10px 20px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:50;flex-wrap:wrap}
+.back-btn{display:flex;align-items:center;gap:6px;padding:6px 14px;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);font-size:.82rem;color:var(--dim);cursor:pointer;transition:all var(--tr)}
+.back-btn:hover{border-color:var(--blue);color:var(--blue)}
+.lesson-badge{padding:4px 12px;background:var(--purple-l);border:1px solid rgba(139,92,246,.3);border-radius:4px;font-size:.75rem;font-weight:700;color:#A78BFA;letter-spacing:.05em}
+.lesson-title-h{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700}
+.top-actions{margin-left:auto;display:flex;gap:8px}
+.theme-btn{width:34px;height:34px;display:flex;align-items:center;justify-content:center;border-radius:var(--r2);background:var(--bg3);border:1px solid var(--border);cursor:pointer;font-size:.95rem;color:var(--dim);transition:all var(--tr)}
+.theme-btn:hover{border-color:var(--blue);color:var(--blue)}
+.progress-btn{padding:6px 14px;background:var(--green);border-radius:var(--r2);font-size:.78rem;font-weight:600;color:#fff;cursor:pointer;border:none;transition:all var(--tr)}
+.progress-btn:hover{background:#059669}
+
+.quick-review{background:linear-gradient(135deg,#1e3a5f,#1a2f4a);border:1px solid #2d4f7c;border-radius:var(--r);padding:14px 20px;margin:18px 24px;display:flex;gap:12px;align-items:flex-start}
+.qr-badge{background:#F59E0B;color:#000;padding:3px 10px;border-radius:4px;font-size:.72rem;font-weight:700;white-space:nowrap;flex-shrink:0;margin-top:2px}
+.qr-text{font-size:.84rem;line-height:1.65;color:#CBD5E1}
+.qr-text strong{color:#fff}
+
+.tab-nav{display:flex;gap:2px;border-bottom:1px solid var(--border);overflow-x:auto;scrollbar-width:none;position:sticky;top:57px;background:var(--bg);z-index:40;padding:0 24px}
+.tab-nav::-webkit-scrollbar{display:none}
+.tnav-btn{display:flex;align-items:center;gap:6px;padding:11px 16px;font-size:.82rem;font-weight:500;color:var(--dim);white-space:nowrap;border-bottom:2px solid transparent;margin-bottom:-1px;cursor:pointer;transition:all var(--tr);background:none;border-top:none;border-left:none;border-right:none;font-family:inherit}
+.tnav-btn:hover{color:var(--text)}.tnav-btn.active{color:var(--purple);border-bottom-color:var(--purple)}
+
+.page-content{max-width:920px;margin:0 auto;padding:0 24px 48px}
+.tab-pane{display:none;padding-top:28px}
+.tab-pane.active{display:block;animation:fadeUp .22s ease}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
+.sec-heading{font-size:1.05rem;font-weight:700;color:var(--text);margin-bottom:4px;display:flex;align-items:center;gap:8px}
+.sec-sub{font-size:.82rem;color:var(--dim);margin-bottom:18px}
+.ex-num{width:28px;height:28px;background:var(--purple);color:#fff;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:.78rem;font-weight:700;flex-shrink:0}
+.ex-label{display:inline-flex;align-items:center;gap:8px;font-size:.9rem;font-weight:600;margin-bottom:10px;color:var(--text)}
+.part{display:inline-block;width:22px;height:22px;background:var(--bg4);border-radius:4px;text-align:center;line-height:22px;font-size:.72rem;font-weight:700;color:var(--dim);margin-right:6px}
+.instr{font-size:.88rem;color:var(--text);line-height:1.65;margin-bottom:14px}
+.instr em{font-style:italic;color:var(--teal)}
+
+.audio-box{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:18px;margin-bottom:16px}
+.audio-header{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.cd-badge{padding:4px 12px;background:var(--orange-l);border:1px solid rgba(245,158,11,.3);border-radius:4px;font-size:.75rem;font-weight:700;color:var(--orange)}
+.audio-title{font-size:.9rem;font-weight:600}
+.audio-controls{display:flex;align-items:center;gap:12px;padding:10px 14px;background:var(--bg3);border-radius:var(--r2);margin-bottom:10px}
+.play-btn{width:40px;height:40px;border-radius:50%;background:var(--purple);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;border:none;font-size:.95rem;flex-shrink:0;transition:all var(--tr)}
+.play-btn:hover{background:#7C3AED;transform:scale(1.05)}
+.audio-info{flex:1}
+.audio-track{font-size:.82rem;font-weight:500;margin-bottom:2px}
+.audio-note{font-size:.72rem;color:var(--muted)}
+.prog-bar{height:4px;background:var(--border);border-radius:2px;overflow:hidden;margin-top:5px}
+.prog-fill{height:100%;width:0%;background:var(--purple);border-radius:2px;transition:width .1s linear}
+
+.fill-ex{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:18px;margin-bottom:16px}
+.fill-ex-title{font-size:.88rem;font-weight:600;padding-bottom:10px;border-bottom:1px solid var(--border);margin-bottom:14px;color:var(--dim)}
+.fill-item{display:flex;align-items:flex-start;gap:10px;padding:9px 0;border-bottom:1px dashed var(--border)}
+.fill-item:last-child{border-bottom:none}
+.fill-item-num{width:22px;height:22px;border-radius:50%;background:var(--bg3);display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:700;color:var(--muted);flex-shrink:0;margin-top:2px}
+.fill-item-body{flex:1}
+.fill-sentence{font-size:.87rem;margin-bottom:7px;line-height:1.6}
+.fill-controls{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.fill-input{height:33px;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);padding:0 11px;color:var(--text);font-size:.84rem;outline:none;min-width:80px;max-width:200px;transition:border-color var(--tr)}
+.fill-input:focus{border-color:var(--purple)}
+.fill-input.correct{border-color:var(--green);background:var(--green-l)}
+.fill-input.wrong{border-color:var(--red);background:var(--red-l)}
+.check-btn{padding:5px 12px;background:var(--purple);color:#fff;border:none;border-radius:var(--r2);font-size:.76rem;font-weight:600;cursor:pointer;transition:all var(--tr)}
+.check-btn:hover{background:#7C3AED}
+.reveal-btn{padding:5px 11px;background:var(--bg3);border:1px solid var(--border);color:var(--dim);border-radius:var(--r2);font-size:.76rem;cursor:pointer;transition:all var(--tr)}
+.reveal-btn:hover{border-color:var(--purple);color:var(--purple)}
+.fill-fb{margin-top:5px;font-size:.77rem;padding:4px 9px;border-radius:var(--r2);display:none}
+.fill-fb.show-ok{background:var(--green-l);color:var(--green);display:block}
+.fill-fb.show-err{background:var(--red-l);color:var(--red);display:block}
+
+.score-box{display:none;text-align:center;padding:18px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);margin-top:14px}
+.score-box.show{display:block}
+.score-n{font-size:2.2rem;font-weight:700;color:var(--purple)}
+.score-msg{color:var(--dim);font-size:.84rem;margin-top:4px}
+
+.btn{display:inline-flex;align-items:center;gap:6px;padding:7px 16px;border-radius:var(--r2);font-size:.82rem;font-weight:500;cursor:pointer;border:none;font-family:inherit;transition:all var(--tr)}
+.btn-primary{background:var(--purple);color:#fff}.btn-primary:hover{background:#7C3AED;transform:translateY(-1px)}
+.btn-outline{background:var(--bg3);border:1px solid var(--border2);color:var(--dim)}.btn-outline:hover{border-color:var(--purple);color:var(--purple)}
+
+.divider{height:1px;background:var(--border);margin:22px 0}
+.note-box{background:var(--orange-l);border:1px solid rgba(245,158,11,.25);border-radius:var(--r2);padding:10px 14px;font-size:.82rem;line-height:1.6;margin:10px 0}
+.note-box strong{color:var(--orange)}
+.tip-box{background:var(--bg3);border-left:3px solid var(--purple);border-radius:0 var(--r2) var(--r2) 0;padding:10px 14px;margin:10px 0;font-size:.82rem;color:var(--dim);line-height:1.6}
+.tip-box strong{color:var(--text)}
+.example-box{font-family:'Courier New',monospace;font-size:.82rem;color:#7DD3FC;background:var(--bg);padding:8px 12px;border-radius:var(--r2);margin:6px 0;border:1px solid var(--border)}
+
+.speaking-box{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:16px;margin-bottom:16px}
+.speaking-title{font-size:.84rem;font-weight:600;margin-bottom:12px;color:var(--text);display:flex;align-items:center;gap:8px}
+.bubble{background:var(--bg3);border:1px solid var(--border);border-radius:12px;padding:8px 14px;max-width:72%;font-size:.84rem;line-height:1.5;margin-bottom:8px}
+.bubble.speaker-a{border-bottom-left-radius:3px}
+.bubble.speaker-b{border-bottom-right-radius:3px;background:var(--purple-l);border-color:rgba(139,92,246,.3);margin-left:auto}
+
+.qa-list{display:flex;flex-direction:column;gap:8px;margin-bottom:16px}
+.qa-item{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r2);overflow:hidden}
+.qa-q{display:flex;align-items:center;gap:10px;padding:10px 14px;cursor:pointer;transition:background var(--tr)}
+.qa-q:hover{background:var(--bg3)}
+.qa-qnum{width:24px;height:24px;border-radius:50%;background:var(--purple-l);color:var(--purple);display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:700;flex-shrink:0}
+.qa-qtext{font-size:.86rem;flex:1}
+.qa-arrow{font-size:.7rem;color:var(--muted);transition:transform var(--tr);flex-shrink:0}
+.qa-item.open .qa-arrow{transform:rotate(90deg)}
+.qa-ans{display:none;padding:0 14px 10px 48px;font-size:.83rem;color:var(--teal);font-style:italic}
+.qa-item.open .qa-ans{display:block}
+
+.grammar-table{width:100%;border-collapse:collapse;font-size:.82rem;margin:12px 0}
+.grammar-table th{background:var(--bg3);padding:8px 12px;text-align:left;font-weight:600;border:1px solid var(--border);color:var(--dim);font-size:.72rem;text-transform:uppercase}
+.grammar-table td{padding:9px 12px;border:1px solid var(--border);line-height:1.5}
+.grammar-table td.aux{color:var(--purple);font-weight:600}
+
+.lang-sum-tag{display:inline-flex;align-items:center;gap:6px;padding:3px 12px;background:var(--purple-l);border:1px solid rgba(139,92,246,.3);border-radius:4px;font-size:.72rem;font-weight:700;color:#A78BFA;text-transform:uppercase;letter-spacing:.06em;margin-bottom:12px}
+
+.coll-grid{display:flex;flex-direction:column;gap:8px;margin:12px 0}
+.coll-row{display:grid;grid-template-columns:100px 1fr;gap:12px;align-items:start;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r2);padding:10px 14px}
+.coll-verb{font-size:.9rem;font-weight:700;color:var(--blue)}
+.coll-ipa{font-size:.72rem;color:var(--teal);font-family:monospace}
+.coll-phrase{font-size:.85rem;font-weight:600}
+.coll-vi{font-size:.8rem;color:var(--orange)}
+.coll-ex{font-size:.78rem;color:var(--dim);font-style:italic}
+
+@media(max-width:680px){.tab-nav{padding:0 12px}.page-content{padding:0 14px 48px}.quick-review{margin:12px}}
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="top-bar">
+  <button class="back-btn" onclick="history.back()">← Trang chủ</button>
+  <div class="lesson-badge">UNIT 3</div>
+  <div class="lesson-title-h">3A — The tourist trade</div>
+  <div class="top-actions">
+    <button class="theme-btn" id="theme-btn" onclick="toggleTheme()">☀️</button>
+    <button class="progress-btn" onclick="markDone()">✅ Đánh dấu xong</button>
+  </div>
+</div>
+
+<!-- QUICK REVIEW -->
+<div class="quick-review">
+  <div class="qr-badge">QUICK REVIEW</div>
+  <div class="qr-text"><strong>Giving and responding to advice</strong> — Write three problems that you, or people you know, have at the moment. Work in pairs. Take turns to tell your partner the problems and give advice.</div>
+</div>
+
+<!-- TAB NAV -->
+<div class="tab-nav">
+  <button class="tnav-btn active" onclick="showTab('vocab')">📚 Vocabulary &amp; Speaking</button>
+  <button class="tnav-btn" onclick="showTab('listening')">🎧 Listening</button>
+  <button class="tnav-btn" onclick="showTab('grammar')">📐 Help with Grammar</button>
+  <button class="tnav-btn" onclick="showTab('workbook')">📓 Workbook</button>
+  <button class="tnav-btn" onclick="showTab('langsummary')">📋 Language Summary</button>
+</div>
+
+<div class="page-content">
+
+<!-- ══════════════════════════════════════
+     TAB 1: VOCABULARY AND SPEAKING
+══════════════════════════════════════ -->
+<div class="tab-pane active" id="tab-vocab">
+  <div class="sec-heading">Vocabulary and Speaking</div>
+  <div class="sec-sub">Phrasal verbs (1): travel · VOCABULARY 3.1 → p132</div>
+
+  <!-- Exercise 1a -->
+  <div class="ex-label"><div class="ex-num">1</div>Exercise 1a — Phrasal verbs: travel</div>
+  <p class="instr">
+    <span class="part">a</span>
+    Can you guess the meaning of the phrasal verbs in bold? Then check in <em>VOCABULARY 3.1 → p132</em>.
+  </p>
+
+  <div class="coll-grid">
+    <div class="coll-row"><div class="coll-verb">set off <span class="coll-ipa">/set ɒf/</span></div><div><div class="coll-phrase">start a journey</div><div class="coll-vi">🇻🇳 bắt đầu hành trình</div><div class="coll-ex">"We set off at 5 a.m."</div></div></div>
+    <div class="coll-row"><div class="coll-verb">get around <span class="coll-ipa">/get əˈraʊnd/</span></div><div><div class="coll-phrase">travel to different places in the same town</div><div class="coll-vi">🇻🇳 di chuyển trong cùng một thành phố</div><div class="coll-ex">"What's the cheapest way to get around?"</div></div></div>
+    <div class="coll-row"><div class="coll-verb">deal with <span class="coll-ipa">/diːl wɪð/</span></div><div><div class="coll-phrase">solve a problem</div><div class="coll-vi">🇻🇳 giải quyết vấn đề</div><div class="coll-ex">"I have to deal with difficult customers."</div></div></div>
+    <div class="coll-row"><div class="coll-verb">check in <span class="coll-ipa">/tʃek ɪn/</span></div><div><div class="coll-phrase">arrive at a hotel and get the key</div><div class="coll-vi">🇻🇳 làm thủ tục nhận phòng</div><div class="coll-ex">"Have you checked in yet?"</div></div></div>
+    <div class="coll-row"><div class="coll-verb">check out <span class="coll-ipa">/tʃek aʊt/</span></div><div><div class="coll-phrase">pay the bill and leave a hotel</div><div class="coll-vi">🇻🇳 làm thủ tục trả phòng</div><div class="coll-ex">"We checked out early this morning."</div></div></div>
+    <div class="coll-row"><div class="coll-verb">see off <span class="coll-ipa">/siː ɒf/</span></div><div><div class="coll-phrase">say goodbye at the airport/station</div><div class="coll-vi">🇻🇳 tiễn ai đó tại sân bay/ga tàu</div><div class="coll-ex">"My parents came to see me off."</div></div></div>
+    <div class="coll-row"><div class="coll-verb">pick up <span class="coll-ipa">/pɪk ʌp/</span></div><div><div class="coll-phrase">collect someone from a place</div><div class="coll-vi">🇻🇳 đón ai đó</div><div class="coll-ex">"Can you pick me up from the station?"</div></div></div>
+    <div class="coll-row"><div class="coll-verb">get back <span class="coll-ipa">/get bæk/</span></div><div><div class="coll-phrase">return to a place</div><div class="coll-vi">🇻🇳 trở về</div><div class="coll-ex">"When did you get back from Brazil?"</div></div></div>
+    <div class="coll-row"><div class="coll-verb">put up with <span class="coll-ipa">/pʊt ʌp wɪð/</span></div><div><div class="coll-phrase">accept a situation you don't like</div><div class="coll-vi">🇻🇳 chịu đựng điều không thích</div><div class="coll-ex">"I don't know how you put up with the noise."</div></div></div>
+    <div class="coll-row"><div class="coll-verb">look after <span class="coll-ipa">/lʊk ˈɑːftə/</span></div><div><div class="coll-phrase">take care of</div><div class="coll-vi">🇻🇳 chăm sóc</div><div class="coll-ex">"Could you look after our cat?"</div></div></div>
+    <div class="coll-row"><div class="coll-verb">go away <span class="coll-ipa">/ɡəʊ əˈweɪ/</span></div><div><div class="coll-phrase">leave home for a holiday</div><div class="coll-vi">🇻🇳 đi nghỉ mát</div><div class="coll-ex">"We're going away in June."</div></div></div>
+    <div class="coll-row"><div class="coll-verb">look forward to <span class="coll-ipa">/lʊk ˈfɔːwəd tuː/</span></div><div><div class="coll-phrase">feel happy about something in the future</div><div class="coll-vi">🇻🇳 mong đợi</div><div class="coll-ex">"I'm really looking forward to my holiday."</div></div></div>
+  </div>
+
+  <div class="tip-box">
+    <strong>TIP:</strong> We often use verb+ing after <strong>look forward to</strong>: <em>I'm looking forward to seeing you.</em>
+  </div>
+
+  <!-- Exercise 1b -->
+  <div class="ex-label"><div class="ex-num">1</div>Exercise 1b — Speaking practice</div>
+  <p class="instr"><span class="part">b</span> Work in pairs. Ask and answer the questions in 1a. Ask follow-up questions if possible.</p>
+
+  <div class="speaking-box">
+    <div class="speaking-title">💬 Ví dụ hội thoại (từ sách trang 17)</div>
+    <div class="bubble speaker-a">Have you ever set off very early to go on holiday?</div>
+    <div class="bubble speaker-b">Yes, I have, actually.</div>
+    <div class="bubble speaker-a">What time did you leave home?</div>
+    <div class="bubble speaker-b">At 3.30 a.m.!</div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     TAB 2: LISTENING
+══════════════════════════════════════ -->
+<div class="tab-pane" id="tab-listening">
+  <div class="sec-heading">Listening</div>
+  <div class="sec-sub">CD1 Track 19 — Megan and Clive talk about their jobs</div>
+
+  <!-- Exercise 2a -->
+  <div class="ex-label"><div class="ex-num">2</div>Exercise 2a — Pre-listening</div>
+  <p class="instr"><span class="part">a</span> <strong>CD1 ▶ 19</strong> Look at the photos of Megan and Clive. Listen to them talking about their jobs. Answer these questions:</p>
+
+  <div class="audio-box">
+    <div class="audio-header">
+      <div class="cd-badge">CD1 ▶ Track 19</div>
+      <div>
+        <div class="audio-title">Megan and Clive talk about their jobs</div>
+        <div style="font-size:.75rem;color:var(--muted)">face2face Intermediate</div>
+      </div>
+    </div>
+    <div class="audio-controls">
+      <button class="play-btn" id="play-btn-19" onclick="toggleAudio('19')">▶</button>
+      <div class="audio-info">
+        <div class="audio-track">CD1 Track 19</div>
+        <div class="audio-note">⚠️ Cần file <code>cd1_track19.mp3</code></div>
+        <div class="prog-bar"><div class="prog-fill" id="prog-19"></div></div>
+      </div>
+    </div>
+    <audio id="audio-19" src="audio/cd1_track19.mp3" ontimeupdate="updateProg('19')" onended="audioEnd('19')"></audio>
+  </div>
+
+  <div class="qa-list">
+    <div class="qa-item"><div class="qa-q" onclick="toggleQA(this)"><span class="qa-qnum">1</span><span class="qa-qtext">Do they like their jobs?</span><span class="qa-arrow">▶</span></div><div class="qa-ans">Yes — both of them seem to enjoy their work despite the problems.</div></div>
+    <div class="qa-item"><div class="qa-q" onclick="toggleQA(this)"><span class="qa-qnum">2</span><span class="qa-qtext">What problems do they have in their jobs?</span><span class="qa-arrow">▶</span></div><div class="qa-ans">Megan deals with difficult customers; Clive has to deal with lost tourists and emergencies.</div></div>
+  </div>
+
+  <!-- Exercise 2b -->
+  <div class="ex-label"><div class="ex-num">2</div>Exercise 2b — Who said these sentences?</div>
+  <p class="instr"><span class="part">b</span> Work in pairs. Who said these sentences, Megan or Clive?</p>
+
+  <div class="fill-ex">
+    <div class="fill-ex-title">Megan or Clive?</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:12px">
+      <div>
+        <div style="font-size:.78rem;font-weight:700;color:var(--blue);margin-bottom:6px">Megan</div>
+        <div id="megan-drop" style="min-height:80px;background:var(--bg3);border:2px dashed var(--border2);border-radius:var(--r2);padding:10px"></div>
+      </div>
+      <div>
+        <div style="font-size:.78rem;font-weight:700;color:var(--purple);margin-bottom:6px">Clive</div>
+        <div id="clive-drop" style="min-height:80px;background:var(--bg3);border:2px dashed var(--border2);border-radius:var(--r2);padding:10px"></div>
+      </div>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:6px" id="sentence-pool">
+      <span class="pv-chip" style="font-size:.78rem;padding:6px 12px;background:var(--bg2);border:2px solid var(--purple);border-radius:var(--r2);cursor:pointer" onclick="selectSentence(this)" data-speaker="megan">a. I've worked in the USA and in Europe.</span>
+      <span class="pv-chip" style="font-size:.78rem;padding:6px 12px;background:var(--bg2);border:2px solid var(--purple);border-radius:var(--r2);cursor:pointer" onclick="selectSentence(this)" data-speaker="clive">b. We've been away a few times.</span>
+      <span class="pv-chip" style="font-size:.78rem;padding:6px 12px;background:var(--bg2);border:2px solid var(--purple);border-radius:var(--r2);cursor:pointer" onclick="selectSentence(this)" data-speaker="clive">c. My wife and I started working in the hotel industry 19 years ago.</span>
+      <span class="pv-chip" style="font-size:.78rem;padding:6px 12px;background:var(--bg2);border:2px solid var(--purple);border-radius:var(--r2);cursor:pointer" onclick="selectSentence(this)" data-speaker="clive">d. Three days ago a guy set off on his own into the mountains.</span>
+      <span class="pv-chip" style="font-size:.78rem;padding:6px 12px;background:var(--bg2);border:2px solid var(--purple);border-radius:var(--r2);cursor:pointer" onclick="selectSentence(this)" data-speaker="megan">e. I've lived in this country for about three years.</span>
+      <span class="pv-chip" style="font-size:.78rem;padding:6px 12px;background:var(--bg2);border:2px solid var(--purple);border-radius:var(--r2);cursor:pointer" onclick="selectSentence(this)" data-speaker="megan">f. We've had this place since 2008.</span>
+      <span class="pv-chip" style="font-size:.78rem;padding:6px 12px;background:var(--bg2);border:2px solid var(--purple);border-radius:var(--r2);cursor:pointer" onclick="selectSentence(this)" data-speaker="clive">g. I've just been to Banff to pick him up from the hospital.</span>
+      <span class="pv-chip" style="font-size:.78rem;padding:6px 12px;background:var(--bg2);border:2px solid var(--purple);border-radius:var(--r2);cursor:pointer" onclick="selectSentence(this)" data-speaker="megan">h. My wife's gone to see some friends off at Manchester airport.</span>
+    </div>
+    <div style="display:flex;gap:8px;margin-top:12px">
+      <button class="btn btn-primary" onclick="checkSpeakerMatch()">✅ Kiểm tra</button>
+      <button class="btn btn-outline" onclick="revealSpeakerMatch()">👁 Đáp án</button>
+    </div>
+    <div class="score-box" id="speaker-score"></div>
+  </div>
+
+  <!-- Exercise 2c -->
+  <p class="instr"><span class="part">c</span> Listen again. Check your answers and put the sentences in the order you hear them.</p>
+  <div class="tip-box"><strong>Order:</strong> c → e → f → b → a → h → d → g</div>
+</div>
+
+<!-- ══════════════════════════════════════
+     TAB 3: GRAMMAR
+══════════════════════════════════════ -->
+<div class="tab-pane" id="tab-grammar">
+  <div class="sec-heading">Help with Grammar</div>
+  <div class="sec-sub">Present Perfect Simple: experience, unfinished past and recent events · GRAMMAR 3.1 → p133</div>
+
+  <div class="grammar-table">
+    <table>
+      <thead><tr><th>Use</th><th>Example</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Experiences</strong> (time not specified)</td><td class="aux">I've worked in the USA and in Europe.</td></tr>
+        <tr><td><strong>Unfinished past</strong> (with <em>for</em> / <em>since</em>)</td><td class="aux">I've lived here for about three years. / We've had this place since 2008.</td></tr>
+        <tr><td><strong>Recent events</strong> (with <em>just</em>)</td><td class="aux">I've just been to Banff to pick him up.</td></tr>
+        <tr><td><strong>To give more info about an experience</strong></td><td class="aux">We use the <strong>Past Simple</strong>: <em>I really enjoyed my time there.</em></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="note-box">
+    <strong>been vs gone:</strong><br>
+    • <strong>been</strong> = went and came back: <em>I've been to Banff.</em><br>
+    • <strong>gone</strong> = went and hasn't returned: <em>She's gone to the airport.</em>
+  </div>
+
+  <div class="tip-box">
+    <strong>for / since:</strong><br>
+    • <strong>for</strong> + period of time: <em>for three years, for a week</em><br>
+    • <strong>since</strong> + point in time: <em>since 2008, since last Tuesday</em>
+  </div>
+
+  <!-- Exercise: Fill in gaps -->
+  <div class="ex-label"><div class="ex-num">3</div>Exercise — Present Perfect Simple or Past Simple?</div>
+  <p class="instr">Put the verbs in brackets in the <strong>Present Perfect Simple</strong> or <strong>Past Simple</strong>.</p>
+
+  <div class="fill-ex">
+    <div class="fill-ex-title">Lewis and Veronica's restaurant in the Canary Islands</div>
+    <div id="pps-ex">
+      <div class="fill-item"><div class="fill-item-num">1</div><div class="fill-item-body"><div class="fill-sentence">When we <input class="fill-input" id="pp3-1" style="max-width:100px" placeholder="be"> (be) younger we <input class="fill-input" id="pp3-2" style="max-width:100px" placeholder="come"> (come) here on holiday every year.</div></div></div>
+      <div class="fill-item"><div class="fill-item-num">2</div><div class="fill-item-body"><div class="fill-sentence">Then we <input class="fill-input" id="pp3-3" style="max-width:100px" placeholder="move"> (move) here in 2007 and <input class="fill-input" id="pp3-4" style="max-width:100px" placeholder="open"> (open) a restaurant.</div></div></div>
+      <div class="fill-item"><div class="fill-item-num">3</div><div class="fill-item-body"><div class="fill-sentence">We <input class="fill-input" id="pp3-5" style="max-width:120px" placeholder="live"> (live) here since then and we <input class="fill-input" id="pp3-6" style="max-width:120px" placeholder="just open"> (just open) a guest house.</div></div></div>
+      <div class="fill-item"><div class="fill-item-num">4</div><div class="fill-item-body"><div class="fill-sentence">We <input class="fill-input" id="pp3-7" style="max-width:120px" placeholder="have"> (have) a lot of visitors from home since then.</div></div></div>
+      <div class="fill-item"><div class="fill-item-num">5</div><div class="fill-item-body"><div class="fill-sentence">My parents <input class="fill-input" id="pp3-8" style="max-width:100px" placeholder="arrive"> (arrive) last week — it's the fourth time they <input class="fill-input" id="pp3-9" style="max-width:120px" placeholder="visit"> (visit) us this year!</div></div></div>
+      <div class="fill-item"><div class="fill-item-num">6</div><div class="fill-item-body"><div class="fill-sentence">Veronica's family <input class="fill-input" id="pp3-10" style="max-width:120px" placeholder="just go"> (just go) to pick them up at the airport.</div></div></div>
+      <div class="fill-item"><div class="fill-item-num">7</div><div class="fill-item-body"><div class="fill-sentence">We <input class="fill-input" id="pp3-11" style="max-width:120px" placeholder="go"> (go) to Turkey twice, but our last holiday <input class="fill-input" id="pp3-12" style="max-width:100px" placeholder="be"> (be) 18 months ago.</div></div></div>
+    </div>
+    <div style="display:flex;gap:8px;margin-top:12px">
+      <button class="btn btn-primary" onclick="checkPPS()">✅ Kiểm tra tất cả</button>
+      <button class="btn btn-outline" onclick="revealPPS()">👁 Đáp án</button>
+      <button class="btn btn-outline" onclick="resetPPS()">🔄 Làm lại</button>
+    </div>
+    <div class="score-box" id="pps-score"></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     TAB 4: WORKBOOK
+══════════════════════════════════════ -->
+<div class="tab-pane" id="tab-workbook">
+  <div class="sec-heading">Workbook 3A</div>
+  <div class="sec-sub">Extra practice from Workbook pages 17–18</div>
+
+  <div class="lang-sum-tag">📓 VOCABULARY — Phrasal verbs</div>
+  <p class="instr">Match the phrasal verbs in A to words/phrases in B.</p>
+  <div class="coll-grid">
+    <div class="coll-row"><div class="coll-verb">set off</div><div><div class="coll-phrase">on a journey</div><div class="coll-vi">🇻🇳 bắt đầu hành trình</div></div></div>
+    <div class="coll-row"><div class="coll-verb">check in</div><div><div class="coll-phrase">at a hotel</div><div class="coll-vi">🇻🇳 làm thủ tục nhận phòng</div></div></div>
+    <div class="coll-row"><div class="coll-verb">check out</div><div><div class="coll-phrase">of a hotel</div><div class="coll-vi">🇻🇳 làm thủ tục trả phòng</div></div></div>
+    <div class="coll-row"><div class="coll-verb">pick up</div><div><div class="coll-phrase">someone from the airport</div><div class="coll-vi">🇻🇳 đón ai đó tại sân bay</div></div></div>
+    <div class="coll-row"><div class="coll-verb">look after</div><div><div class="coll-phrase">a pet or plants</div><div class="coll-vi">🇻🇳 chăm sóc thú cưng/cây</div></div></div>
+    <div class="coll-row"><div class="coll-verb">get back</div><div><div class="coll-phrase">from a trip</div><div class="coll-vi">🇻🇳 trở về từ chuyến đi</div></div></div>
+    <div class="coll-row"><div class="coll-verb">see off</div><div><div class="coll-phrase">someone at the airport</div><div class="coll-vi">🇻🇳 tiễn ai đó tại sân bay</div></div></div>
+  </div>
+
+  <div class="lang-sum-tag">📓 GRAMMAR — Present Perfect Simple or Past Simple</div>
+  <p class="instr">Choose the correct words.</p>
+  <div class="fill-ex">
+    <div class="fill-item"><div class="fill-item-num">1</div><div class="fill-item-body"><div class="fill-sentence">A: <input class="fill-input" id="wb-1" style="max-width:80px" placeholder="Did/Have"> you ever <input class="fill-input" id="wb-2" style="max-width:80px" placeholder="go/been"> to the USA?</div></div></div>
+    <div class="fill-item"><div class="fill-item-num">2</div><div class="fill-item-body"><div class="fill-sentence">B: Yes, I <input class="fill-input" id="wb-3" style="max-width:80px" placeholder="haven't/ve"> been there twice. I <input class="fill-input" id="wb-4" style="max-width:80px" placeholder="have visited/visited"> Miami in 2005.</div></div></div>
+    <div class="fill-item"><div class="fill-item-num">3</div><div class="fill-item-body"><div class="fill-sentence">A: Where's Jack? B: He's just <input class="fill-input" id="wb-5" style="max-width:80px" placeholder="been/gone"> out.</div></div></div>
+    <div class="fill-item"><div class="fill-item-num">4</div><div class="fill-item-body"><div class="fill-sentence">A: <input class="fill-input" id="wb-6" style="max-width:80px" placeholder="Did/Has"> he <input class="fill-input" id="wb-7" style="max-width:80px" placeholder="say/said"> where he was going?</div></div></div>
+    <div style="display:flex;gap:8px;margin-top:12px">
+      <button class="btn btn-primary" onclick="checkWB()">✅ Kiểm tra</button>
+      <button class="btn btn-outline" onclick="revealWB()">👁 Đáp án</button>
+    </div>
+    <div class="score-box" id="wb-score"></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     TAB 5: LANGUAGE SUMMARY
+══════════════════════════════════════ -->
+<div class="tab-pane" id="tab-langsummary">
+  <div class="sec-heading">Language Summary 3A</div>
+  <div class="sec-sub">VOCABULARY 3.1 · GRAMMAR 3.1</div>
+
+  <div class="lang-sum-tag">📗 VOCABULARY 3.1 — Phrasal verbs (1): travel</div>
+  <div class="coll-grid">
+    <div class="coll-row"><div class="coll-verb">set off</div><div><div class="coll-phrase">start a journey</div><div class="coll-vi">🇻🇳 bắt đầu hành trình</div><div class="coll-ex">"We set off at 5 a.m."</div></div></div>
+    <div class="coll-row"><div class="coll-verb">get around</div><div><div class="coll-phrase">travel to different places in the same town</div><div class="coll-vi">🇻🇳 di chuyển trong cùng một thành phố</div><div class="coll-ex">"What's the cheapest way to get around?"</div></div></div>
+    <div class="coll-row"><div class="coll-verb">deal with</div><div><div class="coll-phrase">solve a problem</div><div class="coll-vi">🇻🇳 giải quyết vấn đề</div><div class="coll-ex">"I have to deal with difficult customers."</div></div></div>
+    <div class="coll-row"><div class="coll-verb">check in</div><div><div class="coll-phrase">arrive at a hotel and get the key</div><div class="coll-vi">🇻🇳 làm thủ tục nhận phòng</div><div class="coll-ex">"Have you checked in yet?"</div></div></div>
+    <div class="coll-row"><div class="coll-verb">check out</div><div><div class="coll-phrase">pay the bill and leave a hotel</div><div class="coll-vi">🇻🇳 làm thủ tục trả phòng</div><div class="coll-ex">"We checked out early this morning."</div></div></div>
+    <div class="coll-row"><div class="coll-verb">see off</div><div><div class="coll-phrase">say goodbye at the airport/station</div><div class="coll-vi">🇻🇳 tiễn ai đó tại sân bay/ga tàu</div><div class="coll-ex">"My parents came to see me off."</div></div></div>
+    <div class="coll-row"><div class="coll-verb">pick up</div><div><div class="coll-phrase">collect someone from a place</div><div class="coll-vi">🇻🇳 đón ai đó</div><div class="coll-ex">"Can you pick me up from the station?"</div></div></div>
+    <div class="coll-row"><div class="coll-verb">get back</div><div><div class="coll-phrase">return to a place</div><div class="coll-vi">🇻🇳 trở về</div><div class="coll-ex">"When did you get back from Brazil?"</div></div></div>
+    <div class="coll-row"><div class="coll-verb">put up with</div><div><div class="coll-phrase">accept a situation you don't like</div><div class="coll-vi">🇻🇳 chịu đựng điều không thích</div><div class="coll-ex">"I don't know how you put up with the noise."</div></div></div>
+    <div class="coll-row"><div class="coll-verb">look after</div><div><div class="coll-phrase">take care of</div><div class="coll-vi">🇻🇳 chăm sóc</div><div class="coll-ex">"Could you look after our cat?"</div></div></div>
+    <div class="coll-row"><div class="coll-verb">go away</div><div><div class="coll-phrase">leave home for a holiday</div><div class="coll-vi">🇻🇳 đi nghỉ mát</div><div class="coll-ex">"We're going away in June."</div></div></div>
+    <div class="coll-row"><div class="coll-verb">look forward to</div><div><div class="coll-phrase">feel happy about something in the future</div><div class="coll-vi">🇻🇳 mong đợi</div><div class="coll-ex">"I'm really looking forward to my holiday."</div></div></div>
+  </div>
+
+  <div class="tip-box">
+    <strong>TIP:</strong> We often use verb+ing after <strong>look forward to</strong>: <em>I'm looking forward to seeing you.</em>
+  </div>
+
+  <div class="lang-sum-tag">📗 GRAMMAR 3.1 — Present Perfect Simple</div>
+  <div class="grammar-table">
+    <table>
+      <thead><tr><th>Use</th><th>Example</th></tr></thead>
+      <tbody>
+        <tr><td>Experiences (time not specified)</td><td class="aux">I've worked in the USA.</td></tr>
+        <tr><td>Unfinished past (for/since)</td><td class="aux">I've lived here for three years.</td></tr>
+        <tr><td>Recent events (just)</td><td class="aux">I've just been to Banff.</td></tr>
+        <tr><td>To give more info about an experience</td><td class="aux">Use Past Simple: <em>I enjoyed it.</em></td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+</div><!-- /page-content -->
+
+<script>
+/* ══════════════════════════════════════
+   UTILITIES
+══════════════════════════════════════ */
+function showTab(id){
+  document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tnav-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+  const tabs=['vocab','listening','grammar','workbook','langsummary'];
+  const idx=tabs.indexOf(id);
+  document.querySelectorAll('.tnav-btn')[idx]?.classList.add('active');
+}
+function toggleTheme(){const t=document.documentElement.getAttribute('data-theme')==='light'?'dark':'light';document.documentElement.setAttribute('data-theme',t==='light'?'light':'');document.getElementById('theme-btn').textContent=t==='light'?'🌙':'☀️';localStorage.setItem('f2f_3a_theme',t);}
+function markDone(){showToast('✅ 3A The tourist trade đã hoàn thành!');}
+function showToast(msg){let t=document.getElementById('toast');if(!t){t=document.createElement('div');t.id='toast';t.style.cssText='position:fixed;bottom:20px;right:20px;z-index:999;background:var(--bg2);border:1px solid var(--border2);padding:10px 18px;border-radius:8px;font-size:.82rem;box-shadow:0 4px 20px rgba(0,0,0,.3);transition:opacity .3s';document.body.appendChild(t);}t.textContent=msg;t.style.opacity='1';clearTimeout(showToast._t);showToast._t=setTimeout(()=>t.style.opacity='0',2400);}
+
+function toggleQA(btn){const item=btn.closest('.qa-item');item.classList.toggle('open');}
+
+/* ── AUDIO ── */
+const audioStates={};
+function toggleAudio(id){
+  const audio=document.getElementById('audio-'+id);
+  const btn=document.getElementById('play-btn-'+id);
+  if(!audio||!btn)return;
+  if(audioStates[id]){audio.pause();btn.textContent='▶';audioStates[id]=false;}
+  else{audio.play().catch(()=>showToast('⚠️ Cần file audio CD1 Track '+id));btn.textContent='⏸';audioStates[id]=true;}
+}
+function updateProg(id){const audio=document.getElementById('audio-'+id);const fill=document.getElementById('prog-'+id);if(audio?.duration&&fill)fill.style.width=(audio.currentTime/audio.duration*100)+'%';}
+function audioEnd(id){const btn=document.getElementById('play-btn-'+id);if(btn)btn.textContent='▶';audioStates[id]=false;}
+
+/* ── SPEAKER MATCH ── */
+let selectedSentence=null;
+function selectSentence(el){
+  document.querySelectorAll('#sentence-pool .pv-chip').forEach(c=>c.classList.remove('selected-tap'));
+  el.classList.add('selected-tap');
+  selectedSentence=el;
+}
+
+function checkSpeakerMatch(){
+  const megan=document.getElementById('megan-drop');
+  const clive=document.getElementById('clive-drop');
+  const meganCount=megan.querySelectorAll('.pv-chip').length;
+  const cliveCount=clive.querySelectorAll('.pv-chip').length;
+  let c=0,total=8;
+  if(meganCount===4 && cliveCount===4){ c=8; }else{ c=Math.min(meganCount,4)+Math.min(cliveCount,4); }
+  const sc=document.getElementById('speaker-score');
+  sc.innerHTML=`<div class="score-n">${c}/${total}</div><div class="score-msg">${c===total?'🎉 All correct!':'4 sentences for each speaker.'}</div>`;
+  sc.className='score-box show';
+}
+function revealSpeakerMatch(){
+  const megan=document.getElementById('megan-drop');
+  const clive=document.getElementById('clive-drop');
+  ['megan','clive'].forEach(sp=>{
+    const container=sp==='megan'?megan:clive;
+    container.innerHTML='';
+    document.querySelectorAll('#sentence-pool .pv-chip').forEach(el=>{
+      if(el.dataset.speaker===sp){
+        const clone=el.cloneNode(true);
+        clone.style.borderColor='var(--green)';
+        clone.style.background='var(--green-l)';
+        container.appendChild(clone);
+        el.style.display='none';
+      }
+    });
+  });
+}
+
+/* ── PPS EXERCISE ── */
+function checkPPS(){
+  const ans={
+    'pp3-1':'were','pp3-2':'came','pp3-3':'moved','pp3-4':'opened',
+    'pp3-5':'have lived','pp3-6':'have just opened','pp3-7':'have had',
+    'pp3-8':'arrived','pp3-9':'have visited','pp3-10':'has just gone',
+    'pp3-11':'have been','pp3-12':'was'
+  };
+  let c=0,total=12;
+  Object.entries(ans).forEach(([id,val])=>{
+    const inp=document.getElementById(id);
+    if(inp){
+      const ok=inp.value.trim().toLowerCase().replace(/\s+/g,'')===val.toLowerCase().replace(/\s+/g,'');
+      inp.className='fill-input '+(ok?'correct':'wrong');
+      if(ok)c++;
+    }
+  });
+  const sc=document.getElementById('pps-score');
+  sc.innerHTML=`<div class="score-n">${c}/${total}</div><div class="score-msg">${c===total?'🎉 Perfect!':'Review GRAMMAR 3.1.'}</div>`;
+  sc.className='score-box show';
+}
+function revealPPS(){
+  const ans={
+    'pp3-1':'were','pp3-2':'came','pp3-3':'moved','pp3-4':'opened',
+    'pp3-5':'have lived','pp3-6':'have just opened','pp3-7':'have had',
+    'pp3-8':'arrived','pp3-9':'have visited','pp3-10':'has just gone',
+    'pp3-11':'have been','pp3-12':'was'
+  };
+  Object.entries(ans).forEach(([id,val])=>{
+    const inp=document.getElementById(id);
+    if(inp){inp.value=val;inp.className='fill-input correct';}
+  });
+}
+function resetPPS(){
+  ['pp3-1','pp3-2','pp3-3','pp3-4','pp3-5','pp3-6','pp3-7','pp3-8','pp3-9','pp3-10','pp3-11','pp3-12'].forEach(id=>{
+    const inp=document.getElementById(id);if(inp){inp.value='';inp.className='fill-input';}
+  });
+  document.getElementById('pps-score').className='score-box';
+}
+
+/* ── WORKBOOK ── */
+function checkWB(){
+  const ans={'wb-1':'Have','wb-2':'been','wb-3':'\'ve','wb-4':'visited','wb-5':'gone','wb-6':'Did','wb-7':'say'};
+  let c=0,total=7;
+  Object.entries(ans).forEach(([id,val])=>{
+    const inp=document.getElementById(id);
+    if(inp){
+      const ok=inp.value.trim().toLowerCase().replace(/\s+/g,'')===val.toLowerCase().replace(/\s+/g,'');
+      inp.className='fill-input '+(ok?'correct':'wrong');
+      if(ok)c++;
+    }
+  });
+  const sc=document.getElementById('wb-score');
+  sc.innerHTML=`<div class="score-n">${c}/${total}</div><div class="score-msg">${c===total?'🎉 All correct!':'Check the workbook answers.'}</div>`;
+  sc.className='score-box show';
+}
+function revealWB(){
+  const ans={'wb-1':'Have','wb-2':'been','wb-3':'\'ve','wb-4':'visited','wb-5':'gone','wb-6':'Did','wb-7':'say'};
+  Object.entries(ans).forEach(([id,val])=>{
+    const inp=document.getElementById(id);
+    if(inp){inp.value=val;inp.className='fill-input correct';}
+  });
+}
+
+/* ── INIT ── */
+document.addEventListener('DOMContentLoaded',()=>{
+  const t=localStorage.getItem('f2f_3a_theme')||'dark';
+  if(t==='light'){document.documentElement.setAttribute('data-theme','light');document.getElementById('theme-btn').textContent='🌙';}
+});
+</script>
+</body>
+</html>
