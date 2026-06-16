@@ -1,0 +1,1413 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2D What's the matter? — face2face Intermediate</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap');
+:root{
+  --bg:#0D1117;--bg2:#161B22;--bg3:#21262D;--bg4:#2D333B;
+  --border:#30363D;--border2:#3D444D;
+  --text:#E6EDF3;--dim:#8B949E;--muted:#484F58;
+  --blue:#2563EB;--blue-l:rgba(37,99,235,.15);
+  --green:#10B981;--green-l:rgba(16,185,129,.12);
+  --orange:#F59E0B;--orange-l:rgba(245,158,11,.12);
+  --red:#EF4444;--red-l:rgba(239,68,68,.12);
+  --teal:#14B8A6;--purple:#8B5CF6;--purple-l:rgba(139,92,246,.12);
+  --rose:#F43F5E;--rose-l:rgba(244,63,94,.12);
+  --indigo:#6366F1;--indigo-l:rgba(99,102,241,.15);
+  --r:10px;--r2:6px;--tr:.18s ease;
+}
+[data-theme=light]{--bg:#F8FAFC;--bg2:#fff;--bg3:#F1F5F9;--bg4:#E2E8F0;--border:#E2E8F0;--border2:#CBD5E1;--text:#0F172A;--dim:#475569;--muted:#94A3B8;--rose:#BE123C;--rose-l:rgba(190,18,60,.08);--indigo:#4338CA;--indigo-l:rgba(67,56,202,.1)}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);font-size:15px;line-height:1.6}
+a{color:inherit;text-decoration:none}button{cursor:pointer;border:none;background:none;font-family:inherit}input,textarea,select{font-family:inherit}
+
+/* TOP BAR */
+.top-bar{background:var(--bg2);border-bottom:1px solid var(--border);padding:10px 20px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:50;flex-wrap:wrap}
+.back-btn{display:flex;align-items:center;gap:6px;padding:6px 14px;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);font-size:.82rem;color:var(--dim);cursor:pointer;transition:all var(--tr)}
+.back-btn:hover{border-color:var(--rose);color:var(--rose)}
+.lesson-badge{padding:4px 12px;background:var(--rose-l);border:1px solid rgba(244,63,94,.35);border-radius:4px;font-size:.75rem;font-weight:700;color:#FDA4AF;letter-spacing:.05em}
+.lesson-title-h{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700}
+.top-actions{margin-left:auto;display:flex;gap:8px}
+.theme-btn{width:34px;height:34px;display:flex;align-items:center;justify-content:center;border-radius:var(--r2);background:var(--bg3);border:1px solid var(--border);cursor:pointer;font-size:.95rem;color:var(--dim);transition:all var(--tr)}
+.theme-btn:hover{border-color:var(--rose);color:var(--rose)}
+.progress-btn{padding:6px 14px;background:var(--rose);border-radius:var(--r2);font-size:.78rem;font-weight:600;color:#fff;cursor:pointer;border:none;transition:all var(--tr)}
+.progress-btn:hover{background:#BE123C}
+
+/* QUICK REVIEW */
+.quick-review{background:linear-gradient(135deg,#3b0d1a,#2d0a14);border:1px solid #7f1d2e;border-radius:var(--r);padding:14px 20px;margin:18px 24px;display:flex;gap:12px;align-items:flex-start}
+.qr-badge{background:var(--rose);color:#fff;padding:3px 10px;border-radius:4px;font-size:.72rem;font-weight:700;white-space:nowrap;flex-shrink:0;margin-top:2px}
+.qr-text{font-size:.84rem;line-height:1.65;color:#FCA5A5}
+.qr-text strong{color:#fff}.qr-text em{font-style:italic;color:#FECDD3}
+
+/* TAB NAV */
+.tab-nav{display:flex;gap:2px;border-bottom:1px solid var(--border);overflow-x:auto;scrollbar-width:none;position:sticky;top:57px;background:var(--bg);z-index:40;padding:0 24px}
+.tab-nav::-webkit-scrollbar{display:none}
+.tnav-btn{display:flex;align-items:center;gap:6px;padding:11px 16px;font-size:.82rem;font-weight:500;color:var(--dim);white-space:nowrap;border-bottom:2px solid transparent;margin-bottom:-1px;cursor:pointer;transition:all var(--tr);background:none;border-top:none;border-left:none;border-right:none;font-family:inherit}
+.tnav-btn:hover{color:var(--text)}.tnav-btn.active{color:var(--rose);border-bottom-color:var(--rose)}
+
+/* PAGE CONTENT */
+.page-content{max-width:920px;margin:0 auto;padding:0 24px 48px}
+.tab-pane{display:none;padding-top:28px}
+.tab-pane.active{display:block;animation:fadeUp .22s ease}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
+/* SECTION HEADINGS */
+.sec-heading{font-size:1.05rem;font-weight:700;margin-bottom:4px;display:flex;align-items:center;gap:8px}
+.sec-sub{font-size:.82rem;color:var(--dim);margin-bottom:16px}
+.exercise-label{display:inline-flex;align-items:center;gap:8px;font-size:.9rem;font-weight:600;margin-bottom:12px;color:var(--text)}
+.exercise-num{width:28px;height:28px;background:var(--rose);color:#fff;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:.78rem;font-weight:700;flex-shrink:0}
+.instruction{font-size:.88rem;color:var(--text);line-height:1.65;margin-bottom:14px}
+.instruction em{font-style:italic;color:var(--teal)}
+.divider{height:1px;background:var(--border);margin:24px 0}
+
+/* VOCAB CARDS */
+.vocab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px;margin-bottom:20px}
+.vocab-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:14px 16px;transition:all var(--tr)}
+.vocab-card:hover{border-color:var(--rose);transform:translateY(-1px)}
+.vocab-word{font-size:.95rem;font-weight:700;color:var(--text);margin-bottom:2px}
+.vocab-ipa{font-family:'Courier New',monospace;font-size:.78rem;color:var(--teal);margin-bottom:4px}
+.vocab-pos{font-size:.72rem;color:var(--rose);font-weight:600;text-transform:uppercase;margin-bottom:6px}
+.vocab-def{font-size:.82rem;color:var(--dim);line-height:1.5;margin-bottom:4px}
+.vocab-vi{font-size:.8rem;color:var(--orange);font-style:italic}
+.vocab-ex{font-size:.78rem;color:var(--muted);font-style:italic;margin-top:4px;padding-top:4px;border-top:1px dashed var(--border)}
+
+/* PHRASE BOX */
+.phrase-section{margin-bottom:20px}
+.phrase-category{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:18px;margin-bottom:12px}
+.phrase-cat-title{font-size:.78rem;font-weight:700;color:var(--rose);text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.phrase-list{display:flex;flex-direction:column;gap:8px}
+.phrase-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;align-items:start;padding:8px;background:var(--bg3);border-radius:var(--r2);border:1px solid var(--border)}
+.phrase-eng{font-size:.87rem;font-weight:500;color:var(--text)}
+.phrase-vi{font-size:.82rem;color:var(--orange);font-style:italic}
+.phrase-ex{font-size:.78rem;color:var(--muted);font-style:italic;margin-top:4px;grid-column:1/-1}
+.phrase-row-full{padding:8px;background:var(--bg3);border-radius:var(--r2);border:1px solid var(--border);margin-bottom:4px}
+.phrase-eng-full{font-size:.87rem;font-weight:500;color:var(--text);margin-bottom:2px}
+.phrase-vi-full{font-size:.82rem;color:var(--orange);font-style:italic;margin-bottom:2px}
+.phrase-ex-full{font-size:.78rem;color:var(--muted);font-style:italic}
+
+/* GRAMMAR BOX */
+.grammar-tag{display:inline-flex;align-items:center;gap:6px;padding:3px 12px;background:var(--orange-l);border:1px solid rgba(245,158,11,.3);border-radius:4px;font-size:.72rem;font-weight:700;color:var(--orange);text-transform:uppercase;letter-spacing:.06em;margin-bottom:12px}
+.grammar-box{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:20px;margin-bottom:16px}
+.example-box{font-family:'Courier New',monospace;font-size:.83rem;color:#A5B4FC;background:var(--bg);padding:9px 14px;border-radius:var(--r2);margin:8px 0;border:1px solid var(--border);line-height:1.7}
+.note-box{background:var(--orange-l);border:1px solid rgba(245,158,11,.25);border-radius:var(--r2);padding:10px 14px;font-size:.82rem;line-height:1.6;margin-top:10px}
+.note-box strong{color:var(--orange)}
+.info-box{background:var(--rose-l);border:1px solid rgba(244,63,94,.25);border-radius:var(--r2);padding:12px 16px;font-size:.84rem;line-height:1.65;margin-bottom:16px}
+.info-box strong{color:var(--rose)}
+
+/* FILL EXERCISE */
+.fill-exercise{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:20px;margin-bottom:16px}
+.fill-item{display:flex;align-items:flex-start;gap:12px;padding:10px 0;border-bottom:1px dashed var(--border)}
+.fill-item:last-child{border-bottom:none}
+.fill-item-num{width:24px;height:24px;border-radius:50%;background:var(--bg3);display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:700;color:var(--muted);flex-shrink:0;margin-top:2px}
+.fill-item-content{flex:1}
+.fill-sentence{font-size:.88rem;margin-bottom:8px;line-height:1.65}
+.fill-input{height:34px;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);padding:0 12px;color:var(--text);font-size:.85rem;outline:none;min-width:140px;transition:border-color var(--tr)}
+.fill-input:focus{border-color:var(--rose)}
+.fill-input.correct{border-color:var(--green);background:var(--green-l)}
+.fill-input.wrong{border-color:var(--red);background:var(--red-l)}
+.check-btn{padding:6px 14px;background:var(--rose);color:#fff;border:none;border-radius:var(--r2);font-size:.78rem;font-weight:600;cursor:pointer;transition:all var(--tr);margin-left:4px}
+.check-btn:hover{background:#BE123C}
+.reveal-btn{padding:6px 12px;background:var(--bg3);border:1px solid var(--border);color:var(--dim);border-radius:var(--r2);font-size:.78rem;cursor:pointer;transition:all var(--tr);margin-left:4px}
+.reveal-btn:hover{border-color:var(--rose);color:var(--rose)}
+.fill-feedback{margin-top:6px;font-size:.78rem;padding:5px 10px;border-radius:var(--r2);display:none}
+.fill-feedback.show-ok{background:var(--green-l);color:var(--green);display:block}
+.fill-feedback.show-err{background:var(--red-l);color:var(--red);display:block}
+
+/* DIALOGUE */
+.dialogue-box{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:22px;margin-bottom:16px}
+.dialogue-title{font-size:.82rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;margin-bottom:14px}
+.dialogue-turn{display:flex;gap:10px;margin-bottom:10px;align-items:flex-start}
+.dialogue-speaker{min-width:70px;font-size:.8rem;font-weight:700;color:var(--rose);padding-top:2px;flex-shrink:0}
+.dialogue-line{font-size:.87rem;line-height:1.65;color:var(--text);background:var(--bg3);border-radius:8px;padding:9px 14px;flex:1;border:1px solid var(--border)}
+.dialogue-line em{font-style:italic;color:var(--teal)}
+.dialogue-line .highlight{color:var(--rose);font-weight:600}
+.dialogue-line .blank{display:inline-block;min-width:100px;border-bottom:2px solid var(--rose);color:var(--rose);font-style:italic;padding:0 4px}
+
+/* MCQ */
+.mcq-list{display:flex;flex-direction:column;gap:12px;margin-bottom:20px}
+.mcq-item{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:16px}
+.mcq-q{font-size:.88rem;font-weight:600;margin-bottom:10px;color:var(--text)}
+.mcq-opts{display:flex;flex-direction:column;gap:6px}
+.mcq-opt{display:flex;align-items:center;gap:10px;padding:8px 12px;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);cursor:pointer;font-size:.84rem;transition:all var(--tr)}
+.mcq-opt:hover{border-color:var(--rose)}
+.mcq-opt.correct{border-color:var(--green);background:var(--green-l)}
+.mcq-opt.wrong{border-color:var(--red);background:var(--red-l)}
+.opt-dot{width:18px;height:18px;border-radius:50%;border:2px solid var(--border);flex-shrink:0}
+.mcq-opt.correct .opt-dot{background:var(--green);border-color:var(--green)}
+.mcq-opt.wrong .opt-dot{background:var(--red);border-color:var(--red)}
+
+/* AUDIO */
+.audio-player-box{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:20px;margin-bottom:16px}
+.audio-header{display:flex;align-items:center;gap:14px;margin-bottom:14px}
+.cd-badge{padding:4px 12px;background:var(--rose-l);border:1px solid rgba(244,63,94,.3);border-radius:4px;font-size:.75rem;font-weight:700;color:#FDA4AF}
+.audio-controls{display:flex;align-items:center;gap:12px;padding:12px 16px;background:var(--bg3);border-radius:var(--r2);margin-bottom:14px}
+.play-btn{width:42px;height:42px;border-radius:50%;background:var(--rose);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;border:none;font-size:1rem;flex-shrink:0;transition:all var(--tr)}
+.play-btn:hover{background:#BE123C;transform:scale(1.05)}
+.audio-track-info{flex:1}
+.audio-track-name{font-size:.83rem;font-weight:500;margin-bottom:2px}
+.audio-note{font-size:.75rem;color:var(--muted)}
+.transcript-box{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);padding:16px;margin-top:12px}
+.transcript-toggle{display:flex;align-items:center;gap:8px;font-size:.82rem;font-weight:600;color:var(--dim);cursor:pointer;user-select:none}
+.transcript-toggle:hover{color:var(--rose)}
+.transcript-content{display:none;margin-top:14px;font-size:.84rem;line-height:1.78;color:var(--text)}
+.transcript-content.show{display:block}
+.transcript-content p{margin-bottom:10px}
+.speaker{font-weight:700;color:var(--rose);margin-right:6px}
+
+/* T/F */
+.tfnk-list{display:flex;flex-direction:column;gap:10px;margin-bottom:20px}
+.tfnk-item{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r2);padding:14px}
+.tfnk-q{font-size:.87rem;margin-bottom:10px;color:var(--text)}
+.tfnk-opts{display:flex;gap:8px}
+.tfnk-opt{padding:5px 14px;border-radius:4px;font-size:.78rem;font-weight:600;cursor:pointer;border:1px solid var(--border);background:var(--bg3);color:var(--dim);transition:all var(--tr)}
+.tfnk-opt:hover{border-color:var(--rose);color:var(--rose)}
+.tfnk-opt.selected-t{background:var(--green-l);border-color:var(--green);color:var(--green)}
+.tfnk-opt.selected-f{background:var(--red-l);border-color:var(--red);color:var(--red)}
+.tfnk-fb{font-size:.78rem;margin-top:6px;color:var(--dim);display:none;font-style:italic}
+.tfnk-fb.show{display:block}
+
+/* QA ACCORDION */
+.qa-list{display:flex;flex-direction:column;gap:8px;margin-bottom:20px}
+.qa-item{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r2);overflow:hidden}
+.qa-question{display:flex;align-items:center;gap:10px;padding:11px 14px;cursor:pointer;transition:background var(--tr)}
+.qa-question:hover{background:var(--bg3)}
+.qa-qnum{width:24px;height:24px;border-radius:50%;background:var(--rose-l);color:var(--rose);display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:700;flex-shrink:0}
+.qa-qtext{font-size:.85rem;flex:1}
+.qa-arrow{font-size:.7rem;color:var(--muted);transition:transform var(--tr);flex-shrink:0}
+.qa-item.open .qa-arrow{transform:rotate(90deg)}
+.qa-answer{display:none;padding:0 14px 12px 48px;font-size:.83rem;color:var(--teal);font-style:italic;line-height:1.65}
+.qa-item.open .qa-answer{display:block}
+
+/* SPEAKING */
+.speaking-box{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:18px;margin-bottom:20px}
+.speaking-title{font-size:.85rem;font-weight:600;margin-bottom:12px;color:var(--text);display:flex;align-items:center;gap:8px}
+.disc-q{display:flex;gap:10px;padding:8px 0;border-bottom:1px solid var(--border);font-size:.85rem}
+.disc-q:last-child{border-bottom:none}
+.disc-q-num{font-size:.75rem;font-weight:700;color:var(--rose);min-width:20px;margin-top:2px}
+.bubble{background:var(--bg3);border:1px solid var(--border);border-radius:12px;padding:9px 14px;font-size:.85rem;line-height:1.5;margin-bottom:8px}
+.bubble-b{background:var(--rose-l);border-color:rgba(244,63,94,.3)}
+.useful-phrases{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.phrase-chip{padding:5px 14px;background:var(--rose-l);border:1px solid rgba(244,63,94,.3);border-radius:20px;font-size:.81rem;color:#FDA4AF;font-style:italic}
+
+/* MATCHING */
+.matching-wrap{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px}
+.matching-col{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:16px}
+.matching-col-title{font-size:.75rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;margin-bottom:10px}
+.match-item{padding:8px 12px;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);font-size:.84rem;margin-bottom:6px;cursor:pointer;transition:all var(--tr)}
+.match-item:hover{border-color:var(--rose)}
+.match-item.selected{border-color:var(--rose);background:var(--rose-l)}
+.match-item.matched{border-color:var(--green);background:var(--green-l)}
+
+/* ROLEPLAY */
+.roleplay-box{background:linear-gradient(135deg,rgba(244,63,94,.06),rgba(251,113,133,.04));border:1px solid rgba(244,63,94,.25);border-radius:var(--r);padding:22px;margin-bottom:16px}
+.roleplay-title{font-size:.9rem;font-weight:700;margin-bottom:14px;color:var(--rose)}
+.scenario-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r2);padding:14px;margin-bottom:10px}
+.scenario-num{font-size:.75rem;font-weight:700;color:var(--rose);margin-bottom:6px;text-transform:uppercase}
+.scenario-text{font-size:.85rem;color:var(--text);line-height:1.6}
+.scenario-hint{font-size:.78rem;color:var(--dim);font-style:italic;margin-top:6px}
+
+/* WORKBOOK */
+.wb-tag{display:inline-flex;align-items:center;gap:6px;padding:3px 12px;background:var(--rose-l);border:1px solid rgba(244,63,94,.3);border-radius:4px;font-size:.72rem;font-weight:700;color:#FDA4AF;text-transform:uppercase;letter-spacing:.06em;margin-bottom:12px}
+.hwg-box{background:linear-gradient(135deg,rgba(244,63,94,.08),rgba(251,113,133,.05));border:1px solid rgba(244,63,94,.25);border-radius:var(--r);padding:20px;margin-bottom:16px}
+.hwg-label{font-size:.7rem;font-weight:700;color:var(--rose);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px}
+.hwg-title{font-size:1rem;font-weight:700;margin-bottom:14px}
+.rw-badge{display:inline-flex;align-items:center;gap:6px;padding:3px 12px;background:var(--rose-l);border:1px solid rgba(244,63,94,.3);border-radius:4px;font-size:.72rem;font-weight:700;color:#FDA4AF;letter-spacing:.04em;margin-bottom:10px}
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="top-bar">
+  <button class="back-btn" onclick="history.back()">← Quay lại</button>
+  <span class="lesson-badge">2D</span>
+  <span class="lesson-title-h">What's the matter?</span>
+  <div class="top-actions">
+    <button class="theme-btn" onclick="toggleTheme()" title="Đổi giao diện">☀</button>
+    <button class="progress-btn" onclick="alert('Tính năng lưu tiến độ sẽ sớm ra mắt!')">✓ Lưu tiến độ</button>
+  </div>
+</div>
+
+<!-- QUICK REVIEW -->
+<div class="quick-review">
+  <span class="qr-badge">ÔN BÀI 2C</span>
+  <div class="qr-text">
+    Nhắc lại bài 2C: <strong>Gradable & Strong Adjectives</strong> — Gradable dùng <em>very / quite / extremely</em>; Strong dùng <em>absolutely / completely / utterly</em>. Từ vựng <strong>Sleep</strong>: <em>fall asleep, oversleep, suffer from insomnia, sleepwalk, have a nap...</em>
+  </div>
+</div>
+
+<!-- TAB NAV -->
+<nav class="tab-nav">
+  <button class="tnav-btn active" onclick="showTab('phrases',this)">💬 Real World Phrases</button>
+  <button class="tnav-btn" onclick="showTab('listening',this)">🎧 Nghe</button>
+  <button class="tnav-btn" onclick="showTab('grammar',this)">⚙ Ngữ pháp</button>
+  <button class="tnav-btn" onclick="showTab('pronunciation',this)">🔊 Phát âm</button>
+  <button class="tnav-btn" onclick="showTab('speaking',this)">🗣 Nói / Roleplay</button>
+  <button class="tnav-btn" onclick="showTab('workbook',this)">📝 Bài tập</button>
+</nav>
+
+<div class="page-content">
+
+<!-- ============================================================ -->
+<!-- TAB 1: REAL WORLD PHRASES -->
+<!-- ============================================================ -->
+<div id="tab-phrases" class="tab-pane active">
+
+  <div class="sec-heading">💬 Real World — Showing Concern & Giving Advice</div>
+  <div class="sec-sub">Student Book p20–21 · Real World 2.1</div>
+
+  <div class="info-box">
+    <strong>🎯 Mục tiêu bài 2D:</strong> Học cách <strong>thể hiện sự quan tâm</strong> (showing concern), <strong>đưa ra lời khuyên</strong> (giving advice) và <strong>phản hồi lời khuyên</strong> (responding to advice) trong các tình huống giao tiếp hàng ngày bằng tiếng Anh.
+  </div>
+
+  <!-- Showing Concern -->
+  <div class="phrase-section">
+    <div class="phrase-category">
+      <div class="phrase-cat-title">❤ Showing Concern — Thể hiện sự quan tâm / lo lắng</div>
+      <div class="phrase-list">
+        <div class="phrase-row-full">
+          <div class="phrase-eng-full">Oh, dear. What's the matter?</div>
+          <div class="phrase-vi-full">🇻🇳 Ồ, thế là sao. Có chuyện gì vậy?</div>
+          <div class="phrase-ex-full">A: I've had a terrible week. B: <em>Oh, dear. What's the matter?</em></div>
+        </div>
+        <div class="phrase-row-full">
+          <div class="phrase-eng-full">Oh, how awful!</div>
+          <div class="phrase-vi-full">🇻🇳 Ôi, thật khủng khiếp / tệ quá!</div>
+          <div class="phrase-ex-full">A: I lost my wallet. B: <em>Oh, how awful!</em></div>
+        </div>
+        <div class="phrase-row-full">
+          <div class="phrase-eng-full">Oh, what a shame.</div>
+          <div class="phrase-vi-full">🇻🇳 Ôi, thật tiếc / đáng tiếc quá.</div>
+          <div class="phrase-ex-full">A: I didn't get the job. B: <em>Oh, what a shame.</em></div>
+        </div>
+        <div class="phrase-row-full">
+          <div class="phrase-eng-full">I'm sorry to hear that.</div>
+          <div class="phrase-vi-full">🇻🇳 Tôi thật buồn khi nghe điều đó.</div>
+          <div class="phrase-ex-full">A: My cat is ill. B: <em>I'm sorry to hear that.</em></div>
+        </div>
+        <div class="phrase-row-full">
+          <div class="phrase-eng-full">I can see why you're upset.</div>
+          <div class="phrase-vi-full">🇻🇳 Tôi hiểu tại sao bạn buồn / khó chịu.</div>
+          <div class="phrase-ex-full">A: He got promoted but I didn't. B: <em>I can see why you're upset.</em></div>
+        </div>
+        <div class="phrase-row-full">
+          <div class="phrase-eng-full">Yes, I see what you mean.</div>
+          <div class="phrase-vi-full">🇻🇳 Vâng, tôi hiểu ý bạn / tôi thấy vấn đề.</div>
+          <div class="phrase-ex-full">A: The situation is really difficult. B: <em>Yes, I see what you mean.</em></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Giving Advice -->
+    <div class="phrase-category">
+      <div class="phrase-cat-title">💡 Giving Advice — Đưa ra lời khuyên</div>
+      <div class="phrase-list">
+        <div class="phrase-row-full">
+          <div class="phrase-eng-full">Why don't you (+ verb)?</div>
+          <div class="phrase-vi-full">🇻🇳 Sao bạn không...? (gợi ý nhẹ nhàng)</div>
+          <div class="phrase-ex-full"><em>Why don't you talk to him about it?</em></div>
+        </div>
+        <div class="phrase-row-full">
+          <div class="phrase-eng-full">You ought to (+ verb).</div>
+          <div class="phrase-vi-full">🇻🇳 Bạn nên... (lời khuyên hơi nhấn mạnh)</div>
+          <div class="phrase-ex-full"><em>You ought to see a doctor about that.</em></div>
+        </div>
+        <div class="phrase-row-full">
+          <div class="phrase-eng-full">Have you tried (+ -ing)?</div>
+          <div class="phrase-vi-full">🇻🇳 Bạn đã thử... chưa?</div>
+          <div class="phrase-ex-full"><em>Have you tried talking to your manager?</em></div>
+        </div>
+        <div class="phrase-row-full">
+          <div class="phrase-eng-full">You should (+ verb).</div>
+          <div class="phrase-vi-full">🇻🇳 Bạn nên... (lời khuyên trực tiếp)</div>
+          <div class="phrase-ex-full"><em>You should try to get more sleep.</em></div>
+        </div>
+        <div class="phrase-row-full">
+          <div class="phrase-eng-full">If I were you, I'd (+ verb).</div>
+          <div class="phrase-vi-full">🇻🇳 Nếu tôi là bạn, tôi sẽ... (rất thông dụng)</div>
+          <div class="phrase-ex-full"><em>If I were you, I'd take some time off.</em></div>
+        </div>
+        <div class="phrase-row-full">
+          <div class="phrase-eng-full">I'd (+ verb) if I were you.</div>
+          <div class="phrase-vi-full">🇻🇳 Nếu là tôi, tôi sẽ... (biến thể đảo câu)</div>
+          <div class="phrase-ex-full"><em>I'd write to the company if I were you.</em></div>
+        </div>
+        <div class="phrase-row-full">
+          <div class="phrase-eng-full">It might be worth (+ -ing).</div>
+          <div class="phrase-vi-full">🇻🇳 Có thể đáng để... (gợi ý nhẹ)</div>
+          <div class="phrase-ex-full"><em>It might be worth asking your boss for help.</em></div>
+        </div>
+        <div class="phrase-row-full">
+          <div class="phrase-eng-full">It's (well/not) worth (+ -ing).</div>
+          <div class="phrase-vi-full">🇻🇳 Điều đó (rất / không) đáng để làm.</div>
+          <div class="phrase-ex-full"><em>It's well worth trying.</em> / <em>It's not worth worrying about.</em></div>
+        </div>
+        <div class="phrase-row-full">
+          <div class="phrase-eng-full">Well, it's worth a try.</div>
+          <div class="phrase-vi-full">🇻🇳 Thử xem sao, không mất gì cả.</div>
+          <div class="phrase-ex-full">A: Do you think that will work? B: <em>Well, it's worth a try.</em></div>
+        </div>
+        <div class="phrase-row-full">
+          <div class="phrase-eng-full">I'd take (+ noun/time).</div>
+          <div class="phrase-vi-full">🇻🇳 Tôi sẽ dành / nên dành (thời gian / cơ hội)...</div>
+          <div class="phrase-ex-full"><em>I'd take some time off work and think about it.</em></div>
+        </div>
+        <div class="phrase-row-full">
+          <div class="phrase-eng-full">You really must (+ verb).</div>
+          <div class="phrase-vi-full">🇻🇳 Bạn thực sự phải... (nhấn mạnh)</div>
+          <div class="phrase-ex-full"><em>You really must talk to someone about this.</em></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Responding to Advice -->
+    <div class="phrase-category">
+      <div class="phrase-cat-title">🔁 Responding to Advice — Phản hồi lời khuyên</div>
+      <div class="phrase-list">
+        <div class="phrase-row-full">
+          <div class="phrase-eng-full">That's a good idea.</div>
+          <div class="phrase-vi-full">🇻🇳 Đó là một ý hay đấy.</div>
+          <div class="phrase-ex-full">A: Why don't you try yoga? B: <em>That's a good idea!</em></div>
+        </div>
+        <div class="phrase-row-full">
+          <div class="phrase-eng-full">That sounds good.</div>
+          <div class="phrase-vi-full">🇻🇳 Nghe có vẻ hay đấy.</div>
+          <div class="phrase-ex-full">A: You should take the day off. B: <em>That sounds good.</em></div>
+        </div>
+        <div class="phrase-row-full">
+          <div class="phrase-eng-full">I might try that.</div>
+          <div class="phrase-vi-full">🇻🇳 Có thể tôi sẽ thử điều đó.</div>
+          <div class="phrase-ex-full">A: Have you tried drinking warm milk? B: <em>I might try that.</em></div>
+        </div>
+        <div class="phrase-row-full">
+          <div class="phrase-eng-full">Yes, I'll give it a go.</div>
+          <div class="phrase-vi-full">🇻🇳 Vâng, tôi sẽ thử xem. (British English)</div>
+          <div class="phrase-ex-full">A: Why don't you talk to her? B: <em>Yes, I'll give it a go.</em></div>
+        </div>
+        <div class="phrase-row-full">
+          <div class="phrase-eng-full">I've tried that (already).</div>
+          <div class="phrase-vi-full">🇻🇳 Tôi đã thử rồi.</div>
+          <div class="phrase-ex-full">A: Have you tried taking exercise? B: <em>I've tried that. It doesn't help.</em></div>
+        </div>
+        <div class="phrase-row-full">
+          <div class="phrase-eng-full">Yes, that might work.</div>
+          <div class="phrase-vi-full">🇻🇳 Vâng, cách đó có thể hiệu quả.</div>
+          <div class="phrase-ex-full">A: Maybe you should talk to him directly. B: <em>Yes, that might work.</em></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="note-box">
+    <strong>📌 Lưu ý về độ lịch sự (Politeness):</strong><br>
+    • <em>Why don't you...?</em> và <em>Have you tried...?</em> → rất lịch sự, nhẹ nhàng, phù hợp với bạn bè<br>
+    • <em>You should...</em> và <em>You ought to...</em> → trực tiếp hơn, thường dùng khi ai đó hỏi ý kiến<br>
+    • <em>If I were you, I'd...</em> → rất thông dụng, thể hiện sự đồng cảm trước khi khuyên<br>
+    • Các câu phản hồi tích cực: <em>That's a good idea / That sounds good / I might try that</em><br>
+    • Khi từ chối lời khuyên lịch sự: <em>I've tried that / That's a bit difficult / I'm not sure about that</em>
+  </div>
+
+</div><!-- end phrases tab -->
+
+<!-- ============================================================ -->
+<!-- TAB 2: LISTENING -->
+<!-- ============================================================ -->
+<div id="tab-listening" class="tab-pane">
+
+  <div class="sec-heading">🎧 Nghe — Conversations about problems</div>
+  <div class="sec-sub">Student Book p20–21 · CD1 Track 16 & 17</div>
+
+  <!-- Listening 1 -->
+  <div class="exercise-label"><span class="exercise-num">1</span>Bài nghe 1 — Three conversations (SB p20)</div>
+  <div class="instruction">Nghe ba cuộc hội thoại về vấn đề của mọi người. Ghi chú vấn đề của mỗi người và lời khuyên được đưa ra.</div>
+
+  <div class="audio-player-box">
+    <div class="audio-header">
+      <span class="cd-badge">CD1 Track 16</span>
+      <span class="audio-title">Three conversations — problems and advice</span>
+    </div>
+    <div class="audio-controls">
+      <button class="play-btn">▶</button>
+      <div class="audio-track-info">
+        <div class="audio-track-name">SB p20 — Conversations 1, 2, 3</div>
+        <div class="audio-note">Sử dụng file audio từ đĩa CD kèm theo giáo trình</div>
+      </div>
+    </div>
+    <div class="transcript-box">
+      <div class="transcript-toggle" onclick="toggleTranscript('listen1')">
+        📄 Xem/ẩn transcript bài nghe ›
+      </div>
+      <div class="transcript-content" id="listen1">
+        <p><strong>Conversation 1</strong></p>
+        <p><span class="speaker">SARA:</span> You look really tired, Dan. What's the matter?</p>
+        <p><span class="speaker">DAN:</span> I haven't been sleeping very well recently. I keep waking up in the middle of the night and I can't get back to sleep.</p>
+        <p><span class="speaker">SARA:</span> Oh, dear. How long has this been going on?</p>
+        <p><span class="speaker">DAN:</span> About three weeks now. I'm absolutely exhausted.</p>
+        <p><span class="speaker">SARA:</span> I can see why you're upset. Have you tried not drinking coffee in the evenings?</p>
+        <p><span class="speaker">DAN:</span> Yes, I've tried that. It doesn't really help.</p>
+        <p><span class="speaker">SARA:</span> What about some warm milk before bed?</p>
+        <p><span class="speaker">DAN:</span> That sounds a bit strange, but I might try that.</p>
+        <p><span class="speaker">SARA:</span> Well, it's worth a try. And if it doesn't work, you really ought to see a doctor.</p>
+        <p><span class="speaker">DAN:</span> Yes, I suppose you're right. Thanks, Sara.</p>
+
+        <p><strong>Conversation 2</strong></p>
+        <p><span class="speaker">LUCY:</span> Oh, Mark. What's wrong? You look terrible.</p>
+        <p><span class="speaker">MARK:</span> I've just had a really awful day. I got to work late because I missed my train, and then my boss was absolutely furious with me. And to make things worse, I made a stupid mistake in a report.</p>
+        <p><span class="speaker">LUCY:</span> Oh, how awful! I can see why you're upset. What did your boss say?</p>
+        <p><span class="speaker">MARK:</span> He said if it happens again, I might lose my job. I'm completely stressed out.</p>
+        <p><span class="speaker">LUCY:</span> Well, if I were you, I'd talk to him tomorrow and apologise properly. And maybe explain that you've been under a lot of pressure lately.</p>
+        <p><span class="speaker">MARK:</span> Yes, that's a good idea. I'll try that.</p>
+        <p><span class="speaker">LUCY:</span> And why don't you try to get to bed earlier tonight so you're not so tired tomorrow?</p>
+        <p><span class="speaker">MARK:</span> Yes, you're right. Thanks, Lucy.</p>
+
+        <p><strong>Conversation 3</strong></p>
+        <p><span class="speaker">TOM:</span> Hi, Kate. You seem a bit down today.</p>
+        <p><span class="speaker">KATE:</span> Yes, I'm a bit fed up, actually. I've been trying to get a promotion for ages, but my manager keeps saying it's not the right time. And I've just found out that a colleague who joined at the same time as me has just been promoted.</p>
+        <p><span class="speaker">TOM:</span> Oh, what a shame. I can see why you're upset. That does seem unfair.</p>
+        <p><span class="speaker">KATE:</span> I know. I don't know what to do.</p>
+        <p><span class="speaker">TOM:</span> Well, it might be worth having a proper meeting with your manager to find out what you need to do to get promoted.</p>
+        <p><span class="speaker">KATE:</span> Yes, I suppose that's true. I've been a bit afraid to push for it.</p>
+        <p><span class="speaker">TOM:</span> And if I were you, I'd also start looking at other jobs. Just to keep your options open.</p>
+        <p><span class="speaker">KATE:</span> That's good advice, actually. I might do that.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Comprehension Exercise 1 -->
+  <div class="exercise-label"><span class="exercise-num">1a</span>Nghe và chọn đúng (SB p20)</div>
+  <div class="instruction">Nghe lại và chọn True (T) hoặc False (F).</div>
+
+  <div class="tfnk-list">
+    <div class="tfnk-item">
+      <div class="tfnk-q">1. Dan has been having sleep problems for about three weeks.</div>
+      <div class="tfnk-opts">
+        <button class="tfnk-opt" onclick="checkTF(this,'T','T','l1q1')">TRUE</button>
+        <button class="tfnk-opt" onclick="checkTF(this,'F','T','l1q1')">FALSE</button>
+      </div>
+      <div class="tfnk-fb" id="l1q1">✅ TRUE — Dan says "About three weeks now."</div>
+    </div>
+    <div class="tfnk-item">
+      <div class="tfnk-q">2. Sara suggests Dan should stop drinking tea in the evenings.</div>
+      <div class="tfnk-opts">
+        <button class="tfnk-opt" onclick="checkTF(this,'T','F','l1q2')">TRUE</button>
+        <button class="tfnk-opt" onclick="checkTF(this,'F','F','l1q2')">FALSE</button>
+      </div>
+      <div class="tfnk-fb" id="l1q2">✅ FALSE — Sara suggests not drinking <em>coffee</em> in the evenings, not tea.</div>
+    </div>
+    <div class="tfnk-item">
+      <div class="tfnk-q">3. Mark was late to work because he missed his train.</div>
+      <div class="tfnk-opts">
+        <button class="tfnk-opt" onclick="checkTF(this,'T','T','l1q3')">TRUE</button>
+        <button class="tfnk-opt" onclick="checkTF(this,'F','T','l1q3')">FALSE</button>
+      </div>
+      <div class="tfnk-fb" id="l1q3">✅ TRUE — Mark says "I got to work late because I missed my train."</div>
+    </div>
+    <div class="tfnk-item">
+      <div class="tfnk-q">4. Mark's boss told him he would lose his job immediately.</div>
+      <div class="tfnk-opts">
+        <button class="tfnk-opt" onclick="checkTF(this,'T','F','l1q4')">TRUE</button>
+        <button class="tfnk-opt" onclick="checkTF(this,'F','F','l1q4')">FALSE</button>
+      </div>
+      <div class="tfnk-fb" id="l1q4">✅ FALSE — His boss said "if it happens again" he <em>might</em> lose his job — a warning, not immediate dismissal.</div>
+    </div>
+    <div class="tfnk-item">
+      <div class="tfnk-q">5. Kate's colleague joined the company at the same time as her.</div>
+      <div class="tfnk-opts">
+        <button class="tfnk-opt" onclick="checkTF(this,'T','T','l1q5')">TRUE</button>
+        <button class="tfnk-opt" onclick="checkTF(this,'F','T','l1q5')">FALSE</button>
+      </div>
+      <div class="tfnk-fb" id="l1q5">✅ TRUE — Kate says "a colleague who joined at the same time as me."</div>
+    </div>
+    <div class="tfnk-item">
+      <div class="tfnk-q">6. Tom advises Kate not to look for other jobs.</div>
+      <div class="tfnk-opts">
+        <button class="tfnk-opt" onclick="checkTF(this,'T','F','l1q6')">TRUE</button>
+        <button class="tfnk-opt" onclick="checkTF(this,'F','F','l1q6')">FALSE</button>
+      </div>
+      <div class="tfnk-fb" id="l1q6">✅ FALSE — Tom says "if I were you, I'd also start looking at other jobs."</div>
+    </div>
+  </div>
+
+  <!-- Listening 2 - Main video/audio -->
+  <div class="exercise-label"><span class="exercise-num">2</span>Bài nghe 2 — VIDEO (SB p21, Ex 2)</div>
+  <div class="instruction">Xem/nghe đoạn hội thoại giữa <strong>Clare</strong> và <strong>Nick</strong>. Clare có vấn đề gì? Nick đưa ra lời khuyên gì?</div>
+
+  <div class="audio-player-box">
+    <div class="audio-header">
+      <span class="cd-badge">VIDEO 2 · CD1 Track 17</span>
+      <span class="audio-title">Clare and Nick — What's the matter?</span>
+    </div>
+    <div class="audio-controls">
+      <button class="play-btn">▶</button>
+      <div class="audio-track-info">
+        <div class="audio-track-name">SB p21 — Clare and Nick conversation</div>
+        <div class="audio-note">Xem video hoặc nghe audio từ đĩa CD kèm theo giáo trình</div>
+      </div>
+    </div>
+    <div class="transcript-box">
+      <div class="transcript-toggle" onclick="toggleTranscript('listen2')">
+        📄 Xem/ẩn transcript bài nghe ›
+      </div>
+      <div class="transcript-content" id="listen2">
+        <p><span class="speaker">NICK:</span> Hi, Clare. How are you?</p>
+        <p><span class="speaker">CLARE:</span> Oh, not great, actually.</p>
+        <p><span class="speaker">NICK:</span> Oh, dear. What's the matter?</p>
+        <p><span class="speaker">CLARE:</span> Well, it's my flatmate. We've been having a few problems recently.</p>
+        <p><span class="speaker">NICK:</span> What kind of problems?</p>
+        <p><span class="speaker">CLARE:</span> She keeps playing loud music at night and I can't sleep. And she never does her share of the housework. I'm getting really fed up with it.</p>
+        <p><span class="speaker">NICK:</span> I can see why you're upset. Have you talked to her about it?</p>
+        <p><span class="speaker">CLARE:</span> I've tried, but she doesn't seem to listen. She just says sorry and then does it again.</p>
+        <p><span class="speaker">NICK:</span> Well, if I were you, I'd try talking to her again, but be really clear about what you want her to do differently.</p>
+        <p><span class="speaker">CLARE:</span> Yes, I suppose I could do that.</p>
+        <p><span class="speaker">NICK:</span> And why don't you suggest making some house rules together? You know, things you both agree on — like no music after eleven.</p>
+        <p><span class="speaker">CLARE:</span> That's a good idea. We've never done that before.</p>
+        <p><span class="speaker">NICK:</span> And if none of that works, it might be worth thinking about finding a new flatmate.</p>
+        <p><span class="speaker">CLARE:</span> I really hope it doesn't come to that, but yes, I suppose it's an option. Thanks, Nick. You've been really helpful.</p>
+        <p><span class="speaker">NICK:</span> No problem. I hope it works out.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Comprehension Ex 2 -->
+  <div class="exercise-label"><span class="exercise-num">2a</span>Chọn đúng / sai (SB p21)</div>
+
+  <div class="tfnk-list">
+    <div class="tfnk-item">
+      <div class="tfnk-q">1. Clare's flatmate plays loud music during the day.</div>
+      <div class="tfnk-opts">
+        <button class="tfnk-opt" onclick="checkTF(this,'T','F','l2q1')">TRUE</button>
+        <button class="tfnk-opt" onclick="checkTF(this,'F','F','l2q1')">FALSE</button>
+      </div>
+      <div class="tfnk-fb" id="l2q1">✅ FALSE — She plays loud music <em>at night</em>, not during the day.</div>
+    </div>
+    <div class="tfnk-item">
+      <div class="tfnk-q">2. Clare has already tried talking to her flatmate.</div>
+      <div class="tfnk-opts">
+        <button class="tfnk-opt" onclick="checkTF(this,'T','T','l2q2')">TRUE</button>
+        <button class="tfnk-opt" onclick="checkTF(this,'F','T','l2q2')">FALSE</button>
+      </div>
+      <div class="tfnk-fb" id="l2q2">✅ TRUE — Clare says "I've tried, but she doesn't seem to listen."</div>
+    </div>
+    <div class="tfnk-item">
+      <div class="tfnk-q">3. Nick suggests they make some house rules together.</div>
+      <div class="tfnk-opts">
+        <button class="tfnk-opt" onclick="checkTF(this,'T','T','l2q3')">TRUE</button>
+        <button class="tfnk-opt" onclick="checkTF(this,'F','T','l2q3')">FALSE</button>
+      </div>
+      <div class="tfnk-fb" id="l2q3">✅ TRUE — Nick says "Why don't you suggest making some house rules together?"</div>
+    </div>
+    <div class="tfnk-item">
+      <div class="tfnk-q">4. Clare is happy to find a new flatmate immediately.</div>
+      <div class="tfnk-opts">
+        <button class="tfnk-opt" onclick="checkTF(this,'T','F','l2q4')">TRUE</button>
+        <button class="tfnk-opt" onclick="checkTF(this,'F','F','l2q4')">FALSE</button>
+      </div>
+      <div class="tfnk-fb" id="l2q4">✅ FALSE — She says "I really hope it doesn't come to that" — she wants to solve the problem first.</div>
+    </div>
+  </div>
+
+</div><!-- end listening tab -->
+
+<!-- ============================================================ -->
+<!-- TAB 3: GRAMMAR -->
+<!-- ============================================================ -->
+<div id="tab-grammar" class="tab-pane">
+
+  <div class="sec-heading">⚙ Ngữ pháp — Modal Verbs for Advice</div>
+  <div class="sec-sub">Student Book p21 · should / ought to / could / might</div>
+
+  <div class="hwg-box">
+    <div class="hwg-label">⚙ Help with Grammar</div>
+    <div class="hwg-title">Các cách diễn đạt lời khuyên</div>
+
+    <div class="grammar-box" style="background:transparent;border:none;padding:0">
+
+      <div style="margin-bottom:18px">
+        <div class="grammar-tag">1. should / shouldn't</div>
+        <div style="font-size:.86rem;line-height:1.7;margin-bottom:6px">Lời khuyên trực tiếp, trung tính</div>
+        <div class="example-box">
+          You <strong>should</strong> see a doctor. (Bạn nên đi khám bác sĩ.)<br>
+          You <strong>shouldn't</strong> worry so much. (Bạn không nên lo lắng nhiều vậy.)<br>
+          ❓ <strong>Should</strong> I talk to him? (Tôi có nên nói chuyện với anh ấy không?)
+        </div>
+      </div>
+
+      <div style="margin-bottom:18px">
+        <div class="grammar-tag">2. ought to</div>
+        <div style="font-size:.86rem;line-height:1.7;margin-bottom:6px">Tương đương <em>should</em>, nghe trang trọng hơn một chút</div>
+        <div class="example-box">
+          You <strong>ought to</strong> apologise. (Bạn nên xin lỗi.)<br>
+          She <strong>ought to</strong> get more sleep. (Cô ấy nên ngủ nhiều hơn.)
+        </div>
+      </div>
+
+      <div style="margin-bottom:18px">
+        <div class="grammar-tag">3. could</div>
+        <div style="font-size:.86rem;line-height:1.7;margin-bottom:6px">Đề xuất lịch sự, nhẹ nhàng hơn <em>should</em></div>
+        <div class="example-box">
+          You <strong>could</strong> try talking to her. (Bạn có thể thử nói chuyện với cô ấy.)<br>
+          You <strong>could</strong> always ask for help. (Bạn luôn có thể nhờ giúp đỡ.)
+        </div>
+      </div>
+
+      <div style="margin-bottom:18px">
+        <div class="grammar-tag">4. If I were you, I'd...</div>
+        <div style="font-size:.86rem;line-height:1.7;margin-bottom:6px">Conditional 2 — đặt mình vào hoàn cảnh người kia để khuyên; rất thông dụng trong hội thoại</div>
+        <div class="example-box">
+          <strong>If I were you, I'd</strong> talk to the manager. → rút gọn cũng nói được:<br>
+          <strong>I'd</strong> talk to the manager <strong>if I were you</strong>.
+        </div>
+      </div>
+
+      <div style="margin-bottom:18px">
+        <div class="grammar-tag">5. Why don't you...?</div>
+        <div style="font-size:.86rem;line-height:1.7;margin-bottom:6px">Gợi ý lịch sự nhất — câu hỏi mang tính đề xuất</div>
+        <div class="example-box">
+          <strong>Why don't you</strong> try a different approach?<br>
+          <strong>Why don't you</strong> ask your friend for advice?
+        </div>
+      </div>
+
+      <div style="margin-bottom:10px">
+        <div class="grammar-tag">6. Have you tried...? / It might be worth...</div>
+        <div style="font-size:.86rem;line-height:1.7;margin-bottom:6px">Câu hỏi/đề xuất nhẹ nhàng — sau đó dùng <strong>-ing</strong></div>
+        <div class="example-box">
+          <strong>Have you tried</strong> meditating? (+ V-ing)<br>
+          <strong>It might be worth</strong> speaking to a professional. (+ V-ing)<br>
+          <strong>It's worth</strong> giving it a go. / <strong>It's not worth</strong> getting angry. (+ V-ing)
+        </div>
+      </div>
+
+      <div class="note-box">
+        <strong>📌 Cấu trúc sau mỗi cụm từ:</strong><br>
+        • <em>should / ought to / could</em> + <strong>base verb</strong> (V nguyên thể không "to")<br>
+        • <em>If I were you, I'd</em> + <strong>base verb</strong><br>
+        • <em>Why don't you / Have you tried</em> + <strong>verb-ing</strong><br>
+        • <em>It might be worth / It's worth</em> + <strong>verb-ing</strong>
+      </div>
+    </div>
+  </div>
+
+  <!-- Grammar Exercise -->
+  <div class="exercise-label"><span class="exercise-num">1</span>Điền từ — Cấu trúc lời khuyên (SB p21)</div>
+  <div class="instruction">Hoàn thành các câu khuyên bằng cách điền dạng đúng của động từ trong ngoặc.</div>
+
+  <div class="fill-exercise">
+    <div class="fill-item" id="gr1">
+      <div class="fill-item-num">1</div>
+      <div class="fill-item-content">
+        <div class="fill-sentence">Have you tried <input class="fill-input" id="gri1" placeholder="talk..."> to your manager about it? (talk)</div>
+        <div style="display:flex;gap:6px;margin-top:4px">
+          <button class="check-btn" onclick="checkFill('gri1','talking','gr1')">Kiểm tra</button>
+          <button class="reveal-btn" onclick="revealFill2('gri1','talking','gr1')">Xem đáp án</button>
+        </div>
+        <div class="fill-feedback" id="grf1"></div>
+      </div>
+    </div>
+    <div class="fill-item" id="gr2">
+      <div class="fill-item-num">2</div>
+      <div class="fill-item-content">
+        <div class="fill-sentence">If I were you, I'd <input class="fill-input" id="gri2" placeholder="verb"> a new job. (look for)</div>
+        <div style="display:flex;gap:6px;margin-top:4px">
+          <button class="check-btn" onclick="checkFill('gri2','look for','gr2')">Kiểm tra</button>
+          <button class="reveal-btn" onclick="revealFill2('gri2','look for','gr2')">Xem đáp án</button>
+        </div>
+        <div class="fill-feedback" id="grf2"></div>
+      </div>
+    </div>
+    <div class="fill-item" id="gr3">
+      <div class="fill-item-num">3</div>
+      <div class="fill-item-content">
+        <div class="fill-sentence">It might be worth <input class="fill-input" id="gri3" placeholder="ask..."> someone for help. (ask)</div>
+        <div style="display:flex;gap:6px;margin-top:4px">
+          <button class="check-btn" onclick="checkFill('gri3','asking','gr3')">Kiểm tra</button>
+          <button class="reveal-btn" onclick="revealFill2('gri3','asking','gr3')">Xem đáp án</button>
+        </div>
+        <div class="fill-feedback" id="grf3"></div>
+      </div>
+    </div>
+    <div class="fill-item" id="gr4">
+      <div class="fill-item-num">4</div>
+      <div class="fill-item-content">
+        <div class="fill-sentence">You really ought <input class="fill-input" id="gri4" placeholder="to..."> a doctor about that. (see)</div>
+        <div style="display:flex;gap:6px;margin-top:4px">
+          <button class="check-btn" onclick="checkFill('gri4','to see','gr4')">Kiểm tra</button>
+          <button class="reveal-btn" onclick="revealFill2('gri4','to see','gr4')">Xem đáp án</button>
+        </div>
+        <div class="fill-feedback" id="grf4"></div>
+      </div>
+    </div>
+    <div class="fill-item" id="gr5">
+      <div class="fill-item-num">5</div>
+      <div class="fill-item-content">
+        <div class="fill-sentence">Why don't you <input class="fill-input" id="gri5" placeholder="verb"> a short break? (take)</div>
+        <div style="display:flex;gap:6px;margin-top:4px">
+          <button class="check-btn" onclick="checkFill('gri5','take','gr5')">Kiểm tra</button>
+          <button class="reveal-btn" onclick="revealFill2('gri5','take','gr5')">Xem đáp án</button>
+        </div>
+        <div class="fill-feedback" id="grf5"></div>
+      </div>
+    </div>
+    <div class="fill-item" id="gr6">
+      <div class="fill-item-num">6</div>
+      <div class="fill-item-content">
+        <div class="fill-sentence">You should <input class="fill-input" id="gri6" placeholder="verb"> your boss before he finds out. (apologise to)</div>
+        <div style="display:flex;gap:6px;margin-top:4px">
+          <button class="check-btn" onclick="checkFill('gri6','apologise to','gr6')">Kiểm tra</button>
+          <button class="reveal-btn" onclick="revealFill2('gri6','apologise to','gr6')">Xem đáp án</button>
+        </div>
+        <div class="fill-feedback" id="grf6"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Grammar Exercise 2 -->
+  <div class="exercise-label"><span class="exercise-num">2</span>Chọn cụm từ đúng (SB p21)</div>
+  <div class="instruction">Chọn đáp án đúng để hoàn thành lời khuyên.</div>
+
+  <div class="mcq-list">
+    <div class="mcq-item">
+      <div class="mcq-q">1. "I can't sleep at night." → "__________ drinking herbal tea before bed?"</div>
+      <div class="mcq-opts">
+        <div class="mcq-opt" onclick="selMCQ(this,'A','mg1')"><div class="opt-dot"></div><span>a) Have you tried</span></div>
+        <div class="mcq-opt" onclick="selMCQ(this,'B','mg1')"><div class="opt-dot"></div><span>b) You should tried</span></div>
+        <div class="mcq-opt" onclick="selMCQ(this,'B','mg1')"><div class="opt-dot"></div><span>c) If I were you I drink</span></div>
+      </div>
+      <div id="mg1-fb" style="margin-top:8px;font-size:.8rem;color:var(--teal);display:none">✅ Đáp án: <strong>Have you tried</strong> + V-ing</div>
+    </div>
+    <div class="mcq-item">
+      <div class="mcq-q">2. "I've been having arguments with my flatmate." → "__________ make some house rules together?"</div>
+      <div class="mcq-opts">
+        <div class="mcq-opt" onclick="selMCQ(this,'B','mg2')"><div class="opt-dot"></div><span>a) Should you</span></div>
+        <div class="mcq-opt" onclick="selMCQ(this,'A','mg2')"><div class="opt-dot"></div><span>b) Why don't you</span></div>
+        <div class="mcq-opt" onclick="selMCQ(this,'B','mg2')"><div class="opt-dot"></div><span>c) You ought you</span></div>
+      </div>
+      <div id="mg2-fb" style="margin-top:8px;font-size:.8rem;color:var(--teal);display:none">✅ Đáp án: <strong>Why don't you</strong> + base verb</div>
+    </div>
+    <div class="mcq-item">
+      <div class="mcq-q">3. "My colleague gets all the interesting projects." → "__________ you, I'd speak to the manager directly."</div>
+      <div class="mcq-opts">
+        <div class="mcq-opt" onclick="selMCQ(this,'B','mg3')"><div class="opt-dot"></div><span>a) When I were</span></div>
+        <div class="mcq-opt" onclick="selMCQ(this,'B','mg3')"><div class="opt-dot"></div><span>b) If I was</span></div>
+        <div class="mcq-opt" onclick="selMCQ(this,'A','mg3')"><div class="opt-dot"></div><span>c) If I were</span></div>
+      </div>
+      <div id="mg3-fb" style="margin-top:8px;font-size:.8rem;color:var(--teal);display:none">✅ Đáp án: <strong>If I were</strong> you — Conditional 2 luôn dùng "were" (kể cả I)</div>
+    </div>
+    <div class="mcq-item">
+      <div class="mcq-q">4. "I'm stressed about the deadline." → "It might be worth __________ your boss for an extension."</div>
+      <div class="mcq-opts">
+        <div class="mcq-opt" onclick="selMCQ(this,'B','mg4')"><div class="opt-dot"></div><span>a) ask</span></div>
+        <div class="mcq-opt" onclick="selMCQ(this,'A','mg4')"><div class="opt-dot"></div><span>b) asking</span></div>
+        <div class="mcq-opt" onclick="selMCQ(this,'B','mg4')"><div class="opt-dot"></div><span>c) to ask</span></div>
+      </div>
+      <div id="mg4-fb" style="margin-top:8px;font-size:.8rem;color:var(--teal);display:none">✅ Đáp án: <strong>asking</strong> — sau "it might be worth" dùng V-ing</div>
+    </div>
+  </div>
+
+</div><!-- end grammar tab -->
+
+<!-- ============================================================ -->
+<!-- TAB 4: PRONUNCIATION -->
+<!-- ============================================================ -->
+<div id="tab-pronunciation" class="tab-pane">
+
+  <div class="sec-heading">🔊 Pronunciation — Intonation for Concern & Advice</div>
+  <div class="sec-sub">Student Book p21 · CD1 Track 18</div>
+
+  <div class="audio-player-box">
+    <div class="audio-header">
+      <span class="cd-badge">CD1 Track 18</span>
+      <span class="audio-title">Intonation — showing concern and giving advice</span>
+    </div>
+    <div class="audio-controls">
+      <button class="play-btn">▶</button>
+      <div class="audio-track-info">
+        <div class="audio-track-name">SB p21 — Pronunciation practice</div>
+        <div class="audio-note">Nghe và lặp lại — chú ý ngữ điệu khi bày tỏ quan tâm</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="note-box" style="margin-bottom:20px">
+    <strong>🎵 Ngữ điệu (Intonation) khi thể hiện quan tâm:</strong><br>
+    Khi nói <em>Oh, dear</em> / <em>Oh, how awful!</em> / <em>I'm sorry to hear that</em>, giọng thường <strong>xuống</strong> ở cuối — thể hiện sự đồng cảm, lo lắng thật sự.<br><br>
+    Khi hỏi <em>What's the matter?</em> / <em>What's wrong?</em> — giọng thường <strong>lên</strong> ở cuối như câu hỏi thông thường.<br><br>
+    Khi đưa ra lời khuyên <em>Why don't you...?</em> / <em>Have you tried...?</em> — giọng thường <strong>xuống</strong> ở cuối (không phải câu hỏi thật sự mà là đề nghị).
+  </div>
+
+  <!-- Pronunciation Exercise -->
+  <div class="exercise-label"><span class="exercise-num">1</span>Ngữ điệu lên hay xuống? (SB p21)</div>
+  <div class="instruction">Chọn hướng ngữ điệu đúng cho mỗi câu.</div>
+
+  <div class="qa-list">
+    <div class="qa-item" id="pr1">
+      <div class="qa-question" onclick="toggleQA('pr1')">
+        <div class="qa-qnum">1</div>
+        <div class="qa-qtext">"Oh, dear. What's the matter?" — rising or falling?</div>
+        <div class="qa-arrow">›</div>
+      </div>
+      <div class="qa-answer">→ <strong>Oh, dear</strong> = falling ↘ (đồng cảm). <strong>What's the matter?</strong> = rising ↗ (câu hỏi thật).</div>
+    </div>
+    <div class="qa-item" id="pr2">
+      <div class="qa-question" onclick="toggleQA('pr2')">
+        <div class="qa-qnum">2</div>
+        <div class="qa-qtext">"Oh, how awful!" — rising or falling?</div>
+        <div class="qa-arrow">›</div>
+      </div>
+      <div class="qa-answer">→ <strong>Falling</strong> ↘ — thể hiện sự kinh ngạc, xót thương. Nếu giọng lên, nghe thiếu chân thành.</div>
+    </div>
+    <div class="qa-item" id="pr3">
+      <div class="qa-question" onclick="toggleQA('pr3')">
+        <div class="qa-qnum">3</div>
+        <div class="qa-qtext">"Why don't you talk to her?" — rising or falling?</div>
+        <div class="qa-arrow">›</div>
+      </div>
+      <div class="qa-answer">→ <strong>Falling</strong> ↘ — đây là đề nghị/gợi ý, không phải câu hỏi thật sự nên giọng xuống.</div>
+    </div>
+    <div class="qa-item" id="pr4">
+      <div class="qa-question" onclick="toggleQA('pr4')">
+        <div class="qa-qnum">4</div>
+        <div class="qa-qtext">"Have you tried drinking herbal tea?" — rising or falling?</div>
+        <div class="qa-arrow">›</div>
+      </div>
+      <div class="qa-answer">→ <strong>Falling</strong> ↘ — câu hỏi Yes/No thường lên ↗ nhưng ở đây là đề nghị nên giọng xuống.</div>
+    </div>
+    <div class="qa-item" id="pr5">
+      <div class="qa-question" onclick="toggleQA('pr5')">
+        <div class="qa-qnum">5</div>
+        <div class="qa-qtext">"That's a good idea!" — rising or falling?</div>
+        <div class="qa-arrow">›</div>
+      </div>
+      <div class="qa-answer">→ <strong>Falling</strong> ↘ — thể hiện sự đồng ý, tán thành. Nếu giọng lên thì nghe như đang hỏi lại.</div>
+    </div>
+  </div>
+
+  <!-- Stress in phrases -->
+  <div class="exercise-label"><span class="exercise-num">2</span>Trọng âm câu — Sentence stress (SB p21)</div>
+  <div class="instruction">Trong mỗi câu, gạch chân từ được nhấn mạnh nhất. Sau đó xem đáp án.</div>
+
+  <div class="qa-list">
+    <div class="qa-item" id="st1">
+      <div class="qa-question" onclick="toggleQA('st1')">
+        <div class="qa-qnum">1</div>
+        <div class="qa-qtext">If I WERE you, I'd TALK to him.</div>
+        <div class="qa-arrow">›</div>
+      </div>
+      <div class="qa-answer">→ Nhấn: <strong>WERE</strong> và <strong>TALK</strong>. "If I were you" — "were" được nhấn vì đây là Conditional 2 (giả định). "I'd TALK" — hành động cụ thể được nhấn.</div>
+    </div>
+    <div class="qa-item" id="st2">
+      <div class="qa-question" onclick="toggleQA('st2')">
+        <div class="qa-qnum">2</div>
+        <div class="qa-qtext">I can SEE why you're UPSET.</div>
+        <div class="qa-arrow">›</div>
+      </div>
+      <div class="qa-answer">→ Nhấn: <strong>SEE</strong> và <strong>UPSET</strong>. Các content words (động từ chính, tính từ) được nhấn. "can" là auxiliary — weak form /kən/.</div>
+    </div>
+    <div class="qa-item" id="st3">
+      <div class="qa-question" onclick="toggleQA('st3')">
+        <div class="qa-qnum">3</div>
+        <div class="qa-qtext">Have you TRIED talking to your MANAGER?</div>
+        <div class="qa-arrow">›</div>
+      </div>
+      <div class="qa-answer">→ Nhấn: <strong>TRIED</strong> và <strong>MANAGER</strong>. "Have" ở đầu câu hỏi thường weak form /həv/ hoặc /əv/.</div>
+    </div>
+  </div>
+
+</div><!-- end pronunciation tab -->
+
+<!-- ============================================================ -->
+<!-- TAB 5: SPEAKING / ROLEPLAY -->
+<!-- ============================================================ -->
+<div id="tab-speaking" class="tab-pane">
+
+  <div class="sec-heading">🗣 Roleplay — Conversations about problems</div>
+  <div class="sec-sub">Student Book p21 · Ex 5 — Practice conversations</div>
+
+  <!-- Dialogue model -->
+  <div class="exercise-label"><span class="exercise-num">1</span>Hội thoại mẫu (SB p21)</div>
+  <div class="instruction">Đọc hội thoại mẫu sau. Chú ý cách dùng các cụm từ biểu đạt sự quan tâm và lời khuyên.</div>
+
+  <div class="dialogue-box">
+    <div class="dialogue-title">💬 Model Dialogue — A problem at work</div>
+    <div class="dialogue-turn">
+      <div class="dialogue-speaker">ALEX:</div>
+      <div class="dialogue-line">You look a bit down today. <span class="highlight">What's the matter?</span></div>
+    </div>
+    <div class="dialogue-turn">
+      <div class="dialogue-speaker">BETH:</div>
+      <div class="dialogue-line">It's my colleague, Jamie. He keeps taking credit for my ideas in meetings and I don't know what to do about it.</div>
+    </div>
+    <div class="dialogue-turn">
+      <div class="dialogue-speaker">ALEX:</div>
+      <div class="dialogue-line"><span class="highlight">Oh, how awful!</span> That's really unfair. <span class="highlight">I can see why you're upset.</span></div>
+    </div>
+    <div class="dialogue-turn">
+      <div class="dialogue-speaker">BETH:</div>
+      <div class="dialogue-line">Yes, it's been going on for about a month now.</div>
+    </div>
+    <div class="dialogue-turn">
+      <div class="dialogue-speaker">ALEX:</div>
+      <div class="dialogue-line"><span class="highlight">Have you tried</span> talking to him directly about it?</div>
+    </div>
+    <div class="dialogue-turn">
+      <div class="dialogue-speaker">BETH:</div>
+      <div class="dialogue-line">No, I haven't. I'm a bit nervous about it.</div>
+    </div>
+    <div class="dialogue-turn">
+      <div class="dialogue-speaker">ALEX:</div>
+      <div class="dialogue-line"><span class="highlight">Well, if I were you, I'd</span> speak to him before you go to the manager. Just explain how it makes you feel.</div>
+    </div>
+    <div class="dialogue-turn">
+      <div class="dialogue-speaker">BETH:</div>
+      <div class="dialogue-line"><span class="highlight">That's a good idea.</span> And what if he doesn't listen?</div>
+    </div>
+    <div class="dialogue-turn">
+      <div class="dialogue-speaker">ALEX:</div>
+      <div class="dialogue-line"><span class="highlight">It might be worth</span> keeping a record of your ideas — write them down with dates so you have evidence. Then <span class="highlight">you could</span> show the manager if needed.</div>
+    </div>
+    <div class="dialogue-turn">
+      <div class="dialogue-speaker">BETH:</div>
+      <div class="dialogue-line"><span class="highlight">Yes, that might work.</span> Thanks, Alex. You've been really helpful.</div>
+    </div>
+  </div>
+
+  <!-- Practice scenarios -->
+  <div class="exercise-label"><span class="exercise-num">2</span>Thực hành roleplay (SB p21, Ex 5)</div>
+  <div class="instruction">Cùng với bạn, chọn một trong các tình huống sau. Một người nói về vấn đề, người kia bày tỏ sự quan tâm và đưa ra lời khuyên. Dùng các cụm từ đã học.</div>
+
+  <div class="roleplay-box">
+    <div class="roleplay-title">🎭 Tình huống thực hành</div>
+
+    <div class="scenario-card">
+      <div class="scenario-num">Tình huống 1</div>
+      <div class="scenario-text">Bạn đang có <strong>vấn đề về giấc ngủ</strong> — bạn không thể ngủ được vì lo lắng quá nhiều về công việc. Mỗi đêm bạn nằm thức đến 2-3 giờ sáng.</div>
+      <div class="scenario-hint">Gợi ý lời khuyên: try relaxation techniques / avoid screens before bed / talk to a doctor / exercise more</div>
+    </div>
+
+    <div class="scenario-card">
+      <div class="scenario-num">Tình huống 2</div>
+      <div class="scenario-text">Bạn <strong>vừa cãi nhau với người bạn thân nhất</strong>. Cuộc tranh cãi về một điều nhỏ nhặt nhưng giờ cả hai đều chưa nói chuyện được 2 tuần.</div>
+      <div class="scenario-hint">Gợi ý lời khuyên: send a message / call them / meet face to face / write a letter / give each other some time</div>
+    </div>
+
+    <div class="scenario-card">
+      <div class="scenario-num">Tình huống 3</div>
+      <div class="scenario-text">Bạn đang <strong>bị căng thẳng vì deadline sắp đến</strong> nhưng khối lượng công việc quá nhiều. Bạn không biết phải làm từ đâu.</div>
+      <div class="scenario-hint">Gợi ý lời khuyên: make a to-do list / ask for help / talk to your manager / work in shorter bursts / take breaks</div>
+    </div>
+
+    <div class="scenario-card">
+      <div class="scenario-num">Tình huống 4</div>
+      <div class="scenario-text">Hàng xóm của bạn <strong>thường xuyên gây ồn ào</strong> vào ban đêm — bật nhạc to, tiệc tùng đến tận 2-3 giờ sáng.</div>
+      <div class="scenario-hint">Gợi ý lời khuyên: talk to them politely / leave a note / contact the building manager / call the police / use earplugs</div>
+    </div>
+
+    <div style="margin-top:18px">
+      <div class="cat-title" style="font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;margin-bottom:10px">💬 Cụm từ hữu ích khi roleplay</div>
+      <div class="useful-phrases">
+        <span class="phrase-chip">Oh, dear. What's the matter?</span>
+        <span class="phrase-chip">Oh, how awful!</span>
+        <span class="phrase-chip">I can see why you're upset.</span>
+        <span class="phrase-chip">Have you tried...?</span>
+        <span class="phrase-chip">Why don't you...?</span>
+        <span class="phrase-chip">If I were you, I'd...</span>
+        <span class="phrase-chip">It might be worth...</span>
+        <span class="phrase-chip">That's a good idea.</span>
+        <span class="phrase-chip">I might try that.</span>
+        <span class="phrase-chip">I've tried that already.</span>
+        <span class="phrase-chip">That sounds good.</span>
+        <span class="phrase-chip">Yes, I'll give it a go.</span>
+      </div>
+    </div>
+  </div>
+
+</div><!-- end speaking tab -->
+
+<!-- ============================================================ -->
+<!-- TAB 6: WORKBOOK -->
+<!-- ============================================================ -->
+<div id="tab-workbook" class="tab-pane">
+
+  <div class="sec-heading">📝 Workbook Exercises — Bài 2D</div>
+  <div class="sec-sub">Workbook p14–15 · Real World 2.1: Showing concern & giving advice</div>
+
+  <!-- WB Ex 1 -->
+  <div class="wb-tag">📚 Showing concern — WB p14, Ex 1</div>
+
+  <div class="exercise-label"><span class="exercise-num">1</span>Chọn phản hồi đúng (WB p14)</div>
+  <div class="instruction">Với mỗi tình huống, chọn cách phản hồi thể hiện sự quan tâm phù hợp nhất.</div>
+
+  <div class="mcq-list">
+    <div class="mcq-item">
+      <div class="mcq-q">1. "Clare's had terrible insomnia for weeks."</div>
+      <div class="mcq-opts">
+        <div class="mcq-opt" onclick="selMCQ(this,'A','wb1q1')"><div class="opt-dot"></div><span>a) Oh, dear. What's the matter?</span></div>
+        <div class="mcq-opt" onclick="selMCQ(this,'B','wb1q1')"><div class="opt-dot"></div><span>b) Yes, I see what you mean.</span></div>
+        <div class="mcq-opt" onclick="selMCQ(this,'B','wb1q1')"><div class="opt-dot"></div><span>c) I can see why you're upset.</span></div>
+      </div>
+      <div id="wb1q1-fb" style="margin-top:8px;font-size:.8rem;color:var(--teal);display:none">✅ <strong>Oh, dear. What's the matter?</strong> — phản hồi tốt nhất khi nghe ai đó có vấn đề và muốn hỏi thêm.</div>
+    </div>
+    <div class="mcq-item">
+      <div class="mcq-q">2. "Look at Mike's report — it's terrible!"</div>
+      <div class="mcq-opts">
+        <div class="mcq-opt" onclick="selMCQ(this,'A','wb1q2')"><div class="opt-dot"></div><span>a) Oh, how awful!</span></div>
+        <div class="mcq-opt" onclick="selMCQ(this,'B','wb1q2')"><div class="opt-dot"></div><span>b) Oh, dear. What's the matter?</span></div>
+        <div class="mcq-opt" onclick="selMCQ(this,'B','wb1q2')"><div class="opt-dot"></div><span>c) I'm sorry to hear that.</span></div>
+      </div>
+      <div id="wb1q2-fb" style="margin-top:8px;font-size:.8rem;color:var(--teal);display:none">✅ <strong>Oh, how awful!</strong> — phản hồi khi thấy điều gì đó tệ/đáng lo.</div>
+    </div>
+    <div class="mcq-item">
+      <div class="mcq-q">3. "Mo's in hospital with a broken leg."</div>
+      <div class="mcq-opts">
+        <div class="mcq-opt" onclick="selMCQ(this,'B','wb1q3')"><div class="opt-dot"></div><span>a) Yes, I see what you mean.</span></div>
+        <div class="mcq-opt" onclick="selMCQ(this,'A','wb1q3')"><div class="opt-dot"></div><span>b) Oh, how awful!</span></div>
+        <div class="mcq-opt" onclick="selMCQ(this,'B','wb1q3')"><div class="opt-dot"></div><span>c) Oh, dear. What's the matter?</span></div>
+      </div>
+      <div id="wb1q3-fb" style="margin-top:8px;font-size:.8rem;color:var(--teal);display:none">✅ <strong>Oh, how awful!</strong> — phản hồi đồng cảm với tin tức không tốt.</div>
+    </div>
+    <div class="mcq-item">
+      <div class="mcq-q">4. "We started at the company at the same time, but he's been promoted and I haven't."</div>
+      <div class="mcq-opts">
+        <div class="mcq-opt" onclick="selMCQ(this,'B','wb1q4')"><div class="opt-dot"></div><span>a) Oh, how awful!</span></div>
+        <div class="mcq-opt" onclick="selMCQ(this,'B','wb1q4')"><div class="opt-dot"></div><span>b) I'm sorry to hear that.</span></div>
+        <div class="mcq-opt" onclick="selMCQ(this,'A','wb1q4')"><div class="opt-dot"></div><span>c) I can see why you're upset.</span></div>
+      </div>
+      <div id="wb1q4-fb" style="margin-top:8px;font-size:.8rem;color:var(--teal);display:none">✅ <strong>I can see why you're upset.</strong> — phù hợp khi hiểu lý do tại sao người kia buồn/bức xúc.</div>
+    </div>
+    <div class="mcq-item">
+      <div class="mcq-q">5. "Sally lost her job last week."</div>
+      <div class="mcq-opts">
+        <div class="mcq-opt" onclick="selMCQ(this,'A','wb1q5')"><div class="opt-dot"></div><span>a) Oh, I'm sorry to hear that.</span></div>
+        <div class="mcq-opt" onclick="selMCQ(this,'B','wb1q5')"><div class="opt-dot"></div><span>b) Oh, what a shame.</span></div>
+        <div class="mcq-opt" onclick="selMCQ(this,'B','wb1q5')"><div class="opt-dot"></div><span>c) Both a and b are correct</span></div>
+      </div>
+      <div id="wb1q5-fb" style="margin-top:8px;font-size:.8rem;color:var(--teal);display:none">✅ Cả <strong>a</strong> và <strong>b</strong> đều đúng — <em>I'm sorry to hear that</em> và <em>Oh, what a shame</em> đều phù hợp.</div>
+    </div>
+  </div>
+
+  <!-- WB Ex 2 -->
+  <div class="wb-tag" style="margin-top:24px">💡 Matching advice — WB p14, Ex 2</div>
+
+  <div class="exercise-label"><span class="exercise-num">2</span>Ghép vấn đề với lời khuyên (WB p14)</div>
+  <div class="instruction">Ghép mỗi vấn đề (1–5) với lời khuyên phù hợp (a–e).</div>
+
+  <div style="background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:20px;margin-bottom:16px">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+      <div>
+        <div style="font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;margin-bottom:10px">Vấn đề</div>
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <div style="background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);padding:10px;font-size:.85rem"><strong>1.</strong> My children don't eat enough vegetables.</div>
+          <div style="background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);padding:10px;font-size:.85rem"><strong>2.</strong> She's angry that I forgot her birthday.</div>
+          <div style="background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);padding:10px;font-size:.85rem"><strong>3.</strong> One of my best students doesn't do his homework.</div>
+          <div style="background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);padding:10px;font-size:.85rem"><strong>4.</strong> I can't sleep! My husband snores so much.</div>
+          <div style="background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);padding:10px;font-size:.85rem"><strong>5.</strong> My sister doesn't go out much because she's got two small children.</div>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;margin-bottom:10px">Lời khuyên</div>
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <div style="background:var(--rose-l);border:1px solid rgba(244,63,94,.25);border-radius:var(--r2);padding:10px;font-size:.85rem"><strong>a.</strong> You should offer to babysit.</div>
+          <div style="background:var(--rose-l);border:1px solid rgba(244,63,94,.25);border-radius:var(--r2);padding:10px;font-size:.85rem"><strong>b.</strong> Perhaps you ought to see the doctor about it.</div>
+          <div style="background:var(--rose-l);border:1px solid rgba(244,63,94,.25);border-radius:var(--r2);padding:10px;font-size:.85rem"><strong>c.</strong> Have you tried giving them a choice of different types?</div>
+          <div style="background:var(--rose-l);border:1px solid rgba(244,63,94,.25);border-radius:var(--r2);padding:10px;font-size:.85rem"><strong>d.</strong> I'd have a chat with him and find out what the problem is.</div>
+          <div style="background:var(--rose-l);border:1px solid rgba(244,63,94,.25);border-radius:var(--r2);padding:10px;font-size:.85rem"><strong>e.</strong> Why don't you send her some flowers?</div>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top:16px;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);padding:14px">
+      <div style="font-size:.78rem;font-weight:700;color:var(--muted);margin-bottom:8px">📋 Điền đáp án (1=?, 2=?, 3=?, 4=?, 5=?):</div>
+      <div style="display:flex;flex-wrap:wrap;gap:10px">
+        <div>1 → <input id="m1" class="fill-input" placeholder="a–e" style="width:50px"></div>
+        <div>2 → <input id="m2" class="fill-input" placeholder="a–e" style="width:50px"></div>
+        <div>3 → <input id="m3" class="fill-input" placeholder="a–e" style="width:50px"></div>
+        <div>4 → <input id="m4" class="fill-input" placeholder="a–e" style="width:50px"></div>
+        <div>5 → <input id="m5" class="fill-input" placeholder="a–e" style="width:50px"></div>
+      </div>
+      <div style="margin-top:10px;display:flex;gap:8px">
+        <button class="check-btn" onclick="checkMatching()">Kiểm tra tất cả</button>
+        <button class="reveal-btn" onclick="revealMatching()">Xem đáp án</button>
+      </div>
+      <div id="matching-result" style="margin-top:10px;font-size:.84rem;display:none"></div>
+    </div>
+  </div>
+
+  <!-- WB Ex 3 - Dialogue completion -->
+  <div class="wb-tag" style="margin-top:24px">🗣 Dialogue completion — WB p15, Ex 3</div>
+
+  <div class="exercise-label"><span class="exercise-num">3</span>Hoàn thành hội thoại (WB p15)</div>
+  <div class="instruction">Hoàn thành các hội thoại bên dưới với cụm từ thích hợp từ hộp từ vựng. (Workbook p15, Exercise 3)</div>
+
+  <!-- Conversation 1 -->
+  <div class="dialogue-box">
+    <div class="dialogue-title">Conversation 1 — Rita &amp; David</div>
+    <div style="background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);padding:12px;margin-bottom:12px;font-size:.81rem;color:var(--dim)">
+      Word box: <em>Oh, dear. What's the matter? · Why don't you · Yes, I see what you mean · I've tried that · Well, it's worth a try</em>
+    </div>
+    <div class="dialogue-turn">
+      <div class="dialogue-speaker">RITA:</div>
+      <div class="dialogue-line">Mark seems really fed up at the moment.</div>
+    </div>
+    <div class="dialogue-turn">
+      <div class="dialogue-speaker">DAVID:</div>
+      <div class="dialogue-line"><span class="blank">Oh, dear. What's the matter?</span></div>
+    </div>
+    <div class="dialogue-turn">
+      <div class="dialogue-speaker">RITA:</div>
+      <div class="dialogue-line">I think he's under pressure at work.</div>
+    </div>
+    <div class="dialogue-turn">
+      <div class="dialogue-speaker">DAVID:</div>
+      <div class="dialogue-line"><span class="blank">Why don't you</span> talk to him about it?</div>
+    </div>
+    <div class="dialogue-turn">
+      <div class="dialogue-speaker">RITA:</div>
+      <div class="dialogue-line"><span class="blank">I've tried that</span>, but he says I don't understand.</div>
+    </div>
+  </div>
+
+  <!-- Conversation 2 -->
+  <div class="dialogue-box">
+    <div class="dialogue-title">Conversation 2 — Sam &amp; Alex</div>
+    <div style="background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);padding:12px;margin-bottom:12px;font-size:.81rem;color:var(--dim)">
+      Word box: <em>I can see why you're upset · Have you tried · Yes, I see what you mean · Well, it's worth a try</em>
+    </div>
+    <div class="dialogue-turn">
+      <div class="dialogue-speaker">SAM:</div>
+      <div class="dialogue-line">I've got too much work at the moment. Look at my desk!</div>
+    </div>
+    <div class="dialogue-turn">
+      <div class="dialogue-speaker">ALEX:</div>
+      <div class="dialogue-line"><span class="blank">I can see why you're upset</span>.</div>
+    </div>
+    <div class="dialogue-turn">
+      <div class="dialogue-speaker">SAM:</div>
+      <div class="dialogue-line">I don't know where to start.</div>
+    </div>
+    <div class="dialogue-turn">
+      <div class="dialogue-speaker">ALEX:</div>
+      <div class="dialogue-line"><span class="blank">Have you tried</span> asking your boss for help?</div>
+    </div>
+    <div class="dialogue-turn">
+      <div class="dialogue-speaker">SAM:</div>
+      <div class="dialogue-line"><span class="blank">Yes, I see what you mean</span>. I might do that. <span class="blank">Well, it's worth a try</span>, I guess.</div>
+    </div>
+  </div>
+
+  <!-- Conversation 3 -->
+  <div class="dialogue-box">
+    <div class="dialogue-title">Conversation 3 — Chris &amp; Simon</div>
+    <div style="background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);padding:12px;margin-bottom:12px;font-size:.81rem;color:var(--dim)">
+      Word box: <em>I'm sorry to hear that · I'd take · That's a good idea · I might try that</em>
+    </div>
+    <div class="dialogue-turn">
+      <div class="dialogue-speaker">CHRIS:</div>
+      <div class="dialogue-line">Pat and I broke up last week.</div>
+    </div>
+    <div class="dialogue-turn">
+      <div class="dialogue-speaker">SIMON:</div>
+      <div class="dialogue-line"><span class="blank">I'm sorry to hear that</span>.</div>
+    </div>
+    <div class="dialogue-turn">
+      <div class="dialogue-speaker">CHRIS:</div>
+      <div class="dialogue-line">She wants to get back together, but I'm not sure.</div>
+    </div>
+    <div class="dialogue-turn">
+      <div class="dialogue-speaker">SIMON:</div>
+      <div class="dialogue-line"><span class="blank">I'd take</span> some time off work and think about it.</div>
+    </div>
+    <div class="dialogue-turn">
+      <div class="dialogue-speaker">CHRIS:</div>
+      <div class="dialogue-line">Yes, <span class="blank">that's a good idea</span>. <span class="blank">I might try that</span>.</div>
+    </div>
+  </div>
+
+  <!-- Conversation 4 -->
+  <div class="dialogue-box">
+    <div class="dialogue-title">Conversation 4 — Chloe &amp; Paul</div>
+    <div style="background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);padding:12px;margin-bottom:12px;font-size:.81rem;color:var(--dim)">
+      Word box: <em>Oh, how awful! · I'd write to · I might try that · Oh, dear. What's the matter?</em>
+    </div>
+    <div class="dialogue-turn">
+      <div class="dialogue-speaker">CHLOE:</div>
+      <div class="dialogue-line">It was really expensive and it's already broken down twice.</div>
+    </div>
+    <div class="dialogue-turn">
+      <div class="dialogue-speaker">PAUL:</div>
+      <div class="dialogue-line"><span class="blank">Oh, how awful!</span></div>
+    </div>
+    <div class="dialogue-turn">
+      <div class="dialogue-speaker">CHLOE:</div>
+      <div class="dialogue-line">It's new as well.</div>
+    </div>
+    <div class="dialogue-turn">
+      <div class="dialogue-speaker">PAUL:</div>
+      <div class="dialogue-line"><span class="blank">I'd write to</span> the company.</div>
+    </div>
+    <div class="dialogue-turn">
+      <div class="dialogue-speaker">CHLOE:</div>
+      <div class="dialogue-line"><span class="blank">I might try that</span>. Thanks.</div>
+    </div>
+  </div>
+
+  <!-- WB Ex 4 - Fill dialogue -->
+  <div class="wb-tag" style="margin-top:24px">📝 Fill in the gaps — WB p15, Ex 4</div>
+
+  <div class="exercise-label"><span class="exercise-num">4</span>Điền vào chỗ trống (WB p15)</div>
+  <div class="instruction">Hoàn thành các câu sau với các cụm từ Real World đã học.</div>
+
+  <div class="fill-exercise">
+    <div class="fill-item" id="wb4a">
+      <div class="fill-item-num">1</div>
+      <div class="fill-item-content">
+        <div class="fill-sentence">A: My boss never listens to me. B: I <input class="fill-input" id="wb4i1" placeholder="phrase" style="min-width:160px"> why you're frustrated.</div>
+        <div style="display:flex;gap:6px;margin-top:4px">
+          <button class="check-btn" onclick="checkFill('wb4i1','can see','wb4a')">Kiểm tra</button>
+          <button class="reveal-btn" onclick="revealFill2('wb4i1','can see','wb4a')">Xem đáp án</button>
+        </div>
+        <div class="fill-feedback" id="wb4f1"></div>
+      </div>
+    </div>
+    <div class="fill-item" id="wb4b">
+      <div class="fill-item-num">2</div>
+      <div class="fill-item-content">
+        <div class="fill-sentence">A: I'm exhausted. B: <input class="fill-input" id="wb4i2" placeholder="phrase" style="min-width:160px"> you go to bed earlier tonight?</div>
+        <div style="display:flex;gap:6px;margin-top:4px">
+          <button class="check-btn" onclick="checkFill('wb4i2','Why don\'t','wb4b')">Kiểm tra</button>
+          <button class="reveal-btn" onclick="revealFill2('wb4i2','Why don\'t','wb4b')">Xem đáp án</button>
+        </div>
+        <div class="fill-feedback" id="wb4f2"></div>
+      </div>
+    </div>
+    <div class="fill-item" id="wb4c">
+      <div class="fill-item-num">3</div>
+      <div class="fill-item-content">
+        <div class="fill-sentence">A: Should I call him? B: <input class="fill-input" id="wb4i3" placeholder="phrase" style="min-width:180px">, I'd send a message first.</div>
+        <div style="display:flex;gap:6px;margin-top:4px">
+          <button class="check-btn" onclick="checkFill('wb4i3','If I were you','wb4c')">Kiểm tra</button>
+          <button class="reveal-btn" onclick="revealFill2('wb4i3','If I were you','wb4c')">Xem đáp án</button>
+        </div>
+        <div class="fill-feedback" id="wb4f3"></div>
+      </div>
+    </div>
+    <div class="fill-item" id="wb4d">
+      <div class="fill-item-num">4</div>
+      <div class="fill-item-content">
+        <div class="fill-sentence">A: That's a good suggestion! B: It might <input class="fill-input" id="wb4i4" placeholder="2 words" style="min-width:100px"> a try, yes.</div>
+        <div style="display:flex;gap:6px;margin-top:4px">
+          <button class="check-btn" onclick="checkFill('wb4i4','be worth','wb4d')">Kiểm tra</button>
+          <button class="reveal-btn" onclick="revealFill2('wb4i4','be worth','wb4d')">Xem đáp án</button>
+        </div>
+        <div class="fill-feedback" id="wb4f4"></div>
+      </div>
+    </div>
+    <div class="fill-item" id="wb4e">
+      <div class="fill-item-num">5</div>
+      <div class="fill-item-content">
+        <div class="fill-sentence">A: I've put on a lot of weight. B: <input class="fill-input" id="wb4i5" placeholder="3 words" style="min-width:160px"> joining a gym?</div>
+        <div style="display:flex;gap:6px;margin-top:4px">
+          <button class="check-btn" onclick="checkFill('wb4i5','Have you tried','wb4e')">Kiểm tra</button>
+          <button class="reveal-btn" onclick="revealFill2('wb4i5','Have you tried','wb4e')">Xem đáp án</button>
+        </div>
+        <div class="fill-feedback" id="wb4f5"></div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- end workbook tab -->
+
+</div><!-- page-content -->
+
+<script>
+// ─── THEME ───
+function toggleTheme(){
+  const d=document.documentElement;
+  d.dataset.theme=d.dataset.theme==='light'?'':'light';
+}
+
+// ─── TABS ───
+function showTab(id,btn){
+  document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tnav-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+  btn.classList.add('active');
+}
+
+// ─── GENERIC FILL CHECK ───
+function checkFill(inputId, answer, rowId){
+  const inp=document.getElementById(inputId);
+  const val=inp.value.trim().toLowerCase();
+  const answers=answer.toLowerCase().split('|');
+  const row=document.getElementById(rowId);
+  const fb=row?row.querySelector('.fill-feedback'):null;
+  if(answers.some(a=>val===a||val.includes(a.split(' ')[0]))){
+    inp.className='fill-input correct';
+    if(fb){fb.className='fill-feedback show-ok';fb.textContent='✅ Đúng rồi!';}
+  } else {
+    inp.className='fill-input wrong';
+    if(fb){fb.className='fill-feedback show-err';fb.textContent='❌ Chưa đúng. Thử lại!';}
+  }
+}
+
+function revealFill2(inputId, answer, rowId){
+  const inp=document.getElementById(inputId);
+  inp.value=answer;inp.className='fill-input correct';
+  const row=document.getElementById(rowId);
+  const fb=row?row.querySelector('.fill-feedback'):null;
+  if(fb){fb.className='fill-feedback show-ok';fb.textContent='💡 Đáp án: '+answer;}
+}
+
+// ─── MCQ ───
+function selMCQ(el, choice, groupId){
+  const parent=el.closest('.mcq-item');
+  parent.querySelectorAll('.mcq-opt').forEach(o=>o.classList.remove('correct','wrong'));
+  const fb=document.getElementById(groupId+'-fb');
+  if(choice==='A'){el.classList.add('correct');if(fb){fb.style.display='block';}}
+  else{el.classList.add('wrong');if(fb){fb.style.display='block';}}
+}
+
+// ─── T/F ───
+function checkTF(el, chosen, correct, id){
+  const parent=el.closest('.tfnk-item');
+  parent.querySelectorAll('.tfnk-opt').forEach(o=>o.className='tfnk-opt');
+  const fb=document.getElementById(id);
+  if(chosen===correct){el.classList.add('selected-t');}
+  else{el.classList.add('selected-f');}
+  if(fb){fb.className='tfnk-fb show';}
+}
+
+// ─── QA ACCORDION ───
+function toggleQA(id){document.getElementById(id).classList.toggle('open');}
+
+// ─── TRANSCRIPT ───
+function toggleTranscript(id){document.getElementById(id).classList.toggle('show');}
+
+// ─── MATCHING ───
+const matchKey = {m1:'c',m2:'e',m3:'d',m4:'b',m5:'a'};
+function checkMatching(){
+  let ok=0,total=5,res='';
+  ['m1','m2','m3','m4','m5'].forEach((id,i)=>{
+    const inp=document.getElementById(id);
+    const val=inp.value.trim().toLowerCase();
+    if(val===matchKey[id]){inp.className='fill-input correct';ok++;}
+    else{inp.className='fill-input wrong';}
+  });
+  const r=document.getElementById('matching-result');
+  r.style.display='block';
+  if(ok===total){r.innerHTML='<span style="color:var(--green)">🎉 Tuyệt vời! Đúng tất cả 5/5!</span>';}
+  else{r.innerHTML=`<span style="color:var(--orange)">Bạn đúng ${ok}/${total}. Xem lại những câu sai nhé!</span>`;}
+}
+function revealMatching(){
+  document.getElementById('m1').value='c';document.getElementById('m1').className='fill-input correct';
+  document.getElementById('m2').value='e';document.getElementById('m2').className='fill-input correct';
+  document.getElementById('m3').value='d';document.getElementById('m3').className='fill-input correct';
+  document.getElementById('m4').value='b';document.getElementById('m4').className='fill-input correct';
+  document.getElementById('m5').value='a';document.getElementById('m5').className='fill-input correct';
+  const r=document.getElementById('matching-result');
+  r.style.display='block';
+  r.innerHTML='<span style="color:var(--teal)">💡 Đáp án: 1→c · 2→e · 3→d · 4→b · 5→a</span>';
+}
+</script>
+</body>
+</html>
