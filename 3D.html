@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>3D A trip to India — face2face Intermediate</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap');
+:root{
+  --bg:#0D1117;--bg2:#161B22;--bg3:#21262D;--bg4:#2D333B;
+  --border:#30363D;--border2:#3D444D;
+  --text:#E6EDF3;--dim:#8B949E;--muted:#484F58;
+  --blue:#2563EB;--blue-l:rgba(37,99,235,.15);
+  --green:#10B981;--green-l:rgba(16,185,129,.12);
+  --orange:#F59E0B;--orange-l:rgba(245,158,11,.12);
+  --red:#EF4444;--red-l:rgba(239,68,68,.12);
+  --teal:#14B8A6;--purple:#8B5CF6;--purple-l:rgba(139,92,246,.12);
+  --r:10px;--r2:6px;--tr:.18s ease;
+}
+[data-theme=light]{--bg:#F8FAFC;--bg2:#fff;--bg3:#F1F5F9;--bg4:#E2E8F0;--border:#E2E8F0;--border2:#CBD5E1;--text:#0F172A;--dim:#475569;--muted:#94A3B8;--blue:#1D4ED8;--blue-l:rgba(29,78,216,.1)}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);font-size:15px;line-height:1.6}
+button{cursor:pointer;border:none;background:none;font-family:inherit}input,textarea,select{font-family:inherit}
+
+.top-bar{background:var(--bg2);border-bottom:1px solid var(--border);padding:10px 20px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:50;flex-wrap:wrap}
+.back-btn{display:flex;align-items:center;gap:6px;padding:6px 14px;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);font-size:.82rem;color:var(--dim);cursor:pointer;transition:all var(--tr)}
+.back-btn:hover{border-color:var(--blue);color:var(--blue)}
+.lesson-badge{padding:4px 12px;background:var(--purple-l);border:1px solid rgba(139,92,246,.3);border-radius:4px;font-size:.75rem;font-weight:700;color:#A78BFA;letter-spacing:.05em}
+.lesson-title-h{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700}
+.top-actions{margin-left:auto;display:flex;gap:8px}
+.theme-btn{width:34px;height:34px;display:flex;align-items:center;justify-content:center;border-radius:var(--r2);background:var(--bg3);border:1px solid var(--border);cursor:pointer;font-size:.95rem;color:var(--dim);transition:all var(--tr)}
+.theme-btn:hover{border-color:var(--blue);color:var(--blue)}
+.progress-btn{padding:6px 14px;background:var(--green);border-radius:var(--r2);font-size:.78rem;font-weight:600;color:#fff;cursor:pointer;border:none;transition:all var(--tr)}
+.progress-btn:hover{background:#059669}
+
+.quick-review{background:linear-gradient(135deg,#1e3a5f,#1a2f4a);border:1px solid #2d4f7c;border-radius:var(--r);padding:14px 20px;margin:18px 24px;display:flex;gap:12px;align-items:flex-start}
+.qr-badge{background:#F59E0B;color:#000;padding:3px 10px;border-radius:4px;font-size:.72rem;font-weight:700;white-space:nowrap;flex-shrink:0;margin-top:2px}
+.qr-text{font-size:.84rem;line-height:1.65;color:#CBD5E1}
+.qr-text strong{color:#fff}
+
+.tab-nav{display:flex;gap:2px;border-bottom:1px solid var(--border);overflow-x:auto;scrollbar-width:none;position:sticky;top:57px;background:var(--bg);z-index:40;padding:0 24px}
+.tab-nav::-webkit-scrollbar{display:none}
+.tnav-btn{display:flex;align-items:center;gap:6px;padding:11px 16px;font-size:.82rem;font-weight:500;color:var(--dim);white-space:nowrap;border-bottom:2px solid transparent;margin-bottom:-1px;cursor:pointer;transition:all var(--tr);background:none;border-top:none;border-left:none;border-right:none;font-family:inherit}
+.tnav-btn:hover{color:var(--text)}.tnav-btn.active{color:var(--purple);border-bottom-color:var(--purple)}
+
+.page-content{max-width:920px;margin:0 auto;padding:0 24px 48px}
+.tab-pane{display:none;padding-top:28px}
+.tab-pane.active{display:block;animation:fadeUp .22s ease}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
+.sec-heading{font-size:1.05rem;font-weight:700;color:var(--text);margin-bottom:4px;display:flex;align-items:center;gap:8px}
+.sec-sub{font-size:.82rem;color:var(--dim);margin-bottom:18px}
+.ex-num{width:28px;height:28px;background:var(--purple);color:#fff;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:.78rem;font-weight:700;flex-shrink:0}
+.ex-label{display:inline-flex;align-items:center;gap:8px;font-size:.9rem;font-weight:600;margin-bottom:10px;color:var(--text)}
+.part{display:inline-block;width:22px;height:22px;background:var(--bg4);border-radius:4px;text-align:center;line-height:22px;font-size:.72rem;font-weight:700;color:var(--dim);margin-right:6px}
+.instr{font-size:.88rem;color:var(--text);line-height:1.65;margin-bottom:14px}
+.instr em{font-style:italic;color:var(--teal)}
+
+.fill-ex{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:18px;margin-bottom:16px}
+.fill-ex-title{font-size:.88rem;font-weight:600;padding-bottom:10px;border-bottom:1px solid var(--border);margin-bottom:14px;color:var(--dim)}
+.fill-item{display:flex;align-items:flex-start;gap:10px;padding:9px 0;border-bottom:1px dashed var(--border)}
+.fill-item:last-child{border-bottom:none}
+.fill-item-num{width:22px;height:22px;border-radius:50%;background:var(--bg3);display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:700;color:var(--muted);flex-shrink:0;margin-top:2px}
+.fill-item-body{flex:1}
+.fill-sentence{font-size:.87rem;margin-bottom:7px;line-height:1.6}
+.fill-controls{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.fill-input{height:33px;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);padding:0 11px;color:var(--text);font-size:.84rem;outline:none;min-width:80px;max-width:200px;transition:border-color var(--tr)}
+.fill-input:focus{border-color:var(--purple)}
+.fill-input.correct{border-color:var(--green);background:var(--green-l)}
+.fill-input.wrong{border-color:var(--red);background:var(--red-l)}
+.check-btn{padding:5px 12px;background:var(--purple);color:#fff;border:none;border-radius:var(--r2);font-size:.76rem;font-weight:600;cursor:pointer;transition:all var(--tr)}
+.check-btn:hover{background:#7C3AED}
+.reveal-btn{padding:5px 11px;background:var(--bg3);border:1px solid var(--border);color:var(--dim);border-radius:var(--r2);font-size:.76rem;cursor:pointer;transition:all var(--tr)}
+.reveal-btn:hover{border-color:var(--purple);color:var(--purple)}
+.fill-fb{margin-top:5px;font-size:.77rem;padding:4px 9px;border-radius:var(--r2);display:none}
+.fill-fb.show-ok{background:var(--green-l);color:var(--green);display:block}
+.fill-fb.show-err{background:var(--red-l);color:var(--red);display:block}
+
+.score-box{display:none;text-align:center;padding:18px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);margin-top:14px}
+.score-box.show{display:block}
+.score-n{font-size:2.2rem;font-weight:700;color:var(--purple)}
+.score-msg{color:var(--dim);font-size:.84rem;margin-top:4px}
+
+.btn{display:inline-flex;align-items:center;gap:6px;padding:7px 16px;border-radius:var(--r2);font-size:.82rem;font-weight:500;cursor:pointer;border:none;font-family:inherit;transition:all var(--tr)}
+.btn-primary{background:var(--purple);color:#fff}.btn-primary:hover{background:#7C3AED;transform:translateY(-1px)}
+.btn-outline{background:var(--bg3);border:1px solid var(--border2);color:var(--dim)}.btn-outline:hover{border-color:var(--purple);color:var(--purple)}
+
+.divider{height:1px;background:var(--border);margin:22px 0}
+.note-box{background:var(--orange-l);border:1px solid rgba(245,158,11,.25);border-radius:var(--r2);padding:10px 14px;font-size:.82rem;line-height:1.6;margin:10px 0}
+.note-box strong{color:var(--orange)}
+.tip-box{background:var(--bg3);border-left:3px solid var(--purple);border-radius:0 var(--r2) var(--r2) 0;padding:10px 14px;margin:10px 0;font-size:.82rem;color:var(--dim);line-height:1.6}
+.tip-box strong{color:var(--text)}
+.example-box{font-family:'Courier New',monospace;font-size:.82rem;color:#7DD3FC;background:var(--bg);padding:8px 12px;border-radius:var(--r2);margin:6px 0;border:1px solid var(--border)}
+
+.speaking-box{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:16px;margin-bottom:16px}
+.speaking-title{font-size:.84rem;font-weight:600;margin-bottom:12px;color:var(--text);display:flex;align-items:center;gap:8px}
+.bubble{background:var(--bg3);border:1px solid var(--border);border-radius:12px;padding:8px 14px;max-width:72%;font-size:.84rem;line-height:1.5;margin-bottom:8px}
+.bubble.speaker-a{border-bottom-left-radius:3px}
+.bubble.speaker-b{border-bottom-right-radius:3px;background:var(--purple-l);border-color:rgba(139,92,246,.3);margin-left:auto}
+
+.qa-list{display:flex;flex-direction:column;gap:8px;margin-bottom:16px}
+.qa-item{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r2);overflow:hidden}
+.qa-q{display:flex;align-items:center;gap:10px;padding:10px 14px;cursor:pointer;transition:background var(--tr)}
+.qa-q:hover{background:var(--bg3)}
+.qa-qnum{width:24px;height:24px;border-radius:50%;background:var(--purple-l);color:var(--purple);display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:700;flex-shrink:0}
+.qa-qtext{font-size:.86rem;flex:1}
+.qa-arrow{font-size:.7rem;color:var(--muted);transition:transform var(--tr);flex-shrink:0}
+.qa-item.open .qa-arrow{transform:rotate(90deg)}
+.qa-ans{display:none;padding:0 14px 10px 48px;font-size:.83rem;color:var(--teal);font-style:italic}
+.qa-item.open .qa-ans{display:block}
+
+.lang-sum-tag{display:inline-flex;align-items:center;gap:6px;padding:3px 12px;background:var(--purple-l);border:1px solid rgba(139,92,246,.3);border-radius:4px;font-size:.72rem;font-weight:700;color:#A78BFA;text-transform:uppercase;letter-spacing:.06em;margin-bottom:12px}
+
+.coll-grid{display:flex;flex-direction:column;gap:8px;margin:12px 0}
+.coll-row{display:grid;grid-template-columns:100px 1fr;gap:12px;align-items:start;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r2);padding:10px 14px}
+.coll-verb{font-size:.9rem;font-weight:700;color:var(--blue)}
+.coll-ipa{font-size:.72rem;color:var(--teal);font-family:monospace}
+.coll-phrase{font-size:.85rem;font-weight:600}
+.coll-vi{font-size:.8rem;color:var(--orange)}
+.coll-ex{font-size:.78rem;color:var(--dim);font-style:italic}
+
+@media(max-width:680px){.tab-nav{padding:0 12px}.page-content{padding:0 14px 48px}.quick-review{margin:12px}}
+</style>
+</head>
+<body>
+
+<div class="top-bar">
+  <button class="back-btn" onclick="history.back()">← Trang chủ</button>
+  <div class="lesson-badge">UNIT 3</div>
+  <div class="lesson-title-h">3D — A trip to India</div>
+  <div class="top-actions">
+    <button class="theme-btn" id="theme-btn" onclick="toggleTheme()">☀️</button>
+    <button class="progress-btn" onclick="markDone()">✅ Đánh dấu xong</button>
+  </div>
+</div>
+
+<div class="quick-review">
+  <div class="qr-badge">QUICK REVIEW</div>
+  <div class="qr-text"><strong>Suffixes for adjectives and nouns</strong> — Work in pairs. Student A: write six adjectives you can remember from lesson 3C. Student B: write six nouns. Take turns to say your words. Your partner says the noun or adjective: <em>A: Kind. B: Kindness.</em></div>
+</div>
+
+<div class="tab-nav">
+  <button class="tnav-btn active" onclick="showTab('prep')">📚 Review: Prepositions</button>
+  <button class="tnav-btn" onclick="showTab('video')">🎬 Video</button>
+  <button class="tnav-btn" onclick="showTab('realworld')">🌍 Real World</button>
+  <button class="tnav-btn" onclick="showTab('workbook')">📓 Workbook</button>
+  <button class="tnav-btn" onclick="showTab('langsummary')">📋 Language Summary</button>
+</div>
+
+<div class="page-content">
+
+<!-- ══════════════════════════════════════
+     TAB 1: REVIEW PREPOSITIONS
+══════════════════════════════════════ -->
+<div class="tab-pane active" id="tab-prep">
+  <div class="sec-heading">Review: Prepositions with adjectives</div>
+  <div class="sec-sub">VOCABULARY 1.4 — Prepositions with adjectives</div>
+
+  <div class="ex-label"><div class="ex-num">1</div>Exercise 1 — Choose the correct preposition</div>
+  <p class="instr">Choose the correct preposition. Sometimes more than one answer is possible.</p>
+
+  <div class="fill-ex">
+    <div class="fill-item"><div class="fill-item-num">1</div><div class="fill-item-body"><div class="fill-sentence">Mark's keen <input class="fill-input" id="p1" style="max-width:80px" placeholder="on/of/in"> going to India next year but I'm scared <input class="fill-input" id="p2" style="max-width:80px" placeholder="with/of/at"> flying.</div></div></div>
+    <div class="fill-item"><div class="fill-item-num">2</div><div class="fill-item-body"><div class="fill-sentence">The manager didn't seem concerned <input class="fill-input" id="p3" style="max-width:80px" placeholder="with/about/by"> our complaint. We were so angry <input class="fill-input" id="p4" style="max-width:80px" placeholder="about/on/with"> him that we checked out early.</div></div></div>
+    <div class="fill-item"><div class="fill-item-num">3</div><div class="fill-item-body"><div class="fill-sentence">I'm so bad <input class="fill-input" id="p5" style="max-width:80px" placeholder="on/in/at"> languages and always get embarrassed <input class="fill-input" id="p6" style="max-width:80px" placeholder="by/of/about"> not being able to communicate abroad.</div></div></div>
+    <div class="fill-item"><div class="fill-item-num">4</div><div class="fill-item-body"><div class="fill-sentence">Many of the passengers were angry <input class="fill-input" id="p7" style="max-width:80px" placeholder="with/about/of"> the delay and no one was satisfied <input class="fill-input" id="p8" style="max-width:80px" placeholder="by/of/with"> the explanation.</div></div></div>
+    <div style="display:flex;gap:8px;margin-top:12px">
+      <button class="btn btn-primary" onclick="checkPreps()">✅ Kiểm tra</button>
+      <button class="btn btn-outline" onclick="revealPreps()">👁 Đáp án</button>
+    </div>
+    <div class="score-box" id="prep-score"></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     TAB 2: VIDEO
+══════════════════════════════════════ -->
+<div class="tab-pane" id="tab-video">
+  <div class="sec-heading">Video</div>
+  <div class="sec-sub">VIDEO 3 — Ella and Mike's trip to Delhi</div>
+
+  <div class="ex-label"><div class="ex-num">2</div>Exercise 2a — Watch or listen</div>
+  <p class="instr"><span class="part">a</span> <strong>VIDEO 3 / CD1 ▶ 26</strong> Watch or listen to Ella and Mike asking Rebecca and Charlie for recommendations. Tick the topics they talk about.</p>
+
+  <div class="fill-ex">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px">
+      <div><input type="checkbox" id="topic1"> the best time to visit</div>
+      <div><input type="checkbox" id="topic2"> getting around</div>
+      <div><input type="checkbox" id="topic3"> things (not) to see in the city</div>
+      <div><input type="checkbox" id="topic4"> changing money</div>
+      <div><input type="checkbox" id="topic5"> things to see outside Delhi</div>
+      <div><input type="checkbox" id="topic6"> places to eat</div>
+      <div><input type="checkbox" id="topic7"> dangers and problems</div>
+      <div><input type="checkbox" id="topic8"> places to stay</div>
+    </div>
+    <button class="btn btn-outline" onclick="revealTopics()">👁 Xem đáp án</button>
+    <div id="topic-ans" style="display:none;margin-top:8px" class="tip-box">
+      <strong>They talk about:</strong> best time to visit, getting around, things (not) to see in the city, things to see outside Delhi, places to stay, places to eat.<br>
+      <strong>They don't talk about:</strong> changing money, dangers and problems.
+    </div>
+  </div>
+
+  <div class="ex-label"><div class="ex-num">2</div>Exercise 2b — True or False?</div>
+  <p class="instr"><span class="part">b</span> Watch or listen again. Tick the true sentences. Correct the false ones.</p>
+
+  <div class="fill-ex">
+    <div class="fill-item"><div class="fill-item-num">1</div><div class="fill-item-body"><div class="fill-sentence">Rebecca and Charlie think rickshaws are the best way to get around the city.</div></div></div>
+    <div class="fill-item"><div class="fill-item-num">2</div><div class="fill-item-body"><div class="fill-sentence">They think it's better to travel to other cities by bus.</div></div></div>
+    <div class="fill-item"><div class="fill-item-num">3</div><div class="fill-item-body"><div class="fill-sentence">They think Ella and Mike should visit the museums in Delhi.</div></div></div>
+    <div class="fill-item"><div class="fill-item-num">4</div><div class="fill-item-body"><div class="fill-sentence">They say they should go to the Red Fort in Old Delhi.</div></div></div>
+    <div class="fill-item"><div class="fill-item-num">5</div><div class="fill-item-body"><div class="fill-sentence">They can visit the Taj Mahal and come back the same day.</div></div></div>
+    <div class="fill-item"><div class="fill-item-num">6</div><div class="fill-item-body"><div class="fill-sentence">There's only one good restaurant in Connaught Place.</div></div></div>
+    <div style="display:flex;gap:8px;margin-top:12px">
+      <button class="btn btn-primary" onclick="checkVideoTF()">✅ Kiểm tra</button>
+      <button class="btn btn-outline" onclick="revealVideoTF()">👁 Đáp án</button>
+    </div>
+    <div class="score-box" id="video-score"></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     TAB 3: REAL WORLD
+══════════════════════════════════════ -->
+<div class="tab-pane" id="tab-realworld">
+  <div class="sec-heading">Real World</div>
+  <div class="sec-sub">Asking for and making recommendations · REAL WORLD 3.1 → p134</div>
+
+  <div class="ex-label"><div class="ex-num">3</div>Exercise 3a — Fill in the gaps</div>
+  <p class="instr"><span class="part">a</span> Fill in the gaps with the words in the boxes.</p>
+
+  <div class="fill-ex">
+    <div class="fill-ex-title">Asking for recommendations</div>
+    <div class="fill-item"><div class="fill-item-num">1</div><div class="fill-item-body"><div class="fill-sentence">Do you know any <input class="fill-input" id="rw1" style="max-width:100px" placeholder="..."> places to stay/eat?</div></div></div>
+    <div class="fill-item"><div class="fill-item-num">2</div><div class="fill-item-body"><div class="fill-sentence">What's the <input class="fill-input" id="rw2" style="max-width:100px" placeholder="..."> way to get around?</div></div></div>
+    <div class="fill-item"><div class="fill-item-num">3</div><div class="fill-item-body"><div class="fill-sentence">What else is worth <input class="fill-input" id="rw3" style="max-width:100px" placeholder="...">?</div></div></div>
+    <div class="fill-item"><div class="fill-item-num">4</div><div class="fill-item-body"><div class="fill-sentence">What <input class="fill-input" id="rw4" style="max-width:100px" placeholder="..."> places outside Delhi?</div></div></div>
+    <div class="fill-item"><div class="fill-item-num">5</div><div class="fill-item-body"><div class="fill-sentence">Have you got any other <input class="fill-input" id="rw5" style="max-width:100px" placeholder="...">?</div></div></div>
+  </div>
+
+  <div class="fill-ex">
+    <div class="fill-ex-title">Recommending things</div>
+    <div class="fill-item"><div class="fill-item-num">6</div><div class="fill-item-body"><div class="fill-sentence">It's probably <input class="fill-input" id="rw6" style="max-width:100px" placeholder="..."> to use rickshaws.</div></div></div>
+    <div class="fill-item"><div class="fill-item-num">7</div><div class="fill-item-body"><div class="fill-sentence">I'd <input class="fill-input" id="rw7" style="max-width:100px" placeholder="..."> the trains.</div></div></div>
+    <div class="fill-item"><div class="fill-item-num">8</div><div class="fill-item-body"><div class="fill-sentence">You should <input class="fill-input" id="rw8" style="max-width:100px" placeholder="..."> see the Red Fort.</div></div></div>
+    <div class="fill-item"><div class="fill-item-num">9</div><div class="fill-item-body"><div class="fill-sentence">That's well <input class="fill-input" id="rw9" style="max-width:100px" placeholder="..."> seeing.</div></div></div>
+    <div class="fill-item"><div class="fill-item-num">10</div><div class="fill-item-body"><div class="fill-sentence">You really <input class="fill-input" id="rw10" style="max-width:100px" placeholder="..."> go to Agra.</div></div></div>
+  </div>
+
+  <div class="fill-ex">
+    <div class="fill-ex-title">Not recommending things</div>
+    <div class="fill-item"><div class="fill-item-num">11</div><div class="fill-item-body"><div class="fill-sentence">Don't <input class="fill-input" id="rw11" style="max-width:100px" placeholder="..."> going to the museums.</div></div></div>
+    <div class="fill-item"><div class="fill-item-num">12</div><div class="fill-item-body"><div class="fill-sentence">It isn't really <input class="fill-input" id="rw12" style="max-width:100px" placeholder="..."> visiting.</div></div></div>
+    <div class="fill-item"><div class="fill-item-num">13</div><div class="fill-item-body"><div class="fill-sentence"><input class="fill-input" id="rw13" style="max-width:100px" placeholder="..."> drink anything with ice in it.</div></div></div>
+    <div class="fill-item"><div class="fill-item-num">14</div><div class="fill-item-body"><div class="fill-sentence">I <input class="fill-input" id="rw14" style="max-width:100px" placeholder="..."> eat any salads.</div></div></div>
+  </div>
+
+  <div style="display:flex;gap:8px;margin-bottom:16px">
+    <button class="btn btn-primary" onclick="checkRW()">✅ Kiểm tra tất cả</button>
+    <button class="btn btn-outline" onclick="revealRW()">👁 Đáp án</button>
+  </div>
+  <div class="score-box" id="rw-score"></div>
+
+  <div class="tip-box">
+    <strong>Grammar note:</strong><br>
+    • After <strong>It's (well/not) worth</strong> → verb+ing: <em>It's worth seeing.</em><br>
+    • After <strong>Don't bother</strong> → verb+ing: <em>Don't bother going.</em><br>
+    • After <strong>I'd / I wouldn't</strong> → infinitive: <em>I'd recommend.</em>
+  </div>
+
+  <div class="ex-label"><div class="ex-num">4</div>Exercise 4 — Pronunciation: The schwa /ə/ in suffixes</div>
+  <p class="instr"><strong>CD1 ▶ 28</strong> Listen and notice how we say the suffixes with a schwa /ə/ sound:</p>
+
+  <div class="coll-grid">
+    <div class="coll-row"><div class="coll-verb">kindness</div><div><div class="coll-phrase">/ˈkaɪndnəs/</div></div></div>
+    <div class="coll-row"><div class="coll-verb">dangerous</div><div><div class="coll-phrase">/ˈdeɪndʒərəs/</div></div></div>
+    <div class="coll-row"><div class="coll-verb">comfortable</div><div><div class="coll-phrase">/ˈkʌmftəbl/</div></div></div>
+    <div class="coll-row"><div class="coll-verb">traditional</div><div><div class="coll-phrase">/trəˈdɪʃənl/</div></div></div>
+    <div class="coll-row"><div class="coll-verb">natural</div><div><div class="coll-phrase">/ˈnætʃrəl/</div></div></div>
+    <div class="coll-row"><div class="coll-verb">improvement</div><div><div class="coll-phrase">/ɪmˈpruːvmənt/</div></div></div>
+    <div class="coll-row"><div class="coll-verb">director</div><div><div class="coll-phrase">/dəˈrektə/</div></div></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     TAB 4: WORKBOOK
+══════════════════════════════════════ -->
+<div class="tab-pane" id="tab-workbook">
+  <div class="sec-heading">Workbook 3D</div>
+  <div class="sec-sub">Extra practice from Workbook pages 23–24</div>
+
+  <div class="lang-sum-tag">📓 REAL WORLD — Asking for and making recommendations</div>
+  <p class="instr">Read the conversation and choose the correct words.</p>
+
+  <div class="fill-ex">
+    <div class="fill-item"><div class="fill-item-num">1</div><div class="fill-item-body"><div class="fill-sentence">A: <input class="fill-input" id="wb1" style="max-width:100px" placeholder="Do you know/Have"> any good places to eat near the hotel?</div></div></div>
+    <div class="fill-item"><div class="fill-item-num">2</div><div class="fill-item-body"><div class="fill-sentence">B: I'd <input class="fill-input" id="wb2" style="max-width:100px" placeholder="recommend/recommending"> The Garden Restaurant.</div></div></div>
+    <div class="fill-item"><div class="fill-item-num">3</div><div class="fill-item-body"><div class="fill-sentence">A: That <input class="fill-input" id="wb3" style="max-width:100px" placeholder="sound/sounds"> good. And what's the <input class="fill-input" id="wb4" style="max-width:100px" placeholder="better/best"> way to get around?</div></div></div>
+    <div class="fill-item"><div class="fill-item-num">4</div><div class="fill-item-body"><div class="fill-sentence">B: It's probably best <input class="fill-input" id="wb5" style="max-width:100px" placeholder="take/to take"> taxis.</div></div></div>
+    <div class="fill-item"><div class="fill-item-num">5</div><div class="fill-item-body"><div class="fill-sentence">B: And you really must <input class="fill-input" id="wb6" style="max-width:100px" placeholder="to go/go"> to the National Art Gallery.</div></div></div>
+    <div class="fill-item"><div class="fill-item-num">6</div><div class="fill-item-body"><div class="fill-sentence">A: That's good to <input class="fill-input" id="wb7" style="max-width:100px" placeholder="know/knowing">.</div></div></div>
+    <div class="fill-item"><div class="fill-item-num">7</div><div class="fill-item-body"><div class="fill-sentence">B: But don't <input class="fill-input" id="wb8" style="max-width:100px" placeholder="bother/worry"> going to the City Museum.</div></div></div>
+    <div style="display:flex;gap:8px;margin-top:12px">
+      <button class="btn btn-primary" onclick="checkWB()">✅ Kiểm tra</button>
+      <button class="btn btn-outline" onclick="revealWB()">👁 Đáp án</button>
+    </div>
+    <div class="score-box" id="wb-score"></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     TAB 5: LANGUAGE SUMMARY
+══════════════════════════════════════ -->
+<div class="tab-pane" id="tab-langsummary">
+  <div class="sec-heading">Language Summary 3D</div>
+  <div class="sec-sub">REAL WORLD 3.1 — Asking for and making recommendations</div>
+
+  <div class="lang-sum-tag">🌍 REAL WORLD 3.1 — Asking for and making recommendations</div>
+
+  <div class="coll-grid">
+    <div class="coll-row"><div class="coll-verb">Asking</div><div><div class="coll-phrase">Do you know any good places to stay/eat?</div><div class="coll-vi">🇻🇳 Bạn có biết chỗ nào tốt để ở/ăn không?</div></div></div>
+    <div class="coll-row"><div class="coll-verb">Asking</div><div><div class="coll-phrase">What's the best way to get around?</div><div class="coll-vi">🇻🇳 Cách di chuyển tốt nhất là gì?</div></div></div>
+    <div class="coll-row"><div class="coll-verb">Asking</div><div><div class="coll-phrase">What else is worth seeing?</div><div class="coll-vi">🇻🇳 Còn gì khác đáng xem không?</div></div></div>
+    <div class="coll-row"><div class="coll-verb">Asking</div><div><div class="coll-phrase">What about places outside Delhi?</div><div class="coll-vi">🇻🇳 Còn những địa điểm bên ngoài Delhi thì sao?</div></div></div>
+    <div class="coll-row"><div class="coll-verb">Asking</div><div><div class="coll-phrase">Have you got any other tips?</div><div class="coll-vi">🇻🇳 Bạn có lời khuyên nào khác không?</div></div></div>
+  </div>
+
+  <div class="coll-grid">
+    <div class="coll-row"><div class="coll-verb">Recommend</div><div><div class="coll-phrase">It's probably best to use rickshaws.</div><div class="coll-vi">🇻🇳 Có lẽ tốt nhất là đi xe kéo.</div></div></div>
+    <div class="coll-row"><div class="coll-verb">Recommend</div><div><div class="coll-phrase">I'd recommend the trains.</div><div class="coll-vi">🇻🇳 Tôi khuyên nên đi tàu.</div></div></div>
+    <div class="coll-row"><div class="coll-verb">Recommend</div><div><div class="coll-phrase">You should definitely see the Red Fort.</div><div class="coll-vi">🇻🇳 Bạn nhất định phải xem Pháo đài Đỏ.</div></div></div>
+    <div class="coll-row"><div class="coll-verb">Recommend</div><div><div class="coll-phrase">That's well worth seeing.</div><div class="coll-vi">🇻🇳 Rất đáng để xem.</div></div></div>
+    <div class="coll-row"><div class="coll-verb">Recommend</div><div><div class="coll-phrase">You really must go to Agra.</div><div class="coll-vi">🇻🇳 Bạn thực sự phải đến Agra.</div></div></div>
+  </div>
+
+  <div class="coll-grid">
+    <div class="coll-row"><div class="coll-verb">Not recommend</div><div><div class="coll-phrase">Don't bother going to the museums.</div><div class="coll-vi">🇻🇳 Đừng bận tâm đến viện bảo tàng.</div></div></div>
+    <div class="coll-row"><div class="coll-verb">Not recommend</div><div><div class="coll-phrase">It isn't really worth visiting.</div><div class="coll-vi">🇻🇳 Không thực sự đáng để tham quan.</div></div></div>
+    <div class="coll-row"><div class="coll-verb">Not recommend</div><div><div class="coll-phrase">Don't drink anything with ice in it.</div><div class="coll-vi">🇻🇳 Đừng uống bất cứ thứ gì có đá.</div></div></div>
+    <div class="coll-row"><div class="coll-verb">Not recommend</div><div><div class="coll-phrase">I wouldn't eat any salads.</div><div class="coll-vi">🇻🇳 Tôi sẽ không ăn salad.</div></div></div>
+  </div>
+
+  <div class="coll-grid">
+    <div class="coll-row"><div class="coll-verb">Respond</div><div><div class="coll-phrase">That's good to know.</div><div class="coll-vi">🇻🇳 Biết vậy thì tốt.</div></div></div>
+    <div class="coll-row"><div class="coll-verb">Respond</div><div><div class="coll-phrase">That sounds good.</div><div class="coll-vi">🇻🇳 Nghe có vẻ tốt.</div></div></div>
+    <div class="coll-row"><div class="coll-verb">Respond</div><div><div class="coll-phrase">Thanks, that's really useful.</div><div class="coll-vi">🇻🇳 Cảm ơn, điều đó thực sự hữu ích.</div></div></div>
+    <div class="coll-row"><div class="coll-verb">Respond</div><div><div class="coll-phrase">Yes, I've heard that before.</div><div class="coll-vi">🇻🇳 Vâng, tôi đã nghe điều đó trước đây.</div></div></div>
+  </div>
+
+  <div class="tip-box">
+    <strong>Grammar rules:</strong><br>
+    • After <strong>It's (well/not) worth</strong> → verb+ing: <em>It's worth seeing.</em><br>
+    • After <strong>Don't bother</strong> → verb+ing: <em>Don't bother going.</em><br>
+    • After <strong>I'd / I wouldn't</strong> → infinitive: <em>I'd recommend.</em>
+  </div>
+</div>
+
+</div><!-- /page-content -->
+
+<script>
+function showTab(id){
+  document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tnav-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+  const tabs=['prep','video','realworld','workbook','langsummary'];
+  const idx=tabs.indexOf(id);
+  document.querySelectorAll('.tnav-btn')[idx]?.classList.add('active');
+}
+function toggleTheme(){const t=document.documentElement.getAttribute('data-theme')==='light'?'dark':'light';document.documentElement.setAttribute('data-theme',t==='light'?'light':'');document.getElementById('theme-btn').textContent=t==='light'?'🌙':'☀️';localStorage.setItem('f2f_3d_theme',t);}
+function markDone(){showToast('✅ 3D A trip to India đã hoàn thành!');}
+function showToast(msg){let t=document.getElementById('toast');if(!t){t=document.createElement('div');t.id='toast';t.style.cssText='position:fixed;bottom:20px;right:20px;z-index:999;background:var(--bg2);border:1px solid var(--border2);padding:10px 18px;border-radius:8px;font-size:.82rem;box-shadow:0 4px 20px rgba(0,0,0,.3);transition:opacity .3s';document.body.appendChild(t);}t.textContent=msg;t.style.opacity='1';clearTimeout(showToast._t);showToast._t=setTimeout(()=>t.style.opacity='0',2400);}
+function toggleQA(btn){const item=btn.closest('.qa-item');item.classList.toggle('open');}
+
+function revealTopics(){
+  document.getElementById('topic-ans').style.display='block';
+}
+
+function checkPreps(){
+  const ans={p1:'on',p2:'of',p3:'about',p4:'with',p5:'at',p6:'by',p7:'about',p8:'with'};
+  let c=0,total=8;
+  Object.entries(ans).forEach(([id,val])=>{
+    const inp=document.getElementById(id);
+    if(inp){
+      const ok=inp.value.trim().toLowerCase()===val;
+      inp.className='fill-input '+(ok?'correct':'wrong');
+      if(ok)c++;
+    }
+  });
+  const sc=document.getElementById('prep-score');
+  sc.innerHTML=`<div class="score-n">${c}/${total}</div><div class="score-msg">${c===total?'🎉 All correct!':'Review the prepositions.'}</div>`;
+  sc.className='score-box show';
+}
+function revealPreps(){
+  const ans={p1:'on',p2:'of',p3:'about',p4:'with',p5:'at',p6:'by',p7:'about',p8:'with'};
+  Object.entries(ans).forEach(([id,val])=>{const inp=document.getElementById(id);if(inp){inp.value=val;inp.className='fill-input correct';}});
+}
+
+function checkVideoTF(){
+  const sc=document.getElementById('video-score');
+  sc.innerHTML=`<div class="score-n">✓</div><div class="score-msg">Answers: 1. T (rickshaws best), 2. F (trains better than buses), 3. F (don't bother with museums), 4. T, 5. T (can do in a day), 6. F (lots of good restaurants)</div>`;
+  sc.className='score-box show';
+}
+function revealVideoTF(){
+  checkVideoTF();
+}
+
+function checkRW(){
+  const ans={rw1:'good',rw2:'best',rw3:'seeing',rw4:'about',rw5:'tips',rw6:'best',rw7:'recommend',rw8:'definitely',rw9:'worth',rw10:'must',rw11:'bother',rw12:'worth',rw13:'Don\'t',rw14:'wouldn\'t'};
+  let c=0,total=14;
+  Object.entries(ans).forEach(([id,val])=>{
+    const inp=document.getElementById(id);
+    if(inp){
+      const ok=inp.value.trim().toLowerCase().replace(/\s+/g,'')===val.toLowerCase().replace(/\s+/g,'');
+      inp.className='fill-input '+(ok?'correct':'wrong');
+      if(ok)c++;
+    }
+  });
+  const sc=document.getElementById('rw-score');
+  sc.innerHTML=`<div class="score-n">${c}/${total}</div><div class="score-msg">${c===total?'🎉 All correct!':'Check REAL WORLD 3.1.'}</div>`;
+  sc.className='score-box show';
+}
+function revealRW(){
+  const ans={rw1:'good',rw2:'best',rw3:'seeing',rw4:'about',rw5:'tips',rw6:'best',rw7:'recommend',rw8:'definitely',rw9:'worth',rw10:'must',rw11:'bother',rw12:'worth',rw13:'Don\'t',rw14:'wouldn\'t'};
+  Object.entries(ans).forEach(([id,val])=>{const inp=document.getElementById(id);if(inp){inp.value=val;inp.className='fill-input correct';}});
+}
+
+function checkWB(){
+  const ans={wb1:'Do you know',wb2:'recommend',wb3:'sounds',wb4:'best',wb5:'to take',wb6:'go',wb7:'know',wb8:'bother'};
+  let c=0,total=8;
+  Object.entries(ans).forEach(([id,val])=>{
+    const inp=document.getElementById(id);
+    if(inp){
+      const ok=inp.value.trim().toLowerCase().replace(/\s+/g,'')===val.toLowerCase().replace(/\s+/g,'');
+      inp.className='fill-input '+(ok?'correct':'wrong');
+      if(ok)c++;
+    }
+  });
+  const sc=document.getElementById('wb-score');
+  sc.innerHTML=`<div class="score-n">${c}/${total}</div><div class="score-msg">${c===total?'🎉 All correct!':'Check the workbook answers.'}</div>`;
+  sc.className='score-box show';
+}
+function revealWB(){
+  const ans={wb1:'Do you know',wb2:'recommend',wb3:'sounds',wb4:'best',wb5:'to take',wb6:'go',wb7:'know',wb8:'bother'};
+  Object.entries(ans).forEach(([id,val])=>{const inp=document.getElementById(id);if(inp){inp.value=val;inp.className='fill-input correct';}});
+}
+
+document.addEventListener('DOMContentLoaded',()=>{
+  const t=localStorage.getItem('f2f_3d_theme')||'dark';
+  if(t==='light'){document.documentElement.setAttribute('data-theme','light');document.getElementById('theme-btn').textContent='🌙';}
+});
+</script>
+</body>
+</html>

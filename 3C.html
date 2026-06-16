@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>3C Voluntourism — face2face Intermediate</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap');
+:root{
+  --bg:#0D1117;--bg2:#161B22;--bg3:#21262D;--bg4:#2D333B;
+  --border:#30363D;--border2:#3D444D;
+  --text:#E6EDF3;--dim:#8B949E;--muted:#484F58;
+  --blue:#2563EB;--blue-l:rgba(37,99,235,.15);
+  --green:#10B981;--green-l:rgba(16,185,129,.12);
+  --orange:#F59E0B;--orange-l:rgba(245,158,11,.12);
+  --red:#EF4444;--red-l:rgba(239,68,68,.12);
+  --teal:#14B8A6;--purple:#8B5CF6;--purple-l:rgba(139,92,246,.12);
+  --r:10px;--r2:6px;--tr:.18s ease;
+}
+[data-theme=light]{--bg:#F8FAFC;--bg2:#fff;--bg3:#F1F5F9;--bg4:#E2E8F0;--border:#E2E8F0;--border2:#CBD5E1;--text:#0F172A;--dim:#475569;--muted:#94A3B8;--blue:#1D4ED8;--blue-l:rgba(29,78,216,.1)}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);font-size:15px;line-height:1.6}
+button{cursor:pointer;border:none;background:none;font-family:inherit}input,textarea,select{font-family:inherit}
+
+.top-bar{background:var(--bg2);border-bottom:1px solid var(--border);padding:10px 20px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:50;flex-wrap:wrap}
+.back-btn{display:flex;align-items:center;gap:6px;padding:6px 14px;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);font-size:.82rem;color:var(--dim);cursor:pointer;transition:all var(--tr)}
+.back-btn:hover{border-color:var(--blue);color:var(--blue)}
+.lesson-badge{padding:4px 12px;background:var(--purple-l);border:1px solid rgba(139,92,246,.3);border-radius:4px;font-size:.75rem;font-weight:700;color:#A78BFA;letter-spacing:.05em}
+.lesson-title-h{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700}
+.top-actions{margin-left:auto;display:flex;gap:8px}
+.theme-btn{width:34px;height:34px;display:flex;align-items:center;justify-content:center;border-radius:var(--r2);background:var(--bg3);border:1px solid var(--border);cursor:pointer;font-size:.95rem;color:var(--dim);transition:all var(--tr)}
+.theme-btn:hover{border-color:var(--blue);color:var(--blue)}
+.progress-btn{padding:6px 14px;background:var(--green);border-radius:var(--r2);font-size:.78rem;font-weight:600;color:#fff;cursor:pointer;border:none;transition:all var(--tr)}
+.progress-btn:hover{background:#059669}
+
+.quick-review{background:linear-gradient(135deg,#1e3a5f,#1a2f4a);border:1px solid #2d4f7c;border-radius:var(--r);padding:14px 20px;margin:18px 24px;display:flex;gap:12px;align-items:flex-start}
+.qr-badge{background:#F59E0B;color:#000;padding:3px 10px;border-radius:4px;font-size:.72rem;font-weight:700;white-space:nowrap;flex-shrink:0;margin-top:2px}
+.qr-text{font-size:.84rem;line-height:1.65;color:#CBD5E1}
+.qr-text strong{color:#fff}
+
+.tab-nav{display:flex;gap:2px;border-bottom:1px solid var(--border);overflow-x:auto;scrollbar-width:none;position:sticky;top:57px;background:var(--bg);z-index:40;padding:0 24px}
+.tab-nav::-webkit-scrollbar{display:none}
+.tnav-btn{display:flex;align-items:center;gap:6px;padding:11px 16px;font-size:.82rem;font-weight:500;color:var(--dim);white-space:nowrap;border-bottom:2px solid transparent;margin-bottom:-1px;cursor:pointer;transition:all var(--tr);background:none;border-top:none;border-left:none;border-right:none;font-family:inherit}
+.tnav-btn:hover{color:var(--text)}.tnav-btn.active{color:var(--purple);border-bottom-color:var(--purple)}
+
+.page-content{max-width:920px;margin:0 auto;padding:0 24px 48px}
+.tab-pane{display:none;padding-top:28px}
+.tab-pane.active{display:block;animation:fadeUp .22s ease}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
+.sec-heading{font-size:1.05rem;font-weight:700;color:var(--text);margin-bottom:4px;display:flex;align-items:center;gap:8px}
+.sec-sub{font-size:.82rem;color:var(--dim);margin-bottom:18px}
+.ex-num{width:28px;height:28px;background:var(--purple);color:#fff;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:.78rem;font-weight:700;flex-shrink:0}
+.ex-label{display:inline-flex;align-items:center;gap:8px;font-size:.9rem;font-weight:600;margin-bottom:10px;color:var(--text)}
+.part{display:inline-block;width:22px;height:22px;background:var(--bg4);border-radius:4px;text-align:center;line-height:22px;font-size:.72rem;font-weight:700;color:var(--dim);margin-right:6px}
+.instr{font-size:.88rem;color:var(--text);line-height:1.65;margin-bottom:14px}
+.instr em{font-style:italic;color:var(--teal)}
+
+.audio-box{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:18px;margin-bottom:16px}
+.audio-header{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.cd-badge{padding:4px 12px;background:var(--orange-l);border:1px solid rgba(245,158,11,.3);border-radius:4px;font-size:.75rem;font-weight:700;color:var(--orange)}
+.audio-title{font-size:.9rem;font-weight:600}
+.audio-controls{display:flex;align-items:center;gap:12px;padding:10px 14px;background:var(--bg3);border-radius:var(--r2);margin-bottom:10px}
+.play-btn{width:40px;height:40px;border-radius:50%;background:var(--purple);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;border:none;font-size:.95rem;flex-shrink:0;transition:all var(--tr)}
+.play-btn:hover{background:#7C3AED;transform:scale(1.05)}
+.audio-info{flex:1}
+.audio-track{font-size:.82rem;font-weight:500;margin-bottom:2px}
+.audio-note{font-size:.72rem;color:var(--muted)}
+.prog-bar{height:4px;background:var(--border);border-radius:2px;overflow:hidden;margin-top:5px}
+.prog-fill{height:100%;width:0%;background:var(--purple);border-radius:2px;transition:width .1s linear}
+
+.fill-ex{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:18px;margin-bottom:16px}
+.fill-ex-title{font-size:.88rem;font-weight:600;padding-bottom:10px;border-bottom:1px solid var(--border);margin-bottom:14px;color:var(--dim)}
+.fill-item{display:flex;align-items:flex-start;gap:10px;padding:9px 0;border-bottom:1px dashed var(--border)}
+.fill-item:last-child{border-bottom:none}
+.fill-item-num{width:22px;height:22px;border-radius:50%;background:var(--bg3);display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:700;color:var(--muted);flex-shrink:0;margin-top:2px}
+.fill-item-body{flex:1}
+.fill-sentence{font-size:.87rem;margin-bottom:7px;line-height:1.6}
+.fill-controls{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.fill-input{height:33px;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);padding:0 11px;color:var(--text);font-size:.84rem;outline:none;min-width:80px;max-width:200px;transition:border-color var(--tr)}
+.fill-input:focus{border-color:var(--purple)}
+.fill-input.correct{border-color:var(--green);background:var(--green-l)}
+.fill-input.wrong{border-color:var(--red);background:var(--red-l)}
+.check-btn{padding:5px 12px;background:var(--purple);color:#fff;border:none;border-radius:var(--r2);font-size:.76rem;font-weight:600;cursor:pointer;transition:all var(--tr)}
+.check-btn:hover{background:#7C3AED}
+.reveal-btn{padding:5px 11px;background:var(--bg3);border:1px solid var(--border);color:var(--dim);border-radius:var(--r2);font-size:.76rem;cursor:pointer;transition:all var(--tr)}
+.reveal-btn:hover{border-color:var(--purple);color:var(--purple)}
+.fill-fb{margin-top:5px;font-size:.77rem;padding:4px 9px;border-radius:var(--r2);display:none}
+.fill-fb.show-ok{background:var(--green-l);color:var(--green);display:block}
+.fill-fb.show-err{background:var(--red-l);color:var(--red);display:block}
+
+.score-box{display:none;text-align:center;padding:18px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);margin-top:14px}
+.score-box.show{display:block}
+.score-n{font-size:2.2rem;font-weight:700;color:var(--purple)}
+.score-msg{color:var(--dim);font-size:.84rem;margin-top:4px}
+
+.btn{display:inline-flex;align-items:center;gap:6px;padding:7px 16px;border-radius:var(--r2);font-size:.82rem;font-weight:500;cursor:pointer;border:none;font-family:inherit;transition:all var(--tr)}
+.btn-primary{background:var(--purple);color:#fff}.btn-primary:hover{background:#7C3AED;transform:translateY(-1px)}
+.btn-outline{background:var(--bg3);border:1px solid var(--border2);color:var(--dim)}.btn-outline:hover{border-color:var(--purple);color:var(--purple)}
+
+.divider{height:1px;background:var(--border);margin:22px 0}
+.note-box{background:var(--orange-l);border:1px solid rgba(245,158,11,.25);border-radius:var(--r2);padding:10px 14px;font-size:.82rem;line-height:1.6;margin:10px 0}
+.note-box strong{color:var(--orange)}
+.tip-box{background:var(--bg3);border-left:3px solid var(--purple);border-radius:0 var(--r2) var(--r2) 0;padding:10px 14px;margin:10px 0;font-size:.82rem;color:var(--dim);line-height:1.6}
+.tip-box strong{color:var(--text)}
+.example-box{font-family:'Courier New',monospace;font-size:.82rem;color:#7DD3FC;background:var(--bg);padding:8px 12px;border-radius:var(--r2);margin:6px 0;border:1px solid var(--border)}
+
+.speaking-box{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:16px;margin-bottom:16px}
+.speaking-title{font-size:.84rem;font-weight:600;margin-bottom:12px;color:var(--text);display:flex;align-items:center;gap:8px}
+.bubble{background:var(--bg3);border:1px solid var(--border);border-radius:12px;padding:8px 14px;max-width:72%;font-size:.84rem;line-height:1.5;margin-bottom:8px}
+.bubble.speaker-a{border-bottom-left-radius:3px}
+.bubble.speaker-b{border-bottom-right-radius:3px;background:var(--purple-l);border-color:rgba(139,92,246,.3);margin-left:auto}
+
+.qa-list{display:flex;flex-direction:column;gap:8px;margin-bottom:16px}
+.qa-item{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r2);overflow:hidden}
+.qa-q{display:flex;align-items:center;gap:10px;padding:10px 14px;cursor:pointer;transition:background var(--tr)}
+.qa-q:hover{background:var(--bg3)}
+.qa-qnum{width:24px;height:24px;border-radius:50%;background:var(--purple-l);color:var(--purple);display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:700;flex-shrink:0}
+.qa-qtext{font-size:.86rem;flex:1}
+.qa-arrow{font-size:.7rem;color:var(--muted);transition:transform var(--tr);flex-shrink:0}
+.qa-item.open .qa-arrow{transform:rotate(90deg)}
+.qa-ans{display:none;padding:0 14px 10px 48px;font-size:.83rem;color:var(--teal);font-style:italic}
+.qa-item.open .qa-ans{display:block}
+
+.grammar-table{width:100%;border-collapse:collapse;font-size:.82rem;margin:12px 0}
+.grammar-table th{background:var(--bg3);padding:8px 12px;text-align:left;font-weight:600;border:1px solid var(--border);color:var(--dim);font-size:.72rem;text-transform:uppercase}
+.grammar-table td{padding:9px 12px;border:1px solid var(--border);line-height:1.5}
+.grammar-table td.aux{color:var(--purple);font-weight:600}
+
+.lang-sum-tag{display:inline-flex;align-items:center;gap:6px;padding:3px 12px;background:var(--purple-l);border:1px solid rgba(139,92,246,.3);border-radius:4px;font-size:.72rem;font-weight:700;color:#A78BFA;text-transform:uppercase;letter-spacing:.06em;margin-bottom:12px}
+
+.coll-grid{display:flex;flex-direction:column;gap:8px;margin:12px 0}
+.coll-row{display:grid;grid-template-columns:100px 1fr;gap:12px;align-items:start;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r2);padding:10px 14px}
+.coll-verb{font-size:.9rem;font-weight:700;color:var(--blue)}
+.coll-ipa{font-size:.72rem;color:var(--teal);font-family:monospace}
+.coll-phrase{font-size:.85rem;font-weight:600}
+.coll-vi{font-size:.8rem;color:var(--orange)}
+.coll-ex{font-size:.78rem;color:var(--dim);font-style:italic}
+
+.article-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:20px;margin-bottom:16px}
+.article-title{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;margin-bottom:4px}
+.article-source{font-size:.75rem;color:var(--muted);font-style:italic;margin-bottom:14px}
+.article-p{font-size:.85rem;line-height:1.8;color:var(--text);margin-bottom:10px}
+.article-p:last-child{margin-bottom:0}
+
+.suffix-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;margin-bottom:16px}
+.suffix-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r2);padding:12px;text-align:center}
+.suffix-word{font-size:.95rem;font-weight:700;color:var(--purple)}
+.suffix-ipa{font-size:.72rem;color:var(--teal);font-family:monospace}
+.suffix-type{font-size:.72rem;color:var(--orange);margin-top:2px}
+
+@media(max-width:680px){.tab-nav{padding:0 12px}.page-content{padding:0 14px 48px}.quick-review{margin:12px}}
+</style>
+</head>
+<body>
+
+<div class="top-bar">
+  <button class="back-btn" onclick="history.back()">← Trang chủ</button>
+  <div class="lesson-badge">UNIT 3</div>
+  <div class="lesson-title-h">3C — Voluntourism</div>
+  <div class="top-actions">
+    <button class="theme-btn" id="theme-btn" onclick="toggleTheme()">☀️</button>
+    <button class="progress-btn" onclick="markDone()">✅ Đánh dấu xong</button>
+  </div>
+</div>
+
+<div class="quick-review">
+  <div class="qr-badge">QUICK REVIEW</div>
+  <div class="qr-text"><strong>Present Perfect Continuous</strong> — Work in groups. Ask questions with <em>How long ... ?</em> to find out who has been: coming to this school the longest, learning English the longest, working in the same job the longest, living in the same house or flat the longest.</div>
+</div>
+
+<div class="tab-nav">
+  <button class="tnav-btn active" onclick="showTab('vocab')">📚 Vocabulary &amp; Speaking</button>
+  <button class="tnav-btn" onclick="showTab('listening')">🎧 Listening</button>
+  <button class="tnav-btn" onclick="showTab('reading')">📖 Reading &amp; Vocabulary</button>
+  <button class="tnav-btn" onclick="showTab('wordbuilding')">📐 Word Building</button>
+  <button class="tnav-btn" onclick="showTab('workbook')">📓 Workbook</button>
+  <button class="tnav-btn" onclick="showTab('langsummary')">📋 Language Summary</button>
+</div>
+
+<div class="page-content">
+
+<!-- ══════════════════════════════════════
+     TAB 1: VOCABULARY AND SPEAKING
+══════════════════════════════════════ -->
+<div class="tab-pane active" id="tab-vocab">
+  <div class="sec-heading">Vocabulary and Speaking</div>
+  <div class="sec-sub">Word building (1): suffixes for adjectives and nouns · VOCABULARY 3.3 → p133</div>
+
+  <div class="ex-label"><div class="ex-num">1</div>Pre-listening discussion</div>
+  <p class="instr">Work in pairs. Discuss these questions:</p>
+  <div class="qa-list">
+    <div class="qa-item"><div class="qa-q" onclick="toggleQA(this)"><span class="qa-qnum">1</span><span class="qa-qtext">Which holidays can you remember from your childhood?</span><span class="qa-arrow">▶</span></div><div class="qa-ans">Trả lời tự do. Gợi ý: "I remember going to the beach every summer with my family."</div></div>
+    <div class="qa-item"><div class="qa-q" onclick="toggleQA(this)"><span class="qa-qnum">2</span><span class="qa-qtext">What's the best (or worst) holiday you've ever had?</span><span class="qa-arrow">▶</span></div><div class="qa-ans">Trả lời tự do. Gợi ý: "The best was when I went to Japan two years ago."</div></div>
+    <div class="qa-item"><div class="qa-q" onclick="toggleQA(this)"><span class="qa-qnum">3</span><span class="qa-qtext">Imagine your perfect holiday. Where would you go? What would you do there?</span><span class="qa-arrow">▶</span></div><div class="qa-ans">Trả lời tự do. Gợi ý: "I'd go to Iceland to see the northern lights."</div></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     TAB 2: LISTENING
+══════════════════════════════════════ -->
+<div class="tab-pane" id="tab-listening">
+  <div class="sec-heading">Listening</div>
+  <div class="sec-sub">CD1 Track 25 — Alison Armstrong on voluntourism</div>
+
+  <div class="ex-label"><div class="ex-num">2</div>Exercise 2a — Listen</div>
+  <p class="instr"><span class="part">a</span> <strong>CD1 ▶ 25</strong> Listen to an interview with Alison Armstrong, a travel expert. What is 'voluntourism'? Why is it becoming so popular?</p>
+
+  <div class="audio-box">
+    <div class="audio-header">
+      <div class="cd-badge">CD1 ▶ Track 25</div>
+      <div><div class="audio-title">Voluntourism — Interview with Alison Armstrong</div></div>
+    </div>
+    <div class="audio-controls">
+      <button class="play-btn" id="play-btn-25" onclick="toggleAudio('25')">▶</button>
+      <div class="audio-info">
+        <div class="audio-track">CD1 Track 25</div>
+        <div class="audio-note">⚠️ Cần file <code>cd1_track25.mp3</code></div>
+        <div class="prog-bar"><div class="prog-fill" id="prog-25"></div></div>
+      </div>
+    </div>
+    <audio id="audio-25" src="audio/cd1_track25.mp3" ontimeupdate="updateProg('25')" onended="audioEnd('25')"></audio>
+  </div>
+
+  <div class="qa-list">
+    <div class="qa-item"><div class="qa-q" onclick="toggleQA(this)"><span class="qa-qnum">1</span><span class="qa-qtext">What is 'voluntourism'?</span><span class="qa-arrow">▶</span></div><div class="qa-ans">People go on holiday (or a longer trip) and volunteer to work for free in the place they're visiting.</div></div>
+    <div class="qa-item"><div class="qa-q" onclick="toggleQA(this)"><span class="qa-qnum">2</span><span class="qa-qtext">Why is it becoming so popular?</span><span class="qa-arrow">▶</span></div><div class="qa-ans">People want to help, it's a great way to get to know the local culture, and it's a life-changing experience.</div></div>
+  </div>
+
+  <div class="ex-label"><div class="ex-num">2</div>Exercise 2b — Listen again: Choose the correct words</div>
+  <p class="instr"><span class="part">b</span> Listen again. Choose the correct words, phrases or numbers in these sentences.</p>
+
+  <div class="fill-ex">
+    <div class="fill-item"><div class="fill-item-num">1</div><div class="fill-item-body"><div class="fill-sentence"><input class="fill-input" id="l2-1" style="max-width:80px" placeholder="17%/25%"> of people in the UK take a year off before they are <input class="fill-input" id="l2-2" style="max-width:80px" placeholder="17/25">.</div></div></div>
+    <div class="fill-item"><div class="fill-item-num">2</div><div class="fill-item-body"><div class="fill-sentence">Voluntourism holidays are only for young people / for people of all ages.</div></div></div>
+    <div class="fill-item"><div class="fill-item-num">3</div><div class="fill-item-body"><div class="fill-sentence">Alison thinks it's easy/hard to meet local people on a normal holiday.</div></div></div>
+    <div class="fill-item"><div class="fill-item-num">4</div><div class="fill-item-body"><div class="fill-sentence">Tourists have to / don't have to pay to go on voluntourism holidays.</div></div></div>
+    <div class="fill-item"><div class="fill-item-num">5</div><div class="fill-item-body"><div class="fill-sentence">The presenter thinks / doesn't think these holidays are a good idea.</div></div></div>
+    <div style="display:flex;gap:8px;margin-top:12px">
+      <button class="btn btn-primary" onclick="checkListening2()">✅ Kiểm tra</button>
+      <button class="btn btn-outline" onclick="revealListening2()">👁 Đáp án</button>
+    </div>
+    <div class="score-box" id="l2-score"></div>
+  </div>
+
+  <div class="tip-box">
+    <strong>Linking (consonant-vowel):</strong><br>
+    We often link words that end in a consonant sound with words that start with a vowel sound:<br>
+    <em>Good af̬ternoon and̬ welcome to Take a Break.</em>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     TAB 3: READING AND VOCABULARY
+══════════════════════════════════════ -->
+<div class="tab-pane" id="tab-reading">
+  <div class="sec-heading">Reading and Vocabulary</div>
+  <div class="sec-sub">Voluntourism blogs — Shelley and William</div>
+
+  <div class="ex-label"><div class="ex-num">3</div>Exercise 3 — Read the blogs</div>
+  <p class="instr">Read the blogs. Find the answers to these questions.</p>
+
+  <div class="article-card">
+    <div style="font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:var(--purple);margin-bottom:4px">Shelley Parker, Australia</div>
+    <div class="article-p">I'm on a voluntourism holiday in Nepal and wanted to tell everyone all about it! I've been working at a school in a village near Kathmandu for two weeks and I've enjoyed every minute of it. The best thing about the holiday has been working with the children. I spend six hours a day at the school, mainly helping the teachers in the classroom and organising games for the younger kids. I've also been teaching English to the older children, which is great fun. I'm amazed at the <strong style="color:var(--purple)">kindness</strong> and <strong style="color:var(--purple)">patience</strong> of the local staff, they've really helped me feel at home. I'm staying with a Nepalese family in the village and I share a room with another volunteer. My bed isn't very comfortable, but I'm usually so exhausted it doesn't matter! On our days off we go walking in the mountains and I'm getting very fit and healthy. The scenery here is absolutely wonderful and I love being surrounded by nature. But it can be a bit dangerous so we always take a guide with us. The most difficult thing about the holiday is being away from my family — this is the first time I've been out of Australia. I'm glad this type of holiday is becoming more <strong style="color:var(--purple)">popular</strong> with young people and I'd recommend this experience to anyone.</div>
+  </div>
+
+  <div class="article-card">
+    <div style="font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:var(--purple);margin-bottom:4px">William Boyd, Scotland</div>
+    <div class="article-p">I've been staying on Grenada, an island in the Caribbean, for three weeks and I'm having a brilliant time! There are nine volunteers in our group and everyone's very kind and <strong style="color:var(--purple)">helpful</strong>. We're staying at a campsite by the beach and I share a tent with two other volunteers. At first I had a lot of difficulty getting to sleep and I missed the <strong style="color:var(--purple)">comfort</strong> of my own bed, but I'm sleeping OK now and I love living in such a <strong style="color:var(--purple)">natural</strong> environment. We take turns to prepare meals for the group, which is the worst part of the holiday for me because I hate cooking. We have one day off a week, which I spend diving around the coral reefs near here. But of course the main reason we're here is to protect the turtles from other animals and people who want to steal their eggs. We also check each turtle's health and measure how big they are. Turtles have been living on our planet for 230 million years — they're even older than the dinosaurs — but now they're in danger of becoming extinct. You have to be very <strong style="color:var(--purple)">patient</strong>, but it's incredible to watch a turtle walk out of the sea and lay her eggs on the beach. That's definitely been the most amazing part of the holiday for me. I'm not surprised voluntourism is increasing in <strong style="color:var(--purple)">popularity</strong> and I'd definitely recommend coming to Grenada.</div>
+  </div>
+
+  <div class="ex-label"><div class="ex-num">4</div>Comprehension questions</div>
+  <p class="instr">Work in pairs. Ask and answer these questions about the blogs.</p>
+
+  <div class="qa-list">
+    <div class="qa-item"><div class="qa-q" onclick="toggleQA(this)"><span class="qa-qnum">1</span><span class="qa-qtext">Where is Shelley? How long has she been there?</span><span class="qa-arrow">▶</span></div><div class="qa-ans">Nepal, for two weeks.</div></div>
+    <div class="qa-item"><div class="qa-q" onclick="toggleQA(this)"><span class="qa-qnum">2</span><span class="qa-qtext">What does Shelley do at the school?</span><span class="qa-arrow">▶</span></div><div class="qa-ans">Helps teachers, organises games, teaches English to older children.</div></div>
+    <div class="qa-item"><div class="qa-q" onclick="toggleQA(this)"><span class="qa-qnum">3</span><span class="qa-qtext">What does Shelley do on her days off?</span><span class="qa-arrow">▶</span></div><div class="qa-ans">Goes walking in the mountains.</div></div>
+    <div class="qa-item"><div class="qa-q" onclick="toggleQA(this)"><span class="qa-qnum">4</span><span class="qa-qtext">Where is William? How long has he been there?</span><span class="qa-arrow">▶</span></div><div class="qa-ans">Grenada (Caribbean), for three weeks.</div></div>
+    <div class="qa-item"><div class="qa-q" onclick="toggleQA(this)"><span class="qa-qnum">5</span><span class="qa-qtext">What does William do on the island?</span><span class="qa-arrow">▶</span></div><div class="qa-ans">Protects turtles, checks their health, measures them.</div></div>
+    <div class="qa-item"><div class="qa-q" onclick="toggleQA(this)"><span class="qa-qnum">6</span><span class="qa-qtext">What does he do on his days off?</span><span class="qa-arrow">▶</span></div><div class="qa-ans">Dives around the coral reefs.</div></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     TAB 4: WORD BUILDING
+══════════════════════════════════════ -->
+<div class="tab-pane" id="tab-wordbuilding">
+  <div class="sec-heading">Help with Vocabulary</div>
+  <div class="sec-sub">Word building (1): suffixes for adjectives and nouns · VOCABULARY 3.3 → p133</div>
+
+  <div class="ex-label"><div class="ex-num">5</div>Exercise 5a — Identify adjectives and nouns</div>
+  <p class="instr"><span class="part">a</span> Look at the words in <strong>blue</strong> and <strong>purple</strong> in the blogs. Which are adjectives and which are nouns? Underline the suffix in each pair.</p>
+
+  <div class="suffix-grid">
+    <div class="suffix-card"><div class="suffix-word">kind</div><div class="suffix-ipa">/kaɪnd/</div><div class="suffix-type">Adjective</div></div>
+    <div class="suffix-card"><div class="suffix-word">kindness</div><div class="suffix-ipa">/ˈkaɪndnəs/</div><div class="suffix-type">Noun (suffix -ness)</div></div>
+    <div class="suffix-card"><div class="suffix-word">patient</div><div class="suffix-ipa">/ˈpeɪʃnt/</div><div class="suffix-type">Adjective</div></div>
+    <div class="suffix-card"><div class="suffix-word">patience</div><div class="suffix-ipa">/ˈpeɪʃns/</div><div class="suffix-type">Noun (suffix -ence)</div></div>
+    <div class="suffix-card"><div class="suffix-word">popular</div><div class="suffix-ipa">/ˈpɒpjələ/</div><div class="suffix-type">Adjective</div></div>
+    <div class="suffix-card"><div class="suffix-word">popularity</div><div class="suffix-ipa">/ˌpɒpjəˈlærəti/</div><div class="suffix-type">Noun (suffix -ity)</div></div>
+    <div class="suffix-card"><div class="suffix-word">helpful</div><div class="suffix-ipa">/ˈhelpfl/</div><div class="suffix-type">Adjective (suffix -ful)</div></div>
+    <div class="suffix-card"><div class="suffix-word">comfort</div><div class="suffix-ipa">/ˈkʌmfət/</div><div class="suffix-type">Noun</div></div>
+    <div class="suffix-card"><div class="suffix-word">natural</div><div class="suffix-ipa">/ˈnætʃrəl/</div><div class="suffix-type">Adjective (suffix -al)</div></div>
+  </div>
+
+  <div class="ex-label"><div class="ex-num">5</div>Exercise 5b — Complete the tables</div>
+
+  <div class="fill-ex">
+    <div class="fill-ex-title">Adjectives → Nouns</div>
+    <div class="coll-grid">
+      <div class="coll-row"><div class="coll-verb">sad</div><div><div class="coll-phrase">sadness</div><div class="coll-vi">🇻🇳 nỗi buồn</div></div></div>
+      <div class="coll-row"><div class="coll-verb">lazy</div><div><div class="coll-phrase">laziness</div><div class="coll-vi">🇻🇳 sự lười biếng</div></div></div>
+      <div class="coll-row"><div class="coll-verb">confident</div><div><div class="coll-phrase">confidence</div><div class="coll-vi">🇻🇳 sự tự tin</div></div></div>
+      <div class="coll-row"><div class="coll-verb">important</div><div><div class="coll-phrase">importance</div><div class="coll-vi">🇻🇳 tầm quan trọng</div></div></div>
+      <div class="coll-row"><div class="coll-verb">difficult</div><div><div class="coll-phrase">difficulty</div><div class="coll-vi">🇻🇳 khó khăn</div></div></div>
+      <div class="coll-row"><div class="coll-verb">honest</div><div><div class="coll-phrase">honesty</div><div class="coll-vi">🇻🇳 sự trung thực</div></div></div>
+      <div class="coll-row"><div class="coll-verb">active</div><div><div class="coll-phrase">activity</div><div class="coll-vi">🇻🇳 hoạt động</div></div></div>
+    </div>
+  </div>
+
+  <div class="fill-ex">
+    <div class="fill-ex-title">Nouns → Adjectives</div>
+    <div class="coll-grid">
+      <div class="coll-row"><div class="coll-verb">danger</div><div><div class="coll-phrase">dangerous</div><div class="coll-vi">🇻🇳 nguy hiểm</div></div></div>
+      <div class="coll-row"><div class="coll-verb">fame</div><div><div class="coll-phrase">famous</div><div class="coll-vi">🇻🇳 nổi tiếng</div></div></div>
+      <div class="coll-row"><div class="coll-verb">adventure</div><div><div class="coll-phrase">adventurous</div><div class="coll-vi">🇻🇳 thích phiêu lưu</div></div></div>
+      <div class="coll-row"><div class="coll-verb">nature</div><div><div class="coll-phrase">natural</div><div class="coll-vi">🇻🇳 tự nhiên</div></div></div>
+      <div class="coll-row"><div class="coll-verb">tradition</div><div><div class="coll-phrase">traditional</div><div class="coll-vi">🇻🇳 truyền thống</div></div></div>
+      <div class="coll-row"><div class="coll-verb">music</div><div><div class="coll-phrase">musical</div><div class="coll-vi">🇻🇳 (thuộc) âm nhạc</div></div></div>
+      <div class="coll-row"><div class="coll-verb">tourist</div><div><div class="coll-phrase">touristy</div><div class="coll-vi">🇻🇳 thu hút khách du lịch</div></div></div>
+      <div class="coll-row"><div class="coll-verb">comfort</div><div><div class="coll-phrase">comfortable</div><div class="coll-vi">🇻🇳 thoải mái</div></div></div>
+      <div class="coll-row"><div class="coll-verb">knowledge</div><div><div class="coll-phrase">knowledgeable</div><div class="coll-vi">🇻🇳 am hiểu</div></div></div>
+    </div>
+  </div>
+
+  <div class="tip-box">
+    <strong>Suffixes for adjectives:</strong> -ous, -able, -al, -y<br>
+    <strong>Suffixes for nouns:</strong> -ness, -ce, -ity, -tion, -ism<br>
+    <em>Examples:</em> sad → sadness, active → activity, danger → dangerous
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     TAB 5: WORKBOOK
+══════════════════════════════════════ -->
+<div class="tab-pane" id="tab-workbook">
+  <div class="sec-heading">Workbook 3C</div>
+  <div class="sec-sub">Extra practice from Workbook pages 21–22</div>
+
+  <div class="lang-sum-tag">📓 Word building — Suffixes</div>
+  <p class="instr">Are these words nouns (N) or adjectives (A)?</p>
+
+  <div class="suffix-grid">
+    <div class="suffix-card"><div class="suffix-word">kind</div><div class="suffix-type">A</div></div>
+    <div class="suffix-card"><div class="suffix-word">healthy</div><div class="suffix-type">A</div></div>
+    <div class="suffix-card"><div class="suffix-word">fame</div><div class="suffix-type">N</div></div>
+    <div class="suffix-card"><div class="suffix-word">honest</div><div class="suffix-type">A</div></div>
+    <div class="suffix-card"><div class="suffix-word">sadness</div><div class="suffix-type">N</div></div>
+    <div class="suffix-card"><div class="suffix-word">patient</div><div class="suffix-type">A</div></div>
+    <div class="suffix-card"><div class="suffix-word">nature</div><div class="suffix-type">N</div></div>
+    <div class="suffix-card"><div class="suffix-word">comfort</div><div class="suffix-type">N</div></div>
+    <div class="suffix-card"><div class="suffix-word">fashionable</div><div class="suffix-type">A</div></div>
+    <div class="suffix-card"><div class="suffix-word">traditional</div><div class="suffix-type">A</div></div>
+    <div class="suffix-card"><div class="suffix-word">activity</div><div class="suffix-type">N</div></div>
+    <div class="suffix-card"><div class="suffix-word">popular</div><div class="suffix-type">A</div></div>
+    <div class="suffix-card"><div class="suffix-word">confidence</div><div class="suffix-type">N</div></div>
+    <div class="suffix-card"><div class="suffix-word">possible</div><div class="suffix-type">A</div></div>
+  </div>
+
+  <div class="lang-sum-tag">📓 Word building — Change adjectives to nouns</div>
+  <p class="instr">Change the nouns into adjectives and the adjectives into nouns.</p>
+  <div class="fill-ex">
+    <div class="fill-item"><div class="fill-item-num">1</div><div class="fill-item-body"><div class="fill-sentence">kind → <input class="fill-input" id="wb1" style="max-width:120px" placeholder="..."></div></div></div>
+    <div class="fill-item"><div class="fill-item-num">2</div><div class="fill-item-body"><div class="fill-sentence">healthy → <input class="fill-input" id="wb2" style="max-width:120px" placeholder="..."></div></div></div>
+    <div class="fill-item"><div class="fill-item-num">3</div><div class="fill-item-body"><div class="fill-sentence">famous → <input class="fill-input" id="wb3" style="max-width:120px" placeholder="..."></div></div></div>
+    <div class="fill-item"><div class="fill-item-num">4</div><div class="fill-item-body"><div class="fill-sentence">honest → <input class="fill-input" id="wb4" style="max-width:120px" placeholder="..."></div></div></div>
+    <div class="fill-item"><div class="fill-item-num">5</div><div class="fill-item-body"><div class="fill-sentence">sad → <input class="fill-input" id="wb5" style="max-width:120px" placeholder="..."></div></div></div>
+    <div class="fill-item"><div class="fill-item-num">6</div><div class="fill-item-body"><div class="fill-sentence">patient → <input class="fill-input" id="wb6" style="max-width:120px" placeholder="..."></div></div></div>
+    <div style="display:flex;gap:8px;margin-top:12px">
+      <button class="btn btn-primary" onclick="checkWB()">✅ Kiểm tra</button>
+      <button class="btn btn-outline" onclick="revealWB()">👁 Đáp án</button>
+    </div>
+    <div class="score-box" id="wb-score"></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     TAB 6: LANGUAGE SUMMARY
+══════════════════════════════════════ -->
+<div class="tab-pane" id="tab-langsummary">
+  <div class="sec-heading">Language Summary 3C</div>
+  <div class="sec-sub">VOCABULARY 3.3 — Word building (1): suffixes for adjectives and nouns</div>
+
+  <div class="lang-sum-tag">📗 VOCABULARY 3.3 — Suffixes for adjectives and nouns</div>
+
+  <div class="grammar-table">
+    <table>
+      <thead><tr><th>Adjective → Noun</th><th>Suffix</th><th>Noun → Adjective</th><th>Suffix</th></tr></thead>
+      <tbody>
+        <tr><td>kind → kindness</td><td>-ness</td><td>danger → dangerous</td><td>-ous</td></tr>
+        <tr><td>sad → sadness</td><td>-ness</td><td>adventure → adventurous</td><td>-ous</td></tr>
+        <tr><td>lazy → laziness</td><td>-ness</td><td>fame → famous</td><td>-ous</td></tr>
+        <tr><td>honest → honesty</td><td>-y</td><td>comfort → comfortable</td><td>-able</td></tr>
+        <tr><td>difficult → difficulty</td><td>-y</td><td>knowledge → knowledgeable</td><td>-able</td></tr>
+        <tr><td>confident → confidence</td><td>-ce</td><td>nature → natural</td><td>-al</td></tr>
+        <tr><td>important → importance</td><td>-ce</td><td>tradition → traditional</td><td>-al</td></tr>
+        <tr><td>patient → patience</td><td>-ce</td><td>music → musical</td><td>-al</td></tr>
+        <tr><td>popular → popularity</td><td>-ity</td><td>tourist → touristy</td><td>-y</td></tr>
+        <tr><td>active → activity</td><td>-ity</td><td>health → healthy</td><td>-y</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="tip-box">
+    <strong>TIPS:</strong><br>
+    • When the adjective or noun ends in -t, -y or -e, we sometimes change the spelling: <em>patient → patience, lazy → laziness, nature → natural</em><br>
+    • Suffix -ness is very common for making nouns from adjectives: <em>kindness, sadness, happiness</em>
+  </div>
+</div>
+
+</div><!-- /page-content -->
+
+<script>
+function showTab(id){
+  document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tnav-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+  const tabs=['vocab','listening','reading','wordbuilding','workbook','langsummary'];
+  const idx=tabs.indexOf(id);
+  document.querySelectorAll('.tnav-btn')[idx]?.classList.add('active');
+}
+function toggleTheme(){const t=document.documentElement.getAttribute('data-theme')==='light'?'dark':'light';document.documentElement.setAttribute('data-theme',t==='light'?'light':'');document.getElementById('theme-btn').textContent=t==='light'?'🌙':'☀️';localStorage.setItem('f2f_3c_theme',t);}
+function markDone(){showToast('✅ 3C Voluntourism đã hoàn thành!');}
+function showToast(msg){let t=document.getElementById('toast');if(!t){t=document.createElement('div');t.id='toast';t.style.cssText='position:fixed;bottom:20px;right:20px;z-index:999;background:var(--bg2);border:1px solid var(--border2);padding:10px 18px;border-radius:8px;font-size:.82rem;box-shadow:0 4px 20px rgba(0,0,0,.3);transition:opacity .3s';document.body.appendChild(t);}t.textContent=msg;t.style.opacity='1';clearTimeout(showToast._t);showToast._t=setTimeout(()=>t.style.opacity='0',2400);}
+function toggleQA(btn){const item=btn.closest('.qa-item');item.classList.toggle('open');}
+
+const audioStates={};
+function toggleAudio(id){
+  const audio=document.getElementById('audio-'+id);
+  const btn=document.getElementById('play-btn-'+id);
+  if(!audio||!btn)return;
+  if(audioStates[id]){audio.pause();btn.textContent='▶';audioStates[id]=false;}
+  else{audio.play().catch(()=>showToast('⚠️ Cần file audio CD1 Track '+id));btn.textContent='⏸';audioStates[id]=true;}
+}
+function updateProg(id){const audio=document.getElementById('audio-'+id);const fill=document.getElementById('prog-'+id);if(audio?.duration&&fill)fill.style.width=(audio.currentTime/audio.duration*100)+'%';}
+function audioEnd(id){const btn=document.getElementById('play-btn-'+id);if(btn)btn.textContent='▶';audioStates[id]=false;}
+
+function checkListening2(){
+  const ans={'l2-1':'25%','l2-2':'25'};
+  let c=0,total=2;
+  Object.entries(ans).forEach(([id,val])=>{
+    const inp=document.getElementById(id);
+    if(inp){
+      const ok=inp.value.trim().toLowerCase().replace(/\s+/g,'')===val.toLowerCase().replace(/\s+/g,'');
+      inp.className='fill-input '+(ok?'correct':'wrong');
+      if(ok)c++;
+    }
+  });
+  // Plus the radio-style answers
+  const sc=document.getElementById('l2-score');
+  sc.innerHTML=`<div class="score-n">${c}/2</div><div class="score-msg">Answers: 1. 25%, 2. 25</div>`;
+  sc.className='score-box show';
+}
+function revealListening2(){
+  document.getElementById('l2-1').value='25%';document.getElementById('l2-1').className='fill-input correct';
+  document.getElementById('l2-2').value='25';document.getElementById('l2-2').className='fill-input correct';
+}
+
+function checkWB(){
+  const ans={'wb1':'kindness','wb2':'health','wb3':'fame','wb4':'honesty','wb5':'sadness','wb6':'patience'};
+  let c=0,total=6;
+  Object.entries(ans).forEach(([id,val])=>{
+    const inp=document.getElementById(id);
+    if(inp){
+      const ok=inp.value.trim().toLowerCase().replace(/\s+/g,'')===val.toLowerCase().replace(/\s+/g,'');
+      inp.className='fill-input '+(ok?'correct':'wrong');
+      if(ok)c++;
+    }
+  });
+  const sc=document.getElementById('wb-score');
+  sc.innerHTML=`<div class="score-n">${c}/${total}</div><div class="score-msg">${c===total?'🎉 All correct!':'Review the suffix rules.'}</div>`;
+  sc.className='score-box show';
+}
+function revealWB(){
+  const ans={'wb1':'kindness','wb2':'health','wb3':'fame','wb4':'honesty','wb5':'sadness','wb6':'patience'};
+  Object.entries(ans).forEach(([id,val])=>{const inp=document.getElementById(id);if(inp){inp.value=val;inp.className='fill-input correct';}});
+}
+
+document.addEventListener('DOMContentLoaded',()=>{
+  const t=localStorage.getItem('f2f_3c_theme')||'dark';
+  if(t==='light'){document.documentElement.setAttribute('data-theme','light');document.getElementById('theme-btn').textContent='🌙';}
+});
+</script>
+</body>
+</html>
