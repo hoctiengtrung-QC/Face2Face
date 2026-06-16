@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>4A Musical experiences — face2face Intermediate</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap');
+:root{
+  --bg:#0D1117;--bg2:#161B22;--bg3:#21262D;--bg4:#2D333B;
+  --border:#30363D;--border2:#3D444D;
+  --text:#E6EDF3;--dim:#8B949E;--muted:#484F58;
+  --blue:#2563EB;--blue-l:rgba(37,99,235,.15);
+  --green:#10B981;--green-l:rgba(16,185,129,.12);
+  --orange:#F59E0B;--orange-l:rgba(245,158,11,.12);
+  --red:#EF4444;--red-l:rgba(239,68,68,.12);
+  --teal:#14B8A6;--purple:#8B5CF6;--purple-l:rgba(139,92,246,.12);
+  --r:10px;--r2:6px;--tr:.18s ease;
+}
+[data-theme=light]{--bg:#F8FAFC;--bg2:#fff;--bg3:#F1F5F9;--bg4:#E2E8F0;--border:#E2E8F0;--border2:#CBD5E1;--text:#0F172A;--dim:#475569;--muted:#94A3B8;--blue:#1D4ED8;--blue-l:rgba(29,78,216,.1)}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);font-size:15px;line-height:1.6}
+button{cursor:pointer;border:none;background:none;font-family:inherit}input,textarea,select{font-family:inherit}
+
+.top-bar{background:var(--bg2);border-bottom:1px solid var(--border);padding:10px 20px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:50;flex-wrap:wrap}
+.back-btn{display:flex;align-items:center;gap:6px;padding:6px 14px;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);font-size:.82rem;color:var(--dim);cursor:pointer;transition:all var(--tr)}
+.back-btn:hover{border-color:var(--blue);color:var(--blue)}
+.lesson-badge{padding:4px 12px;background:var(--purple-l);border:1px solid rgba(139,92,246,.3);border-radius:4px;font-size:.75rem;font-weight:700;color:#A78BFA;letter-spacing:.05em}
+.lesson-title-h{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700}
+.top-actions{margin-left:auto;display:flex;gap:8px}
+.theme-btn{width:34px;height:34px;display:flex;align-items:center;justify-content:center;border-radius:var(--r2);background:var(--bg3);border:1px solid var(--border);cursor:pointer;font-size:.95rem;color:var(--dim);transition:all var(--tr)}
+.theme-btn:hover{border-color:var(--blue);color:var(--blue)}
+.progress-btn{padding:6px 14px;background:var(--green);border-radius:var(--r2);font-size:.78rem;font-weight:600;color:#fff;cursor:pointer;border:none;transition:all var(--tr)}
+.progress-btn:hover{background:#059669}
+
+.quick-review{background:linear-gradient(135deg,#1e3a5f,#1a2f4a);border:1px solid #2d4f7c;border-radius:var(--r);padding:14px 20px;margin:18px 24px;display:flex;gap:12px;align-items:flex-start}
+.qr-badge{background:#F59E0B;color:#000;padding:3px 10px;border-radius:4px;font-size:.72rem;font-weight:700;white-space:nowrap;flex-shrink:0;margin-top:2px}
+.qr-text{font-size:.84rem;line-height:1.65;color:#CBD5E1}
+.qr-text strong{color:#fff}
+
+.tab-nav{display:flex;gap:2px;border-bottom:1px solid var(--border);overflow-x:auto;scrollbar-width:none;position:sticky;top:57px;background:var(--bg);z-index:40;padding:0 24px}
+.tab-nav::-webkit-scrollbar{display:none}
+.tnav-btn{display:flex;align-items:center;gap:6px;padding:11px 16px;font-size:.82rem;font-weight:500;color:var(--dim);white-space:nowrap;border-bottom:2px solid transparent;margin-bottom:-1px;cursor:pointer;transition:all var(--tr);background:none;border-top:none;border-left:none;border-right:none;font-family:inherit}
+.tnav-btn:hover{color:var(--text)}.tnav-btn.active{color:var(--purple);border-bottom-color:var(--purple)}
+
+.page-content{max-width:920px;margin:0 auto;padding:0 24px 48px}
+.tab-pane{display:none;padding-top:28px}
+.tab-pane.active{display:block;animation:fadeUp .22s ease}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
+.sec-heading{font-size:1.05rem;font-weight:700;color:var(--text);margin-bottom:4px;display:flex;align-items:center;gap:8px}
+.sec-sub{font-size:.82rem;color:var(--dim);margin-bottom:18px}
+.ex-num{width:28px;height:28px;background:var(--purple);color:#fff;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:.78rem;font-weight:700;flex-shrink:0}
+.ex-label{display:inline-flex;align-items:center;gap:8px;font-size:.9rem;font-weight:600;margin-bottom:10px;color:var(--text)}
+.part{display:inline-block;width:22px;height:22px;background:var(--bg4);border-radius:4px;text-align:center;line-height:22px;font-size:.72rem;font-weight:700;color:var(--dim);margin-right:6px}
+.instr{font-size:.88rem;color:var(--text);line-height:1.65;margin-bottom:14px}
+.instr em{font-style:italic;color:var(--teal)}
+
+.fill-ex{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:18px;margin-bottom:16px}
+.fill-ex-title{font-size:.88rem;font-weight:600;padding-bottom:10px;border-bottom:1px solid var(--border);margin-bottom:14px;color:var(--dim)}
+.fill-item{display:flex;align-items:flex-start;gap:10px;padding:9px 0;border-bottom:1px dashed var(--border)}
+.fill-item:last-child{border-bottom:none}
+.fill-item-num{width:22px;height:22px;border-radius:50%;background:var(--bg3);display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:700;color:var(--muted);flex-shrink:0;margin-top:2px}
+.fill-item-body{flex:1}
+.fill-sentence{font-size:.87rem;margin-bottom:7px;line-height:1.6}
+.fill-controls{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.fill-input{height:33px;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);padding:0 11px;color:var(--text);font-size:.84rem;outline:none;min-width:80px;max-width:200px;transition:border-color var(--tr)}
+.fill-input:focus{border-color:var(--purple)}
+.fill-input.correct{border-color:var(--green);background:var(--green-l)}
+.fill-input.wrong{border-color:var(--red);background:var(--red-l)}
+.check-btn{padding:5px 12px;background:var(--purple);color:#fff;border:none;border-radius:var(--r2);font-size:.76rem;font-weight:600;cursor:pointer;transition:all var(--tr)}
+.check-btn:hover{background:#7C3AED}
+.reveal-btn{padding:5px 11px;background:var(--bg3);border:1px solid var(--border);color:var(--dim);border-radius:var(--r2);font-size:.76rem;cursor:pointer;transition:all var(--tr)}
+.reveal-btn:hover{border-color:var(--purple);color:var(--purple)}
+.fill-fb{margin-top:5px;font-size:.77rem;padding:4px 9px;border-radius:var(--r2);display:none}
+.fill-fb.show-ok{background:var(--green-l);color:var(--green);display:block}
+.fill-fb.show-err{background:var(--red-l);color:var(--red);display:block}
+
+.score-box{display:none;text-align:center;padding:18px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);margin-top:14px}
+.score-box.show{display:block}
+.score-n{font-size:2.2rem;font-weight:700;color:var(--purple)}
+.score-msg{color:var(--dim);font-size:.84rem;margin-top:4px}
+
+.btn{display:inline-flex;align-items:center;gap:6px;padding:7px 16px;border-radius:var(--r2);font-size:.82rem;font-weight:500;cursor:pointer;border:none;font-family:inherit;transition:all var(--tr)}
+.btn-primary{background:var(--purple);color:#fff}.btn-primary:hover{background:#7C3AED;transform:translateY(-1px)}
+.btn-outline{background:var(--bg3);border:1px solid var(--border2);color:var(--dim)}.btn-outline:hover{border-color:var(--purple);color:var(--purple)}
+
+.divider{height:1px;background:var(--border);margin:22px 0}
+.note-box{background:var(--orange-l);border:1px solid rgba(245,158,11,.25);border-radius:var(--r2);padding:10px 14px;font-size:.82rem;line-height:1.6;margin:10px 0}
+.note-box strong{color:var(--orange)}
+.tip-box{background:var(--bg3);border-left:3px solid var(--purple);border-radius:0 var(--r2) var(--r2) 0;padding:10px 14px;margin:10px 0;font-size:.82rem;color:var(--dim);line-height:1.6}
+.tip-box strong{color:var(--text)}
+.example-box{font-family:'Courier New',monospace;font-size:.82rem;color:#7DD3FC;background:var(--bg);padding:8px 12px;border-radius:var(--r2);margin:6px 0;border:1px solid var(--border)}
+
+.speaking-box{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:16px;margin-bottom:16px}
+.speaking-title{font-size:.84rem;font-weight:600;margin-bottom:12px;color:var(--text);display:flex;align-items:center;gap:8px}
+.bubble{background:var(--bg3);border:1px solid var(--border);border-radius:12px;padding:8px 14px;max-width:72%;font-size:.84rem;line-height:1.5;margin-bottom:8px}
+.bubble.speaker-a{border-bottom-left-radius:3px}
+.bubble.speaker-b{border-bottom-right-radius:3px;background:var(--purple-l);border-color:rgba(139,92,246,.3);margin-left:auto}
+
+.qa-list{display:flex;flex-direction:column;gap:8px;margin-bottom:16px}
+.qa-item{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r2);overflow:hidden}
+.qa-q{display:flex;align-items:center;gap:10px;padding:10px 14px;cursor:pointer;transition:background var(--tr)}
+.qa-q:hover{background:var(--bg3)}
+.qa-qnum{width:24px;height:24px;border-radius:50%;background:var(--purple-l);color:var(--purple);display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:700;flex-shrink:0}
+.qa-qtext{font-size:.86rem;flex:1}
+.qa-arrow{font-size:.7rem;color:var(--muted);transition:transform var(--tr);flex-shrink:0}
+.qa-item.open .qa-arrow{transform:rotate(90deg)}
+.qa-ans{display:none;padding:0 14px 10px 48px;font-size:.83rem;color:var(--teal);font-style:italic}
+.qa-item.open .qa-ans{display:block}
+
+.grammar-table{width:100%;border-collapse:collapse;font-size:.82rem;margin:12px 0}
+.grammar-table th{background:var(--bg3);padding:8px 12px;text-align:left;font-weight:600;border:1px solid var(--border);color:var(--dim);font-size:.72rem;text-transform:uppercase}
+.grammar-table td{padding:9px 12px;border:1px solid var(--border);line-height:1.5}
+.grammar-table td.aux{color:var(--purple);font-weight:600}
+
+.lang-sum-tag{display:inline-flex;align-items:center;gap:6px;padding:3px 12px;background:var(--purple-l);border:1px solid rgba(139,92,246,.3);border-radius:4px;font-size:.72rem;font-weight:700;color:#A78BFA;text-transform:uppercase;letter-spacing:.06em;margin-bottom:12px}
+
+.coll-grid{display:flex;flex-direction:column;gap:8px;margin:12px 0}
+.coll-row{display:grid;grid-template-columns:100px 1fr;gap:12px;align-items:start;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r2);padding:10px 14px}
+.coll-verb{font-size:.9rem;font-weight:700;color:var(--blue)}
+.coll-ipa{font-size:.72rem;color:var(--teal);font-family:monospace}
+.coll-phrase{font-size:.85rem;font-weight:600}
+.coll-vi{font-size:.8rem;color:var(--orange)}
+.coll-ex{font-size:.78rem;color:var(--dim);font-style:italic}
+
+.article-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:20px;margin-bottom:16px}
+.article-title{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;margin-bottom:4px}
+.article-source{font-size:.75rem;color:var(--muted);font-style:italic;margin-bottom:14px}
+.article-p{font-size:.85rem;line-height:1.8;color:var(--text);margin-bottom:10px}
+.article-p:last-child{margin-bottom:0}
+
+@media(max-width:680px){.tab-nav{padding:0 12px}.page-content{padding:0 14px 48px}.quick-review{margin:12px}}
+</style>
+</head>
+<body>
+
+<div class="top-bar">
+  <button class="back-btn" onclick="history.back()">← Trang chủ</button>
+  <div class="lesson-badge">UNIT 4</div>
+  <div class="lesson-title-h">4A — Musical experiences</div>
+  <div class="top-actions">
+    <button class="theme-btn" id="theme-btn" onclick="toggleTheme()">☀️</button>
+    <button class="progress-btn" onclick="markDone()">✅ Đánh dấu xong</button>
+  </div>
+</div>
+
+<div class="quick-review">
+  <div class="qr-badge">QUICK REVIEW</div>
+  <div class="qr-text"><strong>Asking for and making recommendations</strong> — Work in pairs. Student A: imagine you are a tourist in your town/city. Ask your partner for recommendations for places to stay, eat and visit. Student B: answer your partner's questions and make recommendations.</div>
+</div>
+
+<div class="tab-nav">
+  <button class="tnav-btn active" onclick="showTab('vocab')">📚 Vocabulary &amp; Speaking</button>
+  <button class="tnav-btn" onclick="showTab('reading')">📖 Reading</button>
+  <button class="tnav-btn" onclick="showTab('grammar')">📐 Help with Grammar</button>
+  <button class="tnav-btn" onclick="showTab('workbook')">📓 Workbook</button>
+  <button class="tnav-btn" onclick="showTab('langsummary')">📋 Language Summary</button>
+</div>
+
+<div class="page-content">
+
+<!-- ══════════════════════════════════════
+     TAB 1: VOCABULARY AND SPEAKING
+══════════════════════════════════════ -->
+<div class="tab-pane active" id="tab-vocab">
+  <div class="sec-heading">Vocabulary and Speaking</div>
+  <div class="sec-sub">Collocations (2): music · VOCABULARY 4.1 → p135</div>
+
+  <div class="ex-label"><div class="ex-num">1</div>Exercise 1 — Match the verbs to words/phrases</div>
+  <p class="instr">Work in pairs. Match the verbs in A to words/phrases in B. Then check in <em>VOCABULARY 4.1 → p135</em>.</p>
+
+  <div class="coll-grid">
+    <div class="coll-row"><div class="coll-verb">do/play</div><div><div class="coll-phrase">a concert/a gig</div><div class="coll-vi">🇻🇳 biểu diễn một buổi hòa nhạc</div></div></div>
+    <div class="coll-row"><div class="coll-verb">be</div><div><div class="coll-phrase">a big fan of a singer/band</div><div class="coll-vi">🇻🇳 là fan cuồng của ca sĩ/ban nhạc</div></div></div>
+    <div class="coll-row"><div class="coll-verb">release</div><div><div class="coll-phrase">a new single/album/CD</div><div class="coll-vi">🇻🇳 phát hành đĩa đơn/album mới</div></div></div>
+    <div class="coll-row"><div class="coll-verb">do</div><div><div class="coll-phrase">an encore</div><div class="coll-vi">🇻🇳 biểu diễn thêm (khi khán giả vỗ tay)</div></div></div>
+    <div class="coll-row"><div class="coll-verb">download</div><div><div class="coll-phrase">a track onto my phone</div><div class="coll-vi">🇻🇳 tải bài hát vào điện thoại</div></div></div>
+    <div class="coll-row"><div class="coll-verb">be/go</div><div><div class="coll-phrase">on tour</div><div class="coll-vi">🇻🇳 đi lưu diễn</div></div></div>
+    <div class="coll-row"><div class="coll-verb">have</div><div><div class="coll-phrase">an album/a CD in the charts</div><div class="coll-vi">🇻🇳 có album trong bảng xếp hạng</div></div></div>
+    <div class="coll-row"><div class="coll-verb">see</div><div><div class="coll-phrase">someone play live</div><div class="coll-vi">🇻🇳 xem ai đó biểu diễn trực tiếp</div></div></div>
+    <div class="coll-row"><div class="coll-verb">be/go</div><div><div class="coll-phrase">onstage</div><div class="coll-vi">🇻🇳 lên sân khấu</div></div></div>
+  </div>
+
+  <div class="tip-box">
+    <strong>TIPS:</strong><br>
+    • <strong>Gig</strong> = informal word for a concert: <em>I went to an amazing gig last night.</em><br>
+    • <strong>Fan</strong> = a person who likes a particular band, singer, sports team, etc.<br>
+    • <strong>Encore</strong> = an extra song performed at the end of a show when the audience shouts for it.
+  </div>
+
+  <div class="ex-label"><div class="ex-num">1</div>Speaking practice</div>
+  <p class="instr">Write the names of three bands, musicians or singers you like. Choose phrases from 1 that you can use to talk about them. Work in pairs. Talk about the bands or people you have chosen. Ask questions to find out more information.</p>
+
+  <div class="speaking-box">
+    <div class="speaking-title">💬 Ví dụ hội thoại</div>
+    <div class="bubble speaker-a">I'm a big fan of Coldplay.</div>
+    <div class="bubble speaker-b">Yes, me too. Have you ever seen them play live?</div>
+    <div class="bubble speaker-a">Yes, I saw them at Wembley last year. They did three encores!</div>
+    <div class="bubble speaker-b">That sounds amazing! What was the best song?</div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     TAB 2: READING
+══════════════════════════════════════ -->
+<div class="tab-pane" id="tab-reading">
+  <div class="sec-heading">Reading</div>
+  <div class="sec-sub">Nikki and Danny's best ever musical experiences — Student's Book p25</div>
+
+  <div class="ex-label"><div class="ex-num">2</div>Exercise 2 — Read the article</div>
+  <p class="instr">Read about Nikki and Danny's best ever musical experiences. What was special about each one?</p>
+
+  <div class="article-card">
+    <div style="font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:var(--purple);margin-bottom:4px">NIKKI WILLIAMS, USA</div>
+    <div class="article-p">Five years ago I <strong style="color:var(--purple)">was living</strong> in New York with my cousin and I <strong style="color:var(--purple)">used to go</strong> to a lot of gigs. Back then I was one of Lady Gaga's biggest fans and I <strong style="color:var(--purple)">listened</strong> to her second album all the time. For my 21st birthday my boyfriend <strong style="color:var(--purple)">bought</strong> tickets to see her play live — I've never been so excited in my life! We had really good seats near the front and when Lady Gaga <strong style="color:var(--purple)">came</strong> onstage the whole crowd went absolutely crazy. It was a fantastic atmosphere and all the fans <strong style="color:var(--purple)">were singing</strong> along. That night she sang for over two hours and changed her costume about 20 times! While she <strong style="color:var(--purple)">was doing</strong> an encore, she threw her shoes into the crowd — and I caught one of them! My boyfriend wanted to sell it on eBay, but I wouldn't let him. Now it's my most valuable possession — and a great souvenir of a fantastic gig.</div>
+  </div>
+
+  <div class="article-card">
+    <div style="font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:var(--purple);margin-bottom:4px">DANNY BREEN, IRELAND</div>
+    <div class="article-p">When I was a teenager in Dublin I loved dance music and wanted to become a famous DJ. I <strong style="color:var(--purple)">practised</strong> for hours every day in my bedroom and I <strong style="color:var(--purple)">used to</strong> DJ at friends' parties. Then I <strong style="color:var(--purple)">moved</strong> to London and <strong style="color:var(--purple)">got</strong> a job working behind the bar at a club called Dreamworld. One Saturday night the main DJ didn't turn up and the manager <strong style="color:var(--purple)">asked</strong> me to play instead. Twenty minutes later I <strong style="color:var(--purple)">was standing</strong> in front of 1,000 people! I was incredibly nervous, but as soon as I started playing the first track I began to relax. All the clubbers <strong style="color:var(--purple)">were dancing</strong> and having a good time — it was the best feeling in the world. While I <strong style="color:var(--purple)">was playing</strong> my last track, the manager <strong style="color:var(--purple)">came</strong> over and congratulated me. I <strong style="color:var(--purple)">gave up</strong> DJing later that year because I broke my arm, but I'll never forget that amazing night!</div>
+  </div>
+
+  <div class="ex-label"><div class="ex-num">4</div>Comprehension questions</div>
+
+  <div class="qa-list">
+    <div class="qa-item"><div class="qa-q" onclick="toggleQA(this)"><span class="qa-qnum">1</span><span class="qa-qtext">When did Nikki see Lady Gaga live?</span><span class="qa-arrow">▶</span></div><div class="qa-ans">Five years ago, on her 21st birthday.</div></div>
+    <div class="qa-item"><div class="qa-q" onclick="toggleQA(this)"><span class="qa-qnum">2</span><span class="qa-qtext">Where did Nikki and her boyfriend sit?</span><span class="qa-arrow">▶</span></div><div class="qa-ans">Near the front — they had really good seats.</div></div>
+    <div class="qa-item"><div class="qa-q" onclick="toggleQA(this)"><span class="qa-qnum">3</span><span class="qa-qtext">How long was Lady Gaga onstage?</span><span class="qa-arrow">▶</span></div><div class="qa-ans">Over two hours.</div></div>
+    <div class="qa-item"><div class="qa-q" onclick="toggleQA(this)"><span class="qa-qnum">4</span><span class="qa-qtext">What did her boyfriend want to do with the shoe?</span><span class="qa-arrow">▶</span></div><div class="qa-ans">Sell it on eBay.</div></div>
+    <div class="qa-item"><div class="qa-q" onclick="toggleQA(this)"><span class="qa-qnum">5</span><span class="qa-qtext">Where did Danny first start DJing?</span><span class="qa-arrow">▶</span></div><div class="qa-ans">At friends' parties in Dublin.</div></div>
+    <div class="qa-item"><div class="qa-q" onclick="toggleQA(this)"><span class="qa-qnum">6</span><span class="qa-qtext">Where did he work when he moved to London?</span><span class="qa-arrow">▶</span></div><div class="qa-ans">Behind the bar at a club called Dreamworld.</div></div>
+    <div class="qa-item"><div class="qa-q" onclick="toggleQA(this)"><span class="qa-qnum">7</span><span class="qa-qtext">Why did his manager ask him to DJ in the club?</span><span class="qa-arrow">▶</span></div><div class="qa-ans">Because the main DJ didn't turn up.</div></div>
+    <div class="qa-item"><div class="qa-q" onclick="toggleQA(this)"><span class="qa-qnum">8</span><span class="qa-qtext">Why did Danny give up DJing?</span><span class="qa-arrow">▶</span></div><div class="qa-ans">Because he broke his arm.</div></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     TAB 3: GRAMMAR
+══════════════════════════════════════ -->
+<div class="tab-pane" id="tab-grammar">
+  <div class="sec-heading">Help with Grammar</div>
+  <div class="sec-sub">Past Simple and Past Continuous; used to · GRAMMAR 4.1 &amp; 4.2 → p136–137</div>
+
+  <div class="grammar-table">
+    <table>
+      <thead><tr><th>Verb form</th><th>Use</th><th>Example</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Past Simple</strong></td><td>Single completed action in the past</td><td class="aux">She <strong>bought</strong> tickets.</td></tr>
+        <tr><td><strong>Past Simple</strong></td><td>Repeated action or habit in the past</td><td class="aux">I <strong>practised</strong> for hours every day.</td></tr>
+        <tr><td><strong>Past Simple</strong></td><td>State in the past</td><td class="aux">I <strong>was</strong> one of her biggest fans.</td></tr>
+        <tr><td><strong>Past Continuous</strong></td><td>Action in progress at a point of time in the past</td><td class="aux">I <strong>was living</strong> in New York.</td></tr>
+        <tr><td><strong>Past Continuous</strong></td><td>Background events of a story</td><td class="aux">All the fans <strong>were singing</strong> along.</td></tr>
+        <tr><td><strong>Past Continuous</strong></td><td>Action in progress when another action happened</td><td class="aux">While she <strong>was doing</strong> an encore, she <strong>threw</strong> her shoes.</td></tr>
+        <tr><td><strong>used to</strong></td><td>Repeated actions, habits or states in the past</td><td class="aux">I <strong>used to</strong> go to a lot of gigs.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="tip-box">
+    <strong>Used to vs Past Simple:</strong><br>
+    • <strong>used to</strong> = for repeated actions/habits/states in the past (no longer true now)<br>
+    • Cannot use <strong>used to</strong> for one single action: <em>That night she sang for over two hours.</em> (not <del>used to sing</del>)<br>
+    • We say: <em>I used to go... / I didn't use to go... / Did you use to go...?</em>
+  </div>
+
+  <div class="ex-label"><div class="ex-num">8</div>Exercise 8 — Choose the correct verb forms</div>
+  <p class="instr">Read about Sophie. Choose the correct verb forms. Sometimes both are possible.</p>
+
+  <div class="fill-ex">
+    <div class="fill-ex-title">SOPHIE TAYLOR, UK</div>
+    <div class="fill-item"><div class="fill-item-num">1</div><div class="fill-item-body"><div class="fill-sentence">When I <input class="fill-input" id="s1" style="max-width:100px" placeholder="was/was being"> younger I <input class="fill-input" id="s2" style="max-width:100px" placeholder="played/was playing"> the guitar, but I <input class="fill-input" id="s3" style="max-width:120px" placeholder="didn't use to like/didn't like"> it very much.</div></div></div>
+    <div class="fill-item"><div class="fill-item-num">2</div><div class="fill-item-body"><div class="fill-sentence">Then my aunt <input class="fill-input" id="s4" style="max-width:100px" placeholder="gave/was giving"> me a violin for my 14th birthday.</div></div></div>
+    <div class="fill-item"><div class="fill-item-num">3</div><div class="fill-item-body"><div class="fill-sentence">I <input class="fill-input" id="s5" style="max-width:100px" placeholder="had/used to have"> violin lessons every week and I <input class="fill-input" id="s6" style="max-width:100px" placeholder="was loving/loved"> learning how to play a new instrument.</div></div></div>
+    <div class="fill-item"><div class="fill-item-num">4</div><div class="fill-item-body"><div class="fill-sentence">Last year I <input class="fill-input" id="s7" style="max-width:100px" placeholder="joined/was joining"> the school orchestra and in March we <input class="fill-input" id="s8" style="max-width:100px" placeholder="won/used to win"> a music competition.</div></div></div>
+    <div class="fill-item"><div class="fill-item-num">5</div><div class="fill-item-body"><div class="fill-sentence">The prize <input class="fill-input" id="s9" style="max-width:100px" placeholder="was/used to be"> the opportunity to play at the Albert Hall in London!</div></div></div>
+    <div class="fill-item"><div class="fill-item-num">6</div><div class="fill-item-body"><div class="fill-sentence">The big night finally <input class="fill-input" id="s10" style="max-width:100px" placeholder="used to arrive/arrived">, and while we <input class="fill-input" id="s11" style="max-width:100px" placeholder="waited/were waiting"> to go onstage I <input class="fill-input" id="s12" style="max-width:100px" placeholder="started/used to start"> shaking because I was so nervous!</div></div></div>
+    <div class="fill-item"><div class="fill-item-num">7</div><div class="fill-item-body"><div class="fill-sentence">But as soon as we <input class="fill-input" id="s13" style="max-width:100px" placeholder="got/were getting"> onstage I <input class="fill-input" id="s14" style="max-width:100px" placeholder="used to begin/began"> to relax and enjoy myself.</div></div></div>
+    <div class="fill-item"><div class="fill-item-num">8</div><div class="fill-item-body"><div class="fill-sentence">When we <input class="fill-input" id="s15" style="max-width:100px" placeholder="played/were playing"> the last piece of music I <input class="fill-input" id="s16" style="max-width:100px" placeholder="noticed/was noticing"> my mum and dad in the audience.</div></div></div>
+    <div style="display:flex;gap:8px;margin-top:12px">
+      <button class="btn btn-primary" onclick="checkSophie()">✅ Kiểm tra</button>
+      <button class="btn btn-outline" onclick="revealSophie()">👁 Đáp án</button>
+    </div>
+    <div class="score-box" id="sophie-score"></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     TAB 4: WORKBOOK
+══════════════════════════════════════ -->
+<div class="tab-pane" id="tab-workbook">
+  <div class="sec-heading">Workbook 4A</div>
+  <div class="sec-sub">Extra practice from Workbook pages 25–26</div>
+
+  <div class="lang-sum-tag">📓 VOCABULARY — Collocations with music</div>
+  <p class="instr">Choose the correct words.</p>
+
+  <div class="fill-ex">
+    <div class="fill-item"><div class="fill-item-num">1</div><div class="fill-item-body"><div class="fill-sentence">I'm a <input class="fill-input" id="wb1" style="max-width:100px" placeholder="big/large"> fan of a band called OutThere.</div></div></div>
+    <div class="fill-item"><div class="fill-item-num">2</div><div class="fill-item-body"><div class="fill-sentence">They've just <input class="fill-input" id="wb2" style="max-width:100px" placeholder="bought/released"> their first single.</div></div></div>
+    <div class="fill-item"><div class="fill-item-num">3</div><div class="fill-item-body"><div class="fill-sentence">I've already downloaded it <input class="fill-input" id="wb3" style="max-width:100px" placeholder="on/onto"> my phone.</div></div></div>
+    <div class="fill-item"><div class="fill-item-num">4</div><div class="fill-item-body"><div class="fill-sentence">I've also <input class="fill-input" id="wb4" style="max-width:100px" placeholder="seen/been"> them play live lots of times.</div></div></div>
+    <div class="fill-item"><div class="fill-item-num">5</div><div class="fill-item-body"><div class="fill-sentence">Last week they <input class="fill-input" id="wb5" style="max-width:100px" placeholder="did/made"> their first ever gig in London.</div></div></div>
+    <div class="fill-item"><div class="fill-item-num">6</div><div class="fill-item-body"><div class="fill-sentence">Next month they're <input class="fill-input" id="wb6" style="max-width:100px" placeholder="doing/going"> on tour.</div></div></div>
+    <div style="display:flex;gap:8px;margin-top:12px">
+      <button class="btn btn-primary" onclick="checkWB()">✅ Kiểm tra</button>
+      <button class="btn btn-outline" onclick="revealWB()">👁 Đáp án</button>
+    </div>
+    <div class="score-box" id="wb-score"></div>
+  </div>
+
+  <div class="lang-sum-tag">📓 GRAMMAR — Past Simple or Past Continuous</div>
+  <p class="instr">Put the verbs in the Past Simple or Past Continuous.</p>
+
+  <div class="fill-ex">
+    <div class="fill-item"><div class="fill-item-num">1</div><div class="fill-item-body"><div class="fill-sentence">Once, when I <input class="fill-input" id="wb7" style="max-width:100px" placeholder="be"> (be) quite young, I <input class="fill-input" id="wb8" style="max-width:100px" placeholder="walk"> (walk) by a lake and I <input class="fill-input" id="wb9" style="max-width:100px" placeholder="fall"> (fall) into the water.</div></div></div>
+    <div class="fill-item"><div class="fill-item-num">2</div><div class="fill-item-body"><div class="fill-sentence">I <input class="fill-input" id="wb10" style="max-width:100px" placeholder="not know"> (not know) how to swim, and as I <input class="fill-input" id="wb11" style="max-width:100px" placeholder="wear"> (wear) a lot of clothes I <input class="fill-input" id="wb12" style="max-width:100px" placeholder="start"> (start) going under the water.</div></div></div>
+    <div class="fill-item"><div class="fill-item-num">3</div><div class="fill-item-body"><div class="fill-sentence">Luckily two men <input class="fill-input" id="wb13" style="max-width:100px" placeholder="run"> (run) around the park and they <input class="fill-input" id="wb14" style="max-width:100px" placeholder="see"> (see) me.</div></div></div>
+    <div style="display:flex;gap:8px;margin-top:12px">
+      <button class="btn btn-primary" onclick="checkWB2()">✅ Kiểm tra</button>
+      <button class="btn btn-outline" onclick="revealWB2()">👁 Đáp án</button>
+    </div>
+    <div class="score-box" id="wb2-score"></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     TAB 5: LANGUAGE SUMMARY
+══════════════════════════════════════ -->
+<div class="tab-pane" id="tab-langsummary">
+  <div class="sec-heading">Language Summary 4A</div>
+  <div class="sec-sub">VOCABULARY 4.1 · GRAMMAR 4.1 &amp; 4.2</div>
+
+  <div class="lang-sum-tag">📗 VOCABULARY 4.1 — Collocations (2): music</div>
+  <div class="coll-grid">
+    <div class="coll-row"><div class="coll-verb">do/play</div><div><div class="coll-phrase">a concert/a gig</div><div class="coll-vi">🇻🇳 biểu diễn một buổi hòa nhạc</div><div class="coll-ex">"I played a gig last night."</div></div></div>
+    <div class="coll-row"><div class="coll-verb">be</div><div><div class="coll-phrase">a big fan of a singer/band</div><div class="coll-vi">🇻🇳 là fan cuồng của ca sĩ/ban nhạc</div><div class="coll-ex">"I'm a big fan of Coldplay."</div></div></div>
+    <div class="coll-row"><div class="coll-verb">release</div><div><div class="coll-phrase">a new single/album/CD</div><div class="coll-vi">🇻🇳 phát hành đĩa đơn/album mới</div><div class="coll-ex">"They released their first single last week."</div></div></div>
+    <div class="coll-row"><div class="coll-verb">do</div><div><div class="coll-phrase">an encore</div><div class="coll-vi">🇻🇳 biểu diễn thêm</div><div class="coll-ex">"They did three encores."</div></div></div>
+    <div class="coll-row"><div class="coll-verb">download</div><div><div class="coll-phrase">a track onto my phone</div><div class="coll-vi">🇻🇳 tải bài hát vào điện thoại</div><div class="coll-ex">"I downloaded this track from the band's website."</div></div></div>
+    <div class="coll-row"><div class="coll-verb">be/go</div><div><div class="coll-phrase">on tour</div><div class="coll-vi">🇻🇳 đi lưu diễn</div><div class="coll-ex">"They're going on tour next month."</div></div></div>
+    <div class="coll-row"><div class="coll-verb">have</div><div><div class="coll-phrase">an album/a CD in the charts</div><div class="coll-vi">🇻🇳 có album trong bảng xếp hạng</div><div class="coll-ex">"They have two albums in the charts."</div></div></div>
+    <div class="coll-row"><div class="coll-verb">see</div><div><div class="coll-phrase">someone play live</div><div class="coll-vi">🇻🇳 xem ai đó biểu diễn trực tiếp</div><div class="coll-ex">"I've seen them play live twice."</div></div></div>
+    <div class="coll-row"><div class="coll-verb">be/go</div><div><div class="coll-phrase">onstage</div><div class="coll-vi">🇻🇳 lên sân khấu</div><div class="coll-ex">"What time are they onstage?"</div></div></div>
+  </div>
+
+  <div class="lang-sum-tag">📗 GRAMMAR 4.1 — Past Simple vs Past Continuous</div>
+  <div class="grammar-table">
+    <table>
+      <thead><tr><th>Tense</th><th>Use</th><th>Example</th></tr></thead>
+      <tbody>
+        <tr><td>Past Simple</td><td>Single completed action</td><td class="aux">She <strong>bought</strong> tickets.</td></tr>
+        <tr><td>Past Simple</td><td>Repeated action/habit in the past</td><td class="aux">I <strong>practised</strong> for hours.</td></tr>
+        <tr><td>Past Continuous</td><td>Action in progress in the past</td><td class="aux">I <strong>was living</strong> in New York.</td></tr>
+        <tr><td>Past Continuous</td><td>Background events</td><td class="aux">All the fans <strong>were singing</strong>.</td></tr>
+        <tr><td>Past Continuous</td><td>Interrupted action</td><td class="aux">While I <strong>was playing</strong>, the manager <strong>came</strong>.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="lang-sum-tag">📗 GRAMMAR 4.2 — used to</div>
+  <div class="tip-box">
+    <strong>Used to:</strong><br>
+    • For repeated actions/habits/states in the past: <em>I used to go to a lot of gigs.</em><br>
+    • Cannot use for one single action: <em>That night she sang.</em> (not <del>used to sing</del>)<br>
+    • Positive: <em>I used to...</em> / Negative: <em>I didn't use to...</em> / Question: <em>Did you use to...?</em>
+  </div>
+</div>
+
+</div><!-- /page-content -->
+
+<script>
+function showTab(id){
+  document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tnav-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+  const tabs=['vocab','reading','grammar','workbook','langsummary'];
+  const idx=tabs.indexOf(id);
+  document.querySelectorAll('.tnav-btn')[idx]?.classList.add('active');
+}
+function toggleTheme(){const t=document.documentElement.getAttribute('data-theme')==='light'?'dark':'light';document.documentElement.setAttribute('data-theme',t==='light'?'light':'');document.getElementById('theme-btn').textContent=t==='light'?'🌙':'☀️';localStorage.setItem('f2f_4a_theme',t);}
+function markDone(){showToast('✅ 4A Musical experiences đã hoàn thành!');}
+function showToast(msg){let t=document.getElementById('toast');if(!t){t=document.createElement('div');t.id='toast';t.style.cssText='position:fixed;bottom:20px;right:20px;z-index:999;background:var(--bg2);border:1px solid var(--border2);padding:10px 18px;border-radius:8px;font-size:.82rem;box-shadow:0 4px 20px rgba(0,0,0,.3);transition:opacity .3s';document.body.appendChild(t);}t.textContent=msg;t.style.opacity='1';clearTimeout(showToast._t);showToast._t=setTimeout(()=>t.style.opacity='0',2400);}
+function toggleQA(btn){const item=btn.closest('.qa-item');item.classList.toggle('open');}
+
+function checkSophie(){
+  const ans={s1:'was',s2:'played',s3:'didn\'t use to like',s4:'gave',s5:'had',s6:'loved',s7:'joined',s8:'won',s9:'was',s10:'arrived',s11:'were waiting',s12:'started',s13:'got',s14:'began',s15:'were playing',s16:'noticed'};
+  let c=0,total=16;
+  Object.entries(ans).forEach(([id,val])=>{
+    const inp=document.getElementById(id);
+    if(inp){
+      const ok=inp.value.trim().toLowerCase().replace(/\s+/g,'')===val.toLowerCase().replace(/\s+/g,'');
+      inp.className='fill-input '+(ok?'correct':'wrong');
+      if(ok)c++;
+    }
+  });
+  const sc=document.getElementById('sophie-score');
+  sc.innerHTML=`<div class="score-n">${c}/${total}</div><div class="score-msg">${c===total?'🎉 All correct!':'Review GRAMMAR 4.1 & 4.2.'}</div>`;
+  sc.className='score-box show';
+}
+function revealSophie(){
+  const ans={s1:'was',s2:'played',s3:'didn\'t use to like',s4:'gave',s5:'had',s6:'loved',s7:'joined',s8:'won',s9:'was',s10:'arrived',s11:'were waiting',s12:'started',s13:'got',s14:'began',s15:'were playing',s16:'noticed'};
+  Object.entries(ans).forEach(([id,val])=>{const inp=document.getElementById(id);if(inp){inp.value=val;inp.className='fill-input correct';}});
+}
+
+function checkWB(){
+  const ans={wb1:'big',wb2:'released',wb3:'onto',wb4:'seen',wb5:'did',wb6:'going'};
+  let c=0,total=6;
+  Object.entries(ans).forEach(([id,val])=>{
+    const inp=document.getElementById(id);
+    if(inp){
+      const ok=inp.value.trim().toLowerCase().replace(/\s+/g,'')===val.toLowerCase().replace(/\s+/g,'');
+      inp.className='fill-input '+(ok?'correct':'wrong');
+      if(ok)c++;
+    }
+  });
+  const sc=document.getElementById('wb-score');
+  sc.innerHTML=`<div class="score-n">${c}/${total}</div><div class="score-msg">${c===total?'🎉 All correct!':'Check the workbook answers.'}</div>`;
+  sc.className='score-box show';
+}
+function revealWB(){
+  const ans={wb1:'big',wb2:'released',wb3:'onto',wb4:'seen',wb5:'did',wb6:'going'};
+  Object.entries(ans).forEach(([id,val])=>{const inp=document.getElementById(id);if(inp){inp.value=val;inp.className='fill-input correct';}});
+}
+
+function checkWB2(){
+  const ans={wb7:'was',wb8:'was walking',wb9:'fell',wb10:'didn\'t know',wb11:'was wearing',wb12:'started',wb13:'were running',wb14:'saw'};
+  let c=0,total=8;
+  Object.entries(ans).forEach(([id,val])=>{
+    const inp=document.getElementById(id);
+    if(inp){
+      const ok=inp.value.trim().toLowerCase().replace(/\s+/g,'')===val.toLowerCase().replace(/\s+/g,'');
+      inp.className='fill-input '+(ok?'correct':'wrong');
+      if(ok)c++;
+    }
+  });
+  const sc=document.getElementById('wb2-score');
+  sc.innerHTML=`<div class="score-n">${c}/${total}</div><div class="score-msg">${c===total?'🎉 All correct!':'Review Past Simple vs Past Continuous.'}</div>`;
+  sc.className='score-box show';
+}
+function revealWB2(){
+  const ans={wb7:'was',wb8:'was walking',wb9:'fell',wb10:'didn\'t know',wb11:'was wearing',wb12:'started',wb13:'were running',wb14:'saw'};
+  Object.entries(ans).forEach(([id,val])=>{const inp=document.getElementById(id);if(inp){inp.value=val;inp.className='fill-input correct';}});
+}
+
+document.addEventListener('DOMContentLoaded',()=>{
+  const t=localStorage.getItem('f2f_4a_theme')||'dark';
+  if(t==='light'){document.documentElement.setAttribute('data-theme','light');document.getElementById('theme-btn').textContent='🌙';}
+});
+</script>
+</body>
+</html>

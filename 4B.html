@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>4B Modern adventurers — face2face Intermediate</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap');
+:root{
+  --bg:#0D1117;--bg2:#161B22;--bg3:#21262D;--bg4:#2D333B;
+  --border:#30363D;--border2:#3D444D;
+  --text:#E6EDF3;--dim:#8B949E;--muted:#484F58;
+  --blue:#2563EB;--blue-l:rgba(37,99,235,.15);
+  --green:#10B981;--green-l:rgba(16,185,129,.12);
+  --orange:#F59E0B;--orange-l:rgba(245,158,11,.12);
+  --red:#EF4444;--red-l:rgba(239,68,68,.12);
+  --teal:#14B8A6;--purple:#8B5CF6;--purple-l:rgba(139,92,246,.12);
+  --r:10px;--r2:6px;--tr:.18s ease;
+}
+[data-theme=light]{--bg:#F8FAFC;--bg2:#fff;--bg3:#F1F5F9;--bg4:#E2E8F0;--border:#E2E8F0;--border2:#CBD5E1;--text:#0F172A;--dim:#475569;--muted:#94A3B8;--blue:#1D4ED8;--blue-l:rgba(29,78,216,.1)}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);font-size:15px;line-height:1.6}
+button{cursor:pointer;border:none;background:none;font-family:inherit}input,textarea,select{font-family:inherit}
+
+.top-bar{background:var(--bg2);border-bottom:1px solid var(--border);padding:10px 20px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:50;flex-wrap:wrap}
+.back-btn{display:flex;align-items:center;gap:6px;padding:6px 14px;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);font-size:.82rem;color:var(--dim);cursor:pointer;transition:all var(--tr)}
+.back-btn:hover{border-color:var(--blue);color:var(--blue)}
+.lesson-badge{padding:4px 12px;background:var(--purple-l);border:1px solid rgba(139,92,246,.3);border-radius:4px;font-size:.75rem;font-weight:700;color:#A78BFA;letter-spacing:.05em}
+.lesson-title-h{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700}
+.top-actions{margin-left:auto;display:flex;gap:8px}
+.theme-btn{width:34px;height:34px;display:flex;align-items:center;justify-content:center;border-radius:var(--r2);background:var(--bg3);border:1px solid var(--border);cursor:pointer;font-size:.95rem;color:var(--dim);transition:all var(--tr)}
+.theme-btn:hover{border-color:var(--blue);color:var(--blue)}
+.progress-btn{padding:6px 14px;background:var(--green);border-radius:var(--r2);font-size:.78rem;font-weight:600;color:#fff;cursor:pointer;border:none;transition:all var(--tr)}
+.progress-btn:hover{background:#059669}
+
+.quick-review{background:linear-gradient(135deg,#1e3a5f,#1a2f4a);border:1px solid #2d4f7c;border-radius:var(--r);padding:14px 20px;margin:18px 24px;display:flex;gap:12px;align-items:flex-start}
+.qr-badge{background:#F59E0B;color:#000;padding:3px 10px;border-radius:4px;font-size:.72rem;font-weight:700;white-space:nowrap;flex-shrink:0;margin-top:2px}
+.qr-text{font-size:.84rem;line-height:1.65;color:#CBD5E1}
+.qr-text strong{color:#fff}
+
+.tab-nav{display:flex;gap:2px;border-bottom:1px solid var(--border);overflow-x:auto;scrollbar-width:none;position:sticky;top:57px;background:var(--bg);z-index:40;padding:0 24px}
+.tab-nav::-webkit-scrollbar{display:none}
+.tnav-btn{display:flex;align-items:center;gap:6px;padding:11px 16px;font-size:.82rem;font-weight:500;color:var(--dim);white-space:nowrap;border-bottom:2px solid transparent;margin-bottom:-1px;cursor:pointer;transition:all var(--tr);background:none;border-top:none;border-left:none;border-right:none;font-family:inherit}
+.tnav-btn:hover{color:var(--text)}.tnav-btn.active{color:var(--purple);border-bottom-color:var(--purple)}
+
+.page-content{max-width:920px;margin:0 auto;padding:0 24px 48px}
+.tab-pane{display:none;padding-top:28px}
+.tab-pane.active{display:block;animation:fadeUp .22s ease}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
+.sec-heading{font-size:1.05rem;font-weight:700;color:var(--text);margin-bottom:4px;display:flex;align-items:center;gap:8px}
+.sec-sub{font-size:.82rem;color:var(--dim);margin-bottom:18px}
+.ex-num{width:28px;height:28px;background:var(--purple);color:#fff;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:.78rem;font-weight:700;flex-shrink:0}
+.ex-label{display:inline-flex;align-items:center;gap:8px;font-size:.9rem;font-weight:600;margin-bottom:10px;color:var(--text)}
+.part{display:inline-block;width:22px;height:22px;background:var(--bg4);border-radius:4px;text-align:center;line-height:22px;font-size:.72rem;font-weight:700;color:var(--dim);margin-right:6px}
+.instr{font-size:.88rem;color:var(--text);line-height:1.65;margin-bottom:14px}
+.instr em{font-style:italic;color:var(--teal)}
+
+.fill-ex{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:18px;margin-bottom:16px}
+.fill-ex-title{font-size:.88rem;font-weight:600;padding-bottom:10px;border-bottom:1px solid var(--border);margin-bottom:14px;color:var(--dim)}
+.fill-item{display:flex;align-items:flex-start;gap:10px;padding:9px 0;border-bottom:1px dashed var(--border)}
+.fill-item:last-child{border-bottom:none}
+.fill-item-num{width:22px;height:22px;border-radius:50%;background:var(--bg3);display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:700;color:var(--muted);flex-shrink:0;margin-top:2px}
+.fill-item-body{flex:1}
+.fill-sentence{font-size:.87rem;margin-bottom:7px;line-height:1.6}
+.fill-controls{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.fill-input{height:33px;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);padding:0 11px;color:var(--text);font-size:.84rem;outline:none;min-width:80px;max-width:200px;transition:border-color var(--tr)}
+.fill-input:focus{border-color:var(--purple)}
+.fill-input.correct{border-color:var(--green);background:var(--green-l)}
+.fill-input.wrong{border-color:var(--red);background:var(--red-l)}
+.check-btn{padding:5px 12px;background:var(--purple);color:#fff;border:none;border-radius:var(--r2);font-size:.76rem;font-weight:600;cursor:pointer;transition:all var(--tr)}
+.check-btn:hover{background:#7C3AED}
+.reveal-btn{padding:5px 11px;background:var(--bg3);border:1px solid var(--border);color:var(--dim);border-radius:var(--r2);font-size:.76rem;cursor:pointer;transition:all var(--tr)}
+.reveal-btn:hover{border-color:var(--purple);color:var(--purple)}
+.fill-fb{margin-top:5px;font-size:.77rem;padding:4px 9px;border-radius:var(--r2);display:none}
+.fill-fb.show-ok{background:var(--green-l);color:var(--green);display:block}
+.fill-fb.show-err{background:var(--red-l);color:var(--red);display:block}
+
+.score-box{display:none;text-align:center;padding:18px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);margin-top:14px}
+.score-box.show{display:block}
+.score-n{font-size:2.2rem;font-weight:700;color:var(--purple)}
+.score-msg{color:var(--dim);font-size:.84rem;margin-top:4px}
+
+.btn{display:inline-flex;align-items:center;gap:6px;padding:7px 16px;border-radius:var(--r2);font-size:.82rem;font-weight:500;cursor:pointer;border:none;font-family:inherit;transition:all var(--tr)}
+.btn-primary{background:var(--purple);color:#fff}.btn-primary:hover{background:#7C3AED;transform:translateY(-1px)}
+.btn-outline{background:var(--bg3);border:1px solid var(--border2);color:var(--dim)}.btn-outline:hover{border-color:var(--purple);color:var(--purple)}
+
+.divider{height:1px;background:var(--border);margin:22px 0}
+.note-box{background:var(--orange-l);border:1px solid rgba(245,158,11,.25);border-radius:var(--r2);padding:10px 14px;font-size:.82rem;line-height:1.6;margin:10px 0}
+.note-box strong{color:var(--orange)}
+.tip-box{background:var(--bg3);border-left:3px solid var(--purple);border-radius:0 var(--r2) var(--r2) 0;padding:10px 14px;margin:10px 0;font-size:.82rem;color:var(--dim);line-height:1.6}
+.tip-box strong{color:var(--text)}
+.example-box{font-family:'Courier New',monospace;font-size:.82rem;color:#7DD3FC;background:var(--bg);padding:8px 12px;border-radius:var(--r2);margin:6px 0;border:1px solid var(--border)}
+
+.speaking-box{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:16px;margin-bottom:16px}
+.speaking-title{font-size:.84rem;font-weight:600;margin-bottom:12px;color:var(--text);display:flex;align-items:center;gap:8px}
+.bubble{background:var(--bg3);border:1px solid var(--border);border-radius:12px;padding:8px 14px;max-width:72%;font-size:.84rem;line-height:1.5;margin-bottom:8px}
+.bubble.speaker-a{border-bottom-left-radius:3px}
+.bubble.speaker-b{border-bottom-right-radius:3px;background:var(--purple-l);border-color:rgba(139,92,246,.3);margin-left:auto}
+
+.qa-list{display:flex;flex-direction:column;gap:8px;margin-bottom:16px}
+.qa-item{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r2);overflow:hidden}
+.qa-q{display:flex;align-items:center;gap:10px;padding:10px 14px;cursor:pointer;transition:background var(--tr)}
+.qa-q:hover{background:var(--bg3)}
+.qa-qnum{width:24px;height:24px;border-radius:50%;background:var(--purple-l);color:var(--purple);display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:700;flex-shrink:0}
+.qa-qtext{font-size:.86rem;flex:1}
+.qa-arrow{font-size:.7rem;color:var(--muted);transition:transform var(--tr);flex-shrink:0}
+.qa-item.open .qa-arrow{transform:rotate(90deg)}
+.qa-ans{display:none;padding:0 14px 10px 48px;font-size:.83rem;color:var(--teal);font-style:italic}
+.qa-item.open .qa-ans{display:block}
+
+.grammar-table{width:100%;border-collapse:collapse;font-size:.82rem;margin:12px 0}
+.grammar-table th{background:var(--bg3);padding:8px 12px;text-align:left;font-weight:600;border:1px solid var(--border);color:var(--dim);font-size:.72rem;text-transform:uppercase}
+.grammar-table td{padding:9px 12px;border:1px solid var(--border);line-height:1.5}
+.grammar-table td.aux{color:var(--purple);font-weight:600}
+
+.lang-sum-tag{display:inline-flex;align-items:center;gap:6px;padding:3px 12px;background:var(--purple-l);border:1px solid rgba(139,92,246,.3);border-radius:4px;font-size:.72rem;font-weight:700;color:#A78BFA;text-transform:uppercase;letter-spacing:.06em;margin-bottom:12px}
+
+.coll-grid{display:flex;flex-direction:column;gap:8px;margin:12px 0}
+.coll-row{display:grid;grid-template-columns:100px 1fr;gap:12px;align-items:start;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r2);padding:10px 14px}
+.coll-verb{font-size:.9rem;font-weight:700;color:var(--blue)}
+.coll-ipa{font-size:.72rem;color:var(--teal);font-family:monospace}
+.coll-phrase{font-size:.85rem;font-weight:600}
+.coll-vi{font-size:.8rem;color:var(--orange)}
+.coll-ex{font-size:.78rem;color:var(--dim);font-style:italic}
+
+.article-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:20px;margin-bottom:16px}
+.article-title{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;margin-bottom:4px}
+.article-source{font-size:.75rem;color:var(--muted);font-style:italic;margin-bottom:14px}
+.article-p{font-size:.85rem;line-height:1.8;color:var(--text);margin-bottom:10px}
+.article-p:last-child{margin-bottom:0}
+
+@media(max-width:680px){.tab-nav{padding:0 12px}.page-content{padding:0 14px 48px}.quick-review{margin:12px}}
+</style>
+</head>
+<body>
+
+<div class="top-bar">
+  <button class="back-btn" onclick="history.back()">← Trang chủ</button>
+  <div class="lesson-badge">UNIT 4</div>
+  <div class="lesson-title-h">4B — Modern adventurers</div>
+  <div class="top-actions">
+    <button class="theme-btn" id="theme-btn" onclick="toggleTheme()">☀️</button>
+    <button class="progress-btn" onclick="markDone()">✅ Đánh dấu xong</button>
+  </div>
+</div>
+
+<div class="quick-review">
+  <div class="qr-badge">QUICK REVIEW</div>
+  <div class="qr-text"><strong>Past Continuous</strong> — Write two true and two false sentences about what you were doing at different times of the day yesterday: <em>At 3 p.m. yesterday I was playing tennis.</em> Work in pairs. Swap sentences. Ask questions to find out which sentences are false: <em>Who were you playing tennis with?</em></div>
+</div>
+
+<div class="tab-nav">
+  <button class="tnav-btn active" onclick="showTab('vocab')">📚 Vocabulary &amp; Speaking</button>
+  <button class="tnav-btn" onclick="showTab('listening')">🎧 Listening</button>
+  <button class="tnav-btn" onclick="showTab('grammar')">📐 Help with Grammar</button>
+  <button class="tnav-btn" onclick="showTab('workbook')">📓 Workbook</button>
+  <button class="tnav-btn" onclick="showTab('langsummary')">📋 Language Summary</button>
+</div>
+
+<div class="page-content">
+
+<!-- ══════════════════════════════════════
+     TAB 1: VOCABULARY AND SPEAKING
+══════════════════════════════════════ -->
+<div class="tab-pane active" id="tab-vocab">
+  <div class="sec-heading">Vocabulary and Speaking</div>
+  <div class="sec-sub">Adjectives (2): character · VOCABULARY 4.2 → p135</div>
+
+  <div class="ex-label"><div class="ex-num">1</div>Exercise 1a — Character adjectives</div>
+  <p class="instr"><span class="part">a</span> Work in pairs. Which of these character adjectives do you know? Then check new words in <em>VOCABULARY 4.2 → p135</em>.</p>
+
+  <div class="coll-grid">
+    <div class="coll-row"><div class="coll-verb">adventurous</div><div><div class="coll-phrase">/ədˈventʃərəs/</div><div class="coll-vi">🇻🇳 thích phiêu lưu, mạo hiểm</div></div></div>
+    <div class="coll-row"><div class="coll-verb">talented</div><div><div class="coll-phrase">/ˈtæləntɪd/</div><div class="coll-vi">🇻🇳 có tài năng</div></div></div>
+    <div class="coll-row"><div class="coll-verb">sensible</div><div><div class="coll-phrase">/ˈsensəbl/</div><div class="coll-vi">🇻🇳 biết điều, khôn ngoan, thực tế</div></div></div>
+    <div class="coll-row"><div class="coll-verb">sensitive</div><div><div class="coll-phrase">/ˈsensətɪv/</div><div class="coll-vi">🇻🇳 nhạy cảm, dễ hiểu người khác</div></div></div>
+    <div class="coll-row"><div class="coll-verb">brave</div><div><div class="coll-phrase">/breɪv/</div><div class="coll-vi">🇻🇳 dũng cảm</div></div></div>
+    <div class="coll-row"><div class="coll-verb">determined</div><div><div class="coll-phrase">/dɪˈtɜːmɪnd/</div><div class="coll-vi">🇻🇳 quyết tâm, kiên định</div></div></div>
+    <div class="coll-row"><div class="coll-verb">reliable</div><div><div class="coll-phrase">/rɪˈlaɪəbl/</div><div class="coll-vi">🇻🇳 đáng tin cậy</div></div></div>
+    <div class="coll-row"><div class="coll-verb">independent</div><div><div class="coll-phrase">/ˌɪndɪˈpendənt/</div><div class="coll-vi">🇻🇳 độc lập</div></div></div>
+    <div class="coll-row"><div class="coll-verb">organised</div><div><div class="coll-phrase">/ˈɔːɡənaɪzd/</div><div class="coll-vi">🇻🇳 có tổ chức, ngăn nắp</div></div></div>
+    <div class="coll-row"><div class="coll-verb">stubborn</div><div><div class="coll-phrase">/ˈstʌbən/</div><div class="coll-vi">🇻🇳 cứng đầu, bướng bỉnh</div></div></div>
+    <div class="coll-row"><div class="coll-verb">ambitious</div><div><div class="coll-phrase">/æmˈbɪʃəs/</div><div class="coll-vi">🇻🇳 có tham vọng</div></div></div>
+    <div class="coll-row"><div class="coll-verb">confident</div><div><div class="coll-phrase">/ˈkɒnfɪdənt/</div><div class="coll-vi">🇻🇳 tự tin</div></div></div>
+    <div class="coll-row"><div class="coll-verb">practical</div><div><div class="coll-phrase">/ˈpræktɪkl/</div><div class="coll-vi">🇻🇳 thực tế</div></div></div>
+    <div class="coll-row"><div class="coll-verb">generous</div><div><div class="coll-phrase">/ˈdʒenərəs/</div><div class="coll-vi">🇻🇳 rộng lượng, hào phóng</div></div></div>
+    <div class="coll-row"><div class="coll-verb">mean</div><div><div class="coll-phrase">/miːn/</div><div class="coll-vi">🇻🇳 keo kiệt</div></div></div>
+    <div class="coll-row"><div class="coll-verb">responsible</div><div><div class="coll-phrase">/rɪˈspɒnsəbl/</div><div class="coll-vi">🇻🇳 có trách nhiệm</div></div></div>
+    <div class="coll-row"><div class="coll-verb">aggressive</div><div><div class="coll-phrase">/əˈɡresɪv/</div><div class="coll-vi">🇻🇳 hung hăng</div></div></div>
+    <div class="coll-row"><div class="coll-verb">optimistic</div><div><div class="coll-phrase">/ˌɒptɪˈmɪstɪk/</div><div class="coll-vi">🇻🇳 lạc quan</div></div></div>
+    <div class="coll-row"><div class="coll-verb">pessimistic</div><div><div class="coll-phrase">/ˌpesɪˈmɪstɪk/</div><div class="coll-vi">🇻🇳 bi quan</div></div></div>
+  </div>
+
+  <div class="ex-label"><div class="ex-num">1</div>Speaking practice</div>
+  <p class="instr">Think of four people you know. Choose adjectives from 1a to describe them. Work in pairs. Take turns to tell your partner about the people you know.</p>
+
+  <div class="speaking-box">
+    <div class="speaking-title">💬 Ví dụ hội thoại</div>
+    <div class="bubble speaker-a">My friend Gregory is very talented. He's a designer and he works for a fashion company.</div>
+    <div class="bubble speaker-b">That sounds interesting. What kind of designs does he make?</div>
+    <div class="bubble speaker-a">He mainly designs shoes. He's very creative and also quite ambitious.</div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     TAB 2: LISTENING
+══════════════════════════════════════ -->
+<div class="tab-pane" id="tab-listening">
+  <div class="sec-heading">Listening</div>
+  <div class="sec-sub">CD1 Track 31 — Ed Stafford: Modern Adventurers</div>
+
+  <div class="ex-label"><div class="ex-num">2</div>Exercise 2 — Pre-listening discussion</div>
+  <p class="instr">Work in pairs. Discuss these questions:</p>
+  <div class="qa-list">
+    <div class="qa-item"><div class="qa-q" onclick="toggleQA(this)"><span class="qa-qnum">1</span><span class="qa-qtext">What's the most adventurous thing you've ever done?</span><span class="qa-arrow">▶</span></div><div class="qa-ans">Trả lời tự do. Gợi ý: "I went backpacking in South America for three months."</div></div>
+    <div class="qa-item"><div class="qa-q" onclick="toggleQA(this)"><span class="qa-qnum">2</span><span class="qa-qtext">Are there any famous adventurers from your country? What do you know about them?</span><span class="qa-arrow">▶</span></div><div class="qa-ans">Trả lời tự do.</div></div>
+  </div>
+
+  <div class="ex-label"><div class="ex-num">3</div>Exercise 3 — Listen: CD1 Track 31</div>
+  <p class="instr"><span class="part">a</span> <strong>CD1 ▶ 31</strong> Listen to a conversation between two TV producers, Paul and Josie.</p>
+
+  <div class="fill-ex">
+    <div class="fill-ex-title">Answer these questions</div>
+    <div class="fill-item"><div class="fill-item-num">1</div><div class="fill-item-body"><div class="fill-sentence">What is the first episode of Josie's new TV series about?</div><div class="fill-controls"><input class="fill-input" id="l1" style="max-width:300px" placeholder="Type answer..."><button class="check-btn" onclick="checkL1()">Kiểm tra</button></div></div></div>
+    <div class="fill-item"><div class="fill-item-num">2</div><div class="fill-item-body"><div class="fill-sentence">What problems did Ed Stafford have on the journey?</div><div class="fill-controls"><input class="fill-input" id="l2" style="max-width:300px" placeholder="Type answer..."><button class="check-btn" onclick="checkL2()">Kiểm tra</button></div></div></div>
+    <div class="fill-item"><div class="fill-item-num">3</div><div class="fill-item-body"><div class="fill-sentence">How did his friends and family know where he was?</div><div class="fill-controls"><input class="fill-input" id="l3" style="max-width:300px" placeholder="Type answer..."><button class="check-btn" onclick="checkL3()">Kiểm tra</button></div></div></div>
+    <div class="fill-item"><div class="fill-item-num">4</div><div class="fill-item-body"><div class="fill-sentence">What did he do when he got home?</div><div class="fill-controls"><input class="fill-input" id="l4" style="max-width:300px" placeholder="Type answer..."><button class="check-btn" onclick="checkL4()">Kiểm tra</button></div></div></div>
+    <div style="display:flex;gap:8px;margin-top:12px">
+      <button class="btn btn-outline" onclick="revealLAnswers()">👁 Xem đáp án</button>
+    </div>
+  </div>
+
+  <div class="ex-label"><div class="ex-num">4</div>Exercise 4 — Listen again: numbers and people</div>
+  <p class="instr"><span class="part">a</span> Work in pairs. Can you remember what Paul and Josie said about these numbers and people?</p>
+
+  <div class="coll-grid">
+    <div class="coll-row"><div class="coll-verb">2010</div><div><div class="coll-phrase">Year Ed Stafford walked the Amazon</div></div></div>
+    <div class="coll-row"><div class="coll-verb">2½ years</div><div><div class="coll-phrase">How long the journey took</div></div></div>
+    <div class="coll-row"><div class="coll-verb">Luke Collyer</div><div><div class="coll-phrase">Ed's friend who left after 68 days</div></div></div>
+    <div class="coll-row"><div class="coll-verb">68 days</div><div><div class="coll-phrase">How long Luke was with Ed</div></div></div>
+    <div class="coll-row"><div class="coll-verb">Cho</div><div><div class="coll-phrase">The guide who joined Ed for the rest</div></div></div>
+    <div class="coll-row"><div class="coll-verb">6,000 miles</div><div><div class="coll-phrase">How far Ed walked</div></div></div>
+    <div class="coll-row"><div class="coll-verb">200,000</div><div><div class="coll-phrase">Number of mosquito/ant bites</div></div></div>
+    <div class="coll-row"><div class="coll-verb">27 hours</div><div><div class="coll-phrase">Time to run four marathons after</div></div></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     TAB 3: GRAMMAR
+══════════════════════════════════════ -->
+<div class="tab-pane" id="tab-grammar">
+  <div class="sec-heading">Help with Grammar</div>
+  <div class="sec-sub">Past Perfect · GRAMMAR 4.3 → p137</div>
+
+  <div class="grammar-table">
+    <table>
+      <thead><tr><th>Tense</th><th>Use</th><th>Example</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Past Perfect</strong></td><td>Action that happened first in the past</td><td class="aux">Cho joined the expedition after Luke <strong>had gone</strong> back to the UK.</td></tr>
+        <tr><td><strong>Past Perfect</strong></td><td>To show the order of past events</td><td class="aux">He read messages that people <strong>had sent</strong> him.</td></tr>
+        <tr><td><strong>Past Simple</strong></td><td>Action that happened second</td><td class="aux">Cho <strong>joined</strong> the expedition.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="tip-box">
+    <strong>Past Perfect vs Past Simple:</strong><br>
+    • <em>When I turned on the TV, the programme <strong>started</strong>.</em> (started almost immediately)<br>
+    • <em>When I turned on the TV, the programme <strong>had started</strong>.</em> (started before I turned on)<br>
+    • We often use <strong>by the time, when, as soon as, because, so</strong> with Past Perfect.
+  </div>
+
+  <div class="ex-label"><div class="ex-num">7</div>Exercise 7 — Past Perfect or Past Simple?</div>
+  <p class="instr">Put the verbs in brackets in the Past Perfect or Past Simple.</p>
+
+  <div class="fill-ex">
+    <div class="fill-item"><div class="fill-item-num">1</div><div class="fill-item-body"><div class="fill-sentence">Nobody <input class="fill-input" id="pp1" style="max-width:120px" placeholder="walk"> (walk) the Amazon before Ed Stafford.</div></div></div>
+    <div class="fill-item"><div class="fill-item-num">2</div><div class="fill-item-body"><div class="fill-sentence">We <input class="fill-input" id="pp2" style="max-width:120px" placeholder="not think"> (not think) of going to Brazil until we <input class="fill-input" id="pp3" style="max-width:120px" placeholder="hear"> (hear) about Ed Stafford's adventure.</div></div></div>
+    <div class="fill-item"><div class="fill-item-num">3</div><div class="fill-item-body"><div class="fill-sentence">I <input class="fill-input" id="pp4" style="max-width:120px" placeholder="go"> (go) to the shop to get some bread, but they <input class="fill-input" id="pp5" style="max-width:120px" placeholder="sell out"> (sell out).</div></div></div>
+    <div class="fill-item"><div class="fill-item-num">4</div><div class="fill-item-body"><div class="fill-sentence">The meeting <input class="fill-input" id="pp6" style="max-width:120px" placeholder="finish"> (finish) by the time I <input class="fill-input" id="pp7" style="max-width:120px" placeholder="get"> (get) there.</div></div></div>
+    <div class="fill-item"><div class="fill-item-num">5</div><div class="fill-item-body"><div class="fill-sentence">I <input class="fill-input" id="pp8" style="max-width:120px" placeholder="see"> (see) Trevor Robertson when I <input class="fill-input" id="pp9" style="max-width:120px" placeholder="be"> (be) in town yesterday. I <input class="fill-input" id="pp10" style="max-width:120px" placeholder="not see"> (not see) him for ten years!</div></div></div>
+    <div style="display:flex;gap:8px;margin-top:12px">
+      <button class="btn btn-primary" onclick="checkPP()">✅ Kiểm tra</button>
+      <button class="btn btn-outline" onclick="revealPP()">👁 Đáp án</button>
+    </div>
+    <div class="score-box" id="pp-score"></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     TAB 4: WORKBOOK
+══════════════════════════════════════ -->
+<div class="tab-pane" id="tab-workbook">
+  <div class="sec-heading">Workbook 4B</div>
+  <div class="sec-sub">Extra practice from Workbook pages 27–28</div>
+
+  <div class="lang-sum-tag">📓 VOCABULARY — Character adjectives (crossword)</div>
+  <p class="instr">Find 10 character adjectives.</p>
+
+  <div class="coll-grid">
+    <div class="coll-row"><div class="coll-verb">AMBITIOUS</div><div><div class="coll-phrase">có tham vọng</div></div></div>
+    <div class="coll-row"><div class="coll-verb">ADVENTUROUS</div><div><div class="coll-phrase">thích phiêu lưu</div></div></div>
+    <div class="coll-row"><div class="coll-verb">SENSITIVE</div><div><div class="coll-phrase">nhạy cảm</div></div></div>
+    <div class="coll-row"><div class="coll-verb">MEAN</div><div><div class="coll-phrase">keo kiệt</div></div></div>
+    <div class="coll-row"><div class="coll-verb">STUBBORN</div><div><div class="coll-phrase">bướng bỉnh</div></div></div>
+    <div class="coll-row"><div class="coll-verb">RELIABLE</div><div><div class="coll-phrase">đáng tin cậy</div></div></div>
+    <div class="coll-row"><div class="coll-verb">GENEROUS</div><div><div class="coll-phrase">hào phóng</div></div></div>
+    <div class="coll-row"><div class="coll-verb">OPTIMISTIC</div><div><div class="coll-phrase">lạc quan</div></div></div>
+    <div class="coll-row"><div class="coll-verb">DETERMINED</div><div><div class="coll-phrase">quyết tâm</div></div></div>
+    <div class="coll-row"><div class="coll-verb">ORGANISED</div><div><div class="coll-phrase">có tổ chức</div></div></div>
+  </div>
+
+  <div class="lang-sum-tag">📓 GRAMMAR — Past Perfect</div>
+  <p class="instr">Fill in the gaps with the Past Simple or Past Perfect of the verbs in brackets.</p>
+
+  <div class="fill-ex">
+    <div class="fill-item"><div class="fill-item-num">1</div><div class="fill-item-body"><div class="fill-sentence">By the time she <input class="fill-input" id="wb1" style="max-width:120px" placeholder="meet"> (meet) Jack, he <input class="fill-input" id="wb2" style="max-width:120px" placeholder="be"> (be) married three times.</div></div></div>
+    <div class="fill-item"><div class="fill-item-num">2</div><div class="fill-item-body"><div class="fill-sentence">Kim <input class="fill-input" id="wb3" style="max-width:120px" placeholder="not be"> (not be) tired because she <input class="fill-input" id="wb4" style="max-width:120px" placeholder="already have"> (already have) a few hours' sleep.</div></div></div>
+    <div class="fill-item"><div class="fill-item-num">3</div><div class="fill-item-body"><div class="fill-sentence">When I got home I <input class="fill-input" id="wb5" style="max-width:120px" placeholder="realise"> (realise) that I <input class="fill-input" id="wb6" style="max-width:120px" placeholder="leave"> (leave) my keys at the office.</div></div></div>
+    <div style="display:flex;gap:8px;margin-top:12px">
+      <button class="btn btn-primary" onclick="checkWB()">✅ Kiểm tra</button>
+      <button class="btn btn-outline" onclick="revealWB()">👁 Đáp án</button>
+    </div>
+    <div class="score-box" id="wb-score"></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     TAB 5: LANGUAGE SUMMARY
+══════════════════════════════════════ -->
+<div class="tab-pane" id="tab-langsummary">
+  <div class="sec-heading">Language Summary 4B</div>
+  <div class="sec-sub">VOCABULARY 4.2 · GRAMMAR 4.3</div>
+
+  <div class="lang-sum-tag">📗 VOCABULARY 4.2 — Adjectives (2): character</div>
+  <div class="coll-grid">
+    <div class="coll-row"><div class="coll-verb">adventurous</div><div><div class="coll-phrase">like visiting new places and having new experiences</div><div class="coll-vi">🇻🇳 thích phiêu lưu</div></div></div>
+    <div class="coll-row"><div class="coll-verb">talented</div><div><div class="coll-phrase">have a natural ability to do something</div><div class="coll-vi">🇻🇳 có tài năng</div></div></div>
+    <div class="coll-row"><div class="coll-verb">sensible</div><div><div class="coll-phrase">can make good decisions based on reasons</div><div class="coll-vi">🇻🇳 biết điều, thực tế</div></div></div>
+    <div class="coll-row"><div class="coll-verb">sensitive</div><div><div class="coll-phrase">can understand other people's feelings</div><div class="coll-vi">🇻🇳 nhạy cảm</div></div></div>
+    <div class="coll-row"><div class="coll-verb">brave</div><div><div class="coll-phrase">not frightened in dangerous situations</div><div class="coll-vi">🇻🇳 dũng cảm</div></div></div>
+    <div class="coll-row"><div class="coll-verb">determined</div><div><div class="coll-phrase">want to do something very much</div><div class="coll-vi">🇻🇳 quyết tâm</div></div></div>
+    <div class="coll-row"><div class="coll-verb">reliable</div><div><div class="coll-phrase">always do what you want or expect</div><div class="coll-vi">🇻🇳 đáng tin cậy</div></div></div>
+    <div class="coll-row"><div class="coll-verb">independent</div><div><div class="coll-phrase">don't want or need other people to do things</div><div class="coll-vi">🇻🇳 độc lập</div></div></div>
+    <div class="coll-row"><div class="coll-verb">organised</div><div><div class="coll-phrase">plan things well and don't waste time</div><div class="coll-vi">🇻🇳 có tổ chức</div></div></div>
+    <div class="coll-row"><div class="coll-verb">stubborn</div><div><div class="coll-phrase">won't change their ideas</div><div class="coll-vi">🇻🇳 bướng bỉnh</div></div></div>
+    <div class="coll-row"><div class="coll-verb">ambitious</div><div><div class="coll-phrase">want to be very successful</div><div class="coll-vi">🇻🇳 có tham vọng</div></div></div>
+    <div class="coll-row"><div class="coll-verb">confident</div><div><div class="coll-phrase">sure that they can do things successfully</div><div class="coll-vi">🇻🇳 tự tin</div></div></div>
+    <div class="coll-row"><div class="coll-verb">generous</div><div><div class="coll-phrase">like giving money and presents</div><div class="coll-vi">🇻🇳 hào phóng</div></div></div>
+    <div class="coll-row"><div class="coll-verb">mean</div><div><div class="coll-phrase">don't like spending money</div><div class="coll-vi">🇻🇳 keo kiệt</div></div></div>
+  </div>
+
+  <div class="lang-sum-tag">📗 GRAMMAR 4.3 — Past Perfect</div>
+  <div class="grammar-table">
+    <table>
+      <thead><tr><th>Tense</th><th>Use</th><th>Example</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Past Perfect</strong></td><td>Action that happened first in the past</td><td class="aux">Cho <strong>had gone</strong> back to the UK.</td></tr>
+        <tr><td><strong>Past Simple</strong></td><td>Action that happened second</td><td class="aux">Cho <strong>joined</strong> the expedition.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="tip-box">
+    <strong>Form:</strong> had + past participle<br>
+    <strong>Negative:</strong> hadn't + past participle<br>
+    <strong>Question:</strong> Had + subject + past participle?
+  </div>
+</div>
+
+</div><!-- /page-content -->
+
+<script>
+function showTab(id){
+  document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tnav-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+  const tabs=['vocab','listening','grammar','workbook','langsummary'];
+  const idx=tabs.indexOf(id);
+  document.querySelectorAll('.tnav-btn')[idx]?.classList.add('active');
+}
+function toggleTheme(){const t=document.documentElement.getAttribute('data-theme')==='light'?'dark':'light';document.documentElement.setAttribute('data-theme',t==='light'?'light':'');document.getElementById('theme-btn').textContent=t==='light'?'🌙':'☀️';localStorage.setItem('f2f_4b_theme',t);}
+function markDone(){showToast('✅ 4B Modern adventurers đã hoàn thành!');}
+function showToast(msg){let t=document.getElementById('toast');if(!t){t=document.createElement('div');t.id='toast';t.style.cssText='position:fixed;bottom:20px;right:20px;z-index:999;background:var(--bg2);border:1px solid var(--border2);padding:10px 18px;border-radius:8px;font-size:.82rem;box-shadow:0 4px 20px rgba(0,0,0,.3);transition:opacity .3s';document.body.appendChild(t);}t.textContent=msg;t.style.opacity='1';clearTimeout(showToast._t);showToast._t=setTimeout(()=>t.style.opacity='0',2400);}
+function toggleQA(btn){const item=btn.closest('.qa-item');item.classList.toggle('open');}
+
+function checkL1(){
+  const inp=document.getElementById('l1');
+  const ok=inp.value.trim().toLowerCase().includes('amazon')||inp.value.trim().toLowerCase().includes('ed stafford');
+  inp.className='fill-input '+(ok?'correct':'wrong');
+}
+function checkL2(){
+  const inp=document.getElementById('l2');
+  const ok=inp.value.trim().toLowerCase().includes('bites')||inp.value.trim().toLowerCase().includes('insect');
+  inp.className='fill-input '+(ok?'correct':'wrong');
+}
+function checkL3(){
+  const inp=document.getElementById('l3');
+  const ok=inp.value.trim().toLowerCase().includes('blog')||inp.value.trim().toLowerCase().includes('website')||inp.value.trim().toLowerCase().includes('messages');
+  inp.className='fill-input '+(ok?'correct':'wrong');
+}
+function checkL4(){
+  const inp=document.getElementById('l4');
+  const ok=inp.value.trim().toLowerCase().includes('marathon')||inp.value.trim().toLowerCase().includes('rest');
+  inp.className='fill-input '+(ok?'correct':'wrong');
+}
+function revealLAnswers(){
+  document.getElementById('l1').value='Ed Stafford walking the Amazon';document.getElementById('l1').className='fill-input correct';
+  document.getElementById('l2').value='200,000 mosquito bites, 600 wasp stings, 12 scorpion stings';document.getElementById('l2').className='fill-input correct';
+  document.getElementById('l3').value='He wrote a blog and uploaded videos every day';document.getElementById('l3').className='fill-input correct';
+  document.getElementById('l4').value='He ran four marathons in 27 hours';document.getElementById('l4').className='fill-input correct';
+}
+
+function checkPP(){
+  const ans={pp1:'had walked',pp2:'didn\'t think',pp3:'heard',pp4:'went',pp5:'had sold out',pp6:'had finished',pp7:'got',pp8:'saw',pp9:'was',pp10:'hadn\'t seen'};
+  let c=0,total=10;
+  Object.entries(ans).forEach(([id,val])=>{
+    const inp=document.getElementById(id);
+    if(inp){
+      const ok=inp.value.trim().toLowerCase().replace(/\s+/g,'')===val.toLowerCase().replace(/\s+/g,'');
+      inp.className='fill-input '+(ok?'correct':'wrong');
+      if(ok)c++;
+    }
+  });
+  const sc=document.getElementById('pp-score');
+  sc.innerHTML=`<div class="score-n">${c}/${total}</div><div class="score-msg">${c===total?'🎉 All correct!':'Review GRAMMAR 4.3.'}</div>`;
+  sc.className='score-box show';
+}
+function revealPP(){
+  const ans={pp1:'had walked',pp2:'didn\'t think',pp3:'heard',pp4:'went',pp5:'had sold out',pp6:'had finished',pp7:'got',pp8:'saw',pp9:'was',pp10:'hadn\'t seen'};
+  Object.entries(ans).forEach(([id,val])=>{const inp=document.getElementById(id);if(inp){inp.value=val;inp.className='fill-input correct';}});
+}
+
+function checkWB(){
+  const ans={wb1:'met',wb2:'had been',wb3:'wasn\'t',wb4:'had already had',wb5:'realised',wb6:'had left'};
+  let c=0,total=6;
+  Object.entries(ans).forEach(([id,val])=>{
+    const inp=document.getElementById(id);
+    if(inp){
+      const ok=inp.value.trim().toLowerCase().replace(/\s+/g,'')===val.toLowerCase().replace(/\s+/g,'');
+      inp.className='fill-input '+(ok?'correct':'wrong');
+      if(ok)c++;
+    }
+  });
+  const sc=document.getElementById('wb-score');
+  sc.innerHTML=`<div class="score-n">${c}/${total}</div><div class="score-msg">${c===total?'🎉 All correct!':'Check the workbook answers.'}</div>`;
+  sc.className='score-box show';
+}
+function revealWB(){
+  const ans={wb1:'met',wb2:'had been',wb3:'wasn\'t',wb4:'had already had',wb5:'realised',wb6:'had left'};
+  Object.entries(ans).forEach(([id,val])=>{const inp=document.getElementById(id);if(inp){inp.value=val;inp.className='fill-input correct';}});
+}
+
+document.addEventListener('DOMContentLoaded',()=>{
+  const t=localStorage.getItem('f2f_4b_theme')||'dark';
+  if(t==='light'){document.documentElement.setAttribute('data-theme','light');document.getElementById('theme-btn').textContent='🌙';}
+});
+</script>
+</body>
+</html>

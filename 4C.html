@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>4C Unusual days out — face2face Intermediate</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap');
+:root{
+  --bg:#0D1117;--bg2:#161B22;--bg3:#21262D;--bg4:#2D333B;
+  --border:#30363D;--border2:#3D444D;
+  --text:#E6EDF3;--dim:#8B949E;--muted:#484F58;
+  --blue:#2563EB;--blue-l:rgba(37,99,235,.15);
+  --green:#10B981;--green-l:rgba(16,185,129,.12);
+  --orange:#F59E0B;--orange-l:rgba(245,158,11,.12);
+  --red:#EF4444;--red-l:rgba(239,68,68,.12);
+  --teal:#14B8A6;--purple:#8B5CF6;--purple-l:rgba(139,92,246,.12);
+  --r:10px;--r2:6px;--tr:.18s ease;
+}
+[data-theme=light]{--bg:#F8FAFC;--bg2:#fff;--bg3:#F1F5F9;--bg4:#E2E8F0;--border:#E2E8F0;--border2:#CBD5E1;--text:#0F172A;--dim:#475569;--muted:#94A3B8;--blue:#1D4ED8;--blue-l:rgba(29,78,216,.1)}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);font-size:15px;line-height:1.6}
+button{cursor:pointer;border:none;background:none;font-family:inherit}input,textarea,select{font-family:inherit}
+
+.top-bar{background:var(--bg2);border-bottom:1px solid var(--border);padding:10px 20px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:50;flex-wrap:wrap}
+.back-btn{display:flex;align-items:center;gap:6px;padding:6px 14px;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);font-size:.82rem;color:var(--dim);cursor:pointer;transition:all var(--tr)}
+.back-btn:hover{border-color:var(--blue);color:var(--blue)}
+.lesson-badge{padding:4px 12px;background:var(--purple-l);border:1px solid rgba(139,92,246,.3);border-radius:4px;font-size:.75rem;font-weight:700;color:#A78BFA;letter-spacing:.05em}
+.lesson-title-h{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700}
+.top-actions{margin-left:auto;display:flex;gap:8px}
+.theme-btn{width:34px;height:34px;display:flex;align-items:center;justify-content:center;border-radius:var(--r2);background:var(--bg3);border:1px solid var(--border);cursor:pointer;font-size:.95rem;color:var(--dim);transition:all var(--tr)}
+.theme-btn:hover{border-color:var(--blue);color:var(--blue)}
+.progress-btn{padding:6px 14px;background:var(--green);border-radius:var(--r2);font-size:.78rem;font-weight:600;color:#fff;cursor:pointer;border:none;transition:all var(--tr)}
+.progress-btn:hover{background:#059669}
+
+.quick-review{background:linear-gradient(135deg,#1e3a5f,#1a2f4a);border:1px solid #2d4f7c;border-radius:var(--r);padding:14px 20px;margin:18px 24px;display:flex;gap:12px;align-items:flex-start}
+.qr-badge{background:#F59E0B;color:#000;padding:3px 10px;border-radius:4px;font-size:.72rem;font-weight:700;white-space:nowrap;flex-shrink:0;margin-top:2px}
+.qr-text{font-size:.84rem;line-height:1.65;color:#CBD5E1}
+.qr-text strong{color:#fff}
+
+.tab-nav{display:flex;gap:2px;border-bottom:1px solid var(--border);overflow-x:auto;scrollbar-width:none;position:sticky;top:57px;background:var(--bg);z-index:40;padding:0 24px}
+.tab-nav::-webkit-scrollbar{display:none}
+.tnav-btn{display:flex;align-items:center;gap:6px;padding:11px 16px;font-size:.82rem;font-weight:500;color:var(--dim);white-space:nowrap;border-bottom:2px solid transparent;margin-bottom:-1px;cursor:pointer;transition:all var(--tr);background:none;border-top:none;border-left:none;border-right:none;font-family:inherit}
+.tnav-btn:hover{color:var(--text)}.tnav-btn.active{color:var(--purple);border-bottom-color:var(--purple)}
+
+.page-content{max-width:920px;margin:0 auto;padding:0 24px 48px}
+.tab-pane{display:none;padding-top:28px}
+.tab-pane.active{display:block;animation:fadeUp .22s ease}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
+.sec-heading{font-size:1.05rem;font-weight:700;color:var(--text);margin-bottom:4px;display:flex;align-items:center;gap:8px}
+.sec-sub{font-size:.82rem;color:var(--dim);margin-bottom:18px}
+.ex-num{width:28px;height:28px;background:var(--purple);color:#fff;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:.78rem;font-weight:700;flex-shrink:0}
+.ex-label{display:inline-flex;align-items:center;gap:8px;font-size:.9rem;font-weight:600;margin-bottom:10px;color:var(--text)}
+.part{display:inline-block;width:22px;height:22px;background:var(--bg4);border-radius:4px;text-align:center;line-height:22px;font-size:.72rem;font-weight:700;color:var(--dim);margin-right:6px}
+.instr{font-size:.88rem;color:var(--text);line-height:1.65;margin-bottom:14px}
+.instr em{font-style:italic;color:var(--teal)}
+
+.fill-ex{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:18px;margin-bottom:16px}
+.fill-ex-title{font-size:.88rem;font-weight:600;padding-bottom:10px;border-bottom:1px solid var(--border);margin-bottom:14px;color:var(--dim)}
+.fill-item{display:flex;align-items:flex-start;gap:10px;padding:9px 0;border-bottom:1px dashed var(--border)}
+.fill-item:last-child{border-bottom:none}
+.fill-item-num{width:22px;height:22px;border-radius:50%;background:var(--bg3);display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:700;color:var(--muted);flex-shrink:0;margin-top:2px}
+.fill-item-body{flex:1}
+.fill-sentence{font-size:.87rem;margin-bottom:7px;line-height:1.6}
+.fill-controls{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.fill-input{height:33px;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);padding:0 11px;color:var(--text);font-size:.84rem;outline:none;min-width:80px;max-width:200px;transition:border-color var(--tr)}
+.fill-input:focus{border-color:var(--purple)}
+.fill-input.correct{border-color:var(--green);background:var(--green-l)}
+.fill-input.wrong{border-color:var(--red);background:var(--red-l)}
+.check-btn{padding:5px 12px;background:var(--purple);color:#fff;border:none;border-radius:var(--r2);font-size:.76rem;font-weight:600;cursor:pointer;transition:all var(--tr)}
+.check-btn:hover{background:#7C3AED}
+.reveal-btn{padding:5px 11px;background:var(--bg3);border:1px solid var(--border);color:var(--dim);border-radius:var(--r2);font-size:.76rem;cursor:pointer;transition:all var(--tr)}
+.reveal-btn:hover{border-color:var(--purple);color:var(--purple)}
+.fill-fb{margin-top:5px;font-size:.77rem;padding:4px 9px;border-radius:var(--r2);display:none}
+.fill-fb.show-ok{background:var(--green-l);color:var(--green);display:block}
+.fill-fb.show-err{background:var(--red-l);color:var(--red);display:block}
+
+.score-box{display:none;text-align:center;padding:18px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);margin-top:14px}
+.score-box.show{display:block}
+.score-n{font-size:2.2rem;font-weight:700;color:var(--purple)}
+.score-msg{color:var(--dim);font-size:.84rem;margin-top:4px}
+
+.btn{display:inline-flex;align-items:center;gap:6px;padding:7px 16px;border-radius:var(--r2);font-size:.82rem;font-weight:500;cursor:pointer;border:none;font-family:inherit;transition:all var(--tr)}
+.btn-primary{background:var(--purple);color:#fff}.btn-primary:hover{background:#7C3AED;transform:translateY(-1px)}
+.btn-outline{background:var(--bg3);border:1px solid var(--border2);color:var(--dim)}.btn-outline:hover{border-color:var(--purple);color:var(--purple)}
+
+.divider{height:1px;background:var(--border);margin:22px 0}
+.note-box{background:var(--orange-l);border:1px solid rgba(245,158,11,.25);border-radius:var(--r2);padding:10px 14px;font-size:.82rem;line-height:1.6;margin:10px 0}
+.note-box strong{color:var(--orange)}
+.tip-box{background:var(--bg3);border-left:3px solid var(--purple);border-radius:0 var(--r2) var(--r2) 0;padding:10px 14px;margin:10px 0;font-size:.82rem;color:var(--dim);line-height:1.6}
+.tip-box strong{color:var(--text)}
+.example-box{font-family:'Courier New',monospace;font-size:.82rem;color:#7DD3FC;background:var(--bg);padding:8px 12px;border-radius:var(--r2);margin:6px 0;border:1px solid var(--border)}
+
+.speaking-box{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:16px;margin-bottom:16px}
+.speaking-title{font-size:.84rem;font-weight:600;margin-bottom:12px;color:var(--text);display:flex;align-items:center;gap:8px}
+.bubble{background:var(--bg3);border:1px solid var(--border);border-radius:12px;padding:8px 14px;max-width:72%;font-size:.84rem;line-height:1.5;margin-bottom:8px}
+.bubble.speaker-a{border-bottom-left-radius:3px}
+.bubble.speaker-b{border-bottom-right-radius:3px;background:var(--purple-l);border-color:rgba(139,92,246,.3);margin-left:auto}
+
+.qa-list{display:flex;flex-direction:column;gap:8px;margin-bottom:16px}
+.qa-item{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r2);overflow:hidden}
+.qa-q{display:flex;align-items:center;gap:10px;padding:10px 14px;cursor:pointer;transition:background var(--tr)}
+.qa-q:hover{background:var(--bg3)}
+.qa-qnum{width:24px;height:24px;border-radius:50%;background:var(--purple-l);color:var(--purple);display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:700;flex-shrink:0}
+.qa-qtext{font-size:.86rem;flex:1}
+.qa-arrow{font-size:.7rem;color:var(--muted);transition:transform var(--tr);flex-shrink:0}
+.qa-item.open .qa-arrow{transform:rotate(90deg)}
+.qa-ans{display:none;padding:0 14px 10px 48px;font-size:.83rem;color:var(--teal);font-style:italic}
+.qa-item.open .qa-ans{display:block}
+
+.grammar-table{width:100%;border-collapse:collapse;font-size:.82rem;margin:12px 0}
+.grammar-table th{background:var(--bg3);padding:8px 12px;text-align:left;font-weight:600;border:1px solid var(--border);color:var(--dim);font-size:.72rem;text-transform:uppercase}
+.grammar-table td{padding:9px 12px;border:1px solid var(--border);line-height:1.5}
+.grammar-table td.aux{color:var(--purple);font-weight:600}
+
+.lang-sum-tag{display:inline-flex;align-items:center;gap:6px;padding:3px 12px;background:var(--purple-l);border:1px solid rgba(139,92,246,.3);border-radius:4px;font-size:.72rem;font-weight:700;color:#A78BFA;text-transform:uppercase;letter-spacing:.06em;margin-bottom:12px}
+
+.coll-grid{display:flex;flex-direction:column;gap:8px;margin:12px 0}
+.coll-row{display:grid;grid-template-columns:100px 1fr;gap:12px;align-items:start;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r2);padding:10px 14px}
+.coll-verb{font-size:.9rem;font-weight:700;color:var(--blue)}
+.coll-ipa{font-size:.72rem;color:var(--teal);font-family:monospace}
+.coll-phrase{font-size:.85rem;font-weight:600}
+.coll-vi{font-size:.8rem;color:var(--orange)}
+.coll-ex{font-size:.78rem;color:var(--dim);font-style:italic}
+
+.article-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:20px;margin-bottom:16px}
+.article-title{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;margin-bottom:4px}
+.article-source{font-size:.75rem;color:var(--muted);font-style:italic;margin-bottom:14px}
+.article-p{font-size:.85rem;line-height:1.8;color:var(--text);margin-bottom:10px}
+.article-p:last-child{margin-bottom:0}
+.article-p .hl{font-weight:700;color:var(--purple)}
+
+.audio-box{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:18px;margin-bottom:16px}
+.audio-header{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.cd-badge{padding:4px 12px;background:var(--orange-l);border:1px solid rgba(245,158,11,.3);border-radius:4px;font-size:.75rem;font-weight:700;color:var(--orange)}
+.audio-title{font-size:.9rem;font-weight:600}
+.audio-controls{display:flex;align-items:center;gap:12px;padding:10px 14px;background:var(--bg3);border-radius:var(--r2);margin-bottom:10px}
+.play-btn{width:40px;height:40px;border-radius:50%;background:var(--purple);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;border:none;font-size:.95rem;flex-shrink:0;transition:all var(--tr)}
+.play-btn:hover{background:#7C3AED;transform:scale(1.05)}
+.audio-info{flex:1}
+.audio-track{font-size:.82rem;font-weight:500;margin-bottom:2px}
+.audio-note{font-size:.72rem;color:var(--muted)}
+.prog-bar{height:4px;background:var(--border);border-radius:2px;overflow:hidden;margin-top:5px}
+.prog-fill{height:100%;width:0%;background:var(--purple);border-radius:2px;transition:width .1s linear}
+
+@media(max-width:680px){.tab-nav{padding:0 12px}.page-content{padding:0 14px 48px}.quick-review{margin:12px}}
+</style>
+</head>
+<body>
+
+<div class="top-bar">
+  <button class="back-btn" onclick="history.back()">← Trang chủ</button>
+  <div class="lesson-badge">UNIT 4</div>
+  <div class="lesson-title-h">4C — Unusual days out</div>
+  <div class="top-actions">
+    <button class="theme-btn" id="theme-btn" onclick="toggleTheme()">☀️</button>
+    <button class="progress-btn" onclick="markDone()">✅ Đánh dấu xong</button>
+  </div>
+</div>
+
+<div class="quick-review">
+  <div class="qr-badge">QUICK REVIEW</div>
+  <div class="qr-text"><strong>Past Perfect</strong> — Write two things you had done, or had learned to do, by the time you were 5, 10 and 15 years old. Work in pairs. Talk about the things on your list. <em>"By the time I was five, I'd learned how to ride a bike."</em></div>
+</div>
+
+<div class="tab-nav">
+  <button class="tnav-btn active" onclick="showTab('vocab')">📚 Vocabulary &amp; Speaking</button>
+  <button class="tnav-btn" onclick="showTab('reading')">📖 Reading &amp; Vocabulary</button>
+  <button class="tnav-btn" onclick="showTab('listening')">🎧 Listening &amp; Speaking</button>
+  <button class="tnav-btn" onclick="showTab('workbook')">📓 Workbook</button>
+  <button class="tnav-btn" onclick="showTab('langsummary')">📋 Language Summary</button>
+</div>
+
+<div class="page-content">
+
+<!-- ══════════════════════════════════════
+     TAB 1: VOCABULARY AND SPEAKING
+══════════════════════════════════════ -->
+<div class="tab-pane active" id="tab-vocab">
+  <div class="sec-heading">Vocabulary and Speaking</div>
+  <div class="sec-sub">Guessing meaning from context · VOCABULARY 4.3 → p136</div>
+
+  <div class="ex-label"><div class="ex-num">1</div>Exercise 1 — Discuss best museums</div>
+  <p class="instr"><span class="part">a</span> Make a list of the five best museums, art galleries or famous buildings for tourists to visit in your country.</p>
+  <p class="instr"><span class="part">b</span> Work in pairs. If you're from the same country, decide on the top five places from both lists. If you're from different countries, take turns to tell your partner about the places on your list.</p>
+
+  <div class="speaking-box">
+    <div class="speaking-title">💬 Ví dụ hội thoại</div>
+    <div class="bubble speaker-a">I think the best museum in my country is the National Gallery.</div>
+    <div class="bubble speaker-b">Why do you like it so much?</div>
+    <div class="bubble speaker-a">It has an amazing collection of paintings, and it's completely free.</div>
+    <div class="bubble speaker-b">That sounds great. I'd love to visit it one day.</div>
+  </div>
+
+  <div class="tip-box">
+    <strong>💡 Guessing meaning from context:</strong><br>
+    • Decide which part of speech it is (noun, verb, adjective)<br>
+    • Understand the rest of the sentence and the general meaning<br>
+    • Recognise a similar word in your language or another language you know
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     TAB 2: READING AND VOCABULARY
+══════════════════════════════════════ -->
+<div class="tab-pane" id="tab-reading">
+  <div class="sec-heading">Reading and Vocabulary</div>
+  <div class="sec-sub">The world's weirdest museums — Student's Book p29</div>
+
+  <div class="ex-label"><div class="ex-num">2</div>Exercise 2 — Read the article</div>
+  <p class="instr"><span class="part">a</span> Work in new pairs. Look at photos A–E. What can you see in each photo?</p>
+  <p class="instr"><span class="part">b</span> Read the article. Match photos A–E to the museums in the article.</p>
+  <p class="instr"><span class="part">c</span> Read the article again. Answer the questions.</p>
+
+  <div class="article-card">
+    <div class="article-title">The world's weirdest museums</div>
+    <div class="article-source">Matthew Clifford visits some of the strangest museums on the planet</div>
+
+    <div class="article-p"><strong>Museum of Bad Art</strong> — Massachusetts, USA<br>
+    Have you ever <span class="hl">wandered</span> around a famous art gallery looking at paintings by <span class="hl">well-known</span> artists and secretly thought they were dreadful? Well, perhaps you should check out the Museum of Bad Art. It's the only museum in the world that celebrates bad art in all its forms. From blue-faced people to surreal landscapes, nothing is too <span class="hl">bizarre</span> for this museum.</div>
+
+    <div class="article-p"><strong>Marikina Shoe Museum</strong> — Philippines<br>
+    If fashion is more your thing, you might want to visit the Marikina Shoe Museum. The <span class="hl">highlight</span> of this museum is Imelda Marcos's massive shoe collection. When her husband was President she famously owned over 3,000 pairs of shoes, and 749 pairs are now displayed in the museum.</div>
+
+    <div class="article-p"><strong>Cancun Underwater Museum</strong> — Mexico<br>
+    Another unusual day out is the Cancun Underwater Museum. It was created by an English artist named Jason deCaires Taylor, who placed about 300 life-size concrete sculptures of real people on the seabed. You need to be able to dive or snorkel to explore the museum. The sight of brightly-coloured tropical fish swimming between the sculptures, which <span class="hl">appear</span> to be frozen in time, is absolutely breathtaking.</div>
+
+    <div class="article-p"><strong>Miniatur Wunderland</strong> — Hamburg, Germany<br>
+    In the days before video games, boys used to spend their free time playing with toy trains. Take your grandad to visit the largest miniature railway museum in the world. It has 13,000 metres of track, 930 trains with over 14,000 <span class="hl">carriages</span>, 300,000 lights, 228,000 trees and 215,000 human figures. It's an impressive sight — and they haven't finished building it yet!</div>
+
+    <div class="article-p"><strong>Hamburger Museum</strong> — Daytona Beach, Florida<br>
+    Are you feeling a bit <span class="hl">peckish</span>? If so, the Hamburger Museum is the place for you. There are burger-shaped biscuit jars, clocks, hats, music boxes, pencil holders, children's toys, and much more. The museum was <span class="hl">set up</span> by a man called Hamburger Harry, who has collected over 1,000 burger-related items.</div>
+  </div>
+
+  <div class="ex-label"><div class="ex-num">3</div>Exercise 3 — Vocabulary in context</div>
+  <p class="instr"><span class="part">a</span> Look at the words in blue in the article. What parts of speech are they?</p>
+
+  <div class="coll-grid">
+    <div class="coll-row"><div class="coll-verb">wandered</div><div><div class="coll-phrase">walked around slowly (verb)</div><div class="coll-vi">🇻🇳 đi lang thang</div></div></div>
+    <div class="coll-row"><div class="coll-verb">well-known</div><div><div class="coll-phrase">famous (adjective)</div><div class="coll-vi">🇻🇳 nổi tiếng</div></div></div>
+    <div class="coll-row"><div class="coll-verb">bizarre</div><div><div class="coll-phrase">strange (adjective)</div><div class="coll-vi">🇻🇳 kỳ quặc</div></div></div>
+    <div class="coll-row"><div class="coll-verb">highlight</div><div><div class="coll-phrase">most interesting part (noun)</div><div class="coll-vi">🇻🇳 điểm nổi bật</div></div></div>
+    <div class="coll-row"><div class="coll-verb">appear</div><div><div class="coll-phrase">seem (verb)</div><div class="coll-vi">🇻🇳 có vẻ như</div></div></div>
+    <div class="coll-row"><div class="coll-verb">carriages</div><div><div class="coll-phrase">parts of a train that people travel in (noun)</div><div class="coll-vi">🇻🇳 toa tàu</div></div></div>
+    <div class="coll-row"><div class="coll-verb">peckish</div><div><div class="coll-phrase">a bit hungry (adjective)</div><div class="coll-vi">🇻🇳 hơi đói</div></div></div>
+    <div class="coll-row"><div class="coll-verb">set up</div><div><div class="coll-phrase">started (phrasal verb)</div><div class="coll-vi">🇻🇳 thành lập</div></div></div>
+  </div>
+
+  <div class="ex-label"><div class="ex-num">2</div>Comprehension questions</div>
+  <div class="qa-list">
+    <div class="qa-item"><div class="qa-q" onclick="toggleQA(this)"><span class="qa-qnum">1</span><span class="qa-qtext">In which two places can you see the Museum of Bad Art?</span><span class="qa-arrow">▶</span></div><div class="qa-ans">Massachusetts, USA and online.</div></div>
+    <div class="qa-item"><div class="qa-q" onclick="toggleQA(this)"><span class="qa-qnum">2</span><span class="qa-qtext">Who was Imelda Marcos and how many shoes did she have?</span><span class="qa-arrow">▶</span></div><div class="qa-ans">She was the wife of the President of the Philippines. She owned over 3,000 pairs of shoes.</div></div>
+    <div class="qa-item"><div class="qa-q" onclick="toggleQA(this)"><span class="qa-qnum">3</span><span class="qa-qtext">How can you explore the Cancun Underwater Museum?</span><span class="qa-arrow">▶</span></div><div class="qa-ans">You need to dive or snorkel, or hire a glass-bottomed boat.</div></div>
+    <div class="qa-item"><div class="qa-q" onclick="toggleQA(this)"><span class="qa-qnum">4</span><span class="qa-qtext">Why is the Miniatur Wunderland 'huge and tiny at the same time'?</span><span class="qa-arrow">▶</span></div><div class="qa-ans">It's a miniature railway museum, but it's the largest in the world with 13,000m of track.</div></div>
+    <div class="qa-item"><div class="qa-q" onclick="toggleQA(this)"><span class="qa-qnum">5</span><span class="qa-qtext">What can you see at the Hamburger Museum?</span><span class="qa-arrow">▶</span></div><div class="qa-ans">Burger-shaped items: biscuit jars, clocks, hats, music boxes, pencil holders, toys, and a burger-shaped bed.</div></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     TAB 3: LISTENING AND SPEAKING
+══════════════════════════════════════ -->
+<div class="tab-pane" id="tab-listening">
+  <div class="sec-heading">Listening and Speaking</div>
+  <div class="sec-sub">CD1 Track 36 — Free days out in London</div>
+
+  <div class="ex-label"><div class="ex-num">4</div>Exercise 4 — Pre-listening</div>
+  <p class="instr"><span class="part">a</span> Work in groups. Where can you go for a free day out in the town or city you're in now?</p>
+
+  <div class="ex-label"><div class="ex-num">4</div>Exercise 4 — Listen: CD1 Track 36</div>
+  <p class="instr"><span class="part">b</span> <strong>CD1 ▶ 36</strong> Listen to a radio programme about free days out in London. Put these things in the order they are discussed.</p>
+
+  <div class="audio-box">
+    <div class="audio-header">
+      <div class="cd-badge">CD1 ▶ Track 36</div>
+      <div><div class="audio-title">Free days out in London</div></div>
+    </div>
+    <div class="audio-controls">
+      <button class="play-btn" id="play-btn-36" onclick="toggleAudio('36')">▶</button>
+      <div class="audio-info">
+        <div class="audio-track">CD1 Track 36</div>
+        <div class="audio-note">⚠️ Cần file <code>cd1_track36.mp3</code></div>
+        <div class="prog-bar"><div class="prog-fill" id="prog-36"></div></div>
+      </div>
+    </div>
+    <audio id="audio-36" src="audio/cd1_track36.mp3" ontimeupdate="updateProg('36')" onended="audioEnd('36')"></audio>
+  </div>
+
+  <div class="fill-ex">
+    <div class="fill-ex-title">Put these in order</div>
+    <div style="display:grid;gap:6px">
+      <div class="fill-item"><div class="fill-item-num">1</div><div class="fill-item-body"><input class="fill-input" id="lorder1" style="max-width:200px" placeholder="First..."></div></div>
+      <div class="fill-item"><div class="fill-item-num">2</div><div class="fill-item-body"><input class="fill-input" id="lorder2" style="max-width:200px" placeholder="Second..."></div></div>
+      <div class="fill-item"><div class="fill-item-num">3</div><div class="fill-item-body"><input class="fill-input" id="lorder3" style="max-width:200px" placeholder="Third..."></div></div>
+      <div class="fill-item"><div class="fill-item-num">4</div><div class="fill-item-body"><input class="fill-input" id="lorder4" style="max-width:200px" placeholder="Fourth..."></div></div>
+      <div class="fill-item"><div class="fill-item-num">5</div><div class="fill-item-body"><input class="fill-input" id="lorder5" style="max-width:200px" placeholder="Fifth..."></div></div>
+      <div class="fill-item"><div class="fill-item-num">6</div><div class="fill-item-body"><input class="fill-input" id="lorder6" style="max-width:200px" placeholder="Sixth..."></div></div>
+      <div class="fill-item"><div class="fill-item-num">7</div><div class="fill-item-body"><input class="fill-input" id="lorder7" style="max-width:200px" placeholder="Seventh..."></div></div>
+    </div>
+    <button class="btn btn-outline" style="margin-top:12px" onclick="revealLOrder()">👁 Xem đáp án</button>
+    <div id="lorder-ans" style="display:none;margin-top:8px" class="tip-box">
+      <strong>Order:</strong> 1. museums and art galleries → 2. downloadable walking tours → 3. free music → 4. radio/TV programmes → 5. Houses of Parliament → 6. Old Bailey (trials) → 7. city farms
+    </div>
+  </div>
+
+  <div class="ex-label"><div class="ex-num">4</div>Exercise 4c — True or False?</div>
+  <p class="instr"><span class="part">c</span> Listen again. Tick the true sentences. Correct the false ones.</p>
+
+  <div class="fill-ex">
+    <div class="fill-item"><div class="fill-item-num">1</div><div class="fill-item-body"><div class="fill-sentence">It's free to visit the British Museum.</div><div class="fill-controls"><button class="check-btn" onclick="checkTF1()">T/F?</button><span id="tf1-fb" style="font-size:.78rem;color:var(--dim)"></span></div></div></div>
+    <div class="fill-item"><div class="fill-item-num">2</div><div class="fill-item-body"><div class="fill-sentence">You need to take a map when you follow a downloadable walking tour.</div><div class="fill-controls"><button class="check-btn" onclick="checkTF2()">T/F?</button><span id="tf2-fb" style="font-size:.78rem;color:var(--dim)"></span></div></div></div>
+    <div class="fill-item"><div class="fill-item-num">3</div><div class="fill-item-body"><div class="fill-sentence">You can see free opera at lunchtime on Sundays.</div><div class="fill-controls"><button class="check-btn" onclick="checkTF3()">T/F?</button><span id="tf3-fb" style="font-size:.78rem;color:var(--dim)"></span></div></div></div>
+    <div class="fill-item"><div class="fill-item-num">4</div><div class="fill-item-body"><div class="fill-sentence">You can get tickets online to see a TV programme being recorded.</div><div class="fill-controls"><button class="check-btn" onclick="checkTF4()">T/F?</button><span id="tf4-fb" style="font-size:.78rem;color:var(--dim)"></span></div></div></div>
+    <div class="fill-item"><div class="fill-item-num">5</div><div class="fill-item-body"><div class="fill-sentence">You can go on a tour of the Houses of Parliament for free.</div><div class="fill-controls"><button class="check-btn" onclick="checkTF5()">T/F?</button><span id="tf5-fb" style="font-size:.78rem;color:var(--dim)"></span></div></div></div>
+    <div class="fill-item"><div class="fill-item-num">6</div><div class="fill-item-body"><div class="fill-sentence">You need some ID to get into the Old Bailey.</div><div class="fill-controls"><button class="check-btn" onclick="checkTF6()">T/F?</button><span id="tf6-fb" style="font-size:.78rem;color:var(--dim)"></span></div></div></div>
+    <div class="fill-item"><div class="fill-item-num">7</div><div class="fill-item-body"><div class="fill-sentence">You can't feed the animals at city farms.</div><div class="fill-controls"><button class="check-btn" onclick="checkTF7()">T/F?</button><span id="tf7-fb" style="font-size:.78rem;color:var(--dim)"></span></div></div></div>
+  </div>
+
+  <div class="tip-box">
+    <strong>Linking sounds (/w/, /j/, /r/):</strong><br>
+    When a word ends in a vowel sound and the next word also starts with a vowel sound:<br>
+    • <em>To /w/ a lot of people, London appears to be /j/ a very expensive city.</em><br>
+    • <em>There /r/ are actually /j/ a lot of things you can do.</em>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     TAB 4: WORKBOOK
+══════════════════════════════════════ -->
+<div class="tab-pane" id="tab-workbook">
+  <div class="sec-heading">Workbook 4C</div>
+  <div class="sec-sub">Extra practice from Workbook pages 29–30</div>
+
+  <div class="lang-sum-tag">📓 VOCABULARY — Fill in the gaps</div>
+  <p class="instr">Fill in the gaps with these words: <strong>peckish · wander · carriage · appear · check out · well-known · highlight</strong></p>
+
+  <div class="fill-ex">
+    <div class="fill-item"><div class="fill-item-num">1</div><div class="fill-item-body"><div class="fill-sentence">I'm a bit <input class="fill-input" id="wb1" style="max-width:120px" placeholder="..."> — I think I'll have a sandwich.</div></div></div>
+    <div class="fill-item"><div class="fill-item-num">2</div><div class="fill-item-body"><div class="fill-sentence">That actor is very <input class="fill-input" id="wb2" style="max-width:120px" placeholder="...">.</div></div></div>
+    <div class="fill-item"><div class="fill-item-num">3</div><div class="fill-item-body"><div class="fill-sentence">I often <input class="fill-input" id="wb3" style="max-width:120px" placeholder="..."> around the park in my lunch break.</div></div></div>
+    <div class="fill-item"><div class="fill-item-num">4</div><div class="fill-item-body"><div class="fill-sentence">The <input class="fill-input" id="wb4" style="max-width:120px" placeholder="..."> of our trip was a visit to the Taj Mahal.</div></div></div>
+    <div class="fill-item"><div class="fill-item-num">5</div><div class="fill-item-body"><div class="fill-sentence">You really must <input class="fill-input" id="wb5" style="max-width:120px" placeholder="..."> that new exhibition.</div></div></div>
+    <div class="fill-item"><div class="fill-item-num">6</div><div class="fill-item-body"><div class="fill-sentence">We <input class="fill-input" id="wb6" style="max-width:120px" placeholder="..."> to be lost.</div></div></div>
+    <div class="fill-item"><div class="fill-item-num">7</div><div class="fill-item-body"><div class="fill-sentence">There weren't many people in our <input class="fill-input" id="wb7" style="max-width:120px" placeholder="...">.</div></div></div>
+    <div style="display:flex;gap:8px;margin-top:12px">
+      <button class="btn btn-primary" onclick="checkWB()">✅ Kiểm tra</button>
+      <button class="btn btn-outline" onclick="revealWB()">👁 Đáp án</button>
+    </div>
+    <div class="score-box" id="wb-score"></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     TAB 5: LANGUAGE SUMMARY
+══════════════════════════════════════ -->
+<div class="tab-pane" id="tab-langsummary">
+  <div class="sec-heading">Language Summary 4C</div>
+  <div class="sec-sub">VOCABULARY 4.3 — Guessing meaning from context</div>
+
+  <div class="lang-sum-tag">📗 VOCABULARY 4.3 — Words from the article</div>
+
+  <div class="coll-grid">
+    <div class="coll-row"><div class="coll-verb">wandered</div><div><div class="coll-phrase">walked around slowly</div><div class="coll-vi">🇻🇳 đi lang thang</div><div class="coll-ex">"Have you ever wandered around an art gallery?"</div></div></div>
+    <div class="coll-row"><div class="coll-verb">well-known</div><div><div class="coll-phrase">famous</div><div class="coll-vi">🇻🇳 nổi tiếng</div><div class="coll-ex">"We looked at paintings by well-known artists."</div></div></div>
+    <div class="coll-row"><div class="coll-verb">bizarre</div><div><div class="coll-phrase">strange</div><div class="coll-vi">🇻🇳 kỳ quặc</div><div class="coll-ex">"Nothing is too bizarre for this museum."</div></div></div>
+    <div class="coll-row"><div class="coll-verb">highlight</div><div><div class="coll-phrase">most interesting part</div><div class="coll-vi">🇻🇳 điểm nổi bật</div><div class="coll-ex">"The highlight of this museum is the shoe collection."</div></div></div>
+    <div class="coll-row"><div class="coll-verb">appear</div><div><div class="coll-phrase">seem</div><div class="coll-vi">🇻🇳 có vẻ như</div><div class="coll-ex">"The sculptures appear to be frozen in time."</div></div></div>
+    <div class="coll-row"><div class="coll-verb">carriages</div><div><div class="coll-phrase">parts of a train that people travel in</div><div class="coll-vi">🇻🇳 toa tàu</div><div class="coll-ex">"930 trains with over 14,000 carriages."</div></div></div>
+    <div class="coll-row"><div class="coll-verb">peckish</div><div><div class="coll-phrase">a bit hungry</div><div class="coll-vi">🇻🇳 hơi đói</div><div class="coll-ex">"Are you feeling a bit peckish?"</div></div></div>
+    <div class="coll-row"><div class="coll-verb">check out</div><div><div class="coll-phrase">go to a place to see what it is like</div><div class="coll-vi">🇻🇳 đến xem thử</div><div class="coll-ex">"You should check out the Museum of Bad Art."</div></div></div>
+    <div class="coll-row"><div class="coll-verb">massive</div><div><div class="coll-phrase">very big</div><div class="coll-vi">🇻🇳 to lớn</div><div class="coll-ex">"Imelda Marcos's massive shoe collection."</div></div></div>
+    <div class="coll-row"><div class="coll-verb">displayed</div><div><div class="coll-phrase">organised so they can be seen by the public</div><div class="coll-vi">🇻🇳 được trưng bày</div><div class="coll-ex">"749 pairs are now displayed in the museum."</div></div></div>
+    <div class="coll-row"><div class="coll-verb">sculptures</div><div><div class="coll-phrase">pieces of art made of stone, wood, metal or concrete</div><div class="coll-vi">🇻🇳 tác phẩm điêu khắc</div><div class="coll-ex">"300 life-size concrete sculptures of real people."</div></div></div>
+    <div class="coll-row"><div class="coll-verb">breathtaking</div><div><div class="coll-phrase">extremely exciting, beautiful or surprising</div><div class="coll-vi">🇻🇳 ngoạn mục, đẹp đến nghẹt thở</div><div class="coll-ex">"The sight is absolutely breathtaking."</div></div></div>
+    <div class="coll-row"><div class="coll-verb">miniature</div><div><div class="coll-phrase">very small</div><div class="coll-vi">🇻🇳 thu nhỏ</div><div class="coll-ex">"The largest miniature railway museum."</div></div></div>
+    <div class="coll-row"><div class="coll-verb">track</div><div><div class="coll-phrase">metal lines that a train travels on</div><div class="coll-vi">🇻🇳 đường ray</div><div class="coll-ex">"13,000 metres of track."</div></div></div>
+    <div class="coll-row"><div class="coll-verb">impressive</div><div><div class="coll-phrase">admired and respected</div><div class="coll-vi">🇻🇳 ấn tượng</div><div class="coll-ex">"It's an impressive sight."</div></div></div>
+    <div class="coll-row"><div class="coll-verb">set up</div><div><div class="coll-phrase">started (a business, museum, etc.)</div><div class="coll-vi">🇻🇳 thành lập</div><div class="coll-ex">"The museum was set up by Hamburger Harry."</div></div></div>
+  </div>
+
+  <div class="tip-box">
+    <strong>💡 Guessing meaning from context:</strong><br>
+    • Decide which part of speech it is (noun, verb, adjective)<br>
+    • Understand the rest of the sentence and the general meaning<br>
+    • Recognise a similar word in your language or another language you know<br>
+    • Be careful of 'false friends' in your language!
+  </div>
+</div>
+
+</div><!-- /page-content -->
+
+<script>
+function showTab(id){
+  document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tnav-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+  const tabs=['vocab','reading','listening','workbook','langsummary'];
+  const idx=tabs.indexOf(id);
+  document.querySelectorAll('.tnav-btn')[idx]?.classList.add('active');
+}
+function toggleTheme(){const t=document.documentElement.getAttribute('data-theme')==='light'?'dark':'light';document.documentElement.setAttribute('data-theme',t==='light'?'light':'');document.getElementById('theme-btn').textContent=t==='light'?'🌙':'☀️';localStorage.setItem('f2f_4c_theme',t);}
+function markDone(){showToast('✅ 4C Unusual days out đã hoàn thành!');}
+function showToast(msg){let t=document.getElementById('toast');if(!t){t=document.createElement('div');t.id='toast';t.style.cssText='position:fixed;bottom:20px;right:20px;z-index:999;background:var(--bg2);border:1px solid var(--border2);padding:10px 18px;border-radius:8px;font-size:.82rem;box-shadow:0 4px 20px rgba(0,0,0,.3);transition:opacity .3s';document.body.appendChild(t);}t.textContent=msg;t.style.opacity='1';clearTimeout(showToast._t);showToast._t=setTimeout(()=>t.style.opacity='0',2400);}
+function toggleQA(btn){const item=btn.closest('.qa-item');item.classList.toggle('open');}
+
+const audioStates={};
+function toggleAudio(id){
+  const audio=document.getElementById('audio-'+id);
+  const btn=document.getElementById('play-btn-'+id);
+  if(!audio||!btn)return;
+  if(audioStates[id]){audio.pause();btn.textContent='▶';audioStates[id]=false;}
+  else{audio.play().catch(()=>showToast('⚠️ Cần file audio CD1 Track '+id));btn.textContent='⏸';audioStates[id]=true;}
+}
+function updateProg(id){const audio=document.getElementById('audio-'+id);const fill=document.getElementById('prog-'+id);if(audio?.duration&&fill)fill.style.width=(audio.currentTime/audio.duration*100)+'%';}
+function audioEnd(id){const btn=document.getElementById('play-btn-'+id);if(btn)btn.textContent='▶';audioStates[id]=false;}
+
+function revealLOrder(){
+  document.getElementById('lorder-ans').style.display='block';
+}
+
+function checkTF1(){
+  document.getElementById('tf1-fb').textContent='✅ True — The British Museum is free.';
+  document.getElementById('tf1-fb').style.color='var(--green)';
+}
+function checkTF2(){
+  document.getElementById('tf2-fb').textContent='✅ True — All tours come with a downloadable map.';
+  document.getElementById('tf2-fb').style.color='var(--green)';
+}
+function checkTF3(){
+  document.getElementById('tf3-fb').textContent='✅ True — Free opera at the Royal Opera House on Monday lunchtimes.';
+  document.getElementById('tf3-fb').style.color='var(--green)';
+}
+function checkTF4(){
+  document.getElementById('tf4-fb').textContent='✅ True — You can get free tickets online.';
+  document.getElementById('tf4-fb').style.color='var(--green)';
+}
+function checkTF5(){
+  document.getElementById('tf5-fb').textContent='✅ True — Tours are free.';
+  document.getElementById('tf5-fb').style.color='var(--green)';
+}
+function checkTF6(){
+  document.getElementById('tf6-fb').textContent='✅ True — You need ID to get into the Old Bailey.';
+  document.getElementById('tf6-fb').style.color='var(--green)';
+}
+function checkTF7(){
+  document.getElementById('tf7-fb').textContent='✅ True — You can feed animals at city farms.';
+  document.getElementById('tf7-fb').style.color='var(--green)';
+}
+
+function checkWB(){
+  const ans={wb1:'peckish',wb2:'well-known',wb3:'wander',wb4:'highlight',wb5:'check out',wb6:'appear',wb7:'carriage'};
+  let c=0,total=7;
+  Object.entries(ans).forEach(([id,val])=>{
+    const inp=document.getElementById(id);
+    if(inp){
+      const ok=inp.value.trim().toLowerCase().replace(/\s+/g,'')===val.toLowerCase().replace(/\s+/g,'');
+      inp.className='fill-input '+(ok?'correct':'wrong');
+      if(ok)c++;
+    }
+  });
+  const sc=document.getElementById('wb-score');
+  sc.innerHTML=`<div class="score-n">${c}/${total}</div><div class="score-msg">${c===total?'🎉 All correct!':'Check the workbook answers.'}</div>`;
+  sc.className='score-box show';
+}
+function revealWB(){
+  const ans={wb1:'peckish',wb2:'well-known',wb3:'wander',wb4:'highlight',wb5:'check out',wb6:'appear',wb7:'carriage'};
+  Object.entries(ans).forEach(([id,val])=>{const inp=document.getElementById(id);if(inp){inp.value=val;inp.className='fill-input correct';}});
+}
+
+document.addEventListener('DOMContentLoaded',()=>{
+  const t=localStorage.getItem('f2f_4c_theme')||'dark';
+  if(t==='light'){document.documentElement.setAttribute('data-theme','light');document.getElementById('theme-btn').textContent='🌙';}
+});
+</script>
+</body>
+</html>
