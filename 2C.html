@@ -1,0 +1,1421 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2C Sleepless nights — face2face Intermediate</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap');
+:root{
+  --bg:#0D1117;--bg2:#161B22;--bg3:#21262D;--bg4:#2D333B;
+  --border:#30363D;--border2:#3D444D;
+  --text:#E6EDF3;--dim:#8B949E;--muted:#484F58;
+  --blue:#2563EB;--blue-l:rgba(37,99,235,.15);
+  --green:#10B981;--green-l:rgba(16,185,129,.12);
+  --orange:#F59E0B;--orange-l:rgba(245,158,11,.12);
+  --red:#EF4444;--red-l:rgba(239,68,68,.12);
+  --teal:#14B8A6;--purple:#8B5CF6;--purple-l:rgba(139,92,246,.12);
+  --indigo:#6366F1;--indigo-l:rgba(99,102,241,.15);
+  --r:10px;--r2:6px;--tr:.18s ease;
+}
+[data-theme=light]{--bg:#F8FAFC;--bg2:#fff;--bg3:#F1F5F9;--bg4:#E2E8F0;--border:#E2E8F0;--border2:#CBD5E1;--text:#0F172A;--dim:#475569;--muted:#94A3B8;--blue:#1D4ED8;--blue-l:rgba(29,78,216,.1);--indigo:#4338CA;--indigo-l:rgba(67,56,202,.1)}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);font-size:15px;line-height:1.6}
+a{color:inherit;text-decoration:none}button{cursor:pointer;border:none;background:none;font-family:inherit}input,textarea,select{font-family:inherit}
+
+/* TOP BAR */
+.top-bar{background:var(--bg2);border-bottom:1px solid var(--border);padding:10px 20px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:50;flex-wrap:wrap}
+.back-btn{display:flex;align-items:center;gap:6px;padding:6px 14px;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);font-size:.82rem;color:var(--dim);cursor:pointer;transition:all var(--tr)}
+.back-btn:hover{border-color:var(--indigo);color:var(--indigo)}
+.lesson-badge{padding:4px 12px;background:var(--indigo-l);border:1px solid rgba(99,102,241,.3);border-radius:4px;font-size:.75rem;font-weight:700;color:#A5B4FC;letter-spacing:.05em}
+.lesson-title-h{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700}
+.top-actions{margin-left:auto;display:flex;gap:8px}
+.theme-btn{width:34px;height:34px;display:flex;align-items:center;justify-content:center;border-radius:var(--r2);background:var(--bg3);border:1px solid var(--border);cursor:pointer;font-size:.95rem;color:var(--dim);transition:all var(--tr)}
+.theme-btn:hover{border-color:var(--indigo);color:var(--indigo)}
+.progress-btn{padding:6px 14px;background:var(--indigo);border-radius:var(--r2);font-size:.78rem;font-weight:600;color:#fff;cursor:pointer;border:none;transition:all var(--tr)}
+.progress-btn:hover{background:#4338CA}
+
+/* QUICK REVIEW */
+.quick-review{background:linear-gradient(135deg,#1e1f5e,#1a1a4a);border:1px solid #2d2f7c;border-radius:var(--r);padding:14px 20px;margin:18px 24px;display:flex;gap:12px;align-items:flex-start}
+.qr-badge{background:var(--indigo);color:#fff;padding:3px 10px;border-radius:4px;font-size:.72rem;font-weight:700;white-space:nowrap;flex-shrink:0;margin-top:2px}
+.qr-text{font-size:.84rem;line-height:1.65;color:#CBD5E1}
+.qr-text strong{color:#fff}.qr-text em{font-style:italic;color:#A5B4FC}
+
+/* TAB NAV */
+.tab-nav{display:flex;gap:2px;border-bottom:1px solid var(--border);overflow-x:auto;scrollbar-width:none;position:sticky;top:57px;background:var(--bg);z-index:40;padding:0 24px}
+.tab-nav::-webkit-scrollbar{display:none}
+.tnav-btn{display:flex;align-items:center;gap:6px;padding:11px 16px;font-size:.82rem;font-weight:500;color:var(--dim);white-space:nowrap;border-bottom:2px solid transparent;margin-bottom:-1px;cursor:pointer;transition:all var(--tr);background:none;border-top:none;border-left:none;border-right:none;font-family:inherit}
+.tnav-btn:hover{color:var(--text)}.tnav-btn.active{color:var(--indigo);border-bottom-color:var(--indigo)}
+
+/* PAGE CONTENT */
+.page-content{max-width:920px;margin:0 auto;padding:0 24px 48px}
+.tab-pane{display:none;padding-top:28px}
+.tab-pane.active{display:block;animation:fadeUp .22s ease}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
+/* SECTION HEADINGS */
+.sec-heading{font-size:1.05rem;font-weight:700;margin-bottom:4px;display:flex;align-items:center;gap:8px}
+.sec-sub{font-size:.82rem;color:var(--dim);margin-bottom:16px}
+.exercise-label{display:inline-flex;align-items:center;gap:8px;font-size:.9rem;font-weight:600;margin-bottom:12px;color:var(--text)}
+.exercise-num{width:28px;height:28px;background:var(--indigo);color:#fff;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:.78rem;font-weight:700;flex-shrink:0}
+.instruction{font-size:.88rem;color:var(--text);line-height:1.65;margin-bottom:14px}
+.instruction em{font-style:italic;color:var(--teal)}
+.divider{height:1px;background:var(--border);margin:24px 0}
+
+/* VOCAB CARDS */
+.vocab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px;margin-bottom:20px}
+.vocab-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:14px 16px;transition:all var(--tr)}
+.vocab-card:hover{border-color:var(--indigo);transform:translateY(-1px)}
+.vocab-word{font-size:.95rem;font-weight:700;color:var(--text);margin-bottom:2px}
+.vocab-ipa{font-family:'Courier New',monospace;font-size:.78rem;color:var(--teal);margin-bottom:4px}
+.vocab-pos{font-size:.72rem;color:var(--indigo);font-weight:600;text-transform:uppercase;margin-bottom:6px}
+.vocab-def{font-size:.82rem;color:var(--dim);line-height:1.5;margin-bottom:4px}
+.vocab-vi{font-size:.8rem;color:var(--orange);font-style:italic}
+.vocab-ex{font-size:.78rem;color:var(--muted);font-style:italic;margin-top:4px;padding-top:4px;border-top:1px dashed var(--border)}
+
+/* CATEGORY BOX */
+.cat-box{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:18px;margin-bottom:16px}
+.cat-title{font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px}
+.word-chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{padding:5px 14px;border-radius:20px;font-size:.83rem;font-weight:500;cursor:default}
+.chip-indigo{background:var(--indigo-l);border:1px solid rgba(99,102,241,.3);color:#A5B4FC}
+.chip-teal{background:rgba(20,184,166,.12);border:1px solid rgba(20,184,166,.3);color:var(--teal)}
+.chip-orange{background:var(--orange-l);border:1px solid rgba(245,158,11,.3);color:var(--orange)}
+
+/* ADJECTIVE SCALE */
+.adj-scale-wrap{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:20px;margin-bottom:16px}
+.adj-scale-title{font-size:.85rem;font-weight:700;margin-bottom:14px;color:var(--text)}
+.adj-row{display:grid;grid-template-columns:1fr auto 1fr;gap:12px;align-items:center;padding:8px 0;border-bottom:1px dashed var(--border);font-size:.85rem}
+.adj-row:last-child{border-bottom:none}
+.adj-gradable{color:var(--text);font-weight:500}
+.adj-arrow{color:var(--muted);font-size:.75rem;text-align:center}
+.adj-strong{color:var(--indigo);font-weight:700}
+.adj-vi{font-size:.75rem;color:var(--dim);font-style:italic}
+
+/* GRAMMAR BOX */
+.grammar-tag{display:inline-flex;align-items:center;gap:6px;padding:3px 12px;background:var(--orange-l);border:1px solid rgba(245,158,11,.3);border-radius:4px;font-size:.72rem;font-weight:700;color:var(--orange);text-transform:uppercase;letter-spacing:.06em;margin-bottom:12px}
+.grammar-box{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:20px;margin-bottom:16px}
+.grammar-rule{display:flex;gap:10px;padding:9px 0;border-bottom:1px dashed var(--border);font-size:.85rem;line-height:1.6}
+.grammar-rule:last-child{border-bottom:none}
+.grammar-bullet{color:var(--indigo);flex-shrink:0;font-size:.7rem;margin-top:6px}
+.example-box{font-family:'Courier New',monospace;font-size:.83rem;color:#A5B4FC;background:var(--bg);padding:9px 14px;border-radius:var(--r2);margin:8px 0;border:1px solid var(--border);line-height:1.6}
+.note-box{background:var(--orange-l);border:1px solid rgba(245,158,11,.25);border-radius:var(--r2);padding:10px 14px;font-size:.82rem;line-height:1.6;margin-top:10px}
+.note-box strong{color:var(--orange)}
+.wrong-box{background:var(--red-l);border:1px solid rgba(239,68,68,.25);border-radius:var(--r2);padding:8px 12px;font-size:.83rem;margin-bottom:6px}
+.right-box{background:var(--green-l);border:1px solid rgba(16,185,129,.25);border-radius:var(--r2);padding:8px 12px;font-size:.83rem;margin-bottom:6px}
+
+/* FILL EXERCISE */
+.fill-exercise{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:20px;margin-bottom:16px}
+.fill-item{display:flex;align-items:flex-start;gap:12px;padding:10px 0;border-bottom:1px dashed var(--border)}
+.fill-item:last-child{border-bottom:none}
+.fill-item-num{width:24px;height:24px;border-radius:50%;background:var(--bg3);display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:700;color:var(--muted);flex-shrink:0;margin-top:2px}
+.fill-item-content{flex:1}
+.fill-sentence{font-size:.88rem;margin-bottom:8px;line-height:1.6}
+.fill-input{height:34px;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);padding:0 12px;color:var(--text);font-size:.85rem;outline:none;min-width:120px;transition:border-color var(--tr)}
+.fill-input:focus{border-color:var(--indigo)}
+.fill-input.correct{border-color:var(--green);background:var(--green-l)}
+.fill-input.wrong{border-color:var(--red);background:var(--red-l)}
+.check-btn{padding:6px 14px;background:var(--indigo);color:#fff;border:none;border-radius:var(--r2);font-size:.78rem;font-weight:600;cursor:pointer;transition:all var(--tr);margin-left:6px}
+.check-btn:hover{background:#4338CA}
+.reveal-btn{padding:6px 12px;background:var(--bg3);border:1px solid var(--border);color:var(--dim);border-radius:var(--r2);font-size:.78rem;cursor:pointer;transition:all var(--tr);margin-left:4px}
+.reveal-btn:hover{border-color:var(--indigo);color:var(--indigo)}
+.fill-feedback{margin-top:6px;font-size:.78rem;padding:5px 10px;border-radius:var(--r2);display:none}
+.fill-feedback.show-ok{background:var(--green-l);color:var(--green);display:block}
+.fill-feedback.show-err{background:var(--red-l);color:var(--red);display:block}
+.fill-answer{margin-top:5px;font-size:.8rem;color:var(--teal);display:none;font-style:italic}
+
+/* ARTICLE */
+.article-box{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:24px;margin-bottom:16px}
+.article-label{font-size:.72rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px}
+.article-title{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;line-height:1.3;margin-bottom:12px;color:var(--text)}
+.article-meta{font-size:.75rem;color:var(--muted);margin-bottom:18px;font-style:italic}
+.article-body{font-size:.88rem;line-height:1.8;color:var(--text)}
+.article-body p{margin-bottom:14px}
+.article-body strong{color:var(--indigo)}
+.article-body .subheading{font-weight:700;color:var(--text);font-size:.9rem;margin-bottom:6px;margin-top:18px}
+.article-highlight{background:var(--indigo-l);border-left:3px solid var(--indigo);padding:12px 16px;border-radius:0 var(--r2) var(--r2) 0;margin:14px 0;font-size:.85rem;font-style:italic;color:#C7D2FE}
+.box-intro{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);padding:12px 16px;font-size:.85rem;line-height:1.7;margin-bottom:16px;color:var(--dim)}
+
+/* MCQ */
+.mcq-list{display:flex;flex-direction:column;gap:12px;margin-bottom:20px}
+.mcq-item{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:16px}
+.mcq-q{font-size:.88rem;font-weight:600;margin-bottom:10px;color:var(--text)}
+.mcq-opts{display:flex;flex-direction:column;gap:6px}
+.mcq-opt{display:flex;align-items:center;gap:10px;padding:8px 12px;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);cursor:pointer;font-size:.84rem;transition:all var(--tr)}
+.mcq-opt:hover{border-color:var(--indigo);background:var(--indigo-l)}
+.mcq-opt.selected{border-color:var(--indigo);background:var(--indigo-l)}
+.mcq-opt.correct{border-color:var(--green);background:var(--green-l)}
+.mcq-opt.wrong{border-color:var(--red);background:var(--red-l)}
+.opt-dot{width:18px;height:18px;border-radius:50%;border:2px solid var(--border);flex-shrink:0;transition:all var(--tr)}
+.mcq-opt.correct .opt-dot{background:var(--green);border-color:var(--green)}
+.mcq-opt.wrong .opt-dot{background:var(--red);border-color:var(--red)}
+.mcq-opt.selected .opt-dot{background:var(--indigo);border-color:var(--indigo)}
+
+/* AUDIO */
+.audio-player-box{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:20px;margin-bottom:16px}
+.audio-header{display:flex;align-items:center;gap:14px;margin-bottom:16px}
+.cd-badge{padding:4px 12px;background:var(--orange-l);border:1px solid rgba(245,158,11,.3);border-radius:4px;font-size:.75rem;font-weight:700;color:var(--orange)}
+.audio-title{font-size:.9rem;font-weight:600}
+.audio-controls{display:flex;align-items:center;gap:12px;padding:12px 16px;background:var(--bg3);border-radius:var(--r2);margin-bottom:14px}
+.play-btn{width:42px;height:42px;border-radius:50%;background:var(--indigo);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;border:none;font-size:1rem;flex-shrink:0;transition:all var(--tr)}
+.play-btn:hover{background:#4338CA;transform:scale(1.05)}
+.audio-track-info{flex:1}
+.audio-track-name{font-size:.83rem;font-weight:500;margin-bottom:2px}
+.audio-note{font-size:.75rem;color:var(--muted)}
+
+/* TRANSCRIPT */
+.transcript-box{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);padding:16px;margin-top:12px}
+.transcript-toggle{display:flex;align-items:center;gap:8px;font-size:.82rem;font-weight:600;color:var(--dim);cursor:pointer;margin-bottom:0;user-select:none}
+.transcript-toggle:hover{color:var(--indigo)}
+.transcript-content{display:none;margin-top:14px;font-size:.84rem;line-height:1.75;color:var(--text)}
+.transcript-content.show{display:block}
+.transcript-content p{margin-bottom:10px}
+.speaker{font-weight:700;color:var(--indigo);margin-right:6px}
+
+/* T/F/NK */
+.tfnk-list{display:flex;flex-direction:column;gap:10px;margin-bottom:20px}
+.tfnk-item{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r2);padding:14px}
+.tfnk-q{font-size:.87rem;margin-bottom:10px;color:var(--text)}
+.tfnk-opts{display:flex;gap:8px}
+.tfnk-opt{padding:5px 14px;border-radius:4px;font-size:.78rem;font-weight:600;cursor:pointer;border:1px solid var(--border);background:var(--bg3);color:var(--dim);transition:all var(--tr)}
+.tfnk-opt:hover{border-color:var(--indigo);color:var(--indigo)}
+.tfnk-opt.selected-t,.tfnk-opt.correct-t{background:var(--green-l);border-color:var(--green);color:var(--green)}
+.tfnk-opt.selected-f,.tfnk-opt.correct-f{background:var(--red-l);border-color:var(--red);color:var(--red)}
+.tfnk-opt.selected-nk{background:var(--indigo-l);border-color:var(--indigo);color:#A5B4FC}
+.tfnk-fb{font-size:.78rem;margin-top:6px;color:var(--dim);display:none;font-style:italic}
+.tfnk-fb.show{display:block}
+
+/* QA ACCORDION */
+.qa-list{display:flex;flex-direction:column;gap:8px;margin-bottom:20px}
+.qa-item{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r2);overflow:hidden}
+.qa-question{display:flex;align-items:center;gap:10px;padding:11px 14px;cursor:pointer;transition:background var(--tr)}
+.qa-question:hover{background:var(--bg3)}
+.qa-qnum{width:24px;height:24px;border-radius:50%;background:var(--indigo-l);color:var(--indigo);display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:700;flex-shrink:0}
+.qa-qtext{font-size:.85rem;flex:1}
+.qa-arrow{font-size:.7rem;color:var(--muted);transition:transform var(--tr);flex-shrink:0}
+.qa-item.open .qa-arrow{transform:rotate(90deg)}
+.qa-answer{display:none;padding:0 14px 12px 48px;font-size:.83rem;color:var(--teal);font-style:italic;line-height:1.6}
+.qa-item.open .qa-answer{display:block}
+
+/* SPEAKING */
+.speaking-box{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:18px;margin-bottom:20px}
+.speaking-title{font-size:.85rem;font-weight:600;margin-bottom:12px;color:var(--text);display:flex;align-items:center;gap:8px}
+.disc-q{display:flex;gap:10px;padding:8px 0;border-bottom:1px solid var(--border);font-size:.85rem}
+.disc-q:last-child{border-bottom:none}
+.disc-q-num{font-size:.75rem;font-weight:700;color:var(--indigo);min-width:20px;margin-top:2px}
+.bubble{background:var(--bg3);border:1px solid var(--border);border-radius:12px;padding:9px 14px;font-size:.85rem;line-height:1.5;margin-bottom:8px}
+.useful-phrases{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.phrase-chip{padding:5px 14px;background:var(--indigo-l);border:1px solid rgba(99,102,241,.3);border-radius:20px;font-size:.81rem;color:#A5B4FC;font-style:italic}
+
+/* BUTTONS */
+.btn{display:inline-flex;align-items:center;gap:7px;padding:8px 18px;border-radius:var(--r2);font-size:.83rem;font-weight:500;cursor:pointer;border:none;font-family:inherit;transition:all var(--tr)}
+.btn-primary{background:var(--indigo);color:#fff}.btn-primary:hover{background:#4338CA;transform:translateY(-1px)}
+.btn-outline{background:var(--bg3);border:1px solid var(--border);color:var(--dim)}.btn-outline:hover{border-color:var(--indigo);color:var(--indigo)}
+.score-box{display:none;text-align:center;padding:20px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);margin-top:16px}
+.score-box.show{display:block}
+.score-num{font-size:2.2rem;font-weight:700;color:var(--indigo)}
+.score-msg{color:var(--dim);font-size:.85rem;margin-top:4px}
+
+/* WORKBOOK SECTION */
+.wb-section{background:var(--bg2);border:1px solid rgba(99,102,241,.3);border-radius:var(--r);padding:20px;margin-bottom:16px}
+.wb-tag{display:inline-flex;align-items:center;gap:6px;padding:3px 12px;background:var(--indigo-l);border:1px solid rgba(99,102,241,.3);border-radius:4px;font-size:.72rem;font-weight:700;color:#A5B4FC;text-transform:uppercase;letter-spacing:.06em;margin-bottom:12px}
+
+/* PRONUNCIATION */
+.pron-box{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:20px;margin-bottom:16px}
+.pron-title{font-size:.9rem;font-weight:700;margin-bottom:4px}
+.pron-sub{font-size:.82rem;color:var(--dim);margin-bottom:14px}
+.pron-table{display:grid;gap:8px}
+.pron-row{display:grid;grid-template-columns:180px 180px 1fr;gap:12px;align-items:center;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);padding:9px 14px}
+.pron-word{font-size:.88rem;font-weight:600;color:var(--text)}
+.pron-spoken{font-family:'Courier New',monospace;font-size:.84rem;color:var(--teal)}
+.pron-type{font-size:.78rem;color:var(--indigo)}
+
+/* HELP WITH GRAMMAR */
+.hwg-box{background:linear-gradient(135deg,rgba(99,102,241,.08),rgba(139,92,246,.06));border:1px solid rgba(99,102,241,.25);border-radius:var(--r);padding:20px;margin-bottom:16px}
+.hwg-label{font-size:.7rem;font-weight:700;color:var(--indigo);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px}
+.hwg-title{font-size:1rem;font-weight:700;margin-bottom:14px}
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="top-bar">
+  <button class="back-btn" onclick="history.back()">← Quay lại</button>
+  <span class="lesson-badge">2C</span>
+  <span class="lesson-title-h">Sleepless nights</span>
+  <div class="top-actions">
+    <button class="theme-btn" onclick="toggleTheme()" title="Đổi giao diện">☀</button>
+    <button class="progress-btn" onclick="alert('Tính năng lưu tiến độ sẽ sớm ra mắt!')">✓ Lưu tiến độ</button>
+  </div>
+</div>
+
+<!-- QUICK REVIEW -->
+<div class="quick-review">
+  <span class="qr-badge">ÔN BÀI 2B</span>
+  <div class="qr-text">
+    Nhắc lại bài 2B: <strong>Present Perfect Simple vs. Continuous</strong> — Dùng <em>Present Perfect Simple</em> khi nói về kết quả hoàn thành (<em>I've read 50 pages</em>); dùng <em>Continuous</em> khi nhấn mạnh hoạt động đang/vừa diễn ra (<em>I've been reading all day</em>). Từ vựng: <strong>relationships</strong> — <em>get on well with, fall out with, keep in touch...</em>
+  </div>
+</div>
+
+<!-- TAB NAV -->
+<nav class="tab-nav">
+  <button class="tnav-btn active" onclick="showTab('vocab',this)">📚 Từ vựng</button>
+  <button class="tnav-btn" onclick="showTab('reading',this)">📰 Đọc hiểu</button>
+  <button class="tnav-btn" onclick="showTab('grammar',this)">⚙ Ngữ pháp</button>
+  <button class="tnav-btn" onclick="showTab('pronunciation',this)">🔊 Phát âm</button>
+  <button class="tnav-btn" onclick="showTab('speaking',this)">💬 Nói</button>
+  <button class="tnav-btn" onclick="showTab('workbook',this)">📝 Bài tập</button>
+</nav>
+
+<div class="page-content">
+
+<!-- ============================================================ -->
+<!-- TAB 1: VOCABULARY -->
+<!-- ============================================================ -->
+<div id="tab-vocab" class="tab-pane active">
+
+  <div class="sec-heading">📚 Từ vựng chủ đề Sleep</div>
+  <div class="sec-sub">Student Book p18 · Vocabulary: Sleep | Gradable & Strong Adjectives</div>
+
+  <!-- Sleep vocabulary -->
+  <div class="cat-box">
+    <div class="cat-title">🌙 Collocation: Sleep</div>
+    <div class="vocab-grid" style="grid-template-columns:repeat(auto-fill,minmax(280px,1fr))">
+
+      <div class="vocab-card">
+        <div class="vocab-word">sleep well / badly</div>
+        <div class="vocab-ipa">/sliːp wɛl/ · /sliːp ˈbædli/</div>
+        <div class="vocab-def">ngủ ngon / ngủ không ngon</div>
+        <div class="vocab-vi">🇻🇳 ngủ tốt / ngủ kém</div>
+        <div class="vocab-ex">I slept badly last night because of the noise.</div>
+      </div>
+
+      <div class="vocab-card">
+        <div class="vocab-word">have a good / bad night</div>
+        <div class="vocab-ipa">/hæv ə ɡʊd naɪt/</div>
+        <div class="vocab-def">có một đêm ngủ ngon / kém</div>
+        <div class="vocab-vi">🇻🇳 có đêm ngủ tốt / xấu</div>
+        <div class="vocab-ex">Did you have a good night? — Not really, I woke up three times.</div>
+      </div>
+
+      <div class="vocab-card">
+        <div class="vocab-word">fall asleep</div>
+        <div class="vocab-ipa">/fɔːl əˈsliːp/</div>
+        <div class="vocab-def">to begin sleeping</div>
+        <div class="vocab-vi">🇻🇳 thiếp ngủ / ngủ thiếp đi</div>
+        <div class="vocab-ex">I couldn't fall asleep until 3 a.m.</div>
+      </div>
+
+      <div class="vocab-card">
+        <div class="vocab-word">be / fall fast asleep</div>
+        <div class="vocab-ipa">/fɑːst əˈsliːp/</div>
+        <div class="vocab-def">to be deeply asleep</div>
+        <div class="vocab-vi">🇻🇳 ngủ say / ngủ sâu</div>
+        <div class="vocab-ex">The children were fast asleep by 8 p.m.</div>
+      </div>
+
+      <div class="vocab-card">
+        <div class="vocab-word">wake up</div>
+        <div class="vocab-ipa">/weɪk ʌp/</div>
+        <div class="vocab-def">to stop sleeping</div>
+        <div class="vocab-vi">🇻🇳 thức dậy, tỉnh giấc</div>
+        <div class="vocab-ex">I wake up at 6 every morning.</div>
+      </div>
+
+      <div class="vocab-card">
+        <div class="vocab-word">oversleep</div>
+        <div class="vocab-ipa">/ˌəʊvəˈsliːp/</div>
+        <div class="vocab-def">to sleep longer than you planned</div>
+        <div class="vocab-vi">🇻🇳 ngủ quá giờ / dậy muộn</div>
+        <div class="vocab-ex">I overslept and missed the bus.</div>
+      </div>
+
+      <div class="vocab-card">
+        <div class="vocab-word">have a nap / take a nap</div>
+        <div class="vocab-ipa">/hæv ə næp/</div>
+        <div class="vocab-def">to sleep for a short time during the day</div>
+        <div class="vocab-vi">🇻🇳 chợp mắt / ngủ trưa</div>
+        <div class="vocab-ex">I often have a nap after lunch.</div>
+      </div>
+
+      <div class="vocab-card">
+        <div class="vocab-word">be half asleep</div>
+        <div class="vocab-ipa">/hɑːf əˈsliːp/</div>
+        <div class="vocab-def">to be nearly asleep or not fully awake</div>
+        <div class="vocab-vi">🇻🇳 nửa ngủ nửa thức / lơ mơ</div>
+        <div class="vocab-ex">I was half asleep when the phone rang.</div>
+      </div>
+
+      <div class="vocab-card">
+        <div class="vocab-word">go back to sleep</div>
+        <div class="vocab-ipa">/ɡəʊ bæk tə sliːp/</div>
+        <div class="vocab-def">to fall asleep again after waking up</div>
+        <div class="vocab-vi">🇻🇳 ngủ lại / trở lại giấc ngủ</div>
+        <div class="vocab-ex">I woke up at 4 a.m. and couldn't go back to sleep.</div>
+      </div>
+
+      <div class="vocab-card">
+        <div class="vocab-word">set an alarm (for)</div>
+        <div class="vocab-ipa">/sɛt ən əˈlɑːm/</div>
+        <div class="vocab-def">to set a device to wake you at a certain time</div>
+        <div class="vocab-vi">🇻🇳 đặt báo thức</div>
+        <div class="vocab-ex">I set my alarm for 7 o'clock.</div>
+      </div>
+
+      <div class="vocab-card">
+        <div class="vocab-word">dream (about)</div>
+        <div class="vocab-ipa">/driːm/</div>
+        <div class="vocab-def">to experience images and events while sleeping</div>
+        <div class="vocab-vi">🇻🇳 mơ (về)</div>
+        <div class="vocab-ex">I often dream about flying.</div>
+      </div>
+
+      <div class="vocab-card">
+        <div class="vocab-word">snore</div>
+        <div class="vocab-ipa">/snɔː/</div>
+        <div class="vocab-def">to breathe noisily while sleeping</div>
+        <div class="vocab-vi">🇻🇳 ngáy (khi ngủ)</div>
+        <div class="vocab-ex">My partner says I snore loudly.</div>
+      </div>
+
+      <div class="vocab-card">
+        <div class="vocab-word">suffer from insomnia</div>
+        <div class="vocab-ipa">/ˈsʌfər frɒm ɪnˈsɒmniə/</div>
+        <div class="vocab-def">to regularly be unable to sleep</div>
+        <div class="vocab-vi">🇻🇳 bị mất ngủ / mắc chứng mất ngủ</div>
+        <div class="vocab-ex">About 30% of adults suffer from insomnia.</div>
+      </div>
+
+      <div class="vocab-card">
+        <div class="vocab-word">sleepwalk</div>
+        <div class="vocab-ipa">/ˈsliːpwɔːk/</div>
+        <div class="vocab-def">to walk around while still asleep</div>
+        <div class="vocab-vi">🇻🇳 mộng du</div>
+        <div class="vocab-ex">He sleepwalks almost every night.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- Gradable vs Strong Adjectives -->
+  <div class="sec-heading">⚡ Gradable & Strong Adjectives</div>
+  <div class="sec-sub">Tính từ thông thường (gradable) vs. Tính từ mạnh (strong/extreme)</div>
+
+  <div class="adj-scale-wrap">
+    <div class="adj-scale-title">So sánh: Gradable → Strong</div>
+    <div class="adj-row">
+      <div>
+        <div class="adj-gradable">tired</div>
+        <div class="adj-vi">mệt</div>
+      </div>
+      <div class="adj-arrow">→→</div>
+      <div>
+        <div class="adj-strong">exhausted</div>
+        <div class="adj-vi">kiệt sức</div>
+      </div>
+    </div>
+    <div class="adj-row">
+      <div>
+        <div class="adj-gradable">cold</div>
+        <div class="adj-vi">lạnh</div>
+      </div>
+      <div class="adj-arrow">→→</div>
+      <div>
+        <div class="adj-strong">freezing</div>
+        <div class="adj-vi">đóng băng / rất lạnh</div>
+      </div>
+    </div>
+    <div class="adj-row">
+      <div>
+        <div class="adj-gradable">hot</div>
+        <div class="adj-vi">nóng</div>
+      </div>
+      <div class="adj-arrow">→→</div>
+      <div>
+        <div class="adj-strong">boiling</div>
+        <div class="adj-vi">sôi sùng sục / rất nóng</div>
+      </div>
+    </div>
+    <div class="adj-row">
+      <div>
+        <div class="adj-gradable">interesting</div>
+        <div class="adj-vi">thú vị</div>
+      </div>
+      <div class="adj-arrow">→→</div>
+      <div>
+        <div class="adj-strong">fascinating</div>
+        <div class="adj-vi">hấp dẫn tuyệt vời</div>
+      </div>
+    </div>
+    <div class="adj-row">
+      <div>
+        <div class="adj-gradable">boring</div>
+        <div class="adj-vi">nhàm chán</div>
+      </div>
+      <div class="adj-arrow">→→</div>
+      <div>
+        <div class="adj-strong">mind-numbing</div>
+        <div class="adj-vi">tê liệt cả trí não / cực kỳ nhàm</div>
+      </div>
+    </div>
+    <div class="adj-row">
+      <div>
+        <div class="adj-gradable">good</div>
+        <div class="adj-vi">tốt</div>
+      </div>
+      <div class="adj-arrow">→→</div>
+      <div>
+        <div class="adj-strong">brilliant / wonderful</div>
+        <div class="adj-vi">tuyệt vời / xuất sắc</div>
+      </div>
+    </div>
+    <div class="adj-row">
+      <div>
+        <div class="adj-gradable">bad / terrible</div>
+        <div class="adj-vi">tệ</div>
+      </div>
+      <div class="adj-arrow">→→</div>
+      <div>
+        <div class="adj-strong">awful / dreadful</div>
+        <div class="adj-vi">kinh khủng / khủng khiếp</div>
+      </div>
+    </div>
+    <div class="adj-row">
+      <div>
+        <div class="adj-gradable">funny</div>
+        <div class="adj-vi">buồn cười</div>
+      </div>
+      <div class="adj-arrow">→→</div>
+      <div>
+        <div class="adj-strong">hilarious</div>
+        <div class="adj-vi">cực kỳ buồn cười / hài hước</div>
+      </div>
+    </div>
+    <div class="adj-row">
+      <div>
+        <div class="adj-gradable">surprised</div>
+        <div class="adj-vi">ngạc nhiên</div>
+      </div>
+      <div class="adj-arrow">→→</div>
+      <div>
+        <div class="adj-strong">astonished / amazed</div>
+        <div class="adj-vi">kinh ngạc / sửng sốt</div>
+      </div>
+    </div>
+    <div class="adj-row">
+      <div>
+        <div class="adj-gradable">angry</div>
+        <div class="adj-vi">tức giận</div>
+      </div>
+      <div class="adj-arrow">→→</div>
+      <div>
+        <div class="adj-strong">furious</div>
+        <div class="adj-vi">điên tiết / giận dữ cực độ</div>
+      </div>
+    </div>
+    <div class="adj-row">
+      <div>
+        <div class="adj-gradable">frightened / scared</div>
+        <div class="adj-vi">sợ hãi</div>
+      </div>
+      <div class="adj-arrow">→→</div>
+      <div>
+        <div class="adj-strong">terrified</div>
+        <div class="adj-vi">khiếp sợ / hoảng loạn</div>
+      </div>
+    </div>
+    <div class="adj-row">
+      <div>
+        <div class="adj-gradable">dirty</div>
+        <div class="adj-vi">bẩn</div>
+      </div>
+      <div class="adj-arrow">→→</div>
+      <div>
+        <div class="adj-strong">filthy</div>
+        <div class="adj-vi">dơ bẩn kinh khủng</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="note-box">
+    <strong>⚠ Lưu ý quan trọng về Adverbs:</strong><br>
+    • Với <strong>gradable adjectives</strong>: dùng <em>very, quite, rather, pretty, extremely</em> → <em>very tired, quite cold</em><br>
+    • Với <strong>strong adjectives</strong>: <strong>KHÔNG</strong> dùng <em>very</em>! Dùng <em>absolutely, completely, utterly, really</em> → <em>absolutely exhausted, completely terrified</em><br>
+    • ❌ <em>very exhausted</em> · ❌ <em>very furious</em> · ✅ <em>absolutely exhausted</em> · ✅ <em>utterly furious</em>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- Exercise 1: Fill in -->
+  <div class="exercise-label"><span class="exercise-num">1</span>Chọn adverb phù hợp</div>
+  <div class="instruction">Chọn từ đúng trong ngoặc để hoàn thành câu. (Student Book p18, Ex 1)</div>
+
+  <div class="fill-exercise">
+    <div class="fill-item" id="v1">
+      <div class="fill-item-num">1</div>
+      <div class="fill-item-content">
+        <div class="fill-sentence">I slept for 12 hours — I was <input class="fill-input" id="vi1" placeholder="adverb"> exhausted.</div>
+        <div style="display:flex;gap:6px;margin-top:4px">
+          <button class="check-btn" onclick="checkVocab('vi1','absolutely','v1')">Kiểm tra</button>
+          <button class="reveal-btn" onclick="revealFill('vi1','absolutely','v1')">Xem đáp án</button>
+        </div>
+        <div class="fill-feedback" id="vf1"></div>
+      </div>
+    </div>
+    <div class="fill-item" id="v2">
+      <div class="fill-item-num">2</div>
+      <div class="fill-item-content">
+        <div class="fill-sentence">The film wasn't great, but it was <input class="fill-input" id="vi2" placeholder="adverb"> interesting.</div>
+        <div style="display:flex;gap:6px;margin-top:4px">
+          <button class="check-btn" onclick="checkVocab('vi2','quite','v2')">Kiểm tra</button>
+          <button class="reveal-btn" onclick="revealFill('vi2','quite','v2')">Xem đáp án</button>
+        </div>
+        <div class="fill-feedback" id="vf2"></div>
+      </div>
+    </div>
+    <div class="fill-item" id="v3">
+      <div class="fill-item-num">3</div>
+      <div class="fill-item-content">
+        <div class="fill-sentence">The children were <input class="fill-input" id="vi3" placeholder="adverb"> terrified by the thunder.</div>
+        <div style="display:flex;gap:6px;margin-top:4px">
+          <button class="check-btn" onclick="checkVocab('vi3','absolutely','v3')">Kiểm tra</button>
+          <button class="reveal-btn" onclick="revealFill('vi3','absolutely','v3')">Xem đáp án</button>
+        </div>
+        <div class="fill-feedback" id="vf3"></div>
+      </div>
+    </div>
+    <div class="fill-item" id="v4">
+      <div class="fill-item-num">4</div>
+      <div class="fill-item-content">
+        <div class="fill-sentence">It was <input class="fill-input" id="vi4" placeholder="adverb"> cold outside — I couldn't feel my fingers.</div>
+        <div style="display:flex;gap:6px;margin-top:4px">
+          <button class="check-btn" onclick="checkVocab('vi4','absolutely|completely|utterly','v4')">Kiểm tra</button>
+          <button class="reveal-btn" onclick="revealFill('vi4','absolutely freezing','v4')">Xem đáp án</button>
+        </div>
+        <div class="fill-feedback" id="vf4"></div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- end vocab tab -->
+
+<!-- ============================================================ -->
+<!-- TAB 2: READING -->
+<!-- ============================================================ -->
+<div id="tab-reading" class="tab-pane">
+
+  <div class="sec-heading">📰 Reading: A Newspaper Article</div>
+  <div class="sec-sub">Student Book p18–19 · "Sleepless nights"</div>
+
+  <!-- Pre-reading -->
+  <div class="box-intro">
+    <strong>🔍 Trước khi đọc (Before you read):</strong> Bạn thường ngủ bao nhiêu tiếng mỗi đêm? Bạn có hay gặp khó khăn khi ngủ không? Theo bạn, điều gì ảnh hưởng nhiều nhất đến giấc ngủ?
+  </div>
+
+  <!-- Exercise 1 - Prediction -->
+  <div class="exercise-label"><span class="exercise-num">1</span>Dự đoán nội dung (p18)</div>
+  <div class="instruction">Đọc tiêu đề và đoạn đầu. Bài báo sẽ nói về điều gì? Chọn đáp án đúng nhất.</div>
+
+  <div class="mcq-list">
+    <div class="mcq-item">
+      <div class="mcq-q">The article is mainly about:</div>
+      <div class="mcq-opts">
+        <div class="mcq-opt" onclick="selectMCQ(this,'B','pred1')">
+          <div class="opt-dot"></div>
+          <span>a) Why we dream at night</span>
+        </div>
+        <div class="mcq-opt" onclick="selectMCQ(this,'A','pred1')">
+          <div class="opt-dot"></div>
+          <span>b) The causes and effects of not getting enough sleep</span>
+        </div>
+        <div class="mcq-opt" onclick="selectMCQ(this,'B','pred1')">
+          <div class="opt-dot"></div>
+          <span>c) How to set a good sleep schedule</span>
+        </div>
+      </div>
+      <div id="pred1-fb" style="margin-top:8px;font-size:.8rem;color:var(--teal);display:none"></div>
+    </div>
+  </div>
+
+  <!-- Full Article -->
+  <div class="article-box">
+    <div class="article-label">📰 Newspaper Article — Student Book p18–19</div>
+    <div class="article-title">Sleepless nights: are you getting enough sleep?</div>
+    <div class="article-meta">Adapted from a newspaper article · face2face Intermediate 2nd edition, Cambridge University Press</div>
+
+    <div class="article-body">
+      <p>Most experts agree that adults need around seven to nine hours of sleep a night. But according to recent research, many people in the modern world are getting far less than this. In fact, sleep experts say that we are in the middle of a "sleep epidemic" — a situation where huge numbers of people are not sleeping enough.</p>
+
+      <div class="subheading">Why don't we sleep enough?</div>
+      <p>There are many reasons why people don't get enough sleep. Stress and worry are two of the most common causes — many people lie awake at night thinking about problems at work or at home. The modern 24-hour lifestyle is also a factor: people stay up late watching television, using computers, or socialising. Shift workers often have to work at night, which disrupts their natural sleeping patterns. New parents regularly suffer from sleep deprivation because their babies wake up several times in the night.</p>
+
+      <div class="subheading">What are the effects of poor sleep?</div>
+      <p>Not sleeping enough can have serious effects on our health and wellbeing. In the short term, lack of sleep makes us feel tired and irritable. It also affects our ability to concentrate and make decisions. In fact, research shows that someone who hasn't slept for 17–19 hours performs as badly as someone who is over the legal drink-drive limit. In the long term, regularly not getting enough sleep is linked to serious health problems such as heart disease, obesity, and depression.</p>
+
+      <div class="article-highlight">
+        "People often think they can catch up on sleep at the weekend, but this doesn't really work. You can't make up for lost sleep in the way that you can make up for lost food." — Professor Jim Horne, Loughborough University
+      </div>
+
+      <div class="subheading">How can we improve our sleep?</div>
+      <p>There are many things we can do to improve the quality of our sleep. Experts suggest that we should keep to a regular sleep schedule — going to bed and getting up at the same time every day. We should avoid caffeine and alcohol in the evening, and try to relax before going to bed. Exercise is generally good for sleep, but not immediately before bedtime. Perhaps the most important piece of advice is to switch off all electronic devices — including phones and laptops — at least an hour before bed, as the blue light from screens interferes with our natural sleep hormones.</p>
+
+      <p>For those who suffer from serious insomnia, there are various treatments available, from relaxation therapy and cognitive behavioural therapy (CBT) to, in some cases, medication. However, most experts agree that medication should only be used as a last resort, as it can sometimes make sleep problems worse in the long run.</p>
+
+      <div class="subheading">How much sleep is enough?</div>
+      <p>Interestingly, some people seem to need very little sleep and can function perfectly well on just five or six hours a night. Scientists believe this is partly genetic. However, most of us cannot get away with this — for the majority of adults, less than seven hours a night leads to measurable impairments in health and performance. The bottom line? Make sleep a priority, not an afterthought.</p>
+    </div>
+  </div>
+
+  <!-- Exercise 2: Comprehension -->
+  <div class="exercise-label"><span class="exercise-num">2</span>Đọc hiểu — True / False / Not Given (p19)</div>
+  <div class="instruction">Đọc bài báo và chọn True (T), False (F), hoặc Not Given (NG) cho mỗi câu sau.</div>
+
+  <div class="tfnk-list">
+
+    <div class="tfnk-item">
+      <div class="tfnk-q">1. Most adults need between seven and nine hours of sleep per night.</div>
+      <div class="tfnk-opts">
+        <button class="tfnk-opt" onclick="checkTFNK(this,'T','T','r2q1')">TRUE</button>
+        <button class="tfnk-opt" onclick="checkTFNK(this,'F','T','r2q1')">FALSE</button>
+        <button class="tfnk-opt" onclick="checkTFNK(this,'NG','T','r2q1')">NOT GIVEN</button>
+      </div>
+      <div class="tfnk-fb" id="r2q1">✅ TRUE — "Most experts agree that adults need around seven to nine hours of sleep a night."</div>
+    </div>
+
+    <div class="tfnk-item">
+      <div class="tfnk-q">2. Stress and worry are the only causes of poor sleep.</div>
+      <div class="tfnk-opts">
+        <button class="tfnk-opt" onclick="checkTFNK(this,'T','F','r2q2')">TRUE</button>
+        <button class="tfnk-opt" onclick="checkTFNK(this,'F','F','r2q2')">FALSE</button>
+        <button class="tfnk-opt" onclick="checkTFNK(this,'NG','F','r2q2')">NOT GIVEN</button>
+      </div>
+      <div class="tfnk-fb" id="r2q2">✅ FALSE — The article mentions many causes: stress, modern 24-hour lifestyle, shift work, new parents with babies, etc.</div>
+    </div>
+
+    <div class="tfnk-item">
+      <div class="tfnk-q">3. Sleeping fewer than 17 hours is equivalent to being over the drink-drive limit.</div>
+      <div class="tfnk-opts">
+        <button class="tfnk-opt" onclick="checkTFNK(this,'T','F','r2q3')">TRUE</button>
+        <button class="tfnk-opt" onclick="checkTFNK(this,'F','F','r2q3')">FALSE</button>
+        <button class="tfnk-opt" onclick="checkTFNK(this,'NG','F','r2q3')">NOT GIVEN</button>
+      </div>
+      <div class="tfnk-fb" id="r2q3">✅ FALSE — The article says "someone who hasn't slept for 17–19 hours" performs as badly as someone over the drink-drive limit.</div>
+    </div>
+
+    <div class="tfnk-item">
+      <div class="tfnk-q">4. You can compensate for a week of bad sleep by sleeping more at the weekend.</div>
+      <div class="tfnk-opts">
+        <button class="tfnk-opt" onclick="checkTFNK(this,'T','F','r2q4')">TRUE</button>
+        <button class="tfnk-opt" onclick="checkTFNK(this,'F','F','r2q4')">FALSE</button>
+        <button class="tfnk-opt" onclick="checkTFNK(this,'NG','F','r2q4')">NOT GIVEN</button>
+      </div>
+      <div class="tfnk-fb" id="r2q4">✅ FALSE — Professor Horne says "You can't make up for lost sleep in the way that you can make up for lost food."</div>
+    </div>
+
+    <div class="tfnk-item">
+      <div class="tfnk-q">5. Experts recommend switching off electronic devices at least an hour before bed.</div>
+      <div class="tfnk-opts">
+        <button class="tfnk-opt" onclick="checkTFNK(this,'T','T','r2q5')">TRUE</button>
+        <button class="tfnk-opt" onclick="checkTFNK(this,'F','T','r2q5')">FALSE</button>
+        <button class="tfnk-opt" onclick="checkTFNK(this,'NG','T','r2q5')">NOT GIVEN</button>
+      </div>
+      <div class="tfnk-fb" id="r2q5">✅ TRUE — "switch off all electronic devices... at least an hour before bed, as the blue light from screens interferes with our natural sleep hormones."</div>
+    </div>
+
+    <div class="tfnk-item">
+      <div class="tfnk-q">6. Sleeping pills should be used regularly for people with insomnia.</div>
+      <div class="tfnk-opts">
+        <button class="tfnk-opt" onclick="checkTFNK(this,'T','F','r2q6')">TRUE</button>
+        <button class="tfnk-opt" onclick="checkTFNK(this,'F','F','r2q6')">FALSE</button>
+        <button class="tfnk-opt" onclick="checkTFNK(this,'NG','F','r2q6')">NOT GIVEN</button>
+      </div>
+      <div class="tfnk-fb" id="r2q6">✅ FALSE — "medication should only be used as a last resort, as it can sometimes make sleep problems worse in the long run."</div>
+    </div>
+
+    <div class="tfnk-item">
+      <div class="tfnk-q">7. Some people can function well with only five or six hours of sleep due to genetics.</div>
+      <div class="tfnk-opts">
+        <button class="tfnk-opt" onclick="checkTFNK(this,'T','T','r2q7')">TRUE</button>
+        <button class="tfnk-opt" onclick="checkTFNK(this,'F','T','r2q7')">FALSE</button>
+        <button class="tfnk-opt" onclick="checkTFNK(this,'NG','T','r2q7')">NOT GIVEN</button>
+      </div>
+      <div class="tfnk-fb" id="r2q7">✅ TRUE — "some people seem to need very little sleep... Scientists believe this is partly genetic."</div>
+    </div>
+
+  </div>
+
+  <!-- Exercise 3: Discussion -->
+  <div class="exercise-label"><span class="exercise-num">3</span>Thảo luận (p19)</div>
+  <div class="speaking-box">
+    <div class="speaking-title">💬 Discussion questions</div>
+    <div class="disc-q"><div class="disc-q-num">a</div><div>Are you a good sleeper or a bad sleeper? What time do you usually go to bed and get up?</div></div>
+    <div class="disc-q"><div class="disc-q-num">b</div><div>How do you feel when you haven't slept well? Does it affect your work or study?</div></div>
+    <div class="disc-q"><div class="disc-q-num">c</div><div>What do you do if you can't sleep? Have you ever tried any of the methods mentioned in the article?</div></div>
+    <div class="disc-q"><div class="disc-q-num">d</div><div>Do you think people in your country get enough sleep? Why / why not?</div></div>
+  </div>
+
+</div><!-- end reading tab -->
+
+<!-- ============================================================ -->
+<!-- TAB 3: GRAMMAR -->
+<!-- ============================================================ -->
+<div id="tab-grammar" class="tab-pane">
+
+  <div class="sec-heading">⚙ Ngữ pháp: Adverbs with Gradable & Strong Adjectives</div>
+  <div class="sec-sub">Student Book p19 · Help with Grammar</div>
+
+  <!-- Grammar explanation -->
+  <div class="hwg-box">
+    <div class="hwg-label">⚙ Help with Grammar</div>
+    <div class="hwg-title">Gradable & Strong Adjectives + Adverbs</div>
+
+    <div class="grammar-box" style="background:transparent;border:none;padding:0">
+
+      <div style="margin-bottom:16px">
+        <div class="grammar-tag">1. Gradable Adjectives</div>
+        <div style="font-size:.86rem;line-height:1.7;margin-bottom:8px;color:var(--text)">
+          Tính từ <strong>gradable</strong> (thông thường) mô tả những mức độ có thể tăng giảm. Dùng kèm với:<br>
+          <code style="color:#A5B4FC">very · quite · rather · pretty · extremely · a bit · fairly</code>
+        </div>
+        <div class="example-box">
+          I'm very tired. / She was quite cold. / It was rather boring.<br>
+          He was extremely angry. / I'm a bit frightened.
+        </div>
+      </div>
+
+      <div style="margin-bottom:16px">
+        <div class="grammar-tag">2. Strong / Extreme Adjectives</div>
+        <div style="font-size:.86rem;line-height:1.7;margin-bottom:8px;color:var(--text)">
+          Tính từ <strong>strong/extreme</strong> đã mang nghĩa cực độ (không cần "very"). Dùng kèm:<br>
+          <code style="color:#A5B4FC">absolutely · completely · utterly · totally · really</code>
+        </div>
+        <div class="example-box">
+          I'm absolutely exhausted. / She was completely terrified.<br>
+          It was utterly hilarious. / He was totally furious.
+        </div>
+        <div class="wrong-box">❌ I'm <strong>very</strong> exhausted. &nbsp;|&nbsp; ❌ It was <strong>very</strong> freezing.</div>
+        <div class="right-box">✅ I'm <strong>absolutely</strong> exhausted. &nbsp;|&nbsp; ✅ It was <strong>absolutely</strong> freezing.</div>
+      </div>
+
+      <div style="margin-bottom:16px">
+        <div class="grammar-tag">3. "Really" — dùng được cả hai</div>
+        <div style="font-size:.86rem;line-height:1.7;margin-bottom:8px;color:var(--text)">
+          <strong>really</strong> là từ đặc biệt — có thể dùng với cả gradable và strong adjectives:
+        </div>
+        <div class="example-box">
+          It was really cold. ✅ (gradable)<br>
+          It was really freezing. ✅ (strong)
+        </div>
+      </div>
+
+      <div class="note-box">
+        <strong>📌 Tóm tắt:</strong><br>
+        • Gradable + <em>very / quite / extremely / rather / pretty / a bit / fairly</em><br>
+        • Strong + <em>absolutely / completely / utterly / totally / really</em><br>
+        • <em>really</em> dùng được cả hai loại
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- Grammar Exercise 1 -->
+  <div class="exercise-label"><span class="exercise-num">1</span>Chọn adverb đúng (p19, Ex 2)</div>
+  <div class="instruction">Chọn từ đúng trong mỗi câu. Một số câu có thể có nhiều đáp án đúng.</div>
+
+  <div class="fill-exercise">
+
+    <div class="fill-item" id="g1">
+      <div class="fill-item-num">1</div>
+      <div class="fill-item-content">
+        <div class="fill-sentence">The horror film was <input class="fill-input" id="gi1" placeholder="adverb"> frightening — I couldn't watch the end.</div>
+        <div style="display:flex;gap:6px;margin-top:4px">
+          <button class="check-btn" onclick="checkVocab('gi1','very|really|quite|extremely|rather','g1')">Kiểm tra</button>
+          <button class="reveal-btn" onclick="revealFill('gi1','very / really / quite / extremely','g1')">Xem đáp án</button>
+        </div>
+        <div class="fill-feedback" id="gf1"></div>
+      </div>
+    </div>
+
+    <div class="fill-item" id="g2">
+      <div class="fill-item-num">2</div>
+      <div class="fill-item-content">
+        <div class="fill-sentence">When I heard the news, I was <input class="fill-input" id="gi2" placeholder="adverb"> astonished.</div>
+        <div style="display:flex;gap:6px;margin-top:4px">
+          <button class="check-btn" onclick="checkVocab('gi2','absolutely|completely|totally|utterly|really','g2')">Kiểm tra</button>
+          <button class="reveal-btn" onclick="revealFill('gi2','absolutely / completely / totally / really','g2')">Xem đáp án</button>
+        </div>
+        <div class="fill-feedback" id="gf2"></div>
+      </div>
+    </div>
+
+    <div class="fill-item" id="g3">
+      <div class="fill-item-num">3</div>
+      <div class="fill-item-content">
+        <div class="fill-sentence">The soup was <input class="fill-input" id="gi3" placeholder="adverb"> boiling — I burnt my tongue.</div>
+        <div style="display:flex;gap:6px;margin-top:4px">
+          <button class="check-btn" onclick="checkVocab('gi3','absolutely|completely|totally|utterly|really','g3')">Kiểm tra</button>
+          <button class="reveal-btn" onclick="revealFill('gi3','absolutely / really','g3')">Xem đáp án</button>
+        </div>
+        <div class="fill-feedback" id="gf3"></div>
+      </div>
+    </div>
+
+    <div class="fill-item" id="g4">
+      <div class="fill-item-num">4</div>
+      <div class="fill-item-content">
+        <div class="fill-sentence">The weather today is <input class="fill-input" id="gi4" placeholder="adverb"> cold — about 5 degrees.</div>
+        <div style="display:flex;gap:6px;margin-top:4px">
+          <button class="check-btn" onclick="checkVocab('gi4','very|quite|extremely|really|rather|pretty','g4')">Kiểm tra</button>
+          <button class="reveal-btn" onclick="revealFill('gi4','very / quite / extremely / really','g4')">Xem đáp án</button>
+        </div>
+        <div class="fill-feedback" id="gf4"></div>
+      </div>
+    </div>
+
+    <div class="fill-item" id="g5">
+      <div class="fill-item-num">5</div>
+      <div class="fill-item-content">
+        <div class="fill-sentence">My boss was <input class="fill-input" id="gi5" placeholder="adverb"> furious when I arrived late.</div>
+        <div style="display:flex;gap:6px;margin-top:4px">
+          <button class="check-btn" onclick="checkVocab('gi5','absolutely|completely|totally|utterly|really','g5')">Kiểm tra</button>
+          <button class="reveal-btn" onclick="revealFill('gi5','absolutely / utterly / really','g5')">Xem đáp án</button>
+        </div>
+        <div class="fill-feedback" id="gf5"></div>
+      </div>
+    </div>
+
+    <div class="fill-item" id="g6">
+      <div class="fill-item-num">6</div>
+      <div class="fill-item-content">
+        <div class="fill-sentence">That comedian was <input class="fill-input" id="gi6" placeholder="adverb"> hilarious — we laughed for hours.</div>
+        <div style="display:flex;gap:6px;margin-top:4px">
+          <button class="check-btn" onclick="checkVocab('gi6','absolutely|completely|totally|utterly|really','g6')">Kiểm tra</button>
+          <button class="reveal-btn" onclick="revealFill('gi6','absolutely / completely / really','g6')">Xem đáp án</button>
+        </div>
+        <div class="fill-feedback" id="gf6"></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Grammar Exercise 2 - Error correction -->
+  <div class="exercise-label"><span class="exercise-num">2</span>Sửa lỗi sai (p19)</div>
+  <div class="instruction">Các câu sau có lỗi sai về adverb + adjective. Gõ câu đúng vào ô trống.</div>
+
+  <div class="fill-exercise">
+    <div class="fill-item" id="ec1">
+      <div class="fill-item-num">1</div>
+      <div class="fill-item-content">
+        <div class="fill-sentence wrong-box">❌ The hotel room was <strong>very filthy</strong>.</div>
+        <div class="fill-sentence" style="margin-top:8px">✅ The hotel room was <input class="fill-input" id="eci1" placeholder="correct adverb" style="min-width:160px"> filthy.</div>
+        <div style="display:flex;gap:6px;margin-top:4px">
+          <button class="check-btn" onclick="checkVocab('eci1','absolutely|completely|totally|utterly|really','ec1')">Kiểm tra</button>
+          <button class="reveal-btn" onclick="revealFill('eci1','absolutely','ec1')">Xem đáp án</button>
+        </div>
+        <div class="fill-feedback" id="ecf1"></div>
+      </div>
+    </div>
+    <div class="fill-item" id="ec2">
+      <div class="fill-item-num">2</div>
+      <div class="fill-item-content">
+        <div class="fill-sentence wrong-box">❌ I was <strong>very amazed</strong> by the results.</div>
+        <div class="fill-sentence" style="margin-top:8px">✅ I was <input class="fill-input" id="eci2" placeholder="correct adverb" style="min-width:160px"> amazed by the results.</div>
+        <div style="display:flex;gap:6px;margin-top:4px">
+          <button class="check-btn" onclick="checkVocab('eci2','absolutely|completely|totally|utterly|really','ec2')">Kiểm tra</button>
+          <button class="reveal-btn" onclick="revealFill('eci2','absolutely / utterly','ec2')">Xem đáp án</button>
+        </div>
+        <div class="fill-feedback" id="ecf2"></div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- end grammar tab -->
+
+<!-- ============================================================ -->
+<!-- TAB 4: PRONUNCIATION -->
+<!-- ============================================================ -->
+<div id="tab-pronunciation" class="tab-pane">
+
+  <div class="sec-heading">🔊 Help with Pronunciation: Strong & Weak Forms</div>
+  <div class="sec-sub">Student Book p21 · Stress and weak forms in connected speech</div>
+
+  <div class="pron-box">
+    <div class="pron-title">Strong & Weak Forms của các từ thông dụng</div>
+    <div class="pron-sub">Trong tiếng Anh nói tự nhiên, nhiều từ có hai dạng phát âm: <strong>strong form</strong> (nhấn mạnh) và <strong>weak form</strong> (phát âm giảm nhẹ / nối âm)</div>
+
+    <div class="pron-table">
+      <div class="pron-row" style="background:var(--bg3);font-size:.72rem;font-weight:700;color:var(--muted);text-transform:uppercase">
+        <div>Từ</div><div>Strong form</div><div>Weak form & ví dụ</div>
+      </div>
+      <div class="pron-row">
+        <div class="pron-word">can</div>
+        <div class="pron-spoken">/kæn/</div>
+        <div><span class="pron-spoken">/kən/</span> → <span style="font-size:.78rem;color:var(--dim);font-style:italic">I <em>can</em> help you. /aɪ kən ˈhɛlp jʊ/</span></div>
+      </div>
+      <div class="pron-row">
+        <div class="pron-word">should</div>
+        <div class="pron-spoken">/ʃʊd/</div>
+        <div><span class="pron-spoken">/ʃəd/</span> → <span style="font-size:.78rem;color:var(--dim);font-style:italic">You <em>should</em> sleep more. /jʊ ʃəd sliːp/</span></div>
+      </div>
+      <div class="pron-row">
+        <div class="pron-word">and</div>
+        <div class="pron-spoken">/ænd/</div>
+        <div><span class="pron-spoken">/ənd/ or /ən/</span> → <span style="font-size:.78rem;color:var(--dim);font-style:italic">bread <em>and</em> butter /brɛd ən ˈbʌtə/</span></div>
+      </div>
+      <div class="pron-row">
+        <div class="pron-word">of</div>
+        <div class="pron-spoken">/ɒv/</div>
+        <div><span class="pron-spoken">/əv/</span> → <span style="font-size:.78rem;color:var(--dim);font-style:italic">a cup <em>of</em> tea /ə kʌp əv tiː/</span></div>
+      </div>
+      <div class="pron-row">
+        <div class="pron-word">to</div>
+        <div class="pron-spoken">/tuː/</div>
+        <div><span class="pron-spoken">/tə/</span> → <span style="font-size:.78rem;color:var(--dim);font-style:italic">I need <em>to</em> sleep /aɪ niːd tə sliːp/</span></div>
+      </div>
+      <div class="pron-row">
+        <div class="pron-word">was</div>
+        <div class="pron-spoken">/wɒz/</div>
+        <div><span class="pron-spoken">/wəz/</span> → <span style="font-size:.78rem;color:var(--dim);font-style:italic">He <em>was</em> tired. /hi wəz ˈtaɪəd/</span></div>
+      </div>
+      <div class="pron-row">
+        <div class="pron-word">from</div>
+        <div class="pron-spoken">/frɒm/</div>
+        <div><span class="pron-spoken">/frəm/</span> → <span style="font-size:.78rem;color:var(--dim);font-style:italic">suffer <em>from</em> insomnia /ˈsʌfər frəm/</span></div>
+      </div>
+      <div class="pron-row">
+        <div class="pron-word">have</div>
+        <div class="pron-spoken">/hæv/</div>
+        <div><span class="pron-spoken">/həv/ or /əv/</span> → <span style="font-size:.78rem;color:var(--dim);font-style:italic">I <em>have</em> been sleeping /aɪ həv biːn/</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="note-box" style="margin-bottom:16px">
+    <strong>📌 Nguyên tắc:</strong><br>
+    • <strong>Weak forms</strong> thường xảy ra với các từ chức năng (function words): articles, prepositions, auxiliaries, conjunctions.<br>
+    • Các từ nội dung (content words: nouns, main verbs, adjectives, adverbs) thường được phát âm ở strong form.<br>
+    • Khi một từ được nhấn mạnh hoặc đứng cuối câu, ta dùng <strong>strong form</strong>: <em>"Can you?"  "Yes, I CAN."</em>
+  </div>
+
+  <!-- Pronunciation exercise -->
+  <div class="exercise-label"><span class="exercise-num">1</span>Nhận diện strong / weak form (p21)</div>
+  <div class="instruction">Trong mỗi câu, từ gạch chân được phát âm ở dạng nào? Chọn đáp án.</div>
+
+  <div class="qa-list">
+    <div class="qa-item" id="p1">
+      <div class="qa-question" onclick="toggleQA('p1')">
+        <div class="qa-qnum">1</div>
+        <div class="qa-qtext">I <u>can</u> speak three languages. — strong or weak?</div>
+        <div class="qa-arrow">›</div>
+      </div>
+      <div class="qa-answer">→ <strong>Weak form</strong> /kən/ — "can" ở giữa câu, không được nhấn mạnh.</div>
+    </div>
+    <div class="qa-item" id="p2">
+      <div class="qa-question" onclick="toggleQA('p2')">
+        <div class="qa-qnum">2</div>
+        <div class="qa-qtext">"Can you drive?" "Yes, I <u>can</u>." — strong or weak?</div>
+        <div class="qa-arrow">›</div>
+      </div>
+      <div class="qa-answer">→ <strong>Strong form</strong> /kæn/ — "can" đứng cuối câu, được nhấn mạnh.</div>
+    </div>
+    <div class="qa-item" id="p3">
+      <div class="qa-question" onclick="toggleQA('p3')">
+        <div class="qa-qnum">3</div>
+        <div class="qa-qtext">You <u>should</u> try to go to bed earlier. — strong or weak?</div>
+        <div class="qa-arrow">›</div>
+      </div>
+      <div class="qa-answer">→ <strong>Weak form</strong> /ʃəd/ — "should" không được nhấn mạnh, đứng giữa câu.</div>
+    </div>
+    <div class="qa-item" id="p4">
+      <div class="qa-question" onclick="toggleQA('p4')">
+        <div class="qa-qnum">4</div>
+        <div class="qa-qtext">A: Do you <u>have</u> to work late? B: No, but I <u>have</u> to wake up early.</div>
+        <div class="qa-arrow">›</div>
+      </div>
+      <div class="qa-answer">→ Cả hai đều là <strong>weak form</strong> /həv/ — "have to" trong câu không được nhấn mạnh.</div>
+    </div>
+  </div>
+
+</div><!-- end pronunciation tab -->
+
+<!-- ============================================================ -->
+<!-- TAB 5: SPEAKING -->
+<!-- ============================================================ -->
+<div id="tab-speaking" class="tab-pane">
+
+  <div class="sec-heading">💬 Speaking Practice</div>
+  <div class="sec-sub">Student Book p19 · Sleep habits & describing feelings</div>
+
+  <!-- Speaking task 1 -->
+  <div class="exercise-label"><span class="exercise-num">1</span>Mô tả trạng thái bằng strong adjectives (p19)</div>
+  <div class="instruction">Thực hành nói: mô tả cảm giác bằng cách dùng <em>strong adjectives + absolutely/completely/utterly</em>. Ví dụ:</div>
+
+  <div class="speaking-box">
+    <div class="speaking-title">🗣 Ví dụ mẫu</div>
+    <div class="bubble">A: How was your night?</div>
+    <div class="bubble" style="background:var(--indigo-l);border-color:rgba(99,102,241,.3)">B: <strong>Awful, actually.</strong> I couldn't fall asleep until 3 a.m. and then I kept waking up. I'm <strong>absolutely exhausted</strong> this morning.</div>
+    <div class="bubble">A: Oh no! Why couldn't you sleep?</div>
+    <div class="bubble" style="background:var(--indigo-l);border-color:rgba(99,102,241,.3)">B: The neighbours were having a party. The music was <strong>absolutely mind-numbing</strong>. And it was <strong>boiling hot</strong> in my room too.</div>
+    <div style="margin-top:14px">
+      <div class="cat-title">💡 Gợi ý từ vựng:</div>
+      <div class="useful-phrases">
+        <span class="phrase-chip">absolutely exhausted</span>
+        <span class="phrase-chip">completely terrified</span>
+        <span class="phrase-chip">utterly furious</span>
+        <span class="phrase-chip">absolutely freezing</span>
+        <span class="phrase-chip">totally hilarious</span>
+        <span class="phrase-chip">absolutely awful</span>
+        <span class="phrase-chip">really fascinating</span>
+        <span class="phrase-chip">completely astonished</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Speaking task 2 -->
+  <div class="exercise-label"><span class="exercise-num">2</span>Thảo luận về giấc ngủ (p19)</div>
+  <div class="instruction">Thảo luận với bạn cùng lớp về thói quen ngủ. Dùng các cụm từ bên dưới.</div>
+
+  <div class="speaking-box">
+    <div class="speaking-title">🗣 Câu hỏi gợi ý</div>
+    <div class="disc-q"><div class="disc-q-num">1</div><div>How many hours of sleep do you usually get? Is it enough?</div></div>
+    <div class="disc-q"><div class="disc-q-num">2</div><div>What time do you usually go to bed? Do you set an alarm?</div></div>
+    <div class="disc-q"><div class="disc-q-num">3</div><div>Have you ever sleepwalked or had a nightmare? What happened?</div></div>
+    <div class="disc-q"><div class="disc-q-num">4</div><div>What do you do when you can't fall asleep?</div></div>
+    <div class="disc-q"><div class="disc-q-num">5</div><div>Have you ever overslept and been late for something important?</div></div>
+    <div class="useful-phrases" style="margin-top:14px">
+      <span class="phrase-chip">I usually go to bed at...</span>
+      <span class="phrase-chip">I tend to fall asleep quickly</span>
+      <span class="phrase-chip">I often wake up in the night</span>
+      <span class="phrase-chip">I can never go back to sleep</span>
+      <span class="phrase-chip">I usually have a nap after...</span>
+      <span class="phrase-chip">I've suffered from insomnia</span>
+    </div>
+  </div>
+
+</div><!-- end speaking tab -->
+
+<!-- ============================================================ -->
+<!-- TAB 6: WORKBOOK -->
+<!-- ============================================================ -->
+<div id="tab-workbook" class="tab-pane">
+
+  <div class="sec-heading">📝 Workbook Exercises — Bài 2C</div>
+  <div class="sec-sub">Workbook p14–15 · Vocabulary, Grammar & Listening</div>
+
+  <!-- WB Vocabulary -->
+  <div class="wb-tag">📚 Vocabulary — WB p14</div>
+
+  <div class="exercise-label"><span class="exercise-num">1</span>Fill in the gaps — Sleep vocabulary (WB p14, Ex 1)</div>
+  <div class="instruction">Hoàn thành các câu bằng cách điền từ thích hợp về chủ đề Sleep.</div>
+
+  <div class="fill-exercise">
+    <div class="fill-item" id="wb1">
+      <div class="fill-item-num">1</div>
+      <div class="fill-item-content">
+        <div class="fill-sentence">I was so tired that I <input class="fill-input" id="wbi1" placeholder="verb"> asleep on the sofa.</div>
+        <div style="display:flex;gap:6px;margin-top:4px">
+          <button class="check-btn" onclick="checkVocab('wbi1','fell|fallen','wb1')">Kiểm tra</button>
+          <button class="reveal-btn" onclick="revealFill('wbi1','fell','wb1')">Xem đáp án</button>
+        </div>
+        <div class="fill-feedback" id="wbf1"></div>
+      </div>
+    </div>
+    <div class="fill-item" id="wb2">
+      <div class="fill-item-num">2</div>
+      <div class="fill-item-content">
+        <div class="fill-sentence">I set my <input class="fill-input" id="wbi2" placeholder="noun"> for 6.30, but I still overslept.</div>
+        <div style="display:flex;gap:6px;margin-top:4px">
+          <button class="check-btn" onclick="checkVocab('wbi2','alarm','wb2')">Kiểm tra</button>
+          <button class="reveal-btn" onclick="revealFill('wbi2','alarm','wb2')">Xem đáp án</button>
+        </div>
+        <div class="fill-feedback" id="wbf2"></div>
+      </div>
+    </div>
+    <div class="fill-item" id="wb3">
+      <div class="fill-item-num">3</div>
+      <div class="fill-item-content">
+        <div class="fill-sentence">He's been <input class="fill-input" id="wbi3" placeholder="verb"> from insomnia for years — he can't sleep at all.</div>
+        <div style="display:flex;gap:6px;margin-top:4px">
+          <button class="check-btn" onclick="checkVocab('wbi3','suffering|suffer','wb3')">Kiểm tra</button>
+          <button class="reveal-btn" onclick="revealFill('wbi3','suffering','wb3')">Xem đáp án</button>
+        </div>
+        <div class="fill-feedback" id="wbf3"></div>
+      </div>
+    </div>
+    <div class="fill-item" id="wb4">
+      <div class="fill-item-num">4</div>
+      <div class="fill-item-content">
+        <div class="fill-sentence">She often has a <input class="fill-input" id="wbi4" placeholder="noun"> after lunch — just 20 minutes.</div>
+        <div style="display:flex;gap:6px;margin-top:4px">
+          <button class="check-btn" onclick="checkVocab('wbi4','nap','wb4')">Kiểm tra</button>
+          <button class="reveal-btn" onclick="revealFill('wbi4','nap','wb4')">Xem đáp án</button>
+        </div>
+        <div class="fill-feedback" id="wbf4"></div>
+      </div>
+    </div>
+    <div class="fill-item" id="wb5">
+      <div class="fill-item-num">5</div>
+      <div class="fill-item-content">
+        <div class="fill-sentence">I woke up at 4 a.m. and couldn't go <input class="fill-input" id="wbi5" placeholder="2 words"> sleep.</div>
+        <div style="display:flex;gap:6px;margin-top:4px">
+          <button class="check-btn" onclick="checkVocab('wbi5','back to','wb5')">Kiểm tra</button>
+          <button class="reveal-btn" onclick="revealFill('wbi5','back to','wb5')">Xem đáp án</button>
+        </div>
+        <div class="fill-feedback" id="wbf5"></div>
+      </div>
+    </div>
+    <div class="fill-item" id="wb6">
+      <div class="fill-item-num">6</div>
+      <div class="fill-item-content">
+        <div class="fill-sentence">My partner <input class="fill-input" id="wbi6" placeholder="verb"> very loudly — it keeps me awake.</div>
+        <div style="display:flex;gap:6px;margin-top:4px">
+          <button class="check-btn" onclick="checkVocab('wbi6','snores|snore','wb6')">Kiểm tra</button>
+          <button class="reveal-btn" onclick="revealFill('wbi6','snores','wb6')">Xem đáp án</button>
+        </div>
+        <div class="fill-feedback" id="wbf6"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WB Grammar -->
+  <div class="wb-tag" style="margin-top:24px">⚙ Grammar — WB p15</div>
+
+  <div class="exercise-label"><span class="exercise-num">2</span>Gradable or Strong? (WB p15, Ex 2)</div>
+  <div class="instruction">Điền <em>very</em> hoặc <em>absolutely</em> vào chỗ trống.</div>
+
+  <div class="fill-exercise">
+    <div class="fill-item" id="wbg1">
+      <div class="fill-item-num">1</div>
+      <div class="fill-item-content">
+        <div class="fill-sentence">The storm last night was <input class="fill-input" id="wbgi1" placeholder="adverb"> terrifying.</div>
+        <div style="display:flex;gap:6px;margin-top:4px">
+          <button class="check-btn" onclick="checkVocab('wbgi1','absolutely','wbg1')">Kiểm tra</button>
+          <button class="reveal-btn" onclick="revealFill('wbgi1','absolutely','wbg1')">Xem đáp án</button>
+        </div>
+        <div class="fill-feedback" id="wbgf1"></div>
+      </div>
+    </div>
+    <div class="fill-item" id="wbg2">
+      <div class="fill-item-num">2</div>
+      <div class="fill-item-content">
+        <div class="fill-sentence">The test was <input class="fill-input" id="wbgi2" placeholder="adverb"> difficult — I didn't know any answers.</div>
+        <div style="display:flex;gap:6px;margin-top:4px">
+          <button class="check-btn" onclick="checkVocab('wbgi2','very','wbg2')">Kiểm tra</button>
+          <button class="reveal-btn" onclick="revealFill('wbgi2','very','wbg2')">Xem đáp án</button>
+        </div>
+        <div class="fill-feedback" id="wbgf2"></div>
+      </div>
+    </div>
+    <div class="fill-item" id="wbg3">
+      <div class="fill-item-num">3</div>
+      <div class="fill-item-content">
+        <div class="fill-sentence">His flat was <input class="fill-input" id="wbgi3" placeholder="adverb"> filthy — he never cleans it.</div>
+        <div style="display:flex;gap:6px;margin-top:4px">
+          <button class="check-btn" onclick="checkVocab('wbgi3','absolutely','wbg3')">Kiểm tra</button>
+          <button class="reveal-btn" onclick="revealFill('wbgi3','absolutely','wbg3')">Xem đáp án</button>
+        </div>
+        <div class="fill-feedback" id="wbgf3"></div>
+      </div>
+    </div>
+    <div class="fill-item" id="wbg4">
+      <div class="fill-item-num">4</div>
+      <div class="fill-item-content">
+        <div class="fill-sentence">She was <input class="fill-input" id="wbgi4" placeholder="adverb"> angry when she found out the truth.</div>
+        <div style="display:flex;gap:6px;margin-top:4px">
+          <button class="check-btn" onclick="checkVocab('wbgi4','very','wbg4')">Kiểm tra</button>
+          <button class="reveal-btn" onclick="revealFill('wbgi4','very','wbg4')">Xem đáp án</button>
+        </div>
+        <div class="fill-feedback" id="wbgf4"></div>
+      </div>
+    </div>
+    <div class="fill-item" id="wbg5">
+      <div class="fill-item-num">5</div>
+      <div class="fill-item-content">
+        <div class="fill-sentence">I was <input class="fill-input" id="wbgi5" placeholder="adverb"> amazed when I heard he'd won.</div>
+        <div style="display:flex;gap:6px;margin-top:4px">
+          <button class="check-btn" onclick="checkVocab('wbgi5','absolutely','wbg5')">Kiểm tra</button>
+          <button class="reveal-btn" onclick="revealFill('wbgi5','absolutely','wbg5')">Xem đáp án</button>
+        </div>
+        <div class="fill-feedback" id="wbgf5"></div>
+      </div>
+    </div>
+    <div class="fill-item" id="wbg6">
+      <div class="fill-item-num">6</div>
+      <div class="fill-item-content">
+        <div class="fill-sentence">The food at the restaurant was <input class="fill-input" id="wbgi6" placeholder="adverb"> delicious.</div>
+        <div style="display:flex;gap:6px;margin-top:4px">
+          <button class="check-btn" onclick="checkVocab('wbgi6','very','wbg6')">Kiểm tra</button>
+          <button class="reveal-btn" onclick="revealFill('wbgi6','very','wbg6')">Xem đáp án</button>
+        </div>
+        <div class="fill-feedback" id="wbgf6"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WB Listening transcript -->
+  <div class="wb-tag" style="margin-top:24px">🎧 Listening — WB p14</div>
+
+  <div class="exercise-label"><span class="exercise-num">3</span>Listening — Sleep problems (WB p14)</div>
+  <div class="instruction">Nghe ba người nói về thói quen và vấn đề giấc ngủ của họ. (Audio: CD2, Track 2)</div>
+
+  <div class="audio-player-box">
+    <div class="audio-header">
+      <span class="cd-badge">CD2 Track 2</span>
+      <span class="audio-title">Three people talk about sleep</span>
+    </div>
+    <div class="audio-controls">
+      <button class="play-btn">▶</button>
+      <div class="audio-track-info">
+        <div class="audio-track-name">WB Listening: Sleep problems</div>
+        <div class="audio-note">Sử dụng file audio từ đĩa CD kèm theo giáo trình</div>
+      </div>
+    </div>
+    <div class="transcript-box">
+      <div class="transcript-toggle" onclick="toggleTranscript('wbListen')">
+        📄 Xem/ẩn transcript bài nghe ›
+      </div>
+      <div class="transcript-content" id="wbListen">
+        <p><span class="speaker">Speaker 1 (Mark):</span> I'm a complete night owl — I love staying up late. The problem is I have to be at work by eight, so I only get about five hours' sleep. I feel absolutely exhausted all the time, but I just can't seem to go to bed earlier. Last night I was watching TV until two in the morning and then I overslept and missed my train. My boss was absolutely furious.</p>
+        <p><span class="speaker">Speaker 2 (Anna):</span> My problem is the opposite — I fall asleep really quickly, but then I always wake up in the middle of the night and can't go back to sleep. I lie there for hours just thinking. By the morning I'm only half asleep when the alarm goes off. I've tried warm milk, reading, everything. Nothing works. My doctor says I should try to switch off electronic devices an hour before bed, but it's really hard.</p>
+        <p><span class="speaker">Speaker 3 (David):</span> I work shifts, so my sleeping pattern is completely all over the place. One week I'm working nights, the next I'm on days. I never know when I'm supposed to sleep. On my days off I usually have a nap in the afternoon, but it never feels like proper sleep. I dream about work constantly — I sometimes sleepwalk too, which is a bit frightening for my wife.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- WB Listening exercise -->
+  <div class="exercise-label"><span class="exercise-num">3a</span>Matching (WB p14)</div>
+  <div class="instruction">Ai gặp vấn đề nào? Khoanh đáp án đúng.</div>
+
+  <div class="mcq-list">
+    <div class="mcq-item">
+      <div class="mcq-q">1. Who stays up very late at night?</div>
+      <div class="mcq-opts">
+        <div class="mcq-opt" onclick="selectMCQ(this,'A','wbq1')"><div class="opt-dot"></div><span>Mark</span></div>
+        <div class="mcq-opt" onclick="selectMCQ(this,'B','wbq1')"><div class="opt-dot"></div><span>Anna</span></div>
+        <div class="mcq-opt" onclick="selectMCQ(this,'B','wbq1')"><div class="opt-dot"></div><span>David</span></div>
+      </div>
+      <div id="wbq1-fb" style="margin-top:8px;font-size:.8rem;color:var(--teal);display:none"></div>
+    </div>
+    <div class="mcq-item">
+      <div class="mcq-q">2. Who wakes up in the middle of the night?</div>
+      <div class="mcq-opts">
+        <div class="mcq-opt" onclick="selectMCQ(this,'B','wbq2')"><div class="opt-dot"></div><span>Mark</span></div>
+        <div class="mcq-opt" onclick="selectMCQ(this,'A','wbq2')"><div class="opt-dot"></div><span>Anna</span></div>
+        <div class="mcq-opt" onclick="selectMCQ(this,'B','wbq2')"><div class="opt-dot"></div><span>David</span></div>
+      </div>
+      <div id="wbq2-fb" style="margin-top:8px;font-size:.8rem;color:var(--teal);display:none"></div>
+    </div>
+    <div class="mcq-item">
+      <div class="mcq-q">3. Who sometimes sleepwalks?</div>
+      <div class="mcq-opts">
+        <div class="mcq-opt" onclick="selectMCQ(this,'B','wbq3')"><div class="opt-dot"></div><span>Mark</span></div>
+        <div class="mcq-opt" onclick="selectMCQ(this,'B','wbq3')"><div class="opt-dot"></div><span>Anna</span></div>
+        <div class="mcq-opt" onclick="selectMCQ(this,'A','wbq3')"><div class="opt-dot"></div><span>David</span></div>
+      </div>
+      <div id="wbq3-fb" style="margin-top:8px;font-size:.8rem;color:var(--teal);display:none"></div>
+    </div>
+  </div>
+
+</div><!-- end workbook tab -->
+
+</div><!-- page-content -->
+
+<script>
+// ─── THEME ───
+function toggleTheme(){
+  const d=document.documentElement;
+  d.dataset.theme=d.dataset.theme==='light'?'':'light';
+}
+
+// ─── TABS ───
+function showTab(id,btn){
+  document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tnav-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+  btn.classList.add('active');
+}
+
+// ─── FILL CHECK ───
+function checkVocab(inputId, answer, rowId){
+  const inp=document.getElementById(inputId);
+  const val=inp.value.trim().toLowerCase();
+  const answers=answer.toLowerCase().split('|');
+  const fb=document.getElementById((inputId.startsWith('wbgi')?'wbgf':'wbf')+inputId.replace(/\D/g,''));
+  const fbEl=document.getElementById('gf'+inputId.replace(/\D/g,'')) ||
+             document.getElementById('vf'+inputId.replace(/\D/g,'')) ||
+             document.getElementById('ecf'+inputId.replace(/\D/g,'')) ||
+             document.getElementById('wbf'+inputId.replace(/\D/g,'')) ||
+             document.getElementById('wbgf'+inputId.replace(/\D/g,''));
+
+  // find feedback by scanning siblings
+  const row=document.getElementById(rowId);
+  const allFb=row?row.querySelectorAll('.fill-feedback'):[];
+  const feedbackEl=allFb[0];
+
+  if(answers.some(a=>val===a||val.includes(a))){
+    inp.className='fill-input correct';
+    if(feedbackEl){feedbackEl.className='fill-feedback show-ok';feedbackEl.textContent='✅ Đúng rồi!';}
+  } else {
+    inp.className='fill-input wrong';
+    if(feedbackEl){feedbackEl.className='fill-feedback show-err';feedbackEl.textContent='❌ Chưa đúng. Thử lại!';}
+  }
+}
+
+function revealFill(inputId, answer, rowId){
+  const inp=document.getElementById(inputId);
+  inp.value=answer;
+  inp.className='fill-input correct';
+  const row=document.getElementById(rowId);
+  const allFb=row?row.querySelectorAll('.fill-feedback'):[];
+  if(allFb[0]){allFb[0].className='fill-feedback show-ok';allFb[0].textContent='💡 Đáp án: '+answer;}
+}
+
+// ─── MCQ ───
+function selectMCQ(el, choice, groupId){
+  const parent=el.closest('.mcq-item');
+  parent.querySelectorAll('.mcq-opt').forEach(o=>{
+    o.classList.remove('selected','correct','wrong');
+    o.querySelector('.opt-dot').style.background='';
+    o.querySelector('.opt-dot').style.borderColor='';
+  });
+  const fb=document.getElementById(groupId+'-fb');
+  if(choice==='A'){
+    el.classList.add('correct');
+    if(fb){fb.style.display='block';fb.textContent='✅ Đúng!';}
+  } else {
+    el.classList.add('wrong');
+    if(fb){fb.style.display='block';fb.textContent='❌ Chưa đúng. Thử lại!';}
+  }
+}
+
+// ─── T/F/NK ───
+function checkTFNK(el, chosen, correct, id){
+  const parent=el.closest('.tfnk-item');
+  parent.querySelectorAll('.tfnk-opt').forEach(o=>o.className='tfnk-opt');
+  const fb=document.getElementById(id);
+  if(chosen===correct){
+    el.classList.add('selected-t');
+    if(fb){fb.className='tfnk-fb show';fb.style.color='var(--green)';}
+  } else {
+    el.classList.add('selected-f');
+    if(fb){fb.className='tfnk-fb show';fb.style.color='var(--red)';}
+  }
+  if(fb)fb.style.display='block';
+}
+
+// ─── QA ACCORDION ───
+function toggleQA(id){
+  const el=document.getElementById(id);
+  el.classList.toggle('open');
+}
+
+// ─── TRANSCRIPT ───
+function toggleTranscript(id){
+  const el=document.getElementById(id);
+  el.classList.toggle('show');
+}
+</script>
+</body>
+</html>
