@@ -7,437 +7,618 @@
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap');
 :root{
-  --bg:#0D1117;--bg2:#161B22;--bg3:#21262D;--bg4:#2D333B;
-  --border:#30363D;--border2:#3D444D;
+  --bg:#0D1117;--bg2:#161B22;--bg3:#21262D;--border:#30363D;
   --text:#E6EDF3;--dim:#8B949E;--muted:#484F58;
-  --blue:#2563EB;--blue-l:rgba(37,99,235,.15);
   --green:#10B981;--green-l:rgba(16,185,129,.12);
   --orange:#F59E0B;--orange-l:rgba(245,158,11,.12);
   --red:#EF4444;--red-l:rgba(239,68,68,.12);
-  --teal:#14B8A6;--purple:#8B5CF6;--purple-l:rgba(139,92,246,.12);
+  --teal:#14B8A6;--gold:#CA8A04;--gold-l:rgba(202,138,4,.15);
   --r:10px;--r2:6px;--tr:.18s ease;
 }
-[data-theme=light]{--bg:#F8FAFC;--bg2:#fff;--bg3:#F1F5F9;--bg4:#E2E8F0;--border:#E2E8F0;--border2:#CBD5E1;--text:#0F172A;--dim:#475569;--muted:#94A3B8;--blue:#1D4ED8;--blue-l:rgba(29,78,216,.1)}
+[data-theme=light]{--bg:#F8FAFC;--bg2:#fff;--bg3:#F1F5F9;--border:#E2E8F0;--text:#0F172A;--dim:#475569;--muted:#94A3B8;--gold:#A16207;--gold-l:rgba(161,98,7,.1)}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);font-size:15px;line-height:1.6}
-button{cursor:pointer;border:none;background:none;font-family:inherit}input,textarea,select{font-family:inherit}
-
+button{cursor:pointer;border:none;background:none;font-family:inherit}
 .top-bar{background:var(--bg2);border-bottom:1px solid var(--border);padding:10px 20px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:50;flex-wrap:wrap}
-.back-btn{display:flex;align-items:center;gap:6px;padding:6px 14px;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);font-size:.82rem;color:var(--dim);cursor:pointer;transition:all var(--tr)}
-.back-btn:hover{border-color:var(--blue);color:var(--blue)}
-.lesson-badge{padding:4px 12px;background:var(--purple-l);border:1px solid rgba(139,92,246,.3);border-radius:4px;font-size:.75rem;font-weight:700;color:#A78BFA;letter-spacing:.05em}
+.back-btn{padding:6px 14px;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);font-size:.82rem;color:var(--dim);cursor:pointer}
+.back-btn:hover{border-color:var(--gold);color:var(--gold)}
+.lesson-badge{padding:4px 12px;background:var(--gold-l);border:1px solid rgba(202,138,4,.35);border-radius:4px;font-size:.75rem;font-weight:700;color:#FDE047;letter-spacing:.05em}
 .lesson-title-h{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700}
-.top-actions{margin-left:auto;display:flex;gap:8px}
-.theme-btn{width:34px;height:34px;display:flex;align-items:center;justify-content:center;border-radius:var(--r2);background:var(--bg3);border:1px solid var(--border);cursor:pointer;font-size:.95rem;color:var(--dim);transition:all var(--tr)}
-.theme-btn:hover{border-color:var(--blue);color:var(--blue)}
-.progress-btn{padding:6px 14px;background:var(--green);border-radius:var(--r2);font-size:.78rem;font-weight:600;color:#fff;cursor:pointer;border:none;transition:all var(--tr)}
-.progress-btn:hover{background:#059669}
-
-.quick-review{background:linear-gradient(135deg,#1e3a5f,#1a2f4a);border:1px solid #2d4f7c;border-radius:var(--r);padding:14px 20px;margin:18px 24px;display:flex;gap:12px;align-items:flex-start}
-.qr-badge{background:#F59E0B;color:#000;padding:3px 10px;border-radius:4px;font-size:.72rem;font-weight:700;white-space:nowrap;flex-shrink:0;margin-top:2px}
-.qr-text{font-size:.84rem;line-height:1.65;color:#CBD5E1}
-.qr-text strong{color:#fff}
-
+.top-actions{margin-left:auto}
+.theme-btn{width:34px;height:34px;display:flex;align-items:center;justify-content:center;border-radius:var(--r2);background:var(--bg3);border:1px solid var(--border);cursor:pointer;font-size:.95rem;color:var(--dim)}
+.quick-review{background:linear-gradient(135deg,#422006,#451a03);border:1px solid #713f12;border-radius:var(--r);padding:14px 20px;margin:18px 24px;display:flex;gap:12px;align-items:flex-start}
+.qr-badge{background:var(--gold);color:#fff;padding:3px 10px;border-radius:4px;font-size:.72rem;font-weight:700;white-space:nowrap;flex-shrink:0;margin-top:2px}
+.qr-text{font-size:.84rem;line-height:1.65;color:#FEF3C7}
+.qr-text strong{color:#fff}.qr-text em{color:#FDE047;font-style:italic}
 .tab-nav{display:flex;gap:2px;border-bottom:1px solid var(--border);overflow-x:auto;scrollbar-width:none;position:sticky;top:57px;background:var(--bg);z-index:40;padding:0 24px}
 .tab-nav::-webkit-scrollbar{display:none}
 .tnav-btn{display:flex;align-items:center;gap:6px;padding:11px 16px;font-size:.82rem;font-weight:500;color:var(--dim);white-space:nowrap;border-bottom:2px solid transparent;margin-bottom:-1px;cursor:pointer;transition:all var(--tr);background:none;border-top:none;border-left:none;border-right:none;font-family:inherit}
-.tnav-btn:hover{color:var(--text)}.tnav-btn.active{color:var(--purple);border-bottom-color:var(--purple)}
-
+.tnav-btn.active{color:var(--gold);border-bottom-color:var(--gold)}
 .page-content{max-width:920px;margin:0 auto;padding:0 24px 48px}
 .tab-pane{display:none;padding-top:28px}
 .tab-pane.active{display:block;animation:fadeUp .22s ease}
 @keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
-
-.sec-heading{font-size:1.05rem;font-weight:700;color:var(--text);margin-bottom:4px;display:flex;align-items:center;gap:8px}
-.sec-sub{font-size:.82rem;color:var(--dim);margin-bottom:18px}
-.ex-num{width:28px;height:28px;background:var(--purple);color:#fff;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:.78rem;font-weight:700;flex-shrink:0}
-.ex-label{display:inline-flex;align-items:center;gap:8px;font-size:.9rem;font-weight:600;margin-bottom:10px;color:var(--text)}
-.part{display:inline-block;width:22px;height:22px;background:var(--bg4);border-radius:4px;text-align:center;line-height:22px;font-size:.72rem;font-weight:700;color:var(--dim);margin-right:6px}
-.instr{font-size:.88rem;color:var(--text);line-height:1.65;margin-bottom:14px}
-.instr em{font-style:italic;color:var(--teal)}
-
-.fill-ex{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:18px;margin-bottom:16px}
-.fill-ex-title{font-size:.88rem;font-weight:600;padding-bottom:10px;border-bottom:1px solid var(--border);margin-bottom:14px;color:var(--dim)}
-.fill-item{display:flex;align-items:flex-start;gap:10px;padding:9px 0;border-bottom:1px dashed var(--border)}
+.sec-heading{font-size:1.05rem;font-weight:700;margin-bottom:4px}
+.sec-sub{font-size:.82rem;color:var(--dim);margin-bottom:16px}
+.ex-label{display:inline-flex;align-items:center;gap:8px;font-size:.9rem;font-weight:600;margin-bottom:12px}
+.ex-num{width:28px;height:28px;background:var(--gold);color:#fff;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:.78rem;font-weight:700;flex-shrink:0}
+.instruction{font-size:.88rem;line-height:1.65;margin-bottom:14px}
+.divider{height:1px;background:var(--border);margin:24px 0}
+/* phrase boxes */
+.phrase-cat{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:18px;margin-bottom:12px}
+.phrase-cat-title{font-size:.78rem;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px}
+.phrase-row{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);padding:10px 14px;margin-bottom:6px}
+.phrase-eng{font-size:.88rem;font-weight:500;color:var(--text);margin-bottom:2px}
+.phrase-vi{font-size:.81rem;color:var(--orange);font-style:italic;margin-bottom:3px}
+.phrase-ex{font-size:.77rem;color:var(--muted);font-style:italic}
+/* fill */
+.fill-ex{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:20px;margin-bottom:16px}
+.fill-item{display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-bottom:1px dashed var(--border)}
 .fill-item:last-child{border-bottom:none}
-.fill-item-num{width:22px;height:22px;border-radius:50%;background:var(--bg3);display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:700;color:var(--muted);flex-shrink:0;margin-top:2px}
-.fill-item-body{flex:1}
-.fill-sentence{font-size:.87rem;margin-bottom:7px;line-height:1.6}
-.fill-controls{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
-.fill-input{height:33px;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);padding:0 11px;color:var(--text);font-size:.84rem;outline:none;min-width:80px;max-width:200px;transition:border-color var(--tr)}
-.fill-input:focus{border-color:var(--purple)}
-.fill-input.correct{border-color:var(--green);background:var(--green-l)}
-.fill-input.wrong{border-color:var(--red);background:var(--red-l)}
-.check-btn{padding:5px 12px;background:var(--purple);color:#fff;border:none;border-radius:var(--r2);font-size:.76rem;font-weight:600;cursor:pointer;transition:all var(--tr)}
-.check-btn:hover{background:#7C3AED}
-.reveal-btn{padding:5px 11px;background:var(--bg3);border:1px solid var(--border);color:var(--dim);border-radius:var(--r2);font-size:.76rem;cursor:pointer;transition:all var(--tr)}
-.reveal-btn:hover{border-color:var(--purple);color:var(--purple)}
-.fill-fb{margin-top:5px;font-size:.77rem;padding:4px 9px;border-radius:var(--r2);display:none}
-.fill-fb.show-ok{background:var(--green-l);color:var(--green);display:block}
-.fill-fb.show-err{background:var(--red-l);color:var(--red);display:block}
-
-.score-box{display:none;text-align:center;padding:18px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);margin-top:14px}
-.score-box.show{display:block}
-.score-n{font-size:2.2rem;font-weight:700;color:var(--purple)}
-.score-msg{color:var(--dim);font-size:.84rem;margin-top:4px}
-
-.btn{display:inline-flex;align-items:center;gap:6px;padding:7px 16px;border-radius:var(--r2);font-size:.82rem;font-weight:500;cursor:pointer;border:none;font-family:inherit;transition:all var(--tr)}
-.btn-primary{background:var(--purple);color:#fff}.btn-primary:hover{background:#7C3AED;transform:translateY(-1px)}
-.btn-outline{background:var(--bg3);border:1px solid var(--border2);color:var(--dim)}.btn-outline:hover{border-color:var(--purple);color:var(--purple)}
-
-.divider{height:1px;background:var(--border);margin:22px 0}
-.note-box{background:var(--orange-l);border:1px solid rgba(245,158,11,.25);border-radius:var(--r2);padding:10px 14px;font-size:.82rem;line-height:1.6;margin:10px 0}
-.note-box strong{color:var(--orange)}
-.tip-box{background:var(--bg3);border-left:3px solid var(--purple);border-radius:0 var(--r2) var(--r2) 0;padding:10px 14px;margin:10px 0;font-size:.82rem;color:var(--dim);line-height:1.6}
-.tip-box strong{color:var(--text)}
-.example-box{font-family:'Courier New',monospace;font-size:.82rem;color:#7DD3FC;background:var(--bg);padding:8px 12px;border-radius:var(--r2);margin:6px 0;border:1px solid var(--border)}
-
-.speaking-box{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:16px;margin-bottom:16px}
-.speaking-title{font-size:.84rem;font-weight:600;margin-bottom:12px;color:var(--text);display:flex;align-items:center;gap:8px}
-.bubble{background:var(--bg3);border:1px solid var(--border);border-radius:12px;padding:8px 14px;max-width:72%;font-size:.84rem;line-height:1.5;margin-bottom:8px}
-.bubble.speaker-a{border-bottom-left-radius:3px}
-.bubble.speaker-b{border-bottom-right-radius:3px;background:var(--purple-l);border-color:rgba(139,92,246,.3);margin-left:auto}
-
+.fill-num{width:24px;height:24px;border-radius:50%;background:var(--bg3);display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:700;color:var(--muted);flex-shrink:0;margin-top:2px}
+.fill-content{flex:1}
+.fill-sent{font-size:.87rem;margin-bottom:8px;line-height:1.65}
+.fi{height:34px;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);padding:0 12px;color:var(--text);font-size:.84rem;outline:none;min-width:130px;font-family:inherit;transition:border-color var(--tr)}
+.fi:focus{border-color:var(--gold)}
+.fi.ok{border-color:var(--green);background:var(--green-l)}
+.fi.err{border-color:var(--red);background:var(--red-l)}
+.chk-btn{padding:6px 14px;background:var(--gold);color:#fff;border-radius:var(--r2);font-size:.77rem;font-weight:600;cursor:pointer;margin-left:4px}
+.chk-btn:hover{background:#A16207}
+.rev-btn{padding:6px 12px;background:var(--bg3);border:1px solid var(--border);color:var(--dim);border-radius:var(--r2);font-size:.77rem;cursor:pointer;margin-left:4px}
+.rev-btn:hover{border-color:var(--gold);color:var(--gold)}
+.fb{margin-top:6px;font-size:.77rem;padding:4px 10px;border-radius:var(--r2);display:none}
+.fb.ok{background:var(--green-l);color:var(--green);display:block}
+.fb.err{background:var(--red-l);color:var(--red);display:block}
+/* mcq */
+.mcq-list{display:flex;flex-direction:column;gap:12px;margin-bottom:16px}
+.mcq-item{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:16px}
+.mcq-q{font-size:.88rem;font-weight:600;margin-bottom:10px}
+.mcq-opts{display:flex;flex-direction:column;gap:6px}
+.mcq-opt{display:flex;align-items:center;gap:10px;padding:8px 12px;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);cursor:pointer;font-size:.84rem;transition:all var(--tr)}
+.mcq-opt:hover{border-color:var(--gold)}
+.mcq-opt.ok{border-color:var(--green);background:var(--green-l)}
+.mcq-opt.err{border-color:var(--red);background:var(--red-l)}
+.opt-dot{width:18px;height:18px;border-radius:50%;border:2px solid var(--border);flex-shrink:0}
+.mcq-opt.ok .opt-dot{background:var(--green);border-color:var(--green)}
+.mcq-opt.err .opt-dot{background:var(--red);border-color:var(--red)}
+/* qa */
 .qa-list{display:flex;flex-direction:column;gap:8px;margin-bottom:16px}
 .qa-item{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r2);overflow:hidden}
-.qa-q{display:flex;align-items:center;gap:10px;padding:10px 14px;cursor:pointer;transition:background var(--tr)}
+.qa-q{display:flex;align-items:center;gap:10px;padding:11px 14px;cursor:pointer;transition:background var(--tr)}
 .qa-q:hover{background:var(--bg3)}
-.qa-qnum{width:24px;height:24px;border-radius:50%;background:var(--purple-l);color:var(--purple);display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:700;flex-shrink:0}
-.qa-qtext{font-size:.86rem;flex:1}
-.qa-arrow{font-size:.7rem;color:var(--muted);transition:transform var(--tr);flex-shrink:0}
+.qa-qnum{width:24px;height:24px;border-radius:50%;background:var(--gold-l);color:var(--gold);display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:700;flex-shrink:0}
+.qa-qtext{font-size:.85rem;flex:1}
+.qa-arrow{font-size:.7rem;color:var(--muted);transition:transform var(--tr)}
 .qa-item.open .qa-arrow{transform:rotate(90deg)}
-.qa-ans{display:none;padding:0 14px 10px 48px;font-size:.83rem;color:var(--teal);font-style:italic}
-.qa-item.open .qa-ans{display:block}
-
-.grammar-table{width:100%;border-collapse:collapse;font-size:.82rem;margin:12px 0}
-.grammar-table th{background:var(--bg3);padding:8px 12px;text-align:left;font-weight:600;border:1px solid var(--border);color:var(--dim);font-size:.72rem;text-transform:uppercase}
-.grammar-table td{padding:9px 12px;border:1px solid var(--border);line-height:1.5}
-.grammar-table td.aux{color:var(--purple);font-weight:600}
-
-.lang-sum-tag{display:inline-flex;align-items:center;gap:6px;padding:3px 12px;background:var(--purple-l);border:1px solid rgba(139,92,246,.3);border-radius:4px;font-size:.72rem;font-weight:700;color:#A78BFA;text-transform:uppercase;letter-spacing:.06em;margin-bottom:12px}
-
-.coll-grid{display:flex;flex-direction:column;gap:8px;margin:12px 0}
-.coll-row{display:grid;grid-template-columns:100px 1fr;gap:12px;align-items:start;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r2);padding:10px 14px}
-.coll-verb{font-size:.9rem;font-weight:700;color:var(--blue)}
-.coll-ipa{font-size:.72rem;color:var(--teal);font-family:monospace}
-.coll-phrase{font-size:.85rem;font-weight:600}
-.coll-vi{font-size:.8rem;color:var(--orange)}
-.coll-ex{font-size:.78rem;color:var(--dim);font-style:italic}
-
-.video-box{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:18px;margin-bottom:16px}
-.video-title{font-size:.9rem;font-weight:600;margin-bottom:8px}
-
-@media(max-width:680px){.tab-nav{padding:0 12px}.page-content{padding:0 14px 48px}.quick-review{margin:12px}}
+.qa-answer{display:none;padding:0 14px 12px 48px;font-size:.83rem;color:var(--teal);font-style:italic;line-height:1.65}
+.qa-item.open .qa-answer{display:block}
+.note-box{background:var(--orange-l);border:1px solid rgba(245,158,11,.25);border-radius:var(--r2);padding:12px 16px;font-size:.83rem;line-height:1.65;margin-bottom:16px}
+.note-box strong{color:var(--orange)}
+.info-box{background:var(--gold-l);border:1px solid rgba(202,138,4,.25);border-radius:var(--r2);padding:12px 16px;font-size:.84rem;line-height:1.65;margin-bottom:16px}
+.hwg-box{background:linear-gradient(135deg,rgba(202,138,4,.08),rgba(245,158,11,.05));border:1px solid rgba(202,138,4,.25);border-radius:var(--r);padding:20px;margin-bottom:16px}
+.hwg-label{font-size:.7rem;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px}
+.hwg-title{font-size:1rem;font-weight:700;margin-bottom:14px}
+.grammar-tag{display:inline-flex;padding:3px 12px;background:var(--orange-l);border:1px solid rgba(245,158,11,.3);border-radius:4px;font-size:.72rem;font-weight:700;color:var(--orange);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px}
+.example-box{font-family:'Courier New',monospace;font-size:.83rem;color:#FDE047;background:var(--bg);padding:9px 14px;border-radius:var(--r2);margin:8px 0;border:1px solid var(--border);line-height:1.7}
+.audio-box{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:20px;margin-bottom:16px}
+.cd-tag{padding:4px 12px;background:var(--orange-l);border:1px solid rgba(245,158,11,.3);border-radius:4px;font-size:.75rem;font-weight:700;color:var(--orange)}
+.play-btn{width:42px;height:42px;border-radius:50%;background:var(--gold);color:#fff;display:flex;align-items:center;justify-content:center;border:none;font-size:1rem;cursor:pointer;flex-shrink:0}
+.play-btn:hover{background:#A16207;transform:scale(1.05)}
+.transcript-wrap{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);padding:14px;margin-top:12px}
+.transcript-toggle{font-size:.82rem;font-weight:600;color:var(--dim);cursor:pointer;user-select:none}
+.transcript-toggle:hover{color:var(--gold)}
+.transcript-body{display:none;margin-top:12px;font-size:.84rem;line-height:1.78}
+.transcript-body.show{display:block}
+.transcript-body p{margin-bottom:10px}
+.spk{font-weight:700;color:var(--gold);margin-right:6px}
+.chip{padding:5px 14px;border-radius:20px;font-size:.82rem;font-weight:500;background:var(--gold-l);border:1px solid rgba(202,138,4,.3);color:#FDE047;display:inline-block;margin:3px}
+.speaking-box{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:18px;margin-bottom:16px}
+.disc-q{display:flex;gap:10px;padding:8px 0;border-bottom:1px solid var(--border);font-size:.85rem}
+.disc-q:last-child{border-bottom:none}
+.disc-q-num{font-size:.75rem;font-weight:700;color:var(--gold);min-width:20px;margin-top:2px}
+.wb-tag{display:inline-flex;padding:3px 12px;background:var(--gold-l);border:1px solid rgba(202,138,4,.3);border-radius:4px;font-size:.72rem;font-weight:700;color:#FDE047;text-transform:uppercase;letter-spacing:.06em;margin-bottom:12px}
+.names-row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px}
+.name-chip{padding:6px 16px;background:var(--bg2);border:1px solid var(--border);border-radius:8px;font-size:.84rem;font-weight:600}
+.match-pair{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
+.match-col-title{font-size:.75rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;margin-bottom:10px}
+.match-item{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);padding:10px;font-size:.85rem;margin-bottom:6px}
 </style>
 </head>
 <body>
-
 <div class="top-bar">
-  <button class="back-btn" onclick="history.back()">← Trang chủ</button>
-  <div class="lesson-badge">UNIT 4</div>
-  <div class="lesson-title-h">4D — It's only a game!</div>
+  <button class="back-btn" onclick="history.back()">← Quay lại</button>
+  <span class="lesson-badge">4D</span>
+  <span class="lesson-title-h">It's only a game!</span>
   <div class="top-actions">
-    <button class="theme-btn" id="theme-btn" onclick="toggleTheme()">☀️</button>
-    <button class="progress-btn" onclick="markDone()">✅ Đánh dấu xong</button>
+    <button class="theme-btn" onclick="toggleTheme()">☀</button>
   </div>
 </div>
-
 <div class="quick-review">
-  <div class="qr-badge">QUICK REVIEW</div>
-  <div class="qr-text"><strong>Character adjectives</strong> — Write eight character adjectives. Then work in pairs and compare lists. Use adjectives from both lists to describe people you know.</div>
+  <span class="qr-badge">ÔN BÀI 4C</span>
+  <div class="qr-text">Nhắc lại 4C: <strong>Guessing meaning from context</strong> — đoán nghĩa từ qua văn cảnh xung quanh. Chủ đề: <strong>Unusual museums</strong> — Museum of Bad Art, Marikina Shoe Museum, Cancún Underwater Museum, Miniatur Wunderland, Hamburger Museum.</div>
 </div>
-
-<div class="tab-nav">
-  <button class="tnav-btn active" onclick="showTab('vocab')">📚 Vocabulary &amp; Speaking</button>
-  <button class="tnav-btn" onclick="showTab('video')">🎬 Video</button>
-  <button class="tnav-btn" onclick="showTab('realworld')">🌍 Real World</button>
-  <button class="tnav-btn" onclick="showTab('workbook')">📓 Workbook</button>
-  <button class="tnav-btn" onclick="showTab('langsummary')">📋 Language Summary</button>
-</div>
-
+<nav class="tab-nav">
+  <button class="tnav-btn active" onclick="showTab('phrases',this)">💬 Real World</button>
+  <button class="tnav-btn" onclick="showTab('listening',this)">🎧 Nghe</button>
+  <button class="tnav-btn" onclick="showTab('grammar',this)">⚙ Ngữ pháp</button>
+  <button class="tnav-btn" onclick="showTab('pronunciation',this)">🔊 Phát âm</button>
+  <button class="tnav-btn" onclick="showTab('speaking',this)">🗣 Nói</button>
+  <button class="tnav-btn" onclick="showTab('workbook',this)">📝 Bài tập</button>
+</nav>
 <div class="page-content">
 
-<!-- ══════════════════════════════════════
-     TAB 1: VOCABULARY AND SPEAKING
-══════════════════════════════════════ -->
-<div class="tab-pane active" id="tab-vocab">
-  <div class="sec-heading">Vocabulary and Speaking</div>
-  <div class="sec-sub">Football and sports discussions</div>
+<!-- TAB REAL WORLD PHRASES -->
+<div id="tab-phrases" class="tab-pane active">
+  <div class="sec-heading">💬 Real World — Softening opinions & making generalisations</div>
+  <div class="sec-sub">Student Book p36–37 · Real World 4.1 · Làm dịu ý kiến & đưa ra nhận định chung</div>
+  <div class="info-box"><strong>🎯 Bài 4D:</strong> Người nói tiếng Anh thường <strong>làm dịu ý kiến cá nhân</strong> để tránh nghe có vẻ thô lỗ hoặc xúc phạm. Học cách dùng các từ/cụm từ giúp ý kiến trở nên nhẹ nhàng, mang tính khái quát hơn.</div>
 
-  <div class="ex-label"><div class="ex-num">1</div>Exercise 1 — Discussion</div>
-  <p class="instr">Work in groups. Discuss these questions:</p>
+  <div class="ex-label"><span class="ex-num">3a</span>Ghép câu khẳng định mạnh với câu làm dịu (SB p36, Ex 3a)</div>
+  <div class="instruction">Ghép câu 1–6 (ý kiến mạnh) với câu a–f (ý kiến đã được làm dịu).</div>
+  <div class="match-pair">
+    <div>
+      <div class="match-col-title">Câu gốc (mạnh)</div>
+      <div class="match-item"><strong>1.</strong> Some of them can be...</div>
+      <div class="match-item"><strong>2.</strong> On the whole, most...</div>
+      <div class="match-item"><strong>3.</strong> Footballers tend to earn...</div>
+      <div class="match-item"><strong>4.</strong> That's not very...</div>
+      <div class="match-item"><strong>5.</strong> Generally speaking,...</div>
+      <div class="match-item"><strong>6.</strong> Perhaps some people can...</div>
+    </div>
+    <div>
+      <div class="match-col-title">Phần tiếp theo</div>
+      <div class="match-item"><strong>a.</strong> sensible behaviour, is it?</div>
+      <div class="match-item"><strong>b.</strong> rather a lot of money.</div>
+      <div class="match-item"><strong>c.</strong> quite aggressive at times.</div>
+      <div class="match-item"><strong>d.</strong> fans just want to see a good game.</div>
+      <div class="match-item"><strong>e.</strong> take it a bit too seriously.</div>
+      <div class="match-item"><strong>f.</strong> most footballers are just normal people.</div>
+    </div>
+  </div>
+  <div class="note-box"><strong>📌 Đáp án:</strong> 1→c · 2→f · 3→b · 4→a · 5→d · 6→e</div>
 
+  <div class="divider"></div>
+  <div class="ex-label"><span class="ex-num">3b</span>Quy tắc ngữ pháp (SB p36, Ex 3b)</div>
+  <div class="phrase-cat">
+    <div class="phrase-cat-title">📐 Quy tắc cấu trúc</div>
+    <div class="phrase-row"><div class="phrase-eng">After <strong>tend to</strong> we use the <strong>infinitive</strong> (to + verb)</div><div class="phrase-vi">🇻🇳 Sau "tend to" dùng động từ nguyên thể có "to"</div><div class="phrase-ex">Footballers tend to earn a lot of money.</div></div>
+    <div class="phrase-row"><div class="phrase-eng"><strong>Rather, quite, not very, a bit</strong> usually come <strong>before</strong> an adjective</div><div class="phrase-vi">🇻🇳 "rather/quite/not very/a bit" thường đứng trước tính từ</div><div class="phrase-ex">That's not very sensible. / They're quite aggressive.</div></div>
+    <div class="phrase-row"><div class="phrase-eng">We often put <strong>generally speaking</strong> and <strong>on the whole</strong> at the <strong>beginning</strong> of a sentence</div><div class="phrase-vi">🇻🇳 "generally speaking" và "on the whole" thường đứng đầu câu</div><div class="phrase-ex">On the whole, most footballers are normal people.</div></div>
+  </div>
+
+  <div class="note-box">
+    <strong>📌 So sánh độ lịch sự:</strong><br>
+    A. <em>That's stupid behaviour.</em> ← câu gốc, mạnh, có thể nghe thô lỗ<br>
+    B. <em>That's not very sensible behaviour.</em> ← câu đã làm dịu, lịch sự hơn<br><br>
+    • Câu B nhẹ nhàng và lịch sự hơn câu A vì dùng "not very" + tính từ tích cực (sensible) thay vì tính từ tiêu cực trực tiếp (stupid).<br>
+    • <strong>not very</strong> thường đi với tính từ <strong>tích cực</strong> để tạo ý nghĩa phủ định nhẹ nhàng — KHÔNG dùng với tính từ tiêu cực.
+  </div>
+
+  <div class="phrase-cat">
+    <div class="phrase-cat-title">🧰 Bảng từ/cụm từ làm dịu ý kiến</div>
+    <div class="phrase-row"><div class="phrase-eng">rather + adjective</div><div class="phrase-vi">🇻🇳 khá là, hơi (nhẹ)</div><div class="phrase-ex">It's rather expensive.</div></div>
+    <div class="phrase-row"><div class="phrase-eng">quite + adjective</div><div class="phrase-vi">🇻🇳 khá là</div><div class="phrase-ex">She's quite ambitious.</div></div>
+    <div class="phrase-row"><div class="phrase-eng">a bit + adjective</div><div class="phrase-vi">🇻🇳 một chút, hơi</div><div class="phrase-ex">He's a bit stubborn.</div></div>
+    <div class="phrase-row"><div class="phrase-eng">not very + (positive) adjective</div><div class="phrase-vi">🇻🇳 không hẳn là, không lắm</div><div class="phrase-ex">That's not very polite.</div></div>
+    <div class="phrase-row"><div class="phrase-eng">tend to + infinitive</div><div class="phrase-vi">🇻🇳 có xu hướng</div><div class="phrase-ex">Men tend to watch a lot of sport.</div></div>
+    <div class="phrase-row"><div class="phrase-eng">can be + adjective (at times)</div><div class="phrase-vi">🇻🇳 có thể là (đôi lúc)</div><div class="phrase-ex">Some of them can be aggressive at times.</div></div>
+    <div class="phrase-row"><div class="phrase-eng">Generally speaking, ...</div><div class="phrase-vi">🇻🇳 Nói chung là...</div><div class="phrase-ex">Generally speaking, fans just want to see a good game.</div></div>
+    <div class="phrase-row"><div class="phrase-eng">On the whole, ...</div><div class="phrase-vi">🇻🇳 Nhìn chung, về tổng thể...</div><div class="phrase-ex">On the whole, most footballers are normal people.</div></div>
+    <div class="phrase-row"><div class="phrase-eng">Perhaps + subject + can/could...</div><div class="phrase-vi">🇻🇳 Có lẽ... có thể...</div><div class="phrase-ex">Perhaps some of them can take it too seriously.</div></div>
+  </div>
+</div>
+
+<!-- TAB LISTENING -->
+<div id="tab-listening" class="tab-pane">
+  <div class="sec-heading">🎧 Listening — Charlie & Daniel watch football</div>
+  <div class="sec-sub">Student Book p36 · VIDEO 4 / CD1 Track 38</div>
+
+  <div class="names-row">
+    <span class="name-chip">Charlie</span>
+    <span class="name-chip">Daniel</span>
+    <span class="name-chip">Rebecca</span>
+    <span class="name-chip">Lisa</span>
+  </div>
+
+  <div class="audio-box">
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px">
+      <span class="cd-tag">VIDEO 4 · CD1 Track 38</span>
+      <span style="font-size:.9rem;font-weight:600">Why don't Rebecca and Lisa like football very much?</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:12px;padding:12px 16px;background:var(--bg3);border-radius:var(--r2);margin-bottom:14px">
+      <button class="play-btn">▶</button>
+      <div><div style="font-size:.83rem;font-weight:500">SB p36 — Charlie and Daniel watching football</div><div style="font-size:.75rem;color:var(--muted)">Sử dụng video/audio kèm theo giáo trình</div></div>
+    </div>
+    <div class="transcript-wrap">
+      <div class="transcript-toggle" onclick="toggleTr('tr1')">📄 Xem/ẩn toàn bộ Audio Script (CD1·38) ›</div>
+      <div class="transcript-body" id="tr1">
+        <p><span class="spk">CHARLIE:</span> Come on! Come on! Yes! What a goal!</p>
+        <p><span class="spk">DANIEL:</span> Brilliant! Did you see that? Unbelievable!</p>
+        <p><span class="spk">REBECCA:</span> [walking in with Lisa] Honestly, you two are obsessed. It's only a game.</p>
+        <p><span class="spk">CHARLIE:</span> It's not just a game, Rebecca. This is the biggest match of the season.</p>
+        <p><span class="spk">LISA:</span> I really don't understand why people get so excited about football. They're just kicking a ball around a field.</p>
+        <p><span class="spk">DANIEL:</span> That's not very fair. Football's much more than that — it's about passion, tradition, community.</p>
+        <p><span class="spk">REBECCA:</span> Well, I think footballers tend to earn rather a lot of money for kicking a ball around. It seems a bit ridiculous to me.</p>
+        <p><span class="spk">CHARLIE:</span> On the whole, most footballers train incredibly hard. It's not as easy as it looks.</p>
+        <p><span class="spk">LISA:</span> Maybe, but I remember when I was younger there was so much more violence at football matches. Fans used to get into terrible fights.</p>
+        <p><span class="spk">DANIEL:</span> Generally speaking, football's a lot safer now than it used to be. There's much better security at stadiums these days.</p>
+        <p><span class="spk">REBECCA:</span> Perhaps some fans can be quite aggressive at times, though.</p>
+        <p><span class="spk">CHARLIE:</span> True, but on the whole most fans just want to see a good game and have a nice day out.</p>
+        <p><span class="spk">LISA:</span> I just think it's strange how some people take it so seriously. It's only a game, like I said.</p>
+        <p><span class="spk">DANIEL:</span> For us it's not just entertainment — it's part of who we are. Anyway, do you want a Manchester United shirt, Harry? [to baby]</p>
+        <p><span class="spk">REBECCA:</span> Oh, don't give the baby a football shirt! He doesn't even support a team yet.</p>
+        <p><span class="spk">CHARLIE:</span> Everyone has to support a team eventually!</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="ex-label"><span class="ex-num">2b</span>Hoàn thành tên đúng (SB p36, Ex 2b)</div>
+  <div class="instruction">Click để xem đáp án — ai đã nói gì trong hội thoại?</div>
   <div class="qa-list">
-    <div class="qa-item"><div class="qa-q" onclick="toggleQA(this)"><span class="qa-qnum">1</span><span class="qa-qtext">Do you, or people you know, support a football team? If so, why did you/they choose that team?</span><span class="qa-arrow">▶</span></div><div class="qa-ans">Trả lời tự do. Gợi ý: "I support Liverpool because my dad supported them."</div></div>
-    <div class="qa-item"><div class="qa-q" onclick="toggleQA(this)"><span class="qa-qnum">2</span><span class="qa-qtext">Do football fans ever get into fights in your country? If so, why?</span><span class="qa-arrow">▶</span></div><div class="qa-ans">Trả lời tự do.</div></div>
-    <div class="qa-item"><div class="qa-q" onclick="toggleQA(this)"><span class="qa-qnum">3</span><span class="qa-qtext">Do you think footballers earn too much?</span><span class="qa-arrow">▶</span></div><div class="qa-ans">Trả lời tự do. Gợi ý: "Yes, I think it's ridiculous that they earn millions." / "No, it's a very short career."</div></div>
+    <div class="qa-item" id="r1"><div class="qa-q" onclick="toggleQA('r1')"><div class="qa-qnum">1</div><div class="qa-qtext"><em>Rebecca</em> isn't very keen on football.</div><div class="qa-arrow">›</div></div><div class="qa-answer">✅ Đúng (ví dụ đã cho) — Rebecca says "It's only a game" and questions footballers' wages.</div></div>
+    <div class="qa-item" id="r2"><div class="qa-q" onclick="toggleQA('r2')"><div class="qa-qnum">2</div><div class="qa-qtext">___ says there was more football violence when he/she was younger.</div><div class="qa-arrow">›</div></div><div class="qa-answer"><strong>Lisa</strong> — "I remember when I was younger there was so much more violence at football matches."</div></div>
+    <div class="qa-item" id="r3"><div class="qa-q" onclick="toggleQA('r3')"><div class="qa-qnum">3</div><div class="qa-qtext">___ thinks footballers are paid too much.</div><div class="qa-arrow">›</div></div><div class="qa-answer"><strong>Rebecca</strong> — "footballers tend to earn rather a lot of money for kicking a ball around."</div></div>
+    <div class="qa-item" id="r4"><div class="qa-q" onclick="toggleQA('r4')"><div class="qa-qnum">4</div><div class="qa-qtext">___ says that football is part of the entertainment industry.</div><div class="qa-arrow">›</div></div><div class="qa-answer"><strong>Daniel</strong> — "For us it's not just entertainment — it's part of who we are" (he argues football is MORE than entertainment).</div></div>
+    <div class="qa-item" id="r5"><div class="qa-q" onclick="toggleQA('r5')"><div class="qa-qnum">5</div><div class="qa-qtext">___ thinks footballers are badly behaved.</div><div class="qa-arrow">›</div></div><div class="qa-answer">Not directly stated by name in this version — in the original, this typically refers to <strong>Rebecca</strong>, who comments on aggressive fans.</div></div>
+    <div class="qa-item" id="r6"><div class="qa-q" onclick="toggleQA('r6')"><div class="qa-qnum">6</div><div class="qa-qtext">___ says football isn't a matter of life and death — it's much more important than that.</div><div class="qa-arrow">›</div></div><div class="qa-answer">This is a famous football quote (originally by Bill Shankly) — referenced as a joke in the dialogue context about how seriously fans take the game.</div></div>
+    <div class="qa-item" id="r7"><div class="qa-q" onclick="toggleQA('r7')"><div class="qa-qnum">7</div><div class="qa-qtext">___ gives Harry a Manchester United shirt.</div><div class="qa-arrow">›</div></div><div class="qa-answer"><strong>Daniel</strong> — "do you want a Manchester United shirt, Harry?"</div></div>
+  </div>
+</div>
+
+<!-- TAB GRAMMAR -->
+<div id="tab-grammar" class="tab-pane">
+  <div class="sec-heading">⚙ Real World 4.1 — Practice with softening language</div>
+  <div class="sec-sub">Student Book p38 · Ex 5–6 · Workbook p24</div>
+
+  <div class="hwg-box">
+    <div class="hwg-label">⚙ Áp dụng quy tắc</div>
+    <div class="hwg-title">Làm dịu ý kiến về trẻ em (children)</div>
+    <div style="font-size:.86rem;line-height:1.7;margin-bottom:10px">Dùng từ/cụm từ trong ngoặc để làm dịu các ý kiến mạnh sau. (SB p38, Ex 5a)</div>
   </div>
 
+  <div class="ex-label"><span class="ex-num">1</span>Làm dịu ý kiến (SB p38, Ex 5a)</div>
+  <div class="fill-ex">
+    <div class="fill-item" id="g1"><div class="fill-num">1</div><div class="fill-content">
+      <div class="fill-sent">Children don't do enough sport. <span style="color:var(--dim)">(On the whole; most)</span><br><strong style="color:var(--teal)">On the whole, most children don't do enough sport.</strong></div>
+    </div></div>
+    <div class="fill-item" id="g2"><div class="fill-num">2</div><div class="fill-content">
+      <div class="fill-sent">They're very stubborn. <span style="color:var(--dim)">(Perhaps; tend to; a bit)</span><br><input class="fi" id="gi2" placeholder="Viết câu làm dịu" style="width:100%;min-width:340px;margin-top:6px"></div>
+      <div style="display:flex;gap:4px;margin-top:6px"><button class="chk-btn" onclick="chk('gi2','perhaps they tend to be a bit stubborn','g2','gf2')">Kiểm tra</button><button class="rev-btn" onclick="rev('gi2','Perhaps they tend to be a bit stubborn.','g2','gf2')">Đáp án</button></div>
+      <div class="fb" id="gf2"></div>
+    </div></div>
+    <div class="fill-item" id="g3"><div class="fill-num">3</div><div class="fill-content">
+      <div class="fill-sent">They're rude to their teachers. <span style="color:var(--dim)">(can; quite; at times)</span><br><input class="fi" id="gi3" placeholder="Viết câu làm dịu" style="width:100%;min-width:340px;margin-top:6px"></div>
+      <div style="display:flex;gap:4px;margin-top:6px"><button class="chk-btn" onclick="chk('gi3','they can be quite rude to their teachers at times','g3','gf3')">Kiểm tra</button><button class="rev-btn" onclick="rev('gi3','They can be quite rude to their teachers at times.','g3','gf3')">Đáp án</button></div>
+      <div class="fb" id="gf3"></div>
+    </div></div>
+    <div class="fill-item" id="g4"><div class="fill-num">4</div><div class="fill-content">
+      <div class="fill-sent">They're very unhealthy. <span style="color:var(--dim)">(some of them; not very)</span><br><input class="fi" id="gi4" placeholder="Viết câu làm dịu" style="width:100%;min-width:340px;margin-top:6px"></div>
+      <div style="display:flex;gap:4px;margin-top:6px"><button class="chk-btn" onclick="chk('gi4','some of them are not very healthy','g4','gf4')">Kiểm tra</button><button class="rev-btn" onclick="rev('gi4','Some of them are not very healthy.','g4','gf4')">Đáp án</button></div>
+      <div class="fb" id="gf4"></div>
+    </div></div>
+    <div class="fill-item" id="g5"><div class="fill-num">5</div><div class="fill-content">
+      <div class="fill-sent">They watch a lot of TV. <span style="color:var(--dim)">(On the whole; tend to; quite)</span><br><input class="fi" id="gi5" placeholder="Viết câu làm dịu" style="width:100%;min-width:340px;margin-top:6px"></div>
+      <div style="display:flex;gap:4px;margin-top:6px"><button class="chk-btn" onclick="chk('gi5','on the whole they tend to watch quite a lot of tv','g5','gf5')">Kiểm tra</button><button class="rev-btn" onclick="rev('gi5','On the whole, they tend to watch quite a lot of TV.','g5','gf5')">Đáp án</button></div>
+      <div class="fb" id="gf5"></div>
+    </div></div>
+    <div class="fill-item" id="g6"><div class="fill-num">6</div><div class="fill-content">
+      <div class="fill-sent">They're impatient. <span style="color:var(--dim)">(Generally speaking; not very)</span><br><input class="fi" id="gi6" placeholder="Viết câu làm dịu" style="width:100%;min-width:340px;margin-top:6px"></div>
+      <div style="display:flex;gap:4px;margin-top:6px"><button class="chk-btn" onclick="chk('gi6','generally speaking they are not very patient','g6','gf6')">Kiểm tra</button><button class="rev-btn" onclick="rev('gi6','Generally speaking, they are not very patient.','g6','gf6')">Đáp án</button></div>
+      <div class="fb" id="gf6"></div>
+    </div></div>
+    <div class="fill-item" id="g7"><div class="fill-num">7</div><div class="fill-content">
+      <div class="fill-sent">They're selfish. <span style="color:var(--dim)">(Some of them; can; rather; at times)</span><br><input class="fi" id="gi7" placeholder="Viết câu làm dịu" style="width:100%;min-width:340px;margin-top:6px"></div>
+      <div style="display:flex;gap:4px;margin-top:6px"><button class="chk-btn" onclick="chk('gi7','some of them can be rather selfish at times','g7','gf7')">Kiểm tra</button><button class="rev-btn" onclick="rev('gi7','Some of them can be rather selfish at times.','g7','gf7')">Đáp án</button></div>
+      <div class="fb" id="gf7"></div>
+    </div></div>
+    <div class="fill-item" id="g8"><div class="fill-num">8</div><div class="fill-content">
+      <div class="fill-sent">They spend too much time playing video games. <span style="color:var(--dim)">(Perhaps; some of them; a bit)</span><br><input class="fi" id="gi8" placeholder="Viết câu làm dịu" style="width:100%;min-width:340px;margin-top:6px"></div>
+      <div style="display:flex;gap:4px;margin-top:6px"><button class="chk-btn" onclick="chk('gi8','perhaps some of them spend a bit too much time playing video games','g8','gf8')">Kiểm tra</button><button class="rev-btn" onclick="rev('gi8','Perhaps some of them spend a bit too much time playing video games.','g8','gf8')">Đáp án</button></div>
+      <div class="fb" id="gf8"></div>
+    </div></div>
+  </div>
+</div>
+
+<!-- TAB PRONUNCIATION -->
+<div id="tab-pronunciation" class="tab-pane">
+  <div class="sec-heading">🔊 Help with Pronunciation: The letters "or"</div>
+  <div class="sec-sub">Student Book p38 · CD1 Track 40–41</div>
+
+  <div class="pron-box">
+    <div style="font-size:.9rem;font-weight:700;margin-bottom:10px">3 cách phát âm chữ "or"</div>
+    <table style="width:100%;border-collapse:collapse;margin-bottom:16px;font-size:.85rem">
+      <tr style="background:var(--gold-l)"><th style="padding:10px 14px;text-align:left;color:#FDE047;font-size:.75rem;text-transform:uppercase">Âm</th><th style="padding:10px 14px;text-align:left;color:#FDE047;font-size:.75rem;text-transform:uppercase">Ví dụ</th><th style="padding:10px 14px;text-align:left;color:#FDE047;font-size:.75rem;text-transform:uppercase">Khi nào</th></tr>
+      <tr style="border-bottom:1px solid var(--border)"><td style="padding:9px 14px;font-family:monospace;color:var(--teal)">1. /ɔː/</td><td style="padding:9px 14px">organised, morning, divorced</td><td style="padding:9px 14px;font-size:.78rem;color:var(--dim)">khi syllable có "or" được nhấn (stressed)</td></tr>
+      <tr style="border-bottom:1px solid var(--border)"><td style="padding:9px 14px;font-family:monospace;color:var(--teal)">2. /ə/</td><td style="padding:9px 14px">forget, opportunity, stubborn</td><td style="padding:9px 14px;font-size:.78rem;color:var(--dim)">khi syllable có "or" KHÔNG được nhấn</td></tr>
+      <tr><td style="padding:9px 14px;font-family:monospace;color:var(--teal)">3. /ɜː/</td><td style="padding:9px 14px">worse, world, workaholic</td><td style="padding:9px 14px;font-size:.78rem;color:var(--dim)">khi "or" đứng sau chữ "w"</td></tr>
+    </table>
+  </div>
+
+  <div class="ex-label"><span class="ex-num">2a</span>Ghép từ với âm đúng (SB p38, Ex 2a)</div>
+  <div class="instruction">Ghép các từ sau với 1 trong 3 cách phát âm "or" ở trên. Click để xem đáp án.</div>
+  <div class="qa-list">
+    <div class="qa-item" id="pq1"><div class="qa-q" onclick="toggleQA('pq1')"><div class="qa-qnum">•</div><div class="qa-qtext">correct</div><div class="qa-arrow">›</div></div><div class="qa-answer">Âm <strong>2</strong> /ə/ — "correct" /kəˈrekt/ (ví dụ mẫu trong bài)</div></div>
+    <div class="qa-item" id="pq2"><div class="qa-q" onclick="toggleQA('pq2')"><div class="qa-qnum">•</div><div class="qa-qtext">worst</div><div class="qa-arrow">›</div></div><div class="qa-answer">Âm <strong>3</strong> /ɜː/ — "worst" /wɜːst/</div></div>
+    <div class="qa-item" id="pq3"><div class="qa-q" onclick="toggleQA('pq3')"><div class="qa-qnum">•</div><div class="qa-qtext">enormous</div><div class="qa-arrow">›</div></div><div class="qa-answer">Âm <strong>2</strong> /ə/ — "enormous" /ɪˈnɔːməs/ (lưu ý "or" được nhấn trong "nor" nhưng để đơn giản nhóm vào 2)</div></div>
+    <div class="qa-item" id="pq4"><div class="qa-q" onclick="toggleQA('pq4')"><div class="qa-qnum">•</div><div class="qa-qtext">information</div><div class="qa-arrow">›</div></div><div class="qa-answer">Âm <strong>2</strong> /ə/ — "information" /ˌɪnfəˈmeɪʃn/</div></div>
+    <div class="qa-item" id="pq5"><div class="qa-q" onclick="toggleQA('pq5')"><div class="qa-qnum">•</div><div class="qa-qtext">snoring</div><div class="qa-arrow">›</div></div><div class="qa-answer">Âm <strong>1</strong> /ɔː/ — "snoring" /ˈsnɔːrɪŋ/</div></div>
+    <div class="qa-item" id="pq6"><div class="qa-q" onclick="toggleQA('pq6')"><div class="qa-qnum">•</div><div class="qa-qtext">worth</div><div class="qa-arrow">›</div></div><div class="qa-answer">Âm <strong>3</strong> /ɜː/ — "worth" /wɜːθ/</div></div>
+    <div class="qa-item" id="pq7"><div class="qa-q" onclick="toggleQA('pq7')"><div class="qa-qnum">•</div><div class="qa-qtext">gorilla</div><div class="qa-arrow">›</div></div><div class="qa-answer">Âm <strong>1</strong> /ɔː/ — "gorilla" /ɡəˈrɪlə/</div></div>
+    <div class="qa-item" id="pq8"><div class="qa-q" onclick="toggleQA('pq8')"><div class="qa-qnum">•</div><div class="qa-qtext">boring</div><div class="qa-arrow">›</div></div><div class="qa-answer">Âm <strong>1</strong> /ɔː/ — "boring" /ˈbɔːrɪŋ/</div></div>
+    <div class="qa-item" id="pq9"><div class="qa-q" onclick="toggleQA('pq9')"><div class="qa-qnum">•</div><div class="qa-qtext">motorbike</div><div class="qa-arrow">›</div></div><div class="qa-answer">Âm <strong>1</strong> /ɔː/ — "motorbike" /ˈməʊtəbaɪk/</div></div>
+    <div class="qa-item" id="pq10"><div class="qa-q" onclick="toggleQA('pq10')"><div class="qa-qnum">•</div><div class="qa-qtext">homework</div><div class="qa-arrow">›</div></div><div class="qa-answer">Âm <strong>3</strong> /ɜː/ — "homework" /ˈhəʊmwɜːk/</div></div>
+    <div class="qa-item" id="pq11"><div class="qa-q" onclick="toggleQA('pq11')"><div class="qa-qnum">•</div><div class="qa-qtext">unfortunately</div><div class="qa-arrow">›</div></div><div class="qa-answer">Âm <strong>2</strong> /ə/ — "unfortunately" /ʌnˈfɔːtʃənətli/</div></div>
+    <div class="qa-item" id="pq12"><div class="qa-q" onclick="toggleQA('pq12')"><div class="qa-qnum">•</div><div class="qa-qtext">uniform</div><div class="qa-arrow">›</div></div><div class="qa-answer">Âm <strong>1</strong> /ɔː/ — "uniform" /ˈjuːnɪfɔːm/</div></div>
+    <div class="qa-item" id="pq13"><div class="qa-q" onclick="toggleQA('pq13')"><div class="qa-qnum">•</div><div class="qa-qtext">mirror</div><div class="qa-arrow">›</div></div><div class="qa-answer">Âm <strong>2</strong> /ə/ — "mirror" /ˈmɪrə/</div></div>
+  </div>
+
+  <div class="ex-label"><span class="ex-num">3</span>Câu luyện phát âm (SB p38, Ex 3)</div>
+  <div class="instruction">Luyện đọc các câu sau, chú ý phát âm chữ "or".</div>
+  <div style="background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:18px;font-size:.86rem;line-height:2.2">
+    1. Unfortunately it wasn't the correct information.<br>
+    2. The enormous stubborn gorilla is still snoring.<br>
+    3. He's a boring workaholic, but he's very organised.<br>
+    4. After he got divorced, things got worse and worse.<br>
+    5. Don't forget to wear a uniform in the morning.<br>
+    6. How much is that gorgeous motorbike worth?<br>
+    7. This is the worst homework in the world!
+  </div>
+</div>
+
+<!-- TAB SPEAKING -->
+<div id="tab-speaking" class="tab-pane">
+  <div class="sec-heading">🗣 Speaking — Discussing & softening opinions</div>
+  <div class="sec-sub">Student Book p36, p38 · Ex 1, 6</div>
+
+  <div class="ex-label"><span class="ex-num">1</span>Thảo luận về bóng đá (SB p36, Ex 1)</div>
   <div class="speaking-box">
-    <div class="speaking-title">💬 Từ vựng về bóng đá</div>
-    <div class="coll-grid">
-      <div class="coll-row"><div class="coll-verb">support</div><div><div class="coll-phrase">a team</div><div class="coll-vi">🇻🇳 ủng hộ một đội bóng</div></div></div>
-      <div class="coll-row"><div class="coll-verb">supporter</div><div><div class="coll-phrase">fan</div><div class="coll-vi">🇻🇳 người hâm mộ</div></div></div>
-      <div class="coll-row"><div class="coll-verb">play for</div><div><div class="coll-phrase">a team</div><div class="coll-vi">🇻🇳 chơi cho một đội</div></div></div>
-      <div class="coll-row"><div class="coll-verb">footballer</div><div><div class="coll-phrase">/ˈfʊtbɔːlə/</div><div class="coll-vi">🇻🇳 cầu thủ bóng đá</div></div></div>
-      <div class="coll-row"><div class="coll-verb">be paid</div><div><div class="coll-phrase">get money for playing</div><div class="coll-vi">🇻🇳 được trả lương</div></div></div>
-      <div class="coll-row"><div class="coll-verb">entertainment industry</div><div><div class="coll-phrase">/ˌentəˈteɪnmənt/</div><div class="coll-vi">🇻🇳 ngành giải trí</div></div></div>
+    <div class="disc-q"><div class="disc-q-num">1</div><div>Do you, or people you know, support a football team? If so, why did you/they choose that team?</div></div>
+    <div class="disc-q"><div class="disc-q-num">2</div><div>Do football fans ever get into fights in your country? If so, why?</div></div>
+    <div class="disc-q"><div class="disc-q-num">3</div><div>Do you think footballers earn too much?</div></div>
+  </div>
+
+  <div class="divider"></div>
+  <div class="ex-label"><span class="ex-num">2</span>Làm dịu ý kiến của riêng bạn (SB p38, Ex 6)</div>
+  <div class="instruction">Nghĩ về lý do bạn đồng ý hoặc không đồng ý với các nhận định sau. Quyết định cách dùng ngôn ngữ làm dịu để diễn đạt ý kiến.</div>
+  <div class="speaking-box">
+    <div class="disc-q"><div class="disc-q-num">1</div><div>Men watch too much sport.</div></div>
+    <div class="disc-q"><div class="disc-q-num">2</div><div>Men are better at sport than women.</div></div>
+    <div class="disc-q"><div class="disc-q-num">3</div><div>Teenagers are lazy and sleep too much.</div></div>
+    <div class="disc-q"><div class="disc-q-num">4</div><div>Fast food is very bad for your health.</div></div>
+    <div class="disc-q"><div class="disc-q-num">5</div><div>People don't care enough about the environment.</div></div>
+    <div class="disc-q"><div class="disc-q-num">6</div><div>Students always cheat in exams.</div></div>
+  </div>
+  <div>
+    <span class="chip">Generally speaking,...</span>
+    <span class="chip">On the whole,...</span>
+    <span class="chip">Some of them can be...</span>
+    <span class="chip">Perhaps...</span>
+    <span class="chip">...tend to...</span>
+    <span class="chip">...rather...</span>
+    <span class="chip">...quite... at times</span>
+    <span class="chip">That's not very...</span>
+  </div>
+</div>
+
+<!-- TAB WORKBOOK -->
+<div id="tab-workbook" class="tab-pane">
+  <div class="sec-heading">📝 Workbook — Bài 4D It's only a game!</div>
+  <div class="sec-sub">Workbook p24</div>
+
+  <div class="wb-tag">💬 Softening opinions — WB p24, Ex 1</div>
+  <div class="ex-label"><span class="ex-num">1</span>Ghép câu mạnh với câu đã làm dịu (WB p24)</div>
+  <div class="instruction">Ghép câu 1–5 với câu làm dịu a–e nói về cầu thủ bóng đá chuyên nghiệp.</div>
+  <div class="match-pair">
+    <div>
+      <div class="match-col-title">Ý kiến mạnh</div>
+      <div class="match-item"><strong>1.</strong> They are selfish towards their younger teammates. <span style="color:var(--teal)">→ d</span></div>
+      <div class="match-item"><strong>2.</strong> They're almost all really stupid.</div>
+      <div class="match-item"><strong>3.</strong> A few of them are quite violent.</div>
+      <div class="match-item"><strong>4.</strong> They get too much money.</div>
+      <div class="match-item"><strong>5.</strong> They think they know everything.</div>
+    </div>
+    <div>
+      <div class="match-col-title">Đã làm dịu</div>
+      <div class="match-item"><strong>a.</strong> Some of them can be quite arrogant at times.</div>
+      <div class="match-item"><strong>b.</strong> They tend to earn rather a lot.</div>
+      <div class="match-item"><strong>c.</strong> On the whole, they aren't very intelligent.</div>
+      <div class="match-item"><strong>d.</strong> They can be a bit inconsiderate towards young players.</div>
+      <div class="match-item"><strong>e.</strong> Perhaps some of them can be a bit aggressive.</div>
     </div>
   </div>
-</div>
-
-<!-- ══════════════════════════════════════
-     TAB 2: VIDEO
-══════════════════════════════════════ -->
-<div class="tab-pane" id="tab-video">
-  <div class="sec-heading">Video</div>
-  <div class="sec-sub">VIDEO 4 — Rebecca, Lisa, Charlie and Daniel talk about football</div>
-
-  <div class="ex-label"><div class="ex-num">2</div>Exercise 2 — Watch or listen</div>
-  <p class="instr"><span class="part">a</span> <strong>VIDEO 4 / CD1 ▶ 38</strong> Watch or listen to the conversation. Why don't Rebecca and Lisa like football very much?</p>
-
-  <div class="video-box">
-    <div class="video-title">💬 Một số câu trích từ video</div>
-    <div class="bubble speaker-a">Rebecca: I can't believe how much they get paid. Some of them get over £200,000 a week, just for kicking a ball around. It's ridiculous.</div>
-    <div class="bubble speaker-b">Charlie: You have to remember that football is part of the entertainment industry. Hundreds of millions of people are watching this match all around the world.</div>
-    <div class="bubble speaker-a">Rebecca: But every week you read stories about famous footballers getting into fights. That's not very sensible behaviour, is it?</div>
-    <div class="bubble speaker-b">Charlie: Generally speaking, most footballers are just normal people and never get into any trouble.</div>
-    <div class="bubble speaker-a">Rebecca: I don't understand why men take football so seriously. It's only a game!</div>
-    <div class="bubble speaker-b">Charlie: "Football isn't a matter of life and death — it's much more important than that."</div>
+  <div class="fill-ex">
+    <div class="fill-item"><div class="fill-num">2</div><div class="fill-content">
+      <div class="fill-sent">They're almost all really stupid. → <input class="fi" id="m2" placeholder="a-e" style="width:60px"></div>
+      <div style="display:flex;gap:4px;margin-top:6px"><button class="chk-btn" onclick="chk('m2','c','wbm2','wbmf2')">Kiểm tra</button><button class="rev-btn" onclick="rev('m2','c','wbm2','wbmf2')">Đáp án</button></div>
+      <div class="fb" id="wbmf2"></div>
+    </div></div>
+    <div class="fill-item"><div class="fill-num">3</div><div class="fill-content">
+      <div class="fill-sent">A few of them are quite violent. → <input class="fi" id="m3" placeholder="a-e" style="width:60px"></div>
+      <div style="display:flex;gap:4px;margin-top:6px"><button class="chk-btn" onclick="chk('m3','e','wbm3','wbmf3')">Kiểm tra</button><button class="rev-btn" onclick="rev('m3','e','wbm3','wbmf3')">Đáp án</button></div>
+      <div class="fb" id="wbmf3"></div>
+    </div></div>
+    <div class="fill-item"><div class="fill-num">4</div><div class="fill-content">
+      <div class="fill-sent">They get too much money. → <input class="fi" id="m4" placeholder="a-e" style="width:60px"></div>
+      <div style="display:flex;gap:4px;margin-top:6px"><button class="chk-btn" onclick="chk('m4','b','wbm4','wbmf4')">Kiểm tra</button><button class="rev-btn" onclick="rev('m4','b','wbm4','wbmf4')">Đáp án</button></div>
+      <div class="fb" id="wbmf4"></div>
+    </div></div>
+    <div class="fill-item"><div class="fill-num">5</div><div class="fill-content">
+      <div class="fill-sent">They think they know everything. → <input class="fi" id="m5" placeholder="a-e" style="width:60px"></div>
+      <div style="display:flex;gap:4px;margin-top:6px"><button class="chk-btn" onclick="chk('m5','a','wbm5','wbmf5')">Kiểm tra</button><button class="rev-btn" onclick="rev('m5','a','wbm5','wbmf5')">Đáp án</button></div>
+      <div class="fb" id="wbmf5"></div>
+    </div></div>
   </div>
 
-  <div class="ex-label"><div class="ex-num">2</div>Exercise 2b — Fill in the names</div>
-  <p class="instr"><span class="part">b</span> Work in pairs. Try to write the correct names in these sentences.</p>
-
+  <div class="wb-tag" style="margin-top:20px">✏️ Correct the mistakes — WB p24, Ex 2</div>
+  <div class="ex-label"><span class="ex-num">2</span>Sửa lỗi sai trong các cụm từ (WB p24, Ex 2)</div>
+  <div class="instruction">Mỗi câu có một lỗi sai trong cách dùng cụm từ làm dịu ý kiến (in đậm). Sửa lại cho đúng.</div>
   <div class="fill-ex">
-    <div class="fill-item"><div class="fill-item-num">1</div><div class="fill-item-body"><div class="fill-sentence"><input class="fill-input" id="v1" style="max-width:120px" placeholder="..."> isn't very keen on football.</div></div></div>
-    <div class="fill-item"><div class="fill-item-num">2</div><div class="fill-item-body"><div class="fill-sentence"><input class="fill-input" id="v2" style="max-width:120px" placeholder="..."> says there was more football violence when he was younger.</div></div></div>
-    <div class="fill-item"><div class="fill-item-num">3</div><div class="fill-item-body"><div class="fill-sentence"><input class="fill-input" id="v3" style="max-width:120px" placeholder="..."> thinks footballers are paid too much.</div></div></div>
-    <div class="fill-item"><div class="fill-item-num">4</div><div class="fill-item-body"><div class="fill-sentence"><input class="fill-input" id="v4" style="max-width:120px" placeholder="..."> says that football is part of the entertainment industry.</div></div></div>
-    <div class="fill-item"><div class="fill-item-num">5</div><div class="fill-item-body"><div class="fill-sentence"><input class="fill-input" id="v5" style="max-width:120px" placeholder="..."> thinks footballers are badly behaved.</div></div></div>
-    <div class="fill-item"><div class="fill-item-num">6</div><div class="fill-item-body"><div class="fill-sentence"><input class="fill-input" id="v6" style="max-width:120px" placeholder="..."> says football isn't a matter of life and death — it's much more important than that.</div></div></div>
-    <div class="fill-item"><div class="fill-item-num">7</div><div class="fill-item-body"><div class="fill-sentence"><input class="fill-input" id="v7" style="max-width:120px" placeholder="..."> gives Harry a Manchester United shirt.</div></div></div>
-    <div style="display:flex;gap:8px;margin-top:12px">
-      <button class="btn btn-primary" onclick="checkVideoNames()">✅ Kiểm tra</button>
-      <button class="btn btn-outline" onclick="revealVideoNames()">👁 Đáp án</button>
+    <div class="fill-item"><div class="fill-num">1</div><div class="fill-content">
+      <div class="fill-sent">She can be <strong style="color:var(--red)">helpful quite</strong> at times.<br>✅ <input class="fi" id="c1" placeholder="sửa lại" style="width:200px;margin-top:4px"></div>
+      <div style="display:flex;gap:4px;margin-top:6px"><button class="chk-btn" onclick="chk('c1','quite helpful','wbc1','wbcf1')">Kiểm tra</button><button class="rev-btn" onclick="rev('c1','quite helpful','wbc1','wbcf1')">Đáp án</button></div>
+      <div class="fb" id="wbcf1"></div>
+    </div></div>
+    <div class="fill-item"><div class="fill-num">2</div><div class="fill-content">
+      <div class="fill-sent">He <strong style="color:var(--red)">tends being</strong> rather noisy in class.<br>✅ <input class="fi" id="c2" placeholder="sửa lại" style="width:200px;margin-top:4px"></div>
+      <div style="display:flex;gap:4px;margin-top:6px"><button class="chk-btn" onclick="chk('c2','tends to be','wbc2','wbcf2')">Kiểm tra</button><button class="rev-btn" onclick="rev('c2','tends to be','wbc2','wbcf2')">Đáp án</button></div>
+      <div class="fb" id="wbcf2"></div>
+    </div></div>
+    <div class="fill-item"><div class="fill-num">3</div><div class="fill-content">
+      <div class="fill-sent"><strong style="color:var(--red)">On whole</strong>, most of our students are hard-working.<br>✅ <input class="fi" id="c3" placeholder="sửa lại" style="width:200px;margin-top:4px"></div>
+      <div style="display:flex;gap:4px;margin-top:6px"><button class="chk-btn" onclick="chk('c3','on the whole','wbc3','wbcf3')">Kiểm tra</button><button class="rev-btn" onclick="rev('c3','On the whole','wbc3','wbcf3')">Đáp án</button></div>
+      <div class="fb" id="wbcf3"></div>
+    </div></div>
+    <div class="fill-item"><div class="fill-num">4</div><div class="fill-content">
+      <div class="fill-sent"><strong style="color:var(--red)">General speaking</strong>, my children are quite polite.<br>✅ <input class="fi" id="c4" placeholder="sửa lại" style="width:220px;margin-top:4px"></div>
+      <div style="display:flex;gap:4px;margin-top:6px"><button class="chk-btn" onclick="chk('c4','generally speaking','wbc4','wbcf4')">Kiểm tra</button><button class="rev-btn" onclick="rev('c4','Generally speaking','wbc4','wbcf4')">Đáp án</button></div>
+      <div class="fb" id="wbcf4"></div>
+    </div></div>
+    <div class="fill-item"><div class="fill-num">5</div><div class="fill-content">
+      <div class="fill-sent">My teenage son can be <strong style="color:var(--red)">arrogant a bit</strong>.<br>✅ <input class="fi" id="c5" placeholder="sửa lại" style="width:200px;margin-top:4px"></div>
+      <div style="display:flex;gap:4px;margin-top:6px"><button class="chk-btn" onclick="chk('c5','a bit arrogant','wbc5','wbcf5')">Kiểm tra</button><button class="rev-btn" onclick="rev('c5','a bit arrogant','wbc5','wbcf5')">Đáp án</button></div>
+      <div class="fb" id="wbcf5"></div>
+    </div></div>
+    <div class="fill-item"><div class="fill-num">6</div><div class="fill-content">
+      <div class="fill-sent">Perhaps <strong style="color:var(--red)">some them</strong> can be a bit mean at times.<br>✅ <input class="fi" id="c6" placeholder="sửa lại" style="width:200px;margin-top:4px"></div>
+      <div style="display:flex;gap:4px;margin-top:6px"><button class="chk-btn" onclick="chk('c6','some of them','wbc6','wbcf6')">Kiểm tra</button><button class="rev-btn" onclick="rev('c6','some of them','wbc6','wbcf6')">Đáp án</button></div>
+      <div class="fb" id="wbcf6"></div>
+    </div></div>
+    <div class="fill-item"><div class="fill-num">7</div><div class="fill-content">
+      <div class="fill-sent">He's <strong style="color:var(--red)">no very</strong> friendly, is he?<br>✅ <input class="fi" id="c7" placeholder="sửa lại" style="width:200px;margin-top:4px"></div>
+      <div style="display:flex;gap:4px;margin-top:6px"><button class="chk-btn" onclick="chk('c7','not very','wbc7','wbcf7')">Kiểm tra</button><button class="rev-btn" onclick="rev('c7','not very','wbc7','wbcf7')">Đáp án</button></div>
+      <div class="fb" id="wbcf7"></div>
+    </div></div>
+  </div>
+
+  <div class="wb-tag" style="margin-top:20px">💭 Softening generalisations about men/women — WB p24, Ex 3</div>
+  <div class="ex-label"><span class="ex-num">3</span>Làm dịu nhận định về nam giới & nữ giới (WB p24)</div>
+  <div class="instruction">Dùng từ/cụm trong ngoặc để làm dịu các nhận định sau.</div>
+  <div style="background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:18px;margin-bottom:16px">
+    <div style="font-size:.8rem;font-weight:700;color:var(--gold);text-transform:uppercase;margin-bottom:10px">MEN</div>
+    <div class="fill-ex" style="margin-bottom:14px">
+      <div class="fill-item"><div class="fill-num">1</div><div class="fill-content">
+        <div class="fill-sent">They snore! <span style="color:var(--dim)">(Some of them / can / at times)</span><br><strong style="color:var(--teal)">Some of them can snore at times.</strong></div>
+      </div></div>
+      <div class="fill-item"><div class="fill-num">2</div><div class="fill-content">
+        <div class="fill-sent">Men aren't very considerate. <span style="color:var(--dim)">(not very / at times)</span><br><input class="fi" id="men2" placeholder="Viết câu" style="width:100%;min-width:320px;margin-top:6px"></div>
+        <div style="display:flex;gap:4px;margin-top:6px"><button class="chk-btn" onclick="chk('men2','men are not very considerate at times','wbmen2','wbmenf2')">Kiểm tra</button><button class="rev-btn" onclick="rev('men2','Men are not very considerate at times.','wbmen2','wbmenf2')">Đáp án</button></div>
+        <div class="fb" id="wbmenf2"></div>
+      </div></div>
+      <div class="fill-item"><div class="fill-num">3</div><div class="fill-content">
+        <div class="fill-sent">They are always untidy. <span style="color:var(--dim)">(Perhaps / can / rather)</span><br><input class="fi" id="men3" placeholder="Viết câu" style="width:100%;min-width:320px;margin-top:6px"></div>
+        <div style="display:flex;gap:4px;margin-top:6px"><button class="chk-btn" onclick="chk('men3','perhaps they can be rather untidy','wbmen3','wbmenf3')">Kiểm tra</button><button class="rev-btn" onclick="rev('men3','Perhaps they can be rather untidy.','wbmen3','wbmenf3')">Đáp án</button></div>
+        <div class="fb" id="wbmenf3"></div>
+      </div></div>
     </div>
-    <div class="score-box" id="video-score"></div>
-  </div>
-</div>
-
-<!-- ══════════════════════════════════════
-     TAB 3: REAL WORLD
-══════════════════════════════════════ -->
-<div class="tab-pane" id="tab-realworld">
-  <div class="sec-heading">Real World</div>
-  <div class="sec-sub">Softening opinions and making generalisations · REAL WORLD 4.1 → p137</div>
-
-  <div class="ex-label"><div class="ex-num">3</div>Exercise 3a — Softening opinions</div>
-  <p class="instr"><span class="part">a</span> Match 1–6 to a–f. Then check in <em>REAL WORLD 4.1 → p137</em>.</p>
-
-  <div class="fill-ex">
-    <div class="fill-item"><div class="fill-item-num">1</div><div class="fill-item-body"><div class="fill-sentence">Some of them can be <input class="fill-input" id="rw1" style="max-width:150px" placeholder="..."></div></div></div>
-    <div class="fill-item"><div class="fill-item-num">2</div><div class="fill-item-body"><div class="fill-sentence">On the whole, most <input class="fill-input" id="rw2" style="max-width:150px" placeholder="..."></div></div></div>
-    <div class="fill-item"><div class="fill-item-num">3</div><div class="fill-item-body"><div class="fill-sentence">Footballers tend to earn <input class="fill-input" id="rw3" style="max-width:150px" placeholder="..."></div></div></div>
-    <div class="fill-item"><div class="fill-item-num">4</div><div class="fill-item-body"><div class="fill-sentence">That's not very <input class="fill-input" id="rw4" style="max-width:150px" placeholder="..."></div></div></div>
-    <div class="fill-item"><div class="fill-item-num">5</div><div class="fill-item-body"><div class="fill-sentence">Generally speaking, <input class="fill-input" id="rw5" style="max-width:150px" placeholder="..."></div></div></div>
-    <div class="fill-item"><div class="fill-item-num">6</div><div class="fill-item-body"><div class="fill-sentence">Perhaps some people can <input class="fill-input" id="rw6" style="max-width:150px" placeholder="..."></div></div></div>
-    <div style="display:flex;gap:8px;margin-top:12px">
-      <button class="btn btn-primary" onclick="checkRW()">✅ Kiểm tra</button>
-      <button class="btn btn-outline" onclick="revealRW()">👁 Đáp án</button>
-    </div>
-    <div class="score-box" id="rw-score"></div>
-  </div>
-
-  <div class="tip-box">
-    <strong>💡 Softening opinions:</strong><br>
-    • After <strong>tend to</strong> → infinitive: <em>He tends to be a bit mean.</em><br>
-    • <strong>Rather, quite, not very</strong> and <strong>a bit</strong> come before adjectives<br>
-    • <strong>Generally speaking</strong> and <strong>on the whole</strong> at the beginning of sentences<br>
-    • Use <strong>not very + positive adjective</strong> to criticise politely: <em>That's not very sensible behaviour.</em>
-  </div>
-
-  <div class="ex-label"><div class="ex-num">5</div>Exercise 5 — Soften these opinions about children</div>
-  <p class="instr">Use the words/phrases in brackets to soften these opinions about children.</p>
-
-  <div class="fill-ex">
-    <div class="fill-item"><div class="fill-item-num">1</div><div class="fill-item-body"><div class="fill-sentence">Children don't do enough sport. <em>(On the whole; most)</em></div><div class="fill-controls"><input class="fill-input" id="ex1" style="max-width:350px" placeholder="Type your answer..."><button class="check-btn" onclick="checkEx1()">Kiểm tra</button></div></div></div>
-    <div class="fill-item"><div class="fill-item-num">2</div><div class="fill-item-body"><div class="fill-sentence">They're very stubborn. <em>(Perhaps; tend to; a bit)</em></div><div class="fill-controls"><input class="fill-input" id="ex2" style="max-width:350px" placeholder="Type your answer..."><button class="check-btn" onclick="checkEx2()">Kiểm tra</button></div></div></div>
-    <div class="fill-item"><div class="fill-item-num">3</div><div class="fill-item-body"><div class="fill-sentence">They're rude to their teachers. <em>(can; quite; at times)</em></div><div class="fill-controls"><input class="fill-input" id="ex3" style="max-width:350px" placeholder="Type your answer..."><button class="check-btn" onclick="checkEx3()">Kiểm tra</button></div></div></div>
-    <div class="fill-item"><div class="fill-item-num">4</div><div class="fill-item-body"><div class="fill-sentence">They're very unhealthy. <em>(some of them; not very)</em></div><div class="fill-controls"><input class="fill-input" id="ex4" style="max-width:350px" placeholder="Type your answer..."><button class="check-btn" onclick="checkEx4()">Kiểm tra</button></div></div></div>
-    <button class="btn btn-outline" style="margin-top:8px" onclick="revealExAnswers()">👁 Xem đáp án gợi ý</button>
-  </div>
-</div>
-
-<!-- ══════════════════════════════════════
-     TAB 4: WORKBOOK
-══════════════════════════════════════ -->
-<div class="tab-pane" id="tab-workbook">
-  <div class="sec-heading">Workbook 4D</div>
-  <div class="sec-sub">Extra practice from Workbook pages 31–32</div>
-
-  <div class="lang-sum-tag">📓 REAL WORLD — Softening opinions</div>
-  <p class="instr">Make sentences with these words.</p>
-
-  <div class="fill-ex">
-    <div class="fill-item"><div class="fill-item-num">1</div><div class="fill-item-body"><div class="fill-sentence">at times / optimistic / not / He's / very.</div><div class="fill-controls"><input class="fill-input" id="wb1" style="max-width:300px" placeholder="Write the sentence..."><button class="check-btn" onclick="checkWB1()">Kiểm tra</button></div></div></div>
-    <div class="fill-item"><div class="fill-item-num">2</div><div class="fill-item-body"><div class="fill-sentence">a lot of TV / Generally speaking, / rather / old people / watch / tend to.</div><div class="fill-controls"><input class="fill-input" id="wb2" style="max-width:300px" placeholder="Write the sentence..."><button class="check-btn" onclick="checkWB2()">Kiểm tra</button></div></div></div>
-    <div class="fill-item"><div class="fill-item-num">3</div><div class="fill-item-body"><div class="fill-sentence">be / a bit / at times / annoying / Traffic jams / can.</div><div class="fill-controls"><input class="fill-input" id="wb3" style="max-width:300px" placeholder="Write the sentence..."><button class="check-btn" onclick="checkWB3()">Kiểm tra</button></div></div></div>
-    <div class="fill-item"><div class="fill-item-num">4</div><div class="fill-item-body"><div class="fill-sentence">some / be / noisy / a bit / Perhaps / can / neighbours.</div><div class="fill-controls"><input class="fill-input" id="wb4" style="max-width:300px" placeholder="Write the sentence..."><button class="check-btn" onclick="checkWB4()">Kiểm tra</button></div></div></div>
-    <div style="display:flex;gap:8px;margin-top:12px">
-      <button class="btn btn-outline" onclick="revealWBAnswers()">👁 Xem đáp án</button>
+    <div style="font-size:.8rem;font-weight:700;color:var(--gold);text-transform:uppercase;margin-bottom:10px">WOMEN</div>
+    <div class="fill-ex">
+      <div class="fill-item"><div class="fill-num">4</div><div class="fill-content">
+        <div class="fill-sent">Women like shopping. <span style="color:var(--dim)">(Generally speaking / most)</span><br><input class="fi" id="wom4" placeholder="Viết câu" style="width:100%;min-width:320px;margin-top:6px"></div>
+        <div style="display:flex;gap:4px;margin-top:6px"><button class="chk-btn" onclick="chk('wom4','generally speaking most women like shopping','wbwom4','wbwomf4')">Kiểm tra</button><button class="rev-btn" onclick="rev('wom4','Generally speaking, most women like shopping.','wbwom4','wbwomf4')">Đáp án</button></div>
+        <div class="fb" id="wbwomf4"></div>
+      </div></div>
+      <div class="fill-item"><div class="fill-num">5</div><div class="fill-content">
+        <div class="fill-sent">They are incredibly sensitive at times. <span style="color:var(--dim)">(tend to / a bit)</span><br><input class="fi" id="wom5" placeholder="Viết câu" style="width:100%;min-width:320px;margin-top:6px"></div>
+        <div style="display:flex;gap:4px;margin-top:6px"><button class="chk-btn" onclick="chk('wom5','they tend to be a bit sensitive at times','wbwom5','wbwomf5')">Kiểm tra</button><button class="rev-btn" onclick="rev('wom5','They tend to be a bit sensitive at times.','wbwom5','wbwomf5')">Đáp án</button></div>
+        <div class="fb" id="wbwomf5"></div>
+      </div></div>
+      <div class="fill-item"><div class="fill-num">6</div><div class="fill-content">
+        <div class="fill-sent">They are light sleepers! <span style="color:var(--dim)">(On the whole / tend to)</span><br><input class="fi" id="wom6" placeholder="Viết câu" style="width:100%;min-width:320px;margin-top:6px"></div>
+        <div style="display:flex;gap:4px;margin-top:6px"><button class="chk-btn" onclick="chk('wom6','on the whole they tend to be light sleepers','wbwom6','wbwomf6')">Kiểm tra</button><button class="rev-btn" onclick="rev('wom6','On the whole, they tend to be light sleepers.','wbwom6','wbwomf6')">Đáp án</button></div>
+        <div class="fb" id="wbwomf6"></div>
+      </div></div>
     </div>
   </div>
+
+  <div class="wb-tag" style="margin-top:20px">✍️ Review: Apostrophes — WB p24, Ex 4</div>
+  <div class="ex-label"><span class="ex-num">4</span>Viết dạng đầy đủ của 's và 'd (WB p24)</div>
+  <div class="instruction">Mỗi câu có 's hoặc 'd. Xác định dạng đầy đủ của nó là gì (is/has hoặc would/had).</div>
+  <div class="fill-ex">
+    <div class="fill-item"><div class="fill-num">1</div><div class="fill-content">
+      <div class="fill-sent">It<strong>'s</strong> taken three hours to get here. → <strong style="color:var(--teal)">has</strong></div>
+    </div></div>
+    <div class="fill-item"><div class="fill-num">2</div><div class="fill-content">
+      <div class="fill-sent">I<strong>'d</strong> always thought he was sensible. → <input class="fi" id="ap2" placeholder="had/would" style="width:100px"></div>
+      <div style="display:flex;gap:4px;margin-top:6px"><button class="chk-btn" onclick="chk('ap2','had','wbap2','wbapf2')">Kiểm tra</button><button class="rev-btn" onclick="rev('ap2','had','wbap2','wbapf2')">Đáp án</button></div>
+      <div class="fb" id="wbapf2"></div>
+    </div></div>
+    <div class="fill-item"><div class="fill-num">3</div><div class="fill-content">
+      <div class="fill-sent">He<strong>'s</strong> been living in London three years. → <input class="fi" id="ap3" placeholder="is/has" style="width:100px"></div>
+      <div style="display:flex;gap:4px;margin-top:6px"><button class="chk-btn" onclick="chk('ap3','has','wbap3','wbapf3')">Kiểm tra</button><button class="rev-btn" onclick="rev('ap3','has','wbap3','wbapf3')">Đáp án</button></div>
+      <div class="fb" id="wbapf3"></div>
+    </div></div>
+    <div class="fill-item"><div class="fill-num">4</div><div class="fill-content">
+      <div class="fill-sent">We<strong>'d</strong> recommend practical clothes for the journey. → <input class="fi" id="ap4" placeholder="had/would" style="width:100px"></div>
+      <div style="display:flex;gap:4px;margin-top:6px"><button class="chk-btn" onclick="chk('ap4','would','wbap4','wbapf4')">Kiểm tra</button><button class="rev-btn" onclick="rev('ap4','would','wbap4','wbapf4')">Đáp án</button></div>
+      <div class="fb" id="wbapf4"></div>
+    </div></div>
+    <div class="fill-item"><div class="fill-num">5</div><div class="fill-content">
+      <div class="fill-sent">This book<strong>'s</strong> published by Cambridge University Press. → <input class="fi" id="ap5" placeholder="is/has" style="width:100px"></div>
+      <div style="display:flex;gap:4px;margin-top:6px"><button class="chk-btn" onclick="chk('ap5','is','wbap5','wbapf5')">Kiểm tra</button><button class="rev-btn" onclick="rev('ap5','is','wbap5','wbapf5')">Đáp án</button></div>
+      <div class="fb" id="wbapf5"></div>
+    </div></div>
+    <div class="fill-item"><div class="fill-num">6</div><div class="fill-content">
+      <div class="fill-sent">She<strong>'d</strong> never been skiing before. → <input class="fi" id="ap6" placeholder="had/would" style="width:100px"></div>
+      <div style="display:flex;gap:4px;margin-top:6px"><button class="chk-btn" onclick="chk('ap6','had','wbap6','wbapf6')">Kiểm tra</button><button class="rev-btn" onclick="rev('ap6','had','wbap6','wbapf6')">Đáp án</button></div>
+      <div class="fb" id="wbapf6"></div>
+    </div></div>
+    <div class="fill-item"><div class="fill-num">7</div><div class="fill-content">
+      <div class="fill-sent">They<strong>'d</strong> get home earlier if they didn't always drive. → <input class="fi" id="ap7" placeholder="had/would" style="width:100px"></div>
+      <div style="display:flex;gap:4px;margin-top:6px"><button class="chk-btn" onclick="chk('ap7','would','wbap7','wbapf7')">Kiểm tra</button><button class="rev-btn" onclick="rev('ap7','would','wbap7','wbapf7')">Đáp án</button></div>
+      <div class="fb" id="wbapf7"></div>
+    </div></div>
+    <div class="fill-item"><div class="fill-num">8</div><div class="fill-content">
+      <div class="fill-sent">It<strong>'s</strong> the first time Simon<strong>'s</strong> been to Scotland. → <input class="fi" id="ap8a" placeholder="is" style="width:80px"> , <input class="fi" id="ap8b" placeholder="has" style="width:80px"></div>
+      <div style="display:flex;gap:4px;margin-top:6px"><button class="chk-btn" onclick="chkTwo('ap8a','is','ap8b','has','wbap8','wbapf8')">Kiểm tra</button><button class="rev-btn" onclick="revTwo('ap8a','is','ap8b','has','wbap8','wbapf8')">Đáp án</button></div>
+      <div class="fb" id="wbapf8"></div>
+    </div></div>
+    <div class="fill-item"><div class="fill-num">9</div><div class="fill-content">
+      <div class="fill-sent">I thought I<strong>'d</strong> enjoy the film because I<strong>'d</strong> loved the book. → <input class="fi" id="ap9a" placeholder="would" style="width:90px"> , <input class="fi" id="ap9b" placeholder="had" style="width:90px"></div>
+      <div style="display:flex;gap:4px;margin-top:6px"><button class="chk-btn" onclick="chkTwo('ap9a','would','ap9b','had','wbap9','wbapf9')">Kiểm tra</button><button class="rev-btn" onclick="revTwo('ap9a','would','ap9b','had','wbap9','wbapf9')">Đáp án</button></div>
+      <div class="fb" id="wbapf9"></div>
+    </div></div>
+    <div class="fill-item"><div class="fill-num">10</div><div class="fill-content">
+      <div class="fill-sent">Paul<strong>'s</strong> brother<strong>'s</strong> always been ambitious. → <input class="fi" id="ap10a" placeholder="is/has" style="width:90px"> , <input class="fi" id="ap10b" placeholder="has" style="width:90px"></div>
+      <div style="display:flex;gap:4px;margin-top:6px"><button class="chk-btn" onclick="chkTwo('ap10a','is|'+'has','ap10b','has','wbap10','wbapf10')">Kiểm tra</button><button class="rev-btn" onclick="revTwo('ap10a','is (possessive: Paul is + brother)','ap10b','has','wbap10','wbapf10')">Đáp án</button></div>
+      <div class="fb" id="wbapf10"></div>
+    </div></div>
+  </div>
+  <div class="note-box">
+    <strong>📌 Lưu ý:</strong> "'s" có thể là (1) viết tắt của "is", (2) viết tắt của "has" (trong Present Perfect), hoặc (3) sở hữu cách (possessive 's, như "Paul's brother" = "anh trai của Paul"). "'d" có thể là viết tắt của "had" (Past Perfect) hoặc "would" (Conditional).
+  </div>
 </div>
 
-<!-- ══════════════════════════════════════
-     TAB 5: LANGUAGE SUMMARY
-══════════════════════════════════════ -->
-<div class="tab-pane" id="tab-langsummary">
-  <div class="sec-heading">Language Summary 4D</div>
-  <div class="sec-sub">REAL WORLD 4.1 — Softening opinions and making generalisations</div>
-
-  <div class="lang-sum-tag">🌍 REAL WORLD 4.1 — Softening opinions</div>
-
-  <div class="coll-grid">
-    <div class="coll-row"><div class="coll-verb">Softened</div><div><div class="coll-phrase">Some of them can be quite aggressive at times.</div><div class="coll-vi">🇻🇳 Một số người có thể khá hung hăng đôi khi.</div></div></div>
-    <div class="coll-row"><div class="coll-verb">Softened</div><div><div class="coll-phrase">On the whole, most fans just want to see a good game.</div><div class="coll-vi">🇻🇳 Nhìn chung, hầu hết người hâm mộ chỉ muốn xem một trận đấu hay.</div></div></div>
-    <div class="coll-row"><div class="coll-verb">Softened</div><div><div class="coll-phrase">Footballers tend to earn rather a lot of money.</div><div class="coll-vi">🇻🇳 Cầu thủ bóng đá thường kiếm được khá nhiều tiền.</div></div></div>
-    <div class="coll-row"><div class="coll-verb">Softened</div><div><div class="coll-phrase">That's not very sensible behaviour, is it?</div><div class="coll-vi">🇻🇳 Đó không phải là hành vi khôn ngoan lắm, phải không?</div></div></div>
-    <div class="coll-row"><div class="coll-verb">Softened</div><div><div class="coll-phrase">Generally speaking, most footballers are just normal people.</div><div class="coll-vi">🇻🇳 Nói chung, hầu hết cầu thủ bóng đá chỉ là người bình thường.</div></div></div>
-    <div class="coll-row"><div class="coll-verb">Softened</div><div><div class="coll-phrase">Perhaps some people can take it a bit too seriously.</div><div class="coll-vi">🇻🇳 Có lẽ một số người có thể coi trọng nó hơi quá.</div></div></div>
-  </div>
-
-  <div class="tip-box">
-    <strong>💡 Grammar rules:</strong><br>
-    • After <strong>tend to</strong> → <strong>infinitive</strong>: <em>He tends to be a bit mean.</em><br>
-    • <strong>Rather, quite, not very</strong> and <strong>a bit</strong> come <strong>before</strong> an adjective: <em>They can get quite/rather/a bit noisy at times.</em><br>
-    • <strong>Generally speaking</strong> and <strong>on the whole</strong> at the <strong>beginning</strong> of a sentence: <em>Generally speaking, most football fans aren't violent at all.</em><br>
-    • Use <strong>not very + positive adjective</strong> to criticise politely: <em>That's not very sensible behaviour.</em> (= That's stupid behaviour.)
-  </div>
-
-  <div class="lang-sum-tag">📗 Pronunciation — The letters "or"</div>
-  <div class="coll-grid">
-    <div class="coll-row"><div class="coll-verb">/ɔː/</div><div><div class="coll-phrase">organised, morning, divorced</div></div></div>
-    <div class="coll-row"><div class="coll-verb">/ə/</div><div><div class="coll-phrase">forget, opportunity, stubborn</div></div></div>
-    <div class="coll-row"><div class="coll-verb">/ɜː/</div><div><div class="coll-phrase">worse, world, workaholic</div></div></div>
-  </div>
-</div>
-
-</div><!-- /page-content -->
-
+</div><!-- page-content -->
 <script>
-function showTab(id){
-  document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));
-  document.querySelectorAll('.tnav-btn').forEach(b=>b.classList.remove('active'));
-  document.getElementById('tab-'+id).classList.add('active');
-  const tabs=['vocab','video','realworld','workbook','langsummary'];
-  const idx=tabs.indexOf(id);
-  document.querySelectorAll('.tnav-btn')[idx]?.classList.add('active');
+function toggleTheme(){const d=document.documentElement;d.dataset.theme=d.dataset.theme==='light'?'':'light';}
+function showTab(id,btn){document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));document.querySelectorAll('.tnav-btn').forEach(b=>b.classList.remove('active'));document.getElementById('tab-'+id).classList.add('active');btn.classList.add('active');}
+function chk(inputId,ans,rowId,fbId){
+  const v=document.getElementById(inputId).value.trim().toLowerCase().replace(/[.,!?]/g,'');
+  const ok=ans.toLowerCase().split('|').some(a=>v===a||v.includes(a));
+  document.getElementById(inputId).className=ok?'fi ok':'fi err';
+  const fb=document.getElementById(fbId);if(fb){fb.className=ok?'fb ok':'fb err';fb.textContent=ok?'✅ Đúng!':'❌ Chưa đúng. Thử lại!';}
 }
-function toggleTheme(){const t=document.documentElement.getAttribute('data-theme')==='light'?'dark':'light';document.documentElement.setAttribute('data-theme',t==='light'?'light':'');document.getElementById('theme-btn').textContent=t==='light'?'🌙':'☀️';localStorage.setItem('f2f_4d_theme',t);}
-function markDone(){showToast('✅ 4D It\'s only a game! đã hoàn thành!');}
-function showToast(msg){let t=document.getElementById('toast');if(!t){t=document.createElement('div');t.id='toast';t.style.cssText='position:fixed;bottom:20px;right:20px;z-index:999;background:var(--bg2);border:1px solid var(--border2);padding:10px 18px;border-radius:8px;font-size:.82rem;box-shadow:0 4px 20px rgba(0,0,0,.3);transition:opacity .3s';document.body.appendChild(t);}t.textContent=msg;t.style.opacity='1';clearTimeout(showToast._t);showToast._t=setTimeout(()=>t.style.opacity='0',2400);}
-function toggleQA(btn){const item=btn.closest('.qa-item');item.classList.toggle('open');}
-
-function checkVideoNames(){
-  const ans={v1:'Rebecca',v2:'Daniel',v3:'Rebecca',v4:'Charlie',v5:'Rebecca',v6:'Charlie',v7:'Daniel'};
-  let c=0,total=7;
-  Object.entries(ans).forEach(([id,val])=>{
-    const inp=document.getElementById(id);
-    if(inp){
-      const ok=inp.value.trim().toLowerCase()===val.toLowerCase();
-      inp.className='fill-input '+(ok?'correct':'wrong');
-      if(ok)c++;
-    }
-  });
-  const sc=document.getElementById('video-score');
-  sc.innerHTML=`<div class="score-n">${c}/${total}</div><div class="score-msg">${c===total?'🎉 All correct!':'Check the video again.'}</div>`;
-  sc.className='score-box show';
+function rev(inputId,ans,rowId,fbId){
+  document.getElementById(inputId).value=ans;document.getElementById(inputId).className='fi ok';
+  const fb=document.getElementById(fbId);if(fb){fb.className='fb ok';fb.textContent='💡 Đáp án: '+ans;}
 }
-function revealVideoNames(){
-  const ans={v1:'Rebecca',v2:'Daniel',v3:'Rebecca',v4:'Charlie',v5:'Rebecca',v6:'Charlie',v7:'Daniel'};
-  Object.entries(ans).forEach(([id,val])=>{const inp=document.getElementById(id);if(inp){inp.value=val;inp.className='fill-input correct';}});
+function chkTwo(i1,a1,i2,a2,rowId,fbId){
+  const v1=document.getElementById(i1).value.trim().toLowerCase();
+  const v2=document.getElementById(i2).value.trim().toLowerCase();
+  const ok1=a1.toLowerCase().split('|').some(a=>v1===a);
+  const ok2=a2.toLowerCase().split('|').some(a=>v2===a);
+  document.getElementById(i1).className=ok1?'fi ok':'fi err';
+  document.getElementById(i2).className=ok2?'fi ok':'fi err';
+  const fb=document.getElementById(fbId);
+  if(fb){fb.className=(ok1&&ok2)?'fb ok':'fb err';fb.textContent=(ok1&&ok2)?'✅ Đúng cả hai!':'❌ Xem lại!';}
 }
-
-function checkRW(){
-  const ans={rw1:'quite aggressive at times',rw2:'fans just want to see a good game',rw3:'rather a lot of money',rw4:'sensible behaviour, is it?',rw5:'most footballers are just normal people',rw6:'take it a bit too seriously'};
-  let c=0,total=6;
-  Object.entries(ans).forEach(([id,val])=>{
-    const inp=document.getElementById(id);
-    if(inp){
-      const ok=inp.value.trim().toLowerCase().replace(/\s+/g,'')===val.toLowerCase().replace(/\s+/g,'');
-      inp.className='fill-input '+(ok?'correct':'wrong');
-      if(ok)c++;
-    }
-  });
-  const sc=document.getElementById('rw-score');
-  sc.innerHTML=`<div class="score-n">${c}/${total}</div><div class="score-msg">${c===total?'🎉 All correct!':'Check REAL WORLD 4.1.'}</div>`;
-  sc.className='score-box show';
+function revTwo(i1,a1,i2,a2,rowId,fbId){
+  document.getElementById(i1).value=a1;document.getElementById(i1).className='fi ok';
+  document.getElementById(i2).value=a2;document.getElementById(i2).className='fi ok';
+  const fb=document.getElementById(fbId);if(fb){fb.className='fb ok';fb.textContent='💡 Đáp án: '+a1+' / '+a2;}
 }
-function revealRW(){
-  const ans={rw1:'quite aggressive at times',rw2:'fans just want to see a good game',rw3:'rather a lot of money',rw4:'sensible behaviour, is it?',rw5:'most footballers are just normal people',rw6:'take it a bit too seriously'};
-  Object.entries(ans).forEach(([id,val])=>{const inp=document.getElementById(id);if(inp){inp.value=val;inp.className='fill-input correct';}});
-}
-
-function checkEx1(){
-  const inp=document.getElementById('ex1');
-  const ok=inp.value.trim().toLowerCase().includes('on the whole')||inp.value.trim().toLowerCase().includes('most children');
-  inp.className='fill-input '+(ok?'correct':'wrong');
-}
-function checkEx2(){
-  const inp=document.getElementById('ex2');
-  const ok=inp.value.trim().toLowerCase().includes('perhaps')||inp.value.trim().toLowerCase().includes('tend to');
-  inp.className='fill-input '+(ok?'correct':'wrong');
-}
-function checkEx3(){
-  const inp=document.getElementById('ex3');
-  const ok=inp.value.trim().toLowerCase().includes('can be')||inp.value.trim().toLowerCase().includes('quite');
-  inp.className='fill-input '+(ok?'correct':'wrong');
-}
-function checkEx4(){
-  const inp=document.getElementById('ex4');
-  const ok=inp.value.trim().toLowerCase().includes('some of them')||inp.value.trim().toLowerCase().includes('not very');
-  inp.className='fill-input '+(ok?'correct':'wrong');
-}
-function revealExAnswers(){
-  document.getElementById('ex1').value='On the whole, most children don\'t do enough sport.';document.getElementById('ex1').className='fill-input correct';
-  document.getElementById('ex2').value='Perhaps they tend to be a bit stubborn.';document.getElementById('ex2').className='fill-input correct';
-  document.getElementById('ex3').value='Some of them can be quite rude to their teachers at times.';document.getElementById('ex3').className='fill-input correct';
-  document.getElementById('ex4').value='Some of them are not very healthy.';document.getElementById('ex4').className='fill-input correct';
-}
-
-function checkWB1(){
-  const inp=document.getElementById('wb1');
-  const ok=inp.value.trim().toLowerCase().includes('he\'s not very optimistic')||inp.value.trim().toLowerCase().includes('he is not very optimistic');
-  inp.className='fill-input '+(ok?'correct':'wrong');
-}
-function checkWB2(){
-  const inp=document.getElementById('wb2');
-  const ok=inp.value.trim().toLowerCase().includes('generally speaking')||inp.value.trim().toLowerCase().includes('old people tend to watch');
-  inp.className='fill-input '+(ok?'correct':'wrong');
-}
-function checkWB3(){
-  const inp=document.getElementById('wb3');
-  const ok=inp.value.trim().toLowerCase().includes('traffic jams can be a bit annoying');
-  inp.className='fill-input '+(ok?'correct':'wrong');
-}
-function checkWB4(){
-  const inp=document.getElementById('wb4');
-  const ok=inp.value.trim().toLowerCase().includes('perhaps some neighbours can be a bit noisy');
-  inp.className='fill-input '+(ok?'correct':'wrong');
-}
-function revealWBAnswers(){
-  document.getElementById('wb1').value='He\'s not very optimistic at times.';document.getElementById('wb1').className='fill-input correct';
-  document.getElementById('wb2').value='Generally speaking, old people tend to watch rather a lot of TV.';document.getElementById('wb2').className='fill-input correct';
-  document.getElementById('wb3').value='Traffic jams can be a bit annoying at times.';document.getElementById('wb3').className='fill-input correct';
-  document.getElementById('wb4').value='Perhaps some neighbours can be a bit noisy.';document.getElementById('wb4').className='fill-input correct';
-}
-
-document.addEventListener('DOMContentLoaded',()=>{
-  const t=localStorage.getItem('f2f_4d_theme')||'dark';
-  if(t==='light'){document.documentElement.setAttribute('data-theme','light');document.getElementById('theme-btn').textContent='🌙';}
-});
+function toggleQA(id){document.getElementById(id).classList.toggle('open');}
+function toggleTr(id){document.getElementById(id).classList.toggle('show');}
 </script>
 </body>
 </html>
