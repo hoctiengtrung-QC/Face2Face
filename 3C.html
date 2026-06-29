@@ -8,490 +8,689 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap');
 :root{
   --bg:#0D1117;--bg2:#161B22;--bg3:#21262D;--bg4:#2D333B;
-  --border:#30363D;--border2:#3D444D;
-  --text:#E6EDF3;--dim:#8B949E;--muted:#484F58;
-  --blue:#2563EB;--blue-l:rgba(37,99,235,.15);
+  --border:#30363D;--text:#E6EDF3;--dim:#8B949E;--muted:#484F58;
   --green:#10B981;--green-l:rgba(16,185,129,.12);
   --orange:#F59E0B;--orange-l:rgba(245,158,11,.12);
   --red:#EF4444;--red-l:rgba(239,68,68,.12);
-  --teal:#14B8A6;--purple:#8B5CF6;--purple-l:rgba(139,92,246,.12);
+  --teal:#14B8A6;--emerald:#059669;--emerald-l:rgba(5,150,105,.15);
   --r:10px;--r2:6px;--tr:.18s ease;
 }
-[data-theme=light]{--bg:#F8FAFC;--bg2:#fff;--bg3:#F1F5F9;--bg4:#E2E8F0;--border:#E2E8F0;--border2:#CBD5E1;--text:#0F172A;--dim:#475569;--muted:#94A3B8;--blue:#1D4ED8;--blue-l:rgba(29,78,216,.1)}
+[data-theme=light]{--bg:#F8FAFC;--bg2:#fff;--bg3:#F1F5F9;--bg4:#E2E8F0;--border:#E2E8F0;--text:#0F172A;--dim:#475569;--muted:#94A3B8;--emerald:#047857;--emerald-l:rgba(4,120,87,.1)}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);font-size:15px;line-height:1.6}
-button{cursor:pointer;border:none;background:none;font-family:inherit}input,textarea,select{font-family:inherit}
-
+button{cursor:pointer;border:none;background:none;font-family:inherit}
 .top-bar{background:var(--bg2);border-bottom:1px solid var(--border);padding:10px 20px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:50;flex-wrap:wrap}
-.back-btn{display:flex;align-items:center;gap:6px;padding:6px 14px;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);font-size:.82rem;color:var(--dim);cursor:pointer;transition:all var(--tr)}
-.back-btn:hover{border-color:var(--blue);color:var(--blue)}
-.lesson-badge{padding:4px 12px;background:var(--purple-l);border:1px solid rgba(139,92,246,.3);border-radius:4px;font-size:.75rem;font-weight:700;color:#A78BFA;letter-spacing:.05em}
+.back-btn{padding:6px 14px;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);font-size:.82rem;color:var(--dim);cursor:pointer;transition:all var(--tr)}
+.back-btn:hover{border-color:var(--emerald);color:var(--emerald)}
+.lesson-badge{padding:4px 12px;background:var(--emerald-l);border:1px solid rgba(5,150,105,.3);border-radius:4px;font-size:.75rem;font-weight:700;color:#6EE7B7;letter-spacing:.05em}
 .lesson-title-h{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700}
 .top-actions{margin-left:auto;display:flex;gap:8px}
-.theme-btn{width:34px;height:34px;display:flex;align-items:center;justify-content:center;border-radius:var(--r2);background:var(--bg3);border:1px solid var(--border);cursor:pointer;font-size:.95rem;color:var(--dim);transition:all var(--tr)}
-.theme-btn:hover{border-color:var(--blue);color:var(--blue)}
-.progress-btn{padding:6px 14px;background:var(--green);border-radius:var(--r2);font-size:.78rem;font-weight:600;color:#fff;cursor:pointer;border:none;transition:all var(--tr)}
-.progress-btn:hover{background:#059669}
-
-.quick-review{background:linear-gradient(135deg,#1e3a5f,#1a2f4a);border:1px solid #2d4f7c;border-radius:var(--r);padding:14px 20px;margin:18px 24px;display:flex;gap:12px;align-items:flex-start}
-.qr-badge{background:#F59E0B;color:#000;padding:3px 10px;border-radius:4px;font-size:.72rem;font-weight:700;white-space:nowrap;flex-shrink:0;margin-top:2px}
-.qr-text{font-size:.84rem;line-height:1.65;color:#CBD5E1}
-.qr-text strong{color:#fff}
-
+.theme-btn{width:34px;height:34px;display:flex;align-items:center;justify-content:center;border-radius:var(--r2);background:var(--bg3);border:1px solid var(--border);cursor:pointer;font-size:.95rem;color:var(--dim)}
+.quick-review{background:linear-gradient(135deg,#052e16,#064e3b);border:1px solid #065f46;border-radius:var(--r);padding:14px 20px;margin:18px 24px;display:flex;gap:12px;align-items:flex-start}
+.qr-badge{background:var(--emerald);color:#fff;padding:3px 10px;border-radius:4px;font-size:.72rem;font-weight:700;white-space:nowrap;flex-shrink:0;margin-top:2px}
+.qr-text{font-size:.84rem;line-height:1.65;color:#A7F3D0}
+.qr-text strong{color:#fff}.qr-text em{color:#6EE7B7;font-style:italic}
 .tab-nav{display:flex;gap:2px;border-bottom:1px solid var(--border);overflow-x:auto;scrollbar-width:none;position:sticky;top:57px;background:var(--bg);z-index:40;padding:0 24px}
 .tab-nav::-webkit-scrollbar{display:none}
 .tnav-btn{display:flex;align-items:center;gap:6px;padding:11px 16px;font-size:.82rem;font-weight:500;color:var(--dim);white-space:nowrap;border-bottom:2px solid transparent;margin-bottom:-1px;cursor:pointer;transition:all var(--tr);background:none;border-top:none;border-left:none;border-right:none;font-family:inherit}
-.tnav-btn:hover{color:var(--text)}.tnav-btn.active{color:var(--purple);border-bottom-color:var(--purple)}
-
+.tnav-btn.active{color:var(--emerald);border-bottom-color:var(--emerald)}
 .page-content{max-width:920px;margin:0 auto;padding:0 24px 48px}
 .tab-pane{display:none;padding-top:28px}
 .tab-pane.active{display:block;animation:fadeUp .22s ease}
 @keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
-
-.sec-heading{font-size:1.05rem;font-weight:700;color:var(--text);margin-bottom:4px;display:flex;align-items:center;gap:8px}
-.sec-sub{font-size:.82rem;color:var(--dim);margin-bottom:18px}
-.ex-num{width:28px;height:28px;background:var(--purple);color:#fff;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:.78rem;font-weight:700;flex-shrink:0}
-.ex-label{display:inline-flex;align-items:center;gap:8px;font-size:.9rem;font-weight:600;margin-bottom:10px;color:var(--text)}
-.part{display:inline-block;width:22px;height:22px;background:var(--bg4);border-radius:4px;text-align:center;line-height:22px;font-size:.72rem;font-weight:700;color:var(--dim);margin-right:6px}
-.instr{font-size:.88rem;color:var(--text);line-height:1.65;margin-bottom:14px}
-.instr em{font-style:italic;color:var(--teal)}
-
-.audio-box{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:18px;margin-bottom:16px}
-.audio-header{display:flex;align-items:center;gap:12px;margin-bottom:12px}
-.cd-badge{padding:4px 12px;background:var(--orange-l);border:1px solid rgba(245,158,11,.3);border-radius:4px;font-size:.75rem;font-weight:700;color:var(--orange)}
-.audio-title{font-size:.9rem;font-weight:600}
-.audio-controls{display:flex;align-items:center;gap:12px;padding:10px 14px;background:var(--bg3);border-radius:var(--r2);margin-bottom:10px}
-.play-btn{width:40px;height:40px;border-radius:50%;background:var(--purple);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;border:none;font-size:.95rem;flex-shrink:0;transition:all var(--tr)}
-.play-btn:hover{background:#7C3AED;transform:scale(1.05)}
-.audio-info{flex:1}
-.audio-track{font-size:.82rem;font-weight:500;margin-bottom:2px}
-.audio-note{font-size:.72rem;color:var(--muted)}
-.prog-bar{height:4px;background:var(--border);border-radius:2px;overflow:hidden;margin-top:5px}
-.prog-fill{height:100%;width:0%;background:var(--purple);border-radius:2px;transition:width .1s linear}
-
-.fill-ex{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:18px;margin-bottom:16px}
-.fill-ex-title{font-size:.88rem;font-weight:600;padding-bottom:10px;border-bottom:1px solid var(--border);margin-bottom:14px;color:var(--dim)}
-.fill-item{display:flex;align-items:flex-start;gap:10px;padding:9px 0;border-bottom:1px dashed var(--border)}
+.sec-heading{font-size:1.05rem;font-weight:700;margin-bottom:4px}
+.sec-sub{font-size:.82rem;color:var(--dim);margin-bottom:16px}
+.ex-label{display:inline-flex;align-items:center;gap:8px;font-size:.9rem;font-weight:600;margin-bottom:12px}
+.ex-num{width:28px;height:28px;background:var(--emerald);color:#fff;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:.78rem;font-weight:700;flex-shrink:0}
+.instruction{font-size:.88rem;color:var(--text);line-height:1.65;margin-bottom:14px}
+.divider{height:1px;background:var(--border);margin:24px 0}
+/* vocab */
+.vocab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px;margin-bottom:16px}
+.vocab-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:14px;transition:all var(--tr)}
+.vocab-card:hover{border-color:var(--emerald);transform:translateY(-1px)}
+.vocab-word{font-size:.95rem;font-weight:700}
+.vocab-ipa{font-family:monospace;font-size:.78rem;color:var(--teal);margin:2px 0}
+.vocab-vi{font-size:.8rem;color:var(--orange);font-style:italic;margin-bottom:4px}
+.vocab-def{font-size:.81rem;color:var(--dim);line-height:1.5}
+.vocab-ex{font-size:.77rem;color:var(--muted);font-style:italic;margin-top:5px;padding-top:5px;border-top:1px dashed var(--border)}
+/* suffix table */
+.suffix-table{width:100%;border-collapse:collapse;margin-bottom:16px;font-size:.85rem}
+.suffix-table th{background:var(--emerald-l);color:var(--emerald);text-transform:uppercase;font-size:.72rem;letter-spacing:.06em;padding:10px 14px;text-align:left;border-bottom:2px solid rgba(5,150,105,.3)}
+.suffix-table td{padding:9px 14px;border-bottom:1px solid var(--border);color:var(--text)}
+.suffix-table tr:last-child td{border-bottom:none}
+.suffix-table tr:hover td{background:var(--bg3)}
+.suffix{font-weight:700;color:var(--emerald);font-family:monospace}
+.adj-col{color:#6EE7B7;font-weight:500}
+.noun-col{color:var(--orange);font-weight:500}
+/* article */
+.article-box{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:24px;margin-bottom:16px}
+.article-tag{font-size:.72rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px}
+.article-title{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;line-height:1.3;margin-bottom:6px}
+.article-sub{font-size:.85rem;color:var(--dim);font-style:italic;margin-bottom:18px}
+.article-body{font-size:.88rem;line-height:1.85}
+.article-body p{margin-bottom:14px}
+.kw-blue{color:#60A5FA;font-weight:600}
+.kw-pink{color:#F472B6;font-weight:600}
+.kw-green{color:#34D399;font-weight:600}
+.kw-orange{color:var(--orange);font-weight:600}
+.blog-box{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;margin-bottom:16px}
+.blog-header{background:linear-gradient(135deg,#065f46,#047857);padding:16px 20px}
+.blog-brand{font-size:1.3rem;font-weight:900;color:#fff;letter-spacing:-.02em}
+.blog-tagline{font-size:.78rem;color:#A7F3D0;margin-top:2px}
+.blog-nav{display:flex;gap:0;background:var(--bg3);border-bottom:1px solid var(--border)}
+.blog-nav span{padding:8px 16px;font-size:.75rem;font-weight:600;color:var(--dim);text-transform:uppercase;letter-spacing:.06em;border-right:1px solid var(--border)}
+.blog-body{padding:20px}
+.blogger-name{font-size:1rem;font-weight:700;color:var(--emerald);margin-bottom:14px}
+.blog-text{font-size:.87rem;line-height:1.85;color:var(--text)}
+.blog-text p{margin-bottom:12px}
+/* fill */
+.fill-ex{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:20px;margin-bottom:16px}
+.fill-item{display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-bottom:1px dashed var(--border)}
 .fill-item:last-child{border-bottom:none}
-.fill-item-num{width:22px;height:22px;border-radius:50%;background:var(--bg3);display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:700;color:var(--muted);flex-shrink:0;margin-top:2px}
-.fill-item-body{flex:1}
-.fill-sentence{font-size:.87rem;margin-bottom:7px;line-height:1.6}
-.fill-controls{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
-.fill-input{height:33px;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);padding:0 11px;color:var(--text);font-size:.84rem;outline:none;min-width:80px;max-width:200px;transition:border-color var(--tr)}
-.fill-input:focus{border-color:var(--purple)}
-.fill-input.correct{border-color:var(--green);background:var(--green-l)}
-.fill-input.wrong{border-color:var(--red);background:var(--red-l)}
-.check-btn{padding:5px 12px;background:var(--purple);color:#fff;border:none;border-radius:var(--r2);font-size:.76rem;font-weight:600;cursor:pointer;transition:all var(--tr)}
-.check-btn:hover{background:#7C3AED}
-.reveal-btn{padding:5px 11px;background:var(--bg3);border:1px solid var(--border);color:var(--dim);border-radius:var(--r2);font-size:.76rem;cursor:pointer;transition:all var(--tr)}
-.reveal-btn:hover{border-color:var(--purple);color:var(--purple)}
-.fill-fb{margin-top:5px;font-size:.77rem;padding:4px 9px;border-radius:var(--r2);display:none}
-.fill-fb.show-ok{background:var(--green-l);color:var(--green);display:block}
-.fill-fb.show-err{background:var(--red-l);color:var(--red);display:block}
-
-.score-box{display:none;text-align:center;padding:18px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);margin-top:14px}
-.score-box.show{display:block}
-.score-n{font-size:2.2rem;font-weight:700;color:var(--purple)}
-.score-msg{color:var(--dim);font-size:.84rem;margin-top:4px}
-
-.btn{display:inline-flex;align-items:center;gap:6px;padding:7px 16px;border-radius:var(--r2);font-size:.82rem;font-weight:500;cursor:pointer;border:none;font-family:inherit;transition:all var(--tr)}
-.btn-primary{background:var(--purple);color:#fff}.btn-primary:hover{background:#7C3AED;transform:translateY(-1px)}
-.btn-outline{background:var(--bg3);border:1px solid var(--border2);color:var(--dim)}.btn-outline:hover{border-color:var(--purple);color:var(--purple)}
-
-.divider{height:1px;background:var(--border);margin:22px 0}
-.note-box{background:var(--orange-l);border:1px solid rgba(245,158,11,.25);border-radius:var(--r2);padding:10px 14px;font-size:.82rem;line-height:1.6;margin:10px 0}
-.note-box strong{color:var(--orange)}
-.tip-box{background:var(--bg3);border-left:3px solid var(--purple);border-radius:0 var(--r2) var(--r2) 0;padding:10px 14px;margin:10px 0;font-size:.82rem;color:var(--dim);line-height:1.6}
-.tip-box strong{color:var(--text)}
-.example-box{font-family:'Courier New',monospace;font-size:.82rem;color:#7DD3FC;background:var(--bg);padding:8px 12px;border-radius:var(--r2);margin:6px 0;border:1px solid var(--border)}
-
-.speaking-box{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:16px;margin-bottom:16px}
-.speaking-title{font-size:.84rem;font-weight:600;margin-bottom:12px;color:var(--text);display:flex;align-items:center;gap:8px}
-.bubble{background:var(--bg3);border:1px solid var(--border);border-radius:12px;padding:8px 14px;max-width:72%;font-size:.84rem;line-height:1.5;margin-bottom:8px}
-.bubble.speaker-a{border-bottom-left-radius:3px}
-.bubble.speaker-b{border-bottom-right-radius:3px;background:var(--purple-l);border-color:rgba(139,92,246,.3);margin-left:auto}
-
+.fill-num{width:24px;height:24px;border-radius:50%;background:var(--bg3);display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:700;color:var(--muted);flex-shrink:0;margin-top:2px}
+.fill-content{flex:1}
+.fill-sent{font-size:.87rem;margin-bottom:8px;line-height:1.65}
+.fi{height:34px;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);padding:0 12px;color:var(--text);font-size:.84rem;outline:none;min-width:120px;font-family:inherit;transition:border-color var(--tr)}
+.fi:focus{border-color:var(--emerald)}
+.fi.ok{border-color:var(--green);background:var(--green-l)}
+.fi.err{border-color:var(--red);background:var(--red-l)}
+.chk-btn{padding:6px 14px;background:var(--emerald);color:#fff;border-radius:var(--r2);font-size:.77rem;font-weight:600;cursor:pointer;margin-left:4px;transition:all var(--tr)}
+.chk-btn:hover{background:#047857}
+.rev-btn{padding:6px 12px;background:var(--bg3);border:1px solid var(--border);color:var(--dim);border-radius:var(--r2);font-size:.77rem;cursor:pointer;margin-left:4px;transition:all var(--tr)}
+.rev-btn:hover{border-color:var(--emerald);color:var(--emerald)}
+.fb{margin-top:6px;font-size:.77rem;padding:4px 10px;border-radius:var(--r2);display:none}
+.fb.ok{background:var(--green-l);color:var(--green);display:block}
+.fb.err{background:var(--red-l);color:var(--red);display:block}
+/* mcq */
+.mcq-list{display:flex;flex-direction:column;gap:12px;margin-bottom:16px}
+.mcq-item{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:16px}
+.mcq-q{font-size:.88rem;font-weight:600;margin-bottom:10px}
+.mcq-opts{display:flex;flex-direction:column;gap:6px}
+.mcq-opt{display:flex;align-items:center;gap:10px;padding:8px 12px;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);cursor:pointer;font-size:.84rem;transition:all var(--tr)}
+.mcq-opt:hover{border-color:var(--emerald)}
+.mcq-opt.ok{border-color:var(--green);background:var(--green-l)}
+.mcq-opt.err{border-color:var(--red);background:var(--red-l)}
+.opt-dot{width:18px;height:18px;border-radius:50%;border:2px solid var(--border);flex-shrink:0}
+.mcq-opt.ok .opt-dot{background:var(--green);border-color:var(--green)}
+.mcq-opt.err .opt-dot{background:var(--red);border-color:var(--red)}
+/* tf */
+.tf-list{display:flex;flex-direction:column;gap:10px;margin-bottom:16px}
+.tf-item{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r2);padding:14px}
+.tf-q{font-size:.87rem;margin-bottom:10px}
+.tf-opts{display:flex;gap:8px}
+.tf-btn{padding:5px 14px;border-radius:4px;font-size:.78rem;font-weight:600;cursor:pointer;border:1px solid var(--border);background:var(--bg3);color:var(--dim);transition:all var(--tr)}
+.tf-btn:hover{border-color:var(--emerald);color:var(--emerald)}
+.tf-btn.ok{background:var(--green-l);border-color:var(--green);color:var(--green)}
+.tf-btn.err{background:var(--red-l);border-color:var(--red);color:var(--red)}
+.tf-fb{font-size:.78rem;margin-top:6px;color:var(--dim);display:none;font-style:italic}
+.tf-fb.show{display:block}
+/* audio */
+.audio-box{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:20px;margin-bottom:16px}
+.cd-tag{padding:4px 12px;background:var(--orange-l);border:1px solid rgba(245,158,11,.3);border-radius:4px;font-size:.75rem;font-weight:700;color:var(--orange)}
+.play-btn{width:42px;height:42px;border-radius:50%;background:var(--emerald);color:#fff;display:flex;align-items:center;justify-content:center;border:none;font-size:1rem;cursor:pointer;flex-shrink:0;transition:all var(--tr)}
+.play-btn:hover{background:#047857;transform:scale(1.05)}
+.transcript-wrap{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);padding:14px;margin-top:12px}
+.transcript-toggle{font-size:.82rem;font-weight:600;color:var(--dim);cursor:pointer;user-select:none}
+.transcript-toggle:hover{color:var(--emerald)}
+.transcript-body{display:none;margin-top:12px;font-size:.84rem;line-height:1.78}
+.transcript-body.show{display:block}
+.transcript-body p{margin-bottom:10px}
+.spk{font-weight:700;color:var(--emerald);margin-right:6px}
+/* qa */
 .qa-list{display:flex;flex-direction:column;gap:8px;margin-bottom:16px}
 .qa-item{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r2);overflow:hidden}
-.qa-q{display:flex;align-items:center;gap:10px;padding:10px 14px;cursor:pointer;transition:background var(--tr)}
+.qa-q{display:flex;align-items:center;gap:10px;padding:11px 14px;cursor:pointer;transition:background var(--tr)}
 .qa-q:hover{background:var(--bg3)}
-.qa-qnum{width:24px;height:24px;border-radius:50%;background:var(--purple-l);color:var(--purple);display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:700;flex-shrink:0}
-.qa-qtext{font-size:.86rem;flex:1}
-.qa-arrow{font-size:.7rem;color:var(--muted);transition:transform var(--tr);flex-shrink:0}
+.qa-qnum{width:24px;height:24px;border-radius:50%;background:var(--emerald-l);color:var(--emerald);display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:700;flex-shrink:0}
+.qa-qtext{font-size:.85rem;flex:1}
+.qa-arrow{font-size:.7rem;color:var(--muted);transition:transform var(--tr)}
 .qa-item.open .qa-arrow{transform:rotate(90deg)}
-.qa-ans{display:none;padding:0 14px 10px 48px;font-size:.83rem;color:var(--teal);font-style:italic}
-.qa-item.open .qa-ans{display:block}
-
-.grammar-table{width:100%;border-collapse:collapse;font-size:.82rem;margin:12px 0}
-.grammar-table th{background:var(--bg3);padding:8px 12px;text-align:left;font-weight:600;border:1px solid var(--border);color:var(--dim);font-size:.72rem;text-transform:uppercase}
-.grammar-table td{padding:9px 12px;border:1px solid var(--border);line-height:1.5}
-.grammar-table td.aux{color:var(--purple);font-weight:600}
-
-.lang-sum-tag{display:inline-flex;align-items:center;gap:6px;padding:3px 12px;background:var(--purple-l);border:1px solid rgba(139,92,246,.3);border-radius:4px;font-size:.72rem;font-weight:700;color:#A78BFA;text-transform:uppercase;letter-spacing:.06em;margin-bottom:12px}
-
-.coll-grid{display:flex;flex-direction:column;gap:8px;margin:12px 0}
-.coll-row{display:grid;grid-template-columns:100px 1fr;gap:12px;align-items:start;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r2);padding:10px 14px}
-.coll-verb{font-size:.9rem;font-weight:700;color:var(--blue)}
-.coll-ipa{font-size:.72rem;color:var(--teal);font-family:monospace}
-.coll-phrase{font-size:.85rem;font-weight:600}
-.coll-vi{font-size:.8rem;color:var(--orange)}
-.coll-ex{font-size:.78rem;color:var(--dim);font-style:italic}
-
-.article-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:20px;margin-bottom:16px}
-.article-title{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;margin-bottom:4px}
-.article-source{font-size:.75rem;color:var(--muted);font-style:italic;margin-bottom:14px}
-.article-p{font-size:.85rem;line-height:1.8;color:var(--text);margin-bottom:10px}
-.article-p:last-child{margin-bottom:0}
-
-.suffix-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;margin-bottom:16px}
-.suffix-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r2);padding:12px;text-align:center}
-.suffix-word{font-size:.95rem;font-weight:700;color:var(--purple)}
-.suffix-ipa{font-size:.72rem;color:var(--teal);font-family:monospace}
-.suffix-type{font-size:.72rem;color:var(--orange);margin-top:2px}
-
-@media(max-width:680px){.tab-nav{padding:0 12px}.page-content{padding:0 14px 48px}.quick-review{margin:12px}}
+.qa-answer{display:none;padding:0 14px 12px 48px;font-size:.83rem;color:var(--teal);font-style:italic;line-height:1.6}
+.qa-item.open .qa-answer{display:block}
+/* note */
+.note-box{background:var(--orange-l);border:1px solid rgba(245,158,11,.25);border-radius:var(--r2);padding:12px 16px;font-size:.83rem;line-height:1.65;margin-bottom:16px}
+.note-box strong{color:var(--orange)}
+.info-box{background:var(--emerald-l);border:1px solid rgba(5,150,105,.25);border-radius:var(--r2);padding:12px 16px;font-size:.84rem;line-height:1.65;margin-bottom:16px}
+.pron-box{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:20px;margin-bottom:16px}
+.pron-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px;margin-top:12px}
+.pron-card{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);padding:10px 14px}
+.pron-word{font-size:.9rem;font-weight:600}
+.pron-ipa{font-family:monospace;font-size:.82rem;color:var(--teal);margin-top:3px}
+.pron-ex{font-size:.77rem;color:var(--dim);font-style:italic;margin-top:3px}
+.chip{padding:5px 14px;border-radius:20px;font-size:.82rem;font-weight:500;background:var(--emerald-l);border:1px solid rgba(5,150,105,.3);color:#6EE7B7;display:inline-block;margin:3px}
+.speaking-box{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:18px;margin-bottom:16px}
+.disc-q{display:flex;gap:10px;padding:8px 0;border-bottom:1px solid var(--border);font-size:.85rem}
+.disc-q:last-child{border-bottom:none}
+.disc-q-num{font-size:.75rem;font-weight:700;color:var(--emerald);min-width:20px;margin-top:2px}
+.wb-tag{display:inline-flex;align-items:center;padding:3px 12px;background:var(--emerald-l);border:1px solid rgba(5,150,105,.3);border-radius:4px;font-size:.72rem;font-weight:700;color:#6EE7B7;text-transform:uppercase;letter-spacing:.06em;margin-bottom:12px}
 </style>
 </head>
 <body>
-
 <div class="top-bar">
-  <button class="back-btn" onclick="history.back()">← Trang chủ</button>
-  <div class="lesson-badge">UNIT 3</div>
-  <div class="lesson-title-h">3C — Voluntourism</div>
+  <button class="back-btn" onclick="history.back()">← Quay lại</button>
+  <span class="lesson-badge">3C</span>
+  <span class="lesson-title-h">Voluntourism</span>
   <div class="top-actions">
-    <button class="theme-btn" id="theme-btn" onclick="toggleTheme()">☀️</button>
-    <button class="progress-btn" onclick="markDone()">✅ Đánh dấu xong</button>
+    <button class="theme-btn" onclick="toggleTheme()">☀</button>
   </div>
 </div>
-
 <div class="quick-review">
-  <div class="qr-badge">QUICK REVIEW</div>
-  <div class="qr-text"><strong>Present Perfect Continuous</strong> — Work in groups. Ask questions with <em>How long ... ?</em> to find out who has been: coming to this school the longest, learning English the longest, working in the same job the longest, living in the same house or flat the longest.</div>
+  <span class="qr-badge">ÔN BÀI 3B</span>
+  <div class="qr-text">Nhắc lại 3B: <strong>Present Perfect Continuous</strong> — dùng để nói về hoạt động bắt đầu từ quá khứ, vẫn còn tiếp diễn hoặc vừa xong: <em>I've been working here for 6 months.</em> Từ vựng du lịch: <em>travel light, go on a cruise, get a taxi, a guided tour...</em></div>
 </div>
-
-<div class="tab-nav">
-  <button class="tnav-btn active" onclick="showTab('vocab')">📚 Vocabulary &amp; Speaking</button>
-  <button class="tnav-btn" onclick="showTab('listening')">🎧 Listening</button>
-  <button class="tnav-btn" onclick="showTab('reading')">📖 Reading &amp; Vocabulary</button>
-  <button class="tnav-btn" onclick="showTab('wordbuilding')">📐 Word Building</button>
-  <button class="tnav-btn" onclick="showTab('workbook')">📓 Workbook</button>
-  <button class="tnav-btn" onclick="showTab('langsummary')">📋 Language Summary</button>
-</div>
-
+<nav class="tab-nav">
+  <button class="tnav-btn active" onclick="showTab('vocab',this)">📚 Từ vựng</button>
+  <button class="tnav-btn" onclick="showTab('listening',this)">🎧 Nghe</button>
+  <button class="tnav-btn" onclick="showTab('reading',this)">📰 Đọc</button>
+  <button class="tnav-btn" onclick="showTab('grammar',this)">⚙ Ngữ pháp</button>
+  <button class="tnav-btn" onclick="showTab('pronunciation',this)">🔊 Phát âm</button>
+  <button class="tnav-btn" onclick="showTab('speaking',this)">💬 Nói</button>
+  <button class="tnav-btn" onclick="showTab('workbook',this)">📝 Bài tập</button>
+</nav>
 <div class="page-content">
 
-<!-- ══════════════════════════════════════
-     TAB 1: VOCABULARY AND SPEAKING
-══════════════════════════════════════ -->
-<div class="tab-pane active" id="tab-vocab">
-  <div class="sec-heading">Vocabulary and Speaking</div>
-  <div class="sec-sub">Word building (1): suffixes for adjectives and nouns · VOCABULARY 3.3 → p133</div>
+<!-- TAB VOCAB -->
+<div id="tab-vocab" class="tab-pane active">
+  <div class="sec-heading">📚 Từ vựng: Word building (1) — Suffixes</div>
+  <div class="sec-sub">Student Book p26–27 · Vocabulary 3.3 · Biến đổi từ bằng hậu tố</div>
+  <div class="info-box">
+    <strong>🎯 Mục tiêu:</strong> Học cách tạo tính từ từ danh từ và danh từ từ tính từ bằng cách thêm <strong>hậu tố (suffix)</strong>. Đây là kỹ năng quan trọng để mở rộng vốn từ vựng nhanh chóng.
+  </div>
 
-  <div class="ex-label"><div class="ex-num">1</div>Pre-listening discussion</div>
-  <p class="instr">Work in pairs. Discuss these questions:</p>
-  <div class="qa-list">
-    <div class="qa-item"><div class="qa-q" onclick="toggleQA(this)"><span class="qa-qnum">1</span><span class="qa-qtext">Which holidays can you remember from your childhood?</span><span class="qa-arrow">▶</span></div><div class="qa-ans">Trả lời tự do. Gợi ý: "I remember going to the beach every summer with my family."</div></div>
-    <div class="qa-item"><div class="qa-q" onclick="toggleQA(this)"><span class="qa-qnum">2</span><span class="qa-qtext">What's the best (or worst) holiday you've ever had?</span><span class="qa-arrow">▶</span></div><div class="qa-ans">Trả lời tự do. Gợi ý: "The best was when I went to Japan two years ago."</div></div>
-    <div class="qa-item"><div class="qa-q" onclick="toggleQA(this)"><span class="qa-qnum">3</span><span class="qa-qtext">Imagine your perfect holiday. Where would you go? What would you do there?</span><span class="qa-arrow">▶</span></div><div class="qa-ans">Trả lời tự do. Gợi ý: "I'd go to Iceland to see the northern lights."</div></div>
+  <div class="ex-label"><span class="ex-num">1</span>Bảng suffix: Adjective ↔ Noun</div>
+  <div class="instruction">Các hậu tố phổ biến để chuyển đổi giữa tính từ và danh từ (SB p27, Ex 5)</div>
+
+  <table class="suffix-table">
+    <tr><th>Adjective</th><th>Noun</th><th>Suffix</th><th>Ghi chú</th></tr>
+    <tr><td class="adj-col">kind</td><td class="noun-col">kind<span class="suffix">ness</span></td><td><span class="suffix">-ness</span></td><td style="font-size:.78rem;color:var(--dim)">thêm thẳng vào adj</td></tr>
+    <tr><td class="adj-col">happy</td><td class="noun-col">happi<span class="suffix">ness</span></td><td><span class="suffix">-ness</span></td><td style="font-size:.78rem;color:var(--dim)">y → i trước -ness</td></tr>
+    <tr><td class="adj-col">lazy</td><td class="noun-col">lazi<span class="suffix">ness</span></td><td><span class="suffix">-ness</span></td><td style="font-size:.78rem;color:var(--dim)">y → i trước -ness</td></tr>
+    <tr><td class="adj-col">dark</td><td class="noun-col">dark<span class="suffix">ness</span></td><td><span class="suffix">-ness</span></td><td style="font-size:.78rem;color:var(--dim)">thêm thẳng vào adj</td></tr>
+    <tr><td class="adj-col">patient</td><td class="noun-col">pati<span class="suffix">ence</span></td><td><span class="suffix">-ence</span></td><td style="font-size:.78rem;color:var(--dim)">thay đổi âm cuối</td></tr>
+    <tr><td class="adj-col">confident</td><td class="noun-col">confi<span class="suffix">dence</span></td><td><span class="suffix">-ence</span></td><td style="font-size:.78rem;color:var(--dim)">-ent → -ence</td></tr>
+    <tr><td class="adj-col">difficult</td><td class="noun-col">diffi<span class="suffix">culty</span></td><td><span class="suffix">-y</span></td><td style="font-size:.78rem;color:var(--dim)"></td></tr>
+    <tr><td class="adj-col">honest</td><td class="noun-col">honest<span class="suffix">y</span></td><td><span class="suffix">-y</span></td><td style="font-size:.78rem;color:var(--dim)"></td></tr>
+    <tr><td class="adj-col">possible</td><td class="noun-col">possibi<span class="suffix">lity</span></td><td><span class="suffix">-ity</span></td><td style="font-size:.78rem;color:var(--dim)">-le → -lity</td></tr>
+    <tr><td class="adj-col">popular</td><td class="noun-col">popular<span class="suffix">ity</span></td><td><span class="suffix">-ity</span></td><td style="font-size:.78rem;color:var(--dim)">thêm -ity</td></tr>
+    <tr><td></td><td></td><td></td><td></td></tr>
+    <tr><th>Noun</th><th>Adjective</th><th>Suffix</th><th>Ghi chú</th></tr>
+    <tr><td class="noun-col">danger</td><td class="adj-col">danger<span class="suffix">ous</span></td><td><span class="suffix">-ous</span></td><td style="font-size:.78rem;color:var(--dim)">thêm -ous</td></tr>
+    <tr><td class="noun-col">adventure</td><td class="adj-col">adventur<span class="suffix">ous</span></td><td><span class="suffix">-ous</span></td><td style="font-size:.78rem;color:var(--dim)">bỏ -e trước -ous</td></tr>
+    <tr><td class="noun-col">fame</td><td class="adj-col">fam<span class="suffix">ous</span></td><td><span class="suffix">-ous</span></td><td style="font-size:.78rem;color:var(--dim)">fame → famous</td></tr>
+    <tr><td class="noun-col">comfort</td><td class="adj-col">comfort<span class="suffix">able</span></td><td><span class="suffix">-able</span></td><td style="font-size:.78rem;color:var(--dim)">thêm -able</td></tr>
+    <tr><td class="noun-col">fashion</td><td class="adj-col">fashion<span class="suffix">able</span></td><td><span class="suffix">-able</span></td><td style="font-size:.78rem;color:var(--dim)">thêm -able</td></tr>
+    <tr><td class="noun-col">knowledge</td><td class="adj-col">knowledge<span class="suffix">able</span></td><td><span class="suffix">-able</span></td><td style="font-size:.78rem;color:var(--dim)">thêm -able</td></tr>
+    <tr><td class="noun-col">tradition</td><td class="adj-col">tradition<span class="suffix">al</span></td><td><span class="suffix">-al</span></td><td style="font-size:.78rem;color:var(--dim)">thêm -al</td></tr>
+    <tr><td class="noun-col">music</td><td class="adj-col">music<span class="suffix">al</span></td><td><span class="suffix">-al</span></td><td style="font-size:.78rem;color:var(--dim)">thêm -al</td></tr>
+    <tr><td class="noun-col">nature</td><td class="adj-col">natur<span class="suffix">al</span></td><td><span class="suffix">-al</span></td><td style="font-size:.78rem;color:var(--dim)">nature → natural</td></tr>
+    <tr><td class="noun-col">noise</td><td class="adj-col">nois<span class="suffix">y</span></td><td><span class="suffix">-y</span></td><td style="font-size:.78rem;color:var(--dim)">bỏ -e trước -y</td></tr>
+    <tr><td class="noun-col">health</td><td class="adj-col">health<span class="suffix">y</span></td><td><span class="suffix">-y</span></td><td style="font-size:.78rem;color:var(--dim)">thêm -y</td></tr>
+  </table>
+
+  <div class="note-box">
+    <strong>📌 Quy tắc quan trọng (SB p27, Help with Vocabulary):</strong><br>
+    • Chúng ta đôi khi tạo <strong>tính từ từ danh từ</strong> hoặc <strong>danh từ từ tính từ</strong> bằng cách thêm hậu tố (<em>-ness, -ous, -able, -al, -y, -ity, -ence</em>).<br>
+    • Một số từ chỉ thêm suffix: <em>kind → kindness</em>. Một số thay đổi chính tả: <em>happy → happiness</em>, <em>adventure → adventurous</em>.<br>
+    • Các từ cần nhớ đặc biệt từ bài blog: <em>kind/kindness · patience/patient · difficulty/difficult · comfort/comfortable · natural/nature · health/healthy · danger/dangerous · popularity/popular</em>
+  </div>
+
+  <div class="divider"></div>
+  <div class="ex-label"><span class="ex-num">2</span>Từ vựng trong bài blogs (SB p27)</div>
+  <div class="instruction">Các từ nổi bật trong hai bài blog — xem xét màu sắc từ (blue = adjective, pink = noun)</div>
+  <div class="vocab-grid">
+    <div class="vocab-card"><div class="vocab-word kw-blue">kind</div><div class="vocab-ipa">/kaɪnd/</div><div class="vocab-vi">🇻🇳 tốt bụng, thân thiện</div><div class="vocab-def">friendly and generous</div><div class="vocab-ex">Everyone in our group is very kind and helpful.</div></div>
+    <div class="vocab-card"><div class="vocab-word kw-pink">kindness</div><div class="vocab-ipa">/ˈkaɪndnəs/</div><div class="vocab-vi">🇻🇳 sự tử tế, lòng tốt</div><div class="vocab-def">the quality of being kind</div><div class="vocab-ex">I'm amazed at the kindness of the local staff.</div></div>
+    <div class="vocab-card"><div class="vocab-word kw-pink">patience</div><div class="vocab-ipa">/ˈpeɪʃəns/</div><div class="vocab-vi">🇻🇳 sự kiên nhẫn</div><div class="vocab-def">the ability to wait calmly</div><div class="vocab-ex">The patience of the local staff really helped me.</div></div>
+    <div class="vocab-card"><div class="vocab-word kw-blue">patient</div><div class="vocab-ipa">/ˈpeɪʃənt/</div><div class="vocab-vi">🇻🇳 kiên nhẫn</div><div class="vocab-def">able to wait calmly without complaining</div><div class="vocab-ex">You have to be very patient watching turtles lay eggs.</div></div>
+    <div class="vocab-card"><div class="vocab-word kw-blue">comfortable</div><div class="vocab-ipa">/ˈkʌmftəbl/</div><div class="vocab-vi">🇻🇳 thoải mái, tiện nghi</div><div class="vocab-def">pleasant and relaxing</div><div class="vocab-ex">My bed isn't very comfortable, but I don't mind!</div></div>
+    <div class="vocab-card"><div class="vocab-word kw-pink">comfort</div><div class="vocab-ipa">/ˈkʌmfət/</div><div class="vocab-vi">🇻🇳 sự thoải mái, tiện nghi</div><div class="vocab-def">a pleasant feeling of being relaxed</div><div class="vocab-ex">I missed the comfort of my own bed.</div></div>
+    <div class="vocab-card"><div class="vocab-word kw-blue">natural</div><div class="vocab-ipa">/ˈnætʃrəl/</div><div class="vocab-vi">🇻🇳 tự nhiên</div><div class="vocab-def">existing in nature, not made by people</div><div class="vocab-ex">I love living in such a natural environment.</div></div>
+    <div class="vocab-card"><div class="vocab-word kw-pink">nature</div><div class="vocab-ipa">/ˈneɪtʃə/</div><div class="vocab-vi">🇻🇳 thiên nhiên</div><div class="vocab-def">the physical world including plants, animals, etc.</div><div class="vocab-ex">I love being surrounded by nature.</div></div>
+    <div class="vocab-card"><div class="vocab-word kw-blue">healthy</div><div class="vocab-ipa">/ˈhelθi/</div><div class="vocab-vi">🇻🇳 khỏe mạnh</div><div class="vocab-def">physically strong and well</div><div class="vocab-ex">I'm getting very fit and healthy.</div></div>
+    <div class="vocab-card"><div class="vocab-word kw-pink">health</div><div class="vocab-ipa">/helθ/</div><div class="vocab-vi">🇻🇳 sức khỏe</div><div class="vocab-def">the condition of your body</div><div class="vocab-ex">We also check each turtle's health.</div></div>
+    <div class="vocab-card"><div class="vocab-word kw-blue">dangerous</div><div class="vocab-ipa">/ˈdeɪndʒərəs/</div><div class="vocab-vi">🇻🇳 nguy hiểm</div><div class="vocab-def">likely to cause harm or injury</div><div class="vocab-ex">The scenery is wonderful but it can be a bit dangerous.</div></div>
+    <div class="vocab-card"><div class="vocab-word kw-pink">danger</div><div class="vocab-ipa">/ˈdeɪndʒə/</div><div class="vocab-vi">🇻🇳 mối nguy hiểm</div><div class="vocab-def">the possibility of harm or injury</div><div class="vocab-ex">Turtles are in danger of becoming extinct.</div></div>
+    <div class="vocab-card"><div class="vocab-word kw-blue">difficult</div><div class="vocab-ipa">/ˈdɪfɪkəlt/</div><div class="vocab-vi">🇻🇳 khó khăn</div><div class="vocab-def">not easy to do or understand</div><div class="vocab-ex">The most difficult thing about the holiday is being away from family.</div></div>
+    <div class="vocab-card"><div class="vocab-word kw-pink">difficulty</div><div class="vocab-ipa">/ˈdɪfɪkəlti/</div><div class="vocab-vi">🇻🇳 sự khó khăn</div><div class="vocab-def">a problem or situation that is hard to deal with</div><div class="vocab-ex">At first I had a lot of difficulty getting to sleep.</div></div>
+    <div class="vocab-card"><div class="vocab-word kw-blue">popular</div><div class="vocab-ipa">/ˈpɒpjʊlə/</div><div class="vocab-vi">🇻🇳 phổ biến, được yêu thích</div><div class="vocab-def">liked or enjoyed by many people</div><div class="vocab-ex">This type of holiday is becoming more popular with young people.</div></div>
+    <div class="vocab-card"><div class="vocab-word kw-pink">popularity</div><div class="vocab-ipa">/ˌpɒpjʊˈlærəti/</div><div class="vocab-vi">🇻🇳 sự phổ biến</div><div class="vocab-def">the quality of being liked by many people</div><div class="vocab-ex">I'm not surprised voluntourism is increasing in popularity.</div></div>
   </div>
 </div>
 
-<!-- ══════════════════════════════════════
-     TAB 2: LISTENING
-══════════════════════════════════════ -->
-<div class="tab-pane" id="tab-listening">
-  <div class="sec-heading">Listening</div>
-  <div class="sec-sub">CD1 Track 25 — Alison Armstrong on voluntourism</div>
-
-  <div class="ex-label"><div class="ex-num">2</div>Exercise 2a — Listen</div>
-  <p class="instr"><span class="part">a</span> <strong>CD1 ▶ 25</strong> Listen to an interview with Alison Armstrong, a travel expert. What is 'voluntourism'? Why is it becoming so popular?</p>
+<!-- TAB LISTENING -->
+<div id="tab-listening" class="tab-pane">
+  <div class="sec-heading">🎧 Listening: Radio Interview — Voluntourism</div>
+  <div class="sec-sub">Student Book p26 · CD1 Track 25 · Phỏng vấn radio với Alison Armstrong</div>
 
   <div class="audio-box">
-    <div class="audio-header">
-      <div class="cd-badge">CD1 ▶ Track 25</div>
-      <div><div class="audio-title">Voluntourism — Interview with Alison Armstrong</div></div>
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px">
+      <span class="cd-tag">CD1 Track 25</span>
+      <span style="font-size:.9rem;font-weight:600">Radio interview — Alison Armstrong, voluntourism expert</span>
     </div>
-    <div class="audio-controls">
-      <button class="play-btn" id="play-btn-25" onclick="toggleAudio('25')">▶</button>
-      <div class="audio-info">
-        <div class="audio-track">CD1 Track 25</div>
-        <div class="audio-note">⚠️ Cần file <code>cd1_track25.mp3</code></div>
-        <div class="prog-bar"><div class="prog-fill" id="prog-25"></div></div>
+    <div style="display:flex;align-items:center;gap:12px;padding:12px 16px;background:var(--bg3);border-radius:var(--r2);margin-bottom:14px">
+      <button class="play-btn">▶</button>
+      <div>
+        <div style="font-size:.83rem;font-weight:500">SB p26 — Take a Break radio programme</div>
+        <div style="font-size:.75rem;color:var(--muted)">Sử dụng file audio CD kèm theo giáo trình</div>
       </div>
     </div>
-    <audio id="audio-25" src="audio/cd1_track25.mp3" ontimeupdate="updateProg('25')" onended="audioEnd('25')"></audio>
+    <div class="transcript-wrap">
+      <div class="transcript-toggle" onclick="toggleTr('tr1')">📄 Xem/ẩn toàn bộ Audio Script (CD1·25) ›</div>
+      <div class="transcript-body" id="tr1">
+        <p><strong>[Take a Break Radio Programme]</strong></p>
+        <p><span class="spk">PRESENTER:</span> Good afternoon and welcome to Take a Break. Today we're taking a look at the rise in voluntourism around the world. I'm here with Alison Armstrong from the travel website voluntours.net. Alison, first of all, can you tell all our listeners what voluntourism is?</p>
+        <p><span class="spk">ALISON:</span> Yes, of course. Voluntourism — or volunteer tourism — is when people go on holiday and spend some of their time doing voluntary work in the local community. It could be teaching children, building houses, working on a conservation project — that kind of thing.</p>
+        <p><span class="spk">PRESENTER:</span> And why is it becoming so popular?</p>
+        <p><span class="spk">ALISON:</span> Well, I think people want to do something more meaningful with their holidays. A lot of travellers feel that on a normal holiday it's quite hard to meet local people — you stay in a hotel, you visit tourist attractions, but you don't really get under the skin of a place. Voluntourism gives you the chance to really integrate into the local community and make a real difference.</p>
+        <p><span class="spk">PRESENTER:</span> And who goes on these holidays? Is it mainly young people taking a gap year?</p>
+        <p><span class="spk">ALISON:</span> That's an interesting question. It used to be mainly young people — maybe 25% of people in the UK take a year off before they're 25. But now voluntourism holidays are for people of all ages. We have families, retired people, professionals — it's really for everyone.</p>
+        <p><span class="spk">PRESENTER:</span> How much do they cost? Do tourists have to pay to go on these holidays?</p>
+        <p><span class="spk">ALISON:</span> Yes, the tourists do pay. The fees usually cover accommodation, meals, and project costs. Prices vary a lot, but typically you might pay anywhere from £500 to over £2,000 for a two-week project.</p>
+        <p><span class="spk">PRESENTER:</span> And do you think voluntourism holidays are always a good idea? Some people are a bit sceptical, aren't they?</p>
+        <p><span class="spk">ALISON:</span> Yes, you're right. Some critics say that unskilled volunteers can sometimes do more harm than good — or that the money would be better spent hiring local workers. I think that's sometimes true. But if it's done well, voluntourism can be incredibly rewarding for both the volunteer and the local community. The key is to choose a reputable organisation.</p>
+        <p><span class="spk">PRESENTER:</span> That's really useful. Thank you, Alison.</p>
+      </div>
+    </div>
   </div>
 
+  <div class="ex-label"><span class="ex-num">2a</span>Nghe và chọn đúng (SB p26, Ex 2b)</div>
+  <div class="instruction">Chọn từ/cụm từ đúng trong mỗi câu theo nội dung bài nghe.</div>
+  <div class="tf-list">
+    <div class="tf-item">
+      <div class="tf-q">1. <em>17%/25%</em> of people in the UK take a year off before they are 17/25.</div>
+      <div class="tf-opts">
+        <button class="tf-btn" onclick="chkTF(this,'A','A','lq1')">25% / 25</button>
+        <button class="tf-btn" onclick="chkTF(this,'B','A','lq1')">17% / 17</button>
+        <button class="tf-btn" onclick="chkTF(this,'C','A','lq1')">25% / 17</button>
+      </div>
+      <div class="tf-fb" id="lq1">✅ <strong>25% of people in the UK take a year off before they are 25.</strong></div>
+    </div>
+    <div class="tf-item">
+      <div class="tf-q">2. Voluntourism holidays are <em>only for young people / for people of all ages</em>.</div>
+      <div class="tf-opts">
+        <button class="tf-btn" onclick="chkTF(this,'A','B','lq2')">only for young people</button>
+        <button class="tf-btn" onclick="chkTF(this,'B','B','lq2')">for people of all ages</button>
+      </div>
+      <div class="tf-fb" id="lq2">✅ <strong>for people of all ages</strong> — "We have families, retired people, professionals — it's really for everyone."</div>
+    </div>
+    <div class="tf-item">
+      <div class="tf-q">3. Alison thinks it's <em>easy / hard</em> to meet local people on a normal holiday.</div>
+      <div class="tf-opts">
+        <button class="tf-btn" onclick="chkTF(this,'A','B','lq3')">easy</button>
+        <button class="tf-btn" onclick="chkTF(this,'B','B','lq3')">hard</button>
+      </div>
+      <div class="tf-fb" id="lq3">✅ <strong>hard</strong> — "on a normal holiday it's quite hard to meet local people"</div>
+    </div>
+    <div class="tf-item">
+      <div class="tf-q">4. Tourists <em>have to / don't have to</em> pay to go on voluntourism holidays.</div>
+      <div class="tf-opts">
+        <button class="tf-btn" onclick="chkTF(this,'A','A','lq4')">have to pay</button>
+        <button class="tf-btn" onclick="chkTF(this,'B','A','lq4')">don't have to pay</button>
+      </div>
+      <div class="tf-fb" id="lq4">✅ <strong>have to pay</strong> — "Yes, the tourists do pay. The fees usually cover accommodation, meals, and project costs."</div>
+    </div>
+    <div class="tf-item">
+      <div class="tf-q">5. The presenter <em>thinks / doesn't think</em> these holidays are always a good idea.</div>
+      <div class="tf-opts">
+        <button class="tf-btn" onclick="chkTF(this,'A','A','lq5')">thinks some people are sceptical</button>
+        <button class="tf-btn" onclick="chkTF(this,'B','A','lq5')">thinks they're always good</button>
+      </div>
+      <div class="tf-fb" id="lq5">✅ The presenter raises the point that <strong>"some people are a bit sceptical"</strong> — acknowledging criticism.</div>
+    </div>
+  </div>
+
+  <div class="ex-label"><span class="ex-num">2b</span>Help with Listening — Consonant-vowel links (SB p26, Ex 3)</div>
+  <div class="instruction">Khi một từ kết thúc bằng phụ âm và từ tiếp theo bắt đầu bằng nguyên âm, chúng ta thường nối hai từ lại với nhau. Nghe lại đoạn đầu bài phỏng vấn.</div>
+  <div class="pron-box">
+    <div style="font-size:.88rem;font-weight:600;margin-bottom:12px">Consonant–Vowel Links trong bài nghe (CD1·25)</div>
+    <div style="font-family:monospace;font-size:.87rem;line-height:2.2;color:#6EE7B7;background:var(--bg3);padding:14px;border-radius:var(--r2);border:1px solid var(--border)">
+      Good_afternoon_and welcome to <em>Take_a</em> Break.<br>
+      Today we're taking_a look_at the rise_in<br>
+      voluntourism_around the world. I'm here<br>
+      with_Alison_Armstrong from the travel website<br>
+      voluntours.net. Alison, first_of_all, can you<br>
+      tell_all_our listeners what voluntourism_is?
+    </div>
+    <div class="note-box" style="margin-top:12px">
+      <strong>📌 Quy tắc:</strong> Khi phụ âm cuối từ gặp nguyên âm đầu từ tiếp theo → nối âm. Ví dụ: <em>take_a</em> /teɪkə/, <em>look_at</em> /lʊkæt/, <em>first_of_all</em> /fɜːstəvɔːl/
+    </div>
+  </div>
+</div>
+
+<!-- TAB READING -->
+<div id="tab-reading" class="tab-pane">
+  <div class="sec-heading">📰 Reading: Holiday Blogs — Voluntours Website</div>
+  <div class="sec-sub">Student Book p26–27 · www.voluntours.net/mediacentre/blogs</div>
+
+  <div style="background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);padding:12px 16px;margin-bottom:16px;font-size:.85rem">
+    <strong>🔍 Trước khi đọc:</strong> Hai khách du lịch Shelley Parker (Úc) và William Boyd (Scotland) đã viết blog về kỳ nghỉ voluntourism của họ trên website Voluntours. Đọc cả hai bài và trả lời câu hỏi.
+  </div>
+
+  <div class="blog-box">
+    <div class="blog-header">
+      <div class="blog-brand">VOLUNTOURS 🌍</div>
+      <div class="blog-tagline">Giving the world a helping hand</div>
+    </div>
+    <div class="blog-nav">
+      <span>HOME</span><span>REVIEWS</span><span>TRAVELOG</span>
+    </div>
+    <div class="blog-body">
+      <div class="blogger-name">Shelley Parker, Australia</div>
+      <div class="blog-text">
+        <p>I'm on a voluntourism holiday in Nepal and wanted to tell everyone all about it! I've been working at a school in a village near Kathmandu for two weeks and I've enjoyed every minute of it. The best thing about the holiday has been working with the children. I spend six hours a day at the school, mainly helping the teachers in the classroom and organising games for the younger kids. I've also been teaching English to the older children, which is great fun.</p>
+        <p>I'm amazed at the <span class="kw-pink">kindness</span> and <span class="kw-pink">patience</span> of the local staff, they've really helped me feel at home. I'm staying with a Nepalese family in the village and I share a room with another volunteer. My bed isn't very <span class="kw-blue">comfortable</span>, but I'm usually so exhausted it doesn't matter! On our days off we go walking in the mountains and I'm getting very fit and <span class="kw-green">healthy</span>. The scenery here is absolutely wonderful and I love being surrounded by <span class="kw-green">nature</span>. But it can be a bit <span class="kw-orange">dangerous</span> so we always take a guide with us.</p>
+        <p>The most <span class="kw-orange">difficult</span> thing about the holiday is being away from my family – this is the first time I've been out of Australia. I'm glad this type of holiday is becoming more <span class="kw-blue">popular</span> with young people and I'd recommend this experience to anyone.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="blog-box">
+    <div class="blog-header" style="background:linear-gradient(135deg,#1e3a5f,#1a3050)">
+      <div class="blog-brand">VOLUNTOURS 🌍</div>
+      <div class="blog-tagline">Giving the world a helping hand</div>
+    </div>
+    <div class="blog-nav">
+      <span>HOME</span><span>REVIEWS</span><span>TRAVELOG</span>
+    </div>
+    <div class="blog-body">
+      <div class="blogger-name" style="color:#60A5FA">William Boyd, Scotland</div>
+      <div class="blog-text">
+        <p>I've been staying on Grenada, an island in the Caribbean, for three weeks and I'm having a brilliant time! There are nine volunteers in our group and everyone's very <span class="kw-blue">kind</span> and helpful. We're staying at a campsite by the beach and I share a tent with two other volunteers.</p>
+        <p>At first I had a lot of <span class="kw-pink">difficulty</span> getting to sleep and I missed the <span class="kw-pink">comfort</span> of my own bed, but I'm sleeping OK now and I love living in such a <span class="kw-blue">natural</span> environment. We take turns to prepare meals for the group, which is the worst part of the holiday for me because I hate cooking. We have one day off a week, which I spend diving around the coral reefs near here.</p>
+        <p>But of course the main reason we're here is to protect the turtles from other animals and people who want to steal their eggs. We also check each turtle's <span class="kw-green">health</span> and measure how big they are. Turtles have been living on our planet for 230 million years – they're even older than the dinosaurs – but now they're in <span class="kw-orange">danger</span> of becoming extinct. You have to be very <span class="kw-blue">patient</span>, but it's incredible to watch a turtle walk out of the sea and lay her eggs on the beach. That's definitely been the most amazing part of the holiday for me. I'm not surprised voluntourism is increasing in <span class="kw-pink">popularity</span> and I'd definitely recommend coming to Grenada.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="ex-label"><span class="ex-num">4a</span>Đọc và trả lời câu hỏi (SB p26)</div>
+  <div class="instruction">Trả lời các câu hỏi về Shelley (S) hoặc William (W). Click để xem đáp án.</div>
   <div class="qa-list">
-    <div class="qa-item"><div class="qa-q" onclick="toggleQA(this)"><span class="qa-qnum">1</span><span class="qa-qtext">What is 'voluntourism'?</span><span class="qa-arrow">▶</span></div><div class="qa-ans">People go on holiday (or a longer trip) and volunteer to work for free in the place they're visiting.</div></div>
-    <div class="qa-item"><div class="qa-q" onclick="toggleQA(this)"><span class="qa-qnum">2</span><span class="qa-qtext">Why is it becoming so popular?</span><span class="qa-arrow">▶</span></div><div class="qa-ans">People want to help, it's a great way to get to know the local culture, and it's a life-changing experience.</div></div>
-  </div>
-
-  <div class="ex-label"><div class="ex-num">2</div>Exercise 2b — Listen again: Choose the correct words</div>
-  <p class="instr"><span class="part">b</span> Listen again. Choose the correct words, phrases or numbers in these sentences.</p>
-
-  <div class="fill-ex">
-    <div class="fill-item"><div class="fill-item-num">1</div><div class="fill-item-body"><div class="fill-sentence"><input class="fill-input" id="l2-1" style="max-width:80px" placeholder="17%/25%"> of people in the UK take a year off before they are <input class="fill-input" id="l2-2" style="max-width:80px" placeholder="17/25">.</div></div></div>
-    <div class="fill-item"><div class="fill-item-num">2</div><div class="fill-item-body"><div class="fill-sentence">Voluntourism holidays are only for young people / for people of all ages.</div></div></div>
-    <div class="fill-item"><div class="fill-item-num">3</div><div class="fill-item-body"><div class="fill-sentence">Alison thinks it's easy/hard to meet local people on a normal holiday.</div></div></div>
-    <div class="fill-item"><div class="fill-item-num">4</div><div class="fill-item-body"><div class="fill-sentence">Tourists have to / don't have to pay to go on voluntourism holidays.</div></div></div>
-    <div class="fill-item"><div class="fill-item-num">5</div><div class="fill-item-body"><div class="fill-sentence">The presenter thinks / doesn't think these holidays are a good idea.</div></div></div>
-    <div style="display:flex;gap:8px;margin-top:12px">
-      <button class="btn btn-primary" onclick="checkListening2()">✅ Kiểm tra</button>
-      <button class="btn btn-outline" onclick="revealListening2()">👁 Đáp án</button>
-    </div>
-    <div class="score-box" id="l2-score"></div>
-  </div>
-
-  <div class="tip-box">
-    <strong>Linking (consonant-vowel):</strong><br>
-    We often link words that end in a consonant sound with words that start with a vowel sound:<br>
-    <em>Good af̬ternoon and̬ welcome to Take a Break.</em>
+    <div class="qa-item" id="r1"><div class="qa-q" onclick="toggleQA('r1')"><div class="qa-qnum">1</div><div class="qa-qtext">Where is he/she on holiday?</div><div class="qa-arrow">›</div></div><div class="qa-answer">Shelley: Nepal (near Kathmandu) · William: Grenada (an island in the Caribbean)</div></div>
+    <div class="qa-item" id="r2"><div class="qa-q" onclick="toggleQA('r2')"><div class="qa-qnum">2</div><div class="qa-qtext">How long has he/she been there?</div><div class="qa-arrow">›</div></div><div class="qa-answer">Shelley: two weeks · William: three weeks</div></div>
+    <div class="qa-item" id="r3"><div class="qa-q" onclick="toggleQA('r3')"><div class="qa-qnum">3</div><div class="qa-qtext">Where is he/she staying?</div><div class="qa-arrow">›</div></div><div class="qa-answer">Shelley: with a Nepalese family in the village, sharing a room with another volunteer · William: at a campsite by the beach, sharing a tent with two other volunteers</div></div>
+    <div class="qa-item" id="r4"><div class="qa-q" onclick="toggleQA('r4')"><div class="qa-qnum">4</div><div class="qa-qtext">What sort of work does he/she do?</div><div class="qa-arrow">›</div></div><div class="qa-answer">Shelley: helping teachers in the classroom, organising games, teaching English · William: protecting turtles, checking turtles' health and measuring them</div></div>
+    <div class="qa-item" id="r5"><div class="qa-q" onclick="toggleQA('r5')"><div class="qa-qnum">5</div><div class="qa-qtext">What does he/she do on his/her days off?</div><div class="qa-arrow">›</div></div><div class="qa-answer">Shelley: goes walking in the mountains · William: goes diving around the coral reefs</div></div>
+    <div class="qa-item" id="r6"><div class="qa-q" onclick="toggleQA('r6')"><div class="qa-qnum">6</div><div class="qa-qtext">What's the best thing about the holiday?</div><div class="qa-arrow">›</div></div><div class="qa-answer">Shelley: working with the children · William: watching a turtle walk out of the sea and lay her eggs on the beach</div></div>
+    <div class="qa-item" id="r7"><div class="qa-q" onclick="toggleQA('r7')"><div class="qa-qnum">7</div><div class="qa-qtext">What's the most difficult thing?</div><div class="qa-arrow">›</div></div><div class="qa-answer">Shelley: being away from her family for the first time · William: preparing meals (he hates cooking)</div></div>
+    <div class="qa-item" id="r8"><div class="qa-q" onclick="toggleQA('r8')"><div class="qa-qnum">8</div><div class="qa-qtext">Would he/she recommend the holiday?</div><div class="qa-arrow">›</div></div><div class="qa-answer">Both YES — Shelley: "I'd recommend this experience to anyone" · William: "I'd definitely recommend coming to Grenada"</div></div>
   </div>
 </div>
 
-<!-- ══════════════════════════════════════
-     TAB 3: READING AND VOCABULARY
-══════════════════════════════════════ -->
-<div class="tab-pane" id="tab-reading">
-  <div class="sec-heading">Reading and Vocabulary</div>
-  <div class="sec-sub">Voluntourism blogs — Shelley and William</div>
+<!-- TAB GRAMMAR -->
+<div id="tab-grammar" class="tab-pane">
+  <div class="sec-heading">⚙ Help with Vocabulary: Suffixes — Adjectives & Nouns</div>
+  <div class="sec-sub">Student Book p27 · Vocabulary 3.3 · p133</div>
 
-  <div class="ex-label"><div class="ex-num">3</div>Exercise 3 — Read the blogs</div>
-  <p class="instr">Read the blogs. Find the answers to these questions.</p>
-
-  <div class="article-card">
-    <div style="font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:var(--purple);margin-bottom:4px">Shelley Parker, Australia</div>
-    <div class="article-p">I'm on a voluntourism holiday in Nepal and wanted to tell everyone all about it! I've been working at a school in a village near Kathmandu for two weeks and I've enjoyed every minute of it. The best thing about the holiday has been working with the children. I spend six hours a day at the school, mainly helping the teachers in the classroom and organising games for the younger kids. I've also been teaching English to the older children, which is great fun. I'm amazed at the <strong style="color:var(--purple)">kindness</strong> and <strong style="color:var(--purple)">patience</strong> of the local staff, they've really helped me feel at home. I'm staying with a Nepalese family in the village and I share a room with another volunteer. My bed isn't very comfortable, but I'm usually so exhausted it doesn't matter! On our days off we go walking in the mountains and I'm getting very fit and healthy. The scenery here is absolutely wonderful and I love being surrounded by nature. But it can be a bit dangerous so we always take a guide with us. The most difficult thing about the holiday is being away from my family — this is the first time I've been out of Australia. I'm glad this type of holiday is becoming more <strong style="color:var(--purple)">popular</strong> with young people and I'd recommend this experience to anyone.</div>
+  <div class="ex-label"><span class="ex-num">1</span>Điền suffix đúng (SB p27, Ex 5b)</div>
+  <div class="instruction">Hoàn thành bảng suffix với adjective hoặc noun phù hợp.</div>
+  <div class="fill-ex">
+    <div class="fill-item" id="g1"><div class="fill-num">1</div><div class="fill-content">
+      <div class="fill-sent">Adj: <strong>active</strong> → Noun: <input class="fi" id="gi1" placeholder="noun" style="width:130px"></div>
+      <div style="display:flex;gap:4px;margin-top:6px"><button class="chk-btn" onclick="chk('gi1','activity','g1','gf1')">Kiểm tra</button><button class="rev-btn" onclick="rev('gi1','activity','g1','gf1')">Đáp án</button></div>
+      <div class="fb" id="gf1"></div>
+    </div></div>
+    <div class="fill-item" id="g2"><div class="fill-num">2</div><div class="fill-content">
+      <div class="fill-sent">Noun: <strong>adventure</strong> → Adjective: <input class="fi" id="gi2" placeholder="adjective" style="width:150px"></div>
+      <div style="display:flex;gap:4px;margin-top:6px"><button class="chk-btn" onclick="chk('gi2','adventurous','g2','gf2')">Kiểm tra</button><button class="rev-btn" onclick="rev('gi2','adventurous','g2','gf2')">Đáp án</button></div>
+      <div class="fb" id="gf2"></div>
+    </div></div>
+    <div class="fill-item" id="g3"><div class="fill-num">3</div><div class="fill-content">
+      <div class="fill-sent">Adj: <strong>comfortable</strong> → Noun: <input class="fi" id="gi3" placeholder="noun" style="width:130px"></div>
+      <div style="display:flex;gap:4px;margin-top:6px"><button class="chk-btn" onclick="chk('gi3','comfort','g3','gf3')">Kiểm tra</button><button class="rev-btn" onclick="rev('gi3','comfort','g3','gf3')">Đáp án</button></div>
+      <div class="fb" id="gf3"></div>
+    </div></div>
+    <div class="fill-item" id="g4"><div class="fill-num">4</div><div class="fill-content">
+      <div class="fill-sent">Noun: <strong>confidence</strong> → Adjective: <input class="fi" id="gi4" placeholder="adjective" style="width:150px"></div>
+      <div style="display:flex;gap:4px;margin-top:6px"><button class="chk-btn" onclick="chk('gi4','confident','g4','gf4')">Kiểm tra</button><button class="rev-btn" onclick="rev('gi4','confident','g4','gf4')">Đáp án</button></div>
+      <div class="fb" id="gf4"></div>
+    </div></div>
+    <div class="fill-item" id="g5"><div class="fill-num">5</div><div class="fill-content">
+      <div class="fill-sent">Adj: <strong>healthy</strong> → Noun: <input class="fi" id="gi5" placeholder="noun" style="width:130px"></div>
+      <div style="display:flex;gap:4px;margin-top:6px"><button class="chk-btn" onclick="chk('gi5','health','g5','gf5')">Kiểm tra</button><button class="rev-btn" onclick="rev('gi5','health','g5','gf5')">Đáp án</button></div>
+      <div class="fb" id="gf5"></div>
+    </div></div>
+    <div class="fill-item" id="g6"><div class="fill-num">6</div><div class="fill-content">
+      <div class="fill-sent">Noun: <strong>honesty</strong> → Adjective: <input class="fi" id="gi6" placeholder="adjective" style="width:150px"></div>
+      <div style="display:flex;gap:4px;margin-top:6px"><button class="chk-btn" onclick="chk('gi6','honest','g6','gf6')">Kiểm tra</button><button class="rev-btn" onclick="rev('gi6','honest','g6','gf6')">Đáp án</button></div>
+      <div class="fb" id="gf6"></div>
+    </div></div>
+    <div class="fill-item" id="g7"><div class="fill-num">7</div><div class="fill-content">
+      <div class="fill-sent">Adj: <strong>patient</strong> → Noun: <input class="fi" id="gi7" placeholder="noun" style="width:130px"></div>
+      <div style="display:flex;gap:4px;margin-top:6px"><button class="chk-btn" onclick="chk('gi7','patience','g7','gf7')">Kiểm tra</button><button class="rev-btn" onclick="rev('gi7','patience','g7','gf7')">Đáp án</button></div>
+      <div class="fb" id="gf7"></div>
+    </div></div>
+    <div class="fill-item" id="g8"><div class="fill-num">8</div><div class="fill-content">
+      <div class="fill-sent">Noun: <strong>popularity</strong> → Adjective: <input class="fi" id="gi8" placeholder="adjective" style="width:150px"></div>
+      <div style="display:flex;gap:4px;margin-top:6px"><button class="chk-btn" onclick="chk('gi8','popular','g8','gf8')">Kiểm tra</button><button class="rev-btn" onclick="rev('gi8','popular','g8','gf8')">Đáp án</button></div>
+      <div class="fb" id="gf8"></div>
+    </div></div>
+    <div class="fill-item" id="g9"><div class="fill-num">9</div><div class="fill-content">
+      <div class="fill-sent">Adj: <strong>touristy</strong> → Noun: <input class="fi" id="gi9" placeholder="noun" style="width:130px"></div>
+      <div style="display:flex;gap:4px;margin-top:6px"><button class="chk-btn" onclick="chk('gi9','tourism|tourist','g9','gf9')">Kiểm tra</button><button class="rev-btn" onclick="rev('gi9','tourism','g9','gf9')">Đáp án</button></div>
+      <div class="fb" id="gf9"></div>
+    </div></div>
+    <div class="fill-item" id="g10"><div class="fill-num">10</div><div class="fill-content">
+      <div class="fill-sent">Noun: <strong>tradition</strong> → Adjective: <input class="fi" id="gi10" placeholder="adjective" style="width:150px"></div>
+      <div style="display:flex;gap:4px;margin-top:6px"><button class="chk-btn" onclick="chk('gi10','traditional','g10','gf10')">Kiểm tra</button><button class="rev-btn" onclick="rev('gi10','traditional','g10','gf10')">Đáp án</button></div>
+      <div class="fb" id="gf10"></div>
+    </div></div>
   </div>
 
-  <div class="article-card">
-    <div style="font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:var(--purple);margin-bottom:4px">William Boyd, Scotland</div>
-    <div class="article-p">I've been staying on Grenada, an island in the Caribbean, for three weeks and I'm having a brilliant time! There are nine volunteers in our group and everyone's very kind and <strong style="color:var(--purple)">helpful</strong>. We're staying at a campsite by the beach and I share a tent with two other volunteers. At first I had a lot of difficulty getting to sleep and I missed the <strong style="color:var(--purple)">comfort</strong> of my own bed, but I'm sleeping OK now and I love living in such a <strong style="color:var(--purple)">natural</strong> environment. We take turns to prepare meals for the group, which is the worst part of the holiday for me because I hate cooking. We have one day off a week, which I spend diving around the coral reefs near here. But of course the main reason we're here is to protect the turtles from other animals and people who want to steal their eggs. We also check each turtle's health and measure how big they are. Turtles have been living on our planet for 230 million years — they're even older than the dinosaurs — but now they're in danger of becoming extinct. You have to be very <strong style="color:var(--purple)">patient</strong>, but it's incredible to watch a turtle walk out of the sea and lay her eggs on the beach. That's definitely been the most amazing part of the holiday for me. I'm not surprised voluntourism is increasing in <strong style="color:var(--purple)">popularity</strong> and I'd definitely recommend coming to Grenada.</div>
+  <div class="ex-label"><span class="ex-num">2</span>Adj hay Noun? (SB p27, Ex 5d)</div>
+  <div class="instruction">Nhìn vào hậu tố, xác định từ là adjective (A) hay noun (N).</div>
+  <div class="mcq-list">
+    <div class="mcq-item"><div class="mcq-q">knowledgeable</div><div class="mcq-opts">
+      <div class="mcq-opt" onclick="selM(this,'A','m1')"><div class="opt-dot"></div>A — Adjective</div>
+      <div class="mcq-opt" onclick="selM(this,'B','m1')"><div class="opt-dot"></div>N — Noun</div>
+    </div><div id="m1-fb" style="display:none;margin-top:6px;font-size:.8rem;color:var(--teal)">✅ <strong>Adjective</strong> — suffix <em>-able</em> → adjective</div></div>
+    <div class="mcq-item"><div class="mcq-q">sadness</div><div class="mcq-opts">
+      <div class="mcq-opt" onclick="selM(this,'B','m2')"><div class="opt-dot"></div>A — Adjective</div>
+      <div class="mcq-opt" onclick="selM(this,'A','m2')"><div class="opt-dot"></div>N — Noun</div>
+    </div><div id="m2-fb" style="display:none;margin-top:6px;font-size:.8rem;color:var(--teal)">✅ <strong>Noun</strong> — suffix <em>-ness</em> → noun</div></div>
+    <div class="mcq-item"><div class="mcq-q">adventurous</div><div class="mcq-opts">
+      <div class="mcq-opt" onclick="selM(this,'A','m3')"><div class="opt-dot"></div>A — Adjective</div>
+      <div class="mcq-opt" onclick="selM(this,'B','m3')"><div class="opt-dot"></div>N — Noun</div>
+    </div><div id="m3-fb" style="display:none;margin-top:6px;font-size:.8rem;color:var(--teal)">✅ <strong>Adjective</strong> — suffix <em>-ous</em> → adjective</div></div>
+    <div class="mcq-item"><div class="mcq-q">possibility</div><div class="mcq-opts">
+      <div class="mcq-opt" onclick="selM(this,'B','m4')"><div class="opt-dot"></div>A — Adjective</div>
+      <div class="mcq-opt" onclick="selM(this,'A','m4')"><div class="opt-dot"></div>N — Noun</div>
+    </div><div id="m4-fb" style="display:none;margin-top:6px;font-size:.8rem;color:var(--teal)">✅ <strong>Noun</strong> — suffix <em>-ity</em> → noun</div></div>
+    <div class="mcq-item"><div class="mcq-q">traditional</div><div class="mcq-opts">
+      <div class="mcq-opt" onclick="selM(this,'A','m5')"><div class="opt-dot"></div>A — Adjective</div>
+      <div class="mcq-opt" onclick="selM(this,'B','m5')"><div class="opt-dot"></div>N — Noun</div>
+    </div><div id="m5-fb" style="display:none;margin-top:6px;font-size:.8rem;color:var(--teal)">✅ <strong>Adjective</strong> — suffix <em>-al</em> → adjective</div></div>
   </div>
+</div>
 
-  <div class="ex-label"><div class="ex-num">4</div>Comprehension questions</div>
-  <p class="instr">Work in pairs. Ask and answer these questions about the blogs.</p>
-
+<!-- TAB PRONUNCIATION -->
+<div id="tab-pronunciation" class="tab-pane">
+  <div class="sec-heading">🔊 Help with Listening: Consonant-Vowel Links</div>
+  <div class="sec-sub">Student Book p26 · CD1 Track 25 · Linking (1)</div>
+  <div class="pron-box">
+    <div style="font-size:.9rem;font-weight:700;margin-bottom:4px">Consonant–Vowel Links — Nối phụ âm với nguyên âm</div>
+    <div style="font-size:.83rem;color:var(--dim);margin-bottom:14px">Khi từ kết thúc bằng phụ âm (consonant) và từ tiếp theo bắt đầu bằng nguyên âm (vowel), ta thường nối chúng lại trong phát âm tự nhiên.</div>
+    <div class="pron-grid">
+      <div class="pron-card"><div class="pron-word">take_a</div><div class="pron-ipa">/ˈteɪkə/</div><div class="pron-ex">take a look</div></div>
+      <div class="pron-card"><div class="pron-word">look_at</div><div class="pron-ipa">/ˈlʊkæt/</div><div class="pron-ex">look at the rise</div></div>
+      <div class="pron-card"><div class="pron-word">rise_in</div><div class="pron-ipa">/ˈraɪzɪn/</div><div class="pron-ex">rise in voluntourism</div></div>
+      <div class="pron-card"><div class="pron-word">first_of_all</div><div class="pron-ipa">/fɜːstəvɔːl/</div><div class="pron-ex">first of all, ...</div></div>
+      <div class="pron-card"><div class="pron-word">tell_all</div><div class="pron-ipa">/ˈtelɔːl/</div><div class="pron-ex">tell all our listeners</div></div>
+      <div class="pron-card"><div class="pron-word">with_Alison</div><div class="pron-ipa">/wɪðˈælɪsn/</div><div class="pron-ex">here with Alison</div></div>
+    </div>
+  </div>
+  <div class="ex-label"><span class="ex-num">1</span>Tìm các consonant-vowel links</div>
+  <div class="instruction">Nhìn vào các câu sau từ bài nghe. Click để xem các nối âm được đánh dấu.</div>
   <div class="qa-list">
-    <div class="qa-item"><div class="qa-q" onclick="toggleQA(this)"><span class="qa-qnum">1</span><span class="qa-qtext">Where is Shelley? How long has she been there?</span><span class="qa-arrow">▶</span></div><div class="qa-ans">Nepal, for two weeks.</div></div>
-    <div class="qa-item"><div class="qa-q" onclick="toggleQA(this)"><span class="qa-qnum">2</span><span class="qa-qtext">What does Shelley do at the school?</span><span class="qa-arrow">▶</span></div><div class="qa-ans">Helps teachers, organises games, teaches English to older children.</div></div>
-    <div class="qa-item"><div class="qa-q" onclick="toggleQA(this)"><span class="qa-qnum">3</span><span class="qa-qtext">What does Shelley do on her days off?</span><span class="qa-arrow">▶</span></div><div class="qa-ans">Goes walking in the mountains.</div></div>
-    <div class="qa-item"><div class="qa-q" onclick="toggleQA(this)"><span class="qa-qnum">4</span><span class="qa-qtext">Where is William? How long has he been there?</span><span class="qa-arrow">▶</span></div><div class="qa-ans">Grenada (Caribbean), for three weeks.</div></div>
-    <div class="qa-item"><div class="qa-q" onclick="toggleQA(this)"><span class="qa-qnum">5</span><span class="qa-qtext">What does William do on the island?</span><span class="qa-arrow">▶</span></div><div class="qa-ans">Protects turtles, checks their health, measures them.</div></div>
-    <div class="qa-item"><div class="qa-q" onclick="toggleQA(this)"><span class="qa-qnum">6</span><span class="qa-qtext">What does he do on his days off?</span><span class="qa-arrow">▶</span></div><div class="qa-ans">Dives around the coral reefs.</div></div>
+    <div class="qa-item" id="pq1"><div class="qa-q" onclick="toggleQA('pq1')"><div class="qa-qnum">1</div><div class="qa-qtext">I'm here with Alison Armstrong from the travel website.</div><div class="qa-arrow">›</div></div><div class="qa-answer" style="font-family:monospace">I'm here with_Alison_Armstrong from the travel_website. → "with Alison" /wɪð_ælɪsn/, "travel website" /trævl_websaɪt/</div></div>
+    <div class="qa-item" id="pq2"><div class="qa-q" onclick="toggleQA('pq2')"><div class="qa-qnum">2</div><div class="qa-qtext">can you tell all our listeners what voluntourism is?</div><div class="qa-arrow">›</div></div><div class="qa-answer" style="font-family:monospace">tell_all_our → /tel_ɔːl_aʊə/ — 3 từ nối liền nhau</div></div>
+    <div class="qa-item" id="pq3"><div class="qa-q" onclick="toggleQA('pq3')"><div class="qa-qnum">3</div><div class="qa-qtext">Today we're taking a look at the rise in voluntourism around the world.</div><div class="qa-arrow">›</div></div><div class="qa-answer" style="font-family:monospace">taking_a /teɪkɪŋə/ · look_at /lʊkæt/ · rise_in /raɪzɪn/ · around_the /əraʊndðə/</div></div>
   </div>
 </div>
 
-<!-- ══════════════════════════════════════
-     TAB 4: WORD BUILDING
-══════════════════════════════════════ -->
-<div class="tab-pane" id="tab-wordbuilding">
-  <div class="sec-heading">Help with Vocabulary</div>
-  <div class="sec-sub">Word building (1): suffixes for adjectives and nouns · VOCABULARY 3.3 → p133</div>
+<!-- TAB SPEAKING -->
+<div id="tab-speaking" class="tab-pane">
+  <div class="sec-heading">💬 Speaking — Voluntourism Discussion</div>
+  <div class="sec-sub">Student Book p26–27 · Ex 1, 4d, 7</div>
+  <div class="ex-label"><span class="ex-num">1</span>Thảo luận về kỳ nghỉ (SB p26, Ex 1)</div>
+  <div class="speaking-box">
+    <div class="disc-q"><div class="disc-q-num">1</div><div>Which holidays can you remember from your childhood? What did you enjoy most?</div></div>
+    <div class="disc-q"><div class="disc-q-num">2</div><div>What's the best (or worst) holiday you've ever had? What made it special / terrible?</div></div>
+    <div class="disc-q"><div class="disc-q-num">3</div><div>Imagine your perfect holiday. Where would you go? What would you do there?</div></div>
+    <div class="disc-q"><div class="disc-q-num">4</div><div>Would you like to go on a voluntourism holiday? Why / why not? Which project would you choose?</div></div>
+    <div class="disc-q"><div class="disc-q-num">5</div><div>Do you think voluntourism helps local communities, or do you think it has disadvantages?</div></div>
+  </div>
+  <div class="ex-label"><span class="ex-num">2</span>Cụm từ hữu ích</div>
+  <div>
+    <span class="chip">I've been to...</span>
+    <span class="chip">The best thing was...</span>
+    <span class="chip">The most difficult thing...</span>
+    <span class="chip">I'd recommend...</span>
+    <span class="chip">I wouldn't recommend...</span>
+    <span class="chip">On the whole...</span>
+    <span class="chip">It was absolutely...</span>
+    <span class="chip">I'm amazed at the...</span>
+    <span class="chip">I'd definitely...</span>
+  </div>
+</div>
 
-  <div class="ex-label"><div class="ex-num">5</div>Exercise 5a — Identify adjectives and nouns</div>
-  <p class="instr"><span class="part">a</span> Look at the words in <strong>blue</strong> and <strong>purple</strong> in the blogs. Which are adjectives and which are nouns? Underline the suffix in each pair.</p>
+<!-- TAB WORKBOOK -->
+<div id="tab-workbook" class="tab-pane">
+  <div class="sec-heading">📝 Workbook — Bài 3C Voluntourism</div>
+  <div class="sec-sub">Workbook p18–19</div>
 
-  <div class="suffix-grid">
-    <div class="suffix-card"><div class="suffix-word">kind</div><div class="suffix-ipa">/kaɪnd/</div><div class="suffix-type">Adjective</div></div>
-    <div class="suffix-card"><div class="suffix-word">kindness</div><div class="suffix-ipa">/ˈkaɪndnəs/</div><div class="suffix-type">Noun (suffix -ness)</div></div>
-    <div class="suffix-card"><div class="suffix-word">patient</div><div class="suffix-ipa">/ˈpeɪʃnt/</div><div class="suffix-type">Adjective</div></div>
-    <div class="suffix-card"><div class="suffix-word">patience</div><div class="suffix-ipa">/ˈpeɪʃns/</div><div class="suffix-type">Noun (suffix -ence)</div></div>
-    <div class="suffix-card"><div class="suffix-word">popular</div><div class="suffix-ipa">/ˈpɒpjələ/</div><div class="suffix-type">Adjective</div></div>
-    <div class="suffix-card"><div class="suffix-word">popularity</div><div class="suffix-ipa">/ˌpɒpjəˈlærəti/</div><div class="suffix-type">Noun (suffix -ity)</div></div>
-    <div class="suffix-card"><div class="suffix-word">helpful</div><div class="suffix-ipa">/ˈhelpfl/</div><div class="suffix-type">Adjective (suffix -ful)</div></div>
-    <div class="suffix-card"><div class="suffix-word">comfort</div><div class="suffix-ipa">/ˈkʌmfət/</div><div class="suffix-type">Noun</div></div>
-    <div class="suffix-card"><div class="suffix-word">natural</div><div class="suffix-ipa">/ˈnætʃrəl/</div><div class="suffix-type">Adjective (suffix -al)</div></div>
+  <div class="wb-tag">📚 Word building — WB p18, Ex 1</div>
+  <div class="ex-label"><span class="ex-num">1</span>Hoàn thành bảng adjective/noun (WB p18)</div>
+  <div class="fill-ex">
+    <div class="fill-item" id="wb1"><div class="fill-num">1</div><div class="fill-content">
+      <div class="fill-sent">Adj: <strong>active</strong> → Noun: <input class="fi" id="wbi1" placeholder="noun" style="width:130px"> (suffix: -ity)</div>
+      <div style="display:flex;gap:4px;margin-top:6px"><button class="chk-btn" onclick="chk('wbi1','activity','wb1','wbf1')">Kiểm tra</button><button class="rev-btn" onclick="rev('wbi1','activity','wb1','wbf1')">Đáp án</button></div>
+      <div class="fb" id="wbf1"></div>
+    </div></div>
+    <div class="fill-item" id="wb2"><div class="fill-num">2</div><div class="fill-content">
+      <div class="fill-sent">Noun: <strong>adventure</strong> → Adj: <input class="fi" id="wbi2" placeholder="adjective" style="width:140px"> (suffix: -ous)</div>
+      <div style="display:flex;gap:4px;margin-top:6px"><button class="chk-btn" onclick="chk('wbi2','adventurous','wb2','wbf2')">Kiểm tra</button><button class="rev-btn" onclick="rev('wbi2','adventurous','wb2','wbf2')">Đáp án</button></div>
+      <div class="fb" id="wbf2"></div>
+    </div></div>
+    <div class="fill-item" id="wb3"><div class="fill-num">3</div><div class="fill-content">
+      <div class="fill-sent">Adj: <strong>comfortable</strong> → Noun: <input class="fi" id="wbi3" placeholder="noun" style="width:130px"> (suffix: remove -able)</div>
+      <div style="display:flex;gap:4px;margin-top:6px"><button class="chk-btn" onclick="chk('wbi3','comfort','wb3','wbf3')">Kiểm tra</button><button class="rev-btn" onclick="rev('wbi3','comfort','wb3','wbf3')">Đáp án</button></div>
+      <div class="fb" id="wbf3"></div>
+    </div></div>
+    <div class="fill-item" id="wb4"><div class="fill-num">4</div><div class="fill-content">
+      <div class="fill-sent">Noun: <strong>confidence</strong> → Adj: <input class="fi" id="wbi4" placeholder="adjective" style="width:140px"> (suffix: -ent)</div>
+      <div style="display:flex;gap:4px;margin-top:6px"><button class="chk-btn" onclick="chk('wbi4','confident','wb4','wbf4')">Kiểm tra</button><button class="rev-btn" onclick="rev('wbi4','confident','wb4','wbf4')">Đáp án</button></div>
+      <div class="fb" id="wbf4"></div>
+    </div></div>
+    <div class="fill-item" id="wb5"><div class="fill-num">5</div><div class="fill-content">
+      <div class="fill-sent">Adj: <strong>healthy</strong> → Noun: <input class="fi" id="wbi5" placeholder="noun" style="width:130px"> (suffix: -th)</div>
+      <div style="display:flex;gap:4px;margin-top:6px"><button class="chk-btn" onclick="chk('wbi5','health','wb5','wbf5')">Kiểm tra</button><button class="rev-btn" onclick="rev('wbi5','health','wb5','wbf5')">Đáp án</button></div>
+      <div class="fb" id="wbf5"></div>
+    </div></div>
+    <div class="fill-item" id="wb6"><div class="fill-num">6</div><div class="fill-content">
+      <div class="fill-sent">Noun: <strong>honesty</strong> → Adj: <input class="fi" id="wbi6" placeholder="adjective" style="width:140px"> (remove -y)</div>
+      <div style="display:flex;gap:4px;margin-top:6px"><button class="chk-btn" onclick="chk('wbi6','honest','wb6','wbf6')">Kiểm tra</button><button class="rev-btn" onclick="rev('wbi6','honest','wb6','wbf6')">Đáp án</button></div>
+      <div class="fb" id="wbf6"></div>
+    </div></div>
+    <div class="fill-item" id="wb7"><div class="fill-num">7</div><div class="fill-content">
+      <div class="fill-sent">Adj: <strong>patient</strong> → Noun: <input class="fi" id="wbi7" placeholder="noun" style="width:130px"> (suffix: -ence)</div>
+      <div style="display:flex;gap:4px;margin-top:6px"><button class="chk-btn" onclick="chk('wbi7','patience','wb7','wbf7')">Kiểm tra</button><button class="rev-btn" onclick="rev('wbi7','patience','wb7','wbf7')">Đáp án</button></div>
+      <div class="fb" id="wbf7"></div>
+    </div></div>
+    <div class="fill-item" id="wb8"><div class="fill-num">8</div><div class="fill-content">
+      <div class="fill-sent">Noun: <strong>popularity</strong> → Adj: <input class="fi" id="wbi8" placeholder="adjective" style="width:140px"> (remove -ity)</div>
+      <div style="display:flex;gap:4px;margin-top:6px"><button class="chk-btn" onclick="chk('wbi8','popular','wb8','wbf8')">Kiểm tra</button><button class="rev-btn" onclick="rev('wbi8','popular','wb8','wbf8')">Đáp án</button></div>
+      <div class="fb" id="wbf8"></div>
+    </div></div>
+    <div class="fill-item" id="wb9"><div class="fill-num">9</div><div class="fill-content">
+      <div class="fill-sent">Adj: <strong>touristy</strong> → Noun: <input class="fi" id="wbi9" placeholder="noun" style="width:130px"></div>
+      <div style="display:flex;gap:4px;margin-top:6px"><button class="chk-btn" onclick="chk('wbi9','tourism','wb9','wbf9')">Kiểm tra</button><button class="rev-btn" onclick="rev('wbi9','tourism','wb9','wbf9')">Đáp án</button></div>
+      <div class="fb" id="wbf9"></div>
+    </div></div>
+    <div class="fill-item" id="wb10"><div class="fill-num">10</div><div class="fill-content">
+      <div class="fill-sent">Noun: <strong>tradition</strong> → Adj: <input class="fi" id="wbi10" placeholder="adjective" style="width:140px"> (suffix: -al)</div>
+      <div style="display:flex;gap:4px;margin-top:6px"><button class="chk-btn" onclick="chk('wbi10','traditional','wb10','wbf10')">Kiểm tra</button><button class="rev-btn" onclick="rev('wbi10','traditional','wb10','wbf10')">Đáp án</button></div>
+      <div class="fb" id="wbf10"></div>
+    </div></div>
   </div>
 
-  <div class="ex-label"><div class="ex-num">5</div>Exercise 5b — Complete the tables</div>
+  <div class="wb-tag" style="margin-top:20px">📰 Reading — WB p18–19, Ex 2–3</div>
+  <div class="ex-label"><span class="ex-num">2</span>Điền vào bài đọc (WB p18–19)</div>
+  <div class="instruction">Đọc bài "<strong>Is This What Holidays Used To Be Like?</strong>" (WB p19) và điền adjective/noun từ bảng Ex 1 vào chỗ trống.</div>
 
-  <div class="fill-ex">
-    <div class="fill-ex-title">Adjectives → Nouns</div>
-    <div class="coll-grid">
-      <div class="coll-row"><div class="coll-verb">sad</div><div><div class="coll-phrase">sadness</div><div class="coll-vi">🇻🇳 nỗi buồn</div></div></div>
-      <div class="coll-row"><div class="coll-verb">lazy</div><div><div class="coll-phrase">laziness</div><div class="coll-vi">🇻🇳 sự lười biếng</div></div></div>
-      <div class="coll-row"><div class="coll-verb">confident</div><div><div class="coll-phrase">confidence</div><div class="coll-vi">🇻🇳 sự tự tin</div></div></div>
-      <div class="coll-row"><div class="coll-verb">important</div><div><div class="coll-phrase">importance</div><div class="coll-vi">🇻🇳 tầm quan trọng</div></div></div>
-      <div class="coll-row"><div class="coll-verb">difficult</div><div><div class="coll-phrase">difficulty</div><div class="coll-vi">🇻🇳 khó khăn</div></div></div>
-      <div class="coll-row"><div class="coll-verb">honest</div><div><div class="coll-phrase">honesty</div><div class="coll-vi">🇻🇳 sự trung thực</div></div></div>
-      <div class="coll-row"><div class="coll-verb">active</div><div><div class="coll-phrase">activity</div><div class="coll-vi">🇻🇳 hoạt động</div></div></div>
+  <div class="article-box">
+    <div class="article-tag">📖 Workbook Reading — p19</div>
+    <div class="article-title">IS THIS WHAT HOLIDAYS USED TO BE LIKE?</div>
+    <div class="article-sub">A family tries Monkton Wyld — an eco-holiday centre in Dorset, England</div>
+    <div class="article-body">
+      <p>To be ¹<span class="kw-green">honest</span>, I was a bit nervous about a holiday at Monkton Wyld. 'We all sleep in one room – including the children, the food is vegetarian only and you do your own washing-up?' I asked my wife. 'That's right,' she said. 'Let's do it. It'll be an ²<span class="kw-orange">adventure</span>!'</p>
+      <p>'But we need a holiday,' I said.</p>
+      <p>Two months later we're on a train to Dorset in south-west England. I'm reading about Monkton on my phone. The house was built in 1848 and since then, it's been a hotel, a boarding school and it's now a farm and a centre for environmental education. It offers ³<span class="kw-green">activity</span> weeks on everything from beekeeping to building your own outdoor toilet!</p>
+      <p>We're going on a 'Family Week' with our two children, five and eight. It's advertised as "Everything family holidays should be – songs, games, country walks and ⁴<span class="kw-orange">homemade</span> meals." Personally, I remember childhood holidays on a beach in Italy, enjoying pizza in a restaurant.</p>
+      <p>We arrive at suppertime and enjoy the best vegetarian lasagne I've ever tasted – very ⁵<span class="kw-green">popular</span> with the children too. All the vegetables are grown in the garden of the house. Soon I'm feeling a lot happier about the week ahead.</p>
+      <p>The house is run by 12 people who live permanently at the centre. There are also volunteers who come and stay at the house for a week just to work in the garden or help with the cooking. Some of the families have been coming to Monkton Wyld for several years – it's become a ⁶<span class="kw-orange">tradition</span> for them. They're fantastically ⁷<span class="kw-green">patient</span> with all my questions about the place. Later, with the youngest children in bed, we're playing silly games in the large living room. It already feels like these people are old friends.</p>
+      <p>Over the next week, we really did have a week of 'family fun'. We painted. We sang. We made things. We walked to the beach in nearby Lyme Regis – no pizza though, just chips. And best of all, the children were outside almost the whole time – away from computers, TV and so on. The rooms weren't as ⁸<span class="kw-blue">comfortable</span> as a 5-star hotel, of course. But several mornings, we managed to have a lie-in – something that just isn't normally possible on holiday.</p>
+      <p>Even the washing-up seemed fun. Well, sort of!</p>
     </div>
   </div>
 
-  <div class="fill-ex">
-    <div class="fill-ex-title">Nouns → Adjectives</div>
-    <div class="coll-grid">
-      <div class="coll-row"><div class="coll-verb">danger</div><div><div class="coll-phrase">dangerous</div><div class="coll-vi">🇻🇳 nguy hiểm</div></div></div>
-      <div class="coll-row"><div class="coll-verb">fame</div><div><div class="coll-phrase">famous</div><div class="coll-vi">🇻🇳 nổi tiếng</div></div></div>
-      <div class="coll-row"><div class="coll-verb">adventure</div><div><div class="coll-phrase">adventurous</div><div class="coll-vi">🇻🇳 thích phiêu lưu</div></div></div>
-      <div class="coll-row"><div class="coll-verb">nature</div><div><div class="coll-phrase">natural</div><div class="coll-vi">🇻🇳 tự nhiên</div></div></div>
-      <div class="coll-row"><div class="coll-verb">tradition</div><div><div class="coll-phrase">traditional</div><div class="coll-vi">🇻🇳 truyền thống</div></div></div>
-      <div class="coll-row"><div class="coll-verb">music</div><div><div class="coll-phrase">musical</div><div class="coll-vi">🇻🇳 (thuộc) âm nhạc</div></div></div>
-      <div class="coll-row"><div class="coll-verb">tourist</div><div><div class="coll-phrase">touristy</div><div class="coll-vi">🇻🇳 thu hút khách du lịch</div></div></div>
-      <div class="coll-row"><div class="coll-verb">comfort</div><div><div class="coll-phrase">comfortable</div><div class="coll-vi">🇻🇳 thoải mái</div></div></div>
-      <div class="coll-row"><div class="coll-verb">knowledge</div><div><div class="coll-phrase">knowledgeable</div><div class="coll-vi">🇻🇳 am hiểu</div></div></div>
-    </div>
-  </div>
-
-  <div class="tip-box">
-    <strong>Suffixes for adjectives:</strong> -ous, -able, -al, -y<br>
-    <strong>Suffixes for nouns:</strong> -ness, -ce, -ity, -tion, -ism<br>
-    <em>Examples:</em> sad → sadness, active → activity, danger → dangerous
-  </div>
-</div>
-
-<!-- ══════════════════════════════════════
-     TAB 5: WORKBOOK
-══════════════════════════════════════ -->
-<div class="tab-pane" id="tab-workbook">
-  <div class="sec-heading">Workbook 3C</div>
-  <div class="sec-sub">Extra practice from Workbook pages 21–22</div>
-
-  <div class="lang-sum-tag">📓 Word building — Suffixes</div>
-  <p class="instr">Are these words nouns (N) or adjectives (A)?</p>
-
-  <div class="suffix-grid">
-    <div class="suffix-card"><div class="suffix-word">kind</div><div class="suffix-type">A</div></div>
-    <div class="suffix-card"><div class="suffix-word">healthy</div><div class="suffix-type">A</div></div>
-    <div class="suffix-card"><div class="suffix-word">fame</div><div class="suffix-type">N</div></div>
-    <div class="suffix-card"><div class="suffix-word">honest</div><div class="suffix-type">A</div></div>
-    <div class="suffix-card"><div class="suffix-word">sadness</div><div class="suffix-type">N</div></div>
-    <div class="suffix-card"><div class="suffix-word">patient</div><div class="suffix-type">A</div></div>
-    <div class="suffix-card"><div class="suffix-word">nature</div><div class="suffix-type">N</div></div>
-    <div class="suffix-card"><div class="suffix-word">comfort</div><div class="suffix-type">N</div></div>
-    <div class="suffix-card"><div class="suffix-word">fashionable</div><div class="suffix-type">A</div></div>
-    <div class="suffix-card"><div class="suffix-word">traditional</div><div class="suffix-type">A</div></div>
-    <div class="suffix-card"><div class="suffix-word">activity</div><div class="suffix-type">N</div></div>
-    <div class="suffix-card"><div class="suffix-word">popular</div><div class="suffix-type">A</div></div>
-    <div class="suffix-card"><div class="suffix-word">confidence</div><div class="suffix-type">N</div></div>
-    <div class="suffix-card"><div class="suffix-word">possible</div><div class="suffix-type">A</div></div>
-  </div>
-
-  <div class="lang-sum-tag">📓 Word building — Change adjectives to nouns</div>
-  <p class="instr">Change the nouns into adjectives and the adjectives into nouns.</p>
-  <div class="fill-ex">
-    <div class="fill-item"><div class="fill-item-num">1</div><div class="fill-item-body"><div class="fill-sentence">kind → <input class="fill-input" id="wb1" style="max-width:120px" placeholder="..."></div></div></div>
-    <div class="fill-item"><div class="fill-item-num">2</div><div class="fill-item-body"><div class="fill-sentence">healthy → <input class="fill-input" id="wb2" style="max-width:120px" placeholder="..."></div></div></div>
-    <div class="fill-item"><div class="fill-item-num">3</div><div class="fill-item-body"><div class="fill-sentence">famous → <input class="fill-input" id="wb3" style="max-width:120px" placeholder="..."></div></div></div>
-    <div class="fill-item"><div class="fill-item-num">4</div><div class="fill-item-body"><div class="fill-sentence">honest → <input class="fill-input" id="wb4" style="max-width:120px" placeholder="..."></div></div></div>
-    <div class="fill-item"><div class="fill-item-num">5</div><div class="fill-item-body"><div class="fill-sentence">sad → <input class="fill-input" id="wb5" style="max-width:120px" placeholder="..."></div></div></div>
-    <div class="fill-item"><div class="fill-item-num">6</div><div class="fill-item-body"><div class="fill-sentence">patient → <input class="fill-input" id="wb6" style="max-width:120px" placeholder="..."></div></div></div>
-    <div style="display:flex;gap:8px;margin-top:12px">
-      <button class="btn btn-primary" onclick="checkWB()">✅ Kiểm tra</button>
-      <button class="btn btn-outline" onclick="revealWB()">👁 Đáp án</button>
-    </div>
-    <div class="score-box" id="wb-score"></div>
+  <div class="ex-label"><span class="ex-num">3</span>Chọn đáp án đúng (WB p18, Ex 3)</div>
+  <div class="mcq-list">
+    <div class="mcq-item"><div class="mcq-q">1. The writer thought a week at Monkton Wyld wouldn't be ...</div><div class="mcq-opts">
+      <div class="mcq-opt" onclick="selM(this,'B','wbm1')"><div class="opt-dot"></div>a) interesting</div>
+      <div class="mcq-opt" onclick="selM(this,'A','wbm1')"><div class="opt-dot"></div>b) relaxing</div>
+      <div class="mcq-opt" onclick="selM(this,'B','wbm1')"><div class="opt-dot"></div>c) fun</div>
+    </div><div id="wbm1-fb" style="display:none;margin-top:6px;font-size:.8rem;color:var(--teal)">✅ <strong>b) relaxing</strong> — He was nervous about sleeping in one room with children and doing washing-up.</div></div>
+    <div class="mcq-item"><div class="mcq-q">2. Monkton Wyld mainly teaches ...</div><div class="mcq-opts">
+      <div class="mcq-opt" onclick="selM(this,'B','wbm2')"><div class="opt-dot"></div>a) school children</div>
+      <div class="mcq-opt" onclick="selM(this,'A','wbm2')"><div class="opt-dot"></div>b) people interested in the environment</div>
+      <div class="mcq-opt" onclick="selM(this,'B','wbm2')"><div class="opt-dot"></div>c) farmers</div>
+    </div><div id="wbm2-fb" style="display:none;margin-top:6px;font-size:.8rem;color:var(--teal)">✅ <strong>b) people interested in the environment</strong> — "a centre for environmental education"</div></div>
+    <div class="mcq-item"><div class="mcq-q">3. The writer's children enjoyed ...</div><div class="mcq-opts">
+      <div class="mcq-opt" onclick="selM(this,'B','wbm3')"><div class="opt-dot"></div>a) the food</div>
+      <div class="mcq-opt" onclick="selM(this,'B','wbm3')"><div class="opt-dot"></div>b) the washing-up</div>
+      <div class="mcq-opt" onclick="selM(this,'A','wbm3')"><div class="opt-dot"></div>c) being outside and playing games</div>
+    </div><div id="wbm3-fb" style="display:none;margin-top:6px;font-size:.8rem;color:var(--teal)">✅ <strong>c)</strong> — "the children were outside almost the whole time"</div></div>
+    <div class="mcq-item"><div class="mcq-q">4. The writer most enjoyed ...</div><div class="mcq-opts">
+      <div class="mcq-opt" onclick="selM(this,'A','wbm4')"><div class="opt-dot"></div>a) having a lie-in in the mornings</div>
+      <div class="mcq-opt" onclick="selM(this,'B','wbm4')"><div class="opt-dot"></div>b) walking to the beach</div>
+      <div class="mcq-opt" onclick="selM(this,'B','wbm4')"><div class="opt-dot"></div>c) watching his children play outside</div>
+    </div><div id="wbm4-fb" style="display:none;margin-top:6px;font-size:.8rem;color:var(--teal)">✅ <strong>a) having a lie-in</strong> — "something that just isn't normally possible on holiday"</div></div>
+    <div class="mcq-item"><div class="mcq-q">5. Some of the families on the 'Family Week' ...</div><div class="mcq-opts">
+      <div class="mcq-opt" onclick="selM(this,'B','wbm5')"><div class="opt-dot"></div>a) live at Monkton Wyld</div>
+      <div class="mcq-opt" onclick="selM(this,'B','wbm5')"><div class="opt-dot"></div>b) do the cooking</div>
+      <div class="mcq-opt" onclick="selM(this,'A','wbm5')"><div class="opt-dot"></div>c) go to Monkton Wyld every year</div>
+    </div><div id="wbm5-fb" style="display:none;margin-top:6px;font-size:.8rem;color:var(--teal)">✅ <strong>c)</strong> — "Some of the families have been coming to Monkton Wyld for several years – it's become a tradition for them."</div></div>
   </div>
 </div>
 
-<!-- ══════════════════════════════════════
-     TAB 6: LANGUAGE SUMMARY
-══════════════════════════════════════ -->
-<div class="tab-pane" id="tab-langsummary">
-  <div class="sec-heading">Language Summary 3C</div>
-  <div class="sec-sub">VOCABULARY 3.3 — Word building (1): suffixes for adjectives and nouns</div>
-
-  <div class="lang-sum-tag">📗 VOCABULARY 3.3 — Suffixes for adjectives and nouns</div>
-
-  <div class="grammar-table">
-    <table>
-      <thead><tr><th>Adjective → Noun</th><th>Suffix</th><th>Noun → Adjective</th><th>Suffix</th></tr></thead>
-      <tbody>
-        <tr><td>kind → kindness</td><td>-ness</td><td>danger → dangerous</td><td>-ous</td></tr>
-        <tr><td>sad → sadness</td><td>-ness</td><td>adventure → adventurous</td><td>-ous</td></tr>
-        <tr><td>lazy → laziness</td><td>-ness</td><td>fame → famous</td><td>-ous</td></tr>
-        <tr><td>honest → honesty</td><td>-y</td><td>comfort → comfortable</td><td>-able</td></tr>
-        <tr><td>difficult → difficulty</td><td>-y</td><td>knowledge → knowledgeable</td><td>-able</td></tr>
-        <tr><td>confident → confidence</td><td>-ce</td><td>nature → natural</td><td>-al</td></tr>
-        <tr><td>important → importance</td><td>-ce</td><td>tradition → traditional</td><td>-al</td></tr>
-        <tr><td>patient → patience</td><td>-ce</td><td>music → musical</td><td>-al</td></tr>
-        <tr><td>popular → popularity</td><td>-ity</td><td>tourist → touristy</td><td>-y</td></tr>
-        <tr><td>active → activity</td><td>-ity</td><td>health → healthy</td><td>-y</td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="tip-box">
-    <strong>TIPS:</strong><br>
-    • When the adjective or noun ends in -t, -y or -e, we sometimes change the spelling: <em>patient → patience, lazy → laziness, nature → natural</em><br>
-    • Suffix -ness is very common for making nouns from adjectives: <em>kindness, sadness, happiness</em>
-  </div>
-</div>
-
-</div><!-- /page-content -->
-
+</div><!-- page-content -->
 <script>
-function showTab(id){
-  document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));
-  document.querySelectorAll('.tnav-btn').forEach(b=>b.classList.remove('active'));
-  document.getElementById('tab-'+id).classList.add('active');
-  const tabs=['vocab','listening','reading','wordbuilding','workbook','langsummary'];
-  const idx=tabs.indexOf(id);
-  document.querySelectorAll('.tnav-btn')[idx]?.classList.add('active');
+function toggleTheme(){const d=document.documentElement;d.dataset.theme=d.dataset.theme==='light'?'':'light';}
+function showTab(id,btn){document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));document.querySelectorAll('.tnav-btn').forEach(b=>b.classList.remove('active'));document.getElementById('tab-'+id).classList.add('active');btn.classList.add('active');}
+function chk(inputId,ans,rowId,fbId){
+  const v=document.getElementById(inputId).value.trim().toLowerCase();
+  const ok=ans.toLowerCase().split('|').some(a=>v===a||v.includes(a));
+  document.getElementById(inputId).className=ok?'fi ok':'fi err';
+  const fb=document.getElementById(fbId);
+  if(fb){fb.className=ok?'fb ok':'fb err';fb.textContent=ok?'✅ Đúng!':'❌ Chưa đúng. Thử lại!';}
 }
-function toggleTheme(){const t=document.documentElement.getAttribute('data-theme')==='light'?'dark':'light';document.documentElement.setAttribute('data-theme',t==='light'?'light':'');document.getElementById('theme-btn').textContent=t==='light'?'🌙':'☀️';localStorage.setItem('f2f_3c_theme',t);}
-function markDone(){showToast('✅ 3C Voluntourism đã hoàn thành!');}
-function showToast(msg){let t=document.getElementById('toast');if(!t){t=document.createElement('div');t.id='toast';t.style.cssText='position:fixed;bottom:20px;right:20px;z-index:999;background:var(--bg2);border:1px solid var(--border2);padding:10px 18px;border-radius:8px;font-size:.82rem;box-shadow:0 4px 20px rgba(0,0,0,.3);transition:opacity .3s';document.body.appendChild(t);}t.textContent=msg;t.style.opacity='1';clearTimeout(showToast._t);showToast._t=setTimeout(()=>t.style.opacity='0',2400);}
-function toggleQA(btn){const item=btn.closest('.qa-item');item.classList.toggle('open');}
-
-const audioStates={};
-function toggleAudio(id){
-  const audio=document.getElementById('audio-'+id);
-  const btn=document.getElementById('play-btn-'+id);
-  if(!audio||!btn)return;
-  if(audioStates[id]){audio.pause();btn.textContent='▶';audioStates[id]=false;}
-  else{audio.play().catch(()=>showToast('⚠️ Cần file audio CD1 Track '+id));btn.textContent='⏸';audioStates[id]=true;}
+function rev(inputId,ans,rowId,fbId){
+  document.getElementById(inputId).value=ans;document.getElementById(inputId).className='fi ok';
+  const fb=document.getElementById(fbId);if(fb){fb.className='fb ok';fb.textContent='💡 Đáp án: '+ans;}
 }
-function updateProg(id){const audio=document.getElementById('audio-'+id);const fill=document.getElementById('prog-'+id);if(audio?.duration&&fill)fill.style.width=(audio.currentTime/audio.duration*100)+'%';}
-function audioEnd(id){const btn=document.getElementById('play-btn-'+id);if(btn)btn.textContent='▶';audioStates[id]=false;}
-
-function checkListening2(){
-  const ans={'l2-1':'25%','l2-2':'25'};
-  let c=0,total=2;
-  Object.entries(ans).forEach(([id,val])=>{
-    const inp=document.getElementById(id);
-    if(inp){
-      const ok=inp.value.trim().toLowerCase().replace(/\s+/g,'')===val.toLowerCase().replace(/\s+/g,'');
-      inp.className='fill-input '+(ok?'correct':'wrong');
-      if(ok)c++;
-    }
-  });
-  // Plus the radio-style answers
-  const sc=document.getElementById('l2-score');
-  sc.innerHTML=`<div class="score-n">${c}/2</div><div class="score-msg">Answers: 1. 25%, 2. 25</div>`;
-  sc.className='score-box show';
+function selM(el,choice,grp){
+  const p=el.closest('.mcq-item');p.querySelectorAll('.mcq-opt').forEach(o=>o.classList.remove('ok','err'));
+  const fb=document.getElementById(grp+'-fb');
+  if(choice==='A'){el.classList.add('ok');if(fb)fb.style.display='block';}
+  else{el.classList.add('err');if(fb){fb.style.display='block';}}
 }
-function revealListening2(){
-  document.getElementById('l2-1').value='25%';document.getElementById('l2-1').className='fill-input correct';
-  document.getElementById('l2-2').value='25';document.getElementById('l2-2').className='fill-input correct';
+function chkTF(el,chosen,correct,id){
+  const p=el.closest('.tf-item');p.querySelectorAll('.tf-btn').forEach(b=>b.className='tf-btn');
+  const fb=document.getElementById(id);
+  el.classList.add(chosen===correct?'ok':'err');if(fb)fb.classList.add('show');
 }
-
-function checkWB(){
-  const ans={'wb1':'kindness','wb2':'health','wb3':'fame','wb4':'honesty','wb5':'sadness','wb6':'patience'};
-  let c=0,total=6;
-  Object.entries(ans).forEach(([id,val])=>{
-    const inp=document.getElementById(id);
-    if(inp){
-      const ok=inp.value.trim().toLowerCase().replace(/\s+/g,'')===val.toLowerCase().replace(/\s+/g,'');
-      inp.className='fill-input '+(ok?'correct':'wrong');
-      if(ok)c++;
-    }
-  });
-  const sc=document.getElementById('wb-score');
-  sc.innerHTML=`<div class="score-n">${c}/${total}</div><div class="score-msg">${c===total?'🎉 All correct!':'Review the suffix rules.'}</div>`;
-  sc.className='score-box show';
-}
-function revealWB(){
-  const ans={'wb1':'kindness','wb2':'health','wb3':'fame','wb4':'honesty','wb5':'sadness','wb6':'patience'};
-  Object.entries(ans).forEach(([id,val])=>{const inp=document.getElementById(id);if(inp){inp.value=val;inp.className='fill-input correct';}});
-}
-
-document.addEventListener('DOMContentLoaded',()=>{
-  const t=localStorage.getItem('f2f_3c_theme')||'dark';
-  if(t==='light'){document.documentElement.setAttribute('data-theme','light');document.getElementById('theme-btn').textContent='🌙';}
-});
+function toggleQA(id){document.getElementById(id).classList.toggle('open');}
+function toggleTr(id){document.getElementById(id).classList.toggle('show');}
 </script>
 </body>
 </html>
