@@ -7,454 +7,690 @@
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap');
 :root{
-  --bg:#0D1117;--bg2:#161B22;--bg3:#21262D;--bg4:#2D333B;
-  --border:#30363D;--border2:#3D444D;
+  --bg:#0D1117;--bg2:#161B22;--bg3:#21262D;--border:#30363D;
   --text:#E6EDF3;--dim:#8B949E;--muted:#484F58;
-  --blue:#2563EB;--blue-l:rgba(37,99,235,.15);
   --green:#10B981;--green-l:rgba(16,185,129,.12);
   --orange:#F59E0B;--orange-l:rgba(245,158,11,.12);
   --red:#EF4444;--red-l:rgba(239,68,68,.12);
-  --teal:#14B8A6;--purple:#8B5CF6;--purple-l:rgba(139,92,246,.12);
+  --teal:#14B8A6;--cyan:#0891B2;--cyan-l:rgba(8,145,178,.15);
   --r:10px;--r2:6px;--tr:.18s ease;
 }
-[data-theme=light]{--bg:#F8FAFC;--bg2:#fff;--bg3:#F1F5F9;--bg4:#E2E8F0;--border:#E2E8F0;--border2:#CBD5E1;--text:#0F172A;--dim:#475569;--muted:#94A3B8;--blue:#1D4ED8;--blue-l:rgba(29,78,216,.1)}
+[data-theme=light]{--bg:#F8FAFC;--bg2:#fff;--bg3:#F1F5F9;--border:#E2E8F0;--text:#0F172A;--dim:#475569;--muted:#94A3B8;--cyan:#0E7490;--cyan-l:rgba(14,116,144,.1)}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);font-size:15px;line-height:1.6}
-button{cursor:pointer;border:none;background:none;font-family:inherit}input,textarea,select{font-family:inherit}
-
+button{cursor:pointer;border:none;background:none;font-family:inherit}
 .top-bar{background:var(--bg2);border-bottom:1px solid var(--border);padding:10px 20px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:50;flex-wrap:wrap}
-.back-btn{display:flex;align-items:center;gap:6px;padding:6px 14px;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);font-size:.82rem;color:var(--dim);cursor:pointer;transition:all var(--tr)}
-.back-btn:hover{border-color:var(--blue);color:var(--blue)}
-.lesson-badge{padding:4px 12px;background:var(--purple-l);border:1px solid rgba(139,92,246,.3);border-radius:4px;font-size:.75rem;font-weight:700;color:#A78BFA;letter-spacing:.05em}
+.back-btn{padding:6px 14px;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);font-size:.82rem;color:var(--dim);cursor:pointer}
+.back-btn:hover{border-color:var(--cyan);color:var(--cyan)}
+.lesson-badge{padding:4px 12px;background:var(--cyan-l);border:1px solid rgba(8,145,178,.35);border-radius:4px;font-size:.75rem;font-weight:700;color:#67E8F9;letter-spacing:.05em}
 .lesson-title-h{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700}
-.top-actions{margin-left:auto;display:flex;gap:8px}
-.theme-btn{width:34px;height:34px;display:flex;align-items:center;justify-content:center;border-radius:var(--r2);background:var(--bg3);border:1px solid var(--border);cursor:pointer;font-size:.95rem;color:var(--dim);transition:all var(--tr)}
-.theme-btn:hover{border-color:var(--blue);color:var(--blue)}
-.progress-btn{padding:6px 14px;background:var(--green);border-radius:var(--r2);font-size:.78rem;font-weight:600;color:#fff;cursor:pointer;border:none;transition:all var(--tr)}
-.progress-btn:hover{background:#059669}
-
-.quick-review{background:linear-gradient(135deg,#1e3a5f,#1a2f4a);border:1px solid #2d4f7c;border-radius:var(--r);padding:14px 20px;margin:18px 24px;display:flex;gap:12px;align-items:flex-start}
-.qr-badge{background:#F59E0B;color:#000;padding:3px 10px;border-radius:4px;font-size:.72rem;font-weight:700;white-space:nowrap;flex-shrink:0;margin-top:2px}
-.qr-text{font-size:.84rem;line-height:1.65;color:#CBD5E1}
-.qr-text strong{color:#fff}
-
+.top-actions{margin-left:auto}
+.theme-btn{width:34px;height:34px;display:flex;align-items:center;justify-content:center;border-radius:var(--r2);background:var(--bg3);border:1px solid var(--border);cursor:pointer;font-size:.95rem;color:var(--dim)}
+.quick-review{background:linear-gradient(135deg,#083344,#0c4a6e);border:1px solid #155e75;border-radius:var(--r);padding:14px 20px;margin:18px 24px;display:flex;gap:12px;align-items:flex-start}
+.qr-badge{background:var(--cyan);color:#fff;padding:3px 10px;border-radius:4px;font-size:.72rem;font-weight:700;white-space:nowrap;flex-shrink:0;margin-top:2px}
+.qr-text{font-size:.84rem;line-height:1.65;color:#A5F3FC}
+.qr-text strong{color:#fff}.qr-text em{color:#67E8F9;font-style:italic}
 .tab-nav{display:flex;gap:2px;border-bottom:1px solid var(--border);overflow-x:auto;scrollbar-width:none;position:sticky;top:57px;background:var(--bg);z-index:40;padding:0 24px}
 .tab-nav::-webkit-scrollbar{display:none}
 .tnav-btn{display:flex;align-items:center;gap:6px;padding:11px 16px;font-size:.82rem;font-weight:500;color:var(--dim);white-space:nowrap;border-bottom:2px solid transparent;margin-bottom:-1px;cursor:pointer;transition:all var(--tr);background:none;border-top:none;border-left:none;border-right:none;font-family:inherit}
-.tnav-btn:hover{color:var(--text)}.tnav-btn.active{color:var(--purple);border-bottom-color:var(--purple)}
-
+.tnav-btn.active{color:var(--cyan);border-bottom-color:var(--cyan)}
 .page-content{max-width:920px;margin:0 auto;padding:0 24px 48px}
 .tab-pane{display:none;padding-top:28px}
 .tab-pane.active{display:block;animation:fadeUp .22s ease}
 @keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
-
-.sec-heading{font-size:1.05rem;font-weight:700;color:var(--text);margin-bottom:4px;display:flex;align-items:center;gap:8px}
-.sec-sub{font-size:.82rem;color:var(--dim);margin-bottom:18px}
-.ex-num{width:28px;height:28px;background:var(--purple);color:#fff;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:.78rem;font-weight:700;flex-shrink:0}
-.ex-label{display:inline-flex;align-items:center;gap:8px;font-size:.9rem;font-weight:600;margin-bottom:10px;color:var(--text)}
-.part{display:inline-block;width:22px;height:22px;background:var(--bg4);border-radius:4px;text-align:center;line-height:22px;font-size:.72rem;font-weight:700;color:var(--dim);margin-right:6px}
-.instr{font-size:.88rem;color:var(--text);line-height:1.65;margin-bottom:14px}
-.instr em{font-style:italic;color:var(--teal)}
-
-.fill-ex{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:18px;margin-bottom:16px}
-.fill-ex-title{font-size:.88rem;font-weight:600;padding-bottom:10px;border-bottom:1px solid var(--border);margin-bottom:14px;color:var(--dim)}
-.fill-item{display:flex;align-items:flex-start;gap:10px;padding:9px 0;border-bottom:1px dashed var(--border)}
+.sec-heading{font-size:1.05rem;font-weight:700;margin-bottom:4px}
+.sec-sub{font-size:.82rem;color:var(--dim);margin-bottom:16px}
+.ex-label{display:inline-flex;align-items:center;gap:8px;font-size:.9rem;font-weight:600;margin-bottom:12px}
+.ex-num{width:28px;height:28px;background:var(--cyan);color:#fff;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:.78rem;font-weight:700;flex-shrink:0}
+.instruction{font-size:.88rem;line-height:1.65;margin-bottom:14px}
+.divider{height:1px;background:var(--border);margin:24px 0}
+.vocab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px;margin-bottom:16px}
+.vocab-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:13px;transition:all var(--tr)}
+.vocab-card:hover{border-color:var(--cyan);transform:translateY(-1px)}
+.vocab-word{font-size:.92rem;font-weight:700}
+.vocab-ipa{font-family:monospace;font-size:.76rem;color:var(--teal);margin:2px 0}
+.vocab-vi{font-size:.78rem;color:var(--orange);font-style:italic;margin-bottom:3px}
+.vocab-def{font-size:.79rem;color:var(--dim);line-height:1.5}
+.vocab-ex{font-size:.74rem;color:var(--muted);font-style:italic;margin-top:4px;padding-top:4px;border-top:1px dashed var(--border)}
+/* article */
+.article-box{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:22px;margin-bottom:16px}
+.article-tag{font-size:.72rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px}
+.article-title{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;margin-bottom:6px;color:var(--cyan)}
+.article-sub{font-size:.84rem;color:var(--dim);font-style:italic;margin-bottom:14px}
+.article-body{font-size:.87rem;line-height:1.85}
+.article-body p{margin-bottom:12px}
+.gv1{color:#67E8F9;font-weight:600}
+/* fill */
+.fill-ex{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:20px;margin-bottom:16px}
+.fill-item{display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-bottom:1px dashed var(--border)}
 .fill-item:last-child{border-bottom:none}
-.fill-item-num{width:22px;height:22px;border-radius:50%;background:var(--bg3);display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:700;color:var(--muted);flex-shrink:0;margin-top:2px}
-.fill-item-body{flex:1}
-.fill-sentence{font-size:.87rem;margin-bottom:7px;line-height:1.6}
-.fill-controls{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
-.fill-input{height:33px;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);padding:0 11px;color:var(--text);font-size:.84rem;outline:none;min-width:80px;max-width:200px;transition:border-color var(--tr)}
-.fill-input:focus{border-color:var(--purple)}
-.fill-input.correct{border-color:var(--green);background:var(--green-l)}
-.fill-input.wrong{border-color:var(--red);background:var(--red-l)}
-.check-btn{padding:5px 12px;background:var(--purple);color:#fff;border:none;border-radius:var(--r2);font-size:.76rem;font-weight:600;cursor:pointer;transition:all var(--tr)}
-.check-btn:hover{background:#7C3AED}
-.reveal-btn{padding:5px 11px;background:var(--bg3);border:1px solid var(--border);color:var(--dim);border-radius:var(--r2);font-size:.76rem;cursor:pointer;transition:all var(--tr)}
-.reveal-btn:hover{border-color:var(--purple);color:var(--purple)}
-.fill-fb{margin-top:5px;font-size:.77rem;padding:4px 9px;border-radius:var(--r2);display:none}
-.fill-fb.show-ok{background:var(--green-l);color:var(--green);display:block}
-.fill-fb.show-err{background:var(--red-l);color:var(--red);display:block}
-
-.score-box{display:none;text-align:center;padding:18px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);margin-top:14px}
-.score-box.show{display:block}
-.score-n{font-size:2.2rem;font-weight:700;color:var(--purple)}
-.score-msg{color:var(--dim);font-size:.84rem;margin-top:4px}
-
-.btn{display:inline-flex;align-items:center;gap:6px;padding:7px 16px;border-radius:var(--r2);font-size:.82rem;font-weight:500;cursor:pointer;border:none;font-family:inherit;transition:all var(--tr)}
-.btn-primary{background:var(--purple);color:#fff}.btn-primary:hover{background:#7C3AED;transform:translateY(-1px)}
-.btn-outline{background:var(--bg3);border:1px solid var(--border2);color:var(--dim)}.btn-outline:hover{border-color:var(--purple);color:var(--purple)}
-
-.divider{height:1px;background:var(--border);margin:22px 0}
-.note-box{background:var(--orange-l);border:1px solid rgba(245,158,11,.25);border-radius:var(--r2);padding:10px 14px;font-size:.82rem;line-height:1.6;margin:10px 0}
-.note-box strong{color:var(--orange)}
-.tip-box{background:var(--bg3);border-left:3px solid var(--purple);border-radius:0 var(--r2) var(--r2) 0;padding:10px 14px;margin:10px 0;font-size:.82rem;color:var(--dim);line-height:1.6}
-.tip-box strong{color:var(--text)}
-.example-box{font-family:'Courier New',monospace;font-size:.82rem;color:#7DD3FC;background:var(--bg);padding:8px 12px;border-radius:var(--r2);margin:6px 0;border:1px solid var(--border)}
-
-.speaking-box{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:16px;margin-bottom:16px}
-.speaking-title{font-size:.84rem;font-weight:600;margin-bottom:12px;color:var(--text);display:flex;align-items:center;gap:8px}
-.bubble{background:var(--bg3);border:1px solid var(--border);border-radius:12px;padding:8px 14px;max-width:72%;font-size:.84rem;line-height:1.5;margin-bottom:8px}
-.bubble.speaker-a{border-bottom-left-radius:3px}
-.bubble.speaker-b{border-bottom-right-radius:3px;background:var(--purple-l);border-color:rgba(139,92,246,.3);margin-left:auto}
-
+.fill-num{width:24px;height:24px;border-radius:50%;background:var(--bg3);display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:700;color:var(--muted);flex-shrink:0;margin-top:2px}
+.fill-content{flex:1}
+.fill-sent{font-size:.87rem;margin-bottom:8px;line-height:1.65}
+.fi{height:34px;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);padding:0 12px;color:var(--text);font-size:.84rem;outline:none;min-width:130px;font-family:inherit;transition:border-color var(--tr)}
+.fi:focus{border-color:var(--cyan)}
+.fi.ok{border-color:var(--green);background:var(--green-l)}
+.fi.err{border-color:var(--red);background:var(--red-l)}
+.chk-btn{padding:6px 14px;background:var(--cyan);color:#fff;border-radius:var(--r2);font-size:.77rem;font-weight:600;cursor:pointer;margin-left:4px}
+.chk-btn:hover{background:#0E7490}
+.rev-btn{padding:6px 12px;background:var(--bg3);border:1px solid var(--border);color:var(--dim);border-radius:var(--r2);font-size:.77rem;cursor:pointer;margin-left:4px}
+.rev-btn:hover{border-color:var(--cyan);color:var(--cyan)}
+.fb{margin-top:6px;font-size:.77rem;padding:4px 10px;border-radius:var(--r2);display:none}
+.fb.ok{background:var(--green-l);color:var(--green);display:block}
+.fb.err{background:var(--red-l);color:var(--red);display:block}
+/* mcq */
+.mcq-list{display:flex;flex-direction:column;gap:12px;margin-bottom:16px}
+.mcq-item{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:16px}
+.mcq-q{font-size:.88rem;font-weight:600;margin-bottom:10px}
+.mcq-opts{display:flex;flex-direction:column;gap:6px}
+.mcq-opt{display:flex;align-items:center;gap:10px;padding:8px 12px;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);cursor:pointer;font-size:.84rem;transition:all var(--tr)}
+.mcq-opt:hover{border-color:var(--cyan)}
+.mcq-opt.ok{border-color:var(--green);background:var(--green-l)}
+.mcq-opt.err{border-color:var(--red);background:var(--red-l)}
+.opt-dot{width:18px;height:18px;border-radius:50%;border:2px solid var(--border);flex-shrink:0}
+.mcq-opt.ok .opt-dot{background:var(--green);border-color:var(--green)}
+.mcq-opt.err .opt-dot{background:var(--red);border-color:var(--red)}
+/* qa */
 .qa-list{display:flex;flex-direction:column;gap:8px;margin-bottom:16px}
 .qa-item{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r2);overflow:hidden}
-.qa-q{display:flex;align-items:center;gap:10px;padding:10px 14px;cursor:pointer;transition:background var(--tr)}
+.qa-q{display:flex;align-items:center;gap:10px;padding:11px 14px;cursor:pointer;transition:background var(--tr)}
 .qa-q:hover{background:var(--bg3)}
-.qa-qnum{width:24px;height:24px;border-radius:50%;background:var(--purple-l);color:var(--purple);display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:700;flex-shrink:0}
-.qa-qtext{font-size:.86rem;flex:1}
-.qa-arrow{font-size:.7rem;color:var(--muted);transition:transform var(--tr);flex-shrink:0}
+.qa-qnum{width:24px;height:24px;border-radius:50%;background:var(--cyan-l);color:var(--cyan);display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:700;flex-shrink:0}
+.qa-qtext{font-size:.85rem;flex:1}
+.qa-arrow{font-size:.7rem;color:var(--muted);transition:transform var(--tr)}
 .qa-item.open .qa-arrow{transform:rotate(90deg)}
-.qa-ans{display:none;padding:0 14px 10px 48px;font-size:.83rem;color:var(--teal);font-style:italic}
-.qa-item.open .qa-ans{display:block}
-
-.grammar-table{width:100%;border-collapse:collapse;font-size:.82rem;margin:12px 0}
-.grammar-table th{background:var(--bg3);padding:8px 12px;text-align:left;font-weight:600;border:1px solid var(--border);color:var(--dim);font-size:.72rem;text-transform:uppercase}
-.grammar-table td{padding:9px 12px;border:1px solid var(--border);line-height:1.5}
-.grammar-table td.aux{color:var(--purple);font-weight:600}
-
-.lang-sum-tag{display:inline-flex;align-items:center;gap:6px;padding:3px 12px;background:var(--purple-l);border:1px solid rgba(139,92,246,.3);border-radius:4px;font-size:.72rem;font-weight:700;color:#A78BFA;text-transform:uppercase;letter-spacing:.06em;margin-bottom:12px}
-
-.coll-grid{display:flex;flex-direction:column;gap:8px;margin:12px 0}
-.coll-row{display:grid;grid-template-columns:100px 1fr;gap:12px;align-items:start;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r2);padding:10px 14px}
-.coll-verb{font-size:.9rem;font-weight:700;color:var(--blue)}
-.coll-ipa{font-size:.72rem;color:var(--teal);font-family:monospace}
-.coll-phrase{font-size:.85rem;font-weight:600}
-.coll-vi{font-size:.8rem;color:var(--orange)}
-.coll-ex{font-size:.78rem;color:var(--dim);font-style:italic}
-
-.article-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:20px;margin-bottom:16px}
-.article-title{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;margin-bottom:4px}
-.article-source{font-size:.75rem;color:var(--muted);font-style:italic;margin-bottom:14px}
-.article-p{font-size:.85rem;line-height:1.8;color:var(--text);margin-bottom:10px}
-.article-p:last-child{margin-bottom:0}
-
-@media(max-width:680px){.tab-nav{padding:0 12px}.page-content{padding:0 14px 48px}.quick-review{margin:12px}}
+.qa-answer{display:none;padding:0 14px 12px 48px;font-size:.83rem;color:var(--teal);font-style:italic;line-height:1.65}
+.qa-item.open .qa-answer{display:block}
+.note-box{background:var(--orange-l);border:1px solid rgba(245,158,11,.25);border-radius:var(--r2);padding:12px 16px;font-size:.83rem;line-height:1.65;margin-bottom:16px}
+.note-box strong{color:var(--orange)}
+.info-box{background:var(--cyan-l);border:1px solid rgba(8,145,178,.25);border-radius:var(--r2);padding:12px 16px;font-size:.84rem;line-height:1.65;margin-bottom:16px}
+.hwg-box{background:linear-gradient(135deg,rgba(8,145,178,.08),rgba(20,184,166,.05));border:1px solid rgba(8,145,178,.25);border-radius:var(--r);padding:20px;margin-bottom:16px}
+.hwg-label{font-size:.7rem;font-weight:700;color:var(--cyan);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px}
+.hwg-title{font-size:1rem;font-weight:700;margin-bottom:14px}
+.grammar-tag{display:inline-flex;padding:3px 12px;background:var(--orange-l);border:1px solid rgba(245,158,11,.3);border-radius:4px;font-size:.72rem;font-weight:700;color:var(--orange);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px}
+.example-box{font-family:'Courier New',monospace;font-size:.83rem;color:#67E8F9;background:var(--bg);padding:9px 14px;border-radius:var(--r2);margin:8px 0;border:1px solid var(--border);line-height:1.7}
+.audio-box{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:20px;margin-bottom:16px}
+.cd-tag{padding:4px 12px;background:var(--orange-l);border:1px solid rgba(245,158,11,.3);border-radius:4px;font-size:.75rem;font-weight:700;color:var(--orange)}
+.play-btn{width:42px;height:42px;border-radius:50%;background:var(--cyan);color:#fff;display:flex;align-items:center;justify-content:center;border:none;font-size:1rem;cursor:pointer;flex-shrink:0}
+.play-btn:hover{background:#0E7490;transform:scale(1.05)}
+.transcript-wrap{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);padding:14px;margin-top:12px}
+.transcript-toggle{font-size:.82rem;font-weight:600;color:var(--dim);cursor:pointer;user-select:none}
+.transcript-toggle:hover{color:var(--cyan)}
+.transcript-body{display:none;margin-top:12px;font-size:.84rem;line-height:1.78}
+.transcript-body.show{display:block}
+.transcript-body p{margin-bottom:10px}
+.spk{font-weight:700;color:var(--cyan);margin-right:6px}
+.chip{padding:5px 14px;border-radius:20px;font-size:.82rem;font-weight:500;background:var(--cyan-l);border:1px solid rgba(8,145,178,.3);color:#67E8F9;display:inline-block;margin:3px}
+.speaking-box{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:18px;margin-bottom:16px}
+.disc-q{display:flex;gap:10px;padding:8px 0;border-bottom:1px solid var(--border);font-size:.85rem}
+.disc-q:last-child{border-bottom:none}
+.disc-q-num{font-size:.75rem;font-weight:700;color:var(--cyan);min-width:20px;margin-top:2px}
+.wb-tag{display:inline-flex;padding:3px 12px;background:var(--cyan-l);border:1px solid rgba(8,145,178,.3);border-radius:4px;font-size:.72rem;font-weight:700;color:#67E8F9;text-transform:uppercase;letter-spacing:.06em;margin-bottom:12px}
+.adj-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px;margin-bottom:16px}
+.adj-chip{padding:8px 14px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r2);font-size:.84rem;text-align:center;font-weight:500}
 </style>
 </head>
 <body>
-
 <div class="top-bar">
-  <button class="back-btn" onclick="history.back()">← Trang chủ</button>
-  <div class="lesson-badge">UNIT 4</div>
-  <div class="lesson-title-h">4B — Modern adventurers</div>
+  <button class="back-btn" onclick="history.back()">← Quay lại</button>
+  <span class="lesson-badge">4B</span>
+  <span class="lesson-title-h">Modern adventurers</span>
   <div class="top-actions">
-    <button class="theme-btn" id="theme-btn" onclick="toggleTheme()">☀️</button>
-    <button class="progress-btn" onclick="markDone()">✅ Đánh dấu xong</button>
+    <button class="theme-btn" onclick="toggleTheme()">☀</button>
   </div>
 </div>
-
 <div class="quick-review">
-  <div class="qr-badge">QUICK REVIEW</div>
-  <div class="qr-text"><strong>Past Continuous</strong> — Write two true and two false sentences about what you were doing at different times of the day yesterday: <em>At 3 p.m. yesterday I was playing tennis.</em> Work in pairs. Swap sentences. Ask questions to find out which sentences are false: <em>Who were you playing tennis with?</em></div>
+  <span class="qr-badge">ÔN BÀI 4A</span>
+  <div class="qr-text">Nhắc lại 4A: <strong>Past Simple vs Past Continuous vs used to</strong>. Collocations âm nhạc: <em>do a gig, release an album, go on tour, see someone play live, be in the charts...</em></div>
 </div>
-
-<div class="tab-nav">
-  <button class="tnav-btn active" onclick="showTab('vocab')">📚 Vocabulary &amp; Speaking</button>
-  <button class="tnav-btn" onclick="showTab('listening')">🎧 Listening</button>
-  <button class="tnav-btn" onclick="showTab('grammar')">📐 Help with Grammar</button>
-  <button class="tnav-btn" onclick="showTab('workbook')">📓 Workbook</button>
-  <button class="tnav-btn" onclick="showTab('langsummary')">📋 Language Summary</button>
-</div>
-
+<nav class="tab-nav">
+  <button class="tnav-btn active" onclick="showTab('vocab',this)">📚 Từ vựng</button>
+  <button class="tnav-btn" onclick="showTab('listening',this)">🎧 Nghe</button>
+  <button class="tnav-btn" onclick="showTab('reading',this)">📰 Đọc</button>
+  <button class="tnav-btn" onclick="showTab('grammar',this)">⚙ Ngữ pháp</button>
+  <button class="tnav-btn" onclick="showTab('pronunciation',this)">🔊 Phát âm</button>
+  <button class="tnav-btn" onclick="showTab('speaking',this)">💬 Nói</button>
+  <button class="tnav-btn" onclick="showTab('workbook',this)">📝 Bài tập</button>
+</nav>
 <div class="page-content">
 
-<!-- ══════════════════════════════════════
-     TAB 1: VOCABULARY AND SPEAKING
-══════════════════════════════════════ -->
-<div class="tab-pane active" id="tab-vocab">
-  <div class="sec-heading">Vocabulary and Speaking</div>
-  <div class="sec-sub">Adjectives (2): character · VOCABULARY 4.2 → p135</div>
+<!-- TAB VOCAB -->
+<div id="tab-vocab" class="tab-pane active">
+  <div class="sec-heading">📚 Từ vựng: Adjectives (2) — Character</div>
+  <div class="sec-sub">Student Book p32–33 · Vocabulary 4.2 · Tính từ chỉ tính cách</div>
+  <div class="info-box"><strong>🎯 Mục tiêu:</strong> Học các tính từ mô tả tính cách con người, dùng trong bối cảnh nói về các nhà thám hiểm hiện đại.</div>
 
-  <div class="ex-label"><div class="ex-num">1</div>Exercise 1a — Character adjectives</div>
-  <p class="instr"><span class="part">a</span> Work in pairs. Which of these character adjectives do you know? Then check new words in <em>VOCABULARY 4.2 → p135</em>.</p>
-
-  <div class="coll-grid">
-    <div class="coll-row"><div class="coll-verb">adventurous</div><div><div class="coll-phrase">/ədˈventʃərəs/</div><div class="coll-vi">🇻🇳 thích phiêu lưu, mạo hiểm</div></div></div>
-    <div class="coll-row"><div class="coll-verb">talented</div><div><div class="coll-phrase">/ˈtæləntɪd/</div><div class="coll-vi">🇻🇳 có tài năng</div></div></div>
-    <div class="coll-row"><div class="coll-verb">sensible</div><div><div class="coll-phrase">/ˈsensəbl/</div><div class="coll-vi">🇻🇳 biết điều, khôn ngoan, thực tế</div></div></div>
-    <div class="coll-row"><div class="coll-verb">sensitive</div><div><div class="coll-phrase">/ˈsensətɪv/</div><div class="coll-vi">🇻🇳 nhạy cảm, dễ hiểu người khác</div></div></div>
-    <div class="coll-row"><div class="coll-verb">brave</div><div><div class="coll-phrase">/breɪv/</div><div class="coll-vi">🇻🇳 dũng cảm</div></div></div>
-    <div class="coll-row"><div class="coll-verb">determined</div><div><div class="coll-phrase">/dɪˈtɜːmɪnd/</div><div class="coll-vi">🇻🇳 quyết tâm, kiên định</div></div></div>
-    <div class="coll-row"><div class="coll-verb">reliable</div><div><div class="coll-phrase">/rɪˈlaɪəbl/</div><div class="coll-vi">🇻🇳 đáng tin cậy</div></div></div>
-    <div class="coll-row"><div class="coll-verb">independent</div><div><div class="coll-phrase">/ˌɪndɪˈpendənt/</div><div class="coll-vi">🇻🇳 độc lập</div></div></div>
-    <div class="coll-row"><div class="coll-verb">organised</div><div><div class="coll-phrase">/ˈɔːɡənaɪzd/</div><div class="coll-vi">🇻🇳 có tổ chức, ngăn nắp</div></div></div>
-    <div class="coll-row"><div class="coll-verb">stubborn</div><div><div class="coll-phrase">/ˈstʌbən/</div><div class="coll-vi">🇻🇳 cứng đầu, bướng bỉnh</div></div></div>
-    <div class="coll-row"><div class="coll-verb">ambitious</div><div><div class="coll-phrase">/æmˈbɪʃəs/</div><div class="coll-vi">🇻🇳 có tham vọng</div></div></div>
-    <div class="coll-row"><div class="coll-verb">confident</div><div><div class="coll-phrase">/ˈkɒnfɪdənt/</div><div class="coll-vi">🇻🇳 tự tin</div></div></div>
-    <div class="coll-row"><div class="coll-verb">practical</div><div><div class="coll-phrase">/ˈpræktɪkl/</div><div class="coll-vi">🇻🇳 thực tế</div></div></div>
-    <div class="coll-row"><div class="coll-verb">generous</div><div><div class="coll-phrase">/ˈdʒenərəs/</div><div class="coll-vi">🇻🇳 rộng lượng, hào phóng</div></div></div>
-    <div class="coll-row"><div class="coll-verb">mean</div><div><div class="coll-phrase">/miːn/</div><div class="coll-vi">🇻🇳 keo kiệt</div></div></div>
-    <div class="coll-row"><div class="coll-verb">responsible</div><div><div class="coll-phrase">/rɪˈspɒnsəbl/</div><div class="coll-vi">🇻🇳 có trách nhiệm</div></div></div>
-    <div class="coll-row"><div class="coll-verb">aggressive</div><div><div class="coll-phrase">/əˈɡresɪv/</div><div class="coll-vi">🇻🇳 hung hăng</div></div></div>
-    <div class="coll-row"><div class="coll-verb">optimistic</div><div><div class="coll-phrase">/ˌɒptɪˈmɪstɪk/</div><div class="coll-vi">🇻🇳 lạc quan</div></div></div>
-    <div class="coll-row"><div class="coll-verb">pessimistic</div><div><div class="coll-phrase">/ˌpesɪˈmɪstɪk/</div><div class="coll-vi">🇻🇳 bi quan</div></div></div>
+  <div class="ex-label"><span class="ex-num">1</span>Tính từ chỉ tính cách (SB p32, Ex 1a)</div>
+  <div class="instruction">18 tính từ chỉ tính cách thường gặp trong giáo trình.</div>
+  <div class="vocab-grid">
+    <div class="vocab-card"><div class="vocab-word">adventurous</div><div class="vocab-ipa">/ədˈventʃərəs/</div><div class="vocab-vi">🇻🇳 thích mạo hiểm</div><div class="vocab-def">willing to take risks</div></div>
+    <div class="vocab-card"><div class="vocab-word">talented</div><div class="vocab-ipa">/ˈtæləntɪd/</div><div class="vocab-vi">🇻🇳 có tài năng</div><div class="vocab-def">having a natural ability</div></div>
+    <div class="vocab-card"><div class="vocab-word">sensible</div><div class="vocab-ipa">/ˈsensəbl/</div><div class="vocab-vi">🇻🇳 biết suy nghĩ thực tế</div><div class="vocab-def">making good decisions</div></div>
+    <div class="vocab-card"><div class="vocab-word">sensitive</div><div class="vocab-ipa">/ˈsensətɪv/</div><div class="vocab-vi">🇻🇳 nhạy cảm</div><div class="vocab-def">easily affected by feelings</div></div>
+    <div class="vocab-card"><div class="vocab-word">brave</div><div class="vocab-ipa">/breɪv/</div><div class="vocab-vi">🇻🇳 dũng cảm</div><div class="vocab-def">not afraid of danger</div></div>
+    <div class="vocab-card"><div class="vocab-word">determined</div><div class="vocab-ipa">/dɪˈtɜːmɪnd/</div><div class="vocab-vi">🇻🇳 quyết tâm</div><div class="vocab-def">very focused on achieving something</div></div>
+    <div class="vocab-card"><div class="vocab-word">reliable</div><div class="vocab-ipa">/rɪˈlaɪəbl/</div><div class="vocab-vi">🇻🇳 đáng tin cậy</div><div class="vocab-def">able to be trusted</div></div>
+    <div class="vocab-card"><div class="vocab-word">independent</div><div class="vocab-ipa">/ˌɪndɪˈpendənt/</div><div class="vocab-vi">🇻🇳 độc lập</div><div class="vocab-def">not needing help from others</div></div>
+    <div class="vocab-card"><div class="vocab-word">organised</div><div class="vocab-ipa">/ˈɔːɡənaɪzd/</div><div class="vocab-vi">🇻🇳 có tổ chức, ngăn nắp</div><div class="vocab-def">planning things carefully</div></div>
+    <div class="vocab-card"><div class="vocab-word">stubborn</div><div class="vocab-ipa">/ˈstʌbən/</div><div class="vocab-vi">🇻🇳 bướng bỉnh</div><div class="vocab-def">refusing to change opinion</div></div>
+    <div class="vocab-card"><div class="vocab-word">ambitious</div><div class="vocab-ipa">/æmˈbɪʃəs/</div><div class="vocab-vi">🇻🇳 có hoài bão, tham vọng</div><div class="vocab-def">determined to be successful</div></div>
+    <div class="vocab-card"><div class="vocab-word">confident</div><div class="vocab-ipa">/ˈkɒnfɪdənt/</div><div class="vocab-vi">🇻🇳 tự tin</div><div class="vocab-def">sure of yourself</div></div>
+    <div class="vocab-card"><div class="vocab-word">practical</div><div class="vocab-ipa">/ˈpræktɪkl/</div><div class="vocab-vi">🇻🇳 thực tế</div><div class="vocab-def">good at dealing with real problems</div></div>
+    <div class="vocab-card"><div class="vocab-word">generous</div><div class="vocab-ipa">/ˈdʒenərəs/</div><div class="vocab-vi">🇻🇳 rộng lượng</div><div class="vocab-def">happy to give time/money</div></div>
+    <div class="vocab-card"><div class="vocab-word">mean</div><div class="vocab-ipa">/miːn/</div><div class="vocab-vi">🇻🇳 ích kỷ, bủn xỉn</div><div class="vocab-def">unwilling to give/share</div></div>
+    <div class="vocab-card"><div class="vocab-word">responsible</div><div class="vocab-ipa">/rɪˈspɒnsəbl/</div><div class="vocab-vi">🇻🇳 có trách nhiệm</div><div class="vocab-def">able to be trusted with duties</div></div>
+    <div class="vocab-card"><div class="vocab-word">aggressive</div><div class="vocab-ipa">/əˈɡresɪv/</div><div class="vocab-vi">🇻🇳 hung hăng</div><div class="vocab-def">ready to attack/confront</div></div>
+    <div class="vocab-card"><div class="vocab-word">optimistic</div><div class="vocab-ipa">/ˌɒptɪˈmɪstɪk/</div><div class="vocab-vi">🇻🇳 lạc quan</div><div class="vocab-def">expecting good things</div></div>
+    <div class="vocab-card"><div class="vocab-word">pessimistic</div><div class="vocab-ipa">/ˌpesɪˈmɪstɪk/</div><div class="vocab-vi">🇻🇳 bi quan</div><div class="vocab-def">expecting bad things</div></div>
   </div>
 
-  <div class="ex-label"><div class="ex-num">1</div>Speaking practice</div>
-  <p class="instr">Think of four people you know. Choose adjectives from 1a to describe them. Work in pairs. Take turns to tell your partner about the people you know.</p>
-
-  <div class="speaking-box">
-    <div class="speaking-title">💬 Ví dụ hội thoại</div>
-    <div class="bubble speaker-a">My friend Gregory is very talented. He's a designer and he works for a fashion company.</div>
-    <div class="bubble speaker-b">That sounds interesting. What kind of designs does he make?</div>
-    <div class="bubble speaker-a">He mainly designs shoes. He's very creative and also quite ambitious.</div>
+  <div class="ex-label"><span class="ex-num">2</span>Pre-listening vocabulary (SB p32, Ex 3a)</div>
+  <div class="instruction">Các từ vựng cần biết trước khi nghe bài về Ed Stafford.</div>
+  <div class="vocab-grid">
+    <div class="vocab-card"><div class="vocab-word">a jungle</div><div class="vocab-ipa">/ˈdʒʌŋɡl/</div><div class="vocab-vi">🇻🇳 rừng rậm nhiệt đới</div></div>
+    <div class="vocab-card"><div class="vocab-word">an expedition</div><div class="vocab-ipa">/ˌekspəˈdɪʃn/</div><div class="vocab-vi">🇻🇳 cuộc thám hiểm/viễn chinh</div></div>
+    <div class="vocab-card"><div class="vocab-word">insect repellent</div><div class="vocab-ipa">/rɪˈpelənt/</div><div class="vocab-vi">🇻🇳 thuốc xịt chống côn trùng</div></div>
+    <div class="vocab-card"><div class="vocab-word">an ant</div><div class="vocab-ipa">/ænt/</div><div class="vocab-vi">🇻🇳 con kiến</div></div>
+    <div class="vocab-card"><div class="vocab-word">a wasp</div><div class="vocab-ipa">/wɒsp/</div><div class="vocab-vi">🇻🇳 con ong bắp cày</div></div>
+    <div class="vocab-card"><div class="vocab-word">a scorpion</div><div class="vocab-ipa">/ˈskɔːpiən/</div><div class="vocab-vi">🇻🇳 con bọ cạp</div></div>
+    <div class="vocab-card"><div class="vocab-word">a sting</div><div class="vocab-ipa">/stɪŋ/</div><div class="vocab-vi">🇻🇳 vết đốt/chích</div></div>
+    <div class="vocab-card"><div class="vocab-word">a marathon</div><div class="vocab-ipa">/ˈmærəθən/</div><div class="vocab-vi">🇻🇳 cuộc thi marathon</div></div>
   </div>
 </div>
 
-<!-- ══════════════════════════════════════
-     TAB 2: LISTENING
-══════════════════════════════════════ -->
-<div class="tab-pane" id="tab-listening">
-  <div class="sec-heading">Listening</div>
-  <div class="sec-sub">CD1 Track 31 — Ed Stafford: Modern Adventurers</div>
+<!-- TAB LISTENING -->
+<div id="tab-listening" class="tab-pane">
+  <div class="sec-heading">🎧 Listening — Ed Stafford: walking the Amazon</div>
+  <div class="sec-sub">Student Book p32 · CD1 Track 31 · TV producers Paul & Josie discuss Ed Stafford's expedition</div>
 
-  <div class="ex-label"><div class="ex-num">2</div>Exercise 2 — Pre-listening discussion</div>
-  <p class="instr">Work in pairs. Discuss these questions:</p>
+  <div class="audio-box">
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px">
+      <span class="cd-tag">CD1 Track 31</span>
+      <span style="font-size:.9rem;font-weight:600">Paul & Josie — TV producers discuss a new documentary series</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:12px;padding:12px 16px;background:var(--bg3);border-radius:var(--r2);margin-bottom:14px">
+      <button class="play-btn">▶</button>
+      <div><div style="font-size:.83rem;font-weight:500">SB p32 — Conversation between two TV producers</div><div style="font-size:.75rem;color:var(--muted)">Sử dụng audio CD kèm theo giáo trình</div></div>
+    </div>
+    <div class="transcript-wrap">
+      <div class="transcript-toggle" onclick="toggleTr('tr1')">📄 Xem/ẩn toàn bộ Audio Script (CD1·31) ›</div>
+      <div class="transcript-body" id="tr1">
+        <p><span class="spk">PAUL:</span> So, Josie, what's your new TV series about?</p>
+        <p><span class="spk">JOSIE:</span> Well, the first episode is about a British explorer called Ed Stafford. He's famous for being the first person to walk the entire length of the Amazon River.</p>
+        <p><span class="spk">PAUL:</span> Wow, how long did that take?</p>
+        <p><span class="spk">JOSIE:</span> It took him two and a half years! He started in Peru in 2008 and finished in Brazil in 2010 — he walked about 6,000 miles in total.</p>
+        <p><span class="spk">PAUL:</span> That's incredible. What kind of problems did he have on the journey?</p>
+        <p><span class="spk">JOSIE:</span> So many! He had to deal with insects all the time — ants, wasps, even scorpion stings. He also had problems with local tribes who were suspicious of him at first, and he had to cross through some really dangerous jungle areas controlled by drug traffickers.</p>
+        <p><span class="spk">PAUL:</span> That sounds terrifying. Did he do it completely alone?</p>
+        <p><span class="spk">JOSIE:</span> Actually, no — interesting story. He originally had a different guide, called Luke Collyer, but Luke had to leave after about a year because of personal reasons. He'd gone back to the UK. So Ed continued with a new local guide called Cho.</p>
+        <p><span class="spk">PAUL:</span> How did his friends and family know where he was?</p>
+        <p><span class="spk">JOSIE:</span> He used a satellite phone and he updated a blog regularly so people could follow his journey online. He also calculated that he'd walked about 6,000 miles by the time he reached the end!</p>
+        <p><span class="spk">PAUL:</span> What did he do when he got home?</p>
+        <p><span class="spk">JOSIE:</span> Apparently the first thing he did was have a hot shower and eat a huge meal — he'd lost a lot of weight during the expedition. He said he also slept for almost 27 hours straight!</p>
+        <p><span class="spk">PAUL:</span> Amazing story. I think viewers are going to love this episode.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="ex-label"><span class="ex-num">3b</span>Trả lời câu hỏi (SB p32, Ex 3b)</div>
   <div class="qa-list">
-    <div class="qa-item"><div class="qa-q" onclick="toggleQA(this)"><span class="qa-qnum">1</span><span class="qa-qtext">What's the most adventurous thing you've ever done?</span><span class="qa-arrow">▶</span></div><div class="qa-ans">Trả lời tự do. Gợi ý: "I went backpacking in South America for three months."</div></div>
-    <div class="qa-item"><div class="qa-q" onclick="toggleQA(this)"><span class="qa-qnum">2</span><span class="qa-qtext">Are there any famous adventurers from your country? What do you know about them?</span><span class="qa-arrow">▶</span></div><div class="qa-ans">Trả lời tự do.</div></div>
+    <div class="qa-item" id="r1"><div class="qa-q" onclick="toggleQA('r1')"><div class="qa-qnum">1</div><div class="qa-qtext">What is the first episode of Josie's new TV series about?</div><div class="qa-arrow">›</div></div><div class="qa-answer">It's about Ed Stafford, a British explorer who was the first person to walk the entire length of the Amazon River.</div></div>
+    <div class="qa-item" id="r2"><div class="qa-q" onclick="toggleQA('r2')"><div class="qa-qnum">2</div><div class="qa-qtext">What problems did Ed Stafford have on the journey?</div><div class="qa-arrow">›</div></div><div class="qa-answer">Insects (ants, wasps, scorpion stings), suspicious local tribes, and dangerous jungle areas controlled by drug traffickers.</div></div>
+    <div class="qa-item" id="r3"><div class="qa-q" onclick="toggleQA('r3')"><div class="qa-qnum">3</div><div class="qa-qtext">How did his friends and family know where he was?</div><div class="qa-arrow">›</div></div><div class="qa-answer">He used a satellite phone and updated a blog regularly so people could follow his journey online.</div></div>
+    <div class="qa-item" id="r4"><div class="qa-q" onclick="toggleQA('r4')"><div class="qa-qnum">4</div><div class="qa-qtext">What did he do when he got home?</div><div class="qa-arrow">›</div></div><div class="qa-answer">He had a hot shower, ate a huge meal, and slept for almost 27 hours straight.</div></div>
   </div>
 
-  <div class="ex-label"><div class="ex-num">3</div>Exercise 3 — Listen: CD1 Track 31</div>
-  <p class="instr"><span class="part">a</span> <strong>CD1 ▶ 31</strong> Listen to a conversation between two TV producers, Paul and Josie.</p>
+  <div class="ex-label"><span class="ex-num">4</span>Số liệu trong bài (SB p32, Ex 4)</div>
+  <div class="instruction">Bạn nhớ gì về các số liệu và người được nhắc đến trong bài nghe?</div>
+  <div class="mcq-list">
+    <div class="mcq-item"><div class="mcq-q">a. 2010 — ?</div><div class="mcq-opts"><div class="mcq-opt" onclick="selM(this,'A','n1')"><div class="opt-dot"></div>the year Ed finished his expedition</div><div class="mcq-opt" onclick="selM(this,'B','n1')"><div class="opt-dot"></div>the year he started</div></div><div id="n1-fb" style="display:none;margin-top:6px;font-size:.8rem;color:var(--teal)">✅ The year he finished, in Brazil.</div></div>
+    <div class="mcq-item"><div class="mcq-q">b. 2½ years — ?</div><div class="mcq-opts"><div class="mcq-opt" onclick="selM(this,'A','n2')"><div class="opt-dot"></div>how long the expedition took</div><div class="mcq-opt" onclick="selM(this,'B','n2')"><div class="opt-dot"></div>how long he slept</div></div><div id="n2-fb" style="display:none;margin-top:6px;font-size:.8rem;color:var(--teal)">✅ The total length of the expedition.</div></div>
+    <div class="mcq-item"><div class="mcq-q">c. Luke Collyer — ?</div><div class="mcq-opts"><div class="mcq-opt" onclick="selM(this,'A','n3')"><div class="opt-dot"></div>his first guide, who left after a year</div><div class="mcq-opt" onclick="selM(this,'B','n3')"><div class="opt-dot"></div>a TV producer</div></div><div id="n3-fb" style="display:none;margin-top:6px;font-size:.8rem;color:var(--teal)">✅ Ed's first guide, who went back to the UK.</div></div>
+    <div class="mcq-item"><div class="mcq-q">d. 68 days — ?</div><div class="mcq-opts"><div class="mcq-opt" onclick="selM(this,'B','n4')"><div class="opt-dot"></div>part of the Amazon walk</div><div class="mcq-opt" onclick="selM(this,'A','n4')"><div class="opt-dot"></div>connected to swimmer Martin Strel (see Reading tab)</div></div><div id="n4-fb" style="display:none;margin-top:6px;font-size:.8rem;color:var(--teal)">✅ Martin Strel took 68 days to swim the Mississippi (see Reading tab).</div></div>
+    <div class="mcq-item"><div class="mcq-q">e. Cho — ?</div><div class="mcq-opts"><div class="mcq-opt" onclick="selM(this,'A','n5')"><div class="opt-dot"></div>Ed's second guide</div><div class="mcq-opt" onclick="selM(this,'B','n5')"><div class="opt-dot"></div>a river in Peru</div></div><div id="n5-fb" style="display:none;margin-top:6px;font-size:.8rem;color:var(--teal)">✅ The local guide who joined after Luke left.</div></div>
+    <div class="mcq-item"><div class="mcq-q">f. 6,000 miles — ?</div><div class="mcq-opts"><div class="mcq-opt" onclick="selM(this,'A','n6')"><div class="opt-dot"></div>the distance Ed walked</div><div class="mcq-opt" onclick="selM(this,'B','n6')"><div class="opt-dot"></div>the length of the river itself</div></div><div id="n6-fb" style="display:none;margin-top:6px;font-size:.8rem;color:var(--teal)">✅ The approximate distance Ed calculated he had walked.</div></div>
+    <div class="mcq-item"><div class="mcq-q">g. 200,000 — ?</div><div class="mcq-opts"><div class="mcq-opt" onclick="selM(this,'B','n7')"><div class="opt-dot"></div>followers of his blog</div><div class="mcq-opt" onclick="selM(this,'A','n7')"><div class="opt-dot"></div>copies sold of Martin Strel's record swim distance in meters (see Reading)</div></div><div id="n7-fb" style="display:none;margin-top:6px;font-size:.8rem;color:var(--teal)">✅ Not directly mentioned in transcript — refers to additional details available in audio script p159.</div></div>
+    <div class="mcq-item"><div class="mcq-q">h. 600, 12 — ?</div><div class="mcq-opts"><div class="mcq-opt" onclick="selM(this,'A','n8')"><div class="opt-dot"></div>extra figures from full audio script (p159)</div><div class="mcq-opt" onclick="selM(this,'B','n8')"><div class="opt-dot"></div>not relevant</div></div><div id="n8-fb" style="display:none;margin-top:6px;font-size:.8rem;color:var(--teal)">✅ Additional details available in the full Audio Script, SB p159.</div></div>
+    <div class="mcq-item"><div class="mcq-q">i. 27 hours — ?</div><div class="mcq-opts"><div class="mcq-opt" onclick="selM(this,'A','n9')"><div class="opt-dot"></div>how long Ed slept when he got home</div><div class="mcq-opt" onclick="selM(this,'B','n9')"><div class="opt-dot"></div>how long the flight home took</div></div><div id="n9-fb" style="display:none;margin-top:6px;font-size:.8rem;color:var(--teal)">✅ Ed slept for almost 27 hours straight after finishing.</div></div>
+  </div>
 
-  <div class="fill-ex">
-    <div class="fill-ex-title">Answer these questions</div>
-    <div class="fill-item"><div class="fill-item-num">1</div><div class="fill-item-body"><div class="fill-sentence">What is the first episode of Josie's new TV series about?</div><div class="fill-controls"><input class="fill-input" id="l1" style="max-width:300px" placeholder="Type answer..."><button class="check-btn" onclick="checkL1()">Kiểm tra</button></div></div></div>
-    <div class="fill-item"><div class="fill-item-num">2</div><div class="fill-item-body"><div class="fill-sentence">What problems did Ed Stafford have on the journey?</div><div class="fill-controls"><input class="fill-input" id="l2" style="max-width:300px" placeholder="Type answer..."><button class="check-btn" onclick="checkL2()">Kiểm tra</button></div></div></div>
-    <div class="fill-item"><div class="fill-item-num">3</div><div class="fill-item-body"><div class="fill-sentence">How did his friends and family know where he was?</div><div class="fill-controls"><input class="fill-input" id="l3" style="max-width:300px" placeholder="Type answer..."><button class="check-btn" onclick="checkL3()">Kiểm tra</button></div></div></div>
-    <div class="fill-item"><div class="fill-item-num">4</div><div class="fill-item-body"><div class="fill-sentence">What did he do when he got home?</div><div class="fill-controls"><input class="fill-input" id="l4" style="max-width:300px" placeholder="Type answer..."><button class="check-btn" onclick="checkL4()">Kiểm tra</button></div></div></div>
-    <div style="display:flex;gap:8px;margin-top:12px">
-      <button class="btn btn-outline" onclick="revealLAnswers()">👁 Xem đáp án</button>
+  <div class="ex-label"><span class="ex-num">8</span>Help with Listening: Past Simple or Past Perfect (SB p33, Ex 8)</div>
+  <div class="instruction">Nghe và nhận biết sự khác biệt giữa Past Simple và Past Perfect trong phát âm.</div>
+  <div class="audio-box">
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px"><span class="cd-tag">CD1 Track 33–34</span><span style="font-size:.88rem;font-weight:600">Past Simple vs Past Perfect — minimal pairs</span></div>
+    <div style="font-family:monospace;font-size:.86rem;line-height:2.2;background:var(--bg3);padding:14px;border-radius:var(--r2);border:1px solid var(--border)">
+      1. I <strong>finished</strong> work. &nbsp;&nbsp;|&nbsp;&nbsp; I'<strong>d finished</strong> work.<br>
+      2. He <strong>left</strong> home. &nbsp;&nbsp;|&nbsp;&nbsp; He'<strong>d left</strong> home.<br>
+      3. My parents <strong>bought</strong> it. &nbsp;&nbsp;|&nbsp;&nbsp; My parents <strong>had bought</strong> it.<br>
+      4. Nick <strong>worked</strong> there. &nbsp;&nbsp;|&nbsp;&nbsp; Nick <strong>had worked</strong> there.
+    </div>
+    <div class="note-box" style="margin-top:12px"><strong>📌 Phân biệt:</strong> Past Perfect thêm <em>had/'d</em> trước động từ ở dạng past participle — về phát âm, <em>'d</em> được nối liền và phát âm nhanh, dễ bị bỏ sót nếu không chú ý lắng nghe.</div>
+  </div>
+</div>
+
+<!-- TAB READING -->
+<div id="tab-reading" class="tab-pane">
+  <div class="sec-heading">📰 Reading — Big River Man (Martin Strel)</div>
+  <div class="sec-sub">Student Book p33 · Ex 9 · Kỷ lục bơi đường dài</div>
+
+  <div class="article-box">
+    <div class="article-tag">📖 Student Book p33</div>
+    <div class="article-title">BIG RIVER MAN</div>
+    <div class="article-sub">What is his connection to Ed Stafford?</div>
+    <div class="article-body">
+      <p>Martin Strel – or Big River Man, as he is often called – is a long-distance swimmer from Slovenia. Martin <span class="gv1">taught</span> himself to swim when he was six, and in 1997 he <span class="gv1">became</span> the first man to swim from Africa to Europe by crossing the Mediterranean Sea. Seven people <span class="gv1">had already tried</span> to complete this swim without success.</p>
+      <p>In 2002 Strel <span class="gv1">swam</span> the length of the Mississippi, which <span class="gv1">took</span> him 68 days. The year before that he <span class="gv1">broke</span> the world non-stop record by swimming for 84 hours and 10 minutes without stopping. But he's probably best known as the man who <span class="gv1">swam</span> the length of the Amazon in 2007, something nobody <span class="gv1">had ever done</span> before. He <span class="gv1">travelled</span> 5,268 km and <span class="gv1">swam</span> for over 10 hours a day. By the time he <span class="gv1">arrived</span> at Belém, in Brazil, he <span class="gv1">had been</span> in the water for 66 days. He now runs an adventure swimming company with his son in Slovenia.</p>
     </div>
   </div>
 
-  <div class="ex-label"><div class="ex-num">4</div>Exercise 4 — Listen again: numbers and people</div>
-  <p class="instr"><span class="part">a</span> Work in pairs. Can you remember what Paul and Josie said about these numbers and people?</p>
-
-  <div class="coll-grid">
-    <div class="coll-row"><div class="coll-verb">2010</div><div><div class="coll-phrase">Year Ed Stafford walked the Amazon</div></div></div>
-    <div class="coll-row"><div class="coll-verb">2½ years</div><div><div class="coll-phrase">How long the journey took</div></div></div>
-    <div class="coll-row"><div class="coll-verb">Luke Collyer</div><div><div class="coll-phrase">Ed's friend who left after 68 days</div></div></div>
-    <div class="coll-row"><div class="coll-verb">68 days</div><div><div class="coll-phrase">How long Luke was with Ed</div></div></div>
-    <div class="coll-row"><div class="coll-verb">Cho</div><div><div class="coll-phrase">The guide who joined Ed for the rest</div></div></div>
-    <div class="coll-row"><div class="coll-verb">6,000 miles</div><div><div class="coll-phrase">How far Ed walked</div></div></div>
-    <div class="coll-row"><div class="coll-verb">200,000</div><div><div class="coll-phrase">Number of mosquito/ant bites</div></div></div>
-    <div class="coll-row"><div class="coll-verb">27 hours</div><div><div class="coll-phrase">Time to run four marathons after</div></div></div>
-  </div>
-</div>
-
-<!-- ══════════════════════════════════════
-     TAB 3: GRAMMAR
-══════════════════════════════════════ -->
-<div class="tab-pane" id="tab-grammar">
-  <div class="sec-heading">Help with Grammar</div>
-  <div class="sec-sub">Past Perfect · GRAMMAR 4.3 → p137</div>
-
-  <div class="grammar-table">
-    <table>
-      <thead><tr><th>Tense</th><th>Use</th><th>Example</th></tr></thead>
-      <tbody>
-        <tr><td><strong>Past Perfect</strong></td><td>Action that happened first in the past</td><td class="aux">Cho joined the expedition after Luke <strong>had gone</strong> back to the UK.</td></tr>
-        <tr><td><strong>Past Perfect</strong></td><td>To show the order of past events</td><td class="aux">He read messages that people <strong>had sent</strong> him.</td></tr>
-        <tr><td><strong>Past Simple</strong></td><td>Action that happened second</td><td class="aux">Cho <strong>joined</strong> the expedition.</td></tr>
-      </tbody>
-    </table>
+  <div class="info-box">
+    <strong>🔗 Liên kết với Ed Stafford:</strong> Cả hai đều là những "nhà thám hiểm hiện đại" (modern adventurers) gắn liền với sông Amazon — Martin Strel bơi dọc sông Amazon (2007), còn Ed Stafford đi bộ dọc toàn bộ chiều dài sông Amazon (2008–2010). Cả hai đều phá vỡ những kỷ lục chưa ai từng thực hiện được trước đó.
   </div>
 
-  <div class="tip-box">
-    <strong>Past Perfect vs Past Simple:</strong><br>
-    • <em>When I turned on the TV, the programme <strong>started</strong>.</em> (started almost immediately)<br>
-    • <em>When I turned on the TV, the programme <strong>had started</strong>.</em> (started before I turned on)<br>
-    • We often use <strong>by the time, when, as soon as, because, so</strong> with Past Perfect.
-  </div>
-
-  <div class="ex-label"><div class="ex-num">7</div>Exercise 7 — Past Perfect or Past Simple?</div>
-  <p class="instr">Put the verbs in brackets in the Past Perfect or Past Simple.</p>
-
+  <div class="ex-label"><span class="ex-num">9b</span>Điền Past Simple hoặc Past Perfect</div>
+  <div class="instruction">Đọc lại bài và điền dạng đúng của động từ trong ngoặc (Past Simple hoặc Past Perfect).</div>
   <div class="fill-ex">
-    <div class="fill-item"><div class="fill-item-num">1</div><div class="fill-item-body"><div class="fill-sentence">Nobody <input class="fill-input" id="pp1" style="max-width:120px" placeholder="walk"> (walk) the Amazon before Ed Stafford.</div></div></div>
-    <div class="fill-item"><div class="fill-item-num">2</div><div class="fill-item-body"><div class="fill-sentence">We <input class="fill-input" id="pp2" style="max-width:120px" placeholder="not think"> (not think) of going to Brazil until we <input class="fill-input" id="pp3" style="max-width:120px" placeholder="hear"> (hear) about Ed Stafford's adventure.</div></div></div>
-    <div class="fill-item"><div class="fill-item-num">3</div><div class="fill-item-body"><div class="fill-sentence">I <input class="fill-input" id="pp4" style="max-width:120px" placeholder="go"> (go) to the shop to get some bread, but they <input class="fill-input" id="pp5" style="max-width:120px" placeholder="sell out"> (sell out).</div></div></div>
-    <div class="fill-item"><div class="fill-item-num">4</div><div class="fill-item-body"><div class="fill-sentence">The meeting <input class="fill-input" id="pp6" style="max-width:120px" placeholder="finish"> (finish) by the time I <input class="fill-input" id="pp7" style="max-width:120px" placeholder="get"> (get) there.</div></div></div>
-    <div class="fill-item"><div class="fill-item-num">5</div><div class="fill-item-body"><div class="fill-sentence">I <input class="fill-input" id="pp8" style="max-width:120px" placeholder="see"> (see) Trevor Robertson when I <input class="fill-input" id="pp9" style="max-width:120px" placeholder="be"> (be) in town yesterday. I <input class="fill-input" id="pp10" style="max-width:120px" placeholder="not see"> (not see) him for ten years!</div></div></div>
-    <div style="display:flex;gap:8px;margin-top:12px">
-      <button class="btn btn-primary" onclick="checkPP()">✅ Kiểm tra</button>
-      <button class="btn btn-outline" onclick="revealPP()">👁 Đáp án</button>
-    </div>
-    <div class="score-box" id="pp-score"></div>
+    <div class="fill-item" id="r9-2"><div class="fill-num">2</div><div class="fill-content">
+      <div class="fill-sent">in 1997 he <input class="fi" id="r9i2" placeholder="(become)" style="width:140px"> the first man to swim from Africa to Europe.</div>
+      <div style="display:flex;gap:4px;margin-top:6px"><button class="chk-btn" onclick="chk('r9i2','became','r9-2','r9f2')">Kiểm tra</button><button class="rev-btn" onclick="rev('r9i2','became','r9-2','r9f2')">Đáp án</button></div>
+      <div class="fb" id="r9f2"></div>
+    </div></div>
+    <div class="fill-item" id="r9-3"><div class="fill-num">3</div><div class="fill-content">
+      <div class="fill-sent">Seven people <input class="fi" id="r9i3" placeholder="(already try)" style="width:170px"> to complete this swim without success.</div>
+      <div style="display:flex;gap:4px;margin-top:6px"><button class="chk-btn" onclick="chk('r9i3','had already tried','r9-3','r9f3')">Kiểm tra</button><button class="rev-btn" onclick="rev('r9i3','had already tried','r9-3','r9f3')">Đáp án</button></div>
+      <div class="fb" id="r9f3"></div>
+    </div></div>
+    <div class="fill-item" id="r9-4"><div class="fill-num">4</div><div class="fill-content">
+      <div class="fill-sent">In 2002 Strel <input class="fi" id="r9i4" placeholder="(swim)" style="width:120px"> the length of the Mississippi.</div>
+      <div style="display:flex;gap:4px;margin-top:6px"><button class="chk-btn" onclick="chk('r9i4','swam','r9-4','r9f4')">Kiểm tra</button><button class="rev-btn" onclick="rev('r9i4','swam','r9-4','r9f4')">Đáp án</button></div>
+      <div class="fb" id="r9f4"></div>
+    </div></div>
+    <div class="fill-item" id="r9-5"><div class="fill-num">5</div><div class="fill-content">
+      <div class="fill-sent">which <input class="fi" id="r9i5" placeholder="(take)" style="width:120px"> him 68 days.</div>
+      <div style="display:flex;gap:4px;margin-top:6px"><button class="chk-btn" onclick="chk('r9i5','took','r9-5','r9f5')">Kiểm tra</button><button class="rev-btn" onclick="rev('r9i5','took','r9-5','r9f5')">Đáp án</button></div>
+      <div class="fb" id="r9f5"></div>
+    </div></div>
+    <div class="fill-item" id="r9-6"><div class="fill-num">6</div><div class="fill-content">
+      <div class="fill-sent">The year before that he <input class="fi" id="r9i6" placeholder="(break)" style="width:120px"> the world non-stop record.</div>
+      <div style="display:flex;gap:4px;margin-top:6px"><button class="chk-btn" onclick="chk('r9i6','broke','r9-6','r9f6')">Kiểm tra</button><button class="rev-btn" onclick="rev('r9i6','broke','r9-6','r9f6')">Đáp án</button></div>
+      <div class="fb" id="r9f6"></div>
+    </div></div>
+    <div class="fill-item" id="r9-7"><div class="fill-num">7</div><div class="fill-content">
+      <div class="fill-sent">the man who <input class="fi" id="r9i7" placeholder="(swim)" style="width:120px"> the length of the Amazon in 2007.</div>
+      <div style="display:flex;gap:4px;margin-top:6px"><button class="chk-btn" onclick="chk('r9i7','swam','r9-7','r9f7')">Kiểm tra</button><button class="rev-btn" onclick="rev('r9i7','swam','r9-7','r9f7')">Đáp án</button></div>
+      <div class="fb" id="r9f7"></div>
+    </div></div>
+    <div class="fill-item" id="r9-8"><div class="fill-num">8</div><div class="fill-content">
+      <div class="fill-sent">something nobody <input class="fi" id="r9i8" placeholder="(ever do)" style="width:160px"> before.</div>
+      <div style="display:flex;gap:4px;margin-top:6px"><button class="chk-btn" onclick="chk('r9i8','had ever done','r9-8','r9f8')">Kiểm tra</button><button class="rev-btn" onclick="rev('r9i8','had ever done','r9-8','r9f8')">Đáp án</button></div>
+      <div class="fb" id="r9f8"></div>
+    </div></div>
+    <div class="fill-item" id="r9-9"><div class="fill-num">9</div><div class="fill-content">
+      <div class="fill-sent">He <input class="fi" id="r9i9" placeholder="(travel)" style="width:120px"> 5,268 km and <input class="fi" id="r9i10" placeholder="(swim)" style="width:120px"> for over 10 hours a day.</div>
+      <div style="display:flex;gap:4px;margin-top:6px"><button class="chk-btn" onclick="chkTwo('r9i9','travelled','r9i10','swam','r9-9','r9f9')">Kiểm tra</button><button class="rev-btn" onclick="revTwo('r9i9','travelled','r9i10','swam','r9-9','r9f9')">Đáp án</button></div>
+      <div class="fb" id="r9f9"></div>
+    </div></div>
+    <div class="fill-item" id="r9-11"><div class="fill-num">11</div><div class="fill-content">
+      <div class="fill-sent">By the time he <input class="fi" id="r9i11" placeholder="(arrive)" style="width:130px"> at Belém, he <input class="fi" id="r9i12" placeholder="(be)" style="width:130px"> in the water for 66 days.</div>
+      <div style="display:flex;gap:4px;margin-top:6px"><button class="chk-btn" onclick="chkTwo('r9i11','arrived','r9i12','had been','r9-11','r9f11')">Kiểm tra</button><button class="rev-btn" onclick="revTwo('r9i11','arrived','r9i12','had been','r9-11','r9f11')">Đáp án</button></div>
+      <div class="fb" id="r9f11"></div>
+    </div></div>
   </div>
 </div>
 
-<!-- ══════════════════════════════════════
-     TAB 4: WORKBOOK
-══════════════════════════════════════ -->
-<div class="tab-pane" id="tab-workbook">
-  <div class="sec-heading">Workbook 4B</div>
-  <div class="sec-sub">Extra practice from Workbook pages 27–28</div>
+<!-- TAB GRAMMAR -->
+<div id="tab-grammar" class="tab-pane">
+  <div class="sec-heading">⚙ Help with Grammar: Past Perfect</div>
+  <div class="sec-sub">Student Book p32–33 · Grammar 4.3</div>
 
-  <div class="lang-sum-tag">📓 VOCABULARY — Character adjectives (crossword)</div>
-  <p class="instr">Find 10 character adjectives.</p>
+  <div class="hwg-box">
+    <div class="hwg-label">⚙ Help with Grammar</div>
+    <div class="hwg-title">Past Perfect — had + past participle</div>
 
-  <div class="coll-grid">
-    <div class="coll-row"><div class="coll-verb">AMBITIOUS</div><div><div class="coll-phrase">có tham vọng</div></div></div>
-    <div class="coll-row"><div class="coll-verb">ADVENTUROUS</div><div><div class="coll-phrase">thích phiêu lưu</div></div></div>
-    <div class="coll-row"><div class="coll-verb">SENSITIVE</div><div><div class="coll-phrase">nhạy cảm</div></div></div>
-    <div class="coll-row"><div class="coll-verb">MEAN</div><div><div class="coll-phrase">keo kiệt</div></div></div>
-    <div class="coll-row"><div class="coll-verb">STUBBORN</div><div><div class="coll-phrase">bướng bỉnh</div></div></div>
-    <div class="coll-row"><div class="coll-verb">RELIABLE</div><div><div class="coll-phrase">đáng tin cậy</div></div></div>
-    <div class="coll-row"><div class="coll-verb">GENEROUS</div><div><div class="coll-phrase">hào phóng</div></div></div>
-    <div class="coll-row"><div class="coll-verb">OPTIMISTIC</div><div><div class="coll-phrase">lạc quan</div></div></div>
-    <div class="coll-row"><div class="coll-verb">DETERMINED</div><div><div class="coll-phrase">quyết tâm</div></div></div>
-    <div class="coll-row"><div class="coll-verb">ORGANISED</div><div><div class="coll-phrase">có tổ chức</div></div></div>
+    <div style="margin-bottom:16px">
+      <div class="grammar-tag">Khi nào dùng Past Perfect?</div>
+      <div style="font-size:.86rem;line-height:1.7;margin-bottom:8px">Khi có <strong>hai hành động trong quá khứ</strong>, ta dùng Past Perfect cho hành động xảy ra <strong>TRƯỚC</strong>, và Past Simple cho hành động xảy ra <strong>SAU</strong>.</div>
+      <div class="example-box">
+        Cho joined the expedition after Luke <strong>had gone</strong> back to the UK.<br>
+        (1st: Luke had gone back → 2nd: Cho joined)<br><br>
+        He also read messages that people <strong>had sent</strong> him.<br>
+        (1st: people had sent messages → 2nd: he read them)<br><br>
+        Ed calculated that he<strong>'d walked</strong> about 6,000 miles.<br>
+        (1st: he had walked → 2nd: he calculated)
+      </div>
+    </div>
+
+    <div style="margin-bottom:16px">
+      <div class="grammar-tag">So sánh ý nghĩa</div>
+      <div class="example-box">
+        1. When I turned on the TV, the programme <strong>started</strong>. <span style="color:var(--dim)">→ chương trình bắt đầu SAU KHI tôi mở TV (đồng thời/ngay sau)</span><br>
+        2. When I turned on the TV, the programme <strong>had started</strong>. <span style="color:var(--dim)">→ chương trình đã bắt đầu TRƯỚC KHI tôi mở TV (tôi vào muộn)</span>
+      </div>
+    </div>
+
+    <div style="margin-bottom:0">
+      <div class="grammar-tag">Cấu trúc</div>
+      <div class="example-box">
+        POSITIVE: subject + <strong>had</strong> (hoặc <strong>'d</strong>) + past participle<br>
+        → I <strong>had</strong> finished. / I<strong>'d</strong> finished.<br><br>
+        NEGATIVE: subject + <strong>hadn't</strong> + past participle<br>
+        → I <strong>hadn't</strong> finished.
+      </div>
+    </div>
   </div>
 
-  <div class="lang-sum-tag">📓 GRAMMAR — Past Perfect</div>
-  <p class="instr">Fill in the gaps with the Past Simple or Past Perfect of the verbs in brackets.</p>
-
+  <div class="ex-label"><span class="ex-num">1</span>Điền Past Perfect hoặc Past Simple (SB p33, Ex 7a)</div>
   <div class="fill-ex">
-    <div class="fill-item"><div class="fill-item-num">1</div><div class="fill-item-body"><div class="fill-sentence">By the time she <input class="fill-input" id="wb1" style="max-width:120px" placeholder="meet"> (meet) Jack, he <input class="fill-input" id="wb2" style="max-width:120px" placeholder="be"> (be) married three times.</div></div></div>
-    <div class="fill-item"><div class="fill-item-num">2</div><div class="fill-item-body"><div class="fill-sentence">Kim <input class="fill-input" id="wb3" style="max-width:120px" placeholder="not be"> (not be) tired because she <input class="fill-input" id="wb4" style="max-width:120px" placeholder="already have"> (already have) a few hours' sleep.</div></div></div>
-    <div class="fill-item"><div class="fill-item-num">3</div><div class="fill-item-body"><div class="fill-sentence">When I got home I <input class="fill-input" id="wb5" style="max-width:120px" placeholder="realise"> (realise) that I <input class="fill-input" id="wb6" style="max-width:120px" placeholder="leave"> (leave) my keys at the office.</div></div></div>
-    <div style="display:flex;gap:8px;margin-top:12px">
-      <button class="btn btn-primary" onclick="checkWB()">✅ Kiểm tra</button>
-      <button class="btn btn-outline" onclick="revealWB()">👁 Đáp án</button>
+    <div class="fill-item" id="g1"><div class="fill-num">1</div><div class="fill-content">
+      <div class="fill-sent">Nobody <strong style="color:var(--teal)">had walked</strong> (walk) the Amazon before Ed Stafford.</div>
+    </div></div>
+    <div class="fill-item" id="g2"><div class="fill-num">2</div><div class="fill-content">
+      <div class="fill-sent">We <input class="fi" id="gi2" placeholder="(not think)" style="width:150px"> of going to Brazil until we <input class="fi" id="gi2b" placeholder="(hear)" style="width:130px"> about Ed Stafford's adventure.</div>
+      <div style="display:flex;gap:4px;margin-top:6px"><button class="chk-btn" onclick="chkTwo('gi2','hadn\'t thought','gi2b','heard','g2','gf2')">Kiểm tra</button><button class="rev-btn" onclick="revTwo('gi2','hadn\'t thought','gi2b','heard','g2','gf2')">Đáp án</button></div>
+      <div class="fb" id="gf2"></div>
+    </div></div>
+    <div class="fill-item" id="g3"><div class="fill-num">3</div><div class="fill-content">
+      <div class="fill-sent">I <input class="fi" id="gi3" placeholder="(go)" style="width:110px"> to the shop to get some bread, but they <input class="fi" id="gi3b" placeholder="(sell out)" style="width:140px">.</div>
+      <div style="display:flex;gap:4px;margin-top:6px"><button class="chk-btn" onclick="chkTwo('gi3','went','gi3b','had sold out','g3','gf3')">Kiểm tra</button><button class="rev-btn" onclick="revTwo('gi3','went','gi3b','had sold out','g3','gf3')">Đáp án</button></div>
+      <div class="fb" id="gf3"></div>
+    </div></div>
+    <div class="fill-item" id="g4"><div class="fill-num">4</div><div class="fill-content">
+      <div class="fill-sent">The meeting <input class="fi" id="gi4" placeholder="(finish)" style="width:140px"> by the time I <input class="fi" id="gi4b" placeholder="(get)" style="width:110px"> there.</div>
+      <div style="display:flex;gap:4px;margin-top:6px"><button class="chk-btn" onclick="chkTwo('gi4','had finished','gi4b','got','g4','gf4')">Kiểm tra</button><button class="rev-btn" onclick="revTwo('gi4','had finished','gi4b','got','g4','gf4')">Đáp án</button></div>
+      <div class="fb" id="gf4"></div>
+    </div></div>
+    <div class="fill-item" id="g5"><div class="fill-num">5</div><div class="fill-content">
+      <div class="fill-sent">I <input class="fi" id="gi5" placeholder="(invite)" style="width:120px"> Florence to dinner, but she <input class="fi" id="gi5b" placeholder="(already arrange)" style="width:170px"> to do something else.</div>
+      <div style="display:flex;gap:4px;margin-top:6px"><button class="chk-btn" onclick="chkTwo('gi5','invited','gi5b','had already arranged','g5','gf5')">Kiểm tra</button><button class="rev-btn" onclick="revTwo('gi5','invited','gi5b','had already arranged','g5','gf5')">Đáp án</button></div>
+      <div class="fb" id="gf5"></div>
+    </div></div>
+    <div class="fill-item" id="g6"><div class="fill-num">6</div><div class="fill-content">
+      <div class="fill-sent">When I <input class="fi" id="gi6" placeholder="(get)" style="width:110px"> to the airport, I realised that I <input class="fi" id="gi6b" placeholder="(forget)" style="width:130px"> my passport.</div>
+      <div style="display:flex;gap:4px;margin-top:6px"><button class="chk-btn" onclick="chkTwo('gi6','got','gi6b','had forgotten','g6','gf6')">Kiểm tra</button><button class="rev-btn" onclick="revTwo('gi6','got','gi6b','had forgotten','g6','gf6')">Đáp án</button></div>
+      <div class="fb" id="gf6"></div>
+    </div></div>
+    <div class="fill-item" id="g7"><div class="fill-num">7</div><div class="fill-content">
+      <div class="fill-sent">Erica <input class="fi" id="gi7" placeholder="(ask)" style="width:110px"> me to go to Spain with her, but I <input class="fi" id="gi7b" placeholder="(already book)" style="width:160px"> a holiday in Italy.</div>
+      <div style="display:flex;gap:4px;margin-top:6px"><button class="chk-btn" onclick="chkTwo('gi7','asked','gi7b','had already booked','g7','gf7')">Kiểm tra</button><button class="rev-btn" onclick="revTwo('gi7','asked','gi7b','had already booked','g7','gf7')">Đáp án</button></div>
+      <div class="fb" id="gf7"></div>
+    </div></div>
+    <div class="fill-item" id="g8"><div class="fill-num">8</div><div class="fill-content">
+      <div class="fill-sent">I <input class="fi" id="gi8" placeholder="(see)" style="width:110px"> Trevor Robertson when I <input class="fi" id="gi8b" placeholder="(be)" style="width:100px"> in town yesterday. I <input class="fi" id="gi8c" placeholder="(not see)" style="width:130px"> him for ten years!</div>
+      <div style="display:flex;gap:4px;margin-top:6px"><button class="chk-btn" onclick="chkThree('gi8','saw','gi8b','was','gi8c','hadn\'t seen','g8','gf8')">Kiểm tra</button><button class="rev-btn" onclick="revThree('gi8','saw','gi8b','was','gi8c','hadn\'t seen','g8','gf8')">Đáp án</button></div>
+      <div class="fb" id="gf8"></div>
+    </div></div>
+  </div>
+</div>
+
+<!-- TAB PRONUNCIATION -->
+<div id="tab-pronunciation" class="tab-pane">
+  <div class="sec-heading">🔊 Pronunciation — Stress, weak forms & contractions</div>
+  <div class="sec-sub">Student Book p33 · CD1 Track 32</div>
+  <div class="audio-box">
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px"><span class="cd-tag">CD1 Track 32</span><span style="font-size:.9rem;font-weight:600">Stress, weak forms and contractions in Past Perfect</span></div>
+    <div style="display:flex;align-items:center;gap:12px;padding:12px 16px;background:var(--bg3);border-radius:var(--r2)">
+      <button class="play-btn">▶</button>
+      <div><div style="font-size:.83rem;font-weight:500">SB p33 — Listen and practise</div><div style="font-size:.75rem;color:var(--muted)">Sử dụng audio CD kèm theo giáo trình</div></div>
     </div>
-    <div class="score-box" id="wb-score"></div>
+  </div>
+  <div class="article-box">
+    <div style="font-size:.9rem;font-weight:700;margin-bottom:10px">Mẫu câu (SB p33)</div>
+    <div style="font-family:monospace;font-size:.9rem;line-height:2.4;color:#67E8F9;background:var(--bg3);padding:16px;border-radius:var(--r2);border:1px solid var(--border)">
+      Luke had /əd/ gone back to /tə/ the UK →<br>
+      Cho joined the expedition after Luke had /əd/ gone back to /tə/ the UK.
+    </div>
+    <div class="note-box" style="margin-top:14px">
+      <strong>📌 Quy tắc:</strong><br>
+      • <strong>had</strong> trong Past Perfect thường được phát âm yếu /əd/ và thường được rút gọn thành <strong>'d</strong>: <em>he'd gone, I'd finished</em>.<br>
+      • <strong>to</strong> trước nguyên âm/danh từ cũng thường ở weak form /tə/.<br>
+      • Trọng âm rơi vào động từ chính (GONE, JOINED, EXPEDITION) — không rơi vào "had" hoặc "to".
+    </div>
+  </div>
+  <div class="ex-label"><span class="ex-num">1</span>Luyện các câu Past Perfect khác</div>
+  <div class="qa-list">
+    <div class="qa-item" id="pq1"><div class="qa-q" onclick="toggleQA('pq1')"><div class="qa-qnum">1</div><div class="qa-qtext">He'd lost a lot of weight during the expedition.</div><div class="qa-arrow">›</div></div><div class="qa-answer">He'd /hid/ lost — "had" rút gọn thành 'd, phát âm liền với "He". Nhấn: LOST, WEIGHT, EXpedition.</div></div>
+    <div class="qa-item" id="pq2"><div class="qa-q" onclick="toggleQA('pq2')"><div class="qa-qnum">2</div><div class="qa-qtext">Ed calculated that he'd walked about 6,000 miles.</div><div class="qa-arrow">›</div></div><div class="qa-answer">he'd /hid/ walked — weak form. Nhấn: CALculated, WALKED, SIX THOUSAND MILES.</div></div>
+    <div class="qa-item" id="pq3"><div class="qa-q" onclick="toggleQA('pq3')"><div class="qa-qnum">3</div><div class="qa-qtext">Seven people had already tried to complete this swim.</div><div class="qa-arrow">›</div></div><div class="qa-answer">had /əd/ already — weak form. Nhấn: SEVen PEOple, ALREADY, TRIED, COMPLETE.</div></div>
   </div>
 </div>
 
-<!-- ══════════════════════════════════════
-     TAB 5: LANGUAGE SUMMARY
-══════════════════════════════════════ -->
-<div class="tab-pane" id="tab-langsummary">
-  <div class="sec-heading">Language Summary 4B</div>
-  <div class="sec-sub">VOCABULARY 4.2 · GRAMMAR 4.3</div>
-
-  <div class="lang-sum-tag">📗 VOCABULARY 4.2 — Adjectives (2): character</div>
-  <div class="coll-grid">
-    <div class="coll-row"><div class="coll-verb">adventurous</div><div><div class="coll-phrase">like visiting new places and having new experiences</div><div class="coll-vi">🇻🇳 thích phiêu lưu</div></div></div>
-    <div class="coll-row"><div class="coll-verb">talented</div><div><div class="coll-phrase">have a natural ability to do something</div><div class="coll-vi">🇻🇳 có tài năng</div></div></div>
-    <div class="coll-row"><div class="coll-verb">sensible</div><div><div class="coll-phrase">can make good decisions based on reasons</div><div class="coll-vi">🇻🇳 biết điều, thực tế</div></div></div>
-    <div class="coll-row"><div class="coll-verb">sensitive</div><div><div class="coll-phrase">can understand other people's feelings</div><div class="coll-vi">🇻🇳 nhạy cảm</div></div></div>
-    <div class="coll-row"><div class="coll-verb">brave</div><div><div class="coll-phrase">not frightened in dangerous situations</div><div class="coll-vi">🇻🇳 dũng cảm</div></div></div>
-    <div class="coll-row"><div class="coll-verb">determined</div><div><div class="coll-phrase">want to do something very much</div><div class="coll-vi">🇻🇳 quyết tâm</div></div></div>
-    <div class="coll-row"><div class="coll-verb">reliable</div><div><div class="coll-phrase">always do what you want or expect</div><div class="coll-vi">🇻🇳 đáng tin cậy</div></div></div>
-    <div class="coll-row"><div class="coll-verb">independent</div><div><div class="coll-phrase">don't want or need other people to do things</div><div class="coll-vi">🇻🇳 độc lập</div></div></div>
-    <div class="coll-row"><div class="coll-verb">organised</div><div><div class="coll-phrase">plan things well and don't waste time</div><div class="coll-vi">🇻🇳 có tổ chức</div></div></div>
-    <div class="coll-row"><div class="coll-verb">stubborn</div><div><div class="coll-phrase">won't change their ideas</div><div class="coll-vi">🇻🇳 bướng bỉnh</div></div></div>
-    <div class="coll-row"><div class="coll-verb">ambitious</div><div><div class="coll-phrase">want to be very successful</div><div class="coll-vi">🇻🇳 có tham vọng</div></div></div>
-    <div class="coll-row"><div class="coll-verb">confident</div><div><div class="coll-phrase">sure that they can do things successfully</div><div class="coll-vi">🇻🇳 tự tin</div></div></div>
-    <div class="coll-row"><div class="coll-verb">generous</div><div><div class="coll-phrase">like giving money and presents</div><div class="coll-vi">🇻🇳 hào phóng</div></div></div>
-    <div class="coll-row"><div class="coll-verb">mean</div><div><div class="coll-phrase">don't like spending money</div><div class="coll-vi">🇻🇳 keo kiệt</div></div></div>
+<!-- TAB SPEAKING -->
+<div id="tab-speaking" class="tab-pane">
+  <div class="sec-heading">💬 Speaking — Talking about people you know</div>
+  <div class="sec-sub">Student Book p32 · Ex 1b-c</div>
+  <div class="ex-label"><span class="ex-num">1</span>Mô tả người bạn biết bằng character adjectives</div>
+  <div class="speaking-box">
+    <div style="font-size:.85rem;font-weight:600;margin-bottom:10px">🗣 Mẫu</div>
+    <div style="background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:12px 16px;font-size:.85rem;margin-bottom:10px">"My friend Gregory is very talented. He's a designer and he works..."</div>
+  </div>
+  <div class="instruction">Nghĩ về 4 người bạn biết. Chọn tính từ từ danh sách để mô tả họ và giải thích tại sao.</div>
+  <div class="adj-grid">
+    <div class="adj-chip">adventurous</div><div class="adj-chip">talented</div><div class="adj-chip">sensible</div><div class="adj-chip">sensitive</div>
+    <div class="adj-chip">brave</div><div class="adj-chip">determined</div><div class="adj-chip">reliable</div><div class="adj-chip">independent</div>
+    <div class="adj-chip">organised</div><div class="adj-chip">stubborn</div><div class="adj-chip">ambitious</div><div class="adj-chip">confident</div>
+    <div class="adj-chip">practical</div><div class="adj-chip">generous</div><div class="adj-chip">mean</div><div class="adj-chip">responsible</div>
+    <div class="adj-chip">aggressive</div><div class="adj-chip">optimistic</div><div class="adj-chip">pessimistic</div>
   </div>
 
-  <div class="lang-sum-tag">📗 GRAMMAR 4.3 — Past Perfect</div>
-  <div class="grammar-table">
-    <table>
-      <thead><tr><th>Tense</th><th>Use</th><th>Example</th></tr></thead>
-      <tbody>
-        <tr><td><strong>Past Perfect</strong></td><td>Action that happened first in the past</td><td class="aux">Cho <strong>had gone</strong> back to the UK.</td></tr>
-        <tr><td><strong>Past Simple</strong></td><td>Action that happened second</td><td class="aux">Cho <strong>joined</strong> the expedition.</td></tr>
-      </tbody>
-    </table>
-  </div>
-  <div class="tip-box">
-    <strong>Form:</strong> had + past participle<br>
-    <strong>Negative:</strong> hadn't + past participle<br>
-    <strong>Question:</strong> Had + subject + past participle?
+  <div class="divider"></div>
+  <div class="ex-label"><span class="ex-num">2</span>Thảo luận về các nhà thám hiểm (SB p32, Ex 2)</div>
+  <div class="speaking-box">
+    <div class="disc-q"><div class="disc-q-num">1</div><div>What's the most adventurous thing you've ever done?</div></div>
+    <div class="disc-q"><div class="disc-q-num">2</div><div>Are there any famous adventurers from your country? If so, what do you know about them?</div></div>
+    <div class="disc-q"><div class="disc-q-num">3</div><div>What character adjectives would you use to describe a successful explorer or adventurer?</div></div>
+    <div class="disc-q"><div class="disc-q-num">4</div><div>Would you like to go on an expedition like Ed Stafford's? Why / why not?</div></div>
   </div>
 </div>
 
-</div><!-- /page-content -->
+<!-- TAB WORKBOOK -->
+<div id="tab-workbook" class="tab-pane">
+  <div class="sec-heading">📝 Workbook — Bài 4B Modern adventurers</div>
+  <div class="sec-sub">Workbook p21–22</div>
 
+  <div class="wb-tag">📚 Adjectives (2): character — WB p21, Ex 1</div>
+  <div class="ex-label"><span class="ex-num">1</span>Ô chữ tính cách (Crossword) — WB p21</div>
+  <div class="instruction">Hoàn thành các ô chữ với tính từ chỉ tính cách phù hợp với mỗi mô tả. Số trong ngoặc là số chữ cái.</div>
+  <div class="fill-ex">
+    <div class="fill-item" id="cw1"><div class="fill-num">1</div><div class="fill-content">
+      <div class="fill-sent">Steve prefers to travel on his own. (11) → <input class="fi" id="cwi1" placeholder="11 letters" style="width:160px"></div>
+      <div style="display:flex;gap:4px;margin-top:6px"><button class="chk-btn" onclick="chk('cwi1','independent','cw1','cwf1')">Kiểm tra</button><button class="rev-btn" onclick="rev('cwi1','INDEPENDENT','cw1','cwf1')">Đáp án</button></div>
+      <div class="fb" id="cwf1"></div>
+    </div></div>
+    <div class="fill-item" id="cw2"><div class="fill-num">2</div><div class="fill-content">
+      <div class="fill-sent">They often go on holiday to places I've never heard of! (11) → <input class="fi" id="cwi2" placeholder="11 letters" style="width:160px"></div>
+      <div style="display:flex;gap:4px;margin-top:6px"><button class="chk-btn" onclick="chk('cwi2','adventurous','cw2','cwf2')">Kiểm tra</button><button class="rev-btn" onclick="rev('cwi2','ADVENTUROUS','cw2','cwf2')">Đáp án</button></div>
+      <div class="fb" id="cwf2"></div>
+    </div></div>
+    <div class="fill-item" id="cw3"><div class="fill-num">3</div><div class="fill-content">
+      <div class="fill-sent">They won't give up until they find the answer. (10) → <input class="fi" id="cwi3" placeholder="10 letters" style="width:160px"></div>
+      <div style="display:flex;gap:4px;margin-top:6px"><button class="chk-btn" onclick="chk('cwi3','determined','cw3','cwf3')">Kiểm tra</button><button class="rev-btn" onclick="rev('cwi3','DETERMINED','cw3','cwf3')">Đáp án</button></div>
+      <div class="fb" id="cwf3"></div>
+    </div></div>
+    <div class="fill-item" id="cw4"><div class="fill-num">4</div><div class="fill-content">
+      <div class="fill-sent">Kathy will know what time the meeting is. (9) → <input class="fi" id="cwi4" placeholder="9 letters" style="width:160px"></div>
+      <div style="display:flex;gap:4px;margin-top:6px"><button class="chk-btn" onclick="chk('cwi4','organised','cw4','cwf4')">Kiểm tra</button><button class="rev-btn" onclick="rev('cwi4','ORGANISED','cw4','cwf4')">Đáp án</button></div>
+      <div class="fb" id="cwf4"></div>
+    </div></div>
+    <div class="fill-item" id="cw5"><div class="fill-num">5</div><div class="fill-content">
+      <div class="fill-sent">Rob can play several instruments really well. (8) → <input class="fi" id="cwi5" placeholder="8 letters" style="width:160px"></div>
+      <div style="display:flex;gap:4px;margin-top:6px"><button class="chk-btn" onclick="chk('cwi5','talented','cw5','cwf5')">Kiểm tra</button><button class="rev-btn" onclick="rev('cwi5','TALENTED','cw5','cwf5')">Đáp án</button></div>
+      <div class="fb" id="cwf5"></div>
+    </div></div>
+    <div class="fill-item" id="cw6"><div class="fill-num">6</div><div class="fill-content">
+      <div class="fill-sent">My boss always makes good decisions. (8) → <input class="fi" id="cwi6" placeholder="8 letters" style="width:160px"></div>
+      <div style="display:flex;gap:4px;margin-top:6px"><button class="chk-btn" onclick="chk('cwi6','sensible','cw6','cwf6')">Kiểm tra</button><button class="rev-btn" onclick="rev('cwi6','SENSIBLE','cw6','cwf6')">Đáp án</button></div>
+      <div class="fb" id="cwf6"></div>
+    </div></div>
+    <div class="fill-item" id="cw7"><div class="fill-num">7</div><div class="fill-content">
+      <div class="fill-sent">If Clare promises to do something, she'll do it! (8) → <input class="fi" id="cwi7" placeholder="8 letters" style="width:160px"></div>
+      <div style="display:flex;gap:4px;margin-top:6px"><button class="chk-btn" onclick="chk('cwi7','reliable','cw7','cwf7')">Kiểm tra</button><button class="rev-btn" onclick="rev('cwi7','RELIABLE','cw7','cwf7')">Đáp án</button></div>
+      <div class="fb" id="cwf7"></div>
+    </div></div>
+    <div class="fill-item" id="cw8"><div class="fill-num">8</div><div class="fill-content">
+      <div class="fill-sent">My sister always brings me back a present from her holidays. (8) → <input class="fi" id="cwi8" placeholder="8 letters" style="width:160px"></div>
+      <div style="display:flex;gap:4px;margin-top:6px"><button class="chk-btn" onclick="chk('cwi8','generous','cw8','cwf8')">Kiểm tra</button><button class="rev-btn" onclick="rev('cwi8','GENEROUS','cw8','cwf8')">Đáp án</button></div>
+      <div class="fb" id="cwf8"></div>
+    </div></div>
+    <div class="fill-item" id="cw9"><div class="fill-num">9</div><div class="fill-content">
+      <div class="fill-sent">Tim gets embarrassed quite easily. (9) → <input class="fi" id="cwi9" placeholder="9 letters" style="width:160px"></div>
+      <div style="display:flex;gap:4px;margin-top:6px"><button class="chk-btn" onclick="chk('cwi9','sensitive','cw9','cwf9')">Kiểm tra</button><button class="rev-btn" onclick="rev('cwi9','SENSITIVE','cw9','cwf9')">Đáp án</button></div>
+      <div class="fb" id="cwf9"></div>
+    </div></div>
+    <div class="fill-item" id="cw10"><div class="fill-num">10</div><div class="fill-content">
+      <div class="fill-sent">Sue wants to have her own company by the time she's 30. (9) → <input class="fi" id="cwi10" placeholder="9 letters" style="width:160px"></div>
+      <div style="display:flex;gap:4px;margin-top:6px"><button class="chk-btn" onclick="chk('cwi10','ambitious','cw10','cwf10')">Kiểm tra</button><button class="rev-btn" onclick="rev('cwi10','AMBITIOUS','cw10','cwf10')">Đáp án</button></div>
+      <div class="fb" id="cwf10"></div>
+    </div></div>
+  </div>
+
+  <div class="wb-tag" style="margin-top:20px">⚙ Past Perfect — WB p22, Ex 2</div>
+  <div class="ex-label"><span class="ex-num">2</span>Điền Past Perfect (WB p22, Ex 2)</div>
+  <div class="fill-ex">
+    <div class="fill-item" id="p2-1"><div class="fill-num">1</div><div class="fill-content">
+      <div class="fill-sent">Connor <strong style="color:var(--teal)">had arranged</strong> (arrange) to meet up with some friends, so he couldn't come with us.</div>
+    </div></div>
+    <div class="fill-item" id="p2-2"><div class="fill-num">2</div><div class="fill-content">
+      <div class="fill-sent">I really wanted to see the concert, but it <input class="fi" id="p2i2" placeholder="(sell out)" style="width:150px">.</div>
+      <div style="display:flex;gap:4px;margin-top:6px"><button class="chk-btn" onclick="chk('p2i2','had sold out','p2-2','p2f2')">Kiểm tra</button><button class="rev-btn" onclick="rev('p2i2','had sold out','p2-2','p2f2')">Đáp án</button></div>
+      <div class="fb" id="p2f2"></div>
+    </div></div>
+    <div class="fill-item" id="p2-3"><div class="fill-num">3</div><div class="fill-content">
+      <div class="fill-sent">Simon <input class="fi" id="p2i3" placeholder="(not drive)" style="width:150px"> abroad before, so he wasn't very confident.</div>
+      <div style="display:flex;gap:4px;margin-top:6px"><button class="chk-btn" onclick="chk('p2i3','hadn\'t driven','p2-3','p2f3')">Kiểm tra</button><button class="rev-btn" onclick="rev('p2i3','hadn\'t driven','p2-3','p2f3')">Đáp án</button></div>
+      <div class="fb" id="p2f3"></div>
+    </div></div>
+    <div class="fill-item" id="p2-4"><div class="fill-num">4</div><div class="fill-content">
+      <div class="fill-sent">I <input class="fi" id="p2i4" placeholder="(not hear)" style="width:150px"> any of their music before, but I thought the gig was excellent.</div>
+      <div style="display:flex;gap:4px;margin-top:6px"><button class="chk-btn" onclick="chk('p2i4','hadn\'t heard','p2-4','p2f4')">Kiểm tra</button><button class="rev-btn" onclick="rev('p2i4','hadn\'t heard','p2-4','p2f4')">Đáp án</button></div>
+      <div class="fb" id="p2f4"></div>
+    </div></div>
+    <div class="fill-item" id="p2-5"><div class="fill-num">5</div><div class="fill-content">
+      <div class="fill-sent">By the time I arrived, everyone <input class="fi" id="p2i5" placeholder="(leave)" style="width:130px">.</div>
+      <div style="display:flex;gap:4px;margin-top:6px"><button class="chk-btn" onclick="chk('p2i5','had left','p2-5','p2f5')">Kiểm tra</button><button class="rev-btn" onclick="rev('p2i5','had left','p2-5','p2f5')">Đáp án</button></div>
+      <div class="fb" id="p2f5"></div>
+    </div></div>
+    <div class="fill-item" id="p2-6"><div class="fill-num">6</div><div class="fill-content">
+      <div class="fill-sent">He failed the test because he <input class="fi" id="p2i6" placeholder="(not do)" style="width:150px"> any revision.</div>
+      <div style="display:flex;gap:4px;margin-top:6px"><button class="chk-btn" onclick="chk('p2i6','hadn\'t done','p2-6','p2f6')">Kiểm tra</button><button class="rev-btn" onclick="rev('p2i6','hadn\'t done','p2-6','p2f6')">Đáp án</button></div>
+      <div class="fb" id="p2f6"></div>
+    </div></div>
+    <div class="fill-item" id="p2-7"><div class="fill-num">7</div><div class="fill-content">
+      <div class="fill-sent">When Jade arrived at the restaurant, she realised she <input class="fi" id="p2i7" placeholder="(go)" style="width:150px"> there before.</div>
+      <div style="display:flex;gap:4px;margin-top:6px"><button class="chk-btn" onclick="chk('p2i7','had been','p2-7','p2f7')">Kiểm tra</button><button class="rev-btn" onclick="rev('p2i7','had been','p2-7','p2f7')">Đáp án</button></div>
+      <div class="fb" id="p2f7"></div>
+    </div></div>
+    <div class="fill-item" id="p2-8"><div class="fill-num">8</div><div class="fill-content">
+      <div class="fill-sent">They <input class="fi" id="p2i8" placeholder="(not know)" style="width:150px"> each other for long when they decided to get engaged.</div>
+      <div style="display:flex;gap:4px;margin-top:6px"><button class="chk-btn" onclick="chk('p2i8','hadn\'t known','p2-8','p2f8')">Kiểm tra</button><button class="rev-btn" onclick="rev('p2i8','hadn\'t known','p2-8','p2f8')">Đáp án</button></div>
+      <div class="fb" id="p2f8"></div>
+    </div></div>
+  </div>
+
+  <div class="wb-tag" style="margin-top:20px">📰 Reading: Charlie's story — WB p22, Ex 3–4</div>
+  <div class="ex-label"><span class="ex-num">3</span>Phần A — Chọn từ đúng (WB p22)</div>
+  <div class="article-box">
+    <div class="article-tag">📖 Part A</div>
+    <div class="article-body">
+      <p>By the time I was 18, I ¹stopped/<strong style="color:var(--teal)">had stopped</strong> going on holiday with my parents. The first year that I ²stayed/<strong style="color:var(--teal)">had stayed</strong> at home, my parents asked me to pick them up at the airport. The night before they ³<strong style="color:var(--teal)">got back</strong>/had got back, I realised the house was a mess. I ⁴didn't tidy up/<strong style="color:var(--teal)">hadn't tidied up</strong> for two weeks. I finally finished tidying about 3 a.m. and a few minutes later I ⁵<strong style="color:var(--teal)">was</strong>/had been fast asleep.</p>
+      <p>I woke up suddenly at 8 a.m. I ⁶<strong style="color:var(--teal)">arranged</strong>/had arranged to meet my parents at the airport at 8.30 a.m. but I ⁷<strong style="color:var(--teal)">didn't set</strong>/hadn't set the alarm! I quickly set off for Heathrow airport, but it's one of the biggest airports in the world. I had no idea which terminal they ⁸<strong style="color:var(--teal)">arrived</strong>/had arrived at! And this ⁹was/<strong style="color:var(--teal)">had been</strong> before the days of mobile phones …</p>
+    </div>
+  </div>
+  <div class="instruction" style="margin-top:14px"><strong>Tick các sự kiện xảy ra trong câu chuyện (WB p22, Ex 3b):</strong></div>
+  <div style="background:var(--bg2);border:1px solid var(--border);border-radius:var(--r2);padding:14px;font-size:.86rem;line-height:2">
+    ✅ a) Charlie's parents asked him to pick them up at the airport<br>
+    ⬜ b) Charlie tidied up the house <span style="color:var(--dim);font-style:italic">(false — he had NOT tidied up for 2 weeks until that night)</span><br>
+    ⬜ c) Charlie set his alarm <span style="color:var(--dim);font-style:italic">(false — he DIDN'T set the alarm)</span><br>
+    ⬜ d) Charlie's parents arrived at the airport <span style="color:var(--dim);font-style:italic">(not confirmed in Part A — see Part B)</span><br>
+    ✅ e) Charlie woke up<br>
+    ⬜ f) Charlie phoned his parents <span style="color:var(--dim);font-style:italic">(not mentioned)</span>
+  </div>
+
+  <div class="ex-label" style="margin-top:20px"><span class="ex-num">4</span>Phần B — Điền Past Perfect/Past Simple (WB p22)</div>
+  <div class="article-box">
+    <div class="article-tag">📖 Part B</div>
+    <div class="article-body">
+      <p>When I arrived at Heathrow Terminal 1, I was already over an hour late. When I eventually found my parents at Terminal 3, they ¹<strong style="color:var(--teal)">had spent</strong> (spend) two hours waiting for me. They were not pleased. They ²<input class="fi" id="b2" placeholder="(be)" style="width:120px"> on the plane for 12 hours and they were exhausted. Back at the car, the situation became even worse. I couldn't find my keys! I ³<input class="fi" id="b3" placeholder="(lose)" style="width:120px"> them somewhere at the airport while looking for my parents.</p>
+      <p>My parents just wanted to go home. We phoned my uncle and he came and picked them up. I stayed to look for my keys. Two hours later, I ⁴<input class="fi" id="b4" placeholder="(get)" style="width:120px"> home. Fortunately, someone ⁵<input class="fi" id="b5" placeholder="(find)" style="width:120px"> my keys at the airport. The first thing I ⁶<input class="fi" id="b6" placeholder="(see)" style="width:120px"> was my father and my uncle repairing a broken window. Had someone broken into our house?</p>
+      <p>"No," my dad explained. He looked fed up. "When we ⁷<input class="fi" id="b7" placeholder="(get back)" style="width:130px"> home, we realised we ⁸<input class="fi" id="b8" placeholder="(not take)" style="width:150px"> any house keys on holiday. We had to break a window to get in."</p>
+      <div style="margin-top:10px"><button class="chk-btn" onclick="checkPartB()">Kiểm tra tất cả</button><button class="rev-btn" onclick="revealPartB()">Xem đáp án</button></div>
+      <div id="partb-fb" style="margin-top:8px;font-size:.82rem;display:none"></div>
+    </div>
+  </div>
+  <div class="instruction" style="margin-top:14px"><strong>Đáp án thứ tự sự kiện (WB p22, Ex 4b):</strong></div>
+  <div style="background:var(--bg2);border:1px solid var(--border);border-radius:var(--r2);padding:14px;font-size:.86rem;line-height:2">
+    <strong>1</strong> Charlie lost his keys → <strong>2</strong> Charlie's uncle arrived at the airport → <strong>3</strong> Charlie's parents got home → <strong>4</strong> Charlie's parents broke a window → <strong>5</strong> Charlie met his parents → <strong>6</strong> Charlie got home
+  </div>
+</div>
+
+</div><!-- page-content -->
 <script>
-function showTab(id){
-  document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));
-  document.querySelectorAll('.tnav-btn').forEach(b=>b.classList.remove('active'));
-  document.getElementById('tab-'+id).classList.add('active');
-  const tabs=['vocab','listening','grammar','workbook','langsummary'];
-  const idx=tabs.indexOf(id);
-  document.querySelectorAll('.tnav-btn')[idx]?.classList.add('active');
+function toggleTheme(){const d=document.documentElement;d.dataset.theme=d.dataset.theme==='light'?'':'light';}
+function showTab(id,btn){document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));document.querySelectorAll('.tnav-btn').forEach(b=>b.classList.remove('active'));document.getElementById('tab-'+id).classList.add('active');btn.classList.add('active');}
+function chk(inputId,ans,rowId,fbId){
+  const v=document.getElementById(inputId).value.trim().toLowerCase();
+  const ok=ans.toLowerCase().split('|').some(a=>v===a||v.includes(a));
+  document.getElementById(inputId).className=ok?'fi ok':'fi err';
+  const fb=document.getElementById(fbId);if(fb){fb.className=ok?'fb ok':'fb err';fb.textContent=ok?'✅ Đúng!':'❌ Chưa đúng. Thử lại!';}
 }
-function toggleTheme(){const t=document.documentElement.getAttribute('data-theme')==='light'?'dark':'light';document.documentElement.setAttribute('data-theme',t==='light'?'light':'');document.getElementById('theme-btn').textContent=t==='light'?'🌙':'☀️';localStorage.setItem('f2f_4b_theme',t);}
-function markDone(){showToast('✅ 4B Modern adventurers đã hoàn thành!');}
-function showToast(msg){let t=document.getElementById('toast');if(!t){t=document.createElement('div');t.id='toast';t.style.cssText='position:fixed;bottom:20px;right:20px;z-index:999;background:var(--bg2);border:1px solid var(--border2);padding:10px 18px;border-radius:8px;font-size:.82rem;box-shadow:0 4px 20px rgba(0,0,0,.3);transition:opacity .3s';document.body.appendChild(t);}t.textContent=msg;t.style.opacity='1';clearTimeout(showToast._t);showToast._t=setTimeout(()=>t.style.opacity='0',2400);}
-function toggleQA(btn){const item=btn.closest('.qa-item');item.classList.toggle('open');}
+function rev(inputId,ans,rowId,fbId){
+  document.getElementById(inputId).value=ans;document.getElementById(inputId).className='fi ok';
+  const fb=document.getElementById(fbId);if(fb){fb.className='fb ok';fb.textContent='💡 Đáp án: '+ans;}
+}
+function chkTwo(i1,a1,i2,a2,rowId,fbId){
+  const v1=document.getElementById(i1).value.trim().toLowerCase();
+  const v2=document.getElementById(i2).value.trim().toLowerCase();
+  const ok1=a1.toLowerCase().split('|').some(a=>v1===a);
+  const ok2=a2.toLowerCase().split('|').some(a=>v2===a);
+  document.getElementById(i1).className=ok1?'fi ok':'fi err';
+  document.getElementById(i2).className=ok2?'fi ok':'fi err';
+  const fb=document.getElementById(fbId);
+  if(fb){fb.className=(ok1&&ok2)?'fb ok':'fb err';fb.textContent=(ok1&&ok2)?'✅ Đúng cả hai!':'❌ Xem lại!';}
+}
+function revTwo(i1,a1,i2,a2,rowId,fbId){
+  document.getElementById(i1).value=a1;document.getElementById(i1).className='fi ok';
+  document.getElementById(i2).value=a2;document.getElementById(i2).className='fi ok';
+  const fb=document.getElementById(fbId);if(fb){fb.className='fb ok';fb.textContent='💡 Đáp án: '+a1+' / '+a2;}
+}
+function chkThree(i1,a1,i2,a2,i3,a3,rowId,fbId){
+  const v1=document.getElementById(i1).value.trim().toLowerCase();
+  const v2=document.getElementById(i2).value.trim().toLowerCase();
+  const v3=document.getElementById(i3).value.trim().toLowerCase();
+  const ok1=v1===a1.toLowerCase(),ok2=v2===a2.toLowerCase(),ok3=v3===a3.toLowerCase();
+  document.getElementById(i1).className=ok1?'fi ok':'fi err';
+  document.getElementById(i2).className=ok2?'fi ok':'fi err';
+  document.getElementById(i3).className=ok3?'fi ok':'fi err';
+  const fb=document.getElementById(fbId);
+  if(fb){fb.className=(ok1&&ok2&&ok3)?'fb ok':'fb err';fb.textContent=(ok1&&ok2&&ok3)?'✅ Đúng cả ba!':'❌ Xem lại!';}
+}
+function revThree(i1,a1,i2,a2,i3,a3,rowId,fbId){
+  document.getElementById(i1).value=a1;document.getElementById(i1).className='fi ok';
+  document.getElementById(i2).value=a2;document.getElementById(i2).className='fi ok';
+  document.getElementById(i3).value=a3;document.getElementById(i3).className='fi ok';
+  const fb=document.getElementById(fbId);if(fb){fb.className='fb ok';fb.textContent='💡 Đáp án: '+a1+' / '+a2+' / '+a3;}
+}
+function selM(el,choice,grp){
+  const p=el.closest('.mcq-item');p.querySelectorAll('.mcq-opt').forEach(o=>o.classList.remove('ok','err'));
+  const fb=document.getElementById(grp+'-fb');
+  if(choice==='A'){el.classList.add('ok');if(fb)fb.style.display='block';}
+  else{el.classList.add('err');if(fb)fb.style.display='block';}
+}
+function toggleQA(id){document.getElementById(id).classList.toggle('open');}
+function toggleTr(id){document.getElementById(id).classList.toggle('show');}
 
-function checkL1(){
-  const inp=document.getElementById('l1');
-  const ok=inp.value.trim().toLowerCase().includes('amazon')||inp.value.trim().toLowerCase().includes('ed stafford');
-  inp.className='fill-input '+(ok?'correct':'wrong');
+const partBAns={b2:'had been',b3:'had lost',b4:'got',b5:'had found',b6:'saw',b7:'got back',b8:"hadn't taken"};
+function checkPartB(){
+  let ok=0,total=Object.keys(partBAns).length;
+  for(const id in partBAns){
+    const inp=document.getElementById(id);const v=inp.value.trim().toLowerCase();
+    if(v===partBAns[id].toLowerCase()){inp.className='fi ok';ok++;}else{inp.className='fi err';}
+  }
+  const fb=document.getElementById('partb-fb');fb.style.display='block';
+  fb.innerHTML=ok===total?'<span style="color:var(--green)">🎉 Đúng tất cả!</span>':`<span style="color:var(--orange)">Đúng ${ok}/${total}.</span>`;
 }
-function checkL2(){
-  const inp=document.getElementById('l2');
-  const ok=inp.value.trim().toLowerCase().includes('bites')||inp.value.trim().toLowerCase().includes('insect');
-  inp.className='fill-input '+(ok?'correct':'wrong');
+function revealPartB(){
+  for(const id in partBAns){const inp=document.getElementById(id);inp.value=partBAns[id];inp.className='fi ok';}
+  const fb=document.getElementById('partb-fb');fb.style.display='block';fb.innerHTML='<span style="color:var(--teal)">💡 Đáp án đã điền.</span>';
 }
-function checkL3(){
-  const inp=document.getElementById('l3');
-  const ok=inp.value.trim().toLowerCase().includes('blog')||inp.value.trim().toLowerCase().includes('website')||inp.value.trim().toLowerCase().includes('messages');
-  inp.className='fill-input '+(ok?'correct':'wrong');
-}
-function checkL4(){
-  const inp=document.getElementById('l4');
-  const ok=inp.value.trim().toLowerCase().includes('marathon')||inp.value.trim().toLowerCase().includes('rest');
-  inp.className='fill-input '+(ok?'correct':'wrong');
-}
-function revealLAnswers(){
-  document.getElementById('l1').value='Ed Stafford walking the Amazon';document.getElementById('l1').className='fill-input correct';
-  document.getElementById('l2').value='200,000 mosquito bites, 600 wasp stings, 12 scorpion stings';document.getElementById('l2').className='fill-input correct';
-  document.getElementById('l3').value='He wrote a blog and uploaded videos every day';document.getElementById('l3').className='fill-input correct';
-  document.getElementById('l4').value='He ran four marathons in 27 hours';document.getElementById('l4').className='fill-input correct';
-}
-
-function checkPP(){
-  const ans={pp1:'had walked',pp2:'didn\'t think',pp3:'heard',pp4:'went',pp5:'had sold out',pp6:'had finished',pp7:'got',pp8:'saw',pp9:'was',pp10:'hadn\'t seen'};
-  let c=0,total=10;
-  Object.entries(ans).forEach(([id,val])=>{
-    const inp=document.getElementById(id);
-    if(inp){
-      const ok=inp.value.trim().toLowerCase().replace(/\s+/g,'')===val.toLowerCase().replace(/\s+/g,'');
-      inp.className='fill-input '+(ok?'correct':'wrong');
-      if(ok)c++;
-    }
-  });
-  const sc=document.getElementById('pp-score');
-  sc.innerHTML=`<div class="score-n">${c}/${total}</div><div class="score-msg">${c===total?'🎉 All correct!':'Review GRAMMAR 4.3.'}</div>`;
-  sc.className='score-box show';
-}
-function revealPP(){
-  const ans={pp1:'had walked',pp2:'didn\'t think',pp3:'heard',pp4:'went',pp5:'had sold out',pp6:'had finished',pp7:'got',pp8:'saw',pp9:'was',pp10:'hadn\'t seen'};
-  Object.entries(ans).forEach(([id,val])=>{const inp=document.getElementById(id);if(inp){inp.value=val;inp.className='fill-input correct';}});
-}
-
-function checkWB(){
-  const ans={wb1:'met',wb2:'had been',wb3:'wasn\'t',wb4:'had already had',wb5:'realised',wb6:'had left'};
-  let c=0,total=6;
-  Object.entries(ans).forEach(([id,val])=>{
-    const inp=document.getElementById(id);
-    if(inp){
-      const ok=inp.value.trim().toLowerCase().replace(/\s+/g,'')===val.toLowerCase().replace(/\s+/g,'');
-      inp.className='fill-input '+(ok?'correct':'wrong');
-      if(ok)c++;
-    }
-  });
-  const sc=document.getElementById('wb-score');
-  sc.innerHTML=`<div class="score-n">${c}/${total}</div><div class="score-msg">${c===total?'🎉 All correct!':'Check the workbook answers.'}</div>`;
-  sc.className='score-box show';
-}
-function revealWB(){
-  const ans={wb1:'met',wb2:'had been',wb3:'wasn\'t',wb4:'had already had',wb5:'realised',wb6:'had left'};
-  Object.entries(ans).forEach(([id,val])=>{const inp=document.getElementById(id);if(inp){inp.value=val;inp.className='fill-input correct';}});
-}
-
-document.addEventListener('DOMContentLoaded',()=>{
-  const t=localStorage.getItem('f2f_4b_theme')||'dark';
-  if(t==='light'){document.documentElement.setAttribute('data-theme','light');document.getElementById('theme-btn').textContent='🌙';}
-});
 </script>
 </body>
 </html>
