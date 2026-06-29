@@ -7,446 +7,618 @@
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap');
 :root{
-  --bg:#0D1117;--bg2:#161B22;--bg3:#21262D;--bg4:#2D333B;
-  --border:#30363D;--border2:#3D444D;
+  --bg:#0D1117;--bg2:#161B22;--bg3:#21262D;--border:#30363D;
   --text:#E6EDF3;--dim:#8B949E;--muted:#484F58;
-  --blue:#2563EB;--blue-l:rgba(37,99,235,.15);
   --green:#10B981;--green-l:rgba(16,185,129,.12);
   --orange:#F59E0B;--orange-l:rgba(245,158,11,.12);
   --red:#EF4444;--red-l:rgba(239,68,68,.12);
-  --teal:#14B8A6;--purple:#8B5CF6;--purple-l:rgba(139,92,246,.12);
+  --teal:#14B8A6;--amber:#D97706;--amber-l:rgba(217,119,6,.15);
   --r:10px;--r2:6px;--tr:.18s ease;
 }
-[data-theme=light]{--bg:#F8FAFC;--bg2:#fff;--bg3:#F1F5F9;--bg4:#E2E8F0;--border:#E2E8F0;--border2:#CBD5E1;--text:#0F172A;--dim:#475569;--muted:#94A3B8;--blue:#1D4ED8;--blue-l:rgba(29,78,216,.1)}
+[data-theme=light]{--bg:#F8FAFC;--bg2:#fff;--bg3:#F1F5F9;--border:#E2E8F0;--text:#0F172A;--dim:#475569;--muted:#94A3B8;--amber:#B45309;--amber-l:rgba(180,83,9,.1)}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);font-size:15px;line-height:1.6}
-button{cursor:pointer;border:none;background:none;font-family:inherit}input,textarea,select{font-family:inherit}
-
+button{cursor:pointer;border:none;background:none;font-family:inherit}
 .top-bar{background:var(--bg2);border-bottom:1px solid var(--border);padding:10px 20px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:50;flex-wrap:wrap}
-.back-btn{display:flex;align-items:center;gap:6px;padding:6px 14px;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);font-size:.82rem;color:var(--dim);cursor:pointer;transition:all var(--tr)}
-.back-btn:hover{border-color:var(--blue);color:var(--blue)}
-.lesson-badge{padding:4px 12px;background:var(--purple-l);border:1px solid rgba(139,92,246,.3);border-radius:4px;font-size:.75rem;font-weight:700;color:#A78BFA;letter-spacing:.05em}
+.back-btn{padding:6px 14px;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);font-size:.82rem;color:var(--dim);cursor:pointer}
+.back-btn:hover{border-color:var(--amber);color:var(--amber)}
+.lesson-badge{padding:4px 12px;background:var(--amber-l);border:1px solid rgba(217,119,6,.35);border-radius:4px;font-size:.75rem;font-weight:700;color:#FCD34D;letter-spacing:.05em}
 .lesson-title-h{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700}
-.top-actions{margin-left:auto;display:flex;gap:8px}
-.theme-btn{width:34px;height:34px;display:flex;align-items:center;justify-content:center;border-radius:var(--r2);background:var(--bg3);border:1px solid var(--border);cursor:pointer;font-size:.95rem;color:var(--dim);transition:all var(--tr)}
-.theme-btn:hover{border-color:var(--blue);color:var(--blue)}
-.progress-btn{padding:6px 14px;background:var(--green);border-radius:var(--r2);font-size:.78rem;font-weight:600;color:#fff;cursor:pointer;border:none;transition:all var(--tr)}
-.progress-btn:hover{background:#059669}
-
-.quick-review{background:linear-gradient(135deg,#1e3a5f,#1a2f4a);border:1px solid #2d4f7c;border-radius:var(--r);padding:14px 20px;margin:18px 24px;display:flex;gap:12px;align-items:flex-start}
-.qr-badge{background:#F59E0B;color:#000;padding:3px 10px;border-radius:4px;font-size:.72rem;font-weight:700;white-space:nowrap;flex-shrink:0;margin-top:2px}
-.qr-text{font-size:.84rem;line-height:1.65;color:#CBD5E1}
-.qr-text strong{color:#fff}
-
+.top-actions{margin-left:auto}
+.theme-btn{width:34px;height:34px;display:flex;align-items:center;justify-content:center;border-radius:var(--r2);background:var(--bg3);border:1px solid var(--border);cursor:pointer;font-size:.95rem;color:var(--dim)}
+.quick-review{background:linear-gradient(135deg,#451a03,#78350f);border:1px solid #92400e;border-radius:var(--r);padding:14px 20px;margin:18px 24px;display:flex;gap:12px;align-items:flex-start}
+.qr-badge{background:var(--amber);color:#fff;padding:3px 10px;border-radius:4px;font-size:.72rem;font-weight:700;white-space:nowrap;flex-shrink:0;margin-top:2px}
+.qr-text{font-size:.84rem;line-height:1.65;color:#FDE68A}
+.qr-text strong{color:#fff}.qr-text em{color:#FCD34D;font-style:italic}
 .tab-nav{display:flex;gap:2px;border-bottom:1px solid var(--border);overflow-x:auto;scrollbar-width:none;position:sticky;top:57px;background:var(--bg);z-index:40;padding:0 24px}
 .tab-nav::-webkit-scrollbar{display:none}
 .tnav-btn{display:flex;align-items:center;gap:6px;padding:11px 16px;font-size:.82rem;font-weight:500;color:var(--dim);white-space:nowrap;border-bottom:2px solid transparent;margin-bottom:-1px;cursor:pointer;transition:all var(--tr);background:none;border-top:none;border-left:none;border-right:none;font-family:inherit}
-.tnav-btn:hover{color:var(--text)}.tnav-btn.active{color:var(--purple);border-bottom-color:var(--purple)}
-
+.tnav-btn.active{color:var(--amber);border-bottom-color:var(--amber)}
 .page-content{max-width:920px;margin:0 auto;padding:0 24px 48px}
 .tab-pane{display:none;padding-top:28px}
 .tab-pane.active{display:block;animation:fadeUp .22s ease}
 @keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
-
-.sec-heading{font-size:1.05rem;font-weight:700;color:var(--text);margin-bottom:4px;display:flex;align-items:center;gap:8px}
-.sec-sub{font-size:.82rem;color:var(--dim);margin-bottom:18px}
-.ex-num{width:28px;height:28px;background:var(--purple);color:#fff;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:.78rem;font-weight:700;flex-shrink:0}
-.ex-label{display:inline-flex;align-items:center;gap:8px;font-size:.9rem;font-weight:600;margin-bottom:10px;color:var(--text)}
-.part{display:inline-block;width:22px;height:22px;background:var(--bg4);border-radius:4px;text-align:center;line-height:22px;font-size:.72rem;font-weight:700;color:var(--dim);margin-right:6px}
-.instr{font-size:.88rem;color:var(--text);line-height:1.65;margin-bottom:14px}
-.instr em{font-style:italic;color:var(--teal)}
-
-.fill-ex{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:18px;margin-bottom:16px}
-.fill-ex-title{font-size:.88rem;font-weight:600;padding-bottom:10px;border-bottom:1px solid var(--border);margin-bottom:14px;color:var(--dim)}
-.fill-item{display:flex;align-items:flex-start;gap:10px;padding:9px 0;border-bottom:1px dashed var(--border)}
+.sec-heading{font-size:1.05rem;font-weight:700;margin-bottom:4px}
+.sec-sub{font-size:.82rem;color:var(--dim);margin-bottom:16px}
+.ex-label{display:inline-flex;align-items:center;gap:8px;font-size:.9rem;font-weight:600;margin-bottom:12px}
+.ex-num{width:28px;height:28px;background:var(--amber);color:#fff;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:.78rem;font-weight:700;flex-shrink:0}
+.instruction{font-size:.88rem;line-height:1.65;margin-bottom:14px}
+.divider{height:1px;background:var(--border);margin:24px 0}
+/* phrase boxes */
+.phrase-section{margin-bottom:20px}
+.phrase-cat{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:18px;margin-bottom:12px}
+.phrase-cat-title{font-size:.78rem;font-weight:700;color:var(--amber);text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px}
+.phrase-row{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);padding:10px 14px;margin-bottom:6px}
+.phrase-eng{font-size:.88rem;font-weight:500;color:var(--text);margin-bottom:2px}
+.phrase-vi{font-size:.81rem;color:var(--orange);font-style:italic;margin-bottom:3px}
+.phrase-ex{font-size:.77rem;color:var(--muted);font-style:italic}
+/* fill */
+.fill-ex{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:20px;margin-bottom:16px}
+.fill-item{display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-bottom:1px dashed var(--border)}
 .fill-item:last-child{border-bottom:none}
-.fill-item-num{width:22px;height:22px;border-radius:50%;background:var(--bg3);display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:700;color:var(--muted);flex-shrink:0;margin-top:2px}
-.fill-item-body{flex:1}
-.fill-sentence{font-size:.87rem;margin-bottom:7px;line-height:1.6}
-.fill-controls{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
-.fill-input{height:33px;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);padding:0 11px;color:var(--text);font-size:.84rem;outline:none;min-width:80px;max-width:200px;transition:border-color var(--tr)}
-.fill-input:focus{border-color:var(--purple)}
-.fill-input.correct{border-color:var(--green);background:var(--green-l)}
-.fill-input.wrong{border-color:var(--red);background:var(--red-l)}
-.check-btn{padding:5px 12px;background:var(--purple);color:#fff;border:none;border-radius:var(--r2);font-size:.76rem;font-weight:600;cursor:pointer;transition:all var(--tr)}
-.check-btn:hover{background:#7C3AED}
-.reveal-btn{padding:5px 11px;background:var(--bg3);border:1px solid var(--border);color:var(--dim);border-radius:var(--r2);font-size:.76rem;cursor:pointer;transition:all var(--tr)}
-.reveal-btn:hover{border-color:var(--purple);color:var(--purple)}
-.fill-fb{margin-top:5px;font-size:.77rem;padding:4px 9px;border-radius:var(--r2);display:none}
-.fill-fb.show-ok{background:var(--green-l);color:var(--green);display:block}
-.fill-fb.show-err{background:var(--red-l);color:var(--red);display:block}
-
-.score-box{display:none;text-align:center;padding:18px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);margin-top:14px}
-.score-box.show{display:block}
-.score-n{font-size:2.2rem;font-weight:700;color:var(--purple)}
-.score-msg{color:var(--dim);font-size:.84rem;margin-top:4px}
-
-.btn{display:inline-flex;align-items:center;gap:6px;padding:7px 16px;border-radius:var(--r2);font-size:.82rem;font-weight:500;cursor:pointer;border:none;font-family:inherit;transition:all var(--tr)}
-.btn-primary{background:var(--purple);color:#fff}.btn-primary:hover{background:#7C3AED;transform:translateY(-1px)}
-.btn-outline{background:var(--bg3);border:1px solid var(--border2);color:var(--dim)}.btn-outline:hover{border-color:var(--purple);color:var(--purple)}
-
-.divider{height:1px;background:var(--border);margin:22px 0}
-.note-box{background:var(--orange-l);border:1px solid rgba(245,158,11,.25);border-radius:var(--r2);padding:10px 14px;font-size:.82rem;line-height:1.6;margin:10px 0}
-.note-box strong{color:var(--orange)}
-.tip-box{background:var(--bg3);border-left:3px solid var(--purple);border-radius:0 var(--r2) var(--r2) 0;padding:10px 14px;margin:10px 0;font-size:.82rem;color:var(--dim);line-height:1.6}
-.tip-box strong{color:var(--text)}
-.example-box{font-family:'Courier New',monospace;font-size:.82rem;color:#7DD3FC;background:var(--bg);padding:8px 12px;border-radius:var(--r2);margin:6px 0;border:1px solid var(--border)}
-
-.speaking-box{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:16px;margin-bottom:16px}
-.speaking-title{font-size:.84rem;font-weight:600;margin-bottom:12px;color:var(--text);display:flex;align-items:center;gap:8px}
-.bubble{background:var(--bg3);border:1px solid var(--border);border-radius:12px;padding:8px 14px;max-width:72%;font-size:.84rem;line-height:1.5;margin-bottom:8px}
-.bubble.speaker-a{border-bottom-left-radius:3px}
-.bubble.speaker-b{border-bottom-right-radius:3px;background:var(--purple-l);border-color:rgba(139,92,246,.3);margin-left:auto}
-
+.fill-num{width:24px;height:24px;border-radius:50%;background:var(--bg3);display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:700;color:var(--muted);flex-shrink:0;margin-top:2px}
+.fill-content{flex:1}
+.fill-sent{font-size:.87rem;margin-bottom:8px;line-height:1.65}
+.fi{height:34px;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);padding:0 12px;color:var(--text);font-size:.84rem;outline:none;min-width:120px;font-family:inherit;transition:border-color var(--tr)}
+.fi:focus{border-color:var(--amber)}
+.fi.ok{border-color:var(--green);background:var(--green-l)}
+.fi.err{border-color:var(--red);background:var(--red-l)}
+.chk-btn{padding:6px 14px;background:var(--amber);color:#fff;border-radius:var(--r2);font-size:.77rem;font-weight:600;cursor:pointer;margin-left:4px}
+.chk-btn:hover{background:#B45309}
+.rev-btn{padding:6px 12px;background:var(--bg3);border:1px solid var(--border);color:var(--dim);border-radius:var(--r2);font-size:.77rem;cursor:pointer;margin-left:4px}
+.rev-btn:hover{border-color:var(--amber);color:var(--amber)}
+.fb{margin-top:6px;font-size:.77rem;padding:4px 10px;border-radius:var(--r2);display:none}
+.fb.ok{background:var(--green-l);color:var(--green);display:block}
+.fb.err{background:var(--red-l);color:var(--red);display:block}
+/* mcq */
+.mcq-list{display:flex;flex-direction:column;gap:12px;margin-bottom:16px}
+.mcq-item{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:16px}
+.mcq-q{font-size:.88rem;font-weight:600;margin-bottom:10px}
+.mcq-opts{display:flex;flex-direction:column;gap:6px}
+.mcq-opt{display:flex;align-items:center;gap:10px;padding:8px 12px;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);cursor:pointer;font-size:.84rem;transition:all var(--tr)}
+.mcq-opt:hover{border-color:var(--amber)}
+.mcq-opt.ok{border-color:var(--green);background:var(--green-l)}
+.mcq-opt.err{border-color:var(--red);background:var(--red-l)}
+.opt-dot{width:18px;height:18px;border-radius:50%;border:2px solid var(--border);flex-shrink:0}
+.mcq-opt.ok .opt-dot{background:var(--green);border-color:var(--green)}
+.mcq-opt.err .opt-dot{background:var(--red);border-color:var(--red)}
+/* tf */
+.tf-list{display:flex;flex-direction:column;gap:10px;margin-bottom:16px}
+.tf-item{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r2);padding:14px}
+.tf-q{font-size:.87rem;margin-bottom:10px}
+.tf-opts{display:flex;gap:8px;flex-wrap:wrap}
+.tf-btn{padding:5px 14px;border-radius:4px;font-size:.78rem;font-weight:600;cursor:pointer;border:1px solid var(--border);background:var(--bg3);color:var(--dim);transition:all var(--tr)}
+.tf-btn.ok{background:var(--green-l);border-color:var(--green);color:var(--green)}
+.tf-btn.err{background:var(--red-l);border-color:var(--red);color:var(--red)}
+.tf-fb{font-size:.78rem;margin-top:6px;color:var(--dim);display:none;font-style:italic}
+.tf-fb.show{display:block}
+/* audio */
+.audio-box{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:20px;margin-bottom:16px}
+.cd-tag{padding:4px 12px;background:var(--amber-l);border:1px solid rgba(217,119,6,.3);border-radius:4px;font-size:.75rem;font-weight:700;color:#FCD34D}
+.play-btn{width:42px;height:42px;border-radius:50%;background:var(--amber);color:#fff;display:flex;align-items:center;justify-content:center;border:none;font-size:1rem;cursor:pointer;flex-shrink:0}
+.play-btn:hover{background:#B45309;transform:scale(1.05)}
+.transcript-wrap{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);padding:14px;margin-top:12px}
+.transcript-toggle{font-size:.82rem;font-weight:600;color:var(--dim);cursor:pointer;user-select:none}
+.transcript-toggle:hover{color:var(--amber)}
+.transcript-body{display:none;margin-top:12px;font-size:.84rem;line-height:1.78}
+.transcript-body.show{display:block}
+.transcript-body p{margin-bottom:10px}
+.spk{font-weight:700;color:var(--amber);margin-right:6px}
+/* qa */
 .qa-list{display:flex;flex-direction:column;gap:8px;margin-bottom:16px}
 .qa-item{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r2);overflow:hidden}
-.qa-q{display:flex;align-items:center;gap:10px;padding:10px 14px;cursor:pointer;transition:background var(--tr)}
+.qa-q{display:flex;align-items:center;gap:10px;padding:11px 14px;cursor:pointer;transition:background var(--tr)}
 .qa-q:hover{background:var(--bg3)}
-.qa-qnum{width:24px;height:24px;border-radius:50%;background:var(--purple-l);color:var(--purple);display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:700;flex-shrink:0}
-.qa-qtext{font-size:.86rem;flex:1}
-.qa-arrow{font-size:.7rem;color:var(--muted);transition:transform var(--tr);flex-shrink:0}
+.qa-qnum{width:24px;height:24px;border-radius:50%;background:var(--amber-l);color:var(--amber);display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:700;flex-shrink:0}
+.qa-qtext{font-size:.85rem;flex:1}
+.qa-arrow{font-size:.7rem;color:var(--muted);transition:transform var(--tr)}
 .qa-item.open .qa-arrow{transform:rotate(90deg)}
-.qa-ans{display:none;padding:0 14px 10px 48px;font-size:.83rem;color:var(--teal);font-style:italic}
-.qa-item.open .qa-ans{display:block}
-
-.lang-sum-tag{display:inline-flex;align-items:center;gap:6px;padding:3px 12px;background:var(--purple-l);border:1px solid rgba(139,92,246,.3);border-radius:4px;font-size:.72rem;font-weight:700;color:#A78BFA;text-transform:uppercase;letter-spacing:.06em;margin-bottom:12px}
-
-.coll-grid{display:flex;flex-direction:column;gap:8px;margin:12px 0}
-.coll-row{display:grid;grid-template-columns:100px 1fr;gap:12px;align-items:start;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r2);padding:10px 14px}
-.coll-verb{font-size:.9rem;font-weight:700;color:var(--blue)}
-.coll-ipa{font-size:.72rem;color:var(--teal);font-family:monospace}
-.coll-phrase{font-size:.85rem;font-weight:600}
-.coll-vi{font-size:.8rem;color:var(--orange)}
-.coll-ex{font-size:.78rem;color:var(--dim);font-style:italic}
-
-@media(max-width:680px){.tab-nav{padding:0 12px}.page-content{padding:0 14px 48px}.quick-review{margin:12px}}
+.qa-answer{display:none;padding:0 14px 12px 48px;font-size:.83rem;color:var(--teal);font-style:italic;line-height:1.65}
+.qa-item.open .qa-answer{display:block}
+/* note */
+.note-box{background:var(--orange-l);border:1px solid rgba(245,158,11,.25);border-radius:var(--r2);padding:12px 16px;font-size:.83rem;line-height:1.65;margin-bottom:16px}
+.note-box strong{color:var(--orange)}
+.info-box{background:var(--amber-l);border:1px solid rgba(217,119,6,.25);border-radius:var(--r2);padding:12px 16px;font-size:.84rem;line-height:1.65;margin-bottom:16px}
+.pron-box{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:20px;margin-bottom:16px}
+.pron-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:8px;margin-top:12px}
+.pron-card{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);padding:10px 14px}
+.pron-word{font-size:.9rem;font-weight:600}
+.pron-ipa{font-family:monospace;font-size:.82rem;color:var(--teal);margin-top:3px}
+.pron-ex{font-size:.77rem;color:var(--dim);font-style:italic;margin-top:3px}
+.chip{padding:5px 14px;border-radius:20px;font-size:.82rem;font-weight:500;background:var(--amber-l);border:1px solid rgba(217,119,6,.3);color:#FCD34D;display:inline-block;margin:3px}
+.speaking-box{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:18px;margin-bottom:16px}
+.disc-q{display:flex;gap:10px;padding:8px 0;border-bottom:1px solid var(--border);font-size:.85rem}
+.disc-q:last-child{border-bottom:none}
+.disc-q-num{font-size:.75rem;font-weight:700;color:var(--amber);min-width:20px;margin-top:2px}
+.bubble{background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:9px 14px;font-size:.85rem;line-height:1.5;margin-bottom:8px}
+.wb-tag{display:inline-flex;padding:3px 12px;background:var(--amber-l);border:1px solid rgba(217,119,6,.3);border-radius:4px;font-size:.72rem;font-weight:700;color:#FCD34D;text-transform:uppercase;letter-spacing:.06em;margin-bottom:12px}
+.dialogue-box{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:20px;margin-bottom:16px}
+.dlg-turn{display:flex;gap:10px;margin-bottom:10px;align-items:flex-start}
+.dlg-spk{min-width:70px;font-size:.8rem;font-weight:700;color:var(--amber);flex-shrink:0;padding-top:2px}
+.dlg-line{font-size:.87rem;line-height:1.65;background:var(--bg3);border-radius:8px;padding:9px 14px;flex:1;border:1px solid var(--border)}
+.dlg-line .hl{color:#FCD34D;font-weight:600}
+.dlg-line .blank{display:inline-block;min-width:100px;border-bottom:2px solid var(--amber);color:var(--amber);font-style:italic;padding:0 4px}
 </style>
 </head>
 <body>
-
 <div class="top-bar">
-  <button class="back-btn" onclick="history.back()">← Trang chủ</button>
-  <div class="lesson-badge">UNIT 3</div>
-  <div class="lesson-title-h">3D — A trip to India</div>
+  <button class="back-btn" onclick="history.back()">← Quay lại</button>
+  <span class="lesson-badge">3D</span>
+  <span class="lesson-title-h">A trip to India</span>
   <div class="top-actions">
-    <button class="theme-btn" id="theme-btn" onclick="toggleTheme()">☀️</button>
-    <button class="progress-btn" onclick="markDone()">✅ Đánh dấu xong</button>
+    <button class="theme-btn" onclick="toggleTheme()">☀</button>
   </div>
 </div>
-
 <div class="quick-review">
-  <div class="qr-badge">QUICK REVIEW</div>
-  <div class="qr-text"><strong>Suffixes for adjectives and nouns</strong> — Work in pairs. Student A: write six adjectives you can remember from lesson 3C. Student B: write six nouns. Take turns to say your words. Your partner says the noun or adjective: <em>A: Kind. B: Kindness.</em></div>
+  <span class="qr-badge">ÔN BÀI 3C</span>
+  <div class="qr-text">Nhắc lại 3C: <strong>Word building — Suffixes</strong>: <em>kind→kindness (-ness) · patient→patience (-ence) · danger→dangerous (-ous) · comfort→comfortable (-able) · tradition→traditional (-al)</em>. Chủ đề: <strong>Voluntourism</strong> — du lịch kết hợp tình nguyện.</div>
 </div>
-
-<div class="tab-nav">
-  <button class="tnav-btn active" onclick="showTab('prep')">📚 Review: Prepositions</button>
-  <button class="tnav-btn" onclick="showTab('video')">🎬 Video</button>
-  <button class="tnav-btn" onclick="showTab('realworld')">🌍 Real World</button>
-  <button class="tnav-btn" onclick="showTab('workbook')">📓 Workbook</button>
-  <button class="tnav-btn" onclick="showTab('langsummary')">📋 Language Summary</button>
-</div>
-
+<nav class="tab-nav">
+  <button class="tnav-btn active" onclick="showTab('phrases',this)">💬 Real World</button>
+  <button class="tnav-btn" onclick="showTab('listening',this)">🎧 Nghe</button>
+  <button class="tnav-btn" onclick="showTab('grammar',this)">⚙ Ngữ pháp</button>
+  <button class="tnav-btn" onclick="showTab('pronunciation',this)">🔊 Phát âm</button>
+  <button class="tnav-btn" onclick="showTab('speaking',this)">🗣 Nói</button>
+  <button class="tnav-btn" onclick="showTab('workbook',this)">📝 Bài tập</button>
+</nav>
 <div class="page-content">
 
-<!-- ══════════════════════════════════════
-     TAB 1: REVIEW PREPOSITIONS
-══════════════════════════════════════ -->
-<div class="tab-pane active" id="tab-prep">
-  <div class="sec-heading">Review: Prepositions with adjectives</div>
-  <div class="sec-sub">VOCABULARY 1.4 — Prepositions with adjectives</div>
+<!-- TAB REAL WORLD PHRASES -->
+<div id="tab-phrases" class="tab-pane active">
+  <div class="sec-heading">💬 Real World — Asking for & Making Recommendations</div>
+  <div class="sec-sub">Student Book p28–29 · Real World 3.1 · Gợi ý và đề xuất địa điểm</div>
+  <div class="info-box"><strong>🎯 Bài 3D:</strong> Học cách <strong>hỏi xin gợi ý</strong> (asking for recommendations), <strong>gợi ý</strong> (recommending), <strong>không gợi ý</strong> (not recommending), và <strong>phản hồi gợi ý</strong> trong ngữ cảnh du lịch.</div>
 
-  <div class="ex-label"><div class="ex-num">1</div>Exercise 1 — Choose the correct preposition</div>
-  <p class="instr">Choose the correct preposition. Sometimes more than one answer is possible.</p>
+  <!-- Asking for recommendations -->
+  <div class="phrase-cat">
+    <div class="phrase-cat-title">❓ Asking for recommendations — Hỏi xin gợi ý</div>
+    <div class="phrase-row"><div class="phrase-eng">Do you know any good places to stay/eat?</div><div class="phrase-vi">🇻🇳 Bạn có biết chỗ nào tốt để ở/ăn không?</div><div class="phrase-ex">Ella: Do you know any good places to stay in Delhi?</div></div>
+    <div class="phrase-row"><div class="phrase-eng">What's the best way to (get around)?</div><div class="phrase-vi">🇻🇳 Cách tốt nhất để (di chuyển) là gì?</div><div class="phrase-ex">Mike: What's the best way to get around the city?</div></div>
+    <div class="phrase-row"><div class="phrase-eng">What else is worth visiting/seeing?</div><div class="phrase-vi">🇻🇳 Còn điều gì đáng ghé thăm/xem không?</div><div class="phrase-ex">Ella: What else is worth visiting near Delhi?</div></div>
+    <div class="phrase-row"><div class="phrase-eng">What about (places outside Delhi)?</div><div class="phrase-vi">🇻🇳 Còn (những địa điểm ngoài Delhi) thì sao?</div><div class="phrase-ex">Mike: What about places to see outside the city?</div></div>
+    <div class="phrase-row"><div class="phrase-eng">Have you got any other tips?</div><div class="phrase-vi">🇻🇳 Bạn có thêm mẹo/lời khuyên nào không?</div><div class="phrase-ex">Ella: Have you got any other tips for our trip?</div></div>
+  </div>
 
-  <div class="fill-ex">
-    <div class="fill-item"><div class="fill-item-num">1</div><div class="fill-item-body"><div class="fill-sentence">Mark's keen <input class="fill-input" id="p1" style="max-width:80px" placeholder="on/of/in"> going to India next year but I'm scared <input class="fill-input" id="p2" style="max-width:80px" placeholder="with/of/at"> flying.</div></div></div>
-    <div class="fill-item"><div class="fill-item-num">2</div><div class="fill-item-body"><div class="fill-sentence">The manager didn't seem concerned <input class="fill-input" id="p3" style="max-width:80px" placeholder="with/about/by"> our complaint. We were so angry <input class="fill-input" id="p4" style="max-width:80px" placeholder="about/on/with"> him that we checked out early.</div></div></div>
-    <div class="fill-item"><div class="fill-item-num">3</div><div class="fill-item-body"><div class="fill-sentence">I'm so bad <input class="fill-input" id="p5" style="max-width:80px" placeholder="on/in/at"> languages and always get embarrassed <input class="fill-input" id="p6" style="max-width:80px" placeholder="by/of/about"> not being able to communicate abroad.</div></div></div>
-    <div class="fill-item"><div class="fill-item-num">4</div><div class="fill-item-body"><div class="fill-sentence">Many of the passengers were angry <input class="fill-input" id="p7" style="max-width:80px" placeholder="with/about/of"> the delay and no one was satisfied <input class="fill-input" id="p8" style="max-width:80px" placeholder="by/of/with"> the explanation.</div></div></div>
-    <div style="display:flex;gap:8px;margin-top:12px">
-      <button class="btn btn-primary" onclick="checkPreps()">✅ Kiểm tra</button>
-      <button class="btn btn-outline" onclick="revealPreps()">👁 Đáp án</button>
-    </div>
-    <div class="score-box" id="prep-score"></div>
+  <!-- Recommending -->
+  <div class="phrase-cat">
+    <div class="phrase-cat-title">✅ Recommending things — Gợi ý</div>
+    <div class="phrase-row"><div class="phrase-eng">It's probably best to (use rickshaws).</div><div class="phrase-vi">🇻🇳 Có lẽ tốt nhất là (dùng xe kéo).</div><div class="phrase-ex">Charlie: It's probably best to use rickshaws to get around.</div></div>
+    <div class="phrase-row"><div class="phrase-eng">I'd recommend (the trains).</div><div class="phrase-vi">🇻🇳 Tôi sẽ gợi ý (tàu hỏa).</div><div class="phrase-ex">Rebecca: I'd recommend the trains — they're cheap and reliable.</div></div>
+    <div class="phrase-row"><div class="phrase-eng">You should definitely see (the Red Fort).</div><div class="phrase-vi">🇻🇳 Bạn nhất định phải xem (Pháo đài Đỏ).</div><div class="phrase-ex">Charlie: You should definitely see the Red Fort in Old Delhi.</div></div>
+    <div class="phrase-row"><div class="phrase-eng">That's well worth seeing/visiting.</div><div class="phrase-vi">🇻🇳 Điều đó rất đáng xem/ghé thăm.</div><div class="phrase-ex">Rebecca: The Taj Mahal? That's well worth seeing — go in the early morning.</div></div>
+    <div class="phrase-row"><div class="phrase-eng">You really must go to (Agra) to see (the Taj Mahal).</div><div class="phrase-vi">🇻🇳 Bạn nhất định phải đến (Agra) để xem (Taj Mahal).</div><div class="phrase-ex">Charlie: You really must go to Agra to see the Taj Mahal.</div></div>
+  </div>
+
+  <!-- Not recommending -->
+  <div class="phrase-cat">
+    <div class="phrase-cat-title">❌ Not recommending things — Không gợi ý</div>
+    <div class="phrase-row"><div class="phrase-eng">Don't bother going to (the museums).</div><div class="phrase-vi">🇻🇳 Đừng mất công đến (các bảo tàng).</div><div class="phrase-ex">Rebecca: Don't bother going to the museums — they're quite boring.</div></div>
+    <div class="phrase-row"><div class="phrase-eng">It isn't really worth visiting (I don't think).</div><div class="phrase-vi">🇻🇳 Không đáng ghé thăm đâu (tôi nghĩ vậy).</div><div class="phrase-ex">Charlie: That area? It isn't really worth visiting, I don't think.</div></div>
+    <div class="phrase-row"><div class="phrase-eng">Don't drink anything with ice in it.</div><div class="phrase-vi">🇻🇳 Đừng uống bất cứ thứ gì có đá.</div><div class="phrase-ex">Rebecca: Don't drink anything with ice in it — you might get ill.</div></div>
+    <div class="phrase-row"><div class="phrase-eng">I wouldn't eat any salads.</div><div class="phrase-vi">🇻🇳 Tôi sẽ không ăn các món salad.</div><div class="phrase-ex">Charlie: I wouldn't eat any salads — food hygiene can be a problem.</div></div>
+  </div>
+
+  <!-- Responding -->
+  <div class="phrase-cat">
+    <div class="phrase-cat-title">🔁 Responding to recommendations — Phản hồi gợi ý</div>
+    <div class="phrase-row"><div class="phrase-eng">That's good to know.</div><div class="phrase-vi">🇻🇳 Tốt khi biết điều đó.</div><div class="phrase-ex">Ella: That's good to know — we'll take a guide with us.</div></div>
+    <div class="phrase-row"><div class="phrase-eng">That sounds good.</div><div class="phrase-vi">🇻🇳 Nghe có vẻ hay đấy.</div><div class="phrase-ex">Mike: The Taj Mahal? That sounds wonderful!</div></div>
+    <div class="phrase-row"><div class="phrase-eng">Thanks, that's really useful.</div><div class="phrase-vi">🇻🇳 Cảm ơn, điều đó thực sự hữu ích.</div><div class="phrase-ex">Ella: Thanks, that's really useful. We'll definitely try the rickshaws.</div></div>
+    <div class="phrase-row"><div class="phrase-eng">Yes, I've heard that before.</div><div class="phrase-vi">🇻🇳 Vâng, tôi đã nghe điều đó rồi.</div><div class="phrase-ex">Mike: The ice? Yes, I've heard that before.</div></div>
+  </div>
+
+  <div class="note-box">
+    <strong>📌 Lưu ý cấu trúc (SB p29, Ex 3b):</strong><br>
+    • <em>It's (well/not) worth</em> + <strong>V-ing</strong>: <em>It's worth visiting.</em> / <em>It's not worth going there.</em><br>
+    • <em>Don't bother</em> + <strong>V-ing</strong>: <em>Don't bother going to the museums.</em><br>
+    • <em>I'd/I wouldn't</em> + <strong>base verb</strong>: <em>I'd recommend the trains. / I wouldn't eat salads.</em>
   </div>
 </div>
 
-<!-- ══════════════════════════════════════
-     TAB 2: VIDEO
-══════════════════════════════════════ -->
-<div class="tab-pane" id="tab-video">
-  <div class="sec-heading">Video</div>
-  <div class="sec-sub">VIDEO 3 — Ella and Mike's trip to Delhi</div>
+<!-- TAB LISTENING -->
+<div id="tab-listening" class="tab-pane">
+  <div class="sec-heading">🎧 Listening — Ella & Mike ask for recommendations</div>
+  <div class="sec-sub">Student Book p28 · VIDEO 3 / CD1 Track 26 · Chuyến đi Ấn Độ</div>
 
-  <div class="ex-label"><div class="ex-num">2</div>Exercise 2a — Watch or listen</div>
-  <p class="instr"><span class="part">a</span> <strong>VIDEO 3 / CD1 ▶ 26</strong> Watch or listen to Ella and Mike asking Rebecca and Charlie for recommendations. Tick the topics they talk about.</p>
-
-  <div class="fill-ex">
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px">
-      <div><input type="checkbox" id="topic1"> the best time to visit</div>
-      <div><input type="checkbox" id="topic2"> getting around</div>
-      <div><input type="checkbox" id="topic3"> things (not) to see in the city</div>
-      <div><input type="checkbox" id="topic4"> changing money</div>
-      <div><input type="checkbox" id="topic5"> things to see outside Delhi</div>
-      <div><input type="checkbox" id="topic6"> places to eat</div>
-      <div><input type="checkbox" id="topic7"> dangers and problems</div>
-      <div><input type="checkbox" id="topic8"> places to stay</div>
+  <div class="audio-box">
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px">
+      <span class="cd-tag">VIDEO 3 · CD1 Track 26</span>
+      <span style="font-size:.9rem;font-weight:600">Ella & Mike — asking Rebecca & Charlie for advice</span>
     </div>
-    <button class="btn btn-outline" onclick="revealTopics()">👁 Xem đáp án</button>
-    <div id="topic-ans" style="display:none;margin-top:8px" class="tip-box">
-      <strong>They talk about:</strong> best time to visit, getting around, things (not) to see in the city, things to see outside Delhi, places to stay, places to eat.<br>
-      <strong>They don't talk about:</strong> changing money, dangers and problems.
+    <div style="display:flex;align-items:center;gap:12px;padding:12px 16px;background:var(--bg3);border-radius:var(--r2);margin-bottom:12px">
+      <button class="play-btn">▶</button>
+      <div><div style="font-size:.83rem;font-weight:500">SB p28 — A trip to Delhi</div><div style="font-size:.75rem;color:var(--muted)">Sử dụng video/audio kèm theo giáo trình</div></div>
+    </div>
+    <div class="transcript-wrap">
+      <div class="transcript-toggle" onclick="toggleTr('tr1')">📄 Xem/ẩn toàn bộ Audio Script (CD1·26) ›</div>
+      <div class="transcript-body" id="tr1">
+        <p><span class="spk">ELLA:</span> So, Rebecca, you've been to Delhi, haven't you? Ella and I are going there next month.</p>
+        <p><span class="spk">REBECCA:</span> Oh, how exciting! Yes, I went there two years ago with Charlie. It's an amazing city. You'll love it.</p>
+        <p><span class="spk">MIKE:</span> What's the best way to get around?</p>
+        <p><span class="spk">CHARLIE:</span> Well, it's probably best to use rickshaws in the city — they're really cheap and they can get through the traffic much faster than taxis.</p>
+        <p><span class="spk">REBECCA:</span> Yes, but I'd also recommend the metro — it's very modern and it goes to most of the main places.</p>
+        <p><span class="spk">ELLA:</span> What about things to see in Delhi itself?</p>
+        <p><span class="spk">CHARLIE:</span> Well, you should definitely see the Red Fort in Old Delhi — it's fantastic. And the Chandni Chowk market near there is well worth visiting too.</p>
+        <p><span class="spk">REBECCA:</span> But don't bother going to the museums — they're not very interesting in my opinion.</p>
+        <p><span class="spk">MIKE:</span> What about places to see outside Delhi?</p>
+        <p><span class="spk">CHARLIE:</span> You really must go to Agra to see the Taj Mahal. It's only about three hours by train.</p>
+        <p><span class="spk">ELLA:</span> Oh, we'd love to do that. That sounds amazing.</p>
+        <p><span class="spk">REBECCA:</span> And you can visit the Taj Mahal and come back the same day.</p>
+        <p><span class="spk">MIKE:</span> Have you got any other tips?</p>
+        <p><span class="spk">CHARLIE:</span> Well, don't drink anything with ice in it — you know, tap water isn't always safe.</p>
+        <p><span class="spk">REBECCA:</span> And I wouldn't eat any salads either — stick to cooked food.</p>
+        <p><span class="spk">MIKE:</span> Yeah, I've heard that before.</p>
+        <p><span class="spk">ELLA:</span> What about places to eat? Do you know any good restaurants?</p>
+        <p><span class="spk">CHARLIE:</span> Oh yes! There's only one good restaurant that we found — it's in Connaught Place, right in the centre. I can't remember the name now but I'll text you the details.</p>
+        <p><span class="spk">REBECCA:</span> Oh, and one more thing — don't carry too much cash around with you, especially at night.</p>
+        <p><span class="spk">ELLA:</span> Thanks, that's really useful.</p>
+        <p><span class="spk">MIKE:</span> Yes, thanks a lot. We'll let you know how it goes!</p>
+      </div>
     </div>
   </div>
 
-  <div class="ex-label"><div class="ex-num">2</div>Exercise 2b — True or False?</div>
-  <p class="instr"><span class="part">b</span> Watch or listen again. Tick the true sentences. Correct the false ones.</p>
+  <div class="ex-label"><span class="ex-num">2a</span>Chủ đề nào được nhắc đến? (SB p28)</div>
+  <div class="instruction">Tick the topics Ella, Mike, Rebecca and Charlie discuss. Which TWO topics don't they talk about?</div>
+  <div class="mcq-list">
+    <div class="mcq-item"><div class="mcq-q">Which TWO topics do they NOT discuss?</div><div class="mcq-opts">
+      <div class="mcq-opt" onclick="selM(this,'B','tpc1')"><div class="opt-dot"></div>the best time to visit</div>
+      <div class="mcq-opt" onclick="selM(this,'B','tpc1')"><div class="opt-dot"></div>things (not) to see in the city</div>
+      <div class="mcq-opt" onclick="selM(this,'B','tpc1')"><div class="opt-dot"></div>things to see outside Delhi</div>
+      <div class="mcq-opt" onclick="selM(this,'B','tpc1')"><div class="opt-dot"></div>dangers and problems</div>
+      <div class="mcq-opt" onclick="selM(this,'B','tpc1')"><div class="opt-dot"></div>getting around</div>
+      <div class="mcq-opt" onclick="selM(this,'A','tpc1')"><div class="opt-dot"></div>changing money ← NOT discussed</div>
+      <div class="mcq-opt" onclick="selM(this,'B','tpc1')"><div class="opt-dot"></div>places to eat</div>
+      <div class="mcq-opt" onclick="selM(this,'A','tpc1')"><div class="opt-dot"></div>places to stay ← NOT discussed</div>
+    </div><div id="tpc1-fb" style="display:none;margin-top:6px;font-size:.8rem;color:var(--teal)">✅ The two topics NOT discussed are: <strong>changing money</strong> and <strong>places to stay</strong>.</div></div>
+  </div>
 
-  <div class="fill-ex">
-    <div class="fill-item"><div class="fill-item-num">1</div><div class="fill-item-body"><div class="fill-sentence">Rebecca and Charlie think rickshaws are the best way to get around the city.</div></div></div>
-    <div class="fill-item"><div class="fill-item-num">2</div><div class="fill-item-body"><div class="fill-sentence">They think it's better to travel to other cities by bus.</div></div></div>
-    <div class="fill-item"><div class="fill-item-num">3</div><div class="fill-item-body"><div class="fill-sentence">They think Ella and Mike should visit the museums in Delhi.</div></div></div>
-    <div class="fill-item"><div class="fill-item-num">4</div><div class="fill-item-body"><div class="fill-sentence">They say they should go to the Red Fort in Old Delhi.</div></div></div>
-    <div class="fill-item"><div class="fill-item-num">5</div><div class="fill-item-body"><div class="fill-sentence">They can visit the Taj Mahal and come back the same day.</div></div></div>
-    <div class="fill-item"><div class="fill-item-num">6</div><div class="fill-item-body"><div class="fill-sentence">There's only one good restaurant in Connaught Place.</div></div></div>
-    <div style="display:flex;gap:8px;margin-top:12px">
-      <button class="btn btn-primary" onclick="checkVideoTF()">✅ Kiểm tra</button>
-      <button class="btn btn-outline" onclick="revealVideoTF()">👁 Đáp án</button>
+  <div class="ex-label"><span class="ex-num">2b</span>Đúng hay sai? (SB p28)</div>
+  <div class="instruction">Rebecca and Charlie think that ... — chọn TRUE hoặc FALSE và sửa câu sai.</div>
+  <div class="tf-list">
+    <div class="tf-item">
+      <div class="tf-q">1. … rickshaws are the best way to get around the city.</div>
+      <div class="tf-opts"><button class="tf-btn" onclick="chkTF(this,'A','A','lq1')">TRUE</button><button class="tf-btn" onclick="chkTF(this,'B','A','lq1')">FALSE</button></div>
+      <div class="tf-fb" id="lq1">✅ TRUE — Charlie: "it's probably best to use rickshaws"</div>
     </div>
-    <div class="score-box" id="video-score"></div>
+    <div class="tf-item">
+      <div class="tf-q">2. … it's better to travel to other cities by bus.</div>
+      <div class="tf-opts"><button class="tf-btn" onclick="chkTF(this,'A','B','lq2')">TRUE</button><button class="tf-btn" onclick="chkTF(this,'B','B','lq2')">FALSE</button></div>
+      <div class="tf-fb" id="lq2">✅ FALSE — Charlie says to go to Agra by <em>train</em>, not bus: "It's only about three hours by train."</div>
+    </div>
+    <div class="tf-item">
+      <div class="tf-q">3. … Ella and Mike should visit the museums in Delhi.</div>
+      <div class="tf-opts"><button class="tf-btn" onclick="chkTF(this,'A','B','lq3')">TRUE</button><button class="tf-btn" onclick="chkTF(this,'B','B','lq3')">FALSE</button></div>
+      <div class="tf-fb" id="lq3">✅ FALSE — Rebecca: "Don't bother going to the museums — they're not very interesting."</div>
+    </div>
+    <div class="tf-item">
+      <div class="tf-q">4. … they should go to the Red Fort in Old Delhi.</div>
+      <div class="tf-opts"><button class="tf-btn" onclick="chkTF(this,'A','A','lq4')">TRUE</button><button class="tf-btn" onclick="chkTF(this,'B','A','lq4')">FALSE</button></div>
+      <div class="tf-fb" id="lq4">✅ TRUE — Charlie: "You should definitely see the Red Fort in Old Delhi — it's fantastic."</div>
+    </div>
+    <div class="tf-item">
+      <div class="tf-q">5. … they can visit the Taj Mahal and come back the same day.</div>
+      <div class="tf-opts"><button class="tf-btn" onclick="chkTF(this,'A','A','lq5')">TRUE</button><button class="tf-btn" onclick="chkTF(this,'B','A','lq5')">FALSE</button></div>
+      <div class="tf-fb" id="lq5">✅ TRUE — Rebecca: "you can visit the Taj Mahal and come back the same day."</div>
+    </div>
+    <div class="tf-item">
+      <div class="tf-q">6. … there's only one good restaurant in Connaught Place.</div>
+      <div class="tf-opts"><button class="tf-btn" onclick="chkTF(this,'A','A','lq6')">TRUE</button><button class="tf-btn" onclick="chkTF(this,'B','A','lq6')">FALSE</button></div>
+      <div class="tf-fb" id="lq6">✅ TRUE — Charlie: "There's only one good restaurant that we found — it's in Connaught Place."</div>
+    </div>
   </div>
 </div>
 
-<!-- ══════════════════════════════════════
-     TAB 3: REAL WORLD
-══════════════════════════════════════ -->
-<div class="tab-pane" id="tab-realworld">
-  <div class="sec-heading">Real World</div>
-  <div class="sec-sub">Asking for and making recommendations · REAL WORLD 3.1 → p134</div>
+<!-- TAB GRAMMAR -->
+<div id="tab-grammar" class="tab-pane">
+  <div class="sec-heading">⚙ Ngữ pháp — Verb forms after Real World phrases</div>
+  <div class="sec-sub">Student Book p29 · Real World 3.1 · Cấu trúc động từ theo sau cụm từ</div>
 
-  <div class="ex-label"><div class="ex-num">3</div>Exercise 3a — Fill in the gaps</div>
-  <p class="instr"><span class="part">a</span> Fill in the gaps with the words in the boxes.</p>
+  <div style="background:linear-gradient(135deg,rgba(217,119,6,.08),rgba(251,191,36,.05));border:1px solid rgba(217,119,6,.25);border-radius:var(--r);padding:20px;margin-bottom:16px">
+    <div style="font-size:.7rem;font-weight:700;color:var(--amber);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px">⚙ Real World 3.1 — Cấu trúc động từ</div>
+    <div style="font-size:1rem;font-weight:700;margin-bottom:14px">What verb form follows each phrase?</div>
 
-  <div class="fill-ex">
-    <div class="fill-ex-title">Asking for recommendations</div>
-    <div class="fill-item"><div class="fill-item-num">1</div><div class="fill-item-body"><div class="fill-sentence">Do you know any <input class="fill-input" id="rw1" style="max-width:100px" placeholder="..."> places to stay/eat?</div></div></div>
-    <div class="fill-item"><div class="fill-item-num">2</div><div class="fill-item-body"><div class="fill-sentence">What's the <input class="fill-input" id="rw2" style="max-width:100px" placeholder="..."> way to get around?</div></div></div>
-    <div class="fill-item"><div class="fill-item-num">3</div><div class="fill-item-body"><div class="fill-sentence">What else is worth <input class="fill-input" id="rw3" style="max-width:100px" placeholder="...">?</div></div></div>
-    <div class="fill-item"><div class="fill-item-num">4</div><div class="fill-item-body"><div class="fill-sentence">What <input class="fill-input" id="rw4" style="max-width:100px" placeholder="..."> places outside Delhi?</div></div></div>
-    <div class="fill-item"><div class="fill-item-num">5</div><div class="fill-item-body"><div class="fill-sentence">Have you got any other <input class="fill-input" id="rw5" style="max-width:100px" placeholder="...">?</div></div></div>
-  </div>
-
-  <div class="fill-ex">
-    <div class="fill-ex-title">Recommending things</div>
-    <div class="fill-item"><div class="fill-item-num">6</div><div class="fill-item-body"><div class="fill-sentence">It's probably <input class="fill-input" id="rw6" style="max-width:100px" placeholder="..."> to use rickshaws.</div></div></div>
-    <div class="fill-item"><div class="fill-item-num">7</div><div class="fill-item-body"><div class="fill-sentence">I'd <input class="fill-input" id="rw7" style="max-width:100px" placeholder="..."> the trains.</div></div></div>
-    <div class="fill-item"><div class="fill-item-num">8</div><div class="fill-item-body"><div class="fill-sentence">You should <input class="fill-input" id="rw8" style="max-width:100px" placeholder="..."> see the Red Fort.</div></div></div>
-    <div class="fill-item"><div class="fill-item-num">9</div><div class="fill-item-body"><div class="fill-sentence">That's well <input class="fill-input" id="rw9" style="max-width:100px" placeholder="..."> seeing.</div></div></div>
-    <div class="fill-item"><div class="fill-item-num">10</div><div class="fill-item-body"><div class="fill-sentence">You really <input class="fill-input" id="rw10" style="max-width:100px" placeholder="..."> go to Agra.</div></div></div>
-  </div>
-
-  <div class="fill-ex">
-    <div class="fill-ex-title">Not recommending things</div>
-    <div class="fill-item"><div class="fill-item-num">11</div><div class="fill-item-body"><div class="fill-sentence">Don't <input class="fill-input" id="rw11" style="max-width:100px" placeholder="..."> going to the museums.</div></div></div>
-    <div class="fill-item"><div class="fill-item-num">12</div><div class="fill-item-body"><div class="fill-sentence">It isn't really <input class="fill-input" id="rw12" style="max-width:100px" placeholder="..."> visiting.</div></div></div>
-    <div class="fill-item"><div class="fill-item-num">13</div><div class="fill-item-body"><div class="fill-sentence"><input class="fill-input" id="rw13" style="max-width:100px" placeholder="..."> drink anything with ice in it.</div></div></div>
-    <div class="fill-item"><div class="fill-item-num">14</div><div class="fill-item-body"><div class="fill-sentence">I <input class="fill-input" id="rw14" style="max-width:100px" placeholder="..."> eat any salads.</div></div></div>
-  </div>
-
-  <div style="display:flex;gap:8px;margin-bottom:16px">
-    <button class="btn btn-primary" onclick="checkRW()">✅ Kiểm tra tất cả</button>
-    <button class="btn btn-outline" onclick="revealRW()">👁 Đáp án</button>
-  </div>
-  <div class="score-box" id="rw-score"></div>
-
-  <div class="tip-box">
-    <strong>Grammar note:</strong><br>
-    • After <strong>It's (well/not) worth</strong> → verb+ing: <em>It's worth seeing.</em><br>
-    • After <strong>Don't bother</strong> → verb+ing: <em>Don't bother going.</em><br>
-    • After <strong>I'd / I wouldn't</strong> → infinitive: <em>I'd recommend.</em>
-  </div>
-
-  <div class="ex-label"><div class="ex-num">4</div>Exercise 4 — Pronunciation: The schwa /ə/ in suffixes</div>
-  <p class="instr"><strong>CD1 ▶ 28</strong> Listen and notice how we say the suffixes with a schwa /ə/ sound:</p>
-
-  <div class="coll-grid">
-    <div class="coll-row"><div class="coll-verb">kindness</div><div><div class="coll-phrase">/ˈkaɪndnəs/</div></div></div>
-    <div class="coll-row"><div class="coll-verb">dangerous</div><div><div class="coll-phrase">/ˈdeɪndʒərəs/</div></div></div>
-    <div class="coll-row"><div class="coll-verb">comfortable</div><div><div class="coll-phrase">/ˈkʌmftəbl/</div></div></div>
-    <div class="coll-row"><div class="coll-verb">traditional</div><div><div class="coll-phrase">/trəˈdɪʃənl/</div></div></div>
-    <div class="coll-row"><div class="coll-verb">natural</div><div><div class="coll-phrase">/ˈnætʃrəl/</div></div></div>
-    <div class="coll-row"><div class="coll-verb">improvement</div><div><div class="coll-phrase">/ɪmˈpruːvmənt/</div></div></div>
-    <div class="coll-row"><div class="coll-verb">director</div><div><div class="coll-phrase">/dəˈrektə/</div></div></div>
-  </div>
-</div>
-
-<!-- ══════════════════════════════════════
-     TAB 4: WORKBOOK
-══════════════════════════════════════ -->
-<div class="tab-pane" id="tab-workbook">
-  <div class="sec-heading">Workbook 3D</div>
-  <div class="sec-sub">Extra practice from Workbook pages 23–24</div>
-
-  <div class="lang-sum-tag">📓 REAL WORLD — Asking for and making recommendations</div>
-  <p class="instr">Read the conversation and choose the correct words.</p>
-
-  <div class="fill-ex">
-    <div class="fill-item"><div class="fill-item-num">1</div><div class="fill-item-body"><div class="fill-sentence">A: <input class="fill-input" id="wb1" style="max-width:100px" placeholder="Do you know/Have"> any good places to eat near the hotel?</div></div></div>
-    <div class="fill-item"><div class="fill-item-num">2</div><div class="fill-item-body"><div class="fill-sentence">B: I'd <input class="fill-input" id="wb2" style="max-width:100px" placeholder="recommend/recommending"> The Garden Restaurant.</div></div></div>
-    <div class="fill-item"><div class="fill-item-num">3</div><div class="fill-item-body"><div class="fill-sentence">A: That <input class="fill-input" id="wb3" style="max-width:100px" placeholder="sound/sounds"> good. And what's the <input class="fill-input" id="wb4" style="max-width:100px" placeholder="better/best"> way to get around?</div></div></div>
-    <div class="fill-item"><div class="fill-item-num">4</div><div class="fill-item-body"><div class="fill-sentence">B: It's probably best <input class="fill-input" id="wb5" style="max-width:100px" placeholder="take/to take"> taxis.</div></div></div>
-    <div class="fill-item"><div class="fill-item-num">5</div><div class="fill-item-body"><div class="fill-sentence">B: And you really must <input class="fill-input" id="wb6" style="max-width:100px" placeholder="to go/go"> to the National Art Gallery.</div></div></div>
-    <div class="fill-item"><div class="fill-item-num">6</div><div class="fill-item-body"><div class="fill-sentence">A: That's good to <input class="fill-input" id="wb7" style="max-width:100px" placeholder="know/knowing">.</div></div></div>
-    <div class="fill-item"><div class="fill-item-num">7</div><div class="fill-item-body"><div class="fill-sentence">B: But don't <input class="fill-input" id="wb8" style="max-width:100px" placeholder="bother/worry"> going to the City Museum.</div></div></div>
-    <div style="display:flex;gap:8px;margin-top:12px">
-      <button class="btn btn-primary" onclick="checkWB()">✅ Kiểm tra</button>
-      <button class="btn btn-outline" onclick="revealWB()">👁 Đáp án</button>
+    <div style="margin-bottom:14px">
+      <div style="font-size:.78rem;font-weight:700;color:#FCD34D;text-transform:uppercase;margin-bottom:8px">1. Phrases followed by INFINITIVE (base verb):</div>
+      <div style="font-family:monospace;font-size:.85rem;color:var(--text);background:var(--bg3);padding:12px;border-radius:var(--r2);border:1px solid var(--border);line-height:2">
+        It's probably best <strong style="color:#FCD34D">to use</strong> rickshaws.<br>
+        I'd <strong style="color:#FCD34D">recommend</strong> the trains.<br>
+        You should definitely <strong style="color:#FCD34D">see</strong> the Red Fort.<br>
+        You really must <strong style="color:#FCD34D">go</strong> to Agra.<br>
+        I wouldn't <strong style="color:#FCD34D">eat</strong> any salads.
+      </div>
     </div>
-    <div class="score-box" id="wb-score"></div>
+
+    <div style="margin-bottom:14px">
+      <div style="font-size:.78rem;font-weight:700;color:#FCD34D;text-transform:uppercase;margin-bottom:8px">2. Phrases followed by VERB-ING:</div>
+      <div style="font-family:monospace;font-size:.85rem;color:var(--text);background:var(--bg3);padding:12px;border-radius:var(--r2);border:1px solid var(--border);line-height:2">
+        It's (well/not) worth <strong style="color:#FCD34D">visiting</strong>.<br>
+        Don't bother <strong style="color:#FCD34D">going</strong> to the museums.<br>
+        That's well worth <strong style="color:#FCD34D">seeing</strong>.
+      </div>
+    </div>
+
+    <div class="note-box" style="margin-bottom:0">
+      <strong>📌 Tóm tắt:</strong><br>
+      • <em>It's probably best to / I'd recommend / You should / You really must / I wouldn't</em> + <strong>base verb</strong><br>
+      • <em>It's worth / It's not worth / Don't bother / That's well worth</em> + <strong>verb-ing</strong>
+    </div>
+  </div>
+
+  <div class="ex-label"><span class="ex-num">1</span>Điền dạng động từ đúng (SB p29, Ex 3a)</div>
+  <div class="fill-ex">
+    <div class="fill-item" id="gr1"><div class="fill-num">1</div><div class="fill-content">
+      <div class="fill-sent">It's probably best <input class="fi" id="gri1" placeholder="to + verb" style="width:120px"> rickshaws. (use)</div>
+      <div style="display:flex;gap:4px;margin-top:6px"><button class="chk-btn" onclick="chk('gri1','to use','gr1','grf1')">Kiểm tra</button><button class="rev-btn" onclick="rev('gri1','to use','gr1','grf1')">Đáp án</button></div>
+      <div class="fb" id="grf1"></div>
+    </div></div>
+    <div class="fill-item" id="gr2"><div class="fill-num">2</div><div class="fill-content">
+      <div class="fill-sent">I'd recommend <input class="fi" id="gri2" placeholder="verb/noun" style="width:130px"> (the trains). (take)</div>
+      <div style="display:flex;gap:4px;margin-top:6px"><button class="chk-btn" onclick="chk('gri2','taking|the trains|taking the trains','gr2','grf2')">Kiểm tra</button><button class="rev-btn" onclick="rev('gri2','taking (the trains)','gr2','grf2')">Đáp án</button></div>
+      <div class="fb" id="grf2"></div>
+    </div></div>
+    <div class="fill-item" id="gr3"><div class="fill-num">3</div><div class="fill-content">
+      <div class="fill-sent">You should definitely <input class="fi" id="gri3" placeholder="base verb" style="width:100px"> the Red Fort. (see)</div>
+      <div style="display:flex;gap:4px;margin-top:6px"><button class="chk-btn" onclick="chk('gri3','see','gr3','grf3')">Kiểm tra</button><button class="rev-btn" onclick="rev('gri3','see','gr3','grf3')">Đáp án</button></div>
+      <div class="fb" id="grf3"></div>
+    </div></div>
+    <div class="fill-item" id="gr4"><div class="fill-num">4</div><div class="fill-content">
+      <div class="fill-sent">That's well worth <input class="fi" id="gri4" placeholder="verb-ing" style="width:110px">. (see)</div>
+      <div style="display:flex;gap:4px;margin-top:6px"><button class="chk-btn" onclick="chk('gri4','seeing','gr4','grf4')">Kiểm tra</button><button class="rev-btn" onclick="rev('gri4','seeing','gr4','grf4')">Đáp án</button></div>
+      <div class="fb" id="grf4"></div>
+    </div></div>
+    <div class="fill-item" id="gr5"><div class="fill-num">5</div><div class="fill-content">
+      <div class="fill-sent">You really must <input class="fi" id="gri5" placeholder="base verb" style="width:80px"> to Agra to see the Taj Mahal. (go)</div>
+      <div style="display:flex;gap:4px;margin-top:6px"><button class="chk-btn" onclick="chk('gri5','go','gr5','grf5')">Kiểm tra</button><button class="rev-btn" onclick="rev('gri5','go','gr5','grf5')">Đáp án</button></div>
+      <div class="fb" id="grf5"></div>
+    </div></div>
+    <div class="fill-item" id="gr6"><div class="fill-num">6</div><div class="fill-content">
+      <div class="fill-sent">Don't bother <input class="fi" id="gri6" placeholder="verb-ing" style="width:110px"> to the museums. (go)</div>
+      <div style="display:flex;gap:4px;margin-top:6px"><button class="chk-btn" onclick="chk('gri6','going','gr6','grf6')">Kiểm tra</button><button class="rev-btn" onclick="rev('gri6','going','gr6','grf6')">Đáp án</button></div>
+      <div class="fb" id="grf6"></div>
+    </div></div>
+    <div class="fill-item" id="gr7"><div class="fill-num">7</div><div class="fill-content">
+      <div class="fill-sent">It isn't really worth <input class="fi" id="gri7" placeholder="verb-ing" style="width:120px">, I don't think. (visit)</div>
+      <div style="display:flex;gap:4px;margin-top:6px"><button class="chk-btn" onclick="chk('gri7','visiting','gr7','grf7')">Kiểm tra</button><button class="rev-btn" onclick="rev('gri7','visiting','gr7','grf7')">Đáp án</button></div>
+      <div class="fb" id="grf7"></div>
+    </div></div>
+    <div class="fill-item" id="gr8"><div class="fill-num">8</div><div class="fill-content">
+      <div class="fill-sent">I <input class="fi" id="gri8" placeholder="would..." style="width:130px"> eat any salads.</div>
+      <div style="display:flex;gap:4px;margin-top:6px"><button class="chk-btn" onclick="chk('gri8','wouldn\'t','gr8','grf8')">Kiểm tra</button><button class="rev-btn" onclick="rev('gri8','wouldn\'t','gr8','grf8')">Đáp án</button></div>
+      <div class="fb" id="grf8"></div>
+    </div></div>
   </div>
 </div>
 
-<!-- ══════════════════════════════════════
-     TAB 5: LANGUAGE SUMMARY
-══════════════════════════════════════ -->
-<div class="tab-pane" id="tab-langsummary">
-  <div class="sec-heading">Language Summary 3D</div>
-  <div class="sec-sub">REAL WORLD 3.1 — Asking for and making recommendations</div>
+<!-- TAB PRONUNCIATION -->
+<div id="tab-pronunciation" class="tab-pane">
+  <div class="sec-heading">🔊 Pronunciation — The schwa /ə/ in suffixes</div>
+  <div class="sec-sub">Student Book p29 · CD1 Track 28–29 · Âm schwa /ə/ trong hậu tố</div>
 
-  <div class="lang-sum-tag">🌍 REAL WORLD 3.1 — Asking for and making recommendations</div>
-
-  <div class="coll-grid">
-    <div class="coll-row"><div class="coll-verb">Asking</div><div><div class="coll-phrase">Do you know any good places to stay/eat?</div><div class="coll-vi">🇻🇳 Bạn có biết chỗ nào tốt để ở/ăn không?</div></div></div>
-    <div class="coll-row"><div class="coll-verb">Asking</div><div><div class="coll-phrase">What's the best way to get around?</div><div class="coll-vi">🇻🇳 Cách di chuyển tốt nhất là gì?</div></div></div>
-    <div class="coll-row"><div class="coll-verb">Asking</div><div><div class="coll-phrase">What else is worth seeing?</div><div class="coll-vi">🇻🇳 Còn gì khác đáng xem không?</div></div></div>
-    <div class="coll-row"><div class="coll-verb">Asking</div><div><div class="coll-phrase">What about places outside Delhi?</div><div class="coll-vi">🇻🇳 Còn những địa điểm bên ngoài Delhi thì sao?</div></div></div>
-    <div class="coll-row"><div class="coll-verb">Asking</div><div><div class="coll-phrase">Have you got any other tips?</div><div class="coll-vi">🇻🇳 Bạn có lời khuyên nào khác không?</div></div></div>
+  <div class="pron-box">
+    <div style="font-size:.9rem;font-weight:700;margin-bottom:4px">The schwa /ə/ in suffixes</div>
+    <div style="font-size:.83rem;color:var(--dim);margin-bottom:14px">Trong tiếng Anh, các hậu tố <strong>-ness, -ous, -ful, -ant, -ent, -able, -al</strong> thường được phát âm với âm schwa /ə/ — âm nguyên âm không nhấn trung tính nhất trong tiếng Anh.</div>
+    <div class="pron-grid">
+      <div class="pron-card"><div class="pron-word">kind<span style="color:#FCD34D">ness</span></div><div class="pron-ipa">/ˈkaɪnd<span style="color:#FCD34D">nəs</span>/</div><div class="pron-ex">-ness = /nəs/</div></div>
+      <div class="pron-card"><div class="pron-word">lazi<span style="color:#FCD34D">ness</span></div><div class="pron-ipa">/ˈleɪzi<span style="color:#FCD34D">nəs</span>/</div><div class="pron-ex">-ness = /nəs/</div></div>
+      <div class="pron-card"><div class="pron-word">assist<span style="color:#FCD34D">ant</span></div><div class="pron-ipa">/əˈsɪst<span style="color:#FCD34D">ənt</span>/</div><div class="pron-ex">-ant = /ənt/</div></div>
+      <div class="pron-card"><div class="pron-word">account<span style="color:#FCD34D">ant</span></div><div class="pron-ipa">/əˈkaʊnt<span style="color:#FCD34D">ənt</span>/</div><div class="pron-ex">-ant = /ənt/</div></div>
+      <div class="pron-card"><div class="pron-word">danger<span style="color:#FCD34D">ous</span></div><div class="pron-ipa">/ˈdeɪndʒər<span style="color:#FCD34D">əs</span>/</div><div class="pron-ex">-ous = /əs/</div></div>
+      <div class="pron-card"><div class="pron-word">fam<span style="color:#FCD34D">ous</span></div><div class="pron-ipa">/ˈfeɪm<span style="color:#FCD34D">əs</span>/</div><div class="pron-ex">-ous = /əs/</div></div>
+      <div class="pron-card"><div class="pron-word">comfort<span style="color:#FCD34D">able</span></div><div class="pron-ipa">/ˈkʌmftər<span style="color:#FCD34D">bəl</span>/</div><div class="pron-ex">-able = /əbl/</div></div>
+      <div class="pron-card"><div class="pron-word">fashion<span style="color:#FCD34D">able</span></div><div class="pron-ipa">/ˈfæʃən<span style="color:#FCD34D">əbl/</span></div><div class="pron-ex">-able = /əbl/</div></div>
+      <div class="pron-card"><div class="pron-word">music<span style="color:#FCD34D">al</span></div><div class="pron-ipa">/ˈmjuːzɪk<span style="color:#FCD34D">əl</span>/</div><div class="pron-ex">-al = /əl/</div></div>
+      <div class="pron-card"><div class="pron-word">natur<span style="color:#FCD34D">al</span></div><div class="pron-ipa">/ˈneɪtʃər<span style="color:#FCD34D">əl</span>/</div><div class="pron-ex">-al = /əl/</div></div>
+      <div class="pron-card"><div class="pron-word">improve<span style="color:#FCD34D">ment</span></div><div class="pron-ipa">/ɪmˈpruːv<span style="color:#FCD34D">mənt</span>/</div><div class="pron-ex">-ment = /mənt/</div></div>
+      <div class="pron-card"><div class="pron-word">argu<span style="color:#FCD34D">ment</span></div><div class="pron-ipa">/ˈɑːɡjʊ<span style="color:#FCD34D">mənt</span>/</div><div class="pron-ex">-ment = /mənt/</div></div>
+      <div class="pron-card"><div class="pron-word">auth<span style="color:#FCD34D">or</span></div><div class="pron-ipa">/ˈɔː<span style="color:#FCD34D">θə</span>/</div><div class="pron-ex">-or = /ə/</div></div>
+      <div class="pron-card"><div class="pron-word">direct<span style="color:#FCD34D">or</span></div><div class="pron-ipa">/dɪˈrekt<span style="color:#FCD34D">ə</span>/</div><div class="pron-ex">-or = /ə/</div></div>
+      <div class="pron-card"><div class="pron-word">collect<span style="color:#FCD34D">ion</span></div><div class="pron-ipa">/kəˈlek<span style="color:#FCD34D">ʃən</span>/</div><div class="pron-ex">-ion = /ʃən/</div></div>
+      <div class="pron-card"><div class="pron-word">decis<span style="color:#FCD34D">ion</span></div><div class="pron-ipa">/dɪˈsɪʒ<span style="color:#FCD34D">ən</span>/</div><div class="pron-ex">-ion = /ʒən/</div></div>
+    </div>
+    <div class="note-box" style="margin-top:14px">
+      <strong>📌 Quy tắc:</strong> Các suffix <strong>KHÔNG</strong> được nhấn trọng âm — trọng âm luôn rơi vào phần gốc của từ:<br>
+      <em>KINDness · DANGerous · COMFortable · MUSical · IMprovement · COLLection</em>
+    </div>
   </div>
 
-  <div class="coll-grid">
-    <div class="coll-row"><div class="coll-verb">Recommend</div><div><div class="coll-phrase">It's probably best to use rickshaws.</div><div class="coll-vi">🇻🇳 Có lẽ tốt nhất là đi xe kéo.</div></div></div>
-    <div class="coll-row"><div class="coll-verb">Recommend</div><div><div class="coll-phrase">I'd recommend the trains.</div><div class="coll-vi">🇻🇳 Tôi khuyên nên đi tàu.</div></div></div>
-    <div class="coll-row"><div class="coll-verb">Recommend</div><div><div class="coll-phrase">You should definitely see the Red Fort.</div><div class="coll-vi">🇻🇳 Bạn nhất định phải xem Pháo đài Đỏ.</div></div></div>
-    <div class="coll-row"><div class="coll-verb">Recommend</div><div><div class="coll-phrase">That's well worth seeing.</div><div class="coll-vi">🇻🇳 Rất đáng để xem.</div></div></div>
-    <div class="coll-row"><div class="coll-verb">Recommend</div><div><div class="coll-phrase">You really must go to Agra.</div><div class="coll-vi">🇻🇳 Bạn thực sự phải đến Agra.</div></div></div>
-  </div>
-
-  <div class="coll-grid">
-    <div class="coll-row"><div class="coll-verb">Not recommend</div><div><div class="coll-phrase">Don't bother going to the museums.</div><div class="coll-vi">🇻🇳 Đừng bận tâm đến viện bảo tàng.</div></div></div>
-    <div class="coll-row"><div class="coll-verb">Not recommend</div><div><div class="coll-phrase">It isn't really worth visiting.</div><div class="coll-vi">🇻🇳 Không thực sự đáng để tham quan.</div></div></div>
-    <div class="coll-row"><div class="coll-verb">Not recommend</div><div><div class="coll-phrase">Don't drink anything with ice in it.</div><div class="coll-vi">🇻🇳 Đừng uống bất cứ thứ gì có đá.</div></div></div>
-    <div class="coll-row"><div class="coll-verb">Not recommend</div><div><div class="coll-phrase">I wouldn't eat any salads.</div><div class="coll-vi">🇻🇳 Tôi sẽ không ăn salad.</div></div></div>
-  </div>
-
-  <div class="coll-grid">
-    <div class="coll-row"><div class="coll-verb">Respond</div><div><div class="coll-phrase">That's good to know.</div><div class="coll-vi">🇻🇳 Biết vậy thì tốt.</div></div></div>
-    <div class="coll-row"><div class="coll-verb">Respond</div><div><div class="coll-phrase">That sounds good.</div><div class="coll-vi">🇻🇳 Nghe có vẻ tốt.</div></div></div>
-    <div class="coll-row"><div class="coll-verb">Respond</div><div><div class="coll-phrase">Thanks, that's really useful.</div><div class="coll-vi">🇻🇳 Cảm ơn, điều đó thực sự hữu ích.</div></div></div>
-    <div class="coll-row"><div class="coll-verb">Respond</div><div><div class="coll-phrase">Yes, I've heard that before.</div><div class="coll-vi">🇻🇳 Vâng, tôi đã nghe điều đó trước đây.</div></div></div>
-  </div>
-
-  <div class="tip-box">
-    <strong>Grammar rules:</strong><br>
-    • After <strong>It's (well/not) worth</strong> → verb+ing: <em>It's worth seeing.</em><br>
-    • After <strong>Don't bother</strong> → verb+ing: <em>Don't bother going.</em><br>
-    • After <strong>I'd / I wouldn't</strong> → infinitive: <em>I'd recommend.</em>
+  <div class="ex-label"><span class="ex-num">1</span>Gạch chân suffix, đọc to (SB p29, Ex 2a)</div>
+  <div class="instruction">Gạch chân suffix trong mỗi câu rồi đọc to. Click xem cách phát âm.</div>
+  <div class="qa-list">
+    <div class="qa-item" id="pq1"><div class="qa-q" onclick="toggleQA('pq1')"><div class="qa-qnum">1</div><div class="qa-qtext">It's dangerous to be ambitious and adventurous.</div><div class="qa-arrow">›</div></div><div class="qa-answer">danger<strong>ous</strong> /ˈdeɪndʒərəs/ · ambit<strong>ious</strong> /æmˈbɪʃəs/ · adventur<strong>ous</strong> /ədˈventʃərəs/ — tất cả suffix <em>-ous</em> = /əs/</div></div>
+    <div class="qa-item" id="pq2"><div class="qa-q" onclick="toggleQA('pq2')"><div class="qa-qnum">2</div><div class="qa-qtext">The accountant's assistant is very important.</div><div class="qa-arrow">›</div></div><div class="qa-answer">account<strong>ant</strong> /əˈkaʊntənt/ · assist<strong>ant</strong> /əˈsɪstənt/ · import<strong>ant</strong> /ɪmˈpɔːtənt/ — suffix <em>-ant</em> = /ənt/</div></div>
+    <div class="qa-item" id="pq3"><div class="qa-q" onclick="toggleQA('pq3')"><div class="qa-qnum">3</div><div class="qa-qtext">She's knowledgeable, reliable and fashionable.</div><div class="qa-arrow">›</div></div><div class="qa-answer">knowledge<strong>able</strong> /ˈnɒlɪdʒəbl/ · reli<strong>able</strong> /rɪˈlaɪəbl/ · fashion<strong>able</strong> /ˈfæʃənəbl/ — suffix <em>-able</em> = /əbl/</div></div>
+    <div class="qa-item" id="pq4"><div class="qa-q" onclick="toggleQA('pq4')"><div class="qa-qnum">4</div><div class="qa-qtext">He felt both happiness and sadness after his illness.</div><div class="qa-arrow">›</div></div><div class="qa-answer">happi<strong>ness</strong> /ˈhæpɪnəs/ · sad<strong>ness</strong> /ˈsædnəs/ · ill<strong>ness</strong> /ˈɪlnəs/ — suffix <em>-ness</em> = /nəs/</div></div>
+    <div class="qa-item" id="pq5"><div class="qa-q" onclick="toggleQA('pq5')"><div class="qa-qnum">5</div><div class="qa-qtext">The director had three visitors – an author, a doctor and an actor.</div><div class="qa-arrow">›</div></div><div class="qa-answer">direct<strong>or</strong> /dɪˈrektə/ · visit<strong>or</strong>s /ˈvɪzɪtəz/ · auth<strong>or</strong> /ˈɔːθə/ · doct<strong>or</strong> /ˈdɒktə/ · act<strong>or</strong> /ˈæktə/ — suffix <em>-or/-er</em> = /ə/</div></div>
+    <div class="qa-item" id="pq6"><div class="qa-q" onclick="toggleQA('pq6')"><div class="qa-qnum">6</div><div class="qa-qtext">We had a discussion and made a decision to do some revision.</div><div class="qa-arrow">›</div></div><div class="qa-answer">discuss<strong>ion</strong> /dɪˈskʌʃən/ · decis<strong>ion</strong> /dɪˈsɪʒən/ · revis<strong>ion</strong> /rɪˈvɪʒən/ — suffix <em>-ion</em> = /ʃən/ hay /ʒən/</div></div>
+    <div class="qa-item" id="pq7"><div class="qa-q" onclick="toggleQA('pq7')"><div class="qa-qnum">7</div><div class="qa-qtext">It's a traditional medical centre that uses natural herbal medicine.</div><div class="qa-arrow">›</div></div><div class="qa-answer">tradition<strong>al</strong> /trəˈdɪʃənl/ · medic<strong>al</strong> /ˈmedɪkl/ · natur<strong>al</strong> /ˈneɪtʃrəl/ — suffix <em>-al</em> = /əl/</div></div>
+    <div class="qa-item" id="pq8"><div class="qa-q" onclick="toggleQA('pq8')"><div class="qa-qnum">8</div><div class="qa-qtext">There's disappointment in the government because there's no improvement in unemployment.</div><div class="qa-arrow">›</div></div><div class="qa-answer">disappoint<strong>ment</strong> · govern<strong>ment</strong> · improve<strong>ment</strong> · unemploy<strong>ment</strong> — tất cả suffix <em>-ment</em> = /mənt/</div></div>
   </div>
 </div>
 
-</div><!-- /page-content -->
+<!-- TAB SPEAKING -->
+<div id="tab-speaking" class="tab-pane">
+  <div class="sec-heading">🗣 Speaking — Roleplay: Asking for and making recommendations</div>
+  <div class="sec-sub">Student Book p29 · Ex 5–6</div>
 
+  <div class="ex-label"><span class="ex-num">1</span>Hội thoại mẫu (SB p29, Ex 5)</div>
+  <div class="dialogue-box">
+    <div style="font-size:.82rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;margin-bottom:14px">💬 Conversation 1 — Places to eat</div>
+    <div class="dlg-turn"><div class="dlg-spk">A:</div><div class="dlg-line">Do you know any <span class="hl">good places</span> to eat in town?</div></div>
+    <div class="dlg-turn"><div class="dlg-spk">B:</div><div class="dlg-line">Well, you <span class="hl">definitely</span> go to Nero's in the city centre.</div></div>
+    <div class="dlg-turn"><div class="dlg-spk">A:</div><div class="dlg-line">What about places near where we're staying?</div></div>
+    <div class="dlg-turn"><div class="dlg-spk">B:</div><div class="dlg-line">I'd <span class="hl">recommend</span> the Grove Restaurant. It's opposite the hotel.</div></div>
+    <div class="dlg-turn"><div class="dlg-spk">A:</div><div class="dlg-line">Thanks, that's <span class="hl">really useful</span>.</div></div>
+  </div>
+  <div class="dialogue-box">
+    <div style="font-size:.82rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;margin-bottom:14px">💬 Conversation 2 — Places to stay</div>
+    <div class="dlg-turn"><div class="dlg-spk">A:</div><div class="dlg-line">Where's the <span class="hl">best place</span> to stay?</div></div>
+    <div class="dlg-turn"><div class="dlg-spk">B:</div><div class="dlg-line">It's <span class="hl">probably best</span> to stay in the Madison. It's the nicest hotel in the city.</div></div>
+    <div class="dlg-turn"><div class="dlg-spk">A:</div><div class="dlg-line">OK, thanks. Have you got any other tips?</div></div>
+    <div class="dlg-turn"><div class="dlg-spk">B:</div><div class="dlg-line">I <span class="hl">wouldn't</span> carry too much money at night.</div></div>
+    <div class="dlg-turn"><div class="dlg-spk">A:</div><div class="dlg-line">Yes, that's <span class="hl">good to know</span>. Thanks.</div></div>
+  </div>
+  <div class="dialogue-box">
+    <div style="font-size:.82rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;margin-bottom:14px">💬 Conversation 3 — Things to see</div>
+    <div class="dlg-turn"><div class="dlg-spk">A:</div><div class="dlg-line">What are the <span class="hl">best places</span> to visit in the city centre?</div></div>
+    <div class="dlg-turn"><div class="dlg-spk">B:</div><div class="dlg-line">You <span class="hl">really must</span> go to the National Art Gallery. It's amazing.</div></div>
+    <div class="dlg-turn"><div class="dlg-spk">A:</div><div class="dlg-line">What else is worth seeing? Are there any good museums?</div></div>
+    <div class="dlg-turn"><div class="dlg-spk">B:</div><div class="dlg-line">Well, I <span class="hl">wouldn't bother</span> going to the City Museum. It's <span class="hl">not worth</span> visiting, I think.</div></div>
+    <div class="dlg-turn"><div class="dlg-spk">A:</div><div class="dlg-line">Yes, I've <span class="hl">heard that</span> before.</div></div>
+  </div>
+
+  <div class="ex-label"><span class="ex-num">2</span>Roleplay tự do (SB p29, Ex 6)</div>
+  <div class="instruction">Chọn một thành phố hoặc địa điểm bạn biết rõ. Chuẩn bị ít nhất 4 gợi ý. Một người hỏi, một người trả lời dùng ngôn ngữ trong bài.</div>
+  <div class="speaking-box">
+    <div class="disc-q"><div class="disc-q-num">A</div><div>Do you know any good places to stay/eat in [city]?</div></div>
+    <div class="disc-q"><div class="disc-q-num">B</div><div>What's the best way to get around?</div></div>
+    <div class="disc-q"><div class="disc-q-num">C</div><div>What should we definitely see/do?</div></div>
+    <div class="disc-q"><div class="disc-q-num">D</div><div>What about places outside the city?</div></div>
+    <div class="disc-q"><div class="disc-q-num">E</div><div>Have you got any other tips? (food, safety, weather, transport...)</div></div>
+  </div>
+  <div>
+    <span class="chip">It's probably best to...</span>
+    <span class="chip">I'd recommend...</span>
+    <span class="chip">You should definitely...</span>
+    <span class="chip">That's well worth seeing.</span>
+    <span class="chip">You really must go to...</span>
+    <span class="chip">Don't bother going to...</span>
+    <span class="chip">It isn't really worth...</span>
+    <span class="chip">I wouldn't...</span>
+    <span class="chip">That sounds good.</span>
+    <span class="chip">That's good to know.</span>
+    <span class="chip">Thanks, that's really useful.</span>
+    <span class="chip">Yes, I've heard that before.</span>
+  </div>
+</div>
+
+<!-- TAB WORKBOOK -->
+<div id="tab-workbook" class="tab-pane">
+  <div class="sec-heading">📝 Workbook — Bài 3D A trip to India</div>
+  <div class="sec-sub">Workbook p19–20</div>
+
+  <div class="wb-tag">📚 Prepositions with adjectives — WB p19, Ex 1</div>
+  <div class="ex-label"><span class="ex-num">1</span>Chọn giới từ đúng (WB p19)</div>
+  <div class="instruction">Chọn giới từ đúng. Đôi khi có nhiều hơn một đáp án.</div>
+  <div class="fill-ex">
+    <div class="fill-item" id="wb1"><div class="fill-num">1</div><div class="fill-content">
+      <div class="fill-sent">Mark's keen <input class="fi" id="wbi1" placeholder="prep" style="width:80px"> going to India next year but I'm scared <input class="fi" id="wbi1b" placeholder="prep" style="width:80px"> flying.</div>
+      <div style="display:flex;gap:4px;margin-top:6px"><button class="chk-btn" onclick="chkTwo('wbi1','on|about','wbi1b','of|about','wb1','wbf1')">Kiểm tra</button><button class="rev-btn" onclick="revTwo('wbi1','on','wbi1b','of','wb1','wbf1')">Đáp án</button></div>
+      <div class="fb" id="wbf1"></div>
+    </div></div>
+    <div class="fill-item" id="wb2"><div class="fill-num">2</div><div class="fill-content">
+      <div class="fill-sent">The manager didn't seem concerned <input class="fi" id="wbi2" placeholder="prep" style="width:80px"> our complaint. We were so angry <input class="fi" id="wbi2b" placeholder="prep" style="width:80px"> him that we checked out early.</div>
+      <div style="display:flex;gap:4px;margin-top:6px"><button class="chk-btn" onclick="chkTwo('wbi2','with|about','wbi2b','with|about','wb2','wbf2')">Kiểm tra</button><button class="rev-btn" onclick="revTwo('wbi2','with/about','wbi2b','with/about','wb2','wbf2')">Đáp án</button></div>
+      <div class="fb" id="wbf2"></div>
+    </div></div>
+    <div class="fill-item" id="wb3"><div class="fill-num">3</div><div class="fill-content">
+      <div class="fill-sent">I'm so bad <input class="fi" id="wbi3" placeholder="prep" style="width:80px"> languages and always get embarrassed <input class="fi" id="wbi3b" placeholder="prep" style="width:80px"> not being able to communicate abroad.</div>
+      <div style="display:flex;gap:4px;margin-top:6px"><button class="chk-btn" onclick="chkTwo('wbi3','at','wbi3b','about','wb3','wbf3')">Kiểm tra</button><button class="rev-btn" onclick="revTwo('wbi3','at','wbi3b','about','wb3','wbf3')">Đáp án</button></div>
+      <div class="fb" id="wbf3"></div>
+    </div></div>
+    <div class="fill-item" id="wb4"><div class="fill-num">4</div><div class="fill-content">
+      <div class="fill-sent">Many of the passengers were angry <input class="fi" id="wbi4" placeholder="prep" style="width:80px"> the delay and no one was satisfied <input class="fi" id="wbi4b" placeholder="prep" style="width:80px"> the explanation.</div>
+      <div style="display:flex;gap:4px;margin-top:6px"><button class="chk-btn" onclick="chkTwo('wbi4','about|with','wbi4b','with','wb4','wbf4')">Kiểm tra</button><button class="rev-btn" onclick="revTwo('wbi4','about/with','wbi4b','with','wb4','wbf4')">Đáp án</button></div>
+      <div class="fb" id="wbf4"></div>
+    </div></div>
+  </div>
+
+  <div class="wb-tag" style="margin-top:20px">💬 Making recommendations — WB p19, Ex 2</div>
+  <div class="ex-label"><span class="ex-num">2</span>Viết câu hỏi (WB p19, Ex 2a)</div>
+  <div class="fill-ex">
+    <div class="fill-item" id="wbq1"><div class="fill-num">1</div><div class="fill-content">
+      <div class="fill-sent">know / Do / any good / stay / places / to / you ?<br><input class="fi" id="wbqi1" placeholder="Viết câu hỏi" style="width:100%;min-width:280px;margin-top:6px"></div>
+      <div style="display:flex;gap:4px;margin-top:6px"><button class="chk-btn" onclick="chk('wbqi1','do you know any good places to stay','wbq1','wbqf1')">Kiểm tra</button><button class="rev-btn" onclick="rev('wbqi1','Do you know any good places to stay?','wbq1','wbqf1')">Đáp án</button></div>
+      <div class="fb" id="wbqf1"></div>
+    </div></div>
+    <div class="fill-item" id="wbq2"><div class="fill-num">2</div><div class="fill-content">
+      <div class="fill-sent">seeing / worth / else / is / What ?<br><input class="fi" id="wbqi2" placeholder="Viết câu hỏi" style="width:100%;min-width:280px;margin-top:6px"></div>
+      <div style="display:flex;gap:4px;margin-top:6px"><button class="chk-btn" onclick="chk('wbqi2','what else is worth seeing','wbq2','wbqf2')">Kiểm tra</button><button class="rev-btn" onclick="rev('wbqi2','What else is worth seeing?','wbq2','wbqf2')">Đáp án</button></div>
+      <div class="fb" id="wbqf2"></div>
+    </div></div>
+    <div class="fill-item" id="wbq3"><div class="fill-num">3</div><div class="fill-content">
+      <div class="fill-sent">near / about / sea / places / What / the ?<br><input class="fi" id="wbqi3" placeholder="Viết câu hỏi" style="width:100%;min-width:280px;margin-top:6px"></div>
+      <div style="display:flex;gap:4px;margin-top:6px"><button class="chk-btn" onclick="chk('wbqi3','what about places near the sea','wbq3','wbqf3')">Kiểm tra</button><button class="rev-btn" onclick="rev('wbqi3','What about places near the sea?','wbq3','wbqf3')">Đáp án</button></div>
+      <div class="fb" id="wbqf3"></div>
+    </div></div>
+    <div class="fill-item" id="wbq4"><div class="fill-num">4</div><div class="fill-content">
+      <div class="fill-sent">tips / got / other / Have / you / any ?<br><input class="fi" id="wbqi4" placeholder="Viết câu hỏi" style="width:100%;min-width:280px;margin-top:6px"></div>
+      <div style="display:flex;gap:4px;margin-top:6px"><button class="chk-btn" onclick="chk('wbqi4','have you got any other tips','wbq4','wbqf4')">Kiểm tra</button><button class="rev-btn" onclick="rev('wbqi4','Have you got any other tips?','wbq4','wbqf4')">Đáp án</button></div>
+      <div class="fb" id="wbqf4"></div>
+    </div></div>
+    <div class="fill-item" id="wbq5"><div class="fill-num">5</div><div class="fill-content">
+      <div class="fill-sent">place / a / the / to / What's / best / car / hire ?<br><input class="fi" id="wbqi5" placeholder="Viết câu hỏi" style="width:100%;min-width:280px;margin-top:6px"></div>
+      <div style="display:flex;gap:4px;margin-top:6px"><button class="chk-btn" onclick="chk('wbqi5','what\'s the best place to hire a car','wbq5','wbqf5')">Kiểm tra</button><button class="rev-btn" onclick="rev('wbqi5','What\'s the best place to hire a car?','wbq5','wbqf5')">Đáp án</button></div>
+      <div class="fb" id="wbqf5"></div>
+    </div></div>
+  </div>
+
+  <div class="wb-tag" style="margin-top:20px">🗣 Conversation — WB p20, Ex 3</div>
+  <div class="ex-label"><span class="ex-num">3</span>Hoàn thành hội thoại — Ann và Louise về Ấn Độ (WB p20)</div>
+  <div class="dialogue-box">
+    <div style="font-size:.82rem;color:var(--muted);margin-bottom:14px"><strong>Word box 1:</strong> <em>are the best · 's the best · 'd recommend · sounds wonderful · wouldn't go · to know</em></div>
+    <div class="dlg-turn"><div class="dlg-spk">ANN:</div><div class="dlg-line">You've been to India, Louise. What <span class="blank">are the best</span> places to visit?</div></div>
+    <div class="dlg-turn"><div class="dlg-spk">LOUISE:</div><div class="dlg-line">I <span class="blank">'d recommend</span> Kerala – in the south. Beautiful lakes, canals … it's like paradise.</div></div>
+    <div class="dlg-turn"><div class="dlg-spk">ANN:</div><div class="dlg-line">That <span class="blank">sounds wonderful</span>. What <span class="blank">'s the best</span> time of year to visit?</div></div>
+    <div class="dlg-turn"><div class="dlg-spk">LOUISE:</div><div class="dlg-line">Well, I <span class="blank">wouldn't go</span> between September and January. It can be really wet then.</div></div>
+    <div class="dlg-turn"><div class="dlg-spk">ANN:</div><div class="dlg-line">That's good <span class="blank">to know</span>. Thanks.</div></div>
+    <div style="height:14px"></div>
+    <div style="font-size:.82rem;color:var(--muted);margin-bottom:14px"><strong>Word box 2:</strong> <em>really useful · bother · should go to · Do you know any · And is there</em></div>
+    <div class="dlg-turn"><div class="dlg-spk">ANN:</div><div class="dlg-line"><span class="blank">Do you know any</span> good places to stay?</div></div>
+    <div class="dlg-turn"><div class="dlg-spk">LOUISE:</div><div class="dlg-line">Yes, but don't <span class="blank">bother</span> booking in advance. It's cheaper to get a hotel there.</div></div>
+    <div class="dlg-turn"><div class="dlg-spk">ANN:</div><div class="dlg-line">Thanks, that's <span class="blank">really useful</span>. <span class="blank">And is there</span> anything else worth visiting in the south?</div></div>
+    <div class="dlg-turn"><div class="dlg-spk">LOUISE:</div><div class="dlg-line">Of course. India's a big place. If you like beaches, you <span class="blank">should go to</span> Goa.</div></div>
+    <div style="height:14px"></div>
+    <div style="font-size:.82rem;color:var(--muted);margin-bottom:14px"><strong>Word box 3:</strong> <em>I've heard · And what about · You really must · It's probably best · Have you got any</em></div>
+    <div class="dlg-turn"><div class="dlg-spk">ANN:</div><div class="dlg-line"><span class="blank">Have you got any</span> tips about money?</div></div>
+    <div class="dlg-turn"><div class="dlg-spk">LOUISE:</div><div class="dlg-line"><span class="blank">It's probably best</span> to take cash. Credit cards aren't very useful outside big cities.</div></div>
+    <div class="dlg-turn"><div class="dlg-spk">ANN:</div><div class="dlg-line">Right. <span class="blank">And what about</span> other tips?</div></div>
+    <div class="dlg-turn"><div class="dlg-spk">LOUISE:</div><div class="dlg-line">Lots. <span class="blank">You really must</span> visit one big city. Indian cities are just incredible.</div></div>
+    <div class="dlg-turn"><div class="dlg-spk">ANN:</div><div class="dlg-line">Yes, <span class="blank">I've heard</span> that.</div></div>
+  </div>
+</div>
+
+</div><!-- page-content -->
 <script>
-function showTab(id){
-  document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));
-  document.querySelectorAll('.tnav-btn').forEach(b=>b.classList.remove('active'));
-  document.getElementById('tab-'+id).classList.add('active');
-  const tabs=['prep','video','realworld','workbook','langsummary'];
-  const idx=tabs.indexOf(id);
-  document.querySelectorAll('.tnav-btn')[idx]?.classList.add('active');
+function toggleTheme(){const d=document.documentElement;d.dataset.theme=d.dataset.theme==='light'?'':'light';}
+function showTab(id,btn){document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));document.querySelectorAll('.tnav-btn').forEach(b=>b.classList.remove('active'));document.getElementById('tab-'+id).classList.add('active');btn.classList.add('active');}
+function chk(inputId,ans,rowId,fbId){
+  const v=document.getElementById(inputId).value.trim().toLowerCase();
+  const ok=ans.toLowerCase().split('|').some(a=>v.includes(a)||v===a);
+  document.getElementById(inputId).className=ok?'fi ok':'fi err';
+  const fb=document.getElementById(fbId);if(fb){fb.className=ok?'fb ok':'fb err';fb.textContent=ok?'✅ Đúng!':'❌ Chưa đúng!';}
 }
-function toggleTheme(){const t=document.documentElement.getAttribute('data-theme')==='light'?'dark':'light';document.documentElement.setAttribute('data-theme',t==='light'?'light':'');document.getElementById('theme-btn').textContent=t==='light'?'🌙':'☀️';localStorage.setItem('f2f_3d_theme',t);}
-function markDone(){showToast('✅ 3D A trip to India đã hoàn thành!');}
-function showToast(msg){let t=document.getElementById('toast');if(!t){t=document.createElement('div');t.id='toast';t.style.cssText='position:fixed;bottom:20px;right:20px;z-index:999;background:var(--bg2);border:1px solid var(--border2);padding:10px 18px;border-radius:8px;font-size:.82rem;box-shadow:0 4px 20px rgba(0,0,0,.3);transition:opacity .3s';document.body.appendChild(t);}t.textContent=msg;t.style.opacity='1';clearTimeout(showToast._t);showToast._t=setTimeout(()=>t.style.opacity='0',2400);}
-function toggleQA(btn){const item=btn.closest('.qa-item');item.classList.toggle('open');}
-
-function revealTopics(){
-  document.getElementById('topic-ans').style.display='block';
+function rev(inputId,ans,rowId,fbId){
+  document.getElementById(inputId).value=ans;document.getElementById(inputId).className='fi ok';
+  const fb=document.getElementById(fbId);if(fb){fb.className='fb ok';fb.textContent='💡 Đáp án: '+ans;}
 }
-
-function checkPreps(){
-  const ans={p1:'on',p2:'of',p3:'about',p4:'with',p5:'at',p6:'by',p7:'about',p8:'with'};
-  let c=0,total=8;
-  Object.entries(ans).forEach(([id,val])=>{
-    const inp=document.getElementById(id);
-    if(inp){
-      const ok=inp.value.trim().toLowerCase()===val;
-      inp.className='fill-input '+(ok?'correct':'wrong');
-      if(ok)c++;
-    }
-  });
-  const sc=document.getElementById('prep-score');
-  sc.innerHTML=`<div class="score-n">${c}/${total}</div><div class="score-msg">${c===total?'🎉 All correct!':'Review the prepositions.'}</div>`;
-  sc.className='score-box show';
+function chkTwo(i1,a1,i2,a2,rowId,fbId){
+  const v1=document.getElementById(i1).value.trim().toLowerCase();
+  const v2=document.getElementById(i2).value.trim().toLowerCase();
+  const ok1=a1.split('|').some(a=>v1===a);
+  const ok2=a2.split('|').some(a=>v2===a);
+  document.getElementById(i1).className=ok1?'fi ok':'fi err';
+  document.getElementById(i2).className=ok2?'fi ok':'fi err';
+  const fb=document.getElementById(fbId);
+  if(fb){fb.className=(ok1&&ok2)?'fb ok':'fb err';fb.textContent=(ok1&&ok2)?'✅ Đúng cả hai!':'❌ Xem lại giới từ!';}
 }
-function revealPreps(){
-  const ans={p1:'on',p2:'of',p3:'about',p4:'with',p5:'at',p6:'by',p7:'about',p8:'with'};
-  Object.entries(ans).forEach(([id,val])=>{const inp=document.getElementById(id);if(inp){inp.value=val;inp.className='fill-input correct';}});
+function revTwo(i1,a1,i2,a2,rowId,fbId){
+  document.getElementById(i1).value=a1;document.getElementById(i1).className='fi ok';
+  document.getElementById(i2).value=a2;document.getElementById(i2).className='fi ok';
+  const fb=document.getElementById(fbId);if(fb){fb.className='fb ok';fb.textContent='💡 Đáp án: '+a1+' / '+a2;}
 }
-
-function checkVideoTF(){
-  const sc=document.getElementById('video-score');
-  sc.innerHTML=`<div class="score-n">✓</div><div class="score-msg">Answers: 1. T (rickshaws best), 2. F (trains better than buses), 3. F (don't bother with museums), 4. T, 5. T (can do in a day), 6. F (lots of good restaurants)</div>`;
-  sc.className='score-box show';
+function selM(el,choice,grp){
+  const p=el.closest('.mcq-item');p.querySelectorAll('.mcq-opt').forEach(o=>o.classList.remove('ok','err'));
+  const fb=document.getElementById(grp+'-fb');
+  if(choice==='A'){el.classList.add('ok');if(fb)fb.style.display='block';}
+  else{el.classList.add('err');if(fb)fb.style.display='block';}
 }
-function revealVideoTF(){
-  checkVideoTF();
+function chkTF(el,chosen,correct,id){
+  const p=el.closest('.tf-item');p.querySelectorAll('.tf-btn').forEach(b=>b.className='tf-btn');
+  const fb=document.getElementById(id);
+  el.classList.add(chosen===correct?'ok':'err');if(fb)fb.classList.add('show');
 }
-
-function checkRW(){
-  const ans={rw1:'good',rw2:'best',rw3:'seeing',rw4:'about',rw5:'tips',rw6:'best',rw7:'recommend',rw8:'definitely',rw9:'worth',rw10:'must',rw11:'bother',rw12:'worth',rw13:'Don\'t',rw14:'wouldn\'t'};
-  let c=0,total=14;
-  Object.entries(ans).forEach(([id,val])=>{
-    const inp=document.getElementById(id);
-    if(inp){
-      const ok=inp.value.trim().toLowerCase().replace(/\s+/g,'')===val.toLowerCase().replace(/\s+/g,'');
-      inp.className='fill-input '+(ok?'correct':'wrong');
-      if(ok)c++;
-    }
-  });
-  const sc=document.getElementById('rw-score');
-  sc.innerHTML=`<div class="score-n">${c}/${total}</div><div class="score-msg">${c===total?'🎉 All correct!':'Check REAL WORLD 3.1.'}</div>`;
-  sc.className='score-box show';
-}
-function revealRW(){
-  const ans={rw1:'good',rw2:'best',rw3:'seeing',rw4:'about',rw5:'tips',rw6:'best',rw7:'recommend',rw8:'definitely',rw9:'worth',rw10:'must',rw11:'bother',rw12:'worth',rw13:'Don\'t',rw14:'wouldn\'t'};
-  Object.entries(ans).forEach(([id,val])=>{const inp=document.getElementById(id);if(inp){inp.value=val;inp.className='fill-input correct';}});
-}
-
-function checkWB(){
-  const ans={wb1:'Do you know',wb2:'recommend',wb3:'sounds',wb4:'best',wb5:'to take',wb6:'go',wb7:'know',wb8:'bother'};
-  let c=0,total=8;
-  Object.entries(ans).forEach(([id,val])=>{
-    const inp=document.getElementById(id);
-    if(inp){
-      const ok=inp.value.trim().toLowerCase().replace(/\s+/g,'')===val.toLowerCase().replace(/\s+/g,'');
-      inp.className='fill-input '+(ok?'correct':'wrong');
-      if(ok)c++;
-    }
-  });
-  const sc=document.getElementById('wb-score');
-  sc.innerHTML=`<div class="score-n">${c}/${total}</div><div class="score-msg">${c===total?'🎉 All correct!':'Check the workbook answers.'}</div>`;
-  sc.className='score-box show';
-}
-function revealWB(){
-  const ans={wb1:'Do you know',wb2:'recommend',wb3:'sounds',wb4:'best',wb5:'to take',wb6:'go',wb7:'know',wb8:'bother'};
-  Object.entries(ans).forEach(([id,val])=>{const inp=document.getElementById(id);if(inp){inp.value=val;inp.className='fill-input correct';}});
-}
-
-document.addEventListener('DOMContentLoaded',()=>{
-  const t=localStorage.getItem('f2f_3d_theme')||'dark';
-  if(t==='light'){document.documentElement.setAttribute('data-theme','light');document.getElementById('theme-btn').textContent='🌙';}
-});
+function toggleQA(id){document.getElementById(id).classList.toggle('open');}
+function toggleTr(id){document.getElementById(id).classList.toggle('show');}
 </script>
 </body>
 </html>
