@@ -7,446 +7,542 @@
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap');
 :root{
-  --bg:#0D1117;--bg2:#161B22;--bg3:#21262D;--bg4:#2D333B;
-  --border:#30363D;--border2:#3D444D;
+  --bg:#0D1117;--bg2:#161B22;--bg3:#21262D;--border:#30363D;
   --text:#E6EDF3;--dim:#8B949E;--muted:#484F58;
-  --blue:#2563EB;--blue-l:rgba(37,99,235,.15);
   --green:#10B981;--green-l:rgba(16,185,129,.12);
   --orange:#F59E0B;--orange-l:rgba(245,158,11,.12);
   --red:#EF4444;--red-l:rgba(239,68,68,.12);
-  --teal:#14B8A6;--purple:#8B5CF6;--purple-l:rgba(139,92,246,.12);
+  --teal:#14B8A6;--violet:#7C3AED;--violet-l:rgba(124,58,237,.15);
+  --pink:#DB2777;--pink-l:rgba(219,39,119,.12);
   --r:10px;--r2:6px;--tr:.18s ease;
 }
-[data-theme=light]{--bg:#F8FAFC;--bg2:#fff;--bg3:#F1F5F9;--bg4:#E2E8F0;--border:#E2E8F0;--border2:#CBD5E1;--text:#0F172A;--dim:#475569;--muted:#94A3B8;--blue:#1D4ED8;--blue-l:rgba(29,78,216,.1)}
+[data-theme=light]{--bg:#F8FAFC;--bg2:#fff;--bg3:#F1F5F9;--border:#E2E8F0;--text:#0F172A;--dim:#475569;--muted:#94A3B8;--violet:#6D28D9;--violet-l:rgba(109,40,217,.1)}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);font-size:15px;line-height:1.6}
-button{cursor:pointer;border:none;background:none;font-family:inherit}input,textarea,select{font-family:inherit}
-
+button{cursor:pointer;border:none;background:none;font-family:inherit}
 .top-bar{background:var(--bg2);border-bottom:1px solid var(--border);padding:10px 20px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:50;flex-wrap:wrap}
-.back-btn{display:flex;align-items:center;gap:6px;padding:6px 14px;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);font-size:.82rem;color:var(--dim);cursor:pointer;transition:all var(--tr)}
-.back-btn:hover{border-color:var(--blue);color:var(--blue)}
-.lesson-badge{padding:4px 12px;background:var(--purple-l);border:1px solid rgba(139,92,246,.3);border-radius:4px;font-size:.75rem;font-weight:700;color:#A78BFA;letter-spacing:.05em}
+.back-btn{padding:6px 14px;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);font-size:.82rem;color:var(--dim);cursor:pointer}
+.back-btn:hover{border-color:var(--violet);color:var(--violet)}
+.lesson-badge{padding:4px 12px;background:var(--violet-l);border:1px solid rgba(124,58,237,.35);border-radius:4px;font-size:.75rem;font-weight:700;color:#C4B5FD;letter-spacing:.05em}
 .lesson-title-h{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700}
-.top-actions{margin-left:auto;display:flex;gap:8px}
-.theme-btn{width:34px;height:34px;display:flex;align-items:center;justify-content:center;border-radius:var(--r2);background:var(--bg3);border:1px solid var(--border);cursor:pointer;font-size:.95rem;color:var(--dim);transition:all var(--tr)}
-.theme-btn:hover{border-color:var(--blue);color:var(--blue)}
-.progress-btn{padding:6px 14px;background:var(--green);border-radius:var(--r2);font-size:.78rem;font-weight:600;color:#fff;cursor:pointer;border:none;transition:all var(--tr)}
-.progress-btn:hover{background:#059669}
-
-.quick-review{background:linear-gradient(135deg,#1e3a5f,#1a2f4a);border:1px solid #2d4f7c;border-radius:var(--r);padding:14px 20px;margin:18px 24px;display:flex;gap:12px;align-items:flex-start}
-.qr-badge{background:#F59E0B;color:#000;padding:3px 10px;border-radius:4px;font-size:.72rem;font-weight:700;white-space:nowrap;flex-shrink:0;margin-top:2px}
-.qr-text{font-size:.84rem;line-height:1.65;color:#CBD5E1}
-.qr-text strong{color:#fff}
-
+.top-actions{margin-left:auto}
+.theme-btn{width:34px;height:34px;display:flex;align-items:center;justify-content:center;border-radius:var(--r2);background:var(--bg3);border:1px solid var(--border);cursor:pointer;font-size:.95rem;color:var(--dim)}
+.quick-review{background:linear-gradient(135deg,#2e1065,#1e0a4d);border:1px solid #4c1d95;border-radius:var(--r);padding:14px 20px;margin:18px 24px;display:flex;gap:12px;align-items:flex-start}
+.qr-badge{background:var(--violet);color:#fff;padding:3px 10px;border-radius:4px;font-size:.72rem;font-weight:700;white-space:nowrap;flex-shrink:0;margin-top:2px}
+.qr-text{font-size:.84rem;line-height:1.65;color:#DDD6FE}
+.qr-text strong{color:#fff}.qr-text em{color:#C4B5FD;font-style:italic}
 .tab-nav{display:flex;gap:2px;border-bottom:1px solid var(--border);overflow-x:auto;scrollbar-width:none;position:sticky;top:57px;background:var(--bg);z-index:40;padding:0 24px}
 .tab-nav::-webkit-scrollbar{display:none}
 .tnav-btn{display:flex;align-items:center;gap:6px;padding:11px 16px;font-size:.82rem;font-weight:500;color:var(--dim);white-space:nowrap;border-bottom:2px solid transparent;margin-bottom:-1px;cursor:pointer;transition:all var(--tr);background:none;border-top:none;border-left:none;border-right:none;font-family:inherit}
-.tnav-btn:hover{color:var(--text)}.tnav-btn.active{color:var(--purple);border-bottom-color:var(--purple)}
-
+.tnav-btn.active{color:var(--violet);border-bottom-color:var(--violet)}
 .page-content{max-width:920px;margin:0 auto;padding:0 24px 48px}
 .tab-pane{display:none;padding-top:28px}
 .tab-pane.active{display:block;animation:fadeUp .22s ease}
 @keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
-
-.sec-heading{font-size:1.05rem;font-weight:700;color:var(--text);margin-bottom:4px;display:flex;align-items:center;gap:8px}
-.sec-sub{font-size:.82rem;color:var(--dim);margin-bottom:18px}
-.ex-num{width:28px;height:28px;background:var(--purple);color:#fff;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:.78rem;font-weight:700;flex-shrink:0}
-.ex-label{display:inline-flex;align-items:center;gap:8px;font-size:.9rem;font-weight:600;margin-bottom:10px;color:var(--text)}
-.part{display:inline-block;width:22px;height:22px;background:var(--bg4);border-radius:4px;text-align:center;line-height:22px;font-size:.72rem;font-weight:700;color:var(--dim);margin-right:6px}
-.instr{font-size:.88rem;color:var(--text);line-height:1.65;margin-bottom:14px}
-.instr em{font-style:italic;color:var(--teal)}
-
-.fill-ex{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:18px;margin-bottom:16px}
-.fill-ex-title{font-size:.88rem;font-weight:600;padding-bottom:10px;border-bottom:1px solid var(--border);margin-bottom:14px;color:var(--dim)}
-.fill-item{display:flex;align-items:flex-start;gap:10px;padding:9px 0;border-bottom:1px dashed var(--border)}
+.sec-heading{font-size:1.05rem;font-weight:700;margin-bottom:4px}
+.sec-sub{font-size:.82rem;color:var(--dim);margin-bottom:16px}
+.ex-label{display:inline-flex;align-items:center;gap:8px;font-size:.9rem;font-weight:600;margin-bottom:12px}
+.ex-num{width:28px;height:28px;background:var(--violet);color:#fff;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:.78rem;font-weight:700;flex-shrink:0}
+.instruction{font-size:.88rem;line-height:1.65;margin-bottom:14px}
+.divider{height:1px;background:var(--border);margin:24px 0}
+/* collocation table */
+.colloc-table{display:grid;grid-template-columns:1fr 1fr;gap:0;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;margin-bottom:16px}
+.colloc-col{padding:0}
+.colloc-col-header{background:var(--violet-l);color:#C4B5FD;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;padding:10px 16px;border-bottom:1px solid var(--border)}
+.colloc-item{padding:10px 16px;border-bottom:1px solid var(--border);font-size:.85rem}
+.colloc-col:first-child{border-right:1px solid var(--border)}
+.colloc-pair{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r2);padding:10px 14px;margin-bottom:6px;font-size:.86rem}
+.colloc-pair .v{color:#C4B5FD;font-weight:700}
+.colloc-pair .vi{color:var(--orange);font-style:italic;font-size:.8rem;margin-top:2px}
+.vocab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px;margin-bottom:16px}
+.vocab-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:14px;transition:all var(--tr)}
+.vocab-card:hover{border-color:var(--violet);transform:translateY(-1px)}
+.vocab-word{font-size:.95rem;font-weight:700}
+.vocab-ipa{font-family:monospace;font-size:.78rem;color:var(--teal);margin:2px 0}
+.vocab-vi{font-size:.8rem;color:var(--orange);font-style:italic;margin-bottom:4px}
+.vocab-def{font-size:.81rem;color:var(--dim);line-height:1.5}
+.vocab-ex{font-size:.77rem;color:var(--muted);font-style:italic;margin-top:5px;padding-top:5px;border-top:1px dashed var(--border)}
+/* article */
+.article-box{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:22px;margin-bottom:16px}
+.article-tag{font-size:.72rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px}
+.article-title{font-family:'Playfair Display',serif;font-size:1.25rem;font-weight:700;margin-bottom:14px;color:var(--violet)}
+.article-body{font-size:.87rem;line-height:1.85}
+.article-body p{margin-bottom:12px}
+.gv1{color:#60A5FA;font-weight:600}.gv2{color:#34D399;font-weight:600}
+/* fill */
+.fill-ex{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:20px;margin-bottom:16px}
+.fill-item{display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-bottom:1px dashed var(--border)}
 .fill-item:last-child{border-bottom:none}
-.fill-item-num{width:22px;height:22px;border-radius:50%;background:var(--bg3);display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:700;color:var(--muted);flex-shrink:0;margin-top:2px}
-.fill-item-body{flex:1}
-.fill-sentence{font-size:.87rem;margin-bottom:7px;line-height:1.6}
-.fill-controls{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
-.fill-input{height:33px;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);padding:0 11px;color:var(--text);font-size:.84rem;outline:none;min-width:80px;max-width:200px;transition:border-color var(--tr)}
-.fill-input:focus{border-color:var(--purple)}
-.fill-input.correct{border-color:var(--green);background:var(--green-l)}
-.fill-input.wrong{border-color:var(--red);background:var(--red-l)}
-.check-btn{padding:5px 12px;background:var(--purple);color:#fff;border:none;border-radius:var(--r2);font-size:.76rem;font-weight:600;cursor:pointer;transition:all var(--tr)}
-.check-btn:hover{background:#7C3AED}
-.reveal-btn{padding:5px 11px;background:var(--bg3);border:1px solid var(--border);color:var(--dim);border-radius:var(--r2);font-size:.76rem;cursor:pointer;transition:all var(--tr)}
-.reveal-btn:hover{border-color:var(--purple);color:var(--purple)}
-.fill-fb{margin-top:5px;font-size:.77rem;padding:4px 9px;border-radius:var(--r2);display:none}
-.fill-fb.show-ok{background:var(--green-l);color:var(--green);display:block}
-.fill-fb.show-err{background:var(--red-l);color:var(--red);display:block}
-
-.score-box{display:none;text-align:center;padding:18px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);margin-top:14px}
-.score-box.show{display:block}
-.score-n{font-size:2.2rem;font-weight:700;color:var(--purple)}
-.score-msg{color:var(--dim);font-size:.84rem;margin-top:4px}
-
-.btn{display:inline-flex;align-items:center;gap:6px;padding:7px 16px;border-radius:var(--r2);font-size:.82rem;font-weight:500;cursor:pointer;border:none;font-family:inherit;transition:all var(--tr)}
-.btn-primary{background:var(--purple);color:#fff}.btn-primary:hover{background:#7C3AED;transform:translateY(-1px)}
-.btn-outline{background:var(--bg3);border:1px solid var(--border2);color:var(--dim)}.btn-outline:hover{border-color:var(--purple);color:var(--purple)}
-
-.divider{height:1px;background:var(--border);margin:22px 0}
-.note-box{background:var(--orange-l);border:1px solid rgba(245,158,11,.25);border-radius:var(--r2);padding:10px 14px;font-size:.82rem;line-height:1.6;margin:10px 0}
-.note-box strong{color:var(--orange)}
-.tip-box{background:var(--bg3);border-left:3px solid var(--purple);border-radius:0 var(--r2) var(--r2) 0;padding:10px 14px;margin:10px 0;font-size:.82rem;color:var(--dim);line-height:1.6}
-.tip-box strong{color:var(--text)}
-.example-box{font-family:'Courier New',monospace;font-size:.82rem;color:#7DD3FC;background:var(--bg);padding:8px 12px;border-radius:var(--r2);margin:6px 0;border:1px solid var(--border)}
-
-.speaking-box{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:16px;margin-bottom:16px}
-.speaking-title{font-size:.84rem;font-weight:600;margin-bottom:12px;color:var(--text);display:flex;align-items:center;gap:8px}
-.bubble{background:var(--bg3);border:1px solid var(--border);border-radius:12px;padding:8px 14px;max-width:72%;font-size:.84rem;line-height:1.5;margin-bottom:8px}
-.bubble.speaker-a{border-bottom-left-radius:3px}
-.bubble.speaker-b{border-bottom-right-radius:3px;background:var(--purple-l);border-color:rgba(139,92,246,.3);margin-left:auto}
-
+.fill-num{width:24px;height:24px;border-radius:50%;background:var(--bg3);display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:700;color:var(--muted);flex-shrink:0;margin-top:2px}
+.fill-content{flex:1}
+.fill-sent{font-size:.87rem;margin-bottom:8px;line-height:1.65}
+.fi{height:34px;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);padding:0 12px;color:var(--text);font-size:.84rem;outline:none;min-width:120px;font-family:inherit;transition:border-color var(--tr)}
+.fi:focus{border-color:var(--violet)}
+.fi.ok{border-color:var(--green);background:var(--green-l)}
+.fi.err{border-color:var(--red);background:var(--red-l)}
+.chk-btn{padding:6px 14px;background:var(--violet);color:#fff;border-radius:var(--r2);font-size:.77rem;font-weight:600;cursor:pointer;margin-left:4px}
+.chk-btn:hover{background:#6D28D9}
+.rev-btn{padding:6px 12px;background:var(--bg3);border:1px solid var(--border);color:var(--dim);border-radius:var(--r2);font-size:.77rem;cursor:pointer;margin-left:4px}
+.rev-btn:hover{border-color:var(--violet);color:var(--violet)}
+.fb{margin-top:6px;font-size:.77rem;padding:4px 10px;border-radius:var(--r2);display:none}
+.fb.ok{background:var(--green-l);color:var(--green);display:block}
+.fb.err{background:var(--red-l);color:var(--red);display:block}
+/* mcq */
+.mcq-list{display:flex;flex-direction:column;gap:12px;margin-bottom:16px}
+.mcq-item{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:16px}
+.mcq-q{font-size:.88rem;font-weight:600;margin-bottom:10px}
+.mcq-opts{display:flex;flex-direction:column;gap:6px}
+.mcq-opt{display:flex;align-items:center;gap:10px;padding:8px 12px;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);cursor:pointer;font-size:.84rem;transition:all var(--tr)}
+.mcq-opt:hover{border-color:var(--violet)}
+.mcq-opt.ok{border-color:var(--green);background:var(--green-l)}
+.mcq-opt.err{border-color:var(--red);background:var(--red-l)}
+.opt-dot{width:18px;height:18px;border-radius:50%;border:2px solid var(--border);flex-shrink:0}
+.mcq-opt.ok .opt-dot{background:var(--green);border-color:var(--green)}
+.mcq-opt.err .opt-dot{background:var(--red);border-color:var(--red)}
+/* qa */
 .qa-list{display:flex;flex-direction:column;gap:8px;margin-bottom:16px}
 .qa-item{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r2);overflow:hidden}
-.qa-q{display:flex;align-items:center;gap:10px;padding:10px 14px;cursor:pointer;transition:background var(--tr)}
+.qa-q{display:flex;align-items:center;gap:10px;padding:11px 14px;cursor:pointer;transition:background var(--tr)}
 .qa-q:hover{background:var(--bg3)}
-.qa-qnum{width:24px;height:24px;border-radius:50%;background:var(--purple-l);color:var(--purple);display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:700;flex-shrink:0}
-.qa-qtext{font-size:.86rem;flex:1}
-.qa-arrow{font-size:.7rem;color:var(--muted);transition:transform var(--tr);flex-shrink:0}
+.qa-qnum{width:24px;height:24px;border-radius:50%;background:var(--violet-l);color:var(--violet);display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:700;flex-shrink:0}
+.qa-qtext{font-size:.85rem;flex:1}
+.qa-arrow{font-size:.7rem;color:var(--muted);transition:transform var(--tr)}
 .qa-item.open .qa-arrow{transform:rotate(90deg)}
-.qa-ans{display:none;padding:0 14px 10px 48px;font-size:.83rem;color:var(--teal);font-style:italic}
-.qa-item.open .qa-ans{display:block}
-
-.grammar-table{width:100%;border-collapse:collapse;font-size:.82rem;margin:12px 0}
-.grammar-table th{background:var(--bg3);padding:8px 12px;text-align:left;font-weight:600;border:1px solid var(--border);color:var(--dim);font-size:.72rem;text-transform:uppercase}
-.grammar-table td{padding:9px 12px;border:1px solid var(--border);line-height:1.5}
-.grammar-table td.aux{color:var(--purple);font-weight:600}
-
-.lang-sum-tag{display:inline-flex;align-items:center;gap:6px;padding:3px 12px;background:var(--purple-l);border:1px solid rgba(139,92,246,.3);border-radius:4px;font-size:.72rem;font-weight:700;color:#A78BFA;text-transform:uppercase;letter-spacing:.06em;margin-bottom:12px}
-
-.coll-grid{display:flex;flex-direction:column;gap:8px;margin:12px 0}
-.coll-row{display:grid;grid-template-columns:100px 1fr;gap:12px;align-items:start;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r2);padding:10px 14px}
-.coll-verb{font-size:.9rem;font-weight:700;color:var(--blue)}
-.coll-ipa{font-size:.72rem;color:var(--teal);font-family:monospace}
-.coll-phrase{font-size:.85rem;font-weight:600}
-.coll-vi{font-size:.8rem;color:var(--orange)}
-.coll-ex{font-size:.78rem;color:var(--dim);font-style:italic}
-
-.article-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:20px;margin-bottom:16px}
-.article-title{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;margin-bottom:4px}
-.article-source{font-size:.75rem;color:var(--muted);font-style:italic;margin-bottom:14px}
-.article-p{font-size:.85rem;line-height:1.8;color:var(--text);margin-bottom:10px}
-.article-p:last-child{margin-bottom:0}
-
-@media(max-width:680px){.tab-nav{padding:0 12px}.page-content{padding:0 14px 48px}.quick-review{margin:12px}}
+.qa-answer{display:none;padding:0 14px 12px 48px;font-size:.83rem;color:var(--teal);font-style:italic;line-height:1.65}
+.qa-item.open .qa-answer{display:block}
+/* note */
+.note-box{background:var(--orange-l);border:1px solid rgba(245,158,11,.25);border-radius:var(--r2);padding:12px 16px;font-size:.83rem;line-height:1.65;margin-bottom:16px}
+.note-box strong{color:var(--orange)}
+.info-box{background:var(--violet-l);border:1px solid rgba(124,58,237,.25);border-radius:var(--r2);padding:12px 16px;font-size:.84rem;line-height:1.65;margin-bottom:16px}
+.hwg-box{background:linear-gradient(135deg,rgba(124,58,237,.08),rgba(219,39,119,.05));border:1px solid rgba(124,58,237,.25);border-radius:var(--r);padding:20px;margin-bottom:16px}
+.hwg-label{font-size:.7rem;font-weight:700;color:var(--violet);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px}
+.hwg-title{font-size:1rem;font-weight:700;margin-bottom:14px}
+.grammar-tag{display:inline-flex;padding:3px 12px;background:var(--orange-l);border:1px solid rgba(245,158,11,.3);border-radius:4px;font-size:.72rem;font-weight:700;color:var(--orange);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px}
+.example-box{font-family:'Courier New',monospace;font-size:.83rem;color:#C4B5FD;background:var(--bg);padding:9px 14px;border-radius:var(--r2);margin:8px 0;border:1px solid var(--border);line-height:1.7}
+.pron-box{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:20px;margin-bottom:16px}
+.audio-box{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:20px;margin-bottom:16px}
+.cd-tag{padding:4px 12px;background:var(--orange-l);border:1px solid rgba(245,158,11,.3);border-radius:4px;font-size:.75rem;font-weight:700;color:var(--orange)}
+.play-btn{width:42px;height:42px;border-radius:50%;background:var(--violet);color:#fff;display:flex;align-items:center;justify-content:center;border:none;font-size:1rem;cursor:pointer;flex-shrink:0}
+.play-btn:hover{background:#6D28D9;transform:scale(1.05)}
+.chip{padding:5px 14px;border-radius:20px;font-size:.82rem;font-weight:500;background:var(--violet-l);border:1px solid rgba(124,58,237,.3);color:#C4B5FD;display:inline-block;margin:3px}
+.speaking-box{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:18px;margin-bottom:16px}
+.disc-q{display:flex;gap:10px;padding:8px 0;border-bottom:1px solid var(--border);font-size:.85rem}
+.disc-q:last-child{border-bottom:none}
+.disc-q-num{font-size:.75rem;font-weight:700;color:var(--violet);min-width:20px;margin-top:2px}
+.bubble{background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:9px 14px;font-size:.85rem;line-height:1.5;margin-bottom:8px}
+.wb-tag{display:inline-flex;padding:3px 12px;background:var(--violet-l);border:1px solid rgba(124,58,237,.3);border-radius:4px;font-size:.72rem;font-weight:700;color:#C4B5FD;text-transform:uppercase;letter-spacing:.06em;margin-bottom:12px}
+.transcript-wrap{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);padding:14px;margin-top:12px}
+.transcript-toggle{font-size:.82rem;font-weight:600;color:var(--dim);cursor:pointer;user-select:none}
+.transcript-toggle:hover{color:var(--violet)}
+.transcript-body{display:none;margin-top:12px;font-size:.84rem;line-height:1.78}
+.transcript-body.show{display:block}
+.transcript-body p{margin-bottom:10px}
+.spk{font-weight:700;color:var(--violet);margin-right:6px}
 </style>
 </head>
 <body>
-
 <div class="top-bar">
-  <button class="back-btn" onclick="history.back()">← Trang chủ</button>
-  <div class="lesson-badge">UNIT 4</div>
-  <div class="lesson-title-h">4A — Musical experiences</div>
+  <button class="back-btn" onclick="history.back()">← Quay lại</button>
+  <span class="lesson-badge">4A</span>
+  <span class="lesson-title-h">Musical experiences</span>
   <div class="top-actions">
-    <button class="theme-btn" id="theme-btn" onclick="toggleTheme()">☀️</button>
-    <button class="progress-btn" onclick="markDone()">✅ Đánh dấu xong</button>
+    <button class="theme-btn" onclick="toggleTheme()">☀</button>
   </div>
 </div>
-
 <div class="quick-review">
-  <div class="qr-badge">QUICK REVIEW</div>
-  <div class="qr-text"><strong>Asking for and making recommendations</strong> — Work in pairs. Student A: imagine you are a tourist in your town/city. Ask your partner for recommendations for places to stay, eat and visit. Student B: answer your partner's questions and make recommendations.</div>
+  <span class="qr-badge">ÔN BÀI 3D</span>
+  <div class="qr-text">Nhắc lại 3D: <strong>Real World — Asking for & Making Recommendations</strong>: <em>Do you know any good places to...? / I'd recommend... / You should definitely... / Don't bother going to...</em> Chủ đề: chuyến đi Ấn Độ và các gợi ý du lịch.</div>
 </div>
-
-<div class="tab-nav">
-  <button class="tnav-btn active" onclick="showTab('vocab')">📚 Vocabulary &amp; Speaking</button>
-  <button class="tnav-btn" onclick="showTab('reading')">📖 Reading</button>
-  <button class="tnav-btn" onclick="showTab('grammar')">📐 Help with Grammar</button>
-  <button class="tnav-btn" onclick="showTab('workbook')">📓 Workbook</button>
-  <button class="tnav-btn" onclick="showTab('langsummary')">📋 Language Summary</button>
-</div>
-
+<nav class="tab-nav">
+  <button class="tnav-btn active" onclick="showTab('vocab',this)">📚 Từ vựng</button>
+  <button class="tnav-btn" onclick="showTab('reading',this)">📰 Đọc</button>
+  <button class="tnav-btn" onclick="showTab('grammar',this)">⚙ Ngữ pháp</button>
+  <button class="tnav-btn" onclick="showTab('pronunciation',this)">🔊 Phát âm</button>
+  <button class="tnav-btn" onclick="showTab('speaking',this)">💬 Nói</button>
+  <button class="tnav-btn" onclick="showTab('workbook',this)">📝 Bài tập</button>
+</nav>
 <div class="page-content">
 
-<!-- ══════════════════════════════════════
-     TAB 1: VOCABULARY AND SPEAKING
-══════════════════════════════════════ -->
-<div class="tab-pane active" id="tab-vocab">
-  <div class="sec-heading">Vocabulary and Speaking</div>
-  <div class="sec-sub">Collocations (2): music · VOCABULARY 4.1 → p135</div>
+<!-- TAB VOCAB -->
+<div id="tab-vocab" class="tab-pane active">
+  <div class="sec-heading">📚 Từ vựng: Collocations (2) — Music</div>
+  <div class="sec-sub">Student Book p30 · Vocabulary 4.1 · Cụm từ cố định về âm nhạc</div>
+  <div class="info-box"><strong>🎯 Mục tiêu:</strong> Học các collocation (cụm từ cố định) thường dùng khi nói về âm nhạc, ca sĩ, ban nhạc và buổi hòa nhạc.</div>
 
-  <div class="ex-label"><div class="ex-num">1</div>Exercise 1 — Match the verbs to words/phrases</div>
-  <p class="instr">Work in pairs. Match the verbs in A to words/phrases in B. Then check in <em>VOCABULARY 4.1 → p135</em>.</p>
+  <div class="ex-label"><span class="ex-num">1</span>Ghép động từ với danh từ (SB p30, Ex 1)</div>
+  <div class="instruction">Ghép động từ trong cột A với từ/cụm từ trong cột B để tạo collocation đúng.</div>
 
-  <div class="coll-grid">
-    <div class="coll-row"><div class="coll-verb">do/play</div><div><div class="coll-phrase">a concert/a gig</div><div class="coll-vi">🇻🇳 biểu diễn một buổi hòa nhạc</div></div></div>
-    <div class="coll-row"><div class="coll-verb">be</div><div><div class="coll-phrase">a big fan of a singer/band</div><div class="coll-vi">🇻🇳 là fan cuồng của ca sĩ/ban nhạc</div></div></div>
-    <div class="coll-row"><div class="coll-verb">release</div><div><div class="coll-phrase">a new single/album/CD</div><div class="coll-vi">🇻🇳 phát hành đĩa đơn/album mới</div></div></div>
-    <div class="coll-row"><div class="coll-verb">do</div><div><div class="coll-phrase">an encore</div><div class="coll-vi">🇻🇳 biểu diễn thêm (khi khán giả vỗ tay)</div></div></div>
-    <div class="coll-row"><div class="coll-verb">download</div><div><div class="coll-phrase">a track onto my phone</div><div class="coll-vi">🇻🇳 tải bài hát vào điện thoại</div></div></div>
-    <div class="coll-row"><div class="coll-verb">be/go</div><div><div class="coll-phrase">on tour</div><div class="coll-vi">🇻🇳 đi lưu diễn</div></div></div>
-    <div class="coll-row"><div class="coll-verb">have</div><div><div class="coll-phrase">an album/a CD in the charts</div><div class="coll-vi">🇻🇳 có album trong bảng xếp hạng</div></div></div>
-    <div class="coll-row"><div class="coll-verb">see</div><div><div class="coll-phrase">someone play live</div><div class="coll-vi">🇻🇳 xem ai đó biểu diễn trực tiếp</div></div></div>
-    <div class="coll-row"><div class="coll-verb">be/go</div><div><div class="coll-phrase">onstage</div><div class="coll-vi">🇻🇳 lên sân khấu</div></div></div>
+  <div class="colloc-pair"><span class="v">do / play</span> a new single/album/CD <div class="vi">🇻🇳 phát hành/chơi một đĩa đơn/album/CD mới</div></div>
+  <div class="colloc-pair"><span class="v">be</span> a big fan of a singer/band <div class="vi">🇻🇳 là một fan lớn của ca sĩ/ban nhạc</div></div>
+  <div class="colloc-pair"><span class="v">release</span> a concert/a gig <div class="vi">🇻🇳 phát hành... lưu ý: "release" thường đi với album/single, "do/play a gig" mới đúng — xem bảng đầy đủ dưới</div></div>
+  <div class="colloc-pair"><span class="v">do</span> on tour <div class="vi">🇻🇳 đi lưu diễn</div></div>
+  <div class="colloc-pair"><span class="v">download</span> an encore <div class="vi">🇻🇳 tải...</div></div>
+  <div class="colloc-pair"><span class="v">be/go</span> a track onto your phone <div class="vi">🇻🇳 ...</div></div>
+  <div class="colloc-pair"><span class="v">have</span> onstage <div class="vi">🇻🇳 ...</div></div>
+  <div class="colloc-pair"><span class="v">see</span> someone play live <div class="vi">🇻🇳 xem ai đó chơi nhạc trực tiếp</div></div>
+  <div class="colloc-pair"><span class="v">be/go</span> an album/a CD in the charts <div class="vi">🇻🇳 ...nằm trong bảng xếp hạng</div></div>
+
+  <div class="note-box">
+    <strong>📌 Đáp án ghép đúng (Vocabulary 4.1, SB p135):</strong><br>
+    • <strong>do/play</strong> a gig · <strong>release</strong> a new single/album/CD · <strong>be</strong> a big fan of a singer/band<br>
+    • <strong>go</strong> on tour · <strong>download</strong> a track onto your phone · <strong>have/see</strong> someone play live<br>
+    • <strong>see</strong> an encore · <strong>be/go</strong> in the charts
   </div>
 
-  <div class="tip-box">
-    <strong>TIPS:</strong><br>
-    • <strong>Gig</strong> = informal word for a concert: <em>I went to an amazing gig last night.</em><br>
-    • <strong>Fan</strong> = a person who likes a particular band, singer, sports team, etc.<br>
-    • <strong>Encore</strong> = an extra song performed at the end of a show when the audience shouts for it.
-  </div>
-
-  <div class="ex-label"><div class="ex-num">1</div>Speaking practice</div>
-  <p class="instr">Write the names of three bands, musicians or singers you like. Choose phrases from 1 that you can use to talk about them. Work in pairs. Talk about the bands or people you have chosen. Ask questions to find out more information.</p>
-
-  <div class="speaking-box">
-    <div class="speaking-title">💬 Ví dụ hội thoại</div>
-    <div class="bubble speaker-a">I'm a big fan of Coldplay.</div>
-    <div class="bubble speaker-b">Yes, me too. Have you ever seen them play live?</div>
-    <div class="bubble speaker-a">Yes, I saw them at Wembley last year. They did three encores!</div>
-    <div class="bubble speaker-b">That sounds amazing! What was the best song?</div>
+  <div class="divider"></div>
+  <div class="ex-label"><span class="ex-num">2</span>Bảng collocation đầy đủ về âm nhạc</div>
+  <div class="vocab-grid">
+    <div class="vocab-card"><div class="vocab-word">do/play a gig</div><div class="vocab-ipa">/ɡɪɡ/</div><div class="vocab-vi">🇻🇳 diễn một buổi hòa nhạc nhỏ</div><div class="vocab-def">to perform at a music event</div><div class="vocab-ex">The band did three gigs last month.</div></div>
+    <div class="vocab-card"><div class="vocab-word">release an album/single</div><div class="vocab-ipa">/rɪˈliːs/</div><div class="vocab-vi">🇻🇳 phát hành album/đĩa đơn</div><div class="vocab-def">to make music available to the public</div><div class="vocab-ex">They released their new single last week.</div></div>
+    <div class="vocab-card"><div class="vocab-word">be a big fan of</div><div class="vocab-ipa">/fæn/</div><div class="vocab-vi">🇻🇳 là fan cứng của</div><div class="vocab-def">to admire someone/something a lot</div><div class="vocab-ex">I'm a big fan of Coldplay.</div></div>
+    <div class="vocab-card"><div class="vocab-word">go on tour</div><div class="vocab-ipa">/tʊə/</div><div class="vocab-vi">🇻🇳 đi lưu diễn</div><div class="vocab-def">to travel performing concerts</div><div class="vocab-ex">The band is going on tour next year.</div></div>
+    <div class="vocab-card"><div class="vocab-word">download a track</div><div class="vocab-ipa">/ˈdaʊnləʊd/</div><div class="vocab-vi">🇻🇳 tải một bài hát</div><div class="vocab-def">to copy a song from the internet</div><div class="vocab-ex">I downloaded the track onto my phone.</div></div>
+    <div class="vocab-card"><div class="vocab-word">see someone play live</div><div class="vocab-ipa">/laɪv/</div><div class="vocab-vi">🇻🇳 xem ai chơi nhạc trực tiếp</div><div class="vocab-def">to watch a musician perform in person</div><div class="vocab-ex">Have you ever seen them play live?</div></div>
+    <div class="vocab-card"><div class="vocab-word">do an encore</div><div class="vocab-ipa">/ˈɒŋkɔː/</div><div class="vocab-vi">🇻🇳 hát/chơi thêm sau khi kết thúc</div><div class="vocab-def">to perform an extra song after the main show</div><div class="vocab-ex">The crowd asked for an encore.</div></div>
+    <div class="vocab-card"><div class="vocab-word">be/go in the charts</div><div class="vocab-ipa">/tʃɑːts/</div><div class="vocab-vi">🇻🇳 nằm trong bảng xếp hạng</div><div class="vocab-def">to be in the list of best-selling songs</div><div class="vocab-ex">The song went straight to number one in the charts.</div></div>
+    <div class="vocab-card"><div class="vocab-word">be onstage</div><div class="vocab-ipa">/ˈɒnsteɪdʒ/</div><div class="vocab-vi">🇻🇳 ở trên sân khấu</div><div class="vocab-def">to be performing on a stage</div><div class="vocab-ex">She was onstage for over two hours.</div></div>
   </div>
 </div>
 
-<!-- ══════════════════════════════════════
-     TAB 2: READING
-══════════════════════════════════════ -->
-<div class="tab-pane" id="tab-reading">
-  <div class="sec-heading">Reading</div>
-  <div class="sec-sub">Nikki and Danny's best ever musical experiences — Student's Book p25</div>
+<!-- TAB READING -->
+<div id="tab-reading" class="tab-pane">
+  <div class="sec-heading">📰 Reading — Best ever musical experiences</div>
+  <div class="sec-sub">Student Book p30–31 · Nikki Williams, Danny Breen & Sophie Taylor</div>
 
-  <div class="ex-label"><div class="ex-num">2</div>Exercise 2 — Read the article</div>
-  <p class="instr">Read about Nikki and Danny's best ever musical experiences. What was special about each one?</p>
-
-  <div class="article-card">
-    <div style="font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:var(--purple);margin-bottom:4px">NIKKI WILLIAMS, USA</div>
-    <div class="article-p">Five years ago I <strong style="color:var(--purple)">was living</strong> in New York with my cousin and I <strong style="color:var(--purple)">used to go</strong> to a lot of gigs. Back then I was one of Lady Gaga's biggest fans and I <strong style="color:var(--purple)">listened</strong> to her second album all the time. For my 21st birthday my boyfriend <strong style="color:var(--purple)">bought</strong> tickets to see her play live — I've never been so excited in my life! We had really good seats near the front and when Lady Gaga <strong style="color:var(--purple)">came</strong> onstage the whole crowd went absolutely crazy. It was a fantastic atmosphere and all the fans <strong style="color:var(--purple)">were singing</strong> along. That night she sang for over two hours and changed her costume about 20 times! While she <strong style="color:var(--purple)">was doing</strong> an encore, she threw her shoes into the crowd — and I caught one of them! My boyfriend wanted to sell it on eBay, but I wouldn't let him. Now it's my most valuable possession — and a great souvenir of a fantastic gig.</div>
+  <div class="article-box">
+    <div class="article-tag">📖 NIKKI WILLIAMS, USA</div>
+    <div class="article-title">Five years ago...</div>
+    <div class="article-body">
+      <p>Five years ago I <span class="gv1">was living</span> in New York with my cousin and I <span class="gv2">used to go</span> to a lot of gigs. Back then I was one of Lady Gaga's biggest fans and I <span class="gv1">listened</span> to her second album all the time. For my 21st birthday my boyfriend <span class="gv1">bought</span> tickets to see her play live – I've never been so excited in my life! We had really good seats near the front and when Lady Gaga came onstage the whole crowd went absolutely crazy.</p>
+      <p>It was a fantastic atmosphere and all the fans <span class="gv2">were singing</span> along. That night she sang for over two hours and changed her costume about 20 times! While she <span class="gv2">was doing</span> an encore, she threw her shoes into the crowd – and I caught one of them! My boyfriend <span class="gv1">wanted</span> to sell it on eBay, but I wouldn't let him. Now it's my most valuable possession – and a great souvenir of a fantastic gig.</p>
+    </div>
   </div>
 
-  <div class="article-card">
-    <div style="font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:var(--purple);margin-bottom:4px">DANNY BREEN, IRELAND</div>
-    <div class="article-p">When I was a teenager in Dublin I loved dance music and wanted to become a famous DJ. I <strong style="color:var(--purple)">practised</strong> for hours every day in my bedroom and I <strong style="color:var(--purple)">used to</strong> DJ at friends' parties. Then I <strong style="color:var(--purple)">moved</strong> to London and <strong style="color:var(--purple)">got</strong> a job working behind the bar at a club called Dreamworld. One Saturday night the main DJ didn't turn up and the manager <strong style="color:var(--purple)">asked</strong> me to play instead. Twenty minutes later I <strong style="color:var(--purple)">was standing</strong> in front of 1,000 people! I was incredibly nervous, but as soon as I started playing the first track I began to relax. All the clubbers <strong style="color:var(--purple)">were dancing</strong> and having a good time — it was the best feeling in the world. While I <strong style="color:var(--purple)">was playing</strong> my last track, the manager <strong style="color:var(--purple)">came</strong> over and congratulated me. I <strong style="color:var(--purple)">gave up</strong> DJing later that year because I broke my arm, but I'll never forget that amazing night!</div>
+  <div class="article-box">
+    <div class="article-tag">📖 DANNY BREEN, IRELAND</div>
+    <div class="article-title">When I was a teenager in Dublin...</div>
+    <div class="article-body">
+      <p>When I was a teenager in Dublin I <span class="gv1">loved</span> dance music and wanted to become a famous DJ. I <span class="gv1">practised</span> for hours every day in my bedroom and I <span class="gv2">used to DJ</span> at friends' parties. Then I <span class="gv1">moved</span> to London and got a job working behind the bar at a club called Dreamworld. One Saturday night the main DJ didn't turn up and the manager asked me to play instead.</p>
+      <p>Twenty minutes later I <span class="gv2">was standing</span> in front of 1,000 people! I was incredibly nervous, but as soon as I started playing the first track I began to relax. All the clubbers <span class="gv2">were dancing</span> and having a good time – it was the best feeling in the world. While I <span class="gv2">was playing</span> my last track, the manager came over and congratulated me. I gave up DJing later that year because I broke my arm, but I'll never forget that amazing night!</p>
+    </div>
   </div>
 
-  <div class="ex-label"><div class="ex-num">4</div>Comprehension questions</div>
+  <div class="article-box">
+    <div class="article-tag">📖 SOPHIE TAYLOR, UK</div>
+    <div class="article-title">When I was younger...</div>
+    <div class="article-body">
+      <p>When I was younger I was <strong>(play the violin)</strong>, but I didn't use to like it very much. Then my aunt gave me a violin for my 14th birthday. I used to have violin lessons every week and I loved learning how to play a new instrument. Last year I joined the school orchestra and in March we won a music competition in our city.</p>
+      <p>The prize was the opportunity to play at the Schools Prom at the Albert Hall in London! The big night finally arrived, and while we waited to go onstage I started shaking because I was so nervous. But as soon as we got onstage I began to relax and enjoy myself. When we played the last piece of music I noticed my mum and dad in the audience. They both looked very proud!</p>
+    </div>
+  </div>
 
+  <div class="ex-label"><span class="ex-num">4</span>Đọc và trả lời câu hỏi (SB p32, Ex 4a)</div>
+  <div class="instruction">Đọc lại các bài về Nikki và Danny và trả lời câu hỏi. Click để xem đáp án.</div>
   <div class="qa-list">
-    <div class="qa-item"><div class="qa-q" onclick="toggleQA(this)"><span class="qa-qnum">1</span><span class="qa-qtext">When did Nikki see Lady Gaga live?</span><span class="qa-arrow">▶</span></div><div class="qa-ans">Five years ago, on her 21st birthday.</div></div>
-    <div class="qa-item"><div class="qa-q" onclick="toggleQA(this)"><span class="qa-qnum">2</span><span class="qa-qtext">Where did Nikki and her boyfriend sit?</span><span class="qa-arrow">▶</span></div><div class="qa-ans">Near the front — they had really good seats.</div></div>
-    <div class="qa-item"><div class="qa-q" onclick="toggleQA(this)"><span class="qa-qnum">3</span><span class="qa-qtext">How long was Lady Gaga onstage?</span><span class="qa-arrow">▶</span></div><div class="qa-ans">Over two hours.</div></div>
-    <div class="qa-item"><div class="qa-q" onclick="toggleQA(this)"><span class="qa-qnum">4</span><span class="qa-qtext">What did her boyfriend want to do with the shoe?</span><span class="qa-arrow">▶</span></div><div class="qa-ans">Sell it on eBay.</div></div>
-    <div class="qa-item"><div class="qa-q" onclick="toggleQA(this)"><span class="qa-qnum">5</span><span class="qa-qtext">Where did Danny first start DJing?</span><span class="qa-arrow">▶</span></div><div class="qa-ans">At friends' parties in Dublin.</div></div>
-    <div class="qa-item"><div class="qa-q" onclick="toggleQA(this)"><span class="qa-qnum">6</span><span class="qa-qtext">Where did he work when he moved to London?</span><span class="qa-arrow">▶</span></div><div class="qa-ans">Behind the bar at a club called Dreamworld.</div></div>
-    <div class="qa-item"><div class="qa-q" onclick="toggleQA(this)"><span class="qa-qnum">7</span><span class="qa-qtext">Why did his manager ask him to DJ in the club?</span><span class="qa-arrow">▶</span></div><div class="qa-ans">Because the main DJ didn't turn up.</div></div>
-    <div class="qa-item"><div class="qa-q" onclick="toggleQA(this)"><span class="qa-qnum">8</span><span class="qa-qtext">Why did Danny give up DJing?</span><span class="qa-arrow">▶</span></div><div class="qa-ans">Because he broke his arm.</div></div>
+    <div class="qa-item" id="r1"><div class="qa-q" onclick="toggleQA('r1')"><div class="qa-qnum">1</div><div class="qa-qtext">When did Nikki see Lady Gaga live?</div><div class="qa-arrow">›</div></div><div class="qa-answer">For her 21st birthday, five years ago.</div></div>
+    <div class="qa-item" id="r2"><div class="qa-q" onclick="toggleQA('r2')"><div class="qa-qnum">2</div><div class="qa-qtext">Where did Nikki and her boyfriend sit?</div><div class="qa-arrow">›</div></div><div class="qa-answer">In really good seats near the front.</div></div>
+    <div class="qa-item" id="r3"><div class="qa-q" onclick="toggleQA('r3')"><div class="qa-qnum">3</div><div class="qa-qtext">How long was Lady Gaga onstage?</div><div class="qa-arrow">›</div></div><div class="qa-answer">For over two hours.</div></div>
+    <div class="qa-item" id="r4"><div class="qa-q" onclick="toggleQA('r4')"><div class="qa-qnum">4</div><div class="qa-qtext">What did her boyfriend want to do with the shoe?</div><div class="qa-arrow">›</div></div><div class="qa-answer">He wanted to sell it on eBay (but Nikki wouldn't let him).</div></div>
+    <div class="qa-item" id="r5"><div class="qa-q" onclick="toggleQA('r5')"><div class="qa-qnum">5</div><div class="qa-qtext">Where did Danny first start DJing?</div><div class="qa-arrow">›</div></div><div class="qa-answer">At friends' parties, when he was a teenager in Dublin.</div></div>
+    <div class="qa-item" id="r6"><div class="qa-q" onclick="toggleQA('r6')"><div class="qa-qnum">6</div><div class="qa-qtext">Where did he work when he moved to London?</div><div class="qa-arrow">›</div></div><div class="qa-answer">Behind the bar at a club called Dreamworld.</div></div>
+    <div class="qa-item" id="r7"><div class="qa-q" onclick="toggleQA('r7')"><div class="qa-qnum">7</div><div class="qa-qtext">Why did his manager ask him to DJ in the club?</div><div class="qa-arrow">›</div></div><div class="qa-answer">Because the main DJ didn't turn up that Saturday night.</div></div>
+    <div class="qa-item" id="r8"><div class="qa-q" onclick="toggleQA('r8')"><div class="qa-qnum">8</div><div class="qa-qtext">Why did Danny give up DJing?</div><div class="qa-arrow">›</div></div><div class="qa-answer">Because he broke his arm later that year.</div></div>
   </div>
 </div>
 
-<!-- ══════════════════════════════════════
-     TAB 3: GRAMMAR
-══════════════════════════════════════ -->
-<div class="tab-pane" id="tab-grammar">
-  <div class="sec-heading">Help with Grammar</div>
-  <div class="sec-sub">Past Simple and Past Continuous; used to · GRAMMAR 4.1 &amp; 4.2 → p136–137</div>
+<!-- TAB GRAMMAR -->
+<div id="tab-grammar" class="tab-pane">
+  <div class="sec-heading">⚙ Help with Grammar: Past Simple, Past Continuous & used to</div>
+  <div class="sec-sub">Student Book p32 · Grammar 4.1, 4.2</div>
 
-  <div class="grammar-table">
-    <table>
-      <thead><tr><th>Verb form</th><th>Use</th><th>Example</th></tr></thead>
-      <tbody>
-        <tr><td><strong>Past Simple</strong></td><td>Single completed action in the past</td><td class="aux">She <strong>bought</strong> tickets.</td></tr>
-        <tr><td><strong>Past Simple</strong></td><td>Repeated action or habit in the past</td><td class="aux">I <strong>practised</strong> for hours every day.</td></tr>
-        <tr><td><strong>Past Simple</strong></td><td>State in the past</td><td class="aux">I <strong>was</strong> one of her biggest fans.</td></tr>
-        <tr><td><strong>Past Continuous</strong></td><td>Action in progress at a point of time in the past</td><td class="aux">I <strong>was living</strong> in New York.</td></tr>
-        <tr><td><strong>Past Continuous</strong></td><td>Background events of a story</td><td class="aux">All the fans <strong>were singing</strong> along.</td></tr>
-        <tr><td><strong>Past Continuous</strong></td><td>Action in progress when another action happened</td><td class="aux">While she <strong>was doing</strong> an encore, she <strong>threw</strong> her shoes.</td></tr>
-        <tr><td><strong>used to</strong></td><td>Repeated actions, habits or states in the past</td><td class="aux">I <strong>used to</strong> go to a lot of gigs.</td></tr>
-      </tbody>
-    </table>
-  </div>
+  <div class="hwg-box">
+    <div class="hwg-label">⚙ Help with Grammar</div>
+    <div class="hwg-title">Past Simple vs Past Continuous vs used to</div>
 
-  <div class="tip-box">
-    <strong>Used to vs Past Simple:</strong><br>
-    • <strong>used to</strong> = for repeated actions/habits/states in the past (no longer true now)<br>
-    • Cannot use <strong>used to</strong> for one single action: <em>That night she sang for over two hours.</em> (not <del>used to sing</del>)<br>
-    • We say: <em>I used to go... / I didn't use to go... / Did you use to go...?</em>
-  </div>
-
-  <div class="ex-label"><div class="ex-num">8</div>Exercise 8 — Choose the correct verb forms</div>
-  <p class="instr">Read about Sophie. Choose the correct verb forms. Sometimes both are possible.</p>
-
-  <div class="fill-ex">
-    <div class="fill-ex-title">SOPHIE TAYLOR, UK</div>
-    <div class="fill-item"><div class="fill-item-num">1</div><div class="fill-item-body"><div class="fill-sentence">When I <input class="fill-input" id="s1" style="max-width:100px" placeholder="was/was being"> younger I <input class="fill-input" id="s2" style="max-width:100px" placeholder="played/was playing"> the guitar, but I <input class="fill-input" id="s3" style="max-width:120px" placeholder="didn't use to like/didn't like"> it very much.</div></div></div>
-    <div class="fill-item"><div class="fill-item-num">2</div><div class="fill-item-body"><div class="fill-sentence">Then my aunt <input class="fill-input" id="s4" style="max-width:100px" placeholder="gave/was giving"> me a violin for my 14th birthday.</div></div></div>
-    <div class="fill-item"><div class="fill-item-num">3</div><div class="fill-item-body"><div class="fill-sentence">I <input class="fill-input" id="s5" style="max-width:100px" placeholder="had/used to have"> violin lessons every week and I <input class="fill-input" id="s6" style="max-width:100px" placeholder="was loving/loved"> learning how to play a new instrument.</div></div></div>
-    <div class="fill-item"><div class="fill-item-num">4</div><div class="fill-item-body"><div class="fill-sentence">Last year I <input class="fill-input" id="s7" style="max-width:100px" placeholder="joined/was joining"> the school orchestra and in March we <input class="fill-input" id="s8" style="max-width:100px" placeholder="won/used to win"> a music competition.</div></div></div>
-    <div class="fill-item"><div class="fill-item-num">5</div><div class="fill-item-body"><div class="fill-sentence">The prize <input class="fill-input" id="s9" style="max-width:100px" placeholder="was/used to be"> the opportunity to play at the Albert Hall in London!</div></div></div>
-    <div class="fill-item"><div class="fill-item-num">6</div><div class="fill-item-body"><div class="fill-sentence">The big night finally <input class="fill-input" id="s10" style="max-width:100px" placeholder="used to arrive/arrived">, and while we <input class="fill-input" id="s11" style="max-width:100px" placeholder="waited/were waiting"> to go onstage I <input class="fill-input" id="s12" style="max-width:100px" placeholder="started/used to start"> shaking because I was so nervous!</div></div></div>
-    <div class="fill-item"><div class="fill-item-num">7</div><div class="fill-item-body"><div class="fill-sentence">But as soon as we <input class="fill-input" id="s13" style="max-width:100px" placeholder="got/were getting"> onstage I <input class="fill-input" id="s14" style="max-width:100px" placeholder="used to begin/began"> to relax and enjoy myself.</div></div></div>
-    <div class="fill-item"><div class="fill-item-num">8</div><div class="fill-item-body"><div class="fill-sentence">When we <input class="fill-input" id="s15" style="max-width:100px" placeholder="played/were playing"> the last piece of music I <input class="fill-input" id="s16" style="max-width:100px" placeholder="noticed/was noticing"> my mum and dad in the audience.</div></div></div>
-    <div style="display:flex;gap:8px;margin-top:12px">
-      <button class="btn btn-primary" onclick="checkSophie()">✅ Kiểm tra</button>
-      <button class="btn btn-outline" onclick="revealSophie()">👁 Đáp án</button>
+    <div style="margin-bottom:16px">
+      <div class="grammar-tag">1. Past Simple</div>
+      <div style="font-size:.86rem;line-height:1.7;margin-bottom:8px">Dùng cho: (a) hành động hoàn thành một lần trong quá khứ, (b) hành động/thói quen lặp lại trong quá khứ, (c) trạng thái trong quá khứ.</div>
+      <div class="example-box">
+        a) Single action: My boyfriend <strong>bought</strong> tickets.<br>
+        b) Repeated action/habit: I <strong>practised</strong> for hours every day.<br>
+        c) State: I <strong>was</strong> one of Lady Gaga's biggest fans.
+      </div>
     </div>
-    <div class="score-box" id="sophie-score"></div>
-  </div>
-</div>
 
-<!-- ══════════════════════════════════════
-     TAB 4: WORKBOOK
-══════════════════════════════════════ -->
-<div class="tab-pane" id="tab-workbook">
-  <div class="sec-heading">Workbook 4A</div>
-  <div class="sec-sub">Extra practice from Workbook pages 25–26</div>
-
-  <div class="lang-sum-tag">📓 VOCABULARY — Collocations with music</div>
-  <p class="instr">Choose the correct words.</p>
-
-  <div class="fill-ex">
-    <div class="fill-item"><div class="fill-item-num">1</div><div class="fill-item-body"><div class="fill-sentence">I'm a <input class="fill-input" id="wb1" style="max-width:100px" placeholder="big/large"> fan of a band called OutThere.</div></div></div>
-    <div class="fill-item"><div class="fill-item-num">2</div><div class="fill-item-body"><div class="fill-sentence">They've just <input class="fill-input" id="wb2" style="max-width:100px" placeholder="bought/released"> their first single.</div></div></div>
-    <div class="fill-item"><div class="fill-item-num">3</div><div class="fill-item-body"><div class="fill-sentence">I've already downloaded it <input class="fill-input" id="wb3" style="max-width:100px" placeholder="on/onto"> my phone.</div></div></div>
-    <div class="fill-item"><div class="fill-item-num">4</div><div class="fill-item-body"><div class="fill-sentence">I've also <input class="fill-input" id="wb4" style="max-width:100px" placeholder="seen/been"> them play live lots of times.</div></div></div>
-    <div class="fill-item"><div class="fill-item-num">5</div><div class="fill-item-body"><div class="fill-sentence">Last week they <input class="fill-input" id="wb5" style="max-width:100px" placeholder="did/made"> their first ever gig in London.</div></div></div>
-    <div class="fill-item"><div class="fill-item-num">6</div><div class="fill-item-body"><div class="fill-sentence">Next month they're <input class="fill-input" id="wb6" style="max-width:100px" placeholder="doing/going"> on tour.</div></div></div>
-    <div style="display:flex;gap:8px;margin-top:12px">
-      <button class="btn btn-primary" onclick="checkWB()">✅ Kiểm tra</button>
-      <button class="btn btn-outline" onclick="revealWB()">👁 Đáp án</button>
+    <div style="margin-bottom:16px">
+      <div class="grammar-tag">2. Past Continuous</div>
+      <div style="font-size:.86rem;line-height:1.7;margin-bottom:8px">Dùng cho: (a) hành động đang diễn ra tại một thời điểm trong quá khứ, (b) bối cảnh/nền của câu chuyện, (c) hành động đang diễn ra khi hành động khác (ngắn hơn) xảy ra.</div>
+      <div class="example-box">
+        a) Action in progress: Five years ago I <strong>was living</strong> in New York.<br>
+        b) Background: All the clubbers <strong>were dancing</strong>.<br>
+        c) Interrupted action: While she <strong>was doing</strong> an encore, she threw her shoes.
+      </div>
     </div>
-    <div class="score-box" id="wb-score"></div>
-  </div>
 
-  <div class="lang-sum-tag">📓 GRAMMAR — Past Simple or Past Continuous</div>
-  <p class="instr">Put the verbs in the Past Simple or Past Continuous.</p>
-
-  <div class="fill-ex">
-    <div class="fill-item"><div class="fill-item-num">1</div><div class="fill-item-body"><div class="fill-sentence">Once, when I <input class="fill-input" id="wb7" style="max-width:100px" placeholder="be"> (be) quite young, I <input class="fill-input" id="wb8" style="max-width:100px" placeholder="walk"> (walk) by a lake and I <input class="fill-input" id="wb9" style="max-width:100px" placeholder="fall"> (fall) into the water.</div></div></div>
-    <div class="fill-item"><div class="fill-item-num">2</div><div class="fill-item-body"><div class="fill-sentence">I <input class="fill-input" id="wb10" style="max-width:100px" placeholder="not know"> (not know) how to swim, and as I <input class="fill-input" id="wb11" style="max-width:100px" placeholder="wear"> (wear) a lot of clothes I <input class="fill-input" id="wb12" style="max-width:100px" placeholder="start"> (start) going under the water.</div></div></div>
-    <div class="fill-item"><div class="fill-item-num">3</div><div class="fill-item-body"><div class="fill-sentence">Luckily two men <input class="fill-input" id="wb13" style="max-width:100px" placeholder="run"> (run) around the park and they <input class="fill-input" id="wb14" style="max-width:100px" placeholder="see"> (see) me.</div></div></div>
-    <div style="display:flex;gap:8px;margin-top:12px">
-      <button class="btn btn-primary" onclick="checkWB2()">✅ Kiểm tra</button>
-      <button class="btn btn-outline" onclick="revealWB2()">👁 Đáp án</button>
+    <div style="margin-bottom:16px">
+      <div class="grammar-tag">3. used to + base verb</div>
+      <div style="font-size:.86rem;line-height:1.7;margin-bottom:8px">Dùng để nói về hành động lặp lại hoặc trạng thái <strong>trong quá khứ mà không còn đúng ở hiện tại</strong>. Chỉ dùng cho hành động lặp lại/thói quen hoặc trạng thái — KHÔNG dùng cho một hành động đơn lẻ.</div>
+      <div class="example-box">
+        I <strong>used to go</strong> to a lot of gigs. (nhưng giờ không còn nữa)<br>
+        I <strong>used to DJ</strong> at friends' parties.<br>
+        ❌ <em>I used to listen to her album all the time</em> (vẫn ổn vì là hành động lặp lại)<br>
+        ❌ <em>I used to buy tickets</em> ← SAI nếu chỉ mua một lần (hành động đơn lẻ phải dùng Past Simple)
+      </div>
+      <div class="note-box" style="margin-top:10px">
+        <strong>📌 Cấu trúc used to:</strong><br>
+        Positive: <em>subject + used to + verb</em> → I used to go<br>
+        Negative: <em>subject + didn't use to + verb</em> → I didn't use to like it<br>
+        Question: <em>Did + subject + use to + verb?</em> → Did you use to go to gigs?
+      </div>
     </div>
-    <div class="score-box" id="wb2-score"></div>
+  </div>
+
+  <div class="ex-label"><span class="ex-num">1</span>Chọn dạng động từ đúng (SB p32, Ex 5a — Sophie's text)</div>
+  <div class="instruction">Chọn dạng động từ đúng trong câu chuyện của Sophie.</div>
+  <div class="mcq-list">
+    <div class="mcq-item"><div class="mcq-q">1. When I <strong>___</strong> younger I played the guitar.</div><div class="mcq-opts">
+      <div class="mcq-opt" onclick="selM(this,'A','q1')"><div class="opt-dot"></div>was</div>
+      <div class="mcq-opt" onclick="selM(this,'B','q1')"><div class="opt-dot"></div>was being</div>
+    </div><div id="q1-fb" style="display:none;margin-top:6px;font-size:.8rem;color:var(--teal)">✅ <strong>was</strong> — trạng thái (state) dùng Past Simple, không dùng Continuous với "be".</div></div>
+    <div class="mcq-item"><div class="mcq-q">2. I <strong>___</strong> the guitar, but I didn't use to like it very much.</div><div class="mcq-opts">
+      <div class="mcq-opt" onclick="selM(this,'A','q2')"><div class="opt-dot"></div>played</div>
+      <div class="mcq-opt" onclick="selM(this,'B','q2')"><div class="opt-dot"></div>was playing</div>
+    </div><div id="q2-fb" style="display:none;margin-top:6px;font-size:.8rem;color:var(--teal)">✅ <strong>played</strong> — hành động lặp lại trong quá khứ, dùng Past Simple (có thể cả "used to play").</div></div>
+    <div class="mcq-item"><div class="mcq-q">3. Then my aunt <strong>___</strong> me a violin for my 14th birthday.</div><div class="mcq-opts">
+      <div class="mcq-opt" onclick="selM(this,'A','q3')"><div class="opt-dot"></div>gave</div>
+      <div class="mcq-opt" onclick="selM(this,'B','q3')"><div class="opt-dot"></div>was giving</div>
+    </div><div id="q3-fb" style="display:none;margin-top:6px;font-size:.8rem;color:var(--teal)">✅ <strong>gave</strong> — hành động hoàn thành một lần, dùng Past Simple.</div></div>
+    <div class="mcq-item"><div class="mcq-q">4. While we <strong>___</strong> to go onstage, I started shaking.</div><div class="mcq-opts">
+      <div class="mcq-opt" onclick="selM(this,'B','q4')"><div class="opt-dot"></div>waited</div>
+      <div class="mcq-opt" onclick="selM(this,'A','q4')"><div class="opt-dot"></div>were waiting</div>
+    </div><div id="q4-fb" style="display:none;margin-top:6px;font-size:.8rem;color:var(--teal)">✅ <strong>were waiting</strong> — hành động đang diễn ra khi hành động khác (started shaking) xảy ra → Past Continuous.</div></div>
+    <div class="mcq-item"><div class="mcq-q">5. As soon as we got onstage I <strong>___</strong> to relax.</div><div class="mcq-opts">
+      <div class="mcq-opt" onclick="selM(this,'A','q5')"><div class="opt-dot"></div>started</div>
+      <div class="mcq-opt" onclick="selM(this,'B','q5')"><div class="opt-dot"></div>used to start</div>
+    </div><div id="q5-fb" style="display:none;margin-top:6px;font-size:.8rem;color:var(--teal)">✅ <strong>started</strong> — hành động đơn lẻ, KHÔNG dùng "used to" cho hành động chỉ xảy ra một lần.</div></div>
+  </div>
+
+  <div class="ex-label"><span class="ex-num">2</span>Viết câu với used to (SB p32, Ex 9a)</div>
+  <div class="instruction">Hoàn thành câu hỏi với "used to" nếu có thể, hoặc Past Simple.</div>
+  <div class="fill-ex">
+    <div class="fill-item" id="g1"><div class="fill-num">1</div><div class="fill-content">
+      <div class="fill-sent">Who <input class="fi" id="gi1" placeholder="was/used to be" style="width:160px"> your best friend when you were 12?</div>
+      <div style="display:flex;gap:4px;margin-top:6px"><button class="chk-btn" onclick="chk('gi1','was|used to be','g1','gf1')">Kiểm tra</button><button class="rev-btn" onclick="rev('gi1','was / used to be','g1','gf1')">Đáp án</button></div>
+      <div class="fb" id="gf1"></div>
+    </div></div>
+    <div class="fill-item" id="g2"><div class="fill-num">2</div><div class="fill-content">
+      <div class="fill-sent">Where did you first <input class="fi" id="gi2" placeholder="meet" style="width:100px"> him or her?</div>
+      <div style="display:flex;gap:4px;margin-top:6px"><button class="chk-btn" onclick="chk('gi2','meet','g2','gf2')">Kiểm tra</button><button class="rev-btn" onclick="rev('gi2','meet','g2','gf2')">Đáp án</button></div>
+      <div class="fb" id="gf2"></div>
+    </div></div>
+    <div class="fill-item" id="g3"><div class="fill-num">3</div><div class="fill-content">
+      <div class="fill-sent">Did you <input class="fi" id="gi3" placeholder="use to like" style="width:160px"> the same music?</div>
+      <div style="display:flex;gap:4px;margin-top:6px"><button class="chk-btn" onclick="chk('gi3','use to like','g3','gf3')">Kiểm tra</button><button class="rev-btn" onclick="rev('gi3','use to like','g3','gf3')">Đáp án</button></div>
+      <div class="fb" id="gf3"></div>
+    </div></div>
+    <div class="fill-item" id="g4"><div class="fill-num">4</div><div class="fill-content">
+      <div class="fill-sent">Did you <input class="fi" id="gi4" placeholder="use to go" style="width:160px"> to gigs together?</div>
+      <div style="display:flex;gap:4px;margin-top:6px"><button class="chk-btn" onclick="chk('gi4','use to go','g4','gf4')">Kiểm tra</button><button class="rev-btn" onclick="rev('gi4','use to go','g4','gf4')">Đáp án</button></div>
+      <div class="fb" id="gf4"></div>
+    </div></div>
+    <div class="fill-item" id="g5"><div class="fill-num">5</div><div class="fill-content">
+      <div class="fill-sent">When did you last <input class="fi" id="gi5" placeholder="see" style="width:100px"> him or her?</div>
+      <div style="display:flex;gap:4px;margin-top:6px"><button class="chk-btn" onclick="chk('gi5','see','g5','gf5')">Kiểm tra</button><button class="rev-btn" onclick="rev('gi5','see','g5','gf5')">Đáp án</button></div>
+      <div class="fb" id="gf5"></div>
+    </div></div>
   </div>
 </div>
 
-<!-- ══════════════════════════════════════
-     TAB 5: LANGUAGE SUMMARY
-══════════════════════════════════════ -->
-<div class="tab-pane" id="tab-langsummary">
-  <div class="sec-heading">Language Summary 4A</div>
-  <div class="sec-sub">VOCABULARY 4.1 · GRAMMAR 4.1 &amp; 4.2</div>
-
-  <div class="lang-sum-tag">📗 VOCABULARY 4.1 — Collocations (2): music</div>
-  <div class="coll-grid">
-    <div class="coll-row"><div class="coll-verb">do/play</div><div><div class="coll-phrase">a concert/a gig</div><div class="coll-vi">🇻🇳 biểu diễn một buổi hòa nhạc</div><div class="coll-ex">"I played a gig last night."</div></div></div>
-    <div class="coll-row"><div class="coll-verb">be</div><div><div class="coll-phrase">a big fan of a singer/band</div><div class="coll-vi">🇻🇳 là fan cuồng của ca sĩ/ban nhạc</div><div class="coll-ex">"I'm a big fan of Coldplay."</div></div></div>
-    <div class="coll-row"><div class="coll-verb">release</div><div><div class="coll-phrase">a new single/album/CD</div><div class="coll-vi">🇻🇳 phát hành đĩa đơn/album mới</div><div class="coll-ex">"They released their first single last week."</div></div></div>
-    <div class="coll-row"><div class="coll-verb">do</div><div><div class="coll-phrase">an encore</div><div class="coll-vi">🇻🇳 biểu diễn thêm</div><div class="coll-ex">"They did three encores."</div></div></div>
-    <div class="coll-row"><div class="coll-verb">download</div><div><div class="coll-phrase">a track onto my phone</div><div class="coll-vi">🇻🇳 tải bài hát vào điện thoại</div><div class="coll-ex">"I downloaded this track from the band's website."</div></div></div>
-    <div class="coll-row"><div class="coll-verb">be/go</div><div><div class="coll-phrase">on tour</div><div class="coll-vi">🇻🇳 đi lưu diễn</div><div class="coll-ex">"They're going on tour next month."</div></div></div>
-    <div class="coll-row"><div class="coll-verb">have</div><div><div class="coll-phrase">an album/a CD in the charts</div><div class="coll-vi">🇻🇳 có album trong bảng xếp hạng</div><div class="coll-ex">"They have two albums in the charts."</div></div></div>
-    <div class="coll-row"><div class="coll-verb">see</div><div><div class="coll-phrase">someone play live</div><div class="coll-vi">🇻🇳 xem ai đó biểu diễn trực tiếp</div><div class="coll-ex">"I've seen them play live twice."</div></div></div>
-    <div class="coll-row"><div class="coll-verb">be/go</div><div><div class="coll-phrase">onstage</div><div class="coll-vi">🇻🇳 lên sân khấu</div><div class="coll-ex">"What time are they onstage?"</div></div></div>
+<!-- TAB PRONUNCIATION -->
+<div id="tab-pronunciation" class="tab-pane">
+  <div class="sec-heading">🔊 Pronunciation — Stress and weak forms</div>
+  <div class="sec-sub">Student Book p32 · CD1 Track 30</div>
+  <div class="audio-box">
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px">
+      <span class="cd-tag">CD1 Track 30</span>
+      <span style="font-size:.9rem;font-weight:600">Stress and weak forms — Past Continuous sentences</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:12px;padding:12px 16px;background:var(--bg3);border-radius:var(--r2)">
+      <button class="play-btn">▶</button>
+      <div><div style="font-size:.83rem;font-weight:500">SB p32 — Listen and practise</div><div style="font-size:.75rem;color:var(--muted)">Sử dụng audio CD kèm theo giáo trình</div></div>
+    </div>
   </div>
-
-  <div class="lang-sum-tag">📗 GRAMMAR 4.1 — Past Simple vs Past Continuous</div>
-  <div class="grammar-table">
-    <table>
-      <thead><tr><th>Tense</th><th>Use</th><th>Example</th></tr></thead>
-      <tbody>
-        <tr><td>Past Simple</td><td>Single completed action</td><td class="aux">She <strong>bought</strong> tickets.</td></tr>
-        <tr><td>Past Simple</td><td>Repeated action/habit in the past</td><td class="aux">I <strong>practised</strong> for hours.</td></tr>
-        <tr><td>Past Continuous</td><td>Action in progress in the past</td><td class="aux">I <strong>was living</strong> in New York.</td></tr>
-        <tr><td>Past Continuous</td><td>Background events</td><td class="aux">All the fans <strong>were singing</strong>.</td></tr>
-        <tr><td>Past Continuous</td><td>Interrupted action</td><td class="aux">While I <strong>was playing</strong>, the manager <strong>came</strong>.</td></tr>
-      </tbody>
-    </table>
+  <div class="pron-box">
+    <div style="font-size:.9rem;font-weight:700;margin-bottom:10px">Trọng âm và weak form trong câu Past Continuous</div>
+    <div style="font-family:monospace;font-size:.88rem;line-height:2.4;color:#C4B5FD;background:var(--bg3);padding:16px;border-radius:var(--r2);border:1px solid var(--border)">
+      she THREW her shoes into the CROWD →<br>
+      While she <span style="color:var(--teal)">was</span> /wəz/ DOING an ENCORE, she THREW her shoes into the CROWD.
+    </div>
+    <div class="note-box" style="margin-top:14px">
+      <strong>📌 Quy tắc:</strong><br>
+      • Trợ động từ <strong>was/were</strong> trong Past Continuous thường ở dạng <strong>weak form</strong>: was /wəz/, were /wə/ — không nhấn mạnh.<br>
+      • Động từ chính (doing, throwing...) và danh từ quan trọng (encore, shoes, crowd) được <strong>nhấn mạnh</strong> (content words).<br>
+      • So sánh: <em>"Was she there?" "Yes, she WAS."</em> — ở cuối câu, "was" chuyển sang strong form /wɒz/ khi được nhấn.
+    </div>
   </div>
-
-  <div class="lang-sum-tag">📗 GRAMMAR 4.2 — used to</div>
-  <div class="tip-box">
-    <strong>Used to:</strong><br>
-    • For repeated actions/habits/states in the past: <em>I used to go to a lot of gigs.</em><br>
-    • Cannot use for one single action: <em>That night she sang.</em> (not <del>used to sing</del>)<br>
-    • Positive: <em>I used to...</em> / Negative: <em>I didn't use to...</em> / Question: <em>Did you use to...?</em>
+  <div class="ex-label"><span class="ex-num">1</span>Luyện tập với câu Past Continuous khác</div>
+  <div class="qa-list">
+    <div class="qa-item" id="pq1"><div class="qa-q" onclick="toggleQA('pq1')"><div class="qa-qnum">1</div><div class="qa-qtext">Twenty minutes later I was standing in front of 1,000 people!</div><div class="qa-arrow">›</div></div><div class="qa-answer">"was" /wəz/ weak form. Nhấn: STANDing, THOUSand PEOPLE.</div></div>
+    <div class="qa-item" id="pq2"><div class="qa-q" onclick="toggleQA('pq2')"><div class="qa-qnum">2</div><div class="qa-qtext">All the clubbers were dancing and having a good time.</div><div class="qa-arrow">›</div></div><div class="qa-answer">"were" /wə/ weak form. Nhấn: CLUBbers, DANcing, GOOD TIME.</div></div>
+    <div class="qa-item" id="pq3"><div class="qa-q" onclick="toggleQA('pq3')"><div class="qa-qnum">3</div><div class="qa-qtext">While I was playing my last track, the manager came over.</div><div class="qa-arrow">›</div></div><div class="qa-answer">"was" /wəz/ weak form. Nhấn: PLAYing, LAST TRACK, MANager, CAME OVER.</div></div>
   </div>
 </div>
 
-</div><!-- /page-content -->
+<!-- TAB SPEAKING -->
+<div id="tab-speaking" class="tab-pane">
+  <div class="sec-heading">💬 Speaking — Talking about music</div>
+  <div class="sec-sub">Student Book p30, p32 · Ex 2, 9</div>
 
+  <div class="ex-label"><span class="ex-num">1</span>Nói về ban nhạc/ca sĩ yêu thích (SB p30, Ex 2)</div>
+  <div class="speaking-box">
+    <div style="font-size:.85rem;font-weight:600;margin-bottom:10px">🗣 Mẫu hội thoại</div>
+    <div class="bubble">A: I'm a big fan of Coldplay.</div>
+    <div class="bubble" style="background:var(--violet-l);border-color:rgba(124,58,237,.3)">B: Yes, me too. Have you ever seen them play live?</div>
+    <div class="bubble">A: No, but I've downloaded all their albums. What about you?</div>
+    <div class="bubble" style="background:var(--violet-l);border-color:rgba(124,58,237,.3)">B: I saw them on tour last year — it was an amazing gig!</div>
+  </div>
+  <div class="instruction">Viết tên 3 ban nhạc/ca sĩ/nhà soạn nhạc bạn yêu thích. Dùng các collocation đã học để nói về họ.</div>
+  <div>
+    <span class="chip">I'm a big fan of...</span>
+    <span class="chip">I've seen them play live</span>
+    <span class="chip">They released a new album</span>
+    <span class="chip">They're going on tour</span>
+    <span class="chip">I downloaded their new single</span>
+    <span class="chip">It went to number one in the charts</span>
+  </div>
+
+  <div class="divider"></div>
+  <div class="ex-label"><span class="ex-num">2</span>Thảo luận kỷ niệm tuổi 12 (SB p32, Ex 9b)</div>
+  <div class="speaking-box">
+    <div class="disc-q"><div class="disc-q-num">1</div><div>Who was your best friend when you were 12?</div></div>
+    <div class="disc-q"><div class="disc-q-num">2</div><div>Where did you first meet him or her?</div></div>
+    <div class="disc-q"><div class="disc-q-num">3</div><div>Did you use to like the same music?</div></div>
+    <div class="disc-q"><div class="disc-q-num">4</div><div>Did you use to go to gigs together?</div></div>
+    <div class="disc-q"><div class="disc-q-num">5</div><div>Did you use to buy the same singles or albums?</div></div>
+    <div class="disc-q"><div class="disc-q-num">6</div><div>Did you use to like the same TV programmes?</div></div>
+    <div class="disc-q"><div class="disc-q-num">7</div><div>When did you last see him or her?</div></div>
+  </div>
+</div>
+
+<!-- TAB WORKBOOK -->
+<div id="tab-workbook" class="tab-pane">
+  <div class="sec-heading">📝 Workbook — Bài 4A Musical experiences</div>
+  <div class="sec-sub">Workbook p20–21</div>
+
+  <div class="wb-tag">📚 Collocations — WB p20, Ex 1</div>
+  <div class="ex-label"><span class="ex-num">1</span>Điền verb đúng (WB p20)</div>
+  <div class="instruction">Đọc đoạn văn về ngành công nghiệp âm nhạc và điền dạng đúng của các động từ: <em>release, be, play (x2), go, see, download</em></div>
+  <div class="article-box">
+    <div class="article-body">
+      <p>The music business has dramatically changed in the last 20 years. In the past, bands ¹<strong style="color:var(--teal)">released</strong> a few singles or an album, on CD or a record. They appeared on TV to promote their music but there weren't many opportunities to ²<input class="fi" id="wbi2" placeholder="verb" style="width:90px"> them ³<input class="fi" id="wbi3" placeholder="verb" style="width:90px"> live. Nowadays, if you ⁴<input class="fi" id="wbi4" placeholder="verb" style="width:90px"> a big fan of a singer or band, you probably get your news about them online. Instead of buying CDs, many people ⁵<input class="fi" id="wbi5" placeholder="verb" style="width:90px"> tracks onto their phone or computer. Bands ⁶<input class="fi" id="wbi6" placeholder="verb" style="width:90px"> on tour regularly and many musicians make more money from ⁷<input class="fi" id="wbi7" placeholder="verb-ing" style="width:100px"> gigs than they do from selling albums.</p>
+      <div style="margin-top:10px"><button class="chk-btn" onclick="checkPara()">Kiểm tra tất cả</button><button class="rev-btn" onclick="revealPara()">Xem đáp án</button></div>
+      <div id="para-fb" style="margin-top:8px;font-size:.82rem;display:none"></div>
+    </div>
+  </div>
+
+  <div class="wb-tag" style="margin-top:20px">⚙ Past Simple & Past Continuous — WB p20, Ex 2</div>
+  <div class="ex-label"><span class="ex-num">2</span>"Seven things you didn't know about Rock and Pop Stars" (WB p20)</div>
+  <div class="instruction">Điền dạng đúng (Past Simple hoặc Past Continuous) của động từ trong ngoặc.</div>
+  <div class="article-box">
+    <div class="article-tag">📖 Workbook reading</div>
+    <div class="article-title" style="font-size:1rem">Seven things you didn't know about... Rock and Pop Stars</div>
+    <div class="article-body">
+      <p>⭐ In 1958, while Elvis <strong style="color:var(--teal)">was earning</strong> (earn) $400,000 a month, he had to go into the army. His salary <input class="fi" id="rp2" placeholder="(go)" style="width:140px"> down to $78 a month.</p>
+      <p>⭐ In 1959, a teacher <input class="fi" id="rp3" placeholder="(throw)" style="width:140px"> a 16-year-old Jimi Hendrix out of school because he <input class="fi" id="rp4" placeholder="(hold)" style="width:140px"> the hand of a white girl in his class.</p>
+      <p>⭐ In April 1964, while the Beatles <input class="fi" id="rp5" placeholder="(finish)" style="width:140px"> their second album, they <input class="fi" id="rp6" placeholder="(have)" style="width:140px"> hit records in all of the top-five positions in the US charts.</p>
+      <p>⭐ In 1963, Roy Orbison <input class="fi" id="rp7" placeholder="(be)" style="width:140px"> on tour with the Beatles. He <input class="fi" id="rp8" placeholder="(wear)" style="width:140px"> sunglasses because he couldn't find his glasses. He liked the look so much that, for the rest of his career, he always <input class="fi" id="rp9" placeholder="(wear)" style="width:140px"> sunglasses.</p>
+      <p>⭐ In 1970, while the rock group Pink Floyd <input class="fi" id="rp10" placeholder="(play)" style="width:140px"> in front of a large lake in London, the music <input class="fi" id="rp11" placeholder="(be)" style="width:140px"> so loud that some of the fish in the lake <input class="fi" id="rp12" placeholder="(die)" style="width:140px">.</p>
+      <p>⭐ Fans <input class="fi" id="rp13" placeholder="(queue)" style="width:140px"> overnight at a Hollywood music shop for the chance to get Lady Gaga's autograph. While they <input class="fi" id="rp14" placeholder="(wait)" style="width:140px">, Gaga saw their tweets. She immediately <input class="fi" id="rp15" placeholder="(order)" style="width:140px"> 80 takeaway pizzas and <input class="fi" id="rp16" placeholder="(send)" style="width:140px"> them to her fans in case they were hungry!</p>
+      <p>⭐ While Madonna <input class="fi" id="rp17" placeholder="(stay)" style="width:140px"> in Sweden for the MTV Music Awards, she <input class="fi" id="rp18" placeholder="(ask)" style="width:140px"> the hotel to change the colour of the room. She <input class="fi" id="rp19" placeholder="(want)" style="width:140px"> a 'calm colour' to help her meditate. Madonna <input class="fi" id="rp20" placeholder="(not joke)" style="width:140px">, and the hotel immediately <input class="fi" id="rp21" placeholder="(paint)" style="width:140px"> the room.</p>
+      <div style="margin-top:10px"><button class="chk-btn" onclick="checkRP()">Kiểm tra tất cả</button><button class="rev-btn" onclick="revealRP()">Xem đáp án</button></div>
+      <div id="rp-fb" style="margin-top:8px;font-size:.82rem;display:none"></div>
+    </div>
+  </div>
+
+  <div class="wb-tag" style="margin-top:20px">⚙ used to — WB p21, Ex 3</div>
+  <div class="ex-label"><span class="ex-num">3</span>"Before they were famous..." (WB p21)</div>
+  <div class="instruction">Điền verb dùng <strong>used to</strong> nếu có thể, hoặc Past Simple.</div>
+  <div class="article-box">
+    <div class="article-body">
+      <p>1️⃣ Madonna <strong style="color:var(--teal)">used to work</strong> (work) at a café called Dunkin' Donuts. She <strong style="color:var(--teal)">got</strong> (get) sacked for spilling jam on a customer.</p>
+      <p>2️⃣ Fergie from the Black Eyed Peas <input class="fi" id="bf2" placeholder="(do)" style="width:140px"> the voice of a character in the <em>Peanuts</em> cartoons. She <input class="fi" id="bf2b" placeholder="(start)" style="width:140px"> when she was just nine years old!</p>
+      <p>3️⃣ Ricky Martin <input class="fi" id="bf3" placeholder="(be)" style="width:140px"> an actor on a US TV soap, <em>General Hospital</em>. After two years on the show, Ricky decided he <input class="fi" id="bf3b" placeholder="(prefer)" style="width:140px"> music to acting.</p>
+      <p>4️⃣ Elvis <input class="fi" id="bf4" placeholder="(lose)" style="width:140px"> his first job in a factory because he <input class="fi" id="bf4b" placeholder="(be)" style="width:140px"> only 15. He <input class="fi" id="bf4c" placeholder="(get)" style="width:140px"> $30 a week.</p>
+      <p>5️⃣ Britney Spears and Justin Timberlake <input class="fi" id="bf5" placeholder="(present)" style="width:140px"> a children's TV programme called <em>The Mickey Mouse Club</em>.</p>
+      <p>6️⃣ In 1965, Reggie Dwight <input class="fi" id="bf6" placeholder="(play)" style="width:140px"> the piano in a North London pub at weekends. He <input class="fi" id="bf6b" placeholder="(be)" style="width:140px"> 15 years old. Less than five years later, the same person <input class="fi" id="bf6c" placeholder="(release)" style="width:140px"> his first album, using his new name: Elton John.</p>
+      <div style="margin-top:10px"><button class="chk-btn" onclick="checkBF()">Kiểm tra tất cả</button><button class="rev-btn" onclick="revealBF()">Xem đáp án</button></div>
+      <div id="bf-fb" style="margin-top:8px;font-size:.82rem;display:none"></div>
+    </div>
+  </div>
+</div>
+
+</div><!-- page-content -->
 <script>
-function showTab(id){
-  document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));
-  document.querySelectorAll('.tnav-btn').forEach(b=>b.classList.remove('active'));
-  document.getElementById('tab-'+id).classList.add('active');
-  const tabs=['vocab','reading','grammar','workbook','langsummary'];
-  const idx=tabs.indexOf(id);
-  document.querySelectorAll('.tnav-btn')[idx]?.classList.add('active');
+function toggleTheme(){const d=document.documentElement;d.dataset.theme=d.dataset.theme==='light'?'':'light';}
+function showTab(id,btn){document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));document.querySelectorAll('.tnav-btn').forEach(b=>b.classList.remove('active'));document.getElementById('tab-'+id).classList.add('active');btn.classList.add('active');}
+function chk(inputId,ans,rowId,fbId){
+  const v=document.getElementById(inputId).value.trim().toLowerCase();
+  const ok=ans.toLowerCase().split('|').some(a=>v===a||v.includes(a));
+  document.getElementById(inputId).className=ok?'fi ok':'fi err';
+  const fb=document.getElementById(fbId);if(fb){fb.className=ok?'fb ok':'fb err';fb.textContent=ok?'✅ Đúng!':'❌ Chưa đúng. Thử lại!';}
 }
-function toggleTheme(){const t=document.documentElement.getAttribute('data-theme')==='light'?'dark':'light';document.documentElement.setAttribute('data-theme',t==='light'?'light':'');document.getElementById('theme-btn').textContent=t==='light'?'🌙':'☀️';localStorage.setItem('f2f_4a_theme',t);}
-function markDone(){showToast('✅ 4A Musical experiences đã hoàn thành!');}
-function showToast(msg){let t=document.getElementById('toast');if(!t){t=document.createElement('div');t.id='toast';t.style.cssText='position:fixed;bottom:20px;right:20px;z-index:999;background:var(--bg2);border:1px solid var(--border2);padding:10px 18px;border-radius:8px;font-size:.82rem;box-shadow:0 4px 20px rgba(0,0,0,.3);transition:opacity .3s';document.body.appendChild(t);}t.textContent=msg;t.style.opacity='1';clearTimeout(showToast._t);showToast._t=setTimeout(()=>t.style.opacity='0',2400);}
-function toggleQA(btn){const item=btn.closest('.qa-item');item.classList.toggle('open');}
+function rev(inputId,ans,rowId,fbId){
+  document.getElementById(inputId).value=ans;document.getElementById(inputId).className='fi ok';
+  const fb=document.getElementById(fbId);if(fb){fb.className='fb ok';fb.textContent='💡 Đáp án: '+ans;}
+}
+function selM(el,choice,grp){
+  const p=el.closest('.mcq-item');p.querySelectorAll('.mcq-opt').forEach(o=>o.classList.remove('ok','err'));
+  const fb=document.getElementById(grp+'-fb');
+  if(choice==='A'){el.classList.add('ok');if(fb)fb.style.display='block';}
+  else{el.classList.add('err');if(fb)fb.style.display='block';}
+}
+function toggleQA(id){document.getElementById(id).classList.toggle('open');}
+function toggleTr(id){document.getElementById(id).classList.toggle('show');}
 
-function checkSophie(){
-  const ans={s1:'was',s2:'played',s3:'didn\'t use to like',s4:'gave',s5:'had',s6:'loved',s7:'joined',s8:'won',s9:'was',s10:'arrived',s11:'were waiting',s12:'started',s13:'got',s14:'began',s15:'were playing',s16:'noticed'};
-  let c=0,total=16;
-  Object.entries(ans).forEach(([id,val])=>{
-    const inp=document.getElementById(id);
-    if(inp){
-      const ok=inp.value.trim().toLowerCase().replace(/\s+/g,'')===val.toLowerCase().replace(/\s+/g,'');
-      inp.className='fill-input '+(ok?'correct':'wrong');
-      if(ok)c++;
-    }
-  });
-  const sc=document.getElementById('sophie-score');
-  sc.innerHTML=`<div class="score-n">${c}/${total}</div><div class="score-msg">${c===total?'🎉 All correct!':'Review GRAMMAR 4.1 & 4.2.'}</div>`;
-  sc.className='score-box show';
+const paraAns={wbi2:'see',wbi3:'play',wbi4:'are',wbi5:'download',wbi6:'go',wbi7:'doing'};
+function checkPara(){
+  let ok=0,total=Object.keys(paraAns).length;
+  for(const id in paraAns){
+    const inp=document.getElementById(id);const v=inp.value.trim().toLowerCase();
+    if(v===paraAns[id]){inp.className='fi ok';ok++;}else{inp.className='fi err';}
+  }
+  const fb=document.getElementById('para-fb');fb.style.display='block';
+  fb.innerHTML=ok===total?'<span style="color:var(--green)">🎉 Đúng tất cả!</span>':`<span style="color:var(--orange)">Đúng ${ok}/${total}.</span>`;
 }
-function revealSophie(){
-  const ans={s1:'was',s2:'played',s3:'didn\'t use to like',s4:'gave',s5:'had',s6:'loved',s7:'joined',s8:'won',s9:'was',s10:'arrived',s11:'were waiting',s12:'started',s13:'got',s14:'began',s15:'were playing',s16:'noticed'};
-  Object.entries(ans).forEach(([id,val])=>{const inp=document.getElementById(id);if(inp){inp.value=val;inp.className='fill-input correct';}});
-}
-
-function checkWB(){
-  const ans={wb1:'big',wb2:'released',wb3:'onto',wb4:'seen',wb5:'did',wb6:'going'};
-  let c=0,total=6;
-  Object.entries(ans).forEach(([id,val])=>{
-    const inp=document.getElementById(id);
-    if(inp){
-      const ok=inp.value.trim().toLowerCase().replace(/\s+/g,'')===val.toLowerCase().replace(/\s+/g,'');
-      inp.className='fill-input '+(ok?'correct':'wrong');
-      if(ok)c++;
-    }
-  });
-  const sc=document.getElementById('wb-score');
-  sc.innerHTML=`<div class="score-n">${c}/${total}</div><div class="score-msg">${c===total?'🎉 All correct!':'Check the workbook answers.'}</div>`;
-  sc.className='score-box show';
-}
-function revealWB(){
-  const ans={wb1:'big',wb2:'released',wb3:'onto',wb4:'seen',wb5:'did',wb6:'going'};
-  Object.entries(ans).forEach(([id,val])=>{const inp=document.getElementById(id);if(inp){inp.value=val;inp.className='fill-input correct';}});
+function revealPara(){
+  for(const id in paraAns){const inp=document.getElementById(id);inp.value=paraAns[id];inp.className='fi ok';}
+  const fb=document.getElementById('para-fb');fb.style.display='block';fb.innerHTML='<span style="color:var(--teal)">💡 Đáp án đã điền.</span>';
 }
 
-function checkWB2(){
-  const ans={wb7:'was',wb8:'was walking',wb9:'fell',wb10:'didn\'t know',wb11:'was wearing',wb12:'started',wb13:'were running',wb14:'saw'};
-  let c=0,total=8;
-  Object.entries(ans).forEach(([id,val])=>{
-    const inp=document.getElementById(id);
-    if(inp){
-      const ok=inp.value.trim().toLowerCase().replace(/\s+/g,'')===val.toLowerCase().replace(/\s+/g,'');
-      inp.className='fill-input '+(ok?'correct':'wrong');
-      if(ok)c++;
-    }
-  });
-  const sc=document.getElementById('wb2-score');
-  sc.innerHTML=`<div class="score-n">${c}/${total}</div><div class="score-msg">${c===total?'🎉 All correct!':'Review Past Simple vs Past Continuous.'}</div>`;
-  sc.className='score-box show';
+const rpAns={rp2:'went',rp3:'threw',rp4:'was holding',rp5:'were finishing',rp6:'had',rp7:'was',rp8:'was wearing',rp9:'wore',rp10:'was playing',rp11:'was',rp12:'died',rp13:'queued',rp14:'were waiting',rp15:'ordered',rp16:'sent',rp17:'was staying',rp18:'asked',rp19:'wanted',rp20:"wasn't joking",rp21:'painted'};
+function checkRP(){
+  let ok=0,total=Object.keys(rpAns).length;
+  for(const id in rpAns){
+    const inp=document.getElementById(id);const v=inp.value.trim().toLowerCase();
+    if(v===rpAns[id].toLowerCase()){inp.className='fi ok';ok++;}else{inp.className='fi err';}
+  }
+  const fb=document.getElementById('rp-fb');fb.style.display='block';
+  fb.innerHTML=ok===total?'<span style="color:var(--green)">🎉 Đúng tất cả!</span>':`<span style="color:var(--orange)">Đúng ${ok}/${total}.</span>`;
 }
-function revealWB2(){
-  const ans={wb7:'was',wb8:'was walking',wb9:'fell',wb10:'didn\'t know',wb11:'was wearing',wb12:'started',wb13:'were running',wb14:'saw'};
-  Object.entries(ans).forEach(([id,val])=>{const inp=document.getElementById(id);if(inp){inp.value=val;inp.className='fill-input correct';}});
+function revealRP(){
+  for(const id in rpAns){const inp=document.getElementById(id);inp.value=rpAns[id];inp.className='fi ok';}
+  const fb=document.getElementById('rp-fb');fb.style.display='block';fb.innerHTML='<span style="color:var(--teal)">💡 Đáp án đã điền.</span>';
 }
 
-document.addEventListener('DOMContentLoaded',()=>{
-  const t=localStorage.getItem('f2f_4a_theme')||'dark';
-  if(t==='light'){document.documentElement.setAttribute('data-theme','light');document.getElementById('theme-btn').textContent='🌙';}
-});
+const bfAns={bf2:'used to do',bf2b:'started',bf3:'used to be',bf3b:'preferred',bf4:'lost',bf4b:'was',bf4c:'used to get',bf5:'used to present',bf6:'used to play',bf6b:'was',bf6c:'released'};
+function checkBF(){
+  let ok=0,total=Object.keys(bfAns).length;
+  for(const id in bfAns){
+    const inp=document.getElementById(id);const v=inp.value.trim().toLowerCase();
+    if(v===bfAns[id].toLowerCase()){inp.className='fi ok';ok++;}else{inp.className='fi err';}
+  }
+  const fb=document.getElementById('bf-fb');fb.style.display='block';
+  fb.innerHTML=ok===total?'<span style="color:var(--green)">🎉 Đúng tất cả!</span>':`<span style="color:var(--orange)">Đúng ${ok}/${total}.</span>`;
+}
+function revealBF(){
+  for(const id in bfAns){const inp=document.getElementById(id);inp.value=bfAns[id];inp.className='fi ok';}
+  const fb=document.getElementById('bf-fb');fb.style.display='block';fb.innerHTML='<span style="color:var(--teal)">💡 Đáp án đã điền.</span>';
+}
 </script>
 </body>
 </html>
